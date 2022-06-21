@@ -1,6 +1,4 @@
-import './App.css'
-
-function App() {
+const App = () => {
   return (
     <div className="h-full w-full">
       <div>React Boilerplate</div>
