@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "redvanworkshop.explorer-exclude-vscode-extension",
+    "bradlc.vscode-tailwindcss",
+    "eamodio.gitlens",
+    "pkief.material-icon-theme",
+    "wayou.vscode-todo-highlight",
+    "codeandstuff.package-json-upgrade"
+  ]
+}
