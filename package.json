@@ -1,6 +1,6 @@
 {
   "name": "@musma/react-component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Musma's ESLint config with TypeScript support",
   "author": "YoungSu Kim (jklasd2001@musma.net)",
   "license": "MIT",
@@ -17,12 +17,12 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/lib.umd.js",
   "module": "./dist/lib.es.js",
-  "style": "./dist/style.css",
   "exports": {
     ".": {
       "import": "./dist/lib.es.js",
       "require": "./dist/lib.umd.js"
-    }
+    },
+    "./style.css": "./dist/styles.css"
   },
   "scripts": {
     "dev": "vite",
