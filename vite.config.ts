@@ -26,4 +26,7 @@ export default defineConfig({
     },
   },
   plugins: [react(), dts()],
+  resolve: {
+    alias: [{ find: 'src', replacement: resolve('src') }],
+  },
 })
