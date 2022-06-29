@@ -1,0 +1,18 @@
+{
+	"Create Component Code": {
+		"scope": "typescriptreact",
+		"prefix": "ccc",
+		"body": [
+			"interface Props {",
+			"",
+			"}",
+			"",
+			"export const $TM_FILENAME_BASE = (props: Props) => {",
+			"  return(",
+			"    <div {...props}/>",
+			"  )",
+			"}"
+		],
+		"description": ""
+	}
+}
