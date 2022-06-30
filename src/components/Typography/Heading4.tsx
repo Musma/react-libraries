@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode
@@ -6,10 +6,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Heading4 = (props: Props) => {
   return (
-    <h4
-      className="text-[20px] font-semibold leading-[30px] tracking-[-0.2px]"
-      {...props}
-    >
+    <h4 className="text-[20px] font-semibold leading-[30px] tracking-[-0.2px]" {...props}>
       {props.children}
     </h4>
   )

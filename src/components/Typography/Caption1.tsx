@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   children: ReactNode
