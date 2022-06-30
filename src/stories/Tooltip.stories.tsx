@@ -11,7 +11,7 @@ export default {
 
 export const Tooltip: ComponentStory<typeof _Tooltip> = () => (
   <div className="ml-[10vw] mt-[20vh]">
-    <_Tooltip message="Tooltip" position="left" width={66}>
+    <_Tooltip message="Tooltip" position="left">
       Hover me
     </_Tooltip>
   </div>
