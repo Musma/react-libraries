@@ -36,7 +36,7 @@ export const Tooltip = ({ children, message, width, position }: Props) => {
         )}
         style={{ width }}
       >
-        <Body3>{message}</Body3>
+        <p className="pt-[2px] text-[14px] font-normal leading-[18px]">{message}</p>
       </div>
     </div>
   )

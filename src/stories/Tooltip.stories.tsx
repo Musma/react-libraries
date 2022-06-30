@@ -10,8 +10,8 @@ export default {
 } as ComponentMeta<typeof _Tooltip>
 
 export const Tooltip: ComponentStory<typeof _Tooltip> = () => (
-  <div className="ml-[10vw] mt-[20vh]">
-    <_Tooltip message="Tooltip" position="left">
+  <div className="ml-[10vw] mt-[20vh] flex gap-x-2">
+    <_Tooltip message="Tooltip" position="top">
       Hover me
     </_Tooltip>
   </div>
