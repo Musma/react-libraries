@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import React from 'react'
 
 import { Button as _Button } from 'src/components/Button'
 
