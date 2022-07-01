@@ -1,19 +1,19 @@
 import classnames from 'classnames'
-import { ReactNode, useCallback } from 'react'
+import React from 'react'
 
 import { Body3 } from 'src/components/Typography'
 
 type Position = 'left' | 'right' | 'top' | 'bottom'
 interface Props {
-  children: ReactNode
-  message: ReactNode
+  children: React.ReactNode
+  message: React.ReactNode
   width?: number
   position?: Position
 }
 
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
 export const Tooltip = ({ children, message, width, position }: Props) => {
-  const getClassnames = useCallback((position?: Position) => {
+  const getClassnames = React.useCallback((position?: Position) => {
     const classnames = {
       left: 'top-[50%] right-[100%] mr-[11px] translate-y-[-50%] after:left-[100%] after:top-[50%] after:mt-[-7px] after:border-l-[#363b40]',
       right:

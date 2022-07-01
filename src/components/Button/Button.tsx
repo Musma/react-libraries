@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useCallback } from 'react'
+import React from 'react'
 
 import { Body3 } from 'src/components/Typography'
 
@@ -23,20 +23,23 @@ export const Button = ({
   // showIcon,
   ...rest
 }: ButtonProps) => {
-  const getButtonClassName = useCallback(({ variant, size }: { variant: Variant; size: Size }) => {
-    const sizeOption = {
-      L: 'w-[200px]',
-      M: 'w-[144px]',
-      S: 'w-[92px]',
-      XS: 'w-[52px]',
-    }
-    const variantOption = {
-      outlined: `bg-white border border-[#036DB7] active:bg-white hover:bg-[#F2F8FB]`,
-      contained: `bg-[#036DB7] active:bg-[#025A96] hover:bg-[#036DB7]/90`,
-    }
-    return `${sizeOption[size]} ${variantOption[variant]}`
-  }, [])
-  const getContentClassName = useCallback((variant: Variant) => {
+  const getButtonClassName = React.useCallback(
+    ({ variant, size }: { variant: Variant; size: Size }) => {
+      const sizeOption = {
+        L: 'w-[200px]',
+        M: 'w-[144px]',
+        S: 'w-[92px]',
+        XS: 'w-[52px]',
+      }
+      const variantOption = {
+        outlined: `bg-white border border-[#036DB7] active:bg-white hover:bg-[#F2F8FB]`,
+        contained: `bg-[#036DB7] active:bg-[#025A96] hover:bg-[#036DB7]/90`,
+      }
+      return `${sizeOption[size]} ${variantOption[variant]}`
+    },
+    [],
+  )
+  const getContentClassName = React.useCallback((variant: Variant) => {
     return variant === 'contained' ? 'text-white' : 'text-[#036DB7]'
   }, [])
   return (
