@@ -15,7 +15,7 @@ import {
   SubTitle1 as _SubTitle1,
   SubTitle2 as _SubTitle2,
   SubTitle3 as _SubTitle3,
-} from 'src/components/Typography'
+} from '../components/Typography'
 
 export default {
   title: 'Components/Typography',
