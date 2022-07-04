@@ -3,6 +3,8 @@ import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import svgr from 'vite-plugin-svgr'
+/// <reference types="vite-plugin-svgr/client" />
 
 export default defineConfig({
   build: {
@@ -25,7 +27,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts()],
+  plugins: [svgr(), react(), dts()],
   resolve: {
     alias: [{ find: 'src', replacement: resolve(__dirname, 'src') }],
   },
