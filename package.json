@@ -38,7 +38,8 @@
     "classnames": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "vite-plugin-svgr": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
@@ -50,6 +51,7 @@
     "@storybook/builder-vite": "^0.1.37",
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
+    "@svgr/webpack": "^6.2.1",
     "@types/google.maps": "^3.49.2",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",

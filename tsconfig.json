@@ -18,8 +18,8 @@
     "paths": {
       "src/*": ["./src/*"]
     },
-    "baseUrl": "."
+    "baseUrl": ".",
   },
-  "include": ["src"],
+  "include": ["src", "client.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
