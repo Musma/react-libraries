@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import React from 'react'
 
-import { Body3 } from 'src/components/Typography'
+import { Body3 } from '../Typography'
 
 type Position = 'left' | 'right' | 'top' | 'bottom'
 interface Props {
@@ -31,7 +31,7 @@ export const Tooltip = ({ children, message, width, position }: Props) => {
       {children}
       <div
         className={classnames(
-          "absolute z-10 inline rounded-[3px] bg-[#363b40] px-4 py-[9px] text-center text-white drop-shadow-[0_2px_8px_rgba(54,59,64,0.25)] after:absolute after:border-[7px] after:border-transparent after:content-[''] group-hover:visible",
+          "invisible absolute z-10 inline rounded-[3px] bg-[#363b40] px-4 py-[9px] text-center text-white drop-shadow-[0_2px_8px_rgba(54,59,64,0.25)] after:absolute after:border-[7px] after:border-transparent after:content-[''] group-hover:visible",
           getClassnames(position),
         )}
         style={{ width }}

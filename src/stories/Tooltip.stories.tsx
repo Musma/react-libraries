@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import React from 'react'
 
-import { Tooltip as _Tooltip } from 'src/components/Tooltip'
+import { Tooltip as _Tooltip } from '../components/Tooltip'
 
 export default {
   title: 'Components/Tooltip',
