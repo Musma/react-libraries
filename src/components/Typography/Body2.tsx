@@ -1,6 +1,6 @@
-import React from 'react'
+import { HTMLAttributes } from 'react'
 
-interface Props extends React.HTMLAttributes<HTMLParagraphElement> {
+interface Props extends HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode
   className?: string
 }
