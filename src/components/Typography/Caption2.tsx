@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { HTMLAttributes, ReactNode } from 'react'
 
-interface Props extends React.HTMLAttributes<HTMLElement> {
-  children: React.ReactNode
+interface Props extends HTMLAttributes<HTMLElement> {
+  children: ReactNode
   className?: string
 }
 
