@@ -6,7 +6,6 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "storybook-preset-inline-svg"
   ],
   framework: "@storybook/react",
   core: {
@@ -16,10 +15,6 @@ module.exports = {
     storyStoreV7: true,
   },
   webpackFinal: async (config) => {
-    config.module.rules.unshift({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    })
     config.resolve.modules = [
       ...config(config.resolve.modules || []),
       path.resolve(__dirname, '../src')
