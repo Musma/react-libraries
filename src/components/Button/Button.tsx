@@ -1,9 +1,9 @@
 import classNames from 'classnames'
-import React from 'react'
+import { useCallback } from 'react'
 
 import { Body3 } from '../Typography'
 
-type Size = 'L' | 'M' | 'S' | 'XS' | 'full'
+type Size = 'lg' | 'md' | 'sm' | 'xs' | 'full'
 type Variant = 'outlined' | 'contained' | 'danger'
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
@@ -18,7 +18,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({
   label,
-  size = 'L',
+  size = 'lg',
   buttonClassName = '',
   contentClassName = '',
   variant = 'contained',
@@ -26,18 +26,18 @@ export const Button = ({
   showIcon = false,
   ...rest
 }: ButtonProps) => {
-  const getSize = React.useCallback(() => {
+  const getSize = useCallback(() => {
     const sizeOption = {
-      L: 'w-[200px]',
-      M: 'w-[144px]',
-      S: 'w-[92px]',
-      XS: 'w-[52px]',
+      lg: 'w-[200px]',
+      md: 'w-[144px]',
+      sm: 'w-[92px]',
+      xs: 'w-[52px]',
       full: 'w-full',
     }
     return sizeOption[size]
   }, [size])
 
-  const getVariantStyle = React.useCallback(() => {
+  const getVariantStyle = useCallback(() => {
     const styles = {
       outlined: 'bg-white border border-[#036DB7] active:bg-white hover:bg-[#F2F8FB]',
       contained: 'bg-[#036DB7] active:bg-[#025A96] hover:bg-[#036DB7]/90',
@@ -46,16 +46,16 @@ export const Button = ({
     return `active:shadow-[inset_-1px_2px_2px_rgba(0,0,0,0.25)] ${styles[variant]}`
   }, [variant])
 
-  const getDisabledStyle = React.useCallback(() => {
+  const getDisabledStyle = useCallback(() => {
     return 'bg-[#F9FAFB] cursor-not-allowed'
   }, [])
 
-  const getContentStyle = React.useCallback(() => {
+  const getContentStyle = useCallback(() => {
     if (disabled) return 'text-[#D0D5DD]'
     if (variant === 'outlined') return 'text-[#036DB7]'
     return 'text-white'
   }, [variant, disabled])
-  const getFill = React.useCallback(() => {
+  const getFill = useCallback(() => {
     if (disabled) return '#D0D5DD'
     if (variant === 'outlined') return '#036DB7'
     return 'white'
