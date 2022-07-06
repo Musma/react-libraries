@@ -14,3 +14,7 @@ const Template: ComponentStory<typeof _Checkbox> = (args) => {
 }
 
 export const Checkbox = Template.bind({})
+
+Checkbox.args = {
+  disabled: false,
+}
