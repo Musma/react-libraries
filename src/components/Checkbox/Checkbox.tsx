@@ -89,6 +89,7 @@ export const Checkbox = ({ label, labelClassName, size = 'lg', disabled, ...rest
             'bg-[#F9FAFB]': disabled,
           },
         )}
+        disabled={disabled}
         {...rest}
       />
       <img

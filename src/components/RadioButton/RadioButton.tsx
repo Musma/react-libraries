@@ -70,6 +70,7 @@ export const RadioButton = ({
           width,
           innerCircle,
         )}
+        disabled={disabled}
         {...rest}
       />
       <label htmlFor={id} className={classNames('ml-1', height, textSize, labelClassName)}>
