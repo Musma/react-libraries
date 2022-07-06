@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useCallback } from 'react'
+import { useMemo } from 'react'
 
 import { Body3 } from '../Typography'
 
@@ -13,7 +13,7 @@ interface Props {
 
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
 export const Tooltip = ({ children, message, width, position }: Props) => {
-  const getClassnames = useCallback((position?: Position) => {
+  const styleForPosition = useMemo(() => {
     const classnames = {
       left: 'top-[50%] right-[100%] mr-[11px] translate-y-[-50%] after:left-[100%] after:top-[50%] after:mt-[-7px] after:border-l-[#363b40]',
       right:
@@ -24,7 +24,7 @@ export const Tooltip = ({ children, message, width, position }: Props) => {
     }
     if (!position) return classnames['left']
     return classnames[position]
-  }, [])
+  }, [position])
 
   return (
     <div className="group relative inline-block">
@@ -32,7 +32,7 @@ export const Tooltip = ({ children, message, width, position }: Props) => {
       <div
         className={classnames(
           "invisible absolute z-10 inline rounded-[3px] bg-[#363b40] px-4 py-[9px] text-center text-white drop-shadow-[0_2px_8px_rgba(54,59,64,0.25)] after:absolute after:border-[7px] after:border-transparent after:content-[''] group-hover:visible",
-          getClassnames(position),
+          styleForPosition,
         )}
         style={{ width }}
       >

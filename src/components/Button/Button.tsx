@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useCallback } from 'react'
+import { useMemo } from 'react'
 
 import { Body3 } from '../Typography'
 
@@ -26,7 +26,7 @@ export const Button = ({
   showIcon = false,
   ...rest
 }: ButtonProps) => {
-  const getSize = useCallback(() => {
+  const width = useMemo(() => {
     const sizeOption = {
       lg: 'w-[200px]',
       md: 'w-[144px]',
@@ -37,7 +37,7 @@ export const Button = ({
     return sizeOption[size]
   }, [size])
 
-  const getVariantStyle = useCallback(() => {
+  const variantStyle = useMemo(() => {
     const styles = {
       outlined: 'bg-white border border-[#036DB7] active:bg-white hover:bg-[#F2F8FB]',
       contained: 'bg-[#036DB7] active:bg-[#025A96] hover:bg-[#036DB7]/90',
@@ -46,16 +46,16 @@ export const Button = ({
     return `active:shadow-[inset_-1px_2px_2px_rgba(0,0,0,0.25)] ${styles[variant]}`
   }, [variant])
 
-  const getDisabledStyle = useCallback(() => {
+  const onDisabled = useMemo(() => {
     return 'bg-[#F9FAFB] cursor-not-allowed'
   }, [])
 
-  const getContentStyle = useCallback(() => {
+  const contentStyle = useMemo(() => {
     if (disabled) return 'text-[#D0D5DD]'
     if (variant === 'outlined') return 'text-[#036DB7]'
     return 'text-white'
   }, [variant, disabled])
-  const getFill = useCallback(() => {
+  const fill = useMemo(() => {
     if (disabled) return '#D0D5DD'
     if (variant === 'outlined') return '#036DB7'
     return 'white'
@@ -65,20 +65,16 @@ export const Button = ({
     <button
       className={classNames(
         'h-[34px] rounded-md',
-        getSize(),
-        { [getVariantStyle()]: !disabled },
-        { [getDisabledStyle()]: disabled },
+        width,
+        { [variantStyle]: !disabled },
+        { [onDisabled]: disabled },
         buttonClassName,
       )}
       {...rest}
       disabled={disabled}
     >
       <Body3
-        className={classNames(
-          'flex items-center justify-center',
-          getContentStyle(),
-          contentClassName,
-        )}
+        className={classNames('flex items-center justify-center', contentStyle, contentClassName)}
       >
         {showIcon && (
           // FIXME: ReactComponent로 import가 되지 않아 임시로 svg 소스코드 그대로 사용
@@ -91,7 +87,7 @@ export const Button = ({
           >
             <path
               d="M4.82402 11.9961H1.99121V9.1633L9.6257 1.52882C9.7509 1.40366 9.92068 1.33334 10.0977 1.33334C10.2748 1.33334 10.4445 1.40366 10.5697 1.52882L12.4585 3.41758C12.5837 3.54278 12.654 3.71257 12.654 3.8896C12.654 4.06664 12.5837 4.23642 12.4585 4.36162L4.82402 11.9961ZM1.99121 13.3314H14.0088V14.6667H1.99121V13.3314Z"
-              fill={getFill()}
+              fill={fill}
             />
           </svg>
         )}
