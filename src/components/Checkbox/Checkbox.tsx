@@ -18,62 +18,88 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
 
 export const Checkbox = ({ label, labelClassName, size = 'lg', disabled, ...rest }: Props) => {
   const id = _.uniqueId()
-  const width = useMemo(() => {
-    const sizeOption = {
-      lg: 'w-5 h-5',
-      md: 'w-[14px] h-[14px]',
-      sm: 'w-[10px] h-[10px]',
+
+  const height = useMemo(() => {
+    const options = {
+      lg: 'h-5',
+      md: 'h-[14px]',
+      sm: 'h-[10px]',
     }
-    return sizeOption[size]
+    return options[size]
   }, [size])
-  const icon = useMemo(() => {
-    const iconOption = {
+
+  const inputVariant = useMemo(() => {
+    const options = {
+      lg: 'w-5 rounded-[3px]',
+      md: 'w-[14px] rounded-[2px]',
+      sm: 'w-[10px] rounded-[2px]',
+    }
+    return options[size]
+  }, [size])
+
+  const activeIcon = useMemo(() => {
+    const options = {
       lg: DoneLgIcon,
       md: DoneMdIcon,
       sm: DoneSmIcon,
     }
-    return iconOption[size]
+    return options[size]
   }, [size])
+
   const disabledIcon = useMemo(() => {
-    const iconOption = {
+    const options = {
       lg: DoneDisabledLgIcon,
       md: DoneDisabledMdIcon,
       sm: DoneDisabledSmIcon,
     }
-    return iconOption[size]
+    return options[size]
   }, [size])
-  const position = useMemo(() => {
-    const positionOption = {
+
+  const iconPosition = useMemo(() => {
+    const options = {
       lg: 'top-[18px] left-[18px]',
-      md: 'top-[17px] left-[17px]',
-      sm: 'top-[17px] left-[17px]',
+      md: 'top-5 left-[17px]',
+      sm: 'top-6 left-[17px]',
     }
-    return positionOption[size]
+    return options[size]
   }, [size])
+
+  const textSize = useMemo(() => {
+    const options = {
+      lg: 'leading-5',
+      md: 'text-[14px] leading-[14px]',
+      sm: 'text-[10px] leading-[10px]',
+    }
+    return options[size]
+  }, [size])
+
   return (
-    <label htmlFor={id} className="flex">
+    <div className="flex items-center">
       <input
         id={id}
         type="checkbox"
         className={classNames(
-          'peer relative cursor-pointer appearance-none rounded-[3px]',
+          'peer relative cursor-pointer appearance-none',
+          height,
+          inputVariant,
           {
             ['border border-[#BAC7D5] checked:border-0 checked:bg-[#107C41]']: !disabled,
           },
           {
             'bg-[#F9FAFB]': disabled,
           },
-          width,
         )}
         {...rest}
       />
       <img
-        src={disabled ? disabledIcon : icon}
-        className={classNames('absolute cursor-pointer', position, {
+        src={disabled ? disabledIcon : activeIcon}
+        className={classNames('absolute cursor-pointer', iconPosition, {
           ['invisible peer-checked:visible']: !disabled,
         })}
       />
-      <span className={`ml-[2px] ${labelClassName}`}>{label}</span>
-    </label>
+      <label htmlFor={id} className={classNames('ml-1', height, textSize, labelClassName)}>
+        {label}
+      </label>
+    </div>
   )
 }
