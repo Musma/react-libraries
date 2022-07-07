@@ -57,14 +57,14 @@ export const Checkbox = ({ label, labelClassName, size = 'lg', disabled, ...rest
 
   const iconPosition = useMemo(() => {
     const options = {
-      lg: 'top-[18px] left-[18px]',
-      md: 'top-5 left-[17px]',
-      sm: 'top-6 left-[17px]',
+      lg: 'top-[2px] left-[2px]',
+      md: 'top-[1px] left-[1px]',
+      sm: 'top-[1px] left-[1px]',
     }
     return options[size]
   }, [size])
 
-  const textSize = useMemo(() => {
+  const labelFont = useMemo(() => {
     const options = {
       lg: 'leading-5',
       md: 'text-[14px] leading-[14px]',
@@ -74,12 +74,12 @@ export const Checkbox = ({ label, labelClassName, size = 'lg', disabled, ...rest
   }, [size])
 
   return (
-    <div className="flex items-center">
+    <label htmlFor={id} className="relative flex items-center">
       <input
         id={id}
         type="checkbox"
         className={classNames(
-          'peer relative cursor-pointer appearance-none',
+          'peer cursor-pointer appearance-none',
           height,
           inputVariant,
           {
@@ -98,9 +98,7 @@ export const Checkbox = ({ label, labelClassName, size = 'lg', disabled, ...rest
           ['invisible peer-checked:visible']: !disabled,
         })}
       />
-      <label htmlFor={id} className={classNames('ml-1', height, textSize, labelClassName)}>
-        {label}
-      </label>
-    </div>
+      <span className={classNames('ml-1', height, labelFont, labelClassName)}>{label}</span>
+    </label>
   )
 }
