@@ -9,4 +9,4 @@ export default {
 
 const Template: ComponentStory<typeof _Tag> = (args) => <_Tag {...args} />
 export const Tag = Template.bind({})
-Tag.args = { label: 'Sample Text', variant: 'rectangle', color: 'light' }
+Tag.args = { label: 'Sample Text' }
