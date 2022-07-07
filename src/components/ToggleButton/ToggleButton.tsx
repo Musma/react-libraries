@@ -1,11 +1,11 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: 'lg' | 'md' | 'sm'
+interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  size?: 'sm' | 'md' | 'lg'
 }
 
-export const ToggleButton = ({ variant = 'lg', disabled, ...rest }: Props) => {
+export const ToggleButton = ({ size = 'lg', disabled, ...rest }: Props) => {
   const innerCircle = useMemo(() => {
     const sizes = {
       lg: 'before:ml-[1.5px] before:mt-[1.5px] before:h-2 before:w-2',
@@ -13,7 +13,7 @@ export const ToggleButton = ({ variant = 'lg', disabled, ...rest }: Props) => {
       sm: 'before:ml-[1px] before:mt-[1px] before:h-1 before:w-1',
     }
     const animation = {
-      lg: 'checked:before:translate-x-2',
+      lg: 'checked:before:translate-x-[9px]',
       md: 'checked:before:translate-x-2',
       sm: 'checked:before:translate-x-[6px]',
     }
@@ -21,18 +21,18 @@ export const ToggleButton = ({ variant = 'lg', disabled, ...rest }: Props) => {
       active: 'before:bg-white',
       disabled: 'before:bg-[#D0D5DD]',
     }
-    if (disabled) return `${sizes[variant]} ${color.disabled}`
-    return `${sizes[variant]} before:transition-transform ${animation[variant]} ${color.active}`
-  }, [variant, disabled])
+    if (disabled) return `${sizes[size]} ${color.disabled}`
+    return `${sizes[size]} before:transition-transform ${animation[size]} ${color.active}`
+  }, [size, disabled])
 
-  const size = useMemo(() => {
+  const buttonSize = useMemo(() => {
     const options = {
       lg: 'h-[11px] w-5',
       md: 'h-2 w-4',
       sm: 'h-[6px] w-3',
     }
-    return options[variant]
-  }, [variant])
+    return options[size]
+  }, [size])
   const backgroundColor = useMemo(() => {
     const colors = {
       active: 'bg-[#D0D5DD] checked:bg-[#15AD60]',
@@ -46,7 +46,7 @@ export const ToggleButton = ({ variant = 'lg', disabled, ...rest }: Props) => {
       type="checkbox"
       className={classNames(
         'appearance-none rounded-[10px] before:block before:rounded-full before:content-[""]',
-        size,
+        buttonSize,
         backgroundColor,
         innerCircle,
       )}

@@ -4,20 +4,19 @@ import { useMemo } from 'react'
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
-  size?: 'lg' | 'md' | 'sm'
+  size?: 'sm' | 'md' | 'lg'
   labelClassName?: string
   disabled?: boolean
 }
 
 export const RadioButton = ({
+  id = _.uniqueId(),
   label,
   size = 'lg',
   labelClassName = '',
   disabled = false,
   ...rest
 }: Props) => {
-  const id = _.uniqueId()
-
   const height = useMemo(() => {
     const options = {
       lg: 'h-5',

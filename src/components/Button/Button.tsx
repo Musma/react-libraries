@@ -3,11 +3,10 @@ import { useMemo } from 'react'
 
 import { Body3 } from '../Typography'
 
-type Size = 'lg' | 'md' | 'sm' | 'xs' | 'full'
 type Variant = 'outlined' | 'contained' | 'danger'
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
-  size?: Size
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'
   buttonClassName?: string
   contentClassName?: string
   variant?: Variant
