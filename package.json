@@ -42,8 +42,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@musma/eslint-config": "^0.0.32",
+    "@musma/eslint-config": "^0.0.39",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
