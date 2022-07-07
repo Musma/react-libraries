@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof _RadioButton>
 
 export const Example: ComponentStory<typeof _RadioButton> = ({
-  label,
+  label = 'Jason',
   disabled,
   ...rest
 }: Props) => {
