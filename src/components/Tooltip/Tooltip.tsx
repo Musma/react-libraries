@@ -12,28 +12,35 @@ interface Props {
 }
 
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
-export const Tooltip = ({ children, message, width, position }: Props) => {
-  const styleForPosition = useMemo(() => {
-    const classnames = {
-      left: 'top-[50%] right-[100%] mr-[11px] translate-y-[-50%] after:left-[100%] after:top-[50%] after:mt-[-7px] after:border-l-[#363b40]',
-      right:
-        'top-[50%] left-[100%] ml-[11px] translate-y-[-50%] after:top-[50%] after:right-[100%] after:mt-[-7px] after:border-r-[#363b40]',
-      bottom:
-        'top-[100%] left-[50%] translate-x-[-50%] mt-[9px] w-fit after:bottom-[100%] after:left-[50%] after:ml-[-7px] after:border-b-[#363b40]',
-      top: 'bottom-[100%] left-[50%] translate-x-[-50%] mb-[9px] w-fit after:left-[50%] after:top-[100%] after:ml-[-7px] after:border-t-[#363b40]',
+export const Tooltip = ({ children, message, width, position = 'left' }: Props) => {
+  const tooltipBox = useMemo(() => {
+    const common = 'rounded-[3px] absolute z-10 inline px-4 py-[9px] text-center text-white'
+    const color = 'bg-[#363b40] drop-shadow-[0_2px_8px_rgba(54,59,64,0.25)]' // TODO: dark mode 대응 코드 추가하기
+    const positions = {
+      left: 'top-[50%] right-[100%] mr-[11px] translate-y-[-50%]',
+      right: 'top-[50%] left-[100%] ml-[11px] translate-y-[-50%]',
+      bottom: 'top-[100%] left-[50%] translate-x-[-50%] mt-[9px] w-fit',
+      top: 'bottom-[100%] left-[50%] translate-x-[-50%] mb-[9px] w-fit',
     }
-    if (!position) return classnames['left']
-    return classnames[position]
+    return `${positions[position]} ${common} ${color}`
+  }, [position])
+
+  const arrow = useMemo(() => {
+    const positions = {
+      left: 'after:left-[100%] after:top-[50%] after:mt-[-7px] after:border-l-[#363b40]',
+      right: 'after:top-[50%] after:right-[100%] after:mt-[-7px] after:border-r-[#363b40]',
+      bottom: 'after:bottom-[100%] after:left-[50%] after:ml-[-7px] after:border-b-[#363b40]',
+      top: 'after:left-[50%] after:top-[100%] after:ml-[-7px] after:border-t-[#363b40]',
+    }
+    const common = 'after:absolute after:border-[7px] after:border-transparent after:content-[""]'
+    return `${positions[position]} ${common}`
   }, [position])
 
   return (
     <div className="group relative inline-block">
       {children}
       <div
-        className={classnames(
-          "invisible absolute z-10 inline rounded-[3px] bg-[#363b40] px-4 py-[9px] text-center text-white drop-shadow-[0_2px_8px_rgba(54,59,64,0.25)] after:absolute after:border-[7px] after:border-transparent after:content-[''] group-hover:visible",
-          styleForPosition,
-        )}
+        className={classnames('invisible group-hover:visible', tooltipBox, arrow)}
         style={{ width }}
       >
         <Body3 className="pt-[2px] leading-[18px]">{message}</Body3>
