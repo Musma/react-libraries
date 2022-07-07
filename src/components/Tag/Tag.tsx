@@ -6,7 +6,7 @@ import { ReactComponent as CloseIcon } from './images/close.svg'
 interface Props {
   closable?: boolean
   size?: 'sm' | 'md'
-  color?: 'light' | 'dark'
+  color?: 'white' | 'blue'
   variant?: 'rectangle' | 'stadium'
   label: string
   containerClassName?: string
@@ -16,7 +16,7 @@ interface Props {
 export const Tag = ({
   closable = true,
   size = 'md',
-  color = 'light',
+  color = 'white',
   variant = 'stadium',
   label,
   containerClassName = '',
@@ -48,8 +48,8 @@ export const Tag = ({
 
   const colorTheme = useMemo(() => {
     const options = {
-      light: 'bg-[#F9FAFB] text-[#242E40] border-[#BAC7D5]',
-      dark: 'bg-[#0C5E9633] text-[#036DB7] border-[#036DB7]',
+      white: 'bg-[#F9FAFB] text-[#242E40] border-[#BAC7D5]',
+      blue: 'bg-[#0C5E9633] text-[#036DB7] border-[#036DB7]',
     }
     return options[color]
   }, [color])
@@ -57,7 +57,7 @@ export const Tag = ({
   return (
     <div className={classNames('inline-flex items-center', colorTheme, shape, containerClassName)}>
       <span className={classNames(font, labelClassName)}>{label}</span>
-      {closable && <CloseIcon className="ml-1" fill={color === 'light' ? '#242E40' : '#036DB7'} />}
+      {closable && <CloseIcon className="ml-1" fill={color === 'white' ? '#242E40' : '#036DB7'} />}
     </div>
   )
 }
