@@ -5,12 +5,13 @@ import svgrPlugin from 'vite-plugin-svgr'
 
 const config: StorybookViteConfig = {
   async viteFinal(config, { configType }) {
-    // customize the Vite config here
+    // svgr 적용
     config.plugins = [
       ...config.plugins ?? [],
       svgrPlugin(
       )
     ]
+    // 절대 경로
     config.resolve = {
       ...config.resolve,
       alias: {
