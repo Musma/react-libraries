@@ -9,16 +9,20 @@ import DoneLgIcon from './images/done_lg.svg'
 import DoneMdIcon from './images/done_md.svg'
 import DoneSmIcon from './images/done_sm.svg'
 
-type Size = 'lg' | 'md' | 'sm'
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
   labelClassName?: string
-  size?: Size
+  size?: 'sm' | 'md' | 'lg'
 }
 
-export const Checkbox = ({ label, labelClassName, size = 'lg', disabled, ...rest }: Props) => {
-  const id = _.uniqueId()
-
+export const Checkbox = ({
+  id = _.uniqueId(),
+  label,
+  labelClassName,
+  size = 'lg',
+  disabled,
+  ...rest
+}: Props) => {
   const height = useMemo(() => {
     const options = {
       lg: 'h-5',
