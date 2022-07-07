@@ -20,6 +20,6 @@
     },
     "baseUrl": ".",
   },
-  "include": ["src", "client.d.ts"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
