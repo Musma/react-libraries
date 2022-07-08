@@ -7,3 +7,12 @@
     font-family: 'Pretendard'
   }
 }
+
+/**
+src/stories/Icon.stories.tsx 에서 사용중인 CSS
+*/
+@layer utilities {
+  .grid-cols-icons {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
+  }
+}
