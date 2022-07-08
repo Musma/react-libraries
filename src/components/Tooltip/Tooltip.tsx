@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { useMemo } from 'react'
 
-import { Body3 } from '../Typography'
+import { Paragraph } from '../Paragraph'
 
 type Position = 'left' | 'right' | 'top' | 'bottom'
 interface Props {
@@ -43,7 +43,9 @@ export const Tooltip = ({ children, message, width, position = 'left' }: Props) 
         className={classnames('invisible group-hover:visible', tooltipBox, arrow)}
         style={{ width }}
       >
-        <Body3 className="pt-[2px] leading-[18px]">{message}</Body3>
+        <Paragraph element={'p3'} className="pt-[2px] leading-[18px]">
+          {message}
+        </Paragraph>
       </div>
     </div>
   )
