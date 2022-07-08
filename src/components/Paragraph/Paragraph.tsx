@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { HTMLAttributes, ReactNode, useMemo } from 'react'
 
-export interface Props extends HTMLAttributes<HTMLParagraphElement> {
+interface Props extends HTMLAttributes<HTMLParagraphElement> {
   children: ReactNode
   className?: string
   element?: 'p1' | 'p2' | 'p3'

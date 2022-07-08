@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { useMemo } from 'react'
 
-export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
   size?: 'sm' | 'md' | 'lg'
   labelClassName?: string
