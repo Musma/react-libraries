@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
 
-import { Body3 } from '../Typography'
+import { Paragraph } from '../Paragraph'
 
 type Variant = 'outlined' | 'contained' | 'danger'
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -72,7 +72,8 @@ export const Button = ({
       {...rest}
       disabled={disabled}
     >
-      <Body3
+      <Paragraph
+        element={'p3'}
         className={classNames('flex items-center justify-center', contentStyle, contentClassName)}
       >
         {showIcon && (
@@ -91,7 +92,7 @@ export const Button = ({
           </svg>
         )}
         {label}
-      </Body3>
+      </Paragraph>
     </button>
   )
 }
