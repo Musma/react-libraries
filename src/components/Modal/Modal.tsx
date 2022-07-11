@@ -1,9 +1,12 @@
 import classNames from 'classnames'
-import { Fragment, ReactNode, useMemo } from 'react'
+import _ from 'lodash'
+import { Fragment, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
+import ModalManager from './ModalManager'
 
 import { SubTitle, Button } from 'src/components'
+import { useKeyEsc } from 'src/hooks/useKeyEsc'
 export interface ModalProps {
   title: string
   isOpen: boolean
@@ -11,6 +14,8 @@ export interface ModalProps {
   children: ReactNode
   buttonOption: ButtonOption
   isNested?: boolean
+  closeOnEscPress?: boolean
+  modalManager: ModalManager
   onClose: () => void
 }
 interface ButtonOption {
@@ -20,15 +25,21 @@ interface ButtonOption {
   onSecondClick?: () => void
 }
 
+const manager = new ModalManager()
+
 export const Modal = ({
   title,
-  isOpen = false,
+  isOpen,
   size = 'md',
   buttonOption,
   children,
   isNested,
+  closeOnEscPress = false,
+  modalManager = manager,
   onClose,
 }: ModalProps) => {
+  const ref = useRef<HTMLDivElement>(null)
+
   const modalSize = useMemo(() => {
     return {
       md: 'w-[456px] h-[378px]',
@@ -37,7 +48,28 @@ export const Modal = ({
   }, [size])
   const buttonSize = size === 'md' ? 'lg' : 'md'
 
-  if (!isOpen) return <Fragment />
+  const handleModalClose = useCallback(() => {
+    onClose()
+    modalManager.pop()
+  }, [modalManager, onClose])
+
+  useKeyEsc(() => {
+    if (!closeOnEscPress) return
+    if (!ref.current) return
+    if (!modalManager.isTopModal(ref.current)) return
+    handleModalClose()
+  })
+
+  useEffect(() => {
+    if (!isOpen) return
+    if (!ref.current) return
+    modalManager.add(ref.current)
+  }, [isOpen, modalManager])
+
+  if (!isOpen) {
+    return <Fragment />
+  }
+
   return (
     <div
       className={classNames(
@@ -45,6 +77,7 @@ export const Modal = ({
         { ['bg-[rgba(0,0,0,0.3)]']: isNested },
         { ['bg-[rgba(0,0,0,0.6)]']: !isNested },
       )}
+      ref={ref}
     >
       <div className={classNames(modalSize, 'flex flex-col rounded-md bg-white')}>
         <section
@@ -55,7 +88,7 @@ export const Modal = ({
           )}
         >
           <SubTitle>{title}</SubTitle>
-          <CloseIcon onClick={onClose} className="cursor-pointer" />
+          <CloseIcon onClick={handleModalClose} className="cursor-pointer" />
         </section>
         <hr className="w-full border-t border-t-[#BAC7D5]" />
         <section className="flex-1">{children}</section>
@@ -70,7 +103,7 @@ export const Modal = ({
             label={buttonOption.label}
             size={buttonSize}
             variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
-            onClick={buttonOption.onClick}
+            onClick={buttonOption.onSecondClick}
           />
           {buttonOption.secondLabel && (
             <Button

@@ -6,8 +6,9 @@ export const ModalExample = ({
   title = 'Modal Title',
   ...rest
 }: Omit<ModalProps, 'isOpen' | 'onClose' | 'buttonOption'>) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
+  const [isOpen3, setIsOpen3] = useState(false)
   return (
     <div>
       <Button label={'open modal'} onClick={() => setIsOpen(true)} />
@@ -15,6 +16,7 @@ export const ModalExample = ({
         title={title}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
+        closeOnEscPress={true}
         buttonOption={{
           label: 'Button',
           onClick: () => undefined,
@@ -24,15 +26,33 @@ export const ModalExample = ({
         {...rest}
       >
         <div className="flex h-full w-full flex-col items-center justify-center ">
-          <Paragraph className="text-[#667085]">Fisrt Mdoal</Paragraph>
-          <Button label={'Open Modal2'} onClick={() => setIsOpen2(true)} variant="outlined" />
+          <Paragraph className="text-[#667085]">Fisrt Modal</Paragraph>
+          <Button label={'Open Second Modal'} onClick={() => setIsOpen2(true)} variant="outlined" />
         </div>
       </Modal>
       <Modal
-        title={'Nested Modal'}
+        title={'Second Modal'}
         isNested={true}
         isOpen={isOpen2}
         onClose={() => setIsOpen2(false)}
+        closeOnEscPress={true}
+        buttonOption={{
+          label: 'Button',
+          onClick: () => undefined,
+        }}
+        {...rest}
+      >
+        <div className="flex h-full w-full flex-col items-center justify-center ">
+          <Paragraph className="text-[#667085]">Second Modal</Paragraph>
+          <Button label={'Open Third Modal'} onClick={() => setIsOpen3(true)} variant="outlined" />
+        </div>
+      </Modal>
+      <Modal
+        title={'Third Modal'}
+        isNested={true}
+        isOpen={isOpen3}
+        onClose={() => setIsOpen3(false)}
+        closeOnEscPress={true}
         buttonOption={{
           label: 'Button',
           onClick: () => undefined,
@@ -40,7 +60,7 @@ export const ModalExample = ({
         {...rest}
       >
         <Paragraph className="flex h-full w-full items-center justify-center text-[#667085]">
-          Second Modal
+          Third Modal
         </Paragraph>
       </Modal>
     </div>
