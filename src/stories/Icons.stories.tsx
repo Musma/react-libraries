@@ -24,7 +24,7 @@ const IconComponent = () => {
                 })
               }}
             >
-              <div className="cursor-pointer text-[14px] text-black">
+              <div className="text-black cursor-pointer text-[14px]">
                 <div className="border-1 mb-4 flex min-h-[64px] items-center justify-center rounded-md border bg-white shadow-lg">
                   <icon.component />
                 </div>

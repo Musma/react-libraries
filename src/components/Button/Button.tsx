@@ -1,11 +1,11 @@
 import classNames from 'classnames'
-import { useMemo } from 'react'
+import { ButtonHTMLAttributes, useMemo } from 'react'
 
 import { Paragraph } from 'src/components'
 import { Size } from 'src/types'
 
 type Variant = 'outlined' | 'contained' | 'danger'
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
   size?: Size
   buttonClassName?: string

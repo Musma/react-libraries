@@ -12,6 +12,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: 'fullscreen', // iframe 내부에 패딩 없애려면 layout: 'fullscreen'
 }
 
 export const decorators = [
