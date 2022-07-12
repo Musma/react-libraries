@@ -23,3 +23,11 @@ Invalid.args = {
   label: 'TextInput',
   helperText: { type: 'invalid', message: 'Assistive Text' },
 }
+export const Search = Template.bind({})
+Search.args = {
+  label: 'Search',
+  type: 'search',
+  onSearhClick: () => {
+    alert('Search Clicked')
+  },
+}
