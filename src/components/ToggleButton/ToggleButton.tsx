@@ -1,11 +1,13 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
 
-interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  size?: 'sm' | 'md' | 'lg'
+import { Size } from 'src/types'
+
+interface ToggleButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  size?: Extract<Size, 'sm' | 'md' | 'lg'>
 }
 
-export const ToggleButton = ({ size = 'lg', disabled, ...rest }: Props) => {
+export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonProps) => {
   const innerCircle = useMemo(() => {
     const sizes = {
       lg: 'before:ml-[1.5px] before:mt-[1.5px] before:h-2 before:w-2',

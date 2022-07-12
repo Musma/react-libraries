@@ -3,9 +3,11 @@ import { useMemo } from 'react'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
 
-interface Props {
+import { Size } from 'src/types'
+
+interface TagProps {
   closable?: boolean
-  size?: 'sm' | 'md'
+  size?: Extract<Size, 'sm' | 'md'>
   color?: 'white' | 'blue'
   variant?: 'rectangle' | 'stadium'
   label: string
@@ -21,7 +23,7 @@ export const Tag = ({
   label,
   containerClassName = '',
   labelClassName = '',
-}: Props) => {
+}: TagProps) => {
   const shape = useMemo(() => {
     const border = {
       rectangle: 'rounded-sm',

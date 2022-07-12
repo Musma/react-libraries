@@ -1,10 +1,12 @@
 import classNames from 'classnames'
-import _ from 'lodash'
+import _ from 'lodash-es'
 import { useMemo } from 'react'
 
-interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+import { Size } from 'src/types'
+
+interface RadioButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
-  size?: 'sm' | 'md' | 'lg'
+  size?: Extract<Size, 'sm' | 'md' | 'lg'>
   labelClassName?: string
   disabled?: boolean
 }
@@ -16,7 +18,7 @@ export const RadioButton = ({
   labelClassName = '',
   disabled = false,
   ...rest
-}: Props) => {
+}: RadioButtonProps) => {
   const height = useMemo(() => {
     const options = {
       lg: 'h-5',
