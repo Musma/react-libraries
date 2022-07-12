@@ -5,12 +5,12 @@ import XlsIcon from './images/xls.svg'
 import XlsDisabledIcon from './images/xls_disabled.svg'
 import XlsOutlinedIcon from './images/xls_outlined.svg'
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ExcelDownloadProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'outlined' | 'contained'
   disabled?: boolean
 }
 
-export const ExcelDownload = ({ variant, disabled = false, ...rest }: Props) => {
+export const ExcelDownload = ({ variant, disabled = false, ...rest }: ExcelDownloadProps) => {
   const variantStyle = useMemo(() => {
     const styles = {
       outlined: 'border border-[#107C41] bg-white',

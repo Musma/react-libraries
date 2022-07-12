@@ -1,13 +1,18 @@
 import classNames from 'classnames'
 import { HTMLAttributes, ReactNode, useMemo } from 'react'
 
-interface Props extends HTMLAttributes<HTMLParagraphElement> {
+interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
   children: ReactNode
   className?: string
   element?: 'p1' | 'p2' | 'p3'
 }
 
-export const Paragraph = ({ children, element = 'p1', className = '', ...rest }: Props) => {
+export const Paragraph = ({
+  children,
+  element = 'p1',
+  className = '',
+  ...rest
+}: ParagraphProps) => {
   const style = useMemo(() => {
     return {
       p1: 'text-[18px] font-normal leading-6 tracking-[-0.2px]',

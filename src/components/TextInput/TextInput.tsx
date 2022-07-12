@@ -7,13 +7,14 @@ import { ReactComponent as SearchIcon } from './images/search.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 import { SubTitle, Caption } from 'src/components'
-interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+
+interface TextInpuProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
   onSearhClick?: () => void
 }
-export const TextInput = ({ label, type = 'text', helperText, ...rest }: Props) => {
+export const TextInput = ({ label, type = 'text', helperText, ...rest }: TextInpuProps) => {
   const inputStyle = useMemo(() => {
     const commonStyle =
       'h-[32px] w-[200px] rounded border bg-white pl-2 text-[14px] font-normal leading-5 outline-none'
@@ -52,7 +53,7 @@ export const TextInput = ({ label, type = 'text', helperText, ...rest }: Props) 
   )
 }
 
-interface InputProps extends Omit<Props, 'label' | 'helperText'> {
+interface InputProps extends Omit<TextInpuProps, 'label' | 'helperText'> {
   type: 'text' | 'password' | 'search'
 }
 const Input = ({ type, ...rest }: InputProps) => {

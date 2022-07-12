@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { Paragraph } from '../Paragraph'
 
 type Position = 'left' | 'right' | 'top' | 'bottom'
-interface Props {
+interface TooltipProps {
   children: React.ReactNode
   message: React.ReactNode
   width?: number
@@ -12,7 +12,7 @@ interface Props {
 }
 
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
-export const Tooltip = ({ children, message, width, position = 'left' }: Props) => {
+export const Tooltip = ({ children, message, width, position = 'left' }: TooltipProps) => {
   const tooltipBox = useMemo(() => {
     const common = 'rounded-[3px] absolute z-10 inline px-4 py-[9px] text-center text-white'
     const color = 'bg-[#363b40] drop-shadow-[0_2px_8px_rgba(54,59,64,0.25)]' // TODO: dark mode 대응 코드 추가하기

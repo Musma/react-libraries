@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import { HTMLAttributes, ReactNode, useMemo } from 'react'
 
-interface Props extends HTMLAttributes<HTMLParagraphElement> {
+interface SubTitleProps extends HTMLAttributes<HTMLParagraphElement> {
   children: ReactNode
   className?: string
   element?: 1 | 2 | 3
 }
 
-export const SubTitle = ({ className = '', element = 1, children, ...rest }: Props) => {
+export const SubTitle = ({ className = '', element = 1, children, ...rest }: SubTitleProps) => {
   const style = useMemo(() => {
     const options = new Map()
     options.set(1, 'text-[20px] font-normal leading-none tracking-[-0.2px]')
