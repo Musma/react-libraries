@@ -11,6 +11,7 @@ interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
+  onSearhClick?: () => void
 }
 export const TextInput = ({ label, type = 'text', helperText, ...rest }: Props) => {
   const inputStyle = useMemo(() => {
@@ -51,7 +52,7 @@ export const TextInput = ({ label, type = 'text', helperText, ...rest }: Props) 
   )
 }
 
-interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+interface InputProps extends Omit<Props, 'label' | 'helperText'> {
   type: 'text' | 'password' | 'search'
 }
 const Input = ({ type, ...rest }: InputProps) => {
@@ -83,11 +84,11 @@ const Password = ({ type, ...rest }: InputProps) => {
   )
 }
 
-const Search = (props: InputProps) => {
+const Search = ({ onSearhClick, ...rest }: InputProps) => {
   return (
     <div className="relative">
-      <input {...props} />
-      <SearchIcon className="absolute right-2 top-2 cursor-pointer" />
+      <input {...rest} />
+      <SearchIcon className="absolute right-2 top-2 cursor-pointer" onClick={onSearhClick} />
     </div>
   )
 }
