@@ -2,12 +2,12 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { DateTime } from 'luxon'
 import { useState } from 'react'
 
-import { TimePicker } from 'src/components'
+import { TimePicker as _TimePicker } from 'src/components'
 
 const TimePickerDemo = () => {
   const [date, setDate] = useState(DateTime.fromObject({ hour: 8, minute: 0 }))
   return (
-    <TimePicker
+    <_TimePicker
       date={date}
       onDateChange={(date) => {
         setDate(date)
@@ -22,5 +22,5 @@ export default {
 } as ComponentMeta<typeof TimePickerDemo>
 
 const Template: ComponentStory<typeof TimePickerDemo> = (args) => <TimePickerDemo />
-export const Button = Template.bind({})
-Button.args = {}
+export const TimePicker = Template.bind({})
+TimePicker.args = {}
