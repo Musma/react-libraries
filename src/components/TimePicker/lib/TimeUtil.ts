@@ -38,15 +38,7 @@ export const getMeridiem = (date: DateTime): Meridiem => {
   return date.hour >= 12 ? 'pm' : 'am'
 }
 
-export const getMinutes = (offsetX: number, offsetY: number, step = 1) => {
-  const angleStep = step * 6
-  let { value } = getAngleValue(angleStep, offsetX, offsetY)
-  value = (value * step) % 60
-
-  return value
-}
-
-export const getHours = (offsetX: number, offsetY: number) => {
+export const getValue = (offsetX: number, offsetY: number) => {
   const { value } = getAngleValue(30, offsetX, offsetY)
   return (value || 12) % 12
 }
