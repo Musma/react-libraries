@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { TimePicker } from 'src/components'
 
 const TimePickerDemo = () => {
-  const [date, setDate] = useState(DateTime.local())
+  const [date, setDate] = useState(DateTime.fromObject({ hour: 8, minute: 0 }))
   return (
     <TimePicker
       date={date}

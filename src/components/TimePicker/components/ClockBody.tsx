@@ -1,20 +1,37 @@
 import { DateTime } from 'luxon'
 
-import { HourClock, MinuteClock, ClockPin, ClockPointer, ClockType, getHours } from 'src/components'
+import {
+  HourClock,
+  MinuteClock,
+  ClockPin,
+  ClockPointer,
+  ClockType,
+  getValue,
+  getMeridiem,
+} from 'src/components'
 
 interface ClockProps {
   clockType: ClockType
   date: DateTime
   value: number
-  onValueChange: (value: number) => void
   onDateChange: (dateTime: DateTime) => void
 }
 
-export const ClockBody = ({ clockType, date, value, onValueChange }: ClockProps) => {
+export const ClockBody = ({ clockType, date, value, onDateChange }: ClockProps) => {
   const setTime = (e: MouseEvent) => {
     const { offsetX, offsetY } = e
-    const value = getHours(offsetX, offsetY)
-    onValueChange(value)
+    const value = getValue(offsetX, offsetY)
+
+    if (clockType === 'hour') {
+      const ampm = getMeridiem(date) === 'pm' ? 12 : 0
+      const dateTime = date.set({ hour: value + ampm })
+      onDateChange(dateTime)
+    }
+
+    if (clockType === 'min') {
+      const dateTime = date.set({ minute: value * 5 })
+      onDateChange(dateTime)
+    }
   }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -33,7 +50,7 @@ export const ClockBody = ({ clockType, date, value, onValueChange }: ClockProps)
 
   return (
     <div className="relative flex items-center justify-center">
-      <div className="pointer-events-none relative h-[144px] w-[144px] rounded-full bg-[#F9FAFB]">
+      <div className="pointer-events-none relative h-[144px] w-[144px] bg-[#F9FAFB] rounded-full ">
         {/* 시계 div 하위에 있는 엘리먼트들의 pointer-events 속성을 none으로 하지 않으면 offset 값을 정상적으로 받지 못함 */}
         <div
           role="menu"

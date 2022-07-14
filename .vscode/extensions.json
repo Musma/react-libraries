@@ -6,7 +6,7 @@
     "bradlc.vscode-tailwindcss",
     "eamodio.gitlens",
     "pkief.material-icon-theme",
-    "wayou.vscode-todo-highlight",
-    "codeandstuff.package-json-upgrade"
+    "codeandstuff.package-json-upgrade",
+    "wayou.vscode-todo-highlight"
   ]
 }
