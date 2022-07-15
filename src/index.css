@@ -71,11 +71,31 @@
   }
 }
 
-/**
-src/stories/Icon.stories.tsx 에서 사용중인 CSS
-*/
 @layer utilities {
+  .custom-scrollbar {
+    /* width */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      background-clip : padding-box;
+      border-top:8px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
+  }
+
+  /* // src/stories/Icon.stories.tsx 에서 사용중인 CSS */
   .grid-cols-icons {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
   }
 }
+
