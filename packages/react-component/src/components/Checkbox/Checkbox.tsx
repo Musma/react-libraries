@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import _ from 'lodash-es'
 import { InputHTMLAttributes, useMemo } from 'react'
+import { Size } from 'src/types'
 
 import DoneDisabledLgIcon from './images/done_disabled_lg.svg'
 import DoneDisabledMdIcon from './images/done_disabled_md.svg'
@@ -8,8 +9,6 @@ import DoneDisabledSmIcon from './images/done_disabled_sm.svg'
 import DoneLgIcon from './images/done_lg.svg'
 import DoneMdIcon from './images/done_md.svg'
 import DoneSmIcon from './images/done_sm.svg'
-
-import { Size } from 'src/types'
 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string

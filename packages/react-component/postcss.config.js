@@ -4,7 +4,7 @@ module.exports = {
     // index.css
     // @layer utilities 안의 .custom-scroll
     // https://tailwindcss.com/docs/using-with-preprocessors#nesting
-    // 'tailwindcss/nesting': {}, 
+    'tailwindcss/nesting': {}, 
     tailwindcss: {},
     autoprefixer: {},
   },
