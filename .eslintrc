@@ -1,3 +1,30 @@
 {
-  "extends": ["@musma"]
+  "extends": ["@musma"],
+  "rules": {
+    "react/react-in-jsx-scope": "off", // import React from 'react' 제외
+    "import/order": [
+      // Import Sort
+      "error",
+      {
+        "groups": ["builtin", "external", ["parent", "sibling"], "index"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 }

@@ -1,4 +1,1 @@
-src/graphql/**
 *.*.js
-!.storybook
-dist

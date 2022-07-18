@@ -27,12 +27,9 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "tsc && vite build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": "tsc && vite build"
   },
   "devDependencies": {
-    "@types/google.maps": "^3.49.2",
     "@types/lodash-es": "^4.17.6",
     "@types/luxon": "^2.3.2",
     "@types/react-copy-to-clipboard": "^5.0.3",
