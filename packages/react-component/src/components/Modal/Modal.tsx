@@ -1,13 +1,12 @@
 import classNames from 'classnames'
 import _ from 'lodash-es'
 import { Fragment, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
-
-import { ReactComponent as CloseIcon } from './images/close.svg'
-import ModalManager from './ModalManager'
-
 import { SubTitle, Button } from 'src/components'
 import { useKeyEsc } from 'src/hooks/useKeyEsc'
 import { Size } from 'src/types'
+
+import { ReactComponent as CloseIcon } from './images/close.svg'
+import ModalManager from './ModalManager'
 
 export interface ModalProps {
   title: string
