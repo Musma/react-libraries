@@ -17,13 +17,15 @@ export const Header = () => {
       <header className="h-[56px] border-b bg-white dark:bg-slate-600">
         <div className="mx-auto flex h-full items-center justify-between px-10">
           <Link href="/">
-            <Image
-              src="/musma_logo.svg"
-              alt="musma_logo"
-              width={120}
-              height={72}
-              className="cursor-pointer"
-            />
+            <a>
+              <Image
+                src="/musma_logo.svg"
+                alt="musma_logo"
+                width={120}
+                height={72}
+                className="cursor-pointer"
+              />
+            </a>
           </Link>
           <div>
             {theme === 'dark' && (

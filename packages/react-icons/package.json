@@ -1,0 +1,55 @@
+{
+  "name": "@musma/react-icons",
+  "version": "0.0.5",
+  "description": "Musma react icons library",
+  "author": "YoungSu Kim <jklasd2001@musma.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Musma/react-icons.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
+    "build-script": "rimraf ./src/components & node ./src/scripts/build.js",
+    "build:all": "yarn optimize && yarn build-script && yarn build",
+    "release": "yarn changeset publish"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "main": "./dist/lib.umd.js",
+  "module": "./dist/lib.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/lib.es.js",
+      "require": "./dist/lib.umd.js"
+    }
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.5",
+    "@changesets/cli": "^2.23.2",
+    "@svgr/cli": "^6.2.1",
+    "@svgr/core": "^6.2.1",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "camelcase": "^6.2.0",
+    "rimraf": "^3.0.2",
+    "svgo": "^2.8.0"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}

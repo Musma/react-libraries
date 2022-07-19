@@ -16,7 +16,6 @@ class MyDocument extends Document {
           <meta name="description" content="MUSMA Tools" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {/* Tailwind CSS Font Family */}
         <body>
           <Main />
           <NextScript />
