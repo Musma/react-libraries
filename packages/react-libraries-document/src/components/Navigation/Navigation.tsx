@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Navigation = () => {
   return (
-    <nav className="w-80 border-r">
+    <nav className="w-60 border-r">
       <ul>
         <li>
           <div>Element</div>
