@@ -12,7 +12,7 @@ interface TextInpuProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
-  onSearhClick?: () => void
+  handleSearchClick?: () => void
 }
 export const TextInput = ({ label, type = 'text', helperText, ...rest }: TextInpuProps) => {
   const inputStyle = useMemo(() => {
@@ -85,11 +85,11 @@ const Password = ({ type, ...rest }: InputProps) => {
   )
 }
 
-const Search = ({ onSearhClick, ...rest }: InputProps) => {
+const Search = ({ handleSearchClick, ...rest }: InputProps) => {
   return (
     <div className="relative">
       <input {...rest} />
-      <SearchIcon className="absolute right-2 top-2 cursor-pointer" onClick={onSearhClick} />
+      <SearchIcon className="absolute right-2 top-2 cursor-pointer" onClick={handleSearchClick} />
     </div>
   )
 }

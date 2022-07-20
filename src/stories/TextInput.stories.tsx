@@ -27,7 +27,7 @@ export const Search = Template.bind({})
 Search.args = {
   label: 'Search',
   type: 'search',
-  onSearhClick: () => {
+  handleSearchClick: () => {
     alert('Search Clicked')
   },
 }
