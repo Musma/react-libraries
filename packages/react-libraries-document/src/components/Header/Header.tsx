@@ -1,3 +1,4 @@
+import { FillSunIcon, FillMoonIcon } from '@musma/react-icons'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,10 +13,11 @@ export const Header = () => {
     setMounted(true)
   }, [])
 
+  console.log(theme)
   if (mounted) {
     return (
-      <header className="h-[56px] border-b bg-white dark:bg-slate-600">
-        <div className="mx-auto flex h-full items-center justify-between px-10">
+      <header className="sticky top-0 z-10 h-14 border-b bg-white dark:bg-slate-600">
+        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-10">
           <Link href="/">
             <a>
               <Image
@@ -27,27 +29,23 @@ export const Header = () => {
               />
             </a>
           </Link>
-          <div>
-            {theme === 'dark' && (
-              <button
-                className="text-white"
+          <div className="flex gap-8">
+            {(theme === 'dark' || theme === 'system') && (
+              <FillSunIcon
+                className="cursor-pointer"
                 onClick={() => {
                   setTheme('light')
                 }}
-              >
-                Light
-              </button>
+              />
             )}
 
             {theme === 'light' && (
-              <button
-                className="text-white"
+              <FillMoonIcon
+                className="cursor-pointer"
                 onClick={() => {
                   setTheme('dark')
                 }}
-              >
-                Dark
-              </button>
+              />
             )}
           </div>
         </div>
