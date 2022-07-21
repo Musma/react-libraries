@@ -9,16 +9,21 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.2",
+    "@musma/react-icons": "0.0.5",
     "@next/mdx": "^12.2.2",
     "next": "12.2.2",
     "next-themes": "^0.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-toastify": "^9.0.6"
   },
   "devDependencies": {
+    "@mdx-js/react": "^2.1.2",
     "@tailwindcss/typography": "^0.5.4",
     "@types/node": "18.0.6",
     "@types/react": "^18.0.15",
+    "@types/react-copy-to-clipboard": "^5.0.3",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
