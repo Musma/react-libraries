@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
+import { SubTitle, Caption } from 'src/components'
 
 import { ReactComponent as OpenEyeIcon } from './images/eye_closed.svg'
 import { ReactComponent as ClosedEyeIcon } from './images/eye_opened.svg'
@@ -6,13 +7,11 @@ import { ReactComponent as InvalidIcon } from './images/invalid.svg'
 import { ReactComponent as SearchIcon } from './images/search.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
-import { SubTitle, Caption } from 'src/components'
-
 interface TextInpuProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
-  onSearhClick?: () => void
+  handleSearchClick?: () => void
 }
 export const TextInput = ({ label, type = 'text', helperText, ...rest }: TextInpuProps) => {
   const inputStyle = useMemo(() => {
@@ -85,11 +84,11 @@ const Password = ({ type, ...rest }: InputProps) => {
   )
 }
 
-const Search = ({ onSearhClick, ...rest }: InputProps) => {
+const Search = ({ handleSearchClick, ...rest }: InputProps) => {
   return (
     <div className="relative">
       <input {...rest} />
-      <SearchIcon className="absolute right-2 top-2 cursor-pointer" onClick={onSearhClick} />
+      <SearchIcon className="absolute right-2 top-2 cursor-pointer" onClick={handleSearchClick} />
     </div>
   )
 }
