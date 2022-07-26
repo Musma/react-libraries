@@ -1,16 +1,13 @@
-import { useState } from "react"
-import { DatePicker } from "./components"
+import { Tabs } from './components/Tabs'
 
 const App = () => {
-  const [dateTime, setDateTime] = useState<string | undefined>(undefined) 
-    return (
-      <div className="h-full w-full">
-        <div>{dateTime}
-        <DatePicker handleDatePick={(date) => setDateTime(date)} />
-        </div>
+  return (
+    <div className="h-full w-full">
+      <div className="ml-4 mt-4">
+        <Tabs titles={['jason', 'jelly', 'summer']} variant="rect" />
       </div>
-    )
-  }
-  
-  export default App
-  
+    </div>
+  )
+}
+
+export default App
