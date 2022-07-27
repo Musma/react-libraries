@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
+import { Size } from 'src/types'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
-
-import { Size } from 'src/types'
 
 interface TagProps {
   closable?: boolean
