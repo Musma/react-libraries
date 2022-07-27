@@ -15,8 +15,8 @@ export const Caption = ({ children, className = '', element = 'c1', ...rest }: P
     }[element]
   }, [element])
   return (
-    <caption className={classNames(style, className)} {...rest}>
+    <span className={classNames(style, className)} {...rest}>
       {children}
-    </caption>
+    </span>
   )
 }
