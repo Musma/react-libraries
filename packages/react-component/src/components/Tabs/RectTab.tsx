@@ -1,12 +1,7 @@
 import classNames from 'classnames'
 
 import { SubTitle } from '../SubTitle'
-
-export interface TabProps {
-  title: string
-  selectedTab: string
-  setSelectedTab: (title: string) => void
-}
+import { TabProps } from './types'
 
 export const RectTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
   return (
