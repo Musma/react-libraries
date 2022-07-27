@@ -1,5 +1,54 @@
-## Tooltip
+import { Tooltip } from "@musma/react-component";
+import { FillAddBoxIcon } from "@musma/react-icons";
+
+import { Box } from "src/components";
+
+# Tooltip
+
+Tooltip에 관한 규칙입니다.
+
+### 사용방법
+
+```
+import { Tooltip } from '@musma/react-component'
+
+<Tooltip message="input tooltip message">
+  <Something />
+</Tooltip>
+```
+
+### Position - Top
+
+<Box className="justify-center">
+  <Tooltip message="Tooltip Message" position="top">
+    <FillAddBoxIcon />
+  </Tooltip>
+</Box>
+
+### Position - Right
+
+<Box className="justify-center">
+  <Tooltip message="Tooltip Message" position="right">
+    <FillAddBoxIcon />
+  </Tooltip>
+</Box>
+
+### Position - Bottom
+
+<Box className="justify-center">
+  <Tooltip message="Tooltip Message" position="bottom">
+    <FillAddBoxIcon />
+  </Tooltip>
+</Box>
+
+### Position - Left
+
+<Box className="justify-center">
+  <Tooltip message="Tooltip Message" position="left">
+    <FillAddBoxIcon />
+  </Tooltip>
+</Box>
 
 export default ({ children }) => (
-  <article className="prose">{children}</article>
+  <article className="prose prose-lg dark:prose-invert">{children}</article>
 );

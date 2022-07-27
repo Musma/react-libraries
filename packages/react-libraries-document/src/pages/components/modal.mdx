@@ -1,0 +1,53 @@
+import { useState } from "react";
+import { Modal, Button } from "@musma/react-component";
+
+import { Box } from "src/components";
+
+export const ModalDemo = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div>
+      <Button label={"Open Modal"} onClick={() => setIsOpen(true)} />
+      <Modal
+        title={"Open Modal"}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        closeOnEscPress={true}
+        buttonOption={{
+          label: "Button",
+          onClick: () => undefined,
+          secondLabel: "Button",
+          onSecondClick: () => undefined,
+        }}
+      >
+        <div className="flex h-full w-full flex-col items-center justify-center">
+          ASOPDKASPODKASPODKASPODKASPODKASPOK
+        </div>
+      </Modal>
+    </div>
+  );
+};
+
+# Modal
+
+공통으로 사용 될 Modal 디자인입니다.
+
+### 사용방법
+
+```
+import { Modal } from '@musma/react-component'
+
+<Modal title="title">
+  <SomethingIcon />
+</Modal>
+```
+
+## Basic
+
+<Box className="not-prose justify-center">
+  <ModalDemo />
+</Box>
+
+export default ({ children }) => (
+  <article className="prose prose-lg dark:prose-invert">{children}</article>
+);

@@ -1,5 +1,100 @@
-## Typography
+import { Paragraph, SubTitle, Caption, Heading } from "@musma/react-component";
+
+import { Box } from "src/components";
+
+export const ipsum =
+  "사랑의 이 무엇을 청춘의 아름답고 있다. 만물은 이상이 구할 우리 바이며, 방지하는 풀밭에 아름다우냐?";
+
+# Typography
+
+폰트 Pretendard 사용합니다.
+
+### 사용방법
+
+```
+import { Typography } from '@musma/react-component'
+
+<Typography>
+  ...something
+</Typography>
+```
+
+### H1
+
+<Box className="not-prose">
+  <Heading>{ipsum}</Heading>
+</Box>
+
+### H2
+
+<Box className="not-prose">
+  <Heading element="h2">{ipsum}</Heading>
+</Box>
+
+### H3
+
+<Box className="not-prose">
+  <Heading element="h3">{ipsum}</Heading>
+</Box>
+
+### H4
+
+<Box className="not-prose">
+  <Heading element="h4">{ipsum}</Heading>
+</Box>
+
+### H5
+
+<Box className="not-prose">
+  <Heading element="h5">{ipsum}</Heading>
+</Box>
+
+### H6
+
+<Box className="not-prose">
+  <Heading element="h6">{ipsum}</Heading>
+</Box>
+
+---
+
+### S1. Sub Title
+
+<Box className="not-prose">
+  <SubTitle>{ipsum}</SubTitle>
+</Box>
+
+### S2. Sub Title
+
+<Box className="not-prose">
+  <SubTitle element={2}>{ipsum}</SubTitle>
+</Box>
+
+### S3. Sub Title
+
+<Box className="not-prose">
+  <SubTitle element={3}>{ipsum}</SubTitle>
+</Box>
+
+---
+
+### B1. Body
+
+<Box className="not-prose">
+  <Paragraph>{ipsum}</Paragraph>
+</Box>
+
+### B2. Body
+
+<Box className="not-prose">
+  <Paragraph element="p2">{ipsum}</Paragraph>
+</Box>
+
+### B3. Body
+
+<Box className="not-prose">
+  <Paragraph element="p3">{ipsum}</Paragraph>
+</Box>
 
 export default ({ children }) => (
-  <article className="prose">{children}</article>
+  <article className="prose prose-lg dark:prose-invert">{children}</article>
 );

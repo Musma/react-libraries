@@ -1,5 +1,43 @@
-## Tag
+import { Tag } from "@musma/react-component";
+
+import { Box } from "src/components";
+
+# Tag
+
+키워드를 사용하여 항목을 구성할 때 사용합니다.
+Tags는 Color , Icon 유무 , Shape , Size별로 분류되며 ,
+색상종류는 변경&추가 될 예정입니다.
+
+### 사용방법
+
+```
+import { Tag } from '@musma/react-component'
+
+<Tag />
+```
+
+### Stadium Tag
+
+<Box className="gap-4">
+  <Tag label="closable: true" closable={true} />
+  <Tag label="closable: false" closable={false} />
+  <Tag label="size: sm" size="sm" />
+  <Tag label="size: md" size="md" />
+  <Tag label="color: white" color="white" />
+  <Tag label="color: blue" color="blue" />
+</Box>
+
+### Rectangle Tag
+
+<Box className="gap-4">
+  <Tag label="closable: true" variant="rectangle" closable={true} />
+  <Tag label="closable: false" variant="rectangle" closable={false} />
+  <Tag label="size: sm" size="sm" variant="rectangle" />
+  <Tag label="size: md" size="md" variant="rectangle" />
+  <Tag label="color: white" color="white" variant="rectangle" />
+  <Tag label="color: blue" color="blue" variant="rectangle" />
+</Box>
 
 export default ({ children }) => (
-  <article className="prose">{children}</article>
+  <article className="prose prose-lg dark:prose-invert">{children}</article>
 );
