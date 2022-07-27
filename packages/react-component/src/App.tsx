@@ -1,31 +1,15 @@
-import { Table } from './components'
-import { usePagination } from './components/Table/usePagination'
+import { useCallback } from 'react'
+
+import { Breadcrumb } from './components/Breadcrumb'
 
 const App = () => {
-  const pagination = usePagination({ totalData: 100 })
+  const handleCrumbClick = useCallback((crumb: string) => {
+    console.log(crumb)
+  }, [])
   return (
     <div className="h-full w-full">
       <div className="m-10">
-        <Table
-          onRowClick={(data) => console.log(data)}
-          pagination={pagination}
-          columns={[
-            { id: 'name', label: 'Name' },
-            { id: 'age', label: 'Age' },
-            { id: 'address', label: 'Address' },
-            { id: 'titleA', label: 'TitleA' },
-            { id: 'titleB', label: 'TitleB' },
-            { id: 'titleC', label: 'TitleC' },
-          ]}
-          data={Array.from({ length: pagination.dataLimit }).map((_, index) => ({
-            name: 'Dummy',
-            age: 'dummy',
-            address: 'dummy',
-            titleA: 'a',
-            titleB: 'b',
-            titleC: 'c',
-          }))}
-        />
+        <Breadcrumb crumbs={['home', 's/w team', 'jason']} onClick={handleCrumbClick} />
       </div>
     </div>
   )
