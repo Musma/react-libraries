@@ -3,12 +3,7 @@ import { Fragment } from 'react'
 import { SubTitle } from '../SubTitle'
 import { ReactComponent as TabLeftIcon } from './images/tab_left.svg'
 import { ReactComponent as TabRightIcon } from './images/tab_right.svg'
-
-export interface TabProps {
-  title: string
-  selectedTab: string
-  setSelectedTab: (title: string) => void
-}
+import { TabProps } from './types'
 
 export const HatTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
   const inActive = (
