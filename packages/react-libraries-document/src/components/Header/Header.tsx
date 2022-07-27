@@ -13,7 +13,6 @@ export const Header = () => {
     setMounted(true)
   }, [])
 
-  console.log(theme)
   if (mounted) {
     return (
       <header className="sticky top-0 z-10 h-14 border-b bg-white dark:bg-slate-600">
