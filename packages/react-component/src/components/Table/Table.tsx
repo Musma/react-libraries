@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { ReactNode } from 'react'
 
 import { Heading } from '../Heading'
@@ -37,7 +38,7 @@ export const Table = ({ data, columns, pagination, onRowClick }: Props) => {
             <tr
               key={index}
               onClick={onRowClick && (() => onRowClick(item))}
-              className="cursor-pointer"
+              className={classNames({ 'cursor-pointer hover:bg-[#F2F8FB]': onRowClick })}
             >
               {columns.map((column) => (
                 <td className="h-10 border-b text-center" key={column.id}>
