@@ -1,0 +1,44 @@
+import { Spinner } from "@musma/react-component";
+
+# Spinner
+
+공통으로 사용 될 Spinner 디자인입니다.
+
+### 사용방법
+
+```
+import { Spinner } from '@musma/react-component'
+
+<Spinner />
+```
+
+### Small
+
+<div className="mb-2 flex gap-2 rounded border p-4">
+  <Spinner size="small" />
+  <Spinner size="small" />
+  <Spinner size="small" />
+  <Spinner size="small" />
+</div>
+
+### Medium
+
+<div className="mb-2 flex gap-2 rounded border p-4">
+  <Spinner size="medium" />
+  <Spinner size="medium" />
+  <Spinner size="medium" />
+  <Spinner size="medium" />
+</div>
+
+### Large
+
+<div className="mb-2 flex gap-2 rounded border p-4">
+  <Spinner size="large" />
+  <Spinner size="large" />
+  <Spinner size="large" />
+  <Spinner size="large" />
+</div>
+
+export default ({ children }) => (
+  <article className="prose prose-lg dark:prose-invert">{children}</article>
+);
