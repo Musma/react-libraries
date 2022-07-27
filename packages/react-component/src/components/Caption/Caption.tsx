@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   element?: 'c1' | 'c2'
 }
 
-export const Caption = ({ children, className = '', element = 'c1', ...rest }: Props) => {
+export const Caption = ({ className = '', element = 'c1', children, ...rest }: Props) => {
   const style = useMemo(() => {
     return {
       c1: 'text-[12px] font-normal leading-4',
