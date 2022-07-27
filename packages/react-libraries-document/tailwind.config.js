@@ -3,6 +3,7 @@
 module.exports = {
   content: [
     'src/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@musma/react-component/dist/**.*.{js,ts,jsx,tsx}' // @musma/react-component 안의 컴포넌트 추가
   ],
   darkMode: "class",
   theme: {
