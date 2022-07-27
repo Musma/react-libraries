@@ -26,8 +26,8 @@
     "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
-    "dev": "vite",
     "preinstall": "npx only-allow pnpm",
+    "dev": "vite",
     "build": "tsc && vite build"
   },
   "dependencies": {
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
-    "@types/luxon": "^2.4.0",
+    "@types/luxon": "^3.0.0",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.7",
