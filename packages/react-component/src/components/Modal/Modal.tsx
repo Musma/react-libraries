@@ -6,7 +6,6 @@ import { useKeyEsc } from 'src/hooks/useKeyEsc'
 import { Size } from 'src/types'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
-import ModalManager from './ModalManager'
 
 export interface ModalProps {
   title: string
@@ -16,7 +15,19 @@ export interface ModalProps {
   buttonOption: ButtonOption
   isNested?: boolean
   closeOnEscPress?: boolean
-  modalManager: ModalManager
+  /**
+   * 여러개의 모달이 중첩된 경우에 모달 종료 순서를 보장하기 위해 modalManager를 사용합니다
+   * useModalManager의 반환값을 전달해주세요
+   * Escape keydown 이벤트 발생시 모달을 종료하는 이벤트핸들러를 설치한 경우, 화면상에 보이는 모달(마지막에 켜진 모달)이 아니라 먼저 켜진 순서대로 모달이 종료되는 문제가 있습니다.
+   * ModalManager에서 모달들을 관리하며, isTopModal 메서드를 통해 마지막에 켜진 모달인지 확인 후 모달을 종료시킬 수 있도록 구현했습니다.
+   *
+   */
+  // modalManager: ModalManager
+  modalManager: {
+    add: (modal: HTMLDivElement) => void
+    pop: () => void
+    isTopModal: (modal: HTMLDivElement) => boolean
+  }
   onClose: () => void
 }
 interface ButtonOption {
@@ -26,14 +37,6 @@ interface ButtonOption {
   onSecondClick?: () => void
 }
 
-/**
- * 여러개의 모달이 중첩된 경우에 모달 종료 순서를 보장하기 위해 ModalManager를 사용합니다
- * Escape keydown 이벤트 발생시 모달을 종료하는 이벤트핸들러를 설치한 경우, 화면상에 보이는 모달(마지막에 켜진 모달)이 아니라 먼저 켜진 순서대로 모달이 종료되는 문제가 있습니다.
- * ModalManager에서 모달들을 관리하며, isTopModal 메서드를 통해 마지막에 켜진 모달인지 확인 후 모달을 종료시킬 수 있도록 구현했습니다.
- *
- */
-const manager = new ModalManager()
-
 export const Modal = ({
   title,
   isOpen,
@@ -42,7 +45,7 @@ export const Modal = ({
   children,
   isNested,
   closeOnEscPress = false,
-  modalManager = manager,
+  modalManager,
   onClose,
 }: ModalProps) => {
   const ref = useRef<HTMLDivElement>(null)
@@ -80,7 +83,7 @@ export const Modal = ({
   return (
     <div
       className={classNames(
-        'fixed left-0 right-0 top-0 bottom-0 flex items-center justify-center',
+        'fixed left-0 right-0 top-0 bottom-0 z-[9999] flex items-center justify-center',
         { ['bg-[rgba(0,0,0,0.3)]']: isNested },
         { ['bg-[rgba(0,0,0,0.6)]']: !isNested },
       )}
