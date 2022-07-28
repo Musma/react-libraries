@@ -1,15 +1,10 @@
-import { useCallback } from 'react'
-
-import { Breadcrumb } from './components/Breadcrumb'
+import { ImageUploader } from './components'
 
 const App = () => {
-  const handleCrumbClick = useCallback((crumb: string) => {
-    console.log(crumb)
-  }, [])
   return (
     <div className="h-full w-full">
-      <div className="m-10">
-        <Breadcrumb crumbs={['home', 's/w team', 'jason']} onClick={handleCrumbClick} />
+      <div className="ml-20 mt-10">
+        <ImageUploader onChange={(file) => console.log(file)} />
       </div>
     </div>
   )
