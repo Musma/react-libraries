@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { SubTitle, Caption } from 'src/components'
+import { Typography } from 'src/components'
 
 import { ReactComponent as OpenEyeIcon } from './images/eye_closed.svg'
 import { ReactComponent as ClosedEyeIcon } from './images/eye_opened.svg'
@@ -33,20 +33,21 @@ export const TextInput = ({ label, type = 'text', helperText, ...rest }: TextInp
 
   return (
     <div className="inline-flex flex-col items-start">
-      <SubTitle className="mb-[2px]" element={2}>
+      <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
         {label}
-      </SubTitle>
+      </Typography>
       <Input className={inputStyle} type={type} {...rest} />
       {helperText && (
-        <Caption
-          element="c2"
+        <Typography
+          type="caption"
+          variant="caption2"
           className={`flex items-center ${
             helperText.type === 'invalid' ? 'text-[#CA3C3D]' : 'text-[#107C41]'
           }`}
         >
           {helperText.type === 'invalid' ? <InvalidIcon /> : <ValidIcon />}
           {helperText.message}
-        </Caption>
+        </Typography>
       )}
     </div>
   )

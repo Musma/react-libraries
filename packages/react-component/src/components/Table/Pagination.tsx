@@ -1,8 +1,7 @@
 import classNames from 'classnames'
 import { useCallback, useMemo, useState } from 'react'
 
-import { Caption } from '../Caption'
-import { Paragraph } from '../Paragraph'
+import { Typography } from '../Typography'
 import { ReactComponent as ArrowFirstIcon } from './images/arrow_first.svg'
 import { ReactComponent as ArrowLastIcon } from './images/arrow_last.svg'
 import { ReactComponent as ArrowLeftIcon } from './images/arrow_left.svg'
@@ -103,7 +102,9 @@ export const Pagination = ({
 
   return (
     <div className="flex items-center justify-end">
-      <Paragraph element="p3">Rows per page</Paragraph>
+      <Typography type="body" variant="body3">
+        Rows per page
+      </Typography>
       <input
         value={limit}
         onChange={(e) => handleLimitChange(e.target.value)}
@@ -121,7 +122,7 @@ export const Pagination = ({
             )}
             onClick={() => handlePageChange(getPage(index))}
           >
-            <Caption>{getPage(index)}</Caption>
+            <Typography type="caption">{getPage(index)}</Typography>
           </span>
         )
       })}

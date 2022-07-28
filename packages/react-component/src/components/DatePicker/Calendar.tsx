@@ -1,13 +1,12 @@
 import classNames from 'classnames'
 import { DateTime } from 'luxon'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { Typography } from 'src/components'
 
 import { ReactComponent as ArrowDoubleLeft } from './images/arrow_double_left.svg'
 import { ReactComponent as ArrowDoubleRight } from './images/arrow_double_right.svg'
 import { ReactComponent as ArrowLeft } from './images/arrow_left.svg'
 import { ReactComponent as ArrowRight } from './images/arrow_right.svg'
-
-import { SubTitle } from 'src/components'
 
 interface CalendarProps {
   date: DateTime | undefined
@@ -178,9 +177,9 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
           />
           <ArrowLeft className="cursor-pointer" stroke="#D0D5DD" onClick={handlePrevMonthClick} />
         </div>
-        <SubTitle element={3}>
+        <Typography type="subTitle" variant="subTitle3">
           {MONTHS[month - 1]} {year}
-        </SubTitle>
+        </Typography>
         <div className="flex items-center">
           <ArrowRight className="cursor-pointer" stroke="#D0D5DD" onClick={handleNextMonthClick} />
           <ArrowDoubleRight
@@ -192,9 +191,9 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
       </div>
       <div className={body}>
         {DAYS_OF_THE_WEEK.map((d) => (
-          <SubTitle key={d} element={3} className={dayStyle}>
+          <Typography type="subTitle" variant="subTitle3" key={d} className={dayStyle}>
             {d}
-          </SubTitle>
+          </Typography>
         ))}
         {createSlots()}
       </div>

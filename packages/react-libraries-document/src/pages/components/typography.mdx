@@ -1,4 +1,4 @@
-import { Paragraph, SubTitle, Caption, Heading } from "@musma/react-component";
+import { Typography } from "@musma/react-component";
 
 import { Box } from "src/components";
 
@@ -22,37 +22,49 @@ import { Typography } from '@musma/react-component'
 ### H1
 
 <Box className="not-prose">
-  <Heading>{ipsum}</Heading>
+  <Typography type="heading" variant="h1">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### H2
 
 <Box className="not-prose">
-  <Heading element="h2">{ipsum}</Heading>
+  <Typography type="heading" variant="h2">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### H3
 
 <Box className="not-prose">
-  <Heading element="h3">{ipsum}</Heading>
+  <Typography type="heading" variant="h3">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### H4
 
 <Box className="not-prose">
-  <Heading element="h4">{ipsum}</Heading>
+  <Typography type="heading" variant="h4">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### H5
 
 <Box className="not-prose">
-  <Heading element="h5">{ipsum}</Heading>
+  <Typography type="heading" variant="h5">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### H6
 
 <Box className="not-prose">
-  <Heading element="h6">{ipsum}</Heading>
+  <Typography type="heading" variant="h6">
+    {ipsum}
+  </Typography>
 </Box>
 
 ---
@@ -60,19 +72,25 @@ import { Typography } from '@musma/react-component'
 ### S1. Sub Title
 
 <Box className="not-prose">
-  <SubTitle>{ipsum}</SubTitle>
+  <Typography type="subTitle" variant="subTitle1">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### S2. Sub Title
 
 <Box className="not-prose">
-  <SubTitle element={2}>{ipsum}</SubTitle>
+  <Typography type="subTitle" variant="subTitle2">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### S3. Sub Title
 
 <Box className="not-prose">
-  <SubTitle element={3}>{ipsum}</SubTitle>
+  <Typography type="subTitle" variant="subTitle3">
+    {ipsum}
+  </Typography>
 </Box>
 
 ---
@@ -80,19 +98,25 @@ import { Typography } from '@musma/react-component'
 ### B1. Body
 
 <Box className="not-prose">
-  <Paragraph>{ipsum}</Paragraph>
+  <Typography type="body" variant="body1">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### B2. Body
 
 <Box className="not-prose">
-  <Paragraph element="p2">{ipsum}</Paragraph>
+  <Typography type="body" variant="body2">
+    {ipsum}
+  </Typography>
 </Box>
 
 ### B3. Body
 
 <Box className="not-prose">
-  <Paragraph element="p3">{ipsum}</Paragraph>
+  <Typography type="body" variant="body3">
+    {ipsum}
+  </Typography>
 </Box>
 
 export default ({ children }) => (

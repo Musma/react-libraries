@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import _ from 'lodash-es'
 import { Fragment, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
-import { SubTitle, Button } from 'src/components'
+import { Button, Typography } from 'src/components'
 import { useKeyEsc } from 'src/hooks/useKeyEsc'
 import { Size } from 'src/types'
 
@@ -94,7 +94,7 @@ export const Modal = ({
             { 'pl-4': size === 'sm' },
           )}
         >
-          <SubTitle>{title}</SubTitle>
+          <Typography type="subTitle">{title}</Typography>
           <CloseIcon onClick={handleModalClose} className="cursor-pointer" />
         </section>
         <hr className="w-full border-t border-t-[#BAC7D5]" />

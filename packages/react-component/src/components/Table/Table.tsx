@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { ReactNode } from 'react'
 
-import { Heading } from '../Heading'
+import { Typography } from '../Typography'
 import { Pagination } from './Pagination'
 import { PaginationProps } from './types'
 
@@ -28,7 +28,9 @@ export const Table = ({ data, columns, pagination, onRowClick }: Props) => {
           <tr>
             {columns.map((column) => (
               <th key={column.id} className="h-10 border bg-[#EFF2F5]">
-                <Heading element="h6">{column.label}</Heading>
+                <Typography type="heading" variant="h6">
+                  {column.label}
+                </Typography>
               </th>
             ))}
           </tr>

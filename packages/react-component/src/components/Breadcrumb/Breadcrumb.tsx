@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { Paragraph } from '../Paragraph'
+import { Typography } from '../Typography'
 import { ReactComponent as HomeIcon } from './images/home.svg'
 import { ReactComponent as SeperatorIcon } from './images/seperator.svg'
 
@@ -30,12 +30,13 @@ export const Breadcrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
             <li key={index} className="flex">
               <SeperatorIcon />
               <button onClick={() => onClick(crumb)}>
-                <Paragraph
-                  element="p2"
+                <Typography
+                  type="body"
+                  variant="body2"
                   className={isLast(index) ? 'text-[#242E40]' : 'text-[#D0D5DD]'}
                 >
                   {crumb}
-                </Paragraph>
+                </Typography>
               </button>
             </li>
           )

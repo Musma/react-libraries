@@ -2,8 +2,7 @@ import classNames from 'classnames'
 import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Size } from 'src/types'
 
-import { Caption } from '../Caption'
-import { SubTitle } from '../SubTitle'
+import { Typography } from '../Typography'
 import { ReactComponent as DefaultLgIcon } from './images/image_default_lg.svg'
 import { ReactComponent as DefaultMdIcon } from './images/image_default_md.svg'
 import { ReactComponent as DefaultSmIcon } from './images/image_default_sm.svg'
@@ -52,22 +51,26 @@ export const ImageUploader = ({ size = 'lg', imgUrl, onChange }: ImageUploadProp
 
   const getHelperText = useCallback((size: Size) => {
     const large = (
-      <SubTitle element={2} className={classNames('mb-1 text-white')}>
+      <Typography type="subTitle" variant="subTitle2" className={classNames('mb-1 text-white')}>
         Upload Picture
-      </SubTitle>
+      </Typography>
     )
     return {
       full: large,
       lg: large,
       md: (
-        <Caption element="c2" className={classNames('mb-1', 'text-white')}>
+        <Typography type="caption" variant="caption2" className={classNames('mb-1', 'text-white')}>
           Upload Picture
-        </Caption>
+        </Typography>
       ),
       sm: (
-        <Caption element="c2" className={classNames('mb-[2px]', 'text-white')}>
+        <Typography
+          type="caption"
+          variant="caption2"
+          className={classNames('mb-[2px]', 'text-white')}
+        >
           Upload
-        </Caption>
+        </Typography>
       ),
       xs: <Fragment />,
     }[size]

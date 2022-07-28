@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-import { SubTitle } from '../SubTitle'
+import { Typography } from '../Typography'
 import { TabProps } from './types'
 
 export const RectTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
@@ -17,9 +17,13 @@ export const RectTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
       )}
       onClick={() => setSelectedTab(title)}
     >
-      <SubTitle element={2} className={title === selectedTab ? 'text-[#036DB7]' : 'text-[#BAC7D5]'}>
+      <Typography
+        type="subTitle"
+        variant="subTitle2"
+        className={title === selectedTab ? 'text-[#036DB7]' : 'text-[#BAC7D5]'}
+      >
         {title}
-      </SubTitle>
+      </Typography>
     </li>
   )
 }
