@@ -1,12 +1,13 @@
 import classNames from 'classnames'
-import { createElement, HTMLAttributes, useMemo } from 'react'
+import { createElement, PropsWithChildren, useMemo } from 'react'
 
-interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string
-  element?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-}
+import { HeadingProps } from '../types'
 
-export const Heading = ({ className = '', element = 'h1', ...rest }: HeadingProps) => {
+export const Heading = ({
+  className = '',
+  variant = 'h1',
+  children,
+}: PropsWithChildren<HeadingProps>) => {
   const style = useMemo(() => {
     return {
       h1: 'text-[40px] font-bold leading-[56px] tracking-[-0.6px]',
@@ -15,11 +16,14 @@ export const Heading = ({ className = '', element = 'h1', ...rest }: HeadingProp
       h4: 'text-[20px] font-semibold leading-[30px] tracking-[-0.2px]',
       h5: 'text-[18px] font-semibold leading-6 tracking-[-0.2px]',
       h6: 'text-[16px] font-semibold leading-6 tracking-[-0.2px]',
-    }[element]
-  }, [element])
+    }[variant]
+  }, [variant])
 
-  return createElement(element, {
-    className: classNames(style, className),
-    ...rest,
-  })
+  return createElement(
+    variant,
+    {
+      className: classNames(style, className),
+    },
+    children,
+  )
 }

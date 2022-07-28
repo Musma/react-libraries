@@ -1,10 +1,9 @@
 import { DateTime } from 'luxon'
 import { useCallback, useEffect, useState } from 'react'
+import { Typography } from 'src/components'
 
 import { Calendar } from './Calendar'
 import { DateInput } from './DateInput'
-
-import { SubTitle } from 'src/components'
 
 interface CalendarProps {
   handleDatePick: (dateTime: string | undefined) => void
@@ -29,9 +28,9 @@ export const DatePicker = ({ handleDatePick }: CalendarProps) => {
 
   return (
     <div className="flex flex-col items-start">
-      <SubTitle className="mb-[2px]" element={2}>
+      <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
         Date
-      </SubTitle>
+      </Typography>
       <DateInput
         handleSelectDay={handleSelectDay}
         toggleIsOpen={toggleIsOpen}

@@ -1,22 +1,26 @@
 import { Fragment } from 'react'
 
-import { SubTitle } from '../SubTitle'
+import { Typography } from '../Typography'
 import { ReactComponent as TabLeftIcon } from './images/tab_left.svg'
 import { ReactComponent as TabRightIcon } from './images/tab_right.svg'
 import { TabProps } from './types'
 
 export const HatTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
   const inActive = (
-    <SubTitle element={2} className="px-[34px] py-[10px] text-[#BAC7D5]">
+    <Typography type="subTitle" variant="subTitle2" className="px-[34px] py-[10px] text-[#BAC7D5]">
       {title}
-    </SubTitle>
+    </Typography>
   )
   const active = (
     <Fragment>
       <TabLeftIcon />
-      <SubTitle element={2} className="border-t border-t-[#BAC7D5] bg-white px-6 py-[10px]">
+      <Typography
+        type="subTitle"
+        variant="subTitle2"
+        className="border-t border-t-[#BAC7D5] bg-white px-6 py-[10px]"
+      >
         {title}
-      </SubTitle>
+      </Typography>
       <TabRightIcon />
     </Fragment>
   )
