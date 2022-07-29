@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
 
-interface usePaginationParams {
+interface UsePaginationParams {
   limit?: number
   totalData: number
 }
-export function usePagination({ limit, totalData }: usePaginationParams) {
+export function usePagination({ limit, totalData }: UsePaginationParams) {
   const [page, setPage] = useState(1)
   const [dataLimit, setDataLimit] = useState(limit || 10)
   const onPageChange = useCallback((page: number) => {
