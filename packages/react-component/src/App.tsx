@@ -1,7 +1,12 @@
-import { Button, Tag, useTags } from './components'
+import { useState } from 'react'
+import { useModalManager } from 'src/components/Modal/useModalManager'
+
+import { Button, Modal, Tag, useTags } from './components'
 
 const App = () => {
   const swTeam = useTags(['dyson', 'bob', 'kuhn'])
+  const [open, setOpen] = useState(false)
+  const manager = useModalManager()
   return (
     <div className="h-full w-full">
       <div className="ml-20 mt-10">
@@ -10,16 +15,16 @@ const App = () => {
             header 입니다
           </div>
         </header>
-        <div className="bg-gray-500 p-1">
-          {swTeam.tags.map((tag) => (
-            <Tag key={tag} variant="rectangle" label={tag} onClose={(tag) => swTeam.remove(tag)} />
-          ))}
-        </div>
-        <div>
-          {['jason', 'jelly', 'justin'].map((label) => (
-            <Button key={label} label={label} onClick={() => swTeam.add(label)} />
-          ))}
-        </div>
+        <Button label="modal open" onClick={() => setOpen(true)} />
+        <Modal
+          buttonOption={{ label: 'label' }}
+          title={'hh'}
+          isOpen={open}
+          modalManager={manager}
+          onClose={() => setOpen(false)}
+        >
+          hh
+        </Modal>
       </div>
     </div>
   )
