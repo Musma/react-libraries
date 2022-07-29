@@ -1,11 +1,7 @@
-import { useState } from 'react'
-
-import { Button, Modal, useModalManager } from './components'
+import { Button, Tag, useTags } from './components'
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
-  const manager = useModalManager()
+  const swTeam = useTags(['dyson', 'bob', 'kuhn'])
   return (
     <div className="h-full w-full">
       <div className="ml-20 mt-10">
@@ -14,43 +10,15 @@ const App = () => {
             header 입니다
           </div>
         </header>
+        <div className="bg-gray-500 p-1">
+          {swTeam.tags.map((tag) => (
+            <Tag key={tag} variant="rectangle" label={tag} onClose={(tag) => swTeam.remove(tag)} />
+          ))}
+        </div>
         <div>
-          <Button label={'Open Modal'} onClick={() => setIsOpen(true)} />
-          <Modal
-            title={'Open Modal'}
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            closeOnEscPress={true}
-            modalManager={manager}
-            buttonOption={{
-              label: 'Button',
-              onClick: () => undefined,
-              secondLabel: 'Button',
-              onSecondClick: () => undefined,
-            }}
-          >
-            <div className="flex h-full w-full flex-col items-center justify-center">
-              ASOPDKASPODKASPODKASPODKASPODKASPOK
-              <Button label={'Open Modal 2'} onClick={() => setIsOpen2(true)} />
-            </div>
-          </Modal>
-          <Modal
-            title={'Two'}
-            isOpen={isOpen2}
-            modalManager={manager}
-            onClose={() => setIsOpen2(false)}
-            closeOnEscPress={true}
-            buttonOption={{
-              label: 'Button',
-              onClick: () => undefined,
-              secondLabel: 'Button',
-              onSecondClick: () => undefined,
-            }}
-          >
-            <div className="flex h-full w-full flex-col items-center justify-center">
-              ASOPDKASPODKASPODKASPODKASPODKASPOK
-            </div>
-          </Modal>
+          {['jason', 'jelly', 'justin'].map((label) => (
+            <Button key={label} label={label} onClick={() => swTeam.add(label)} />
+          ))}
         </div>
       </div>
     </div>

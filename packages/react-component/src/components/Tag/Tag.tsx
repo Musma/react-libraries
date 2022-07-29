@@ -5,7 +5,10 @@ import { Size } from 'src/types'
 import { ReactComponent as CloseIcon } from './images/close.svg'
 
 interface TagProps {
-  closable?: boolean
+  /**
+   * onClose를 사용할 경우, useTags 훅과 함께 사용하세요
+   */
+  onClose: (label: string) => void
   size?: Extract<Size, 'sm' | 'md'>
   color?: 'white' | 'blue'
   variant?: 'rectangle' | 'stadium'
@@ -15,7 +18,7 @@ interface TagProps {
 }
 
 export const Tag = ({
-  closable = true,
+  onClose,
   size = 'md',
   color = 'white',
   variant = 'stadium',
@@ -58,7 +61,13 @@ export const Tag = ({
   return (
     <div className={classNames('inline-flex items-center', colorTheme, shape, containerClassName)}>
       <span className={classNames(font, labelClassName)}>{label}</span>
-      {closable && <CloseIcon className="ml-1" fill={color === 'white' ? '#242E40' : '#036DB7'} />}
+      {onClose && (
+        <CloseIcon
+          onClick={() => onClose(label)}
+          className="ml-1 cursor-pointer"
+          fill={color === 'white' ? '#242E40' : '#036DB7'}
+        />
+      )}
     </div>
   )
 }
