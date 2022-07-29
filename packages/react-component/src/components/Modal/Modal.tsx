@@ -22,7 +22,6 @@ export interface ModalProps {
    * ModalManager에서 모달들을 관리하며, isTopModal 메서드를 통해 마지막에 켜진 모달인지 확인 후 모달을 종료시킬 수 있도록 구현했습니다.
    *
    */
-  // modalManager: ModalManager
   modalManager: {
     add: (modal: HTMLDivElement) => void
     pop: () => void
@@ -97,7 +96,9 @@ export const Modal = ({
             { 'pl-4': size === 'sm' },
           )}
         >
-          <Typography type="subTitle">{title}</Typography>
+          <Typography type="subTitle" variant="subTitle2">
+            {title}
+          </Typography>
           <CloseIcon onClick={handleModalClose} className="cursor-pointer" />
         </section>
         <hr className="w-full border-t border-t-[#BAC7D5]" />
