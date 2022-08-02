@@ -1,19 +1,21 @@
 version: 0.1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - mv .ci.npmrc .npmrc
-        - nvm use $VERSION_NODE_16
-        - npm i -g pnpm
-        - pnpm install
-    build:
-      commands:
-        - pnpm react-libraries-document-build
-  artifacts:
-    baseDirectory: packages/react-libraries-document/.next
-    files:
-      - "**/*"
-  cache:
-    paths:
-      - node_modules/**/*
+applications:
+  - appRoot: packages/react-libraries-document
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - mv .ci.npmrc .npmrc
+            - nvm use $VERSION_NODE_16
+            - npm i -g pnpm
+            - pnpm install
+        build:
+          commands:
+            - pnpm react-libraries-document-build
+      artifacts:
+        baseDirectory: packages/react-libraries-document/.next
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
