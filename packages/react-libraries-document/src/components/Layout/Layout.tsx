@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/order
 import { ReactNode } from 'react'
-import * as React from 'react'
+
 import { Header, Navigation } from 'src/components'
 
 interface LayoutProps {
