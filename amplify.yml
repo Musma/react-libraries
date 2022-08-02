@@ -11,9 +11,9 @@ applications:
             - pnpm install
         build:
           commands:
-            - pnpm react-libraries-document-build
+            - pnpm build
       artifacts:
-        baseDirectory: packages/react-libraries-document/.next
+        baseDirectory: .next
         files:
           - "**/*"
       cache:
