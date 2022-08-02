@@ -7,18 +7,18 @@
     ]
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "react-libraries-document-build": "cd packages/react-libraries-document && pnpm build"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.1",
-    "@musma/eslint-config": "^0.0.39",
+    "@musma/eslint-config": "^0.0.41",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
     "path": "^0.12.7",
     "typescript": "^4.7.4",
-    "vite": "^3.0.3",
-    "vite-plugin-dts": "^1.4.0",
+    "vite": "^3.0.4",
+    "vite-plugin-dts": "^1.4.1",
     "vite-plugin-svgr": "^2.2.1"
   }
 }
