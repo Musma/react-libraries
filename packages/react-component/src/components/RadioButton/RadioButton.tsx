@@ -1,12 +1,13 @@
 import classNames from 'classnames'
 import _ from 'lodash-es'
 import { useMemo } from 'react'
+import { Sizes } from 'src/types'
 
-import { Size } from 'src/types'
+import { Typography } from '../Typography'
 
 interface RadioButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
-  size?: Extract<Size, 'sm' | 'md' | 'lg'>
+  size?: Sizes
   labelClassName?: string
   disabled?: boolean
 }
@@ -15,24 +16,23 @@ export const RadioButton = ({
   id = _.uniqueId(),
   label,
   size = 'lg',
-  labelClassName = '',
   disabled = false,
   ...rest
 }: RadioButtonProps) => {
   const height = useMemo(() => {
     const options = {
-      lg: 'h-5',
-      md: 'h-[13px]',
-      sm: 'h-[10px]',
+      lg: 'h-[21px]',
+      md: 'h-[14px]',
+      sm: 'h-[12px]',
     }
     return options[size]
   }, [size])
 
   const outerCircle = useMemo(() => {
     const width = {
-      lg: 'w-5',
-      md: 'w-[13px]',
-      sm: 'w-[10px]',
+      lg: 'w-[21px]',
+      md: 'w-[14px]',
+      sm: 'w-[12px]',
     }
     const borderColor = {
       checked: 'border-[#107C41]',
@@ -45,9 +45,9 @@ export const RadioButton = ({
 
   const innerCircle = useMemo(() => {
     const layout = {
-      lg: 'h-[11.25px] w-[11.25px] left-[4.375px] top-[4.375px]',
-      md: 'h-[7.31px] w-[7.31px] left-[2.845px] top-[2.845px]',
-      sm: 'h-[5.62px] w-[5.62px] left-[2.19px] top-[2.19px]',
+      lg: 'h-[11.81px] w-[11.81px] left-[6.09px] top-[6.09px]',
+      md: 'h-[7.88px] w-[7.88px] left-[4.06px] top-[4.06px]',
+      sm: 'h-[6.75px] w-[6.75px] left-[3.62px] top-[3.62px]',
     }
     const borderColor = {
       disabled: 'border-[#D0D5DD] bg-[#D0D5DD]',
@@ -56,30 +56,31 @@ export const RadioButton = ({
     return `${layout[size]} ${disabled ? borderColor.disabled : borderColor.active}`
   }, [size, disabled])
 
-  const labelFont = useMemo(() => {
-    const fontStyle = {
-      lg: 'leading-5',
-      md: 'text-[13px] leading-[13px]',
-      sm: 'text-[10px] leading-[10px]',
-    }
-    return fontStyle[size]
+  const container = useMemo(() => {
+    return {
+      lg: 'w-6 h-6',
+      md: 'w-4 h-4',
+      sm: 'w-[14px] h-[14px]',
+    }[size]
   }, [size])
 
   return (
-    <label htmlFor={id} className="relative flex items-center">
-      <input
-        id={id}
-        type="radio"
-        className={classNames(
-          'peer cursor-pointer appearance-none rounded-full border',
-          height,
-          outerCircle,
-        )}
-        disabled={disabled}
-        {...rest}
-      />
-      <div className={classNames('absolute rounded-full', innerCircle)} />
-      <span className={classNames('ml-1', height, labelFont, labelClassName)}>{label}</span>
+    <label htmlFor="id" className="flex items-center">
+      <div className={classNames('relative flex items-center justify-center', container)}>
+        <input
+          id={id}
+          type="radio"
+          className={classNames(
+            'peer cursor-pointer appearance-none rounded-full border',
+            height,
+            outerCircle,
+          )}
+          disabled={disabled}
+          {...rest}
+        />
+        <div className={classNames('absolute rounded-full', innerCircle)} />
+      </div>
+      <Typography>{label}</Typography>
     </label>
   )
 }
