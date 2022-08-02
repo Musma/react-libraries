@@ -1,13 +1,15 @@
 import classNames from 'classnames'
-import { ButtonHTMLAttributes, useMemo } from 'react'
-import { Size } from 'src/types'
+import { ButtonHTMLAttributes, useCallback, useMemo } from 'react'
+import { Sizes } from 'src/types'
 
 import { Typography } from '../Typography'
+import { ReactComponent as ButtonIcon } from './images/buttonIcon.svg'
+import { ReactComponent as LgButtonIcon } from './images/buttonIcon_lg.svg'
 
 type Variant = 'outlined' | 'contained' | 'danger'
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
-  size?: Size
+  size?: Sizes | 'xs'
   buttonClassName?: string
   contentClassName?: string
   variant?: Variant
@@ -26,13 +28,12 @@ export const Button = ({
   showIcon = false,
   ...rest
 }: ButtonProps) => {
-  const width = useMemo(() => {
+  const height = useMemo(() => {
     const sizeOption = {
-      lg: 'w-[200px]',
-      md: 'w-[144px]',
-      sm: 'w-[92px]',
-      xs: 'w-[52px]',
-      full: 'w-full',
+      lg: 'h-8',
+      md: 'h-7',
+      sm: 'h-[26px]',
+      xs: 'h-6',
     }
     return sizeOption[size]
   }, [size])
@@ -47,7 +48,7 @@ export const Button = ({
   }, [variant])
 
   const onDisabled = useMemo(() => {
-    return 'bg-[#F9FAFB] cursor-not-allowed'
+    return 'bg-[#F4F6F9] cursor-not-allowed'
   }, [])
 
   const contentStyle = useMemo(() => {
@@ -55,17 +56,35 @@ export const Button = ({
     if (variant === 'outlined') return 'text-[#036DB7]'
     return 'text-white'
   }, [variant, disabled])
+
   const fill = useMemo(() => {
     if (disabled) return '#D0D5DD'
     if (variant === 'outlined') return '#036DB7'
     return 'white'
   }, [variant, disabled])
 
+  const getLabel = useCallback(
+    ({ label, className }: { label: string; className: string }) => {
+      if (size === 'lg') {
+        return (
+          <Typography type="body" variant="body3" className={className}>
+            {label}
+          </Typography>
+        )
+      }
+      return (
+        <Typography type="caption" className={className}>
+          {label}
+        </Typography>
+      )
+    },
+    [size],
+  )
   return (
     <button
       className={classNames(
-        'h-[34px] rounded-md',
-        width,
+        'flex items-center justify-center gap-x-[2px] rounded-md',
+        height,
         { [variantStyle]: !disabled },
         { [onDisabled]: disabled },
         buttonClassName,
@@ -73,28 +92,11 @@ export const Button = ({
       {...rest}
       disabled={disabled}
     >
-      <Typography
-        type="body"
-        variant="body3"
-        className={classNames('flex items-center justify-center', contentStyle, contentClassName)}
-      >
-        {showIcon && (
-          // FIXME: ReactComponent로 import가 되지 않아 임시로 svg 소스코드 그대로 사용
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.82402 11.9961H1.99121V9.1633L9.6257 1.52882C9.7509 1.40366 9.92068 1.33334 10.0977 1.33334C10.2748 1.33334 10.4445 1.40366 10.5697 1.52882L12.4585 3.41758C12.5837 3.54278 12.654 3.71257 12.654 3.8896C12.654 4.06664 12.5837 4.23642 12.4585 4.36162L4.82402 11.9961ZM1.99121 13.3314H14.0088V14.6667H1.99121V13.3314Z"
-              fill={fill}
-            />
-          </svg>
-        )}
-        {label}
-      </Typography>
+      {showIcon && (size === 'lg' ? <LgButtonIcon fill={fill} /> : <ButtonIcon fill={fill} />)}
+      {getLabel({
+        label,
+        className: classNames('flex items-center justify-center', contentStyle, contentClassName),
+      })}
     </button>
   )
 }

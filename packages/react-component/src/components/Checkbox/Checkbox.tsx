@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import _ from 'lodash-es'
-import { InputHTMLAttributes, useMemo } from 'react'
-import { Size } from 'src/types'
+import { InputHTMLAttributes, useCallback, useMemo } from 'react'
+import { Sizes } from 'src/types'
 
+import { Typography } from '../Typography'
 import DoneDisabledLgIcon from './images/done_disabled_lg.svg'
 import DoneDisabledMdIcon from './images/done_disabled_md.svg'
 import DoneDisabledSmIcon from './images/done_disabled_sm.svg'
@@ -13,31 +14,21 @@ import DoneSmIcon from './images/done_sm.svg'
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
   labelClassName?: string
-  size?: Extract<Size, 'sm' | 'md' | 'lg'>
+  size?: Sizes
 }
 
 export const Checkbox = ({
   id = _.uniqueId(),
   label,
-  labelClassName,
   size = 'lg',
   disabled,
   ...rest
 }: CheckboxProps) => {
   const height = useMemo(() => {
     const options = {
-      lg: 'h-5',
-      md: 'h-[14px]',
-      sm: 'h-[10px]',
-    }
-    return options[size]
-  }, [size])
-
-  const inputVariant = useMemo(() => {
-    const options = {
-      lg: 'w-5 rounded-[3px]',
-      md: 'w-[14px] rounded-[2px]',
-      sm: 'w-[10px] rounded-[2px]',
+      lg: 'h-6 w-6',
+      md: 'h-4 w-4',
+      sm: 'h-[14px] w-[14px]',
     }
     return options[size]
   }, [size])
@@ -62,48 +53,66 @@ export const Checkbox = ({
 
   const iconPosition = useMemo(() => {
     const options = {
-      lg: 'top-[2px] left-[2px]',
-      md: 'top-[1px] left-[1px]',
-      sm: 'top-[1px] left-[1px]',
+      lg: 'top-1 left-1',
+      md: 'top-[2px] left-[2px]',
+      sm: 'top-[3px] left-[3px]',
     }
     return options[size]
   }, [size])
 
-  const labelFont = useMemo(() => {
-    const options = {
-      lg: 'leading-5',
-      md: 'text-[14px] leading-[14px]',
-      sm: 'text-[10px] leading-[10px]',
-    }
-    return options[size]
+  const container = useMemo(() => {
+    return {
+      lg: 'w-6 h-6',
+      md: 'w-4 h-4',
+      sm: 'w-[14px] h-[14px]',
+    }[size]
   }, [size])
+
+  const getLabel = useCallback(
+    (label: string) => {
+      if (size !== 'sm') {
+        return (
+          <Typography className="ml-2" type="body" variant={size === 'lg' ? 'body2' : 'body3'}>
+            {label}
+          </Typography>
+        )
+      }
+      return (
+        <Typography className="ml-1" type="caption">
+          {label}
+        </Typography>
+      )
+    },
+    [size],
+  )
 
   return (
-    <label htmlFor={id} className="relative flex items-center">
-      <input
-        id={id}
-        type="checkbox"
-        className={classNames(
-          'peer cursor-pointer appearance-none',
-          height,
-          inputVariant,
-          {
-            ['border border-[#BAC7D5] checked:border-0 checked:bg-[#107C41]']: !disabled,
-          },
-          {
-            'bg-[#F9FAFB]': disabled,
-          },
-        )}
-        disabled={disabled}
-        {...rest}
-      />
-      <img
-        src={disabled ? disabledIcon : activeIcon}
-        className={classNames('absolute cursor-pointer', iconPosition, {
-          ['invisible peer-checked:visible']: !disabled,
-        })}
-      />
-      <span className={classNames('ml-1', height, labelFont, labelClassName)}>{label}</span>
+    <label htmlFor={id} className="flex items-center">
+      <div className={classNames('relative flex items-center justify-center', container)}>
+        <input
+          id={id}
+          type="checkbox"
+          className={classNames(
+            'peer cursor-pointer appearance-none rounded-[2px]',
+            height,
+            {
+              ['border border-[#BAC7D5] checked:border-0 checked:bg-[#107C41]']: !disabled,
+            },
+            {
+              'bg-[#F9FAFB]': disabled,
+            },
+          )}
+          disabled={disabled}
+          {...rest}
+        />
+        <img
+          src={disabled ? disabledIcon : activeIcon}
+          className={classNames('absolute cursor-pointer', iconPosition, {
+            ['invisible peer-checked:visible']: !disabled,
+          })}
+        />
+      </div>
+      {label && getLabel(label)}
     </label>
   )
 }
