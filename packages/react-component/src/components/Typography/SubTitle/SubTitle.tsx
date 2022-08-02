@@ -9,11 +9,11 @@ export const SubTitle = ({
   children,
 }: PropsWithChildren<SubTitleProps>) => {
   const style = useMemo(() => {
-    const options = new Map()
-    options.set(1, 'text-[20px] font-normal leading-none tracking-[-0.2px]')
-    options.set(2, 'text-[14px] font-semibold leading-5')
-    options.set(3, 'text-[12px] font-semibold leading-[18px]')
-    return options.get(variant)
+    return {
+      subTitle1: 'text-[20px] font-normal leading-none tracking-[-0.2px]',
+      subTitle2: 'text-[14px] font-semibold leading-5',
+      subTitle3: 'text-[12px] font-semibold leading-[18px]',
+    }[variant]
   }, [variant])
   return <p className={classNames(style, className)}>{children}</p>
 }
