@@ -84,8 +84,8 @@ importers:
     specifiers:
       '@mdx-js/loader': ^2.1.2
       '@mdx-js/react': ^2.1.2
-      '@musma/react-component': 0.0.6
-      '@musma/react-icons': 0.0.6
+      '@musma/react-component': workspace:^0.0.6
+      '@musma/react-icons': workspace:^0.0.7
       '@next/mdx': ^12.2.3
       '@tailwindcss/typography': ^0.5.4
       '@types/luxon': ^3.0.0
