@@ -24,6 +24,7 @@ export const Navigation = () => {
             <ListItem href={'/components/toast'} label="Toast" />
             <ListItem href={'/components/spinner'} label="Spinner" />
             <ListItem href={'/components/badge'} label="Badge" />
+            <ListItem href={'/components/timepicker'} label="TimePicker" />
           </ul>
         </li>
         <li className="mb-6 last-of-type:mb-0">
