@@ -1,4 +1,4 @@
-// import { FillSunIcon, FillMoonIcon } from '@musma/react-icons'
+import { FillSunIcon, FillMoonIcon } from '@musma/react-icons'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -29,7 +29,7 @@ export const Header = () => {
             </a>
           </Link>
           <div className="flex gap-8">
-            {/* {(theme === 'dark' || theme === 'system') && (
+            {(theme === 'dark' || theme === 'system') && (
               <FillSunIcon
                 className="cursor-pointer"
                 onClick={() => {
@@ -45,7 +45,7 @@ export const Header = () => {
                   setTheme('dark')
                 }}
               />
-            )} */}
+            )}
           </div>
         </div>
       </header>
