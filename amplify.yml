@@ -1,6 +1,6 @@
 version: 0.1
 applications:
-  - appRoot: ./
+  - appRoot: packages/react-libraries-document
     frontend:
       phases:
         preBuild:
