@@ -1,11 +1,11 @@
 version: 0.1
 applications:
-  - appRoot: packages/react-libraries-document
+  - appRoot: ./
     frontend:
       phases:
         preBuild:
           commands:
-            - mv .ci.npmrc .npmrc
+            - mv .ci.npmrc .npmrc  
             - nvm use $VERSION_NODE_16
             - npm i -g pnpm
             - pnpm install
