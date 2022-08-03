@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useModalManager } from 'src/components/Modal/useModalManager'
 
-import { Button, Modal, Select, Tag, useTags } from './components'
+import { Dropdown, useTags } from './components'
 
 const App = () => {
   const swTeam = useTags(['dyson', 'bob', 'kuhn'])
@@ -17,7 +17,7 @@ const App = () => {
         </header>
         selected: {selected}
         <div>
-          <Select
+          <Dropdown
             size="lg"
             label={'라벨'}
             value={selected}
@@ -27,7 +27,7 @@ const App = () => {
             }))}
             onChange={(value) => setSelected(value)}
           />
-          <Select
+          <Dropdown
             size="md"
             label={'라벨'}
             value={selected}
@@ -37,7 +37,7 @@ const App = () => {
             }))}
             onChange={(value) => setSelected(value)}
           />
-          <Select
+          <Dropdown
             size="sm"
             label={'라벨'}
             value={selected}

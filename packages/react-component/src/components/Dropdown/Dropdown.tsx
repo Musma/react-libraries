@@ -5,15 +5,15 @@ import { Sizes } from 'src/types'
 import { Typography } from '../Typography'
 import { ReactComponent as ArrowTopIcon } from './images/arrow_top.svg'
 
-interface SelectProps {
-  size: Sizes
+interface DropdownProps {
+  size?: Sizes
   label: string
   value: string
   options: { label: string; value: string }[]
   onChange: (value: string) => void
 }
 
-export const Select = ({ size, label, value, options, onChange }: SelectProps) => {
+export const Dropdown = ({ size = 'lg', label, value, options, onChange }: DropdownProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const divRef = useRef<HTMLDivElement>(null)
   const getLabel = useCallback(
@@ -34,7 +34,7 @@ export const Select = ({ size, label, value, options, onChange }: SelectProps) =
 
   const filteredOptions = useMemo(() => {
     if (!text) return options
-    return options.filter((option) => option.label.includes(text))
+    return options.filter((option) => option.label.toLowerCase().includes(text.toLowerCase()))
   }, [options, text])
 
   const isValid = useCallback(
@@ -145,11 +145,19 @@ export const Select = ({ size, label, value, options, onChange }: SelectProps) =
 
   const inputSize = useMemo(() => {
     return {
-      lg: 'h-8 w-[200px] text-[14px]',
-      md: 'h-7 w-[180px] text-[12px]',
-      sm: 'h-6 w-[148px] text-[12px]',
+      lg: 'w-[200px] text-[14px]',
+      md: 'w-[180px] text-[12px]',
+      sm: 'w-[148px] text-[12px]',
     }[size]
   }, [size])
+
+  const height = useMemo(() => {
+    return {
+      lg: 'h-8',
+      md: 'h-7',
+      sm: 'h-6'
+    }[size]
+  },[size])
 
   const arrowPosition = useMemo(() => {
     return {
@@ -164,7 +172,7 @@ export const Select = ({ size, label, value, options, onChange }: SelectProps) =
       <label htmlFor="input">
         <TitleFactory size={size} label={label} className="mb-[2px]" />
       </label>
-      <div ref={divRef} className="relative" onClick={handleDropdownClick}>
+      <div ref={divRef} className={classNames("relative", height)} onClick={handleDropdownClick}>
         <input
           id={'input'}
           ref={inputRef}
@@ -174,9 +182,10 @@ export const Select = ({ size, label, value, options, onChange }: SelectProps) =
           className={classNames(
             'cursor-pointer rounded border border-[#BAC7D5] pl-2 leading-5 outline-none focus:border-[#036DB7]',
             inputSize,
+            height,
           )}
         />
-        <LabelFactory
+        {/* <LabelFactory
           size={size}
           label={getLabel(value)}
           className={classNames(
@@ -185,24 +194,24 @@ export const Select = ({ size, label, value, options, onChange }: SelectProps) =
             { 'left-[9px] top-[5px]': size === 'sm' },
             { invisible: text },
           )}
-        />
+        /> */}
         <ArrowTopIcon
-          className={classNames('absolute cursor-pointer', arrowPosition, {
-            'rotate-180': isOpen,
-          })}
+          className={classNames('absolute cursor-pointer', 
+          arrowPosition,
+          {'rotate-180 ': isOpen}
+          )}
         />
-      </div>
-
       {isOpen && (
-        <ul className="mt-1 grid max-h-[158px] w-full grid-cols-1 gap-y-[2px] overflow-scroll rounded border border-[#BAC7D5] py-1">
+        <ul className="absolute mt-1 grid max-h-[158px] w-full grid-cols-1 gap-y-[2px] overflow-y-scroll rounded border border-[#BAC7D5] py-1">
           {filteredOptions.map(({ label, value }, index) => (
             <li
               key={label}
               onClick={() => handleOptionSelect(value)}
               className={classNames(
-                'h-8 cursor-pointer py-1 pl-4',
+                'cursor-pointer py-1 pl-4 flex items-center',
                 { 'bg-[#036DB7] text-white': isSelected(value) },
                 { 'hover:bg-[#F2F8FB] hover:text-[#036DB7]': !isSelected(value) },
+                height
                 // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
                 // { 'active bg-[#F2F8FB] text-[#036DB7]': !isSelected(value) && index === pointer },
               )}
@@ -212,6 +221,8 @@ export const Select = ({ size, label, value, options, onChange }: SelectProps) =
           ))}
         </ul>
       )}
+      </div>
+
     </div>
   )
 }
