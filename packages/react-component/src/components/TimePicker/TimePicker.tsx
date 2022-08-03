@@ -1,14 +1,16 @@
+import classNames from 'classnames'
 import { DateTime } from 'luxon'
 import { useEffect, useMemo, useRef, useState } from 'react'
-
 import { ClockBody, ClockHeader, ClockType, getMeridiem, TextInput } from 'src/components'
+import { Sizes } from 'src/types'
 
 interface TimePickerProps {
+  size?: Sizes
   date: DateTime
   onDateChange: (date: DateTime) => void
 }
 
-export const TimePicker = ({ date, onDateChange }: TimePickerProps) => {
+export const TimePicker = ({ size = 'lg', date, onDateChange }: TimePickerProps) => {
   const [showClock, setShowClock] = useState(false)
   const [clockType, setClockType] = useState<ClockType>('hour')
   const ref = useRef<HTMLDivElement>(null)
@@ -60,6 +62,7 @@ export const TimePicker = ({ date, onDateChange }: TimePickerProps) => {
       {/* TODO: TextInput 완성되면 교체 필요 */}
       <TextInput
         label="Time"
+        size={size}
         value={date.toFormat('HH:mm ')}
         readOnly={true}
         onClick={() => {
@@ -69,8 +72,13 @@ export const TimePicker = ({ date, onDateChange }: TimePickerProps) => {
       />
 
       {showClock && (
-        <div className="absolute top-[100%] mt-[4px] w-[200px] rounded-md border border-[#BAC7D5] bg-white py-4 px-2">
+        <div
+          className={classNames(
+            'absolute top-[100%] mt-[4px] w-full rounded-md border border-[#BAC7D5] bg-white py-4 px-2',
+          )}
+        >
           <ClockHeader
+            size={size}
             date={date}
             clockType={clockType}
             onDateChange={(dateTime) => {
@@ -82,6 +90,7 @@ export const TimePicker = ({ date, onDateChange }: TimePickerProps) => {
           />
 
           <ClockBody
+            size={size}
             date={date}
             value={value}
             clockType={clockType}
