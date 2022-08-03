@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Typography } from 'src/components'
+import { Sizes } from 'src/types'
 
 import { ReactComponent as OpenEyeIcon } from './images/eye_closed.svg'
 import { ReactComponent as ClosedEyeIcon } from './images/eye_opened.svg'
@@ -7,29 +8,46 @@ import { ReactComponent as InvalidIcon } from './images/invalid.svg'
 import { ReactComponent as SearchIcon } from './images/search.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
-interface TextInpuProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+interface TextInputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+  size?: Sizes
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
   handleSearchClick?: () => void
 }
-export const TextInput = ({ label, type = 'text', helperText, ...rest }: TextInpuProps) => {
+export const TextInput = ({
+  size = 'lg',
+  label,
+  type = 'text',
+  helperText,
+  ...rest
+}: TextInputProps) => {
   const inputStyle = useMemo(() => {
-    const commonStyle =
-      'h-[32px] w-[200px] rounded border bg-white pl-2 text-[14px] font-normal leading-5 outline-none'
+    const commonStyle = 'rounded border bg-white pl-2 font-normal outline-none'
     const paddingRight = {
       text: 'pr-2',
       password: 'pr-7',
       search: 'pr-7',
     }
+    const sizeOption = {
+      sm: 'h-6 w-[148px]',
+      md: 'h-7 w-[180px]',
+      lg: 'h-8 w-[200px]',
+    }
+    const font = {
+      sm: 'text-[12px] leading-4',
+      md: 'text-[12px] leading-4',
+      lg: 'text-[14px] leading-5',
+    }
     const border = {
       valid: ' border-[#107C41]',
       invalid: 'border-[#CA3C3D]',
     }
-    return `${commonStyle} ${paddingRight[type]} ${
+    return `${commonStyle} ${paddingRight[type]} ${sizeOption[size]} ${font[size]} ${
       helperText ? border[helperText.type] : 'border-[#BAC7D5] focus:border-[#036DB7]'
     }`
-  }, [type, helperText])
+  }, [type, helperText, size])
 
   return (
     <div className="inline-flex flex-col items-start">
@@ -53,7 +71,7 @@ export const TextInput = ({ label, type = 'text', helperText, ...rest }: TextInp
   )
 }
 
-interface InputProps extends Omit<TextInpuProps, 'label' | 'helperText'> {
+interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size'> {
   type: 'text' | 'password' | 'search'
 }
 const Input = ({ type, ...rest }: InputProps) => {
