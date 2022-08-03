@@ -7,7 +7,7 @@ import { ReactComponent as ButtonIcon } from './images/buttonIcon.svg'
 import { ReactComponent as LgButtonIcon } from './images/buttonIcon_lg.svg'
 
 type Variant = 'outlined' | 'contained' | 'danger'
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
   label: string
   size?: Sizes | 'xs'
   buttonClassName?: string
