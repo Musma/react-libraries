@@ -31,8 +31,10 @@ export interface ModalProps {
 }
 interface ButtonOption {
   label: string
+  className?: string
   onClick?: () => void
   secondLabel?: string
+  secondClassName?: string
   onSecondClick?: () => void
 }
 
@@ -115,12 +117,14 @@ export const Modal = ({
             size={buttonSize}
             variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
             onClick={buttonOption.onSecondClick}
+            buttonClassName={buttonOption.className || ''}
           />
           {buttonOption.secondLabel && (
             <Button
               size={buttonSize}
               label={buttonOption.secondLabel}
               onClick={buttonOption.onSecondClick}
+              buttonClassName={buttonOption.secondClassName || ''}
             />
           )}
         </section>
