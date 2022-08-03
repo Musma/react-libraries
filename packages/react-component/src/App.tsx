@@ -1,12 +1,13 @@
+import { DateTime } from 'luxon'
 import { useState } from 'react'
 import { useModalManager } from 'src/components/Modal/useModalManager'
 
-import { Dropdown, useTags } from './components'
+import { Button, Modal, Select, Tag, TextInput, TimePicker, useTags } from './components'
 
 const App = () => {
-  const swTeam = useTags(['dyson', 'bob', 'kuhn'])
-  const [selected, setSelected] = useState('')
-  const manager = useModalManager()
+  const today = DateTime.now()
+  const [time, setTime] = useState(today)
+
   return (
     <div className="h-full w-full">
       <div className="ml-20 mt-10">
@@ -15,39 +16,10 @@ const App = () => {
             header 입니다
           </div>
         </header>
-        selected: {selected}
-        <div>
-          <Dropdown
-            size="lg"
-            label={'라벨'}
-            value={selected}
-            options={['jason', 'jelly', 'summer', 'justin', 'hi', 'hello', '안녕'].map((item) => ({
-              label: item,
-              value: item,
-            }))}
-            onChange={(value) => setSelected(value)}
-          />
-          <Dropdown
-            size="md"
-            label={'라벨'}
-            value={selected}
-            options={['jason', 'jelly', 'summer', 'justin', 'hi', 'hello', '안녕'].map((item) => ({
-              label: item,
-              value: item,
-            }))}
-            onChange={(value) => setSelected(value)}
-          />
-          <Dropdown
-            size="sm"
-            label={'라벨'}
-            value={selected}
-            options={['jason', 'jelly', 'summer', 'justin', 'hi', 'hello', '안녕'].map((item) => ({
-              label: item,
-              value: item,
-            }))}
-            onChange={(value) => setSelected(value)}
-          />
-        </div>
+        <TimePicker size="sm" date={time} onDateChange={(time) => setTime(time)} />
+        <TimePicker size="md" date={time} onDateChange={(time) => setTime(time)} />
+        <TimePicker size="lg" date={time} onDateChange={(time) => setTime(time)} />
+        <div></div>
       </div>
     </div>
   )

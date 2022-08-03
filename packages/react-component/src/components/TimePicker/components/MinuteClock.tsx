@@ -1,14 +1,16 @@
 import { DateTime } from 'luxon'
 import { Fragment } from 'react'
+import { Sizes } from 'src/types'
 
 import { ClockNumber } from './ClockNumber'
-import { ClockPositions } from './ClockPositions'
+import { ClockPositions, getClockPositions } from './ClockPositions'
 
 interface MinuteClockProps {
+  size: Sizes
   date: DateTime
 }
 
-export const MinuteClock = ({ date }: MinuteClockProps) => {
+export const MinuteClock = ({ size, date }: MinuteClockProps) => {
   const currentMinute = date.minute
 
   const isSelected = (index: number) => {
@@ -21,8 +23,9 @@ export const MinuteClock = ({ date }: MinuteClockProps) => {
 
   return (
     <Fragment>
-      {ClockPositions.map((position, index) => (
+      {getClockPositions(size).map((position, index) => (
         <ClockNumber
+          size={size}
           key={index}
           label={convertHourLabel(index)}
           position={position}
