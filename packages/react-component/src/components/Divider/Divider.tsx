@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import { HTMLAttributes } from 'react'
+import classNames from 'classnames'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {
   orientation?: 'horizontal' | 'vertical'

@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+
+import { Typography } from 'src/components'
 import { Sizes } from 'src/types'
 
-import { Typography } from '../Typography'
 import { ReactComponent as ArrowTopIcon } from './images/arrow_top.svg'
 
 interface DropdownProps {
@@ -155,9 +156,9 @@ export const Dropdown = ({ size = 'lg', label, value, options, onChange }: Dropd
     return {
       lg: 'h-8',
       md: 'h-7',
-      sm: 'h-6'
+      sm: 'h-6',
     }[size]
-  },[size])
+  }, [size])
 
   const arrowPosition = useMemo(() => {
     return {
@@ -172,7 +173,7 @@ export const Dropdown = ({ size = 'lg', label, value, options, onChange }: Dropd
       <label htmlFor="input">
         <TitleFactory size={size} label={label} className="mb-[2px]" />
       </label>
-      <div ref={divRef} className={classNames("relative", height)} onClick={handleDropdownClick}>
+      <div ref={divRef} className={classNames('relative', height)} onClick={handleDropdownClick}>
         <input
           id={'input'}
           ref={inputRef}
@@ -196,33 +197,31 @@ export const Dropdown = ({ size = 'lg', label, value, options, onChange }: Dropd
           )}
         /> */}
         <ArrowTopIcon
-          className={classNames('absolute cursor-pointer', 
-          arrowPosition,
-          {'rotate-180 ': isOpen}
-          )}
+          className={classNames('absolute cursor-pointer', arrowPosition, {
+            'rotate-180 ': isOpen,
+          })}
         />
-      {isOpen && (
-        <ul className="absolute mt-1 grid max-h-[158px] w-full grid-cols-1 gap-y-[2px] overflow-y-scroll rounded border border-[#BAC7D5] py-1">
-          {filteredOptions.map(({ label, value }, index) => (
-            <li
-              key={label}
-              onClick={() => handleOptionSelect(value)}
-              className={classNames(
-                'cursor-pointer py-1 pl-4 flex items-center',
-                { 'bg-[#036DB7] text-white': isSelected(value) },
-                { 'hover:bg-[#F2F8FB] hover:text-[#036DB7]': !isSelected(value) },
-                height
-                // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
-                // { 'active bg-[#F2F8FB] text-[#036DB7]': !isSelected(value) && index === pointer },
-              )}
-            >
-              <LabelFactory size={size} label={label} />
-            </li>
-          ))}
-        </ul>
-      )}
+        {isOpen && (
+          <ul className="absolute mt-1 grid max-h-[158px] w-full grid-cols-1 gap-y-[2px] overflow-y-scroll rounded border border-[#BAC7D5] py-1">
+            {filteredOptions.map(({ label, value }, index) => (
+              <li
+                key={label}
+                onClick={() => handleOptionSelect(value)}
+                className={classNames(
+                  'flex cursor-pointer items-center py-1 pl-4',
+                  { 'bg-[#036DB7] text-white': isSelected(value) },
+                  { 'hover:bg-[#F2F8FB] hover:text-[#036DB7]': !isSelected(value) },
+                  height,
+                  // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
+                  // { 'active bg-[#F2F8FB] text-[#036DB7]': !isSelected(value) && index === pointer },
+                )}
+              >
+                <LabelFactory size={size} label={label} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-
     </div>
   )
 }

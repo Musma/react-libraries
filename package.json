@@ -6,16 +6,16 @@
       "packages/*"
     ]
   },
-  "scripts": {
-    "react-libraries-document-build": "cd packages/react-libraries-document && pnpm build"
-  },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.1",
     "@musma/eslint-config": "^0.0.41",
+    "@types/node": "^18.6.3",
+    "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
     "path": "^0.12.7",
+    "rollup-plugin-analyzer": "^4.0.0",
     "typescript": "^4.7.4",
     "vite": "^3.0.4",
     "vite-plugin-dts": "^1.4.1",

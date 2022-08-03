@@ -1,3 +1,6 @@
 {
-  "extends": ["@musma"]
+  "extends": ["@musma"],
+  "rules": {
+    "import/order": "off"
+  }
 }

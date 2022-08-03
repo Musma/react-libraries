@@ -1,6 +1,6 @@
 {
   "name": "@musma/react-component",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Musma's ESLint config with TypeScript support",
   "author": "YoungSu Kim (jklasd2001@musma.net)",
   "license": "MIT",
@@ -27,7 +27,6 @@
     "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "tsc && vite build"
   },
@@ -38,8 +37,6 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
     "@types/luxon": "^3.0.0",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.8",
     "classnames": "^2.3.1",
     "lodash-es": "^4.17.21",
