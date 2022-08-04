@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
-import { Size } from 'src/types'
+import { Size, Sizes } from 'src/types'
+import { Typography } from '../Typography'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
 
@@ -8,13 +9,12 @@ interface TagProps {
   /**
    * onClose를 사용할 경우, useTags 훅과 함께 사용하세요
    */
-  onClose: (label: string) => void
-  size?: Extract<Size, 'sm' | 'md'>
+  onClose?: (label: string) => void
+  size?: Sizes
   color?: 'white' | 'blue'
   variant?: 'rectangle' | 'stadium'
   label: string
-  containerClassName?: string
-  labelClassName?: string
+  className?: string
 }
 
 export const Tag = ({
@@ -23,8 +23,7 @@ export const Tag = ({
   color = 'white',
   variant = 'stadium',
   label,
-  containerClassName = '',
-  labelClassName = '',
+  className = '',
 }: TagProps) => {
   const shape = useMemo(() => {
     const border = {
@@ -32,23 +31,17 @@ export const Tag = ({
       stadium: 'rounded-[100px] border',
     }
     const padding = {
-      md: 'px-2 py-1',
-      sm: 'px-1 py-[2px]',
+      sm: 'px-[2px]',
+      md: 'px-1 py-[2px]',
+      lg: 'px-2 py-1',
     }
     const height = {
-      md: 'h-6',
-      sm: 'h-[18px]',
+      sm: 'h-[14px]',
+      md: 'h-[18px]',
+      lg: 'h-6',
     }
     return `${border[variant]} ${padding[size]} ${height[size]}`
   }, [variant, size])
-
-  const font = useMemo(() => {
-    const options = {
-      sm: 'text-[10px] leading-[14px]',
-      md: 'text-xs',
-    }
-    return options[size]
-  }, [size])
 
   const colorTheme = useMemo(() => {
     const options = {
@@ -59,8 +52,17 @@ export const Tag = ({
   }, [color])
 
   return (
-    <div className={classNames('inline-flex items-center', colorTheme, shape, containerClassName)}>
-      <span className={classNames(font, labelClassName)}>{label}</span>
+    <div
+      className={classNames(
+        'inline-flex items-center justify-center',
+        colorTheme,
+        shape,
+        className,
+      )}
+    >
+      <Typography type="caption" variant={size === 'lg' ? 'caption1' : 'caption2'}>
+        {label}
+      </Typography>
       {onClose && (
         <CloseIcon
           onClick={() => onClose(label)}
