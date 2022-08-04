@@ -8,12 +8,12 @@ interface DividerProps extends HTMLAttributes<HTMLHRElement> {
 export const Divider = ({ orientation = 'horizontal', className, ...rest }: DividerProps) => {
   return (
     <hr
-      {...rest}
       className={classNames(
-        `m-0 flex-shrink-0 border-[#BAC7D5]`,
-        orientation === 'vertical' && 'h-auto self-stretch border-r-[1px]',
+        { 'border-t-[#E5E5E5]': orientation === 'horizontal' },
+        { 'h-full w-[1px] border-r border-r-[#E5E5E5]': orientation === 'vertical' },
         className,
       )}
+      {...rest}
     />
   )
 }
