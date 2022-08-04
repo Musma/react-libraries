@@ -6,7 +6,7 @@ import { Sizes } from 'src/types'
 
 import { ReactComponent as ArrowTopIcon } from './images/arrow_top.svg'
 
-interface DropdownProps {
+interface SelectProps {
   size?: Sizes
   label: string
   value: string
@@ -14,7 +14,7 @@ interface DropdownProps {
   onChange: (value: string) => void
 }
 
-export const Dropdown = ({ size = 'lg', label, value, options, onChange }: DropdownProps) => {
+export const Select = ({ size = 'lg', label, value, options, onChange }: SelectProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const divRef = useRef<HTMLDivElement>(null)
   const getLabel = useCallback(
