@@ -6,12 +6,13 @@ import { Calendar } from './Calendar'
 import { DateInput } from './DateInput'
 
 interface CalendarProps {
+  dateTime?: DateTime
   handleDatePick: (dateTime: string | undefined) => void
 }
 
-export const DatePicker = ({ handleDatePick }: CalendarProps) => {
+export const DatePicker = ({ dateTime, handleDatePick }: CalendarProps) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [date, setDate] = useState<DateTime | undefined>(undefined)
+  const [date, setDate] = useState<DateTime | undefined>(dateTime)
   const handleSelectDay = useCallback((y: number, m: number, d: number) => {
     setDate(DateTime.fromObject({ year: y, month: m, day: d }))
   }, [])
