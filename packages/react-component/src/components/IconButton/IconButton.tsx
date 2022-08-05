@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { ButtonHTMLAttributes, useMemo } from 'react'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 import XlsContainedIcon from './images/xls.svg'
 import XlsDisabledIcon from './images/xls_disabled.svg'
@@ -9,7 +9,7 @@ import XlsOutlinedIcon from './images/xls_outlined.svg'
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'outlined' | 'contained'
   disabled?: boolean
-  size?: Sizes
+  size?: Size
   iconSrc?: string
 }
 

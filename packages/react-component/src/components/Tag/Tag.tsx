@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
-import { Size, Sizes } from 'src/types'
+import { Size } from 'src/types'
 import { Typography } from '../Typography'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
@@ -10,7 +10,7 @@ interface TagProps {
    * onClose를 사용할 경우, useTags 훅과 함께 사용하세요
    */
   onClose?: (label: string) => void
-  size?: Sizes
+  size?: Size
   color?: 'white' | 'blue'
   variant?: 'rectangle' | 'stadium'
   label: string
