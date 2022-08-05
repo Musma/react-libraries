@@ -1,16 +1,18 @@
+import classNames from 'classnames'
 import { useCallback, useMemo, useState } from 'react'
 import { Typography } from 'src/components'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 import { ReactComponent as OpenEyeIcon } from './images/eye_closed.svg'
 import { ReactComponent as ClosedEyeIcon } from './images/eye_opened.svg'
 import { ReactComponent as InvalidIcon } from './images/invalid.svg'
-import { ReactComponent as SearchIcon } from './images/search.svg'
+import { ReactComponent as LgSearchIcon } from './images/search.svg'
+import { ReactComponent as MdSearchIcon } from './images/search_md,sm.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 interface TextInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
-  size?: Sizes
+  size?: Size
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
@@ -54,7 +56,7 @@ export const TextInput = ({
       <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
         {label}
       </Typography>
-      <Input className={inputStyle} type={type} {...rest} />
+      <Input className={inputStyle} size={size} type={type} {...rest} />
       {helperText && (
         <Typography
           type="caption"
@@ -72,20 +74,21 @@ export const TextInput = ({
 }
 
 interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size'> {
+  size: Size
   type: 'text' | 'password' | 'search'
 }
-const Input = ({ type, ...rest }: InputProps) => {
+const Input = ({ type, size, ...rest }: InputProps) => {
   switch (type) {
     case 'text':
       return <input type="text" {...rest} />
     case 'password':
-      return <Password type="password" {...rest} />
+      return <Password size={size} type="password" {...rest} />
     case 'search':
-      return <Search type="text" {...rest} />
+      return <Search size={size} type="text" {...rest} />
   }
 }
 
-const Password = ({ type, ...rest }: InputProps) => {
+const Password = ({ type, size, ...rest }: InputProps) => {
   const [inputType, setInputType] = useState(type)
 
   const toggleInputType = useCallback(() => {
@@ -96,18 +99,40 @@ const Password = ({ type, ...rest }: InputProps) => {
   return (
     <div className="relative">
       <input type={inputType} {...rest} />
-      <span className="absolute right-2 top-2 cursor-pointer" onClick={toggleInputType}>
+      <span
+        className={classNames(
+          'absolute right-2 cursor-pointer',
+          { 'bottom-2': size === 'lg' },
+          { 'bottom-[7px]': size === 'md' },
+          { 'bottom-[5px]': size === 'sm' },
+        )}
+        onClick={toggleInputType}
+      >
         {inputType === 'password' ? <OpenEyeIcon /> : <ClosedEyeIcon />}
       </span>
     </div>
   )
 }
 
-const Search = ({ handleSearchClick, ...rest }: InputProps) => {
+const Search = ({ handleSearchClick, size, ...rest }: InputProps) => {
   return (
     <div className="relative">
       <input {...rest} />
-      <SearchIcon className="absolute right-2 top-2 cursor-pointer" onClick={handleSearchClick} />
+      {size === 'lg' ? (
+        <LgSearchIcon
+          className="absolute right-2 top-2 cursor-pointer"
+          onClick={handleSearchClick}
+        />
+      ) : (
+        <MdSearchIcon
+          className={classNames(
+            'absolute right-2 cursor-pointer',
+            { 'top-[7px]': size === 'md' },
+            { 'top-[5px]': size === 'sm' },
+          )}
+          onClick={handleSearchClick}
+        />
+      )}
     </div>
   )
 }
