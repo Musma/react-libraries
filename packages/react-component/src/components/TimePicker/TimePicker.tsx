@@ -2,10 +2,12 @@ import classNames from 'classnames'
 import { DateTime } from 'luxon'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ClockBody, ClockHeader, ClockType, getMeridiem, TextInput } from 'src/components'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
+import { ReactComponent as LgClockIcon } from './images/clock_large.svg'
+import { ReactComponent as MdClockIcon } from './images/clock_md,sm.svg'
 
 interface TimePickerProps {
-  size?: Sizes
+  size?: Size
   date: DateTime
   onDateChange: (date: DateTime) => void
 }
@@ -60,16 +62,29 @@ export const TimePicker = ({ size = 'lg', date, onDateChange }: TimePickerProps)
   return (
     <div className="relative inline-flex" ref={ref}>
       {/* TODO: TextInput 완성되면 교체 필요 */}
-      <TextInput
-        label="Time"
-        size={size}
-        value={date.toFormat('HH:mm ')}
-        readOnly={true}
-        onClick={() => {
-          toggleClock(true)
-        }}
-        placeholder="00:00"
-      />
+      <div className="relative">
+        <TextInput
+          label="Time"
+          size={size}
+          value={date.toFormat('HH:mm ')}
+          readOnly={true}
+          onClick={() => {
+            toggleClock(true)
+          }}
+          placeholder="00:00"
+        />
+        {size === 'lg' ? (
+          <LgClockIcon className="absolute right-2 bottom-2" />
+        ) : (
+          <MdClockIcon
+            className={classNames(
+              'absolute right-2',
+              { 'bottom-[7px]': size === 'md' },
+              { 'bottom-[5px]': size === 'sm' },
+            )}
+          />
+        )}
+      </div>
 
       {showClock && (
         <div
@@ -90,7 +105,6 @@ export const TimePicker = ({ size = 'lg', date, onDateChange }: TimePickerProps)
           />
 
           <ClockBody
-            size={size}
             date={date}
             value={value}
             clockType={clockType}

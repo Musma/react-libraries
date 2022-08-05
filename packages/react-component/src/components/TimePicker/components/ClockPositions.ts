@@ -1,4 +1,4 @@
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 const Divider = 144 / 7
 
@@ -65,7 +65,7 @@ export const ClockPositions = [
   },
 ]
 
-export function getClockPositions(size: Sizes) {
+export function getClockPositions(size: Size) {
   const divider = (size === 'sm' ? 100 : 144) / 7
   return [
     // 12
