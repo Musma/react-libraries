@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import { useMemo } from 'react'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 interface ToggleButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  size?: Sizes
+  size?: Size
 }
 
 export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonProps) => {

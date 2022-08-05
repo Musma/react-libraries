@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { ButtonHTMLAttributes, useCallback, useMemo } from 'react'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 import { Typography } from '../Typography'
 import { ReactComponent as ButtonIcon } from './images/buttonIcon.svg'
@@ -9,7 +9,7 @@ import { ReactComponent as LgButtonIcon } from './images/buttonIcon_lg.svg'
 type Variant = 'outlined' | 'contained' | 'danger'
 interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
   label: string
-  size?: Sizes | 'xs'
+  size?: Size | 'xs'
   buttonClassName?: string
   contentClassName?: string
   variant?: Variant

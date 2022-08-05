@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import _ from 'lodash-es'
 import { useMemo } from 'react'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 import { Typography } from '../Typography'
 
 interface RadioButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
-  size?: Sizes
+  size?: Size
   labelClassName?: string
   disabled?: boolean
 }
