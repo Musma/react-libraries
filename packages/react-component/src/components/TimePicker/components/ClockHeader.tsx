@@ -2,12 +2,12 @@ import classNames from 'classnames'
 import { DateTime } from 'luxon'
 import { useCallback, useMemo } from 'react'
 import { getMeridiem, ClockType, Typography } from 'src/components'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
 import { ReactComponent as ColonIcon } from '../images/colon.svg'
 
 interface Props {
-  size: Sizes
+  size: Size
   clockType: ClockType
   date: DateTime
   onDateChange: (dateTime: DateTime) => void
