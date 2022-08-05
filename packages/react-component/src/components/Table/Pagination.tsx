@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { useCallback, useMemo, useState } from 'react'
+import { Select } from '../Select'
 
 import { Typography } from '../Typography'
 import { ReactComponent as ArrowFirstIcon } from './images/arrow_first.svg'
@@ -46,12 +47,10 @@ export const Pagination = ({
     [totalPage],
   )
 
-  // FIXME: Select 컴포넌트 개발되면 대체하기
   const handleLimitChange = useCallback(
-    (value: string) => {
-      if (!Number(value)) return
-      setLimit(Number(value))
-      onDataLimitChange(Number(value))
+    (value: number) => {
+      setLimit(value)
+      onDataLimitChange(value)
     },
     [onDataLimitChange],
   )
@@ -105,10 +104,17 @@ export const Pagination = ({
       <Typography type="body" variant="body3">
         Rows per page
       </Typography>
-      <input
-        value={limit}
-        onChange={(e) => handleLimitChange(e.target.value)}
-        className="ml-2 h-8 w-[67px] rounded border"
+      <Select
+        label=""
+        value={String(limit)}
+        options={[
+          { label: '5', value: '5' },
+          { label: '10', value: '10' },
+          { label: '15', value: '15' },
+          { label: '20', value: '20' },
+          { label: '25', value: '25' },
+        ]}
+        onChange={(value) => handleLimitChange(Number(value))}
       />
       <ArrowFirstIcon className="cursor-pointer" onClick={handleFirstClick} />
       <ArrowLeftIcon className="cursor-pointer" onClick={handlePrevClick} />
