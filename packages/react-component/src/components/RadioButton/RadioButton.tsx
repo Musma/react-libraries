@@ -2,11 +2,9 @@ import { useCallback } from 'react'
 import { Size } from 'src/types'
 
 import { Typography } from '../Typography'
-import {
-  ReactComponent as LgCheckedIcon,
-  ReactComponent as MdCheckedIcon,
-  ReactComponent as SmCheckedIcon,
-} from './images/checked_lg.svg'
+import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'
+import { ReactComponent as MdCheckedIcon } from './images/checked_md.svg'
+import { ReactComponent as SmCheckedIcon } from './images/checked_sm.svg'
 import { ReactComponent as LgDefaultIcon } from './images/default_lg.svg'
 import { ReactComponent as MdDefaultIcon } from './images/default_md.svg'
 import { ReactComponent as SmDefaultIcon } from './images/default_sm.svg'
