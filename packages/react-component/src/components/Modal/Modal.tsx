@@ -4,6 +4,7 @@ import { Fragment, ReactNode, useCallback, useEffect, useMemo, useRef } from 're
 import { Button, Typography } from 'src/components'
 import { useKeyEsc } from 'src/hooks/useKeyEsc'
 import { Size } from 'src/types'
+import useOutsideListener from '../TimePicker/lib/useOutsideListener'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
 
@@ -15,6 +16,7 @@ export interface ModalProps {
   buttonOption: ButtonOption
   isNested?: boolean
   closeOnEscPress?: boolean
+  closeOnOutsideClick?: boolean
   className?: string
   /**
    * 여러개의 모달이 중첩된 경우에 모달 종료 순서를 보장하기 위해 modalManager를 사용합니다
@@ -44,11 +46,18 @@ export const Modal = ({
   children,
   isNested,
   closeOnEscPress = false,
+  closeOnOutsideClick = false,
   className = '',
   modalManager,
   onClose,
 }: ModalProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const backgroundRef = useRef<HTMLDivElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useOutsideListener(modalRef, () => {
+    if (!closeOnOutsideClick) return
+    handleModalClose()
+  })
 
   const modalSize = useMemo(() => {
     return {
@@ -65,15 +74,15 @@ export const Modal = ({
 
   useKeyEsc(() => {
     if (!closeOnEscPress) return
-    if (!ref.current) return
-    if (modalManager && !modalManager.isTopModal(ref.current)) return
+    if (!backgroundRef.current) return
+    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) return
     handleModalClose()
   })
 
   useEffect(() => {
     if (!isOpen) return
-    if (!ref.current) return
-    modalManager?.add(ref.current)
+    if (!backgroundRef.current) return
+    modalManager?.add(backgroundRef.current)
   }, [isOpen, modalManager])
 
   if (!isOpen) {
@@ -87,9 +96,12 @@ export const Modal = ({
         { ['bg-[rgba(0,0,0,0.3)]']: isNested },
         { ['bg-[rgba(0,0,0,0.6)]']: !isNested },
       )}
-      ref={ref}
+      ref={backgroundRef}
     >
-      <div className={classNames(modalSize, 'flex flex-col rounded-md bg-white', className)}>
+      <div
+        ref={modalRef}
+        className={classNames(modalSize, 'flex flex-col rounded-md bg-white', className)}
+      >
         <section
           className={classNames(
             'flex h-12 items-center justify-between py-[14px] pr-4',
