@@ -2,12 +2,13 @@ import classNames from 'classnames'
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Typography } from 'src/components'
-import { Sizes } from 'src/types'
+import { Size } from 'src/types'
 
-import { ReactComponent as ArrowTopIcon } from './images/arrow_top.svg'
+import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
+import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'
 
 interface SelectProps {
-  size?: Sizes
+  size?: Size
   label: string
   value: string
   options: { label: string; value: string }[]
@@ -160,14 +161,6 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
     }[size]
   }, [size])
 
-  const arrowPosition = useMemo(() => {
-    return {
-      lg: 'top-1 right-2',
-      md: 'top-[2px] right-1',
-      sm: 'top-0 right-0',
-    }[size]
-  }, [size])
-
   return (
     <div className="inline-flex flex-col items-start">
       <label htmlFor="input">
@@ -186,7 +179,7 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
             height,
           )}
         />
-        {/* <LabelFactory
+        <LabelFactory
           size={size}
           label={getLabel(value)}
           className={classNames(
@@ -195,12 +188,29 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
             { 'left-[9px] top-[5px]': size === 'sm' },
             { invisible: text },
           )}
-        /> */}
-        <ArrowTopIcon
-          className={classNames('absolute cursor-pointer', arrowPosition, {
-            'rotate-180 ': isOpen,
-          })}
         />
+        {size === 'lg' ? (
+          <LgArrowICon
+            className={classNames('absolute right-1 top-1 cursor-pointer', {
+              'rotate-180 ': isOpen,
+            })}
+          />
+        ) : (
+          <MdArrowICon
+            className={classNames(
+              'absolute right-1 cursor-pointer',
+              {
+                'top-[7px]': size === 'md',
+              },
+              {
+                'top-[5px]': size === 'sm',
+              },
+              {
+                'rotate-180 ': isOpen,
+              },
+            )}
+          />
+        )}
         {isOpen && (
           <ul className="absolute mt-1 grid max-h-[158px] w-full grid-cols-1 gap-y-[2px] overflow-y-scroll rounded border border-[#BAC7D5] py-1">
             {filteredOptions.map(({ label, value }, index) => (
@@ -227,7 +237,7 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
 }
 
 interface TypographyFactoryProps {
-  size: Sizes
+  size: Size
   label: string
   className?: string
 }
