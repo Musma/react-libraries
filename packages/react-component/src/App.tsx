@@ -1,13 +1,4 @@
-import { DateTime } from 'luxon'
-import { useState } from 'react'
-import { useModalManager } from 'src/components/Modal/useModalManager'
-
-import { Button, Modal, Select, Tag, TextInput, TimePicker, useTags } from './components'
-
 const App = () => {
-  const today = DateTime.now()
-  const [time, setTime] = useState(today)
-
   return (
     <div className="h-full w-full">
       <div className="ml-20 mt-10">
@@ -16,10 +7,7 @@ const App = () => {
             header 입니다
           </div>
         </header>
-        <TimePicker size="sm" date={time} onDateChange={(time) => setTime(time)} />
-        <TimePicker size="md" date={time} onDateChange={(time) => setTime(time)} />
-        <TimePicker size="lg" date={time} onDateChange={(time) => setTime(time)} />
-        <div></div>
+        컴포넌트 테스트를 위한 페이지 입니다
       </div>
     </div>
   )
