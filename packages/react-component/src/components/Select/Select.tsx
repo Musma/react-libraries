@@ -1,11 +1,8 @@
-import classNames from 'classnames'
-import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
 import { Typography } from 'src/components'
-import { Size } from 'src/types'
-
+import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
 import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'
+import { Size } from 'src/types'
 
 interface SelectProps {
   size?: Size
@@ -166,49 +163,25 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
       <label htmlFor="input">
         <TitleFactory size={size} label={label} className="mb-[2px]" />
       </label>
-      <div ref={divRef} className={classNames('relative', height)} onClick={handleDropdownClick}>
+      <div ref={divRef} className={`relative`} onClick={handleDropdownClick}>
         <input
           id={'input'}
           ref={inputRef}
           value={text}
+          placeholder={getLabel(value)}
           onChange={handleTextChange}
           // onKeyDown={handleKeyPress}
-          className={classNames(
-            'cursor-pointer rounded border border-[#BAC7D5] pl-2 leading-5 outline-none focus:border-[#036DB7]',
-            inputSize,
-            height,
-          )}
-        />
-        <LabelFactory
-          size={size}
-          label={getLabel(value)}
-          className={classNames(
-            'absolute',
-            { 'left-[10px] top-[6px]': size !== 'sm' },
-            { 'left-[9px] top-[5px]': size === 'sm' },
-            { invisible: text },
-          )}
+          className={`cursor-pointer rounded border border-[#BAC7D5] pl-2 outline-none placeholder:text-[#242E40] focus:border-[#036DB7] ${inputSize} ${height}`}
         />
         {size === 'lg' ? (
           <LgArrowICon
-            className={classNames('absolute right-1 top-1 cursor-pointer', {
-              'rotate-180 ': isOpen,
-            })}
+            className={`absolute right-1 bottom-1 cursor-pointer ${isOpen ? 'rotate-180' : ''}`}
           />
         ) : (
           <MdArrowICon
-            className={classNames(
-              'absolute right-1 cursor-pointer',
-              {
-                'top-[7px]': size === 'md',
-              },
-              {
-                'top-[5px]': size === 'sm',
-              },
-              {
-                'rotate-180 ': isOpen,
-              },
-            )}
+            className={`absolute right-1 cursor-pointer ${size === 'md' ? 'bottom-[7px]' : ''} ${
+              size === 'sm' ? 'bottom-[6.5px]' : ''
+            } ${isOpen ? 'rotate-180' : ''}`}
           />
         )}
         {isOpen && (
@@ -217,14 +190,13 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
               <li
                 key={label}
                 onClick={() => handleOptionSelect(value)}
-                className={classNames(
-                  'flex cursor-pointer items-center py-1 pl-4',
-                  { 'bg-[#036DB7] text-white': isSelected(value) },
-                  { 'hover:bg-[#F2F8FB] hover:text-[#036DB7]': !isSelected(value) },
-                  height,
-                  // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
-                  // { 'active bg-[#F2F8FB] text-[#036DB7]': !isSelected(value) && index === pointer },
-                )}
+                className={`flex cursor-pointer items-center py-1 pl-4 ${
+                  isSelected(value)
+                    ? 'bg-[#036DB7] text-white'
+                    : 'hover:bg-[#F2F8FB] hover:text-[#036DB7]'
+                } ${height}`}
+                // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
+                // { 'active bg-[#F2F8FB] text-[#036DB7]': !isSelected(value) && index === pointer },
               >
                 <LabelFactory size={size} label={label} />
               </li>
