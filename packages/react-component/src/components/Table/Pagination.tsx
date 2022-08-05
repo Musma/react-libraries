@@ -51,6 +51,7 @@ export const Pagination = ({
     (value: number) => {
       setLimit(value)
       onDataLimitChange(value)
+      setCurrentPage(1)
     },
     [onDataLimitChange],
   )
