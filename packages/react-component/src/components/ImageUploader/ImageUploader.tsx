@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import _ from 'lodash-es'
 import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Size } from 'src/types'
 
@@ -6,18 +7,22 @@ import { Typography } from '../Typography'
 import { ReactComponent as DefaultLgIcon } from './images/image_default_lg.svg'
 import { ReactComponent as DefaultMdIcon } from './images/image_default_md.svg'
 import { ReactComponent as DefaultSmIcon } from './images/image_default_sm.svg'
-import { ReactComponent as DefaultXsIcon } from './images/image_default_xs.svg'
 import { ReactComponent as UploadLgIcon } from './images/upload_lg.svg'
 import { ReactComponent as UploadSmIcon } from './images/upload_sm.svg'
-import { ReactComponent as UploadXsIcon } from './images/upload_xs.svg'
 
 interface ImageUploadProps {
+  id?: string
   size?: Size
   imgUrl?: string
   onChange: (file: File) => void
 }
 
-export const ImageUploader = ({ size = 'lg', imgUrl, onChange }: ImageUploadProps) => {
+export const ImageUploader = ({
+  id = _.uniqueId(),
+  size = 'lg',
+  imgUrl,
+  onChange,
+}: ImageUploadProps) => {
   const [thumbnail, setThumbnail] = useState<string | undefined>(imgUrl)
   const handleImageSelect = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,63 +36,46 @@ export const ImageUploader = ({ size = 'lg', imgUrl, onChange }: ImageUploadProp
   const getDefaultImage = useCallback(() => {
     const large = <DefaultLgIcon className="absolute top-[20px] left-[10px]" />
     return {
-      full: large,
       lg: large,
       md: <DefaultMdIcon className="absolute top-[14.29px] left-[7.14px]" />,
-      sm: <DefaultSmIcon className="absolute top-[8.57px] left-[4.29px]" />,
-      xs: <DefaultXsIcon className="absolute top-[4.57px] left-[2.29px]" />,
+      sm: <DefaultSmIcon className="absolute top-[4.57px] left-[2.29px]" />,
     }[size]
   }, [size])
 
   const getHelperIcon = useCallback((size: Size) => {
     return {
-      full: <UploadLgIcon />,
       lg: <UploadLgIcon />,
       md: <UploadLgIcon />,
       sm: <UploadSmIcon />,
-      xs: <UploadXsIcon />,
     }[size]
   }, [])
 
   const getHelperText = useCallback((size: Size) => {
-    const large = (
-      <Typography type="subTitle" variant="subTitle2" className={classNames('mb-1 text-white')}>
-        Upload Picture
-      </Typography>
-    )
     return {
-      full: large,
-      lg: large,
+      lg: (
+        <Typography type="subTitle" variant="subTitle2" className={classNames('mb-1 text-white')}>
+          Upload Picture
+        </Typography>
+      ),
       md: (
         <Typography type="caption" variant="caption2" className={classNames('mb-1', 'text-white')}>
           Upload Picture
         </Typography>
       ),
-      sm: (
-        <Typography
-          type="caption"
-          variant="caption2"
-          className={classNames('mb-[2px]', 'text-white')}
-        >
-          Upload
-        </Typography>
-      ),
-      xs: <Fragment />,
+      sm: <Fragment />,
     }[size]
   }, [])
 
   const divSize = useMemo(() => {
     return {
-      full: 'h-[140px] w-[140px]',
       lg: 'h-[140px] w-[140px]',
       md: 'h-[100px] w-[100px]',
-      sm: 'h-[60px] w-[60px]',
-      xs: 'h-[32px] w-[32px]',
+      sm: 'h-8 w-8',
     }[size]
   }, [size])
 
   return (
-    <label htmlFor="uploader" className="inline-block cursor-pointer">
+    <label htmlFor={id} className="inline-block cursor-pointer">
       <div
         className={classNames(
           'group relative flex items-center justify-center overflow-hidden rounded-full border border-[#D9D9D9]',
@@ -105,7 +93,7 @@ export const ImageUploader = ({ size = 'lg', imgUrl, onChange }: ImageUploadProp
           {getHelperText(size)}
         </div>
         <input
-          id={'uploader'}
+          id={id}
           className="hidden"
           type="file"
           multiple={false}
