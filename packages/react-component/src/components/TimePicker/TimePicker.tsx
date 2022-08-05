@@ -7,12 +7,13 @@ import { ReactComponent as LgClockIcon } from './images/clock_large.svg'
 import { ReactComponent as MdClockIcon } from './images/clock_md,sm.svg'
 
 interface TimePickerProps {
+  label: string
   size?: Size
   date: DateTime
   onDateChange: (date: DateTime) => void
 }
 
-export const TimePicker = ({ size = 'lg', date, onDateChange }: TimePickerProps) => {
+export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePickerProps) => {
   const [showClock, setShowClock] = useState(false)
   const [clockType, setClockType] = useState<ClockType>('hour')
   const ref = useRef<HTMLDivElement>(null)
@@ -64,7 +65,7 @@ export const TimePicker = ({ size = 'lg', date, onDateChange }: TimePickerProps)
       {/* TODO: TextInput 완성되면 교체 필요 */}
       <div className="relative">
         <TextInput
-          label="Time"
+          label={label}
           size={size}
           value={date.toFormat('HH:mm ')}
           readOnly={true}
