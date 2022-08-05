@@ -15,14 +15,12 @@ export interface ModalProps {
   buttonOption: ButtonOption
   isNested?: boolean
   closeOnEscPress?: boolean
+  className?: string
   /**
    * 여러개의 모달이 중첩된 경우에 모달 종료 순서를 보장하기 위해 modalManager를 사용합니다
    * useModalManager의 반환값을 전달해주세요
-   * Escape keydown 이벤트 발생시 모달을 종료하는 이벤트핸들러를 설치한 경우, 화면상에 보이는 모달(마지막에 켜진 모달)이 아니라 먼저 켜진 순서대로 모달이 종료되는 문제가 있습니다.
-   * ModalManager에서 모달들을 관리하며, isTopModal 메서드를 통해 마지막에 켜진 모달인지 확인 후 모달을 종료시킬 수 있도록 구현했습니다.
-   *
    */
-  modalManager: {
+  modalManager?: {
     add: (modal: HTMLDivElement) => void
     pop: () => void
     isTopModal: (modal: HTMLDivElement) => boolean
@@ -46,6 +44,7 @@ export const Modal = ({
   children,
   isNested,
   closeOnEscPress = false,
+  className = '',
   modalManager,
   onClose,
 }: ModalProps) => {
@@ -61,20 +60,20 @@ export const Modal = ({
 
   const handleModalClose = useCallback(() => {
     onClose()
-    modalManager.pop()
+    modalManager?.pop()
   }, [modalManager, onClose])
 
   useKeyEsc(() => {
     if (!closeOnEscPress) return
     if (!ref.current) return
-    if (!modalManager.isTopModal(ref.current)) return
+    if (modalManager && !modalManager.isTopModal(ref.current)) return
     handleModalClose()
   })
 
   useEffect(() => {
     if (!isOpen) return
     if (!ref.current) return
-    modalManager.add(ref.current)
+    modalManager?.add(ref.current)
   }, [isOpen, modalManager])
 
   if (!isOpen) {
@@ -90,7 +89,7 @@ export const Modal = ({
       )}
       ref={ref}
     >
-      <div className={classNames(modalSize, 'flex flex-col rounded-md bg-white')}>
+      <div className={classNames(modalSize, 'flex flex-col rounded-md bg-white', className)}>
         <section
           className={classNames(
             'flex h-12 items-center justify-between py-[14px] pr-4',
