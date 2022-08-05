@@ -49,6 +49,8 @@ export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonPro
         type="checkbox"
         className={classNames(
           'appearance-none rounded-[10px] before:block before:rounded-full before:content-[""]',
+          { 'cursor-pointer': !disabled },
+          { 'cursor-not-allowed': disabled },
           buttonSize,
           backgroundColor,
           innerCircle,
