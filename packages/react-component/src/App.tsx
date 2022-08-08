@@ -1,13 +1,14 @@
-import { Divider } from './components'
+import { DateTime } from 'luxon'
+import { useState } from 'react'
+import { DatePicker, Divider } from './components'
 
 const App = () => {
+  const [date, setDate] = useState<DateTime | undefined>(undefined)
   return (
-    <div className="flex items-center">
-      <div className="mx-auto mt-[100px] flex h-[100px] w-[500px] flex-col items-center justify-center border border-black">
-        <span>hi</span>
-        <Divider />
-        <div>contents</div>
-      </div>
+    <div className="mt-[100px] flex justify-center gap-x-4 border">
+      <DatePicker dateTime={date} handleDatePick={(date) => setDate(date)} size="lg" />
+      <DatePicker dateTime={date} handleDatePick={(date) => setDate(date)} size="md" />
+      <DatePicker dateTime={date} handleDatePick={(date) => setDate(date)} size="sm" />
     </div>
   )
 }

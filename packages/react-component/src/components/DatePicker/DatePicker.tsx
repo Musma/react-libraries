@@ -1,16 +1,18 @@
 import { DateTime } from 'luxon'
 import { useCallback, useEffect, useState } from 'react'
 import { Typography } from 'src/components'
+import { Size } from 'src/types'
 
 import { Calendar } from './Calendar'
 import { DateInput } from './DateInput'
 
 interface CalendarProps {
+  size?: Size
   dateTime?: DateTime
-  handleDatePick: (dateTime: string | undefined) => void
+  handleDatePick: (dateTime: DateTime | undefined) => void
 }
 
-export const DatePicker = ({ dateTime, handleDatePick }: CalendarProps) => {
+export const DatePicker = ({ size = 'lg', dateTime, handleDatePick }: CalendarProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [date, setDate] = useState<DateTime | undefined>(dateTime)
   const handleSelectDay = useCallback((y: number, m: number, d: number) => {
@@ -24,7 +26,7 @@ export const DatePicker = ({ dateTime, handleDatePick }: CalendarProps) => {
   }, [isOpen])
 
   useEffect(() => {
-    handleDatePick(date?.toFormat('yyyy-MM-dd'))
+    handleDatePick(date)
   }, [date, handleDatePick])
 
   return (
@@ -33,12 +35,13 @@ export const DatePicker = ({ dateTime, handleDatePick }: CalendarProps) => {
         Date
       </Typography>
       <DateInput
+        size={size}
         handleSelectDay={handleSelectDay}
         toggleIsOpen={toggleIsOpen}
         date={date}
         clearDate={clearDate}
       />
-      {isOpen && <Calendar date={date} handleSelectDay={handleSelectDay} />}
+      {isOpen && <Calendar size={size} date={date} handleSelectDay={handleSelectDay} />}
     </div>
   )
 }

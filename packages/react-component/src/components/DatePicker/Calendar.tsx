@@ -1,24 +1,24 @@
 import classNames from 'classnames'
 import { DateTime } from 'luxon'
-import { useCallback, useEffect, useState } from 'react'
+import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { Typography } from 'src/components'
+import { Size } from 'src/types'
 
 import { ReactComponent as ArrowDoubleLeft } from './images/arrow_double_left.svg'
 import { ReactComponent as ArrowDoubleRight } from './images/arrow_double_right.svg'
 import { ReactComponent as ArrowLeft } from './images/arrow_left.svg'
 import { ReactComponent as ArrowRight } from './images/arrow_right.svg'
+import { ReactComponent as SmArrowDoubleLeft } from './images/arrow_double_left_sm.svg'
+import { ReactComponent as SmArrowDobuleRight } from './images/arrow_double_right_sm.svg'
+import { ReactComponent as SmArrowLeft } from './images/arrow_left_sm.svg'
+import { ReactComponent as SmArrowRight } from './images/arrow_right_sm.svg'
 
 interface CalendarProps {
+  size: Size
   date: DateTime | undefined
   handleSelectDay: (y: number, m: number, d: number) => void
 }
-export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
-  const frame = 'w-[200px] border border-[#BAC7D5] rounded'
-  const header = 'h-[34px] flex justify-between items-center border-b border-b-[#EEEEEE]'
-  const body = 'w-full p-2 grid grid-cols-7 gap-y-1 gap-x-2'
-  const dayStyle =
-    'flex h-[25px] cursor-pointer items-center justify-center text-[12px] font-normal leading-4'
-
+export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
   const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
   const MONTHS = [
     'Jan',
@@ -99,7 +99,14 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
     [date, month, year],
   )
 
-  const createSlots = () => {
+  const dayStyle = useMemo(() => {
+    return `flex ${
+      size === 'sm' ? 'h-[18px]' : 'h-[25px]'
+    } cursor-pointer items-center justify-center`
+  }, [size])
+  // const dayStyle = 'flex h-[25px] cursor-pointer items-center justify-center'
+
+  const createSlots = useCallback(() => {
     const daysInMonth = DateTime.local(year, month).daysInMonth
     const length = daysInMonth + startDay > 35 ? 42 : 35
     return Array.from({ length }).map((_, index) => {
@@ -121,7 +128,9 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
             className={classNames(dayStyle, 'text-[#D0D5DD]')}
             onClick={() => handleSelectPrevMonthDay(prevMonthDay)}
           >
-            {prevMonthDay}
+            <Typography type="caption" variant={size === 'sm' ? 'caption2' : 'caption1'}>
+              {prevMonthDay}
+            </Typography>
           </div>
         )
       }
@@ -138,7 +147,9 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
             )}
             onClick={() => handleDayClick(year, month, day)}
           >
-            {day}
+            <Typography type="caption" variant={size === 'sm' ? 'caption2' : 'caption1'}>
+              {day}
+            </Typography>
           </div>
         )
       }
@@ -150,12 +161,26 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
             className={classNames(dayStyle, 'text-[#D0D5DD]')}
             onClick={() => handleSelectNextMonthDay(nextMonthDay)}
           >
-            {nextMonthDay}
+            <Typography type="caption" variant={size === 'sm' ? 'caption2' : 'caption1'}>
+              {nextMonthDay}
+            </Typography>
           </div>
         )
       }
     })
-  }
+  }, [
+    dayStyle,
+    getPrevMonth,
+    handleDayClick,
+    handleSelectNextMonthDay,
+    handleSelectPrevMonthDay,
+    isSelectedDay,
+    isToday,
+    month,
+    size,
+    startDay,
+    year,
+  ])
   useEffect(() => {
     setStartDay(getStartDayOfMonth(year, month))
   }, [year, month])
@@ -167,36 +192,86 @@ export const Calendar = ({ date, handleSelectDay }: CalendarProps) => {
   }, [date])
 
   return (
-    <div className={frame}>
-      <div className={header}>
+    <div
+      className={classNames('rounded border border-[#BAC7D5]', {
+        'w-[200px]': size === 'lg',
+        'w-[180px]': size === 'md',
+        'w-[148px]': size === 'sm',
+      })}
+    >
+      <div
+        className={classNames('flex items-center justify-between border-b border-b-[#EEEEEE]', {
+          'h-[34px]': size !== 'sm',
+          'h-[24px]': size === 'sm',
+        })}
+      >
         <div className="flex items-center">
-          <ArrowDoubleLeft
-            stroke="#D0D5DD"
-            className="cursor-pointer"
-            onClick={() => setYear(year - 1)}
-          />
-          <ArrowLeft className="cursor-pointer" stroke="#D0D5DD" onClick={handlePrevMonthClick} />
+          <span className="cursor-pointer" onClick={() => setYear(year - 1)}>
+            {size === 'sm' ? <SmArrowDoubleLeft /> : <ArrowDoubleLeft />}
+          </span>
+          <span className="cursor-pointer" onClick={handlePrevMonthClick}>
+            {size === 'sm' ? <SmArrowLeft /> : <ArrowLeft />}
+          </span>
         </div>
-        <Typography type="subTitle" variant="subTitle3">
+        <MonthAndYear size={size}>
           {MONTHS[month - 1]} {year}
-        </Typography>
+        </MonthAndYear>
         <div className="flex items-center">
-          <ArrowRight className="cursor-pointer" stroke="#D0D5DD" onClick={handleNextMonthClick} />
-          <ArrowDoubleRight
-            stroke="#D0D5DD"
-            className="cursor-pointer"
-            onClick={() => setYear(year + 1)}
-          />
+          <span className="cursor-pointer" onClick={handleNextMonthClick}>
+            {size === 'sm' ? <SmArrowRight /> : <ArrowRight />}
+          </span>
+          <span className="cursor-pointer" onClick={() => setYear(year + 1)}>
+            {size === 'sm' ? <SmArrowDobuleRight /> : <ArrowDoubleRight />}
+          </span>
         </div>
       </div>
-      <div className={body}>
+      <div
+        className={classNames(
+          'grid w-full grid-cols-7 gap-y-1 p-2',
+          { 'gap-x-2': size !== 'sm' },
+          { 'gap-x-1': size === 'sm' },
+        )}
+      >
         {DAYS_OF_THE_WEEK.map((d) => (
-          <Typography type="subTitle" variant="subTitle3" key={d} className={dayStyle}>
-            {d}
-          </Typography>
+          <div key={d} className="flex h-[18px] items-center justify-center">
+            <DayOfTheWeek key={d} size={size}>
+              {d}
+            </DayOfTheWeek>
+          </div>
         ))}
         {createSlots()}
       </div>
     </div>
   )
+}
+
+interface TypoProps {
+  size: Size
+}
+const MonthAndYear = ({ size, children }: PropsWithChildren<TypoProps>) => {
+  return size === 'sm' ? (
+    <Typography type="caption" variant="caption2">
+      {children}
+    </Typography>
+  ) : (
+    <Typography type="subTitle" variant="subTitle3">
+      {children}
+    </Typography>
+  )
+}
+
+const DayOfTheWeek = ({ size, children }: PropsWithChildren<TypoProps>) => {
+  return size === 'sm' ? (
+    <Typography type="caption" variant="caption2">
+      {children}
+    </Typography>
+  ) : (
+    <Typography type="subTitle" variant="subTitle3">
+      {children}
+    </Typography>
+  )
+}
+
+const Day = ({ size, children }: PropsWithChildren<TypoProps>) => {
+  return size === 'sm' ? <Typography>{children}</Typography> : <Typography>{children}</Typography>
 }
