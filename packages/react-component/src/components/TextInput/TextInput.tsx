@@ -118,21 +118,17 @@ const Search = ({ handleSearchClick, size, ...rest }: InputProps) => {
   return (
     <div className="relative">
       <input {...rest} />
-      {size === 'lg' ? (
-        <LgSearchIcon
-          className="absolute right-2 top-2 cursor-pointer"
-          onClick={handleSearchClick}
-        />
-      ) : (
-        <MdSearchIcon
-          className={classNames(
-            'absolute right-2 cursor-pointer',
-            { 'top-[7px]': size === 'md' },
-            { 'top-[5px]': size === 'sm' },
-          )}
-          onClick={handleSearchClick}
-        />
-      )}
+      <span
+        className={classNames(
+          'absolute right-2 cursor-pointer',
+          { 'bottom-2': size === 'lg' },
+          { 'bottom-[7px]': size === 'md' },
+          { 'bottom-[5px]': size === 'sm' },
+        )}
+        onClick={handleSearchClick}
+      >
+        {size === 'lg' ? <LgSearchIcon /> : <MdSearchIcon />}
+      </span>
     </div>
   )
 }
