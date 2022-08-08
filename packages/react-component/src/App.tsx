@@ -1,22 +1,11 @@
 import { DateTime } from 'luxon'
-import { useCallback, useMemo, useState } from 'react'
-import {
-  Button,
-  Checkbox,
-  Modal,
-  RadioButton,
-  Table,
-  TextInput,
-  TimePicker,
-  usePagination,
-} from './components'
+import { useState } from 'react'
+import { Checkbox, TextInput, TimePicker } from './components'
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const [date, setDate] = useState(DateTime.now())
   return (
     <div>
-      <Button label="open" onClick={() => setIsOpen(true)} />
       <div className="flex justify-center">
         <TextInput label={'tt'} type="search" />
         <TextInput label={'tt'} type="search" size="md" />
