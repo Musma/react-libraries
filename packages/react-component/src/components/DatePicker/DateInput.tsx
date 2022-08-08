@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
-import { ReactComponent as MdCalendarIcon } from './images/calendar_md.svg'
+import { ReactComponent as SmCalendarIcon } from './images/calendar_sm.svg'
 
 interface DateInputProps {
   size: Size
@@ -105,7 +105,7 @@ export const DateInput = ({
   }, [size])
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex cursor-pointer items-center" onClick={() => toggleIsOpen()}>
       <div
         className={classNames(
           'mb-1 flex items-center rounded border border-[#BAC7D5] bg-white pl-2 font-normal outline-none focus:border-[#036DB7]',
@@ -116,6 +116,7 @@ export const DateInput = ({
       >
         <input
           placeholder="YYYY"
+          onClick={(e) => e.stopPropagation()}
           value={year}
           onChange={(e) => handleYearChange(e.target.value)}
           maxLength={4}
@@ -127,6 +128,7 @@ export const DateInput = ({
         -
         <input
           placeholder="MM"
+          onClick={(e) => e.stopPropagation()}
           value={month}
           onChange={(e) => handleMonthChange(e.target.value)}
           maxLength={2}
@@ -139,6 +141,7 @@ export const DateInput = ({
         -
         <input
           placeholder="DD"
+          onClick={(e) => e.stopPropagation()}
           value={day}
           onChange={(e) => handleDayChange(e.target.value)}
           maxLength={2}
@@ -158,7 +161,7 @@ export const DateInput = ({
           { 'top-[5px]': size === 'sm' },
         )}
       >
-        {size === 'lg' ? <LgCalendarIcon /> : <MdCalendarIcon />}
+        {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
       </span>
     </div>
   )
