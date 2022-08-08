@@ -102,7 +102,7 @@ export const Pagination = ({
 
   return (
     <div className="flex items-center justify-end">
-      <Typography type="body" variant="body3">
+      <Typography type="body" variant="body3" className="mr-2">
         Rows per page
       </Typography>
       <Select
@@ -116,8 +116,9 @@ export const Pagination = ({
           { label: '25', value: '25' },
         ]}
         onChange={(value) => handleLimitChange(Number(value))}
+        inputClassName="w-[67px]"
       />
-      <ArrowFirstIcon className="cursor-pointer" onClick={handleFirstClick} />
+      <ArrowFirstIcon className="ml-2 cursor-pointer" onClick={handleFirstClick} />
       <ArrowLeftIcon className="cursor-pointer" onClick={handlePrevClick} />
       {Array.from({ length: totalPage >= pageCount ? pageCount : totalPage }).map((_, index) => {
         return (

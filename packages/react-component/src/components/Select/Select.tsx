@@ -10,9 +10,17 @@ interface SelectProps {
   value: string
   options: { label: string; value: string }[]
   onChange: (value: string) => void
+  inputClassName?: string
 }
 
-export const Select = ({ size = 'lg', label, value, options, onChange }: SelectProps) => {
+export const Select = ({
+  size = 'lg',
+  label,
+  value,
+  options,
+  onChange,
+  inputClassName = '',
+}: SelectProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const divRef = useRef<HTMLDivElement>(null)
   const getLabel = useCallback(
@@ -159,7 +167,7 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
   }, [size])
 
   return (
-    <div className="inline-flex flex-col items-start">
+    <div className="flex flex-col items-start">
       <label htmlFor="input">
         <TitleFactory size={size} label={label} className="mb-[2px]" />
       </label>
@@ -171,7 +179,7 @@ export const Select = ({ size = 'lg', label, value, options, onChange }: SelectP
           placeholder={getLabel(value)}
           onChange={handleTextChange}
           // onKeyDown={handleKeyPress}
-          className={`cursor-pointer rounded border border-[#BAC7D5] pl-2 outline-none placeholder:text-[#242E40] focus:border-[#036DB7] ${inputSize} ${height}`}
+          className={`cursor-pointer rounded border border-[#BAC7D5] pl-2 outline-none placeholder:text-[#242E40] focus:border-[#036DB7] ${inputSize} ${height} ${inputClassName}`}
         />
         {size === 'lg' ? (
           <LgArrowICon
