@@ -52,7 +52,7 @@ export const TextInput = ({
   }, [type, helperText, size])
 
   return (
-    <div className="inline-flex flex-col items-start">
+    <div className="flex flex-col items-start justify-center">
       <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
         {label}
       </Typography>

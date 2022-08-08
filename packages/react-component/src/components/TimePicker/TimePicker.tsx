@@ -61,9 +61,9 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
   }, [ref])
 
   return (
-    <div className="relative inline-flex" ref={ref}>
+    <div className="relative flex items-center" ref={ref}>
       {/* TODO: TextInput 완성되면 교체 필요 */}
-      <div className="relative">
+      <div className={classNames('relative')}>
         <TextInput
           label={label}
           size={size}
@@ -89,7 +89,7 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
       {showClock && (
         <div
           className={classNames(
-            'absolute top-[100%] mt-[4px] w-full rounded-md border border-[#BAC7D5] bg-white py-4 px-2',
+            'absolute top-[100%] z-10 mt-[4px] w-full rounded-md border border-[#BAC7D5] bg-white py-4 px-2',
           )}
         >
           <ClockHeader
