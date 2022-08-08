@@ -74,17 +74,16 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
           }}
           placeholder="00:00"
         />
-        {size === 'lg' ? (
-          <LgClockIcon className="absolute right-2 bottom-2" />
-        ) : (
-          <MdClockIcon
-            className={classNames(
-              'absolute right-2',
-              { 'bottom-[7px]': size === 'md' },
-              { 'bottom-[5px]': size === 'sm' },
-            )}
-          />
-        )}
+        <span
+          className={classNames(
+            'absolute right-2',
+            { 'bottom-2': size === 'lg' },
+            { 'bottom-[7px]': size === 'md' },
+            { 'bottom-[5px]': size === 'sm' },
+          )}
+        >
+          {size === 'lg' ? <LgClockIcon /> : <MdClockIcon />}
+        </span>
       </div>
 
       {showClock && (
