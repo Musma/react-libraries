@@ -41,7 +41,7 @@ export const Typography = ({
       )
     default:
       return (
-        <Body variant={'body1'} className={variant}>
+        <Body variant={'body1'} className={className}>
           {children}
         </Body>
       )
