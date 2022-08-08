@@ -23,11 +23,16 @@ export const Breadcrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
         {crumbs.map((crumb, index) => {
           if (index === 0) {
             return (
-              <HomeIcon className="cursor-pointer" fill="#036DB7" onClick={() => onClick(crumb)} />
+              <HomeIcon
+                key={crumb}
+                className="cursor-pointer"
+                fill="#036DB7"
+                onClick={() => onClick(crumb)}
+              />
             )
           }
           return (
-            <li key={index} className="flex">
+            <li key={crumb} className="flex">
               <SeperatorIcon />
               <button onClick={() => onClick(crumb)}>
                 <Typography
