@@ -97,7 +97,7 @@ const Password = ({ type, size, ...rest }: InputProps) => {
   }, [inputType])
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <input type={inputType} {...rest} />
       <span
         className={classNames(
@@ -116,7 +116,7 @@ const Password = ({ type, size, ...rest }: InputProps) => {
 
 const Search = ({ handleSearchClick, size, ...rest }: InputProps) => {
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <input {...rest} />
       <span
         className={classNames(
