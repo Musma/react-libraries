@@ -271,7 +271,3 @@ const DayOfTheWeek = ({ size, children }: PropsWithChildren<TypoProps>) => {
     </Typography>
   )
 }
-
-const Day = ({ size, children }: PropsWithChildren<TypoProps>) => {
-  return size === 'sm' ? <Typography>{children}</Typography> : <Typography>{children}</Typography>
-}
