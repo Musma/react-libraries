@@ -68,7 +68,6 @@
   
   body {
     @apply font-pretendard;
-    @apply text-[#242E40];
   }
 }
 

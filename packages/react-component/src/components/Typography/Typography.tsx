@@ -17,31 +17,31 @@ export const Typography = ({
   switch (type) {
     case 'body':
       return (
-        <Body variant={variant} className={className}>
+        <Body variant={variant} className={`text-black-dark ${className}`}>
           {children}
         </Body>
       )
     case 'caption':
       return (
-        <Caption variant={variant} className={className}>
+        <Caption variant={variant} className={`text-black-dark ${className}`}>
           {children}
         </Caption>
       )
     case 'heading':
       return (
-        <Heading variant={variant} className={className}>
+        <Heading variant={variant} className={`text-black-dark ${className}`}>
           {children}
         </Heading>
       )
     case 'subTitle':
       return (
-        <SubTitle variant={variant} className={className}>
+        <SubTitle variant={variant} className={`text-black-dark ${className}`}>
           {children}
         </SubTitle>
       )
     default:
       return (
-        <Body variant={'body1'} className={className}>
+        <Body variant={'body1'} className={`text-black-dark ${className}`}>
           {children}
         </Body>
       )

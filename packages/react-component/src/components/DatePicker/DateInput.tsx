@@ -120,7 +120,7 @@ export const DateInput = ({
           value={year}
           onChange={(e) => handleYearChange(e.target.value)}
           maxLength={4}
-          className={classNames('appearance-none focus:outline-none', {
+          className={classNames('text-black-dark appearance-none focus:outline-none', {
             'w-[35px]': size !== 'sm',
             'w-[30px]': size === 'sm',
           })}
@@ -133,7 +133,7 @@ export const DateInput = ({
           onChange={(e) => handleMonthChange(e.target.value)}
           maxLength={2}
           className={classNames(
-            'appearance-none text-center placeholder:tracking-tighter focus:outline-none',
+            'text-black-dark appearance-none text-center placeholder:tracking-tighter focus:outline-none',
             { 'w-[23px]': size !== 'sm' },
             { 'w-[20px]': size === 'sm' },
           )}
@@ -146,7 +146,7 @@ export const DateInput = ({
           onChange={(e) => handleDayChange(e.target.value)}
           maxLength={2}
           className={classNames(
-            'appearance-none text-center placeholder:tracking-tighter focus:outline-none',
+            'text-black-dark appearance-none text-center placeholder:tracking-tighter focus:outline-none',
             { 'w-[23px] ': size !== 'sm' },
             { 'w-[20px] ': size === 'sm' },
           )}

@@ -38,7 +38,7 @@ export const Breadcrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
                 <Typography
                   type="body"
                   variant="body2"
-                  className={isLast(index) ? 'text-[#242E40]' : 'text-[#D0D5DD]'}
+                  className={isLast(index) ? 'text-black-dark' : 'text-[#D0D5DD]'}
                 >
                   {crumb}
                 </Typography>

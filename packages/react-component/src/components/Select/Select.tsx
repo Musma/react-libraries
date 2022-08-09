@@ -180,7 +180,7 @@ export const Select = ({
           placeholder={getLabel(value)}
           onChange={handleTextChange}
           // onKeyDown={handleKeyPress}
-          className={`cursor-pointer rounded border border-[#BAC7D5] pl-2 outline-none placeholder:text-[#242E40] focus:border-[#036DB7] ${inputSize} ${height} ${inputClassName}`}
+          className={`text-black-dark cursor-pointer rounded border border-[#BAC7D5] pl-2 outline-none placeholder:text-[#242E40] focus:border-[#036DB7] ${inputSize} ${height} ${inputClassName}`}
         />
         {size === 'lg' ? (
           <LgArrowICon
