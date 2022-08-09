@@ -23,11 +23,14 @@ type Data = Record<string, string | number | ReactNode>
 export const Table = ({ data, columns, pagination, onRowClick }: Props) => {
   return (
     <div className="grid grid-cols-1 gap-y-4">
-      <table className="w-full border-collapse rounded border-hidden shadow-[0_0_0_1px_#EFF2F5]">
+      <table className="w-full border-collapse rounded border-hidden shadow-[0_0_0_1px_#D0D5DD]">
         <thead>
           <tr>
             {columns.map((column) => (
-              <th key={column.id} className="h-10 border bg-[#EFF2F5]">
+              <th
+                key={column.id}
+                className="h-10 border border-[#D0D5DD] bg-[#EFF2F5] first:rounded-tl last:rounded-tr"
+              >
                 <Typography type="heading" variant="h6">
                   {column.label}
                 </Typography>
@@ -43,8 +46,10 @@ export const Table = ({ data, columns, pagination, onRowClick }: Props) => {
               className={classNames({ 'cursor-pointer hover:bg-[#F2F8FB]': onRowClick })}
             >
               {columns.map((column) => (
-                <td className="h-10 border-b text-center" key={column.id}>
-                  {item[column.id]}
+                <td className="h-10 border-b border-b-[#D0D5DD] text-center" key={column.id}>
+                  <Typography type="body" variant="body2" className="text-center">
+                    {item[column.id]}
+                  </Typography>
                 </td>
               ))}
             </tr>

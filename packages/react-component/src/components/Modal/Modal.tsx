@@ -67,6 +67,10 @@ export const Modal = ({
   }, [size])
   const buttonSize = size === 'md' ? 'lg' : 'md'
 
+  const buttonStyle = useMemo(() => {
+    return size === 'sm' ? 'w-[144px] h-7' : 'w-[200px] h-[8]'
+  }, [size])
+
   const handleModalClose = useCallback(() => {
     onClose()
     modalManager?.pop()
@@ -115,8 +119,8 @@ export const Modal = ({
           <CloseIcon onClick={handleModalClose} className="cursor-pointer" />
         </section>
         <hr className="w-full border-t border-t-[#BAC7D5]" />
-        <section className="flex-1">{children}</section>
-        <section
+        <section className="flex-1 text-[14px] font-normal text-[#667085]">{children}</section>
+        <div
           className={classNames(
             'flex items-center justify-center gap-x-2',
             { ['mb-6']: size === 'md' },
@@ -128,17 +132,17 @@ export const Modal = ({
             size={buttonSize}
             variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
             onClick={buttonOption.onSecondClick}
-            buttonClassName={buttonOption.className || ''}
+            buttonClassName={buttonOption.className || buttonStyle}
           />
           {buttonOption.secondLabel && (
             <Button
               size={buttonSize}
               label={buttonOption.secondLabel}
               onClick={buttonOption.onSecondClick}
-              buttonClassName={buttonOption.secondClassName || ''}
+              buttonClassName={buttonOption.secondClassName || buttonStyle}
             />
           )}
-        </section>
+        </div>
       </div>
     </div>
   )

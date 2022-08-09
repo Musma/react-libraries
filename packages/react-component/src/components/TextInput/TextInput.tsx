@@ -53,7 +53,11 @@ export const TextInput = ({
 
   return (
     <div className="flex flex-col items-start justify-center">
-      <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
+      <Typography
+        type="subTitle"
+        variant={size === 'lg' ? 'subTitle2' : 'subTitle3'}
+        className="mb-[2px]"
+      >
         {label}
       </Typography>
       <Input className={inputStyle} size={size} type={type} {...rest} />
