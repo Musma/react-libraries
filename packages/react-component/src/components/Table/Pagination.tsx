@@ -134,7 +134,7 @@ export const Pagination = ({
             key={index}
             className={classNames(
               'flex h-6 w-6 cursor-pointer items-center justify-center rounded-full',
-              { 'bg-[#036DB8] text-white': isCurrentPage(getPage(index)) },
+              { 'text-white-main bg-[#036DB8]': isCurrentPage(getPage(index)) },
             )}
             onClick={() => handlePageChange(getPage(index))}
           >

@@ -40,7 +40,7 @@ export const Button = ({
 
   const variantStyle = useMemo(() => {
     const styles = {
-      outlined: 'bg-white border border-[#036DB7] active:bg-white hover:bg-[#F2F8FB]',
+      outlined: 'bg-white-main border border-[#036DB7] active:bg-white-main hover:bg-[#F2F8FB]',
       contained: 'bg-[#036DB7] active:bg-[#025A96] hover:bg-[#036DB7]/90',
       danger: 'bg-[#CA3C3D] active:bg-[#A63033] hover:bg-[#CA3C3D]/90',
     }
@@ -54,7 +54,7 @@ export const Button = ({
   const contentStyle = useMemo(() => {
     if (disabled) return 'text-[#D0D5DD]'
     if (variant === 'outlined') return 'text-[#036DB7]'
-    return 'text-white'
+    return 'text-white-main'
   }, [variant, disabled])
 
   const fill = useMemo(() => {

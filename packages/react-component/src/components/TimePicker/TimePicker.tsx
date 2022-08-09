@@ -89,7 +89,7 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
       {showClock && (
         <div
           className={classNames(
-            'absolute top-[100%] z-10 mt-[4px] w-full rounded-md border border-[#BAC7D5] bg-white py-4 px-2',
+            'bg-white-main absolute top-[100%] z-10 mt-[4px] w-full rounded-md border border-[#BAC7D5] py-4 px-2',
           )}
         >
           <ClockHeader

@@ -22,7 +22,7 @@ export const IconButton = ({
 }: IconButtonProps) => {
   const variantStyle = useMemo(() => {
     const styles = {
-      outlined: 'border border-[#107C41] bg-white',
+      outlined: 'border border-[#107C41] bg-white-main',
       contained: 'bg-[#107C41]',
     }
     if (!variant) {

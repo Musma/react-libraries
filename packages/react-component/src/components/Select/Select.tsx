@@ -208,7 +208,7 @@ export const Select = ({
                 onClick={() => handleOptionSelect(value)}
                 className={`flex cursor-pointer items-center py-1 pl-2 ${
                   isSelected(value)
-                    ? 'bg-[#036DB7] text-white'
+                    ? 'text-white-main bg-[#036DB7]'
                     : 'hover:bg-[#F2F8FB] hover:text-[#036DB7]'
                 } ${height}`}
                 // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현

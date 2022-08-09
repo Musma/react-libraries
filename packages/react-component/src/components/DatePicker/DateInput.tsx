@@ -108,7 +108,7 @@ export const DateInput = ({
     <div className="relative flex cursor-pointer items-center" onClick={() => toggleIsOpen()}>
       <div
         className={classNames(
-          'mb-1 flex items-center rounded border border-[#BAC7D5] bg-white pl-2 font-normal outline-none focus:border-[#036DB7]',
+          'bg-white-main mb-1 flex items-center rounded border border-[#BAC7D5] pl-2 font-normal outline-none focus:border-[#036DB7]',
           { 'border-red-400': isError },
           sizeStyle,
           fontStyle,

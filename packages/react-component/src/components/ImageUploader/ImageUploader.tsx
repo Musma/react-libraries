@@ -52,12 +52,20 @@ export const ImageUploader = ({
   const getHelperText = useCallback((size: Size) => {
     return {
       lg: (
-        <Typography type="subTitle" variant="subTitle2" className={classNames('mb-1 text-white')}>
+        <Typography
+          type="subTitle"
+          variant="subTitle2"
+          className={classNames('text-white-main mb-1')}
+        >
           Upload Picture
         </Typography>
       ),
       md: (
-        <Typography type="caption" variant="caption2" className={classNames('mb-1', 'text-white')}>
+        <Typography
+          type="caption"
+          variant="caption2"
+          className={classNames('mb-1', 'text-white-main')}
+        >
           Upload Picture
         </Typography>
       ),
@@ -85,7 +93,7 @@ export const ImageUploader = ({
         <div
           className={classNames(
             divSize,
-            'invisible absolute flex flex-col items-center justify-center bg-[rgba(36,46,64,0.6)] text-white group-hover:visible',
+            'text-white-main invisible absolute flex flex-col items-center justify-center bg-[rgba(36,46,64,0.6)] group-hover:visible',
           )}
         >
           {getHelperIcon(size)}

@@ -17,7 +17,7 @@ export const Badge = ({ badgeCount, children }: BadgeProps) => {
     <div className="relative inline-flex">
       {children}
       <span
-        className="absolute top-0 right-0 z-[1] flex h-[20px] min-w-[20px] place-content-center items-center rounded-xl bg-[#FF4D4F] p-[6px] text-[10px] text-white"
+        className="text-white-main absolute top-0 right-0 z-[1] flex h-[20px] min-w-[20px] place-content-center items-center rounded-xl bg-[#FF4D4F] p-[6px] text-[10px]"
         style={{
           transform: 'scale(1) translate(50%, -50%)',
           transformOrigin: '100% 0%',

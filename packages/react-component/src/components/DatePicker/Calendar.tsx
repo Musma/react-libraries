@@ -142,7 +142,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             className={classNames(
               dayStyle,
               'rounded-[1px]',
-              { 'bg-[#036DB7] text-white': isToday(day) && !isSelectedDay(day) },
+              { 'text-white-main bg-[#036DB7]': isToday(day) && !isSelectedDay(day) },
               { 'bg-[#F2F8FB] text-[#036DB7]': isSelectedDay(day) },
             )}
             onClick={() => handleDayClick(year, month, day)}

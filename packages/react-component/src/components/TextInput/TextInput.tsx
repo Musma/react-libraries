@@ -26,7 +26,7 @@ export const TextInput = ({
   ...rest
 }: TextInputProps) => {
   const inputStyle = useMemo(() => {
-    const commonStyle = 'text-black-dark rounded border bg-white pl-2 font-normal outline-none'
+    const commonStyle = 'text-black-dark rounded border bg-white-main pl-2 font-normal outline-none'
     const paddingRight = {
       text: 'pr-2',
       password: 'pr-7',

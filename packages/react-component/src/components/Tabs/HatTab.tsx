@@ -17,7 +17,7 @@ export const HatTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
       <Typography
         type="subTitle"
         variant="subTitle2"
-        className="border-t border-t-[#BAC7D5] bg-white px-6 py-[10px]"
+        className="bg-white-main border-t border-t-[#BAC7D5] px-6 py-[10px]"
       >
         {title}
       </Typography>

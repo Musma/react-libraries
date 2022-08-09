@@ -15,7 +15,7 @@ export const ClockNumber = ({ label, position, isSelected }: ClockNumberProps) =
     <div
       className={classNames(
         `pointer-events-none absolute left-full flex h-4 w-4 select-none items-center justify-center rounded-full`,
-        isSelected ? 'text-white' : 'text-[#242E40]',
+        isSelected ? 'text-white-main' : 'text-[#242E40]',
       )}
       style={{
         left: 'calc((100% - 16px) / 2)',

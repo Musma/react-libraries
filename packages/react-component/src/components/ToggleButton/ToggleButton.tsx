@@ -19,7 +19,7 @@ export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonPro
       sm: 'checked:before:translate-x-[6px]',
     }
     const color = {
-      active: 'before:bg-white',
+      active: 'before:bg-white-main',
       disabled: 'before:bg-[#D0D5DD]',
     }
     if (disabled) return `${sizes[size]} ${color.disabled}`

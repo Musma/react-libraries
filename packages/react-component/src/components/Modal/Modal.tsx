@@ -103,7 +103,7 @@ export const Modal = ({
     >
       <div
         ref={modalRef}
-        className={classNames(modalSize, 'flex flex-col rounded-md bg-white', className)}
+        className={classNames(modalSize, 'bg-white-main flex flex-col rounded-md', className)}
       >
         <section
           className={classNames(

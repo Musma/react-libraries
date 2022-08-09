@@ -80,7 +80,9 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             { 'h-5 w-6': size === 'sm' },
             { 'h-[25px] w-[30px]': size === 'md' },
             { 'h-[30px] w-[32px]': size === 'lg' },
-            getMeridiem(date) == 'am' ? 'bg-[#F2F8FB] text-[#036DB7]' : 'bg-white text-[#D0D5DD]',
+            getMeridiem(date) == 'am'
+              ? 'bg-[#F2F8FB] text-[#036DB7]'
+              : 'bg-white-main text-[#D0D5DD]',
           )}
           onClick={() => {
             if (getMeridiem(date) !== 'am') {
@@ -96,7 +98,9 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             { 'h-5 w-6': size === 'sm' },
             { 'h-[25px] w-[30px]': size === 'md' },
             { 'h-[30px] w-[32px]': size === 'lg' },
-            getMeridiem(date) == 'pm' ? 'bg-[#F2F8FB] text-[#036DB7]' : 'bg-white text-[#D0D5DD]',
+            getMeridiem(date) == 'pm'
+              ? 'bg-[#F2F8FB] text-[#036DB7]'
+              : 'bg-white-main text-[#D0D5DD]',
           )}
           onClick={() => {
             if (getMeridiem(date) !== 'pm') {
