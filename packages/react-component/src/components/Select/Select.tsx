@@ -3,6 +3,7 @@ import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from '
 import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
 import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'
 import { Size } from 'src/types'
+import classNames from 'classnames'
 
 interface SelectProps {
   size?: Size
@@ -167,11 +168,11 @@ export const Select = ({
   }, [size])
 
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col items-start justify-center">
       <label htmlFor="input">
         <TitleFactory size={size} label={label} />
       </label>
-      <div ref={divRef} className={`relative`} onClick={handleDropdownClick}>
+      <div ref={divRef} className="relative flex items-center" onClick={handleDropdownClick}>
         <input
           id={'input'}
           ref={inputRef}
@@ -193,7 +194,14 @@ export const Select = ({
           />
         )}
         {isOpen && (
-          <ul className="absolute mt-1 grid max-h-[158px] w-full grid-cols-1 overflow-y-scroll rounded border border-[#BAC7D5] py-1">
+          <ul
+            className={classNames(
+              'absolute grid max-h-[158px] w-full grid-cols-1 overflow-y-scroll rounded border border-[#BAC7D5] py-1',
+              { 'top-[34px]': size === 'lg' },
+              { 'top-[30px]': size === 'md' },
+              { 'top-[26px]': size === 'sm' },
+            )}
+          >
             {filteredOptions.map(({ label, value }) => (
               <li
                 key={label}
@@ -223,28 +231,24 @@ interface TypographyFactoryProps {
 const LabelFactory = ({ size, label }: TypographyFactoryProps) => {
   if (size === 'lg') {
     return (
-      <Typography type="body" variant="body3" className="mb-[2px]">
+      <Typography type="body" variant="body3">
         {label}
       </Typography>
     )
   }
-  return (
-    <Typography type="caption" className="mb-[2px]">
-      {label}
-    </Typography>
-  )
+  return <Typography type="caption">{label}</Typography>
 }
 
 const TitleFactory = ({ size, label }: TypographyFactoryProps) => {
   if (size === 'lg') {
     return (
-      <Typography type="subTitle" variant="subTitle2">
+      <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
         {label}
       </Typography>
     )
   }
   return (
-    <Typography type="subTitle" variant="subTitle3">
+    <Typography type="subTitle" variant="subTitle3" className="mb-[2px]">
       {label}
     </Typography>
   )
