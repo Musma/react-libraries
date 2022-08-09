@@ -37,7 +37,11 @@ export const DatePicker = ({
 
   return (
     <div className="flex flex-col items-start">
-      <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
+      <Typography
+        type="subTitle"
+        variant={size === 'sm' ? 'subTitle3' : 'subTitle2'}
+        className="mb-[2px]"
+      >
         {label}
       </Typography>
       <DateInput
