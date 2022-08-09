@@ -118,8 +118,16 @@ export const Pagination = ({
         onChange={(value) => handleLimitChange(Number(value))}
         inputClassName="w-[67px]"
       />
-      <ArrowFirstIcon className="ml-2 cursor-pointer" onClick={handleFirstClick} />
-      <ArrowLeftIcon className="cursor-pointer" onClick={handlePrevClick} />
+      <ArrowFirstIcon
+        className={classNames('ml-2 cursor-pointer')}
+        onClick={handleFirstClick}
+        stroke={currentPage === 1 ? '#D0D5DD' : '#242E40'}
+      />
+      <ArrowLeftIcon
+        className="cursor-pointer"
+        onClick={handlePrevClick}
+        stroke={pageGroup === 1 ? '#D0D5DD' : '#242E40'}
+      />
       {Array.from({ length: totalPage >= pageCount ? pageCount : totalPage }).map((_, index) => {
         return (
           <span
@@ -134,8 +142,16 @@ export const Pagination = ({
           </span>
         )
       })}
-      <ArrowRightIcon className="cursor-pointer" onClick={handleNextClick} />
-      <ArrowLastIcon className="cursor-pointer" onClick={handleLastClick} />
+      <ArrowRightIcon
+        className="cursor-pointer"
+        onClick={handleNextClick}
+        stroke={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'}
+      />
+      <ArrowLastIcon
+        className="cursor-pointer"
+        onClick={handleLastClick}
+        stroke={currentPage === totalPage ? '#D0D5DD' : '#242E40'}
+      />
     </div>
   )
 }
