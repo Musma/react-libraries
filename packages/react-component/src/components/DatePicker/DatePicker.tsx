@@ -39,7 +39,7 @@ export const DatePicker = ({
     <div className="flex flex-col items-start">
       <Typography
         type="subTitle"
-        variant={size === 'sm' ? 'subTitle3' : 'subTitle2'}
+        variant={size === 'lg' ? 'subTitle2' : 'subTitle3'}
         className="mb-[2px]"
       >
         {label}

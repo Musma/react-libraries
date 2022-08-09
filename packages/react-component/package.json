@@ -1,6 +1,6 @@
 {
   "name": "@musma/react-component",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Musma's ESLint config with TypeScript support",
   "author": "YoungSu Kim (jklasd2001@musma.net)",
   "license": "MIT",
