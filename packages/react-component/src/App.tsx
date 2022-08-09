@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { useState } from 'react'
-import { DatePicker, Divider } from './components'
+import { DatePicker } from './components'
 
 const App = () => {
   const [date, setDate] = useState<DateTime | undefined>(undefined)
