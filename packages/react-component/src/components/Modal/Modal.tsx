@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import _ from 'lodash-es'
 import { Fragment, ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
 import { Button, Typography } from 'src/components'
 import { useKeyEsc } from 'src/hooks/useKeyEsc'
