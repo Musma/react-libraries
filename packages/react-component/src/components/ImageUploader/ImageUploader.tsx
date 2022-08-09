@@ -34,11 +34,10 @@ export const ImageUploader = ({
     [onChange],
   )
   const getDefaultImage = useCallback(() => {
-    const large = <DefaultLgIcon className="absolute top-[20px] left-[10px]" />
     return {
-      lg: large,
+      lg: <DefaultLgIcon className="absolute top-[20px] left-[10px]" />,
       md: <DefaultMdIcon className="absolute top-[14.29px] left-[7.14px]" />,
-      sm: <DefaultSmIcon className="absolute top-[4.57px] left-[2.29px]" />,
+      sm: <DefaultSmIcon className="absolute top-[4px] left-[1px]" />,
     }[size]
   }, [size])
 
