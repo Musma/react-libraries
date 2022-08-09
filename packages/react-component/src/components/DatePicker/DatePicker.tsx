@@ -7,12 +7,18 @@ import { Calendar } from './Calendar'
 import { DateInput } from './DateInput'
 
 interface CalendarProps {
+  label?: string
   size?: Size
   dateTime?: DateTime
   handleDatePick: (dateTime: DateTime | undefined) => void
 }
 
-export const DatePicker = ({ size = 'lg', dateTime, handleDatePick }: CalendarProps) => {
+export const DatePicker = ({
+  label = '',
+  size = 'lg',
+  dateTime,
+  handleDatePick,
+}: CalendarProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [date, setDate] = useState<DateTime | undefined>(dateTime)
   const handleSelectDay = useCallback((y: number, m: number, d: number) => {
@@ -32,7 +38,7 @@ export const DatePicker = ({ size = 'lg', dateTime, handleDatePick }: CalendarPr
   return (
     <div className="flex flex-col items-start">
       <Typography type="subTitle" variant="subTitle2" className="mb-[2px]">
-        Date
+        {label}
       </Typography>
       <DateInput
         size={size}
