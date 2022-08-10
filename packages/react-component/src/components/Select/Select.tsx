@@ -210,14 +210,16 @@ export const Select = ({
                 key={label}
                 onClick={() => handleOptionSelect(value)}
                 className={`flex cursor-pointer items-center py-1 pl-2 ${
-                  isSelected(value)
-                    ? 'text-white-main bg-[#036DB7]'
-                    : 'hover:bg-[#F2F8FB] hover:text-[#036DB7]'
+                  isSelected(value) ? 'bg-[#036DB7]' : 'hover:bg-[#F2F8FB] hover:text-[#036DB7]'
                 } ${height}`}
                 // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
                 // { 'active bg-[#F2F8FB] text-[#036DB7]': !isSelected(value) && index === pointer },
               >
-                <LabelFactory size={size} label={label} />
+                <LabelFactory
+                  size={size}
+                  label={label}
+                  color={isSelected(value) ? '#FFFFFF' : ''}
+                />
               </li>
             ))}
           </ul>
@@ -228,18 +230,23 @@ export const Select = ({
 }
 
 interface TypographyFactoryProps {
+  color?: string
   size: Size
   label: string
 }
-const LabelFactory = ({ size, label }: TypographyFactoryProps) => {
+const LabelFactory = ({ size, label, color }: TypographyFactoryProps) => {
   if (size === 'lg') {
     return (
-      <Typography type="body" variant="body3">
+      <Typography type="body" variant="body3" color={color}>
         {label}
       </Typography>
     )
   }
-  return <Typography type="caption">{label}</Typography>
+  return (
+    <Typography type="caption" color={color}>
+      {label}
+    </Typography>
+  )
 }
 
 const TitleFactory = ({ size, label }: TypographyFactoryProps) => {

@@ -55,7 +55,8 @@ export const ImageUploader = ({
         <Typography
           type="subTitle"
           variant="subTitle2"
-          className={classNames('text-white-main mb-1')}
+          className={classNames('mb-1')}
+          color="#FFFFFF"
         >
           Upload Picture
         </Typography>
@@ -64,7 +65,8 @@ export const ImageUploader = ({
         <Typography
           type="caption"
           variant="caption2"
-          className={classNames('mb-1', 'text-white-main')}
+          className={classNames('mb-1')}
+          color="#FFFFFF"
         >
           Upload Picture
         </Typography>
@@ -93,7 +95,7 @@ export const ImageUploader = ({
         <div
           className={classNames(
             divSize,
-            'text-white-main invisible absolute flex flex-col items-center justify-center bg-[rgba(36,46,64,0.6)] group-hover:visible',
+            'invisible absolute flex flex-col items-center justify-center bg-[rgba(36,46,64,0.6)] group-hover:visible',
           )}
         >
           {getHelperIcon(size)}

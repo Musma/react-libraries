@@ -51,11 +51,11 @@ export const Button = ({
     return 'bg-[#F4F6F9] cursor-not-allowed'
   }, [])
 
-  const contentStyle = useMemo(() => {
-    if (disabled) return 'text-[#D0D5DD]'
-    if (variant === 'outlined') return 'text-[#036DB7]'
-    return 'text-white-main'
-  }, [variant, disabled])
+  const color = useMemo(() => {
+    if (disabled) return '#D0D5DD'
+    if (variant === 'outlined') return '#036DB7'
+    return '#FFFFFF'
+  }, [disabled, variant])
 
   const fill = useMemo(() => {
     if (disabled) return '#D0D5DD'
@@ -67,18 +67,18 @@ export const Button = ({
     ({ label, className }: { label: string; className: string }) => {
       if (size === 'lg') {
         return (
-          <Typography type="body" variant="body3" className={className}>
+          <Typography type="body" variant="body3" className={className} color={color}>
             {label}
           </Typography>
         )
       }
       return (
-        <Typography type="caption" className={className}>
+        <Typography type="caption" className={className} color={color}>
           {label}
         </Typography>
       )
     },
-    [size],
+    [color, size],
   )
   return (
     <button
@@ -95,7 +95,7 @@ export const Button = ({
       {showIcon && (size === 'lg' ? <LgButtonIcon fill={fill} /> : <ButtonIcon fill={fill} />)}
       {getLabel({
         label,
-        className: classNames('flex items-center justify-center', contentStyle, contentClassName),
+        className: classNames('flex items-center justify-center', contentClassName),
       })}
     </button>
   )

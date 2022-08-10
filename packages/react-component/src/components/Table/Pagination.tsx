@@ -134,11 +134,13 @@ export const Pagination = ({
             key={index}
             className={classNames(
               'flex h-6 w-6 cursor-pointer items-center justify-center rounded-full',
-              { 'text-white-main bg-[#036DB8]': isCurrentPage(getPage(index)) },
+              { 'bg-[#036DB8]': isCurrentPage(getPage(index)) },
             )}
             onClick={() => handlePageChange(getPage(index))}
           >
-            <Typography type="caption">{getPage(index)}</Typography>
+            <Typography type="caption" color={isCurrentPage(getPage(index)) ? '#FFFFFF' : ''}>
+              {getPage(index)}
+            </Typography>
           </span>
         )
       })}

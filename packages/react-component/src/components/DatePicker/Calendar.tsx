@@ -104,37 +104,31 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
       size === 'sm' ? 'h-[18px]' : 'h-[25px]'
     } cursor-pointer items-center justify-center`
   }, [size])
-  // const dayStyle = 'flex h-[25px] cursor-pointer items-center justify-center'
 
   const createSlots = useCallback(() => {
     const daysInMonth = DateTime.local(year, month).daysInMonth
     const length = daysInMonth + startDay > 35 ? 42 : 35
     return Array.from({ length }).map((_, index) => {
-      function isPrevMonth() {
-        return index < startDay
-      }
-      function isCurrentMonth() {
-        return index >= startDay && index < startDay + daysInMonth
-      }
-      function isNextMonth() {
-        return index >= startDay + daysInMonth
-      }
-      if (isPrevMonth()) {
+      if (isPrevMonth(index)) {
         const prevMonthDay =
           DateTime.local(year, getPrevMonth()).daysInMonth - (startDay - 1) + index
         return (
           <div
             key={index}
-            className={classNames(dayStyle, 'text-[#D0D5DD]')}
+            className={dayStyle}
             onClick={() => handleSelectPrevMonthDay(prevMonthDay)}
           >
-            <Typography type="caption" variant={size === 'sm' ? 'caption2' : 'caption1'}>
+            <Typography
+              type="caption"
+              variant={size === 'sm' ? 'caption2' : 'caption1'}
+              color="#D0D5DD"
+            >
               {prevMonthDay}
             </Typography>
           </div>
         )
       }
-      if (isCurrentMonth()) {
+      if (isCurrentMonth(index)) {
         const day = index + 1 - startDay
         return (
           <div
@@ -142,32 +136,54 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             className={classNames(
               dayStyle,
               'rounded-[1px]',
-              { 'text-white-main bg-[#036DB7]': isToday(day) && !isSelectedDay(day) },
-              { 'bg-[#F2F8FB] text-[#036DB7]': isSelectedDay(day) },
+              { 'bg-[#036DB7]': isToday(day) && !isSelectedDay(day) },
+              { 'bg-[#F2F8FB]': isSelectedDay(day) },
             )}
             onClick={() => handleDayClick(year, month, day)}
           >
-            <Typography type="caption" variant={size === 'sm' ? 'caption2' : 'caption1'}>
+            <Typography
+              type="caption"
+              variant={size === 'sm' ? 'caption2' : 'caption1'}
+              color={getColor(day)}
+            >
               {day}
             </Typography>
           </div>
         )
       }
-      if (isNextMonth()) {
+      if (isNextMonth(index)) {
         const nextMonthDay = index - (daysInMonth + startDay - 1)
         return (
           <div
             key={index}
-            className={classNames(dayStyle, 'text-[#D0D5DD]')}
+            className={dayStyle}
             onClick={() => handleSelectNextMonthDay(nextMonthDay)}
           >
-            <Typography type="caption" variant={size === 'sm' ? 'caption2' : 'caption1'}>
+            <Typography
+              type="caption"
+              variant={size === 'sm' ? 'caption2' : 'caption1'}
+              color="#D0D5DD"
+            >
               {nextMonthDay}
             </Typography>
           </div>
         )
       }
     })
+    function getColor(day: number) {
+      if (isToday(day) && !isSelectedDay(day)) return '#FFFFFF'
+      if (isSelectedDay(day)) return '#036DB7'
+      return ''
+    }
+    function isPrevMonth(index: number) {
+      return index < startDay
+    }
+    function isCurrentMonth(index: number) {
+      return index >= startDay && index < startDay + daysInMonth
+    }
+    function isNextMonth(index: number) {
+      return index >= startDay + daysInMonth
+    }
   }, [
     dayStyle,
     getPrevMonth,

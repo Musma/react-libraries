@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { DateTime } from 'luxon'
-import { useCallback, useMemo } from 'react'
 import { getMeridiem, ClockType, Typography } from 'src/components'
 import { Size } from 'src/types'
 
@@ -15,22 +14,6 @@ interface Props {
 }
 
 export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeChange }: Props) => {
-  const getAmPmTypography = useCallback(
-    (amPm: string) => {
-      if (size === 'sm')
-        return (
-          <Typography type="caption" variant="caption2">
-            {amPm}
-          </Typography>
-        )
-      return (
-        <Typography type="subTitle" variant="subTitle3">
-          {amPm}
-        </Typography>
-      )
-    },
-    [size],
-  )
   return (
     <div className="mb-4 flex items-center justify-center gap-2">
       <div className="flex items-center gap-2">
@@ -40,7 +23,7 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             { 'h-10 w-10': size === 'sm' },
             { 'h-[50px] w-[50px]': size === 'md' },
             { 'h-[60px] w-[60px]': size === 'lg' },
-            clockType === 'hour' ? 'bg-[#F2F8FB] text-[#036DB7]' : 'bg-[#F9FBFB] text-[#242E40]',
+            clockType === 'hour' ? 'bg-[#F2F8FB]' : 'bg-[#F9FBFB]',
           )}
           onClick={() => {
             if (clockType !== 'hour') {
@@ -48,9 +31,11 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             }
           }}
         >
-          <Typography type="heading" variant={size === 'lg' ? 'h2' : 'h3'}>
-            {date.toFormat('hh')}
-          </Typography>
+          <HourMinLabel
+            size={size}
+            color={clockType === 'hour' ? '#036DB7' : ''}
+            label={date.toFormat('hh')}
+          />
         </div>
         <ColonIcon />
         <div
@@ -59,7 +44,7 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             { 'h-10 w-10': size === 'sm' },
             { 'h-[50px] w-[50px]': size === 'md' },
             { 'h-[60px] w-[60px]': size === 'lg' },
-            clockType === 'min' ? 'bg-[#F2F8FB] text-[#036DB7]' : 'bg-[#F9FBFB] text-[#242E40]',
+            clockType === 'min' ? 'bg-[#F2F8FB]' : 'bg-[#F9FBFB]',
           )}
           onClick={() => {
             if (clockType !== 'min') {
@@ -67,9 +52,11 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             }
           }}
         >
-          <Typography type="heading" variant={size === 'lg' ? 'h2' : 'h3'}>
-            {date.toFormat('mm')}
-          </Typography>
+          <HourMinLabel
+            size={size}
+            color={clockType === 'min' ? '#036DB7' : ''}
+            label={date.toFormat('mm')}
+          />
         </div>
       </div>
 
@@ -90,7 +77,11 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             }
           }}
         >
-          {getAmPmTypography('AM')}
+          <AmPmLabel
+            size={size}
+            color={getMeridiem(date) === 'am' ? '#036DB7' : '#D0D5DD'}
+            label="AM"
+          />
         </button>
         <button
           className={classNames(
@@ -108,9 +99,41 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             }
           }}
         >
-          {getAmPmTypography('PM')}
+          <AmPmLabel
+            size={size}
+            color={getMeridiem(date) === 'pm' ? '#036DB7' : '#D0D5DD'}
+            label="PM"
+          />
         </button>
       </div>
     </div>
+  )
+}
+
+interface Label {
+  size: Size
+  color: string
+  label: string
+}
+
+const AmPmLabel = ({ size, color, label }: Label) => {
+  if (size === 'sm')
+    return (
+      <Typography type="caption" variant="caption2" color={color}>
+        {label}
+      </Typography>
+    )
+  return (
+    <Typography type="subTitle" variant="subTitle3" color={color}>
+      {label}
+    </Typography>
+  )
+}
+
+const HourMinLabel = ({ size, color, label }: Label) => {
+  return (
+    <Typography type="heading" variant={size === 'lg' ? 'h2' : 'h3'} color={color}>
+      {label}
+    </Typography>
   )
 }
