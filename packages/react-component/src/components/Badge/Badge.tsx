@@ -3,9 +3,10 @@ import { ReactNode, useMemo } from 'react'
 interface BadgeProps {
   badgeCount: number
   children?: ReactNode
+  color?: string
 }
 
-export const Badge = ({ badgeCount, children }: BadgeProps) => {
+export const Badge = ({ color = '', badgeCount, children }: BadgeProps) => {
   const content = useMemo(() => {
     if (badgeCount > 99) {
       return `${99}+`
@@ -22,6 +23,7 @@ export const Badge = ({ badgeCount, children }: BadgeProps) => {
           transform: 'scale(1) translate(50%, -50%)',
           transformOrigin: '100% 0%',
           transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          color,
         }}
       >
         {content}

@@ -7,6 +7,7 @@ import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
 import { ReactComponent as SmCalendarIcon } from './images/calendar_sm.svg'
 
 interface DateInputProps {
+  color?: string
   size: Size
   date: DateTime | undefined
   toggleIsOpen: () => void
@@ -14,6 +15,7 @@ interface DateInputProps {
   handleSelectDay: (y: number, m: number, d: number) => void
 }
 export const DateInput = ({
+  color,
   size,
   toggleIsOpen,
   date,
@@ -124,6 +126,7 @@ export const DateInput = ({
             'w-[35px]': size !== 'sm',
             'w-[30px]': size === 'sm',
           })}
+          style={{ color }}
         />
         -
         <input
@@ -137,6 +140,7 @@ export const DateInput = ({
             { 'w-[23px]': size !== 'sm' },
             { 'w-[20px]': size === 'sm' },
           )}
+          style={{ color }}
         />
         -
         <input
@@ -150,6 +154,7 @@ export const DateInput = ({
             { 'w-[23px] ': size !== 'sm' },
             { 'w-[20px] ': size === 'sm' },
           )}
+          style={{ color }}
         />
       </div>
       <span

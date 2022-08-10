@@ -81,14 +81,14 @@ interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size
   size: Size
   type: 'text' | 'password' | 'search'
 }
-const Input = ({ type, size, ...rest }: InputProps) => {
+const Input = ({ type, size, color, ...rest }: InputProps) => {
   switch (type) {
     case 'text':
-      return <input type="text" {...rest} />
+      return <input type="text" {...rest} style={{ color }} />
     case 'password':
-      return <Password size={size} type="password" {...rest} />
+      return <Password size={size} type="password" {...rest} style={{ color }} />
     case 'search':
-      return <Search size={size} type="text" {...rest} />
+      return <Search size={size} type="text" {...rest} style={{ color }} />
   }
 }
 

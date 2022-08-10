@@ -6,6 +6,7 @@ import { Size } from 'src/types'
 import classNames from 'classnames'
 
 interface SelectProps {
+  color?: string
   size?: Size
   label: string
   value: string
@@ -15,6 +16,7 @@ interface SelectProps {
 }
 
 export const Select = ({
+  color = '',
   size = 'lg',
   label,
   value,
@@ -181,6 +183,7 @@ export const Select = ({
           onChange={handleTextChange}
           // onKeyDown={handleKeyPress}
           className={`text-black-dark cursor-pointer rounded border border-[#BAC7D5] pl-2 outline-none placeholder:text-[#242E40] focus:border-[#036DB7] ${inputSize} ${height} ${inputClassName}`}
+          color={color}
         />
         {size === 'lg' ? (
           <LgArrowICon

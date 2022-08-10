@@ -9,6 +9,7 @@ import { BodyProps, HeadingProps, CaptionProps, SubTitleProps } from './types'
 type TypographyProps = BodyProps | HeadingProps | CaptionProps | SubTitleProps
 
 export const Typography = ({
+  color,
   type,
   variant,
   className,
@@ -17,31 +18,31 @@ export const Typography = ({
   switch (type) {
     case 'body':
       return (
-        <Body variant={variant} className={`text-black-dark ${className}`}>
+        <Body variant={variant} className={`${className} text-black-dark`} color={color}>
           {children}
         </Body>
       )
     case 'caption':
       return (
-        <Caption variant={variant} className={`text-black-dark ${className}`}>
+        <Caption variant={variant} className={`${className} text-black-dark`} color={color}>
           {children}
         </Caption>
       )
     case 'heading':
       return (
-        <Heading variant={variant} className={`text-black-dark ${className}`}>
+        <Heading variant={variant} className={`${className} text-black-dark`} color={color}>
           {children}
         </Heading>
       )
     case 'subTitle':
       return (
-        <SubTitle variant={variant} className={`text-black-dark ${className}`}>
+        <SubTitle variant={variant} className={`${className} text-black-dark`} color={color}>
           {children}
         </SubTitle>
       )
     default:
       return (
-        <Body variant={'body1'} className={`text-black-dark ${className}`}>
+        <Body variant={'body1'} className={`${className} text-black-dark`} color={color}>
           {children}
         </Body>
       )

@@ -5,11 +5,12 @@ import { ReactComponent as HomeIcon } from './images/home.svg'
 import { ReactComponent as SeperatorIcon } from './images/seperator.svg'
 
 interface BreadCrumbProps {
+  color?: string
   crumbs: string[]
   onClick: (crumb: string) => void
 }
 
-export const Breadcrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
+export const Breadcrumb = ({ color, crumbs, onClick }: BreadCrumbProps) => {
   const isLast = useCallback(
     (index: number) => {
       return index === crumbs.length - 1
@@ -39,6 +40,7 @@ export const Breadcrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
                   type="body"
                   variant="body2"
                   className={isLast(index) ? 'text-black-dark' : 'text-[#D0D5DD]'}
+                  color={color}
                 >
                   {crumb}
                 </Typography>

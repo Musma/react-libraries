@@ -4,6 +4,7 @@ import { PropsWithChildren, useMemo } from 'react'
 import { SubTitleProps } from '../types'
 
 export const SubTitle = ({
+  color = '',
   className = '',
   variant = 'subTitle1',
   children,
@@ -15,5 +16,9 @@ export const SubTitle = ({
       subTitle3: 'text-[12px] font-semibold leading-[18px]',
     }[variant]
   }, [variant])
-  return <p className={classNames(style, className)}>{children}</p>
+  return (
+    <p className={classNames(style, className)} style={{ color }}>
+      {children}
+    </p>
+  )
 }

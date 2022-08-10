@@ -4,6 +4,7 @@ import { createElement, PropsWithChildren, useMemo } from 'react'
 import { HeadingProps } from '../types'
 
 export const Heading = ({
+  color = '',
   className = '',
   variant = 'h1',
   children,
@@ -23,6 +24,7 @@ export const Heading = ({
     variant,
     {
       className: classNames(style, className),
+      style: { color },
     },
     children,
   )

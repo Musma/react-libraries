@@ -5,6 +5,7 @@ import { BodyProps } from '../types'
 
 export const Body = ({
   variant = 'body1',
+  color = '',
   className = '',
   children,
 }: PropsWithChildren<BodyProps>) => {
@@ -16,5 +17,9 @@ export const Body = ({
     }[variant]
   }, [variant])
 
-  return <p className={classNames(style, className)}>{children}</p>
+  return (
+    <p className={classNames(style, className)} style={{ color }}>
+      {children}
+    </p>
+  )
 }

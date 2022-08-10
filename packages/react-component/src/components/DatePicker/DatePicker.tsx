@@ -7,6 +7,7 @@ import { Calendar } from './Calendar'
 import { DateInput } from './DateInput'
 
 interface CalendarProps {
+  color?: string
   label?: string
   size?: Size
   dateTime?: DateTime
@@ -14,6 +15,7 @@ interface CalendarProps {
 }
 
 export const DatePicker = ({
+  color = '',
   label = '',
   size = 'lg',
   dateTime,
@@ -45,6 +47,7 @@ export const DatePicker = ({
         {label}
       </Typography>
       <DateInput
+        color={color}
         size={size}
         handleSelectDay={handleSelectDay}
         toggleIsOpen={toggleIsOpen}

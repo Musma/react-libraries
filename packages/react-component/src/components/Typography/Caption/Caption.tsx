@@ -4,6 +4,7 @@ import { PropsWithChildren, useMemo } from 'react'
 import { CaptionProps } from '../types'
 
 export const Caption = ({
+  color = '',
   className = '',
   variant = 'caption1',
   children,
@@ -14,5 +15,9 @@ export const Caption = ({
       caption2: 'text-[10px] font-normal leading-[14px]',
     }[variant]
   }, [variant])
-  return <span className={classNames(style, className)}>{children}</span>
+  return (
+    <span className={classNames(style, className)} style={{ color }}>
+      {children}
+    </span>
+  )
 }
