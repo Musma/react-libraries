@@ -7,6 +7,7 @@ import { PaginationProps } from './types'
 
 interface Props {
   data: Data[]
+  className?: string
   columns: {
     id: string
     label: string
@@ -20,9 +21,9 @@ interface Props {
 
 type Data = Record<string, string | number | ReactNode>
 
-export const Table = ({ data, columns, pagination, onRowClick }: Props) => {
+export const Table = ({ data, className = '', columns, pagination, onRowClick }: Props) => {
   return (
-    <div className="grid grid-cols-1 gap-y-4">
+    <div className={`grid grid-cols-1 gap-y-4 ${className}`}>
       <table className="w-full border-collapse rounded border-hidden shadow-[0_0_0_1px_#D0D5DD]">
         <thead>
           <tr>
