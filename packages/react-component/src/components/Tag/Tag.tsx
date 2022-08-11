@@ -60,7 +60,11 @@ export const Tag = ({
         className,
       )}
     >
-      <Typography type="caption" variant={size === 'lg' ? 'caption1' : 'caption2'}>
+      <Typography
+        type="caption"
+        variant={size === 'lg' ? 'caption1' : 'caption2'}
+        color={color === 'white' ? '#242E40' : '#036DB7'}
+      >
         {label}
       </Typography>
       {onClose && (
