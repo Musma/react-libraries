@@ -1,14 +1,7 @@
-import { DateTime } from 'luxon'
-import { useState } from 'react'
-import { DatePicker } from './components'
-
 const App = () => {
-  const [date, setDate] = useState<DateTime | undefined>(undefined)
   return (
-    <div className="mt-[100px] flex justify-center gap-x-4 border">
-      <DatePicker dateTime={date} handleDatePick={(date) => setDate(date)} size="lg" />
-      <DatePicker dateTime={date} handleDatePick={(date) => setDate(date)} size="md" />
-      <DatePicker dateTime={date} handleDatePick={(date) => setDate(date)} size="sm" />
+    <div>
+      <h1>React-Comonents 테스트 페이지 입니다</h1>
     </div>
   )
 }
