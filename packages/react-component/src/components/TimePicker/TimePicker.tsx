@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { DateTime } from 'luxon'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ClockBody, ClockHeader, ClockType, getMeridiem, TextInput } from 'src/components'
 import { Size } from 'src/types'
 import { ReactComponent as LgClockIcon } from './images/clock_large.svg'
@@ -34,16 +34,15 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
     return 0
   }, [date, clockType])
 
-  const toggleClock = (show?: boolean) => {
-    setShowClock((prev) => show || !prev)
-    setClockType('hour')
-  }
+  const toggleShowClock = useCallback(() => {
+    setShowClock((prev) => !prev)
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (event: globalThis.MouseEvent) => {
       const target = event.target as HTMLDivElement
       if (ref && ref.current && !ref.current.contains(target)) {
-        toggleClock(false)
+        setShowClock(false)
       }
     }
 
@@ -64,9 +63,7 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
           size={size}
           value={date.toFormat('HH:mm ')}
           readOnly={true}
-          onClick={() => {
-            toggleClock()
-          }}
+          onClick={toggleShowClock}
           placeholder="00:00"
           inputClassName="cursor-pointer"
         />
