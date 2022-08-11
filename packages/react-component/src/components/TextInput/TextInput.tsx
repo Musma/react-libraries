@@ -11,11 +11,12 @@ import { ReactComponent as MdSearchIcon } from './images/search_md,sm.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 interface TextInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'className'> {
   size?: Size
   label: string
   type?: 'text' | 'password' | 'search'
   helperText?: { type: 'invalid' | 'valid'; message: string }
+  inputClassName?: string
   handleSearchClick?: () => void
 }
 export const TextInput = ({
@@ -23,6 +24,7 @@ export const TextInput = ({
   label,
   type = 'text',
   helperText,
+  inputClassName = '',
   ...rest
 }: TextInputProps) => {
   const inputStyle = useMemo(() => {
@@ -60,7 +62,7 @@ export const TextInput = ({
       >
         {label}
       </Typography>
-      <Input className={inputStyle} size={size} type={type} {...rest} />
+      <Input className={`${inputStyle} ${inputClassName}`} size={size} type={type} {...rest} />
       {helperText && (
         <Typography
           type="caption"
@@ -80,15 +82,18 @@ export const TextInput = ({
 interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size'> {
   size: Size
   type: 'text' | 'password' | 'search'
+  className?: string
 }
-const Input = ({ type, size, color, ...rest }: InputProps) => {
+const Input = ({ type, size, color, className, ...rest }: InputProps) => {
   switch (type) {
     case 'text':
-      return <input type="text" {...rest} style={{ color }} />
+      return <input type="text" className={className} style={{ color }} {...rest} />
     case 'password':
-      return <Password size={size} type="password" {...rest} style={{ color }} />
+      return (
+        <Password size={size} type="password" className={className} style={{ color }} {...rest} />
+      )
     case 'search':
-      return <Search size={size} type="text" {...rest} style={{ color }} />
+      return <Search size={size} type="text" className={className} style={{ color }} {...rest} />
   }
 }
 

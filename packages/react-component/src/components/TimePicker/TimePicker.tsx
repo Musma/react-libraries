@@ -34,12 +34,8 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
     return 0
   }, [date, clockType])
 
-  const toggleClock = (show: boolean) => {
-    if (show) {
-      setShowClock(true)
-      return
-    }
-    setShowClock(false)
+  const toggleClock = (show?: boolean) => {
+    setShowClock((prev) => show || !prev)
     setClockType('hour')
   }
 
@@ -62,7 +58,6 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
 
   return (
     <div className="relative flex items-center" ref={ref}>
-      {/* TODO: TextInput 완성되면 교체 필요 */}
       <div className={classNames('relative')}>
         <TextInput
           label={label}
@@ -70,9 +65,10 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
           value={date.toFormat('HH:mm ')}
           readOnly={true}
           onClick={() => {
-            toggleClock(true)
+            toggleClock()
           }}
           placeholder="00:00"
+          inputClassName="cursor-pointer"
         />
         <span
           className={classNames(
@@ -89,7 +85,10 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
       {showClock && (
         <div
           className={classNames(
-            'bg-white-main absolute top-[100%] z-10 mt-[4px] w-full rounded-md border border-[#BAC7D5] py-4 px-2',
+            'bg-white-main absolute top-[100%] z-10 mt-[4px] rounded-md border border-[#BAC7D5] py-4 px-2',
+            { 'w-[200px]': size === 'lg' },
+            { 'w-[180px]': size === 'md' },
+            { 'w-[148px]': size === 'sm' },
           )}
         >
           <ClockHeader
