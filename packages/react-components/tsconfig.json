@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "src/*": ["./src/*"]
+    },
+    "baseUrl": "./",
+    "jsxImportSource": "@emotion/react"
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
