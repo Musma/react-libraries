@@ -9,7 +9,9 @@
     "url": "https://github.com/Musma/react-libraries.git"
   },
   "main": "./dist/lib.es.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "./dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -23,6 +25,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"
