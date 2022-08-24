@@ -63,6 +63,7 @@ importers:
     specifiers:
       '@babel/core': ^7.18.10
       '@emotion/babel-plugin': ^11.10.0
+      '@emotion/css': ^11.10.0
       '@emotion/react': ^11.10.0
       '@emotion/styled': ^11.10.0
       '@types/react': ^18.0.17
@@ -78,6 +79,7 @@ importers:
       vite-plugin-dts: ^1.4.1
       vite-plugin-svgr: ^2.2.1
     dependencies:
+      '@emotion/css': 11.10.0_@babel+core@7.18.10
       '@emotion/react': 11.10.0_msmmgljd7hl2w2irtggflhmema
       '@emotion/styled': 11.10.0_5sec57kzpgkzooe4crua5kfcly
       normalize.css: 8.0.1
@@ -614,6 +616,22 @@ packages:
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
       stylis: 4.0.13
+    dev: false
+
+  /@emotion/css/11.10.0_@babel+core@7.18.10:
+    resolution: {integrity: sha512-dH9f+kSCucc8ilMg0MUA1AemabcyzYpe5EKX24F528PJjD7HyIY/VBNJHxfUdc8l400h2ncAjR6yEDu+DBj2cg==}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+    dependencies:
+      '@babel/core': 7.18.10
+      '@emotion/babel-plugin': 11.10.0_@babel+core@7.18.10
+      '@emotion/cache': 11.10.1
+      '@emotion/serialize': 1.1.0
+      '@emotion/sheet': 1.2.0
+      '@emotion/utils': 1.2.0
     dev: false
 
   /@emotion/hash/0.9.0:

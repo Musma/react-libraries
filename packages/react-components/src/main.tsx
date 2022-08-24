@@ -28,7 +28,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           font-family: 'Pretendard';
           margin: 0;
           min-width: 320px;
-          min-height: 100vh;
         }
       `}
     />

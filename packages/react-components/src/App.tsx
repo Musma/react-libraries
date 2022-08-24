@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import './App.css'
-import { Button } from 'src/components/Button'
+import { css } from '@emotion/css'
+import { Button } from './components/Button'
+import { Typography } from './components/Typography'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <Button label="test" variant="outlined" />
-      <Button label="test" variant="contained" />
-      <Button label="test" variant="danger" />
+    <div>
+      <Typography>Typography</Typography>
+      <Button className={css({ width: '100px' })} variant="outlined" label="test" />
     </div>
   )
 }
