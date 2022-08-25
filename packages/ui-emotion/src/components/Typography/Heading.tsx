@@ -5,13 +5,13 @@ import { HeadingProps } from './types'
 const headingCss = {
   h1: css({
     fontSize: '40px',
-    fontWeight: 'bold',
+    fontWeight: 700,
     lineHeight: '56px',
     letterSpacing: '-0.6px',
   }),
   h2: css({
     fontSize: '32px',
-    fontWeight: 'bold',
+    fontWeight: 700,
     lineHeight: '48px',
     letterSpacing: '-0.6px',
   }),

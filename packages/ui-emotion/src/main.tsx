@@ -2,7 +2,11 @@ import { css, Global, ThemeProvider } from '@emotion/react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import font1 from './fonts/Pretendard-Regular.subset.woff2'
+
+import regular from './fonts/Pretendard-Regular.subset.woff2'
+import semiBold from './fonts/Pretendard-SemiBold.subset.woff2'
+import bold from './fonts/Pretendard-Bold.subset.woff2'
+
 import { theme } from './styles/theme'
 import './reset.css'
 
@@ -19,9 +23,18 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         }
         @font-face {
           font-family: 'Pretendard';
-          font-style: normal;
           font-weight: 400;
-          src: local('Pretendard'), url(${font1}) format('woff2');
+          src: url(${regular}) format('woff2');
+        }
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 600;
+          src: url(${semiBold}) format('woff2');
+        }
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 700;
+          src: url(${bold}) format('woff2');
         }
         body {
           font-family: 'Pretendard';

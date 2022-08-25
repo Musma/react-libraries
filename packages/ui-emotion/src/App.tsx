@@ -15,7 +15,30 @@ function App() {
       })}
     >
       <Box title="typography">
-        <Typography>body type typography</Typography>
+        <Typography type="heading" variant="h1">
+          h1
+        </Typography>
+        <Typography type="heading" variant="h2">
+          h2
+        </Typography>
+        <Typography type="heading" variant="h3">
+          h3
+        </Typography>
+        <Typography type="heading" variant="h4">
+          h4
+        </Typography>
+        <Typography type="heading" variant="h5">
+          h5
+        </Typography>
+        <Typography type="heading" variant="h6">
+          h6
+        </Typography>
+        <Typography type="subTitle" variant="subTitle1">
+          subTitle1
+        </Typography>
+        <Typography type="subTitle" variant="subTitle2">
+          subTitle2
+        </Typography>
       </Box>
       <Box title="button">
         <Button className={css({ width: '100px' })} variant="danger" disabled={true} label="test" />
