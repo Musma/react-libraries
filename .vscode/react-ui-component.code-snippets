@@ -1,0 +1,20 @@
+{
+	"create react component": {
+		"scope": "typescriptreact",
+		"prefix": "uu",
+		"body": [
+		  "import { css, cx } from '@emotion/css'",
+		  "import { useTheme } from '@emotion/react'",
+		  "",
+		  "interface ${TM_FILENAME_BASE}Props {",
+		  "  temp: string",
+		  "}",
+		  "",
+		  "export const $TM_FILENAME_BASE = (props: ${TM_FILENAME_BASE}Props) => {",
+		  "  const theme = useTheme()",
+		  "  return <div />",
+		  "}"
+		],
+		"description": ""
+	  }
+}
