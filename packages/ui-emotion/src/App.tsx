@@ -1,5 +1,5 @@
 import { css } from '@emotion/css'
-import { Badge } from './components'
+import { Badge, BreadCrumb } from './components'
 import { Button } from './components/Button'
 import { Typography } from './components/Typography'
 
@@ -18,6 +18,12 @@ function App() {
         Badge
       </Typography>
       <Badge count={222}>badge</Badge>
+      <Typography type="heading" variant="h3">
+        BreadCrumb
+      </Typography>
+      <div>
+        <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
+      </div>
     </div>
   )
 }
