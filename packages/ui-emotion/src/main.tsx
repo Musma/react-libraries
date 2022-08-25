@@ -4,13 +4,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import font1 from './fonts/Pretendard-Regular.subset.woff2'
 import { theme } from './styles/theme'
-import normalize from 'normalize.css'
+import './reset.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Global
       styles={css`
-        ${normalize}
         :root {
           font-synthesis: none;
           text-rendering: optimizeLegibility;
