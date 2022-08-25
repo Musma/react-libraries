@@ -23,7 +23,13 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
       <ol className={css({ display: 'flex', alignItems: 'center' })}>
         {crumbs.map((crumb, index) => {
           if (index === 0) {
-            return <HomeIcon className={css({ cursor: 'pointer' })} fill={theme.color.blue.main} />
+            return (
+              <HomeIcon
+                key={crumb}
+                className={css({ cursor: 'pointer' })}
+                fill={theme.color.blue.main}
+              />
+            )
           }
           return (
             <li key={crumb} className={css({ display: 'flex', alignItems: 'center' })}>
