@@ -1,7 +1,5 @@
 import { css } from '@emotion/css'
-import { Badge, BreadCrumb } from './components'
-import { Button } from './components/Button'
-import { Typography } from './components/Typography'
+import { Badge, BreadCrumb, Tooltip, Button, Typography } from './components'
 
 function App() {
   return (
@@ -21,9 +19,11 @@ function App() {
       <Typography type="heading" variant="h3">
         BreadCrumb
       </Typography>
-      <div>
-        <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
-      </div>
+      <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
+      <Typography type="heading" variant="h3">
+        Tooltip
+      </Typography>
+      <Tooltip message="world">hello</Tooltip>
     </div>
   )
 }
