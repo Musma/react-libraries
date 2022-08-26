@@ -1,8 +1,9 @@
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { ReactNode } from 'react'
-import { Badge, BreadCrumb, Tooltip, Button, Typography } from './components'
+import { Badge, BreadCrumb, Tooltip, Button, Typography, Modal } from './components'
 import { Tag } from './components/Tag'
+import { ModalExample } from './examples/ModalExample'
 
 function App() {
   return (
@@ -59,6 +60,9 @@ function App() {
         <Tag label="sampleTag" variant="rectangle" onClose={() => undefined} />
         <Tag label="sampleTag" color="blue" onClose={() => undefined} />
         <Tag label="sampleTag" variant="rectangle" color="blue" onClose={() => undefined} />
+      </Box>
+      <Box title="modal">
+        <ModalExample />
       </Box>
     </div>
   )
