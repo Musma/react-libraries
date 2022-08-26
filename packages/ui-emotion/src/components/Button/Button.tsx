@@ -8,12 +8,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
   labelClassName?: string
   size?: Size | 'xs'
-  variant: 'outlined' | 'contained' | 'danger'
+  variant?: 'outlined' | 'contained' | 'danger'
   icon?: ReactNode
 }
 
 export const Button = ({
-  variant,
+  variant = 'contained',
   label,
   labelClassName = '',
   size = 'lg',
