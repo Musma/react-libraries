@@ -5,7 +5,7 @@ import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/styles/theme'
 import { Button } from '../Button'
 import { Typography } from '../Typography'
-import { ReactComponent as CloseIcon } from './images/close.svg'
+import { ReactComponent as CloseIcon } from './images/close.svg' // FIXME: import 순서 및 정렬해주세요.
 
 interface ModalProps {
   title: string
@@ -73,7 +73,7 @@ export const Modal = ({
   }, [modalManager, onClose])
 
   useKeyEsc(() => {
-    if (!closeOnEscPress || !backgroundRef.current) return
+    if (!closeOnEscPress || !backgroundRef.current) return // if문 한줄로 작성 X, 코딩컨벤션 따라서 해주세요
     if (modalManager && !modalManager.isTopModal(backgroundRef.current)) return
     handleModalClose()
   })

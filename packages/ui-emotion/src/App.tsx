@@ -75,6 +75,7 @@ function App() {
 
 export default App
 
+// FIXME: 따로 컴포넌트를 빼는게 나아보입니다.
 const Box = ({ children, title }: { children: ReactNode; title: string }) => {
   const theme = useTheme()
   return (

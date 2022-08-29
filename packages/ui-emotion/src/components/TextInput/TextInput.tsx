@@ -5,7 +5,7 @@ import { Typography } from 'src/components'
 import { Size } from 'src/styles/theme'
 
 import { InputFactory } from './InputFactory'
-
+// FIXME: import 순서 및 정렬해주세요.
 interface TextInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'className'> {
   type?: 'text' | 'password' | 'search'

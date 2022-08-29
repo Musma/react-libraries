@@ -2,13 +2,13 @@ import { css, cx } from '@emotion/css'
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { Size } from 'src/styles/theme'
 import { Typography } from 'src/components/Typography'
-import { useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react' // import 순서 및 정렬해주세요.
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
   labelClassName?: string
   size?: Size | 'xs'
-  variant?: 'outlined' | 'contained' | 'danger'
+  variant?: 'outlined' | 'contained' | 'danger' // variant Type을 따로 뺴서 사용하는게 좋을 것 같습니다.
   icon?: ReactNode
 }
 

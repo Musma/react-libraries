@@ -2,6 +2,8 @@ import { css, cx } from '@emotion/css'
 import { PropsWithChildren } from 'react'
 import { SubTitleProps } from './types'
 
+// FIXME: import 순서 및 정렬해주세요.
+
 const subTitleCss = {
   subTitle1: css({
     fontSize: '20px',

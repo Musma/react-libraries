@@ -2,6 +2,7 @@ import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { useMemo } from 'react'
 import { Typography } from '../Typography'
+// FIXME: import 순서 및 정렬해주세요.
 
 interface TooltipProps {
   children: React.ReactNode

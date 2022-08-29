@@ -3,7 +3,7 @@ import { useTheme } from '@emotion/react'
 import { useMemo } from 'react'
 import { Size } from 'src/styles/theme'
 import { Typography } from '../Typography'
-import { ReactComponent as CloseIcon } from './images/close.svg'
+import { ReactComponent as CloseIcon } from './images/close.svg' // import 순서 및 정렬해주세요.
 
 interface TagProps {
   /**

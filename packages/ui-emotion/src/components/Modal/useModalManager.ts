@@ -16,7 +16,7 @@ export function useModalManager() {
       setModals([...modals, modal])
     },
     [modals],
-  )
+  ) // FIXME: 함수간에 띄어쓰기 부탁드려요
   const pop = useCallback(() => {
     const newModals = [...modals]
     newModals.pop()

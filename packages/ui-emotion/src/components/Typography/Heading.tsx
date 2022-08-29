@@ -2,6 +2,8 @@ import { css, cx } from '@emotion/css'
 import { createElement, PropsWithChildren } from 'react'
 import { HeadingProps } from './types'
 
+// FIXME: import 순서 및 정렬해주세요.
+
 const headingCss = {
   h1: css({
     fontSize: '40px',

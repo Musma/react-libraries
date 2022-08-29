@@ -3,7 +3,7 @@ import { useTheme } from '@emotion/react'
 import { useCallback } from 'react'
 import { Typography } from '../Typography'
 import { ReactComponent as HomeIcon } from './images/home.svg'
-import { ReactComponent as SeperatorIcon } from './images/seperator.svg'
+import { ReactComponent as SeperatorIcon } from './images/seperator.svg' // import 순서 및 정렬해주세요.
 
 interface BreadCrumbProps {
   crumbs: string[]

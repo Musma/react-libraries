@@ -7,7 +7,8 @@ import { ReactComponent as ClosedEyeIcon } from './images/eye_opened.svg'
 import { ReactComponent as OpenEyeIconMdSmIcon } from './images/eye_closed_md,sm.svg'
 import { ReactComponent as ClosedEyeIconMdSmIcon } from './images/eye_opened_md,sm.svg'
 import { ReactComponent as LgSearchIcon } from './images/search.svg'
-import { ReactComponent as MdSearchIcon } from './images/search_md,sm.svg'
+import { ReactComponent as MdSearchIcon } from './images/search_md,sm.svg' // FIXME: 이미지 파일 네이밍이 조금 부자연스럽네요. small, large 이나 다르게 바꿔야 할 것 같습니다.
+// FIXME: import 순서 및 정렬해주세요.
 
 interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size'> {
   size: Size
