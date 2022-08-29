@@ -1,11 +1,12 @@
+import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import _ from 'lodash-es'
 import { useTheme } from '@emotion/react'
-import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+
 import { Size } from 'src/styles/theme'
-import { Typography } from '../Typography'
-import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
-import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'
+import { Typography } from 'src/components/Typography'
+import { ReactComponent as LgArrowICon } from 'src/components/Select/images/arrow_lg.svg'
+import { ReactComponent as MdArrowICon } from 'src/components/Select/images/arrow_md,sm.svg'
 
 interface SelectProps {
   id?: string
@@ -46,13 +47,17 @@ export const Select = ({
   // const [pointer, setPointer] = useState(0)
 
   const filteredOptions = useMemo(() => {
-    if (!text) return options
+    if (!text) {
+      return options
+    }
     return options.filter((option) => option.label.toLowerCase().includes(text.toLowerCase()))
   }, [options, text])
 
   const isValid = useCallback(
     (text: string) => {
-      if (!text) return
+      if (!text) {
+        return
+      }
       return options.find((option) => option.label === text)
     },
     [options],
@@ -104,7 +109,9 @@ export const Select = ({
   // )
 
   const handleDropdownClick = useCallback(() => {
-    if (!inputRef.current) return
+    if (!inputRef.current) {
+      return
+    }
     if (!isOpen) {
       setIsOpen(true)
       inputRef.current.focus()
@@ -122,8 +129,12 @@ export const Select = ({
 
   useEffect(() => {
     const selectOption = (e: MouseEvent) => {
-      if (!divRef.current) return
-      if (divRef.current.contains(e.target as Node)) return
+      if (!divRef.current) {
+        return
+      }
+      if (divRef.current.contains(e.target as Node)) {
+        return
+      }
       if (isValid(text)) {
         handleOptionSelect(text)
         return
@@ -159,7 +170,7 @@ export const Select = ({
     return css({
       color: theme.color.black.dark,
       border: `1px solid ${theme.color.gray.darker}`,
-      '&:placeholder': {
+      '&::placeholder': {
         color: theme.color.black.main,
       },
       '&:focus': {
@@ -244,7 +255,6 @@ const inputContainerCss = css({ position: 'relative', display: 'flex', alignItem
 
 const inputCss = {
   base: css({
-    boxSizing: 'border-box',
     cursor: 'pointer',
     borderRadius: '4px',
     paddingLeft: '8px',
@@ -266,7 +276,6 @@ const iconCss = {
 
 const ulCss = {
   base: css({
-    boxSizing: 'border-box',
     position: 'absolute',
     display: 'grid',
     maxHeight: '158px',
