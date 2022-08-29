@@ -1,7 +1,7 @@
-import { css, cx } from '@emotion/css'
 import { PropsWithChildren } from 'react'
-import { BodyProps } from './types'
-// FIXME: import 순서 및 정렬해주세요.
+import { css, cx } from '@emotion/css'
+
+import { BodyProps } from 'src/components/Typography/types'
 
 const bodyCss = {
   body1: css({

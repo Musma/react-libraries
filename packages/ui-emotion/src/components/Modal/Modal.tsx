@@ -1,11 +1,11 @@
+import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef } from 'react'
+
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/styles/theme'
-import { Button } from '../Button'
-import { Typography } from '../Typography'
-import { ReactComponent as CloseIcon } from './images/close.svg' // FIXME: import 순서 및 정렬해주세요.
+import { Button, Typography } from 'src/components'
+import { ReactComponent as CloseIcon } from 'src/components/Modal/images/close.svg'
 
 interface ModalProps {
   title: string
@@ -61,7 +61,9 @@ export const Modal = ({
     return size === 'md' ? 'lg' : 'md'
   }, [size])
   const backgroundColor = useMemo(() => {
-    if (!backgroundRef.current || !modalManager) return 'rgba(0, 0, 0, 0.3)'
+    if (!backgroundRef.current || !modalManager) {
+      return 'rgba(0, 0, 0, 0.3)'
+    }
     return modalManager.isNested(backgroundRef.current)
       ? 'rgba(0, 0, 0, 0.6)'
       : 'rgba(0, 0, 0, 0.3)'
@@ -73,23 +75,33 @@ export const Modal = ({
   }, [modalManager, onClose])
 
   useKeyEsc(() => {
-    if (!closeOnEscPress || !backgroundRef.current) return // if문 한줄로 작성 X, 코딩컨벤션 따라서 해주세요
-    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) return
+    if (!closeOnEscPress || !backgroundRef.current) {
+      return
+    }
+    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) {
+      return
+    }
     handleModalClose()
   })
 
   useOutsideListener(
     modalRef,
     () => {
-      if (!closeOnOutsideClick || !backgroundRef.current) return
-      if (!modalManager?.isTopModal(backgroundRef.current)) return
+      if (!closeOnOutsideClick || !backgroundRef.current) {
+        return
+      }
+      if (!modalManager?.isTopModal(backgroundRef.current)) {
+        return
+      }
       handleModalClose()
     },
     [modalManager],
   )
 
   useEffect(() => {
-    if (!isOpen || !backgroundRef.current) return
+    if (!isOpen || !backgroundRef.current) {
+      return
+    }
     modalManager?.add(backgroundRef.current)
   }, [isOpen, modalManager])
 

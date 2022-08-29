@@ -1,7 +1,8 @@
+import { PropsWithChildren, useMemo } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
+
 import { Typography } from 'src/components'
-import { PropsWithChildren, useMemo } from 'react' // import 순서 및 띄어쓰기 해주세요
 
 const badgeCss = {
   container: css({
@@ -28,7 +29,8 @@ const badgeCss = {
 }
 interface BadgeProps {
   count: number
-} // FIXME: 한칸 띄워주세요
+}
+
 export const Badge = ({ count, children }: PropsWithChildren<BadgeProps>) => {
   const theme = useTheme()
   const countNumber = useMemo(() => {

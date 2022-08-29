@@ -1,8 +1,7 @@
-import { css, cx } from '@emotion/css'
 import { PropsWithChildren } from 'react'
-import { SubTitleProps } from './types'
+import { css, cx } from '@emotion/css'
 
-// FIXME: import 순서 및 정렬해주세요.
+import { SubTitleProps } from 'src/components/Typography/types'
 
 const subTitleCss = {
   subTitle1: css({

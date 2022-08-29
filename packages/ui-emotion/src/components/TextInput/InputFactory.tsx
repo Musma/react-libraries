@@ -1,14 +1,14 @@
 import { css, cx } from '@emotion/css'
 import { useState, useCallback } from 'react'
+
 import { Size } from 'src/styles/theme'
-import { TextInputProps } from './types'
-import { ReactComponent as OpenEyeIcon } from './images/eye_closed.svg'
-import { ReactComponent as ClosedEyeIcon } from './images/eye_opened.svg'
-import { ReactComponent as OpenEyeIconMdSmIcon } from './images/eye_closed_md,sm.svg'
-import { ReactComponent as ClosedEyeIconMdSmIcon } from './images/eye_opened_md,sm.svg'
-import { ReactComponent as LgSearchIcon } from './images/search.svg'
-import { ReactComponent as MdSearchIcon } from './images/search_md,sm.svg' // FIXME: 이미지 파일 네이밍이 조금 부자연스럽네요. small, large 이나 다르게 바꿔야 할 것 같습니다.
-// FIXME: import 순서 및 정렬해주세요.
+import { TextInputProps } from 'src/components/TextInput/types'
+import { ReactComponent as LargeOpenEyeIcon } from './images/eye_closed_large.svg'
+import { ReactComponent as ClosedLargeEyeIcon } from './images/eye_opened_large.svg'
+import { ReactComponent as OpenSmallEyeIconIcon } from './images/eye_closed_small.svg'
+import { ReactComponent as ClosedSmallEyeIconIcon } from './images/eye_opened_small.svg'
+import { ReactComponent as LargeSearchIcon } from './images/search_large.svg'
+import { ReactComponent as SmallSearchIcon } from './images/search_small.svg'
 
 interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size'> {
   size: Size
@@ -53,8 +53,8 @@ const PasswordInput = ({ type, size, className, ...rest }: InputProps) => {
         className={cx(iconContainerCss.base, iconContainerCss.position[size])}
         onClick={toggleShowPassword}
       >
-        {showPassword && (size === 'lg' ? <OpenEyeIcon /> : <OpenEyeIconMdSmIcon />)}
-        {!showPassword && (size === 'lg' ? <ClosedEyeIcon /> : <ClosedEyeIconMdSmIcon />)}
+        {showPassword && (size === 'lg' ? <LargeOpenEyeIcon /> : <OpenSmallEyeIconIcon />)}
+        {!showPassword && (size === 'lg' ? <ClosedLargeEyeIcon /> : <ClosedSmallEyeIconIcon />)}
       </span>
     </div>
   )
@@ -71,7 +71,7 @@ const SearchInput = ({ handleSearchClick, size, className, ...rest }: InputProps
         className={cx(iconContainerCss.base, iconContainerCss.position[size])}
         onClick={handleSearchClick}
       >
-        {size === 'lg' ? <LgSearchIcon /> : <MdSearchIcon />}
+        {size === 'lg' ? <LargeSearchIcon /> : <SmallSearchIcon />}
       </span>
     </div>
   )

@@ -8,6 +8,7 @@ import { useCallback, useState } from 'react'
  */
 export function useModalManager() {
   const [modals, setModals] = useState<HTMLDivElement[]>([])
+
   const add = useCallback(
     (modal: HTMLDivElement) => {
       if (modals.indexOf(modal) !== -1) {
@@ -16,18 +17,21 @@ export function useModalManager() {
       setModals([...modals, modal])
     },
     [modals],
-  ) // FIXME: 함수간에 띄어쓰기 부탁드려요
+  )
+
   const pop = useCallback(() => {
     const newModals = [...modals]
     newModals.pop()
     setModals(newModals)
   }, [modals])
+
   const isTopModal = useCallback(
     (modal: HTMLDivElement) => {
       return modals.length > 0 && modals[modals.length - 1] === modal
     },
     [modals],
   )
+
   const isNested = useCallback(
     (modal: HTMLDivElement) => {
       return modals.indexOf(modal) > 0

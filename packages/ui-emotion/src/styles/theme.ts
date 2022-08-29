@@ -1,5 +1,4 @@
 export const color = {
-  // FIXME: JSX 사용하지 않는데 theme.tsx -> theme.ts로 바꾸는게 나아보입니다.
   blue: {
     lighter: '#F2F8FB',
     light: '#118EE5',

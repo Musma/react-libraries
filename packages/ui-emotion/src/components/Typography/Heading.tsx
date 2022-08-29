@@ -1,8 +1,7 @@
-import { css, cx } from '@emotion/css'
 import { createElement, PropsWithChildren } from 'react'
-import { HeadingProps } from './types'
+import { css, cx } from '@emotion/css'
 
-// FIXME: import 순서 및 정렬해주세요.
+import { HeadingProps } from 'src/components/Typography/types'
 
 const headingCss = {
   h1: css({
