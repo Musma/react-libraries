@@ -3,7 +3,7 @@ import { useTheme } from '@emotion/react'
 import { ReactNode } from 'react'
 import { Badge, BreadCrumb, Tooltip, Button, Typography, Modal } from './components'
 import { Tag } from './components/Tag'
-import { ModalExample } from './examples/ModalExample'
+import { ModalExample, TextInputExample } from './examples'
 
 function App() {
   return (
@@ -49,7 +49,9 @@ function App() {
         <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
       </Box>
       <Box title="tooltip">
-        <Tooltip message="world">hello</Tooltip>
+        <Tooltip message="I'm Tooltip!" width={100}>
+          hover me
+        </Tooltip>
       </Box>
       <Box title="tag">
         <Tag label="sampleTag" />
@@ -63,6 +65,9 @@ function App() {
       </Box>
       <Box title="modal">
         <ModalExample />
+      </Box>
+      <Box title="textInput">
+        <TextInputExample />
       </Box>
     </div>
   )
