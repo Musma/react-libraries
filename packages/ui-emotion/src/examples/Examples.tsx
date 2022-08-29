@@ -4,6 +4,7 @@ import { useTheme } from '@emotion/react'
 
 import { Badge, BreadCrumb, Tooltip, Button, Typography, Tag } from 'src/components'
 import { ModalExample, TextInputExample, SelectExample } from 'src/examples'
+import { Checkbox } from 'src/components/Checkbox'
 
 export const Examples = () => {
   return (
@@ -77,6 +78,11 @@ export const Examples = () => {
         </Box>
         <Box title="select">
           <SelectExample />
+        </Box>
+        <Box title="checkbox">
+          <Checkbox size="lg" />
+          <Checkbox size="md" />
+          <Checkbox size="sm" />
         </Box>
       </div>
     </div>
