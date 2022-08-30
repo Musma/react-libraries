@@ -2,9 +2,14 @@ import { ReactNode } from 'react'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Badge, BreadCrumb, Tooltip, Button, Typography, Tag } from 'src/components'
-import { ModalExample, TextInputExample, SelectExample, TimePickerExample } from 'src/examples'
-import { Checkbox } from 'src/components/Checkbox'
+import { Badge, BreadCrumb, Tooltip, Button, Typography, Tag, Checkbox } from 'src/components'
+import {
+  ModalExample,
+  TextInputExample,
+  SelectExample,
+  TimePickerExample,
+  DatePickerExample,
+} from 'src/examples'
 
 export const Examples = () => {
   return (
@@ -86,6 +91,9 @@ export const Examples = () => {
         </Box>
         <Box title="timePicker">
           <TimePickerExample />
+        </Box>
+        <Box title="datePicker">
+          <DatePickerExample />
         </Box>
       </div>
     </div>
