@@ -23,7 +23,7 @@ export const Examples = () => {
           gridTemplateColumns: 'repeat(4, 400px)',
         })}
       >
-        <Box title="typography">
+        <Box title="Typography">
           <Typography type="heading" variant="h1">
             h1
           </Typography>
@@ -49,7 +49,7 @@ export const Examples = () => {
             subTitle2
           </Typography>
         </Box>
-        <Box title="button">
+        <Box title="Button">
           <Button
             className={css({ width: '100px' })}
             variant="danger"
@@ -57,16 +57,16 @@ export const Examples = () => {
             label="test"
           />
         </Box>
-        <Box title="badge">{<Badge count={222}>badge</Badge>}</Box>
-        <Box title="breadcrumb">
+        <Box title="Badge">{<Badge count={222}>badge</Badge>}</Box>
+        <Box title="Breadcrumb">
           <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
         </Box>
-        <Box title="tooltip">
+        <Box title="Tooltip">
           <Tooltip message="I'm Tooltip!" width={100}>
             hover me
           </Tooltip>
         </Box>
-        <Box title="tag">
+        <Box title="Tag">
           <Tag label="sampleTag" />
           <Tag label="sampleTag" variant="rectangle" />
           <Tag label="sampleTag" color="blue" />
@@ -76,24 +76,24 @@ export const Examples = () => {
           <Tag label="sampleTag" color="blue" onClose={() => undefined} />
           <Tag label="sampleTag" variant="rectangle" color="blue" onClose={() => undefined} />
         </Box>
-        <Box title="modal">
+        <Box title="Modal">
           <ModalExample />
         </Box>
-        <Box title="textInput">
+        <Box title="TextInput">
           <TextInputExample />
         </Box>
-        <Box title="select">
+        <Box title="Select">
           <SelectExample />
         </Box>
-        <Box title="checkbox">
+        <Box title="Checkbox">
           <Checkbox size="lg" />
           <Checkbox size="md" />
           <Checkbox size="sm" />
         </Box>
-        <Box title="timePicker">
+        <Box title="TimePicker">
           <TimePickerExample />
         </Box>
-        <Box title="datePicker">
+        <Box title="DatePicker">
           <DatePickerExample />
         </Box>
         <Box title="Divider">
