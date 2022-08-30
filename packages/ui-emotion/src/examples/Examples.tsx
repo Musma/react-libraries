@@ -9,6 +9,7 @@ import {
   SelectExample,
   TimePickerExample,
   DatePickerExample,
+  DividerExample,
 } from 'src/examples'
 
 export const Examples = () => {
@@ -94,6 +95,9 @@ export const Examples = () => {
         </Box>
         <Box title="datePicker">
           <DatePickerExample />
+        </Box>
+        <Box title="Divider">
+          <DividerExample />
         </Box>
       </div>
     </div>
