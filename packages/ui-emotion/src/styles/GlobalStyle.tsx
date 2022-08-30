@@ -42,6 +42,7 @@ export const GlobalStyle = () => {
           font-smoothing: antialiased;
           font-family: 'Pretendard';
           margin: 0;
+          line-height: 1;
         }
       `}
     />
