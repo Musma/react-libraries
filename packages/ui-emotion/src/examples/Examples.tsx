@@ -2,7 +2,16 @@ import { ReactNode } from 'react'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Badge, BreadCrumb, Tooltip, Button, Typography, Tag, Checkbox } from 'src/components'
+import {
+  Badge,
+  BreadCrumb,
+  Tooltip,
+  Button,
+  Typography,
+  Tag,
+  Checkbox,
+  IconButton,
+} from 'src/components'
 import {
   ModalExample,
   TextInputExample,
@@ -98,6 +107,9 @@ export const Examples = () => {
         </Box>
         <Box title="Divider">
           <DividerExample />
+        </Box>
+        <Box title="IconButton">
+          <IconButton />
         </Box>
       </div>
     </div>
