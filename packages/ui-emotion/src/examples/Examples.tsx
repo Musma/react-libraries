@@ -3,7 +3,7 @@ import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Badge, BreadCrumb, Tooltip, Button, Typography, Tag } from 'src/components'
-import { ModalExample, TextInputExample, SelectExample } from 'src/examples'
+import { ModalExample, TextInputExample, SelectExample, TimePickerExample } from 'src/examples'
 import { Checkbox } from 'src/components/Checkbox'
 
 export const Examples = () => {
@@ -83,6 +83,9 @@ export const Examples = () => {
           <Checkbox size="lg" />
           <Checkbox size="md" />
           <Checkbox size="sm" />
+        </Box>
+        <Box title="timePicker">
+          <TimePickerExample />
         </Box>
       </div>
     </div>
