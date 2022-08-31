@@ -19,6 +19,7 @@ import {
   TimePickerExample,
   DatePickerExample,
   DividerExample,
+  ImageUploaderExample,
 } from 'src/examples'
 
 export const Examples = () => {
@@ -110,6 +111,9 @@ export const Examples = () => {
         </Box>
         <Box title="IconButton">
           <IconButton />
+        </Box>
+        <Box title="ImageUploader">
+          <ImageUploaderExample />
         </Box>
       </div>
     </div>
