@@ -22,6 +22,7 @@ import {
   DividerExample,
   ImageUploaderExample,
   RadioButtonExample,
+  DataTableExample,
 } from 'src/examples'
 
 export const Examples = () => {
@@ -122,6 +123,9 @@ export const Examples = () => {
         </Box>
         <Box title="Spinner">
           <Spinner />
+        </Box>
+        <Box title="DataTable">
+          <DataTableExample />
         </Box>
       </div>
     </div>
