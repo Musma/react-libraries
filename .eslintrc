@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": ["@musma"],
   "rules": {
     "import/order": "off"

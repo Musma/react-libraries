@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@changesets/changelog-github': ^0.4.6
       '@changesets/cli': ^2.24.4
+      '@musma/eslint-config-react': workspace:*
       '@types/node': ^18.7.14
       '@types/react': ^18.0.18
       '@types/react-dom': ^18.0.6
@@ -19,6 +20,7 @@ importers:
     devDependencies:
       '@changesets/changelog-github': 0.4.6
       '@changesets/cli': 2.24.4
+      '@musma/eslint-config-react': link:packages/eslint-config-react
       '@types/node': 18.7.14
       '@types/react': 18.0.18
       '@types/react-dom': 18.0.6

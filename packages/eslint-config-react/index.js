@@ -8,7 +8,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'prettier',
+    "plugin:prettier/recommended",
   ],
   plugins: ['unused-imports'],
   settings: {
