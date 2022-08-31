@@ -44,6 +44,7 @@ module.exports = {
             position: 'before',
           },
         ],
+        pathGroupsExcludedImportTypes: ["react"],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
@@ -51,7 +52,6 @@ module.exports = {
         },
       },
     ],
-    "pathGroupsExcludedImportTypes": ["react"],
     'import/no-unresolved': 'off',
     'import/no-named-as-default-member': 'off',
     'import/no-named-as-default': 'off',
