@@ -11,6 +11,7 @@ import {
   Tag,
   Checkbox,
   IconButton,
+  Spinner,
 } from 'src/components'
 import {
   ModalExample,
@@ -118,6 +119,9 @@ export const Examples = () => {
         </Box>
         <Box title="RadioButton">
           <RadioButtonExample />
+        </Box>
+        <Box title="Spinner">
+          <Spinner />
         </Box>
       </div>
     </div>
