@@ -1,6 +1,3 @@
 {
-  "extends": ["@musma"],
-  "rules": {
-    "import/order": "off"
-  }
+  "extends": ["@musma/eslint-config-react"]
 }
