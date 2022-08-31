@@ -1,0 +1,19 @@
+{
+    "Create example code": {
+    "scope": "typescriptreact",
+    "prefix": "ex",
+    "body": [
+      "",
+      "import { ${TM_FILENAME_BASE/Example//} } from 'src/components'",
+      "",
+      "export const $TM_FILENAME_BASE = () => {",
+      "",
+      "  return (",
+      "    <${TM_FILENAME_BASE/Example//} />",
+      "  )",
+      "}",
+      ""
+    ],
+    "description": ""
+  }
+}

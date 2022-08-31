@@ -7,7 +7,6 @@
 		  "import { useTheme } from '@emotion/react'",
 		  "",
 		  "interface ${TM_FILENAME_BASE}Props {",
-		  "  temp: string",
 		  "}",
 		  "",
 		  "export const $TM_FILENAME_BASE = (props: ${TM_FILENAME_BASE}Props) => {",
