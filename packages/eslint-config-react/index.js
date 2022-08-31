@@ -8,7 +8,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    "plugin:prettier/recommended",
+    'plugin:prettier/recommended',
   ],
   plugins: ['unused-imports'],
   settings: {
@@ -36,6 +36,7 @@ module.exports = {
           ['parent', 'sibling', 'index'],
           'type',
           'unknown',
+          'object',
         ],
         pathGroups: [
           {
@@ -43,8 +44,12 @@ module.exports = {
             group: 'external',
             position: 'before',
           },
+          {
+            pattern: 'src/**',
+            group: 'internal',
+          },
         ],
-        pathGroupsExcludedImportTypes: ["react"],
+        pathGroupsExcludedImportTypes: ['react'],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
