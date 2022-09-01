@@ -42,7 +42,11 @@ export const GlobalStyle = () => {
           font-smoothing: antialiased;
           font-family: 'Pretendard';
           margin: 0;
+          padding: 0;
           line-height: 1;
+        }
+        li {
+          list-style-type:none;
         }
       `}
     />

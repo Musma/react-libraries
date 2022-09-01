@@ -24,6 +24,7 @@ import {
   RadioButtonExample,
   DataTableExample,
 } from 'src/examples'
+import { TabsExample } from './TabsExample'
 
 export const Examples = () => {
   return (
@@ -63,6 +64,20 @@ export const Examples = () => {
           </Typography>
         </Box>
         <Box title="Button">
+        <Button
+            className={css({ width: '100px' })}
+            label="test"
+          />
+          <Button
+            className={css({ width: '100px' })}
+            variant='outlined'
+            label="test"
+          />
+          <Button
+            className={css({ width: '100px' })}
+            variant='danger'
+            label="test"
+          />
           <Button
             className={css({ width: '100px' })}
             variant="danger"
@@ -126,6 +141,9 @@ export const Examples = () => {
         </Box>
         <Box title="DataTable">
           <DataTableExample />
+        </Box>
+        <Box title='Tabs'>
+          <TabsExample />
         </Box>
       </div>
     </div>
