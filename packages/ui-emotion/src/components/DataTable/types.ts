@@ -1,8 +1,9 @@
 export interface PaginationProps {
-  dataLimit: number
+  dataLimit: LimitType
   page: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
   totalData: number
   onPageChange: (page: number) => void
-  onDataLimitChange: (dataLimit: number) => void
+  onDataLimitChange: (dataLimit: LimitType) => void
 }
+
+export type LimitType = 5 | 10 | 15 | 20 | 25

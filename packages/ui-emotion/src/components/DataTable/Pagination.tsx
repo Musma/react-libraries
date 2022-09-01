@@ -1,25 +1,22 @@
 import { css, cx } from '@emotion/css'
 import { useCallback, useMemo, useState } from 'react'
-import { Select } from '../Select'
+import { useTheme } from '@emotion/react'
 
-import { Typography, PaginationProps } from 'src/components'
+import { Typography, PaginationProps, Select, LimitType } from 'src/components'
 import { ReactComponent as ArrowFirstIcon } from './images/arrow_first.svg'
 import { ReactComponent as ArrowLastIcon } from './images/arrow_last.svg'
 import { ReactComponent as ArrowLeftIcon } from './images/arrow_left.svg'
 import { ReactComponent as ArrowRightIcon } from './images/arrow_right.svg'
-import { useTheme } from '@emotion/react'
 
 export const Pagination = ({
   dataLimit,
   totalData,
   page,
-  setPage,
   onPageChange,
   onDataLimitChange,
 }: PaginationProps) => {
   const theme = useTheme()
   const pageCount = 5
-  const [limit, setLimit] = useState(dataLimit)
   const [currentPage, setCurrentPage] = useState(page)
   const [pageGroup, setPageGroup] = useState(1)
 
@@ -51,12 +48,11 @@ export const Pagination = ({
 
   const handleLimitChange = useCallback(
     (value: number) => {
-      setLimit(value)
-      onDataLimitChange(value)
+      onDataLimitChange(value as LimitType)
       setCurrentPage(1)
-      setPage(1)
+      onPageChange(1)
     },
-    [onDataLimitChange, setPage],
+    [onDataLimitChange],
   )
 
   const isCurrentPage = useCallback(
@@ -66,7 +62,7 @@ export const Pagination = ({
     [currentPage],
   )
 
-  const getPage = useCallback(
+  const getPageNumber = useCallback(
     (index: number) => {
       return getLeftEndPage(getRightEndPage(pageGroup)) + index
     },
@@ -77,36 +73,35 @@ export const Pagination = ({
     (page: number) => {
       onPageChange(page)
       setCurrentPage(page)
-      setPage(page)
     },
-    [onPageChange, setPage],
+    [onPageChange],
   )
 
   const handlePrevClick = useCallback(() => {
     if (pageGroup === 1) return
     setPageGroup(pageGroup - 1)
     setCurrentPage(getLeftEndPage(getRightEndPage(pageGroup - 1)))
-    setPage(pageGroup - 1)
-  }, [getLeftEndPage, getRightEndPage, pageGroup, setPage])
+    onPageChange(getLeftEndPage(getRightEndPage(pageGroup - 1)))
+  }, [getLeftEndPage, getRightEndPage, pageGroup])
 
   const handleNextClick = useCallback(() => {
     if (pageGroup === lastGroup) return
     setPageGroup(pageGroup + 1)
     setCurrentPage(getRightEndPage(pageGroup + 1))
-    setPage(pageGroup + 1)
-  }, [getRightEndPage, lastGroup, pageGroup, setPage])
+    onPageChange(getRightEndPage(pageGroup + 1))
+  }, [getRightEndPage, lastGroup, pageGroup])
 
   const handleFirstClick = useCallback(() => {
     setPageGroup(1)
     setCurrentPage(1)
-    setPage(1)
-  }, [setPage])
+    onPageChange(1)
+  }, [])
 
   const handleLastClick = useCallback(() => {
     setPageGroup(lastGroup)
     setCurrentPage(totalPage)
-    setPage(totalPage)
-  }, [lastGroup, setPage, totalPage])
+    onPageChange(totalPage)
+  }, [lastGroup, totalPage])
 
   return (
     <div className={containerCss}>
@@ -115,7 +110,7 @@ export const Pagination = ({
       </Typography>
       <Select
         label=""
-        value={String(limit)}
+        value={String(dataLimit)}
         options={[
           { label: '5', value: '5' },
           { label: '10', value: '10' },
@@ -141,17 +136,17 @@ export const Pagination = ({
           <span
             key={index}
             className={cx(pageNumberCss, {
-              [css({ backgroundColor: theme.color.blue.main })]: isCurrentPage(getPage(index)),
+              [css({ backgroundColor: theme.color.blue.main })]: isCurrentPage(getPageNumber(index)),
             })}
-            onClick={() => handlePageChange(getPage(index))}
+            onClick={() => handlePageChange(getPageNumber(index))}
           >
             <Typography
               type="caption"
               className={cx({
-                [css({ color: theme.color.white.main })]: isCurrentPage(getPage(index)),
+                [css({ color: theme.color.white.main })]: isCurrentPage(getPageNumber(index)),
               })}
             >
-              {getPage(index)}
+              {getPageNumber(index)}
             </Typography>
           </span>
         )
