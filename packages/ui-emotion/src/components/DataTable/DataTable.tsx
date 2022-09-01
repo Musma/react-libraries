@@ -92,10 +92,10 @@ const tableCss = css({
 })
 const thCss = css({
   height: '40px',
-  '&:first': {
+  '&:first-child': {
     borderTopLeftRadius: '4px',
   },
-  '&:last': {
+  '&:last-child': {
     borderTopRightRadius: '4px',
   },
 })
