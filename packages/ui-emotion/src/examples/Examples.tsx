@@ -12,6 +12,7 @@ import {
   Checkbox,
   IconButton,
   Spinner,
+  ToggleButton,
 } from 'src/components'
 import {
   ModalExample,
@@ -144,6 +145,14 @@ export const Examples = () => {
         </Box>
         <Box title='Tabs'>
           <TabsExample />
+        </Box>
+        <Box title='ToggleButton'>
+          <ToggleButton/>
+          <ToggleButton size='md'/>
+          <ToggleButton size='sm'/>
+          <ToggleButton disabled={true}/>
+          <ToggleButton size='md' disabled={true}/>
+          <ToggleButton size='sm'disabled={true}/>
         </Box>
       </div>
     </div>
