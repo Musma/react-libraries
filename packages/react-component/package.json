@@ -1,12 +1,13 @@
 {
-  "name": "@musma/ui-emotion",
-  "version": "0.0.0",
+  "name": "@musma/react-component",
+  "version": "0.0.1",
   "description": "React UI component library",
   "author": "Jason (jinsoo1391@musma.net)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Musma/react-libraries.git"
+    "url": "https://github.com/Musma/react-libraries.git",
+    "directory": "packages/react-component"
   },
   "main": "./dist/lib.es.js",
   "files": [
