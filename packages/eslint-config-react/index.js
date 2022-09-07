@@ -67,6 +67,7 @@ module.exports = {
       'warn',
       { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'prettier/prettier': [
       'error',
       {
