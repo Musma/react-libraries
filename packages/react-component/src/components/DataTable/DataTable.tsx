@@ -1,6 +1,7 @@
+import { ReactNode } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import { ReactNode } from 'react'
 
 import { Typography, Pagination, PaginationProps } from 'src/components'
 
