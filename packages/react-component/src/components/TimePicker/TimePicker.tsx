@@ -1,13 +1,14 @@
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
-import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
 
-import { Size } from 'src/styles/theme'
 import { TextInput } from 'src/components'
 import { ClockBody, ClockHeader, ClockType, getMeridiem } from 'src/components/TimePicker'
 import { ReactComponent as LgClockIcon } from 'src/components/TimePicker/images/clock_large.svg'
 import { ReactComponent as MdClockIcon } from 'src/components/TimePicker/images/clock_md,sm.svg'
+import { Size } from 'src/styles/theme'
 
 interface TimePickerProps {
   label: string
@@ -68,7 +69,7 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
           value={date.toFormat('HH:mm')}
           readOnly={true}
           placeholder="00:00"
-          inputClassName={css({ cursor: 'pointer' })}
+          className={css({ cursor: 'pointer' })}
         />
         <span className={cx(iconContainerCss.base, iconContainerCss.position[size])}>
           {size === 'lg' ? <LgClockIcon /> : <MdClockIcon />}
