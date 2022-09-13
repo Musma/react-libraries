@@ -63,7 +63,7 @@ importers:
       '@babel/core': ^7.19.0
       '@emotion/babel-plugin': ^11.10.2
       '@emotion/css': ^11.10.0
-      '@emotion/react': ^11.10.4
+      '@emotion/react': ^11.7.1
       '@emotion/styled': ^11.10.4
       '@types/lodash-es': ^4.17.6
       '@types/luxon': ^3.0.1
