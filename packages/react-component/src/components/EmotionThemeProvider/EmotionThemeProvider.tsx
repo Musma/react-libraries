@@ -1,18 +1,12 @@
-import { ReactNode, useMemo } from 'react'
+import { ReactNode } from 'react'
 
 import { Theme, ThemeContext, ThemeProvider, ThemeProviderProps, useTheme } from '@emotion/react'
 
 import { theme as DefaultTheme } from 'src/styles/theme'
 
 export const EmotionThemeProvider = ({ theme, children }: ThemeProviderProps) => {
-  const setTheme = useMemo(() => {
-    if (isEmptyObject(theme)) {
-      return DefaultTheme
-    }
-    return theme
-  }, [theme])
   return (
-    <ThemeProvider theme={setTheme}>
+    <ThemeProvider theme={isEmptyObject(theme) ? DefaultTheme : theme}>
       <EmotionThemeContext>{children}</EmotionThemeContext>
     </ThemeProvider>
   )
