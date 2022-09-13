@@ -1,11 +1,13 @@
-import { css, cx } from '@emotion/css'
 import { useState, useCallback } from 'react'
 
-import { Size } from 'src/styles/theme'
+import { css, cx } from '@emotion/css'
+
 import { TextInputProps } from 'src/components/TextInput/types'
+import { Size } from 'src/styles/theme'
+
 import { ReactComponent as LargeOpenEyeIcon } from './images/eye_closed_large.svg'
-import { ReactComponent as ClosedLargeEyeIcon } from './images/eye_opened_large.svg'
 import { ReactComponent as OpenSmallEyeIconIcon } from './images/eye_closed_small.svg'
+import { ReactComponent as ClosedLargeEyeIcon } from './images/eye_opened_large.svg'
 import { ReactComponent as ClosedSmallEyeIconIcon } from './images/eye_opened_small.svg'
 import { ReactComponent as LargeSearchIcon } from './images/search_large.svg'
 import { ReactComponent as SmallSearchIcon } from './images/search_small.svg'
