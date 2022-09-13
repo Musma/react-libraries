@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
@@ -25,6 +26,7 @@ import {
   RadioButtonExample,
   DataTableExample,
 } from 'src/examples'
+
 import { TabsExample } from './TabsExample'
 
 export const Examples = () => {
@@ -65,26 +67,7 @@ export const Examples = () => {
           </Typography>
         </Box>
         <Box title="Button">
-        <Button
-            className={css({ width: '100px' })}
-            label="test"
-          />
-          <Button
-            className={css({ width: '100px' })}
-            variant='outlined'
-            label="test"
-          />
-          <Button
-            className={css({ width: '100px' })}
-            variant='danger'
-            label="test"
-          />
-          <Button
-            className={css({ width: '100px' })}
-            variant="danger"
-            disabled={true}
-            label="test"
-          />
+          <Button fullWidth={true} label="test" size="lg" />
         </Box>
         <Box title="Badge">{<Badge count={222}>badge</Badge>}</Box>
         <Box title="Breadcrumb">
@@ -143,16 +126,16 @@ export const Examples = () => {
         <Box title="DataTable">
           <DataTableExample />
         </Box>
-        <Box title='Tabs'>
+        <Box title="Tabs">
           <TabsExample />
         </Box>
-        <Box title='ToggleButton'>
-          <ToggleButton/>
-          <ToggleButton size='md'/>
-          <ToggleButton size='sm'/>
-          <ToggleButton disabled={true}/>
-          <ToggleButton size='md' disabled={true}/>
-          <ToggleButton size='sm'disabled={true}/>
+        <Box title="ToggleButton">
+          <ToggleButton />
+          <ToggleButton size="md" />
+          <ToggleButton size="sm" />
+          <ToggleButton disabled={true} />
+          <ToggleButton size="md" disabled={true} />
+          <ToggleButton size="sm" disabled={true} />
         </Box>
       </div>
     </div>

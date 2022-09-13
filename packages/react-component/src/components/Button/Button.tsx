@@ -1,12 +1,15 @@
+import { ButtonHTMLAttributes, ReactNode, useMemo } from 'react'
+
 import { css, cx } from '@emotion/css'
-import { ButtonHTMLAttributes, ReactNode } from 'react'
-import { Size } from 'src/styles/theme'
-import { Typography } from 'src/components/Typography'
 import { useTheme } from '@emotion/react' // import 순서 및 정렬해주세요.
+
+import { Typography } from 'src/components/Typography'
+import { Size } from 'src/styles/theme'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
   labelClassName?: string
+  fullWidth?: boolean
   size?: Size | 'xs'
   variant?: 'outlined' | 'contained' | 'danger' // variant Type을 따로 뺴서 사용하는게 좋을 것 같습니다.
   icon?: ReactNode
@@ -15,6 +18,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   variant = 'contained',
   label,
+  fullWidth = false,
   labelClassName = '',
   size = 'lg',
   className,
@@ -24,7 +28,7 @@ export const Button = ({
   const theme = useTheme()
   if (disabled) {
     return (
-      <DisabledButton className={className} {...rest}>
+      <DisabledButton fullWidth={fullWidth} className={className} size={size} {...rest}>
         <SizedLabel
           label={label}
           className={cx(css({ color: theme.color.gray.main }), labelClassName)}
@@ -36,7 +40,7 @@ export const Button = ({
   switch (variant) {
     case 'contained':
       return (
-        <ContainedButton className={className} {...rest}>
+        <ContainedButton fullWidth={fullWidth} className={className} size={size} {...rest}>
           <SizedLabel
             label={label}
             className={cx(css({ color: theme.color.white.main }), labelClassName)}
@@ -46,7 +50,7 @@ export const Button = ({
       )
     case 'danger':
       return (
-        <DangerButton className={className} {...rest}>
+        <DangerButton fullWidth={fullWidth} className={className} size={size} {...rest}>
           <SizedLabel
             label={label}
             className={cx(css({ color: theme.color.white.main }), labelClassName)}
@@ -56,7 +60,7 @@ export const Button = ({
       )
     case 'outlined':
       return (
-        <OutlinedButton className={className} {...rest}>
+        <OutlinedButton fullWidth={fullWidth} className={className} size={size} {...rest}>
           <SizedLabel
             label={label}
             className={cx(css({ color: theme.color.blue.main }), labelClassName)}
@@ -87,21 +91,21 @@ const SizedLabel = ({ label, className, size }: SizedLabelProps) => {
   )
 }
 
-const getheight = (size: Size | 'xs') => {
-  return {
-    lg: 32,
-    md: 28,
-    sm: 26,
-    xs: 24,
-  }[size]
-}
-
 type BaseButtonProps = Omit<ButtonProps, 'label' | 'variant'>
 
-const ButtonBase = ({ children, className, size = 'lg', ...rest }: BaseButtonProps) => {
+const ButtonBase = ({ children, fullWidth, className, size = 'lg', ...rest }: BaseButtonProps) => {
+  const height = useMemo(() => {
+    return {
+      lg: '32px',
+      md: '28px',
+      sm: '26px',
+      xs: '24px',
+    }[size]
+  }, [size])
   return (
     <button
       className={cx(
+        { [css({ width: '100%' })]: fullWidth },
         css({
           appearance: 'none',
           border: 'solid 1px transparent',
@@ -113,7 +117,7 @@ const ButtonBase = ({ children, className, size = 'lg', ...rest }: BaseButtonPro
           justifyContent: 'center',
           alignItems: 'center',
           cursor: 'pointer',
-          height: getheight(size),
+          height,
         }),
         className,
       )}
@@ -124,10 +128,11 @@ const ButtonBase = ({ children, className, size = 'lg', ...rest }: BaseButtonPro
   )
 }
 
-const OutlinedButton = ({ children, className, ...rest }: BaseButtonProps) => {
+const OutlinedButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      size={size}
       className={cx(
         css({
           backgroundColor: theme.color.white.main,
@@ -148,10 +153,11 @@ const OutlinedButton = ({ children, className, ...rest }: BaseButtonProps) => {
   )
 }
 
-const ContainedButton = ({ children, className, ...rest }: BaseButtonProps) => {
+const ContainedButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      size={size}
       className={cx(
         css({
           backgroundColor: theme.color.blue.main,
@@ -171,10 +177,11 @@ const ContainedButton = ({ children, className, ...rest }: BaseButtonProps) => {
   )
 }
 
-const DangerButton = ({ children, className, ...rest }: BaseButtonProps) => {
+const DangerButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      size={size}
       className={cx(
         css({
           backgroundColor: theme.color.red.main,
@@ -194,10 +201,11 @@ const DangerButton = ({ children, className, ...rest }: BaseButtonProps) => {
   )
 }
 
-const DisabledButton = ({ children, className, ...rest }: BaseButtonProps) => {
+const DisabledButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      size={size}
       className={cx(
         css({
           backgroundColor: theme.color.white.lighter,
