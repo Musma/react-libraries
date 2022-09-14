@@ -29,9 +29,11 @@ export const IconButton = ({
       base: css({
         cursor: 'pointer',
         borderRadius: '4px',
-        padding: '8px',
         border: 0,
         lineHeight: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }),
       variants: {
         outlined: css({
