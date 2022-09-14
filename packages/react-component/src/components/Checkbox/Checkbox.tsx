@@ -1,16 +1,17 @@
-import { InputHTMLAttributes, useCallback, useMemo } from 'react'
+import { InputHTMLAttributes, useMemo } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import _ from 'lodash-es'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles/theme'
 import DoneDisabledLgIcon from 'src/components/Checkbox/images/done_disabled_lg.svg'
 import DoneDisabledMdIcon from 'src/components/Checkbox/images/done_disabled_md.svg'
 import DoneDisabledSmIcon from 'src/components/Checkbox/images/done_disabled_sm.svg'
 import DoneLgIcon from 'src/components/Checkbox/images/done_lg.svg'
 import DoneMdIcon from 'src/components/Checkbox/images/done_md.svg'
 import DoneSmIcon from 'src/components/Checkbox/images/done_sm.svg'
+import { Size } from 'src/styles/theme'
 
 interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
