@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { DateTime } from 'luxon'
 
-import { Size, theme } from 'src/styles/theme'
 import { ReactComponent as LgCalendarIcon } from 'src/components/DatePicker/images/calendar_lg.svg'
 import { ReactComponent as SmCalendarIcon } from 'src/components/DatePicker/images/calendar_sm.svg'
+import { Size, theme } from 'src/styles/theme'
 
 interface DateInputProps {
   size: Size
@@ -91,7 +92,6 @@ export const DateInput = ({
   return (
     <div
       className={css({
-        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         cursor: 'pointer',
@@ -103,78 +103,79 @@ export const DateInput = ({
           [css({ border: `1px solid ${theme.color.red.main}` })]: isError,
         })}
       >
-        <input
-          placeholder="YYYY"
-          onClick={(e) => e.stopPropagation()}
-          value={year}
-          onChange={(e) => handleYearChange(e.target.value)}
-          maxLength={4}
-          className={css({
-            color: theme.color.black.dark,
-            appearance: 'none',
-            textAlign: 'center',
-            border: 0,
-            '&:focus': {
-              outline: '2px solid transparent',
-              outlineOffset: '2px',
-            },
-            '&::placeholder': {
-              letterSpacing: '-0.07em',
-            },
-            width: size === 'sm' ? '32px' : '38px',
-          })}
-        />
-        -
-        <input
-          placeholder="MM"
-          onClick={(e) => e.stopPropagation()}
-          value={month}
-          onChange={(e) => handleMonthChange(e.target.value)}
-          maxLength={2}
-          className={css({
-            color: theme.color.black.dark,
-            appearance: 'none',
-            textAlign: 'center',
-            border: 0,
-            '&:focus': {
-              outline: '2px solid transparent',
-              outlineOffset: '2px',
-            },
-            '&::placeholder': {
-              letterSpacing: '-0.08em',
-            },
-            width: size === 'sm' ? '24px' : '28px',
-          })}
-        />
-        -
-        <input
-          placeholder="DD"
-          onClick={(e) => e.stopPropagation()}
-          value={day}
-          onChange={(e) => handleDayChange(e.target.value)}
-          maxLength={2}
-          className={cx(
-            css({
+        <div className={css({ display: 'flex' })}>
+          <input
+            placeholder="YYYY"
+            onClick={(e) => e.stopPropagation()}
+            value={year}
+            onChange={(e) => handleYearChange(e.target.value)}
+            maxLength={4}
+            className={css({
               color: theme.color.black.dark,
               appearance: 'none',
               textAlign: 'center',
               border: 0,
-              '&::placeholder': { letterSpacing: '-0.08em' },
               '&:focus': {
                 outline: '2px solid transparent',
                 outlineOffset: '2px',
               },
-              width: size === 'sm' ? '20px' : '28px',
-            }),
-          )}
-        />
+              '&::placeholder': {
+                letterSpacing: '-0.07em',
+              },
+              width: size === 'sm' ? '32px' : '38px',
+            })}
+          />
+          -
+          <input
+            placeholder="MM"
+            onClick={(e) => e.stopPropagation()}
+            value={month}
+            onChange={(e) => handleMonthChange(e.target.value)}
+            maxLength={2}
+            className={css({
+              color: theme.color.black.dark,
+              appearance: 'none',
+              textAlign: 'center',
+              border: 0,
+              '&:focus': {
+                outline: '2px solid transparent',
+                outlineOffset: '2px',
+              },
+              '&::placeholder': {
+                letterSpacing: '-0.08em',
+              },
+              width: size === 'sm' ? '24px' : '28px',
+            })}
+          />
+          -
+          <input
+            placeholder="DD"
+            onClick={(e) => e.stopPropagation()}
+            value={day}
+            onChange={(e) => handleDayChange(e.target.value)}
+            maxLength={2}
+            className={cx(
+              css({
+                color: theme.color.black.dark,
+                appearance: 'none',
+                textAlign: 'center',
+                border: 0,
+                '&::placeholder': { letterSpacing: '-0.08em' },
+                '&:focus': {
+                  outline: '2px solid transparent',
+                  outlineOffset: '2px',
+                },
+                width: size === 'sm' ? '20px' : '28px',
+              }),
+            )}
+          />
+        </div>
+        <div className={cx(iconContainerCss.base, iconContainerCss.position[size])}>
+          <span onClick={toggleIsOpen}>
+            {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
+          </span>
+        </div>
       </div>
-      <span
-        onClick={toggleIsOpen}
-        className={cx(iconContainerCss.base, iconContainerCss.position[size])}
-      >
-        {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
-      </span>
     </div>
   )
 }
@@ -185,6 +186,7 @@ const inputContainerCss = {
     marginBottom: '4px',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     borderRadius: '4px',
     border: `1px solid ${theme.color.gray.darker}`,
     paddingLeft: '8px',
@@ -200,7 +202,7 @@ const inputContainerCss = {
   },
 }
 const iconContainerCss = {
-  base: css({ position: 'absolute', right: '8px', cursor: 'pointer' }),
+  base: css({ marginRight: '8px' }),
   position: {
     lg: css({ top: '8px' }),
     md: css({ top: '7px' }),
