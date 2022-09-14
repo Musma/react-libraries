@@ -11,7 +11,6 @@ import {
   Typography,
   Tag,
   Checkbox,
-  IconButton,
   Spinner,
   ToggleButton,
 } from 'src/components'
@@ -25,6 +24,7 @@ import {
   ImageUploaderExample,
   RadioButtonExample,
   DataTableExample,
+  IconButtonExample,
 } from 'src/examples'
 
 import { TabsExample } from './TabsExample'
@@ -112,7 +112,7 @@ export const Examples = () => {
           <DividerExample />
         </Box>
         <Box title="IconButton">
-          <IconButton />
+          <IconButtonExample />
         </Box>
         <Box title="ImageUploader">
           <ImageUploaderExample />
