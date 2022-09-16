@@ -1,15 +1,16 @@
 import { Fragment, useCallback, useMemo, useState } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import _ from 'lodash-es'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles/theme'
 import { ReactComponent as DefaultLgIcon } from 'src/components/ImageUploader/images/image_default_lg.svg'
 import { ReactComponent as DefaultMdIcon } from 'src/components/ImageUploader/images/image_default_md.svg'
 import { ReactComponent as DefaultSmIcon } from 'src/components/ImageUploader/images/image_default_sm.svg'
 import { ReactComponent as UploadLgIcon } from 'src/components/ImageUploader/images/upload_lg.svg'
 import { ReactComponent as UploadSmIcon } from 'src/components/ImageUploader/images/upload_sm.svg'
+import { Size } from 'src/styles/theme'
 
 interface ImageUploaderProps {
   id?: string
@@ -98,6 +99,7 @@ export const ImageUploader = ({
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: '9999px',
+            backgroundColor: theme.color.white.main,
             border: `1px solid ${theme.color.gray.dark}`,
             '&:hover .child': {
               visibility: 'visible',
