@@ -3,16 +3,7 @@ import { ReactNode } from 'react'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import {
-  BreadCrumb,
-  Tooltip,
-  Button,
-  Typography,
-  Tag,
-  Checkbox,
-  Spinner,
-  ToggleButton,
-} from 'src/components'
+import { BreadCrumb, Tooltip, Button, Typography, Tag, Spinner, ToggleButton } from 'src/components'
 import {
   ModalExample,
   TextInputExample,
@@ -25,6 +16,7 @@ import {
   DataTableExample,
   IconButtonExample,
   BadgeExample,
+  CheckboxExample,
 } from 'src/examples'
 
 import { TabsExample } from './TabsExample'
@@ -98,9 +90,7 @@ export const Examples = () => {
           <SelectExample />
         </Box>
         <Box title="Checkbox">
-          <Checkbox size="lg" />
-          <Checkbox size="md" />
-          <Checkbox size="sm" />
+          <CheckboxExample />
         </Box>
         <Box title="TimePicker">
           <TimePickerExample />

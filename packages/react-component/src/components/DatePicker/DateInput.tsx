@@ -120,7 +120,7 @@ export const DateInput = ({
                 outlineOffset: '2px',
               },
               '&::placeholder': {
-                letterSpacing: '-0.07em',
+                letterSpacing: '-0.08em',
               },
               width: size === 'sm' ? '32px' : '38px',
             })}
