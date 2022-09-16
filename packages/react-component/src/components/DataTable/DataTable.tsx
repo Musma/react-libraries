@@ -25,7 +25,15 @@ export const DataTable = ({ data, className = '', columns, pagination, onRowClic
   const theme = useTheme()
   return (
     <div className={cx(containerCss, className)}>
-      <table className={cx(tableCss, css({ boxShadow: `0 0 0 1px ${theme.color.gray.main}` }))}>
+      <table
+        className={cx(
+          tableCss,
+          css({
+            boxShadow: `0 0 0 1px ${theme.color.gray.main}`,
+            backgroundColor: theme.color.white.main,
+          }),
+        )}
+      >
         <thead>
           <tr>
             {columns.map((column) => (
