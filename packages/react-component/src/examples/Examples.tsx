@@ -4,7 +4,6 @@ import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import {
-  Badge,
   BreadCrumb,
   Tooltip,
   Button,
@@ -25,6 +24,7 @@ import {
   RadioButtonExample,
   DataTableExample,
   IconButtonExample,
+  BadgeExample,
 } from 'src/examples'
 
 import { TabsExample } from './TabsExample'
@@ -69,7 +69,7 @@ export const Examples = () => {
         <Box title="Button">
           <Button fullWidth={true} label="test" size="lg" />
         </Box>
-        <Box title="Badge">{<Badge count={222}>badge</Badge>}</Box>
+        <Box title="Badge">{<BadgeExample />}</Box>
         <Box title="Breadcrumb">
           <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
         </Box>
@@ -147,8 +147,9 @@ const Box = ({ children, title }: { children: ReactNode; title: string }) => {
   return (
     <div
       className={css({
+        backgroundColor: 'gray',
         margin: 8,
-        border: '1px solid gray',
+        border: '1px solid #F9FAFB',
         borderRadius: '6px',
         padding: 16,
       })}
