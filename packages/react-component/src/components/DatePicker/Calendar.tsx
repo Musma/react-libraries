@@ -1,18 +1,19 @@
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
-import { DateTime } from 'luxon'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
+import { DateTime } from 'luxon'
 
-import { Size } from 'src/styles/theme'
 import { Typography } from 'src/components'
 import { ReactComponent as ArrowDoubleLeft } from 'src/components/DatePicker/images/arrow_double_left.svg'
-import { ReactComponent as ArrowDoubleRight } from 'src/components/DatePicker/images/arrow_double_right.svg'
-import { ReactComponent as ArrowLeft } from 'src/components/DatePicker/images/arrow_left.svg'
-import { ReactComponent as ArrowRight } from 'src/components/DatePicker/images/arrow_right.svg'
 import { ReactComponent as SmArrowDoubleLeft } from 'src/components/DatePicker/images/arrow_double_left_sm.svg'
+import { ReactComponent as ArrowDoubleRight } from 'src/components/DatePicker/images/arrow_double_right.svg'
 import { ReactComponent as SmArrowDobuleRight } from 'src/components/DatePicker/images/arrow_double_right_sm.svg'
+import { ReactComponent as ArrowLeft } from 'src/components/DatePicker/images/arrow_left.svg'
 import { ReactComponent as SmArrowLeft } from 'src/components/DatePicker/images/arrow_left_sm.svg'
+import { ReactComponent as ArrowRight } from 'src/components/DatePicker/images/arrow_right.svg'
 import { ReactComponent as SmArrowRight } from 'src/components/DatePicker/images/arrow_right_sm.svg'
+import { Size } from 'src/styles/theme'
 
 interface CalendarProps {
   size: Size
@@ -229,7 +230,10 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
       className={cx(
         containerCss.base,
         containerCss.size[size],
-        css({ border: `1px solid ${theme.color.gray.darker}` }),
+        css({
+          border: `1px solid ${theme.color.gray.darker}`,
+          backgroundColor: theme.color.white.main,
+        }),
       )}
     >
       <div
@@ -282,7 +286,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
 }
 
 const containerCss = {
-  base: css({ borderRadius: '4px' }),
+  base: css({ borderRadius: '4px', zIndex: 9999 }),
   size: {
     lg: css({ width: '200px' }),
     md: css({ width: '180px' }),
