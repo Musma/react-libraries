@@ -1,7 +1,10 @@
+import { useMemo } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import { useMemo } from 'react'
+
 import { Size } from 'src/styles/theme'
+
 import { Typography } from '../Typography'
 import { ReactComponent as CloseIcon } from './images/close.svg' // import 순서 및 정렬해주세요.
 
@@ -17,27 +20,6 @@ interface TagProps {
   className?: string
 }
 
-const tagBase = css({
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-})
-
-const sizeCss = {
-  sm: css({
-    padding: '0 2px',
-    height: '14px',
-  }),
-  md: css({
-    padding: '2px 4px',
-    height: '18px',
-  }),
-  lg: css({
-    padding: '4px 8px',
-    height: '24px',
-  }),
-}
-
 export const Tag = ({
   onClose,
   size = 'md',
@@ -47,13 +29,6 @@ export const Tag = ({
   className = '',
 }: TagProps) => {
   const theme = useTheme()
-
-  const variantCss = useMemo(() => {
-    return {
-      stadium: css({ borderWidth: '1px', borderStyle: 'solid', borderRadius: '100px' }),
-      rectangle: css({ border: '1px solid transparent', borderRadius: '2px' }),
-    }
-  }, [])
 
   const colorCss = useMemo(() => {
     return {
@@ -72,12 +47,7 @@ export const Tag = ({
         blue: css({ color: theme.color.blue.main }),
       },
     }
-  }, [
-    theme.color.black.main,
-    theme.color.blue.main,
-    theme.color.gray.darker,
-    theme.color.white.light,
-  ])
+  }, [theme])
 
   return (
     <div
@@ -105,4 +75,30 @@ export const Tag = ({
       )}
     </div>
   )
+}
+
+const tagBase = css({
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+})
+
+const sizeCss = {
+  sm: css({
+    padding: '0 2px',
+    height: '14px',
+  }),
+  md: css({
+    padding: '2px 4px',
+    height: '18px',
+  }),
+  lg: css({
+    padding: '4px 8px',
+    height: '24px',
+  }),
+}
+
+const variantCss = {
+  stadium: css({ borderWidth: '1px', borderStyle: 'solid', borderRadius: '100px' }),
+  rectangle: css({ border: '1px solid transparent', borderRadius: '2px' }),
 }
