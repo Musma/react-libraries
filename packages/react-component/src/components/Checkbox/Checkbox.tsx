@@ -71,7 +71,7 @@ export const Checkbox = ({
   )
 }
 
-const labelCss = css({ display: 'flex', alignItems: 'center' })
+const labelCss = css({ display: 'flex', alignItems: 'center', cursor: 'pointer' })
 const containerCss = {
   base: css({
     cursor: 'pointer',

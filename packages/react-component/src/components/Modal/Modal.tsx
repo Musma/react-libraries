@@ -131,6 +131,7 @@ export const Modal = ({
           className={css({
             width: '100%',
             margin: 0,
+            boxSizing: 'border-box',
             borderTop: `1px solid ${theme.color.gray.darker}`,
           })}
         />
