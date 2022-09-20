@@ -50,6 +50,9 @@ export const Examples = () => {
           <Button fullWidth={true} size="lg" variant="outlined">
             test
           </Button>
+          <Button fullWidth={true} size="lg" disabled={true}>
+            test
+          </Button>
         </Box>
         <Box title="Badge">{<BadgeExample />}</Box>
         <Box title="Breadcrumb">
@@ -130,9 +133,8 @@ const Box = ({ children, title }: { children: ReactNode; title: string }) => {
   return (
     <div
       className={css({
-        backgroundColor: 'gray',
         margin: 8,
-        border: '1px solid #F9FAFB',
+        border: '1px solid gray',
         borderRadius: '6px',
         padding: 16,
       })}

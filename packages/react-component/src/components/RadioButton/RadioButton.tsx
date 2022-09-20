@@ -36,7 +36,7 @@ export const RadioButton = ({
   return (
     <div
       onClick={() => onChange(value)}
-      className={css({ display: 'inline-flex', alignItems: 'center' })}
+      className={css({ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' })}
     >
       <CircleFactory size={size} selected={selected} value={value} disabled={disabled} />
       <LabelFactory size={size} className={cx(css({ marginLeft: '4px' }, labelClassName))}>
