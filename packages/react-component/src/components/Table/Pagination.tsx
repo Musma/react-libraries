@@ -1,8 +1,10 @@
-import { css, cx } from '@emotion/css'
 import { useCallback, useMemo, useState } from 'react'
+
+import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Typography, PaginationProps, Select, LimitType } from 'src/components'
+
 import { ReactComponent as ArrowFirstIcon } from './images/arrow_first.svg'
 import { ReactComponent as ArrowLastIcon } from './images/arrow_last.svg'
 import { ReactComponent as ArrowLeftIcon } from './images/arrow_left.svg'
@@ -136,7 +138,9 @@ export const Pagination = ({
           <span
             key={index}
             className={cx(pageNumberCss, {
-              [css({ backgroundColor: theme.color.blue.main })]: isCurrentPage(getPageNumber(index)),
+              [css({ backgroundColor: theme.color.blue.main })]: isCurrentPage(
+                getPageNumber(index),
+              ),
             })}
             onClick={() => handlePageChange(getPageNumber(index))}
           >

@@ -1,4 +1,5 @@
 import { createElement, PropsWithChildren } from 'react'
+
 import { css, cx } from '@emotion/css'
 
 import { HeadingProps } from 'src/components/Typography/types'

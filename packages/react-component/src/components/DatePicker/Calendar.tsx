@@ -13,7 +13,7 @@ import { ReactComponent as ArrowLeft } from 'src/components/DatePicker/images/ar
 import { ReactComponent as SmArrowLeft } from 'src/components/DatePicker/images/arrow_left_sm.svg'
 import { ReactComponent as ArrowRight } from 'src/components/DatePicker/images/arrow_right.svg'
 import { ReactComponent as SmArrowRight } from 'src/components/DatePicker/images/arrow_right_sm.svg'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles'
 
 interface CalendarProps {
   size: Size

@@ -1,10 +1,10 @@
 import { ButtonHTMLAttributes, ReactNode, useMemo } from 'react'
 
 import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react' // import 순서 및 정렬해주세요.
+import { useTheme } from '@emotion/react'
 
-import { Typography } from 'src/components/Typography'
-import { Size } from 'src/styles/theme'
+import { Typography } from 'src/components'
+import { Size } from 'src/styles'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
@@ -76,6 +76,7 @@ interface SizedLabelProps {
   className?: string
   size: Size | 'xs'
 }
+
 const SizedLabel = ({ label, className, size }: SizedLabelProps) => {
   if (size === 'lg') {
     return (

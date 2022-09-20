@@ -12,18 +12,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
-    "build-script": "rimraf ./src/components & node ./src/scripts/build.js",
-    "build:all": "yarn optimize && yarn build-script && yarn build",
-    "release": "yarn changeset publish"
-  },
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "types": "./dist/index.d.ts",
   "main": "./dist/lib.umd.js",
   "module": "./dist/lib.es.js",
@@ -32,6 +24,15 @@
       "import": "./dist/lib.es.js",
       "require": "./dist/lib.umd.js"
     }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
+    "build-script": "rimraf ./src/components & node ./src/scripts/build.js",
+    "build:all": "yarn optimize && yarn build-script && yarn build",
+    "release": "yarn changeset publish"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -45,7 +46,7 @@
     "svgo": "^2.8.0"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
   }
 }

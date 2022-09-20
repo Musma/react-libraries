@@ -24,6 +24,7 @@ const badgeCss = {
     borderRadius: '12px',
   }),
 }
+
 interface BadgeProps {
   count: number
 }

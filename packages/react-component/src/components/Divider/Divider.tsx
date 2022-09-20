@@ -1,6 +1,7 @@
+import { HTMLAttributes } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import { HTMLAttributes } from 'react'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {
   orientation?: 'horizontal' | 'vertical'

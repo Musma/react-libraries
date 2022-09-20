@@ -12,7 +12,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       // 빌드 이름
       name: 'musma-react-component',
-      formats: ['es'],
+      formats: ['es', 'umd'],
       // 빌드 결과물 파일 이름
       fileName: (format) => `lib.${format}.js`,
     },
@@ -36,6 +36,9 @@ export default defineConfig({
     }),
     dts(),
   ],
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' },
+  },
   resolve: {
     alias: [{ find: 'src', replacement: resolve(__dirname, 'src') }],
   },

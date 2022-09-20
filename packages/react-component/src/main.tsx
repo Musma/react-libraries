@@ -1,12 +1,10 @@
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 
-import App from 'src/App'
-import { GlobalStyle } from 'src/styles/GlobalStyle'
+import { App } from 'src/App'
 
-ReactDOM.render(
+render(
   <StrictMode>
-    <GlobalStyle />
     <App />
   </StrictMode>,
   document.getElementById('root'),

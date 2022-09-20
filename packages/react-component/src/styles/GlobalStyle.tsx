@@ -1,12 +1,11 @@
 import { css, Global } from '@emotion/react'
 import emotionNormalize from 'emotion-normalize'
 
-import bold from 'src/fonts/Pretendard-Bold.subset.woff2'
-import medium from 'src/fonts/Pretendard-Medium.subset.woff2'
-import regular from 'src/fonts/Pretendard-Regular.subset.woff2'
-import semiBold from 'src/fonts/Pretendard-SemiBold.subset.woff2'
+export interface GlobalStyleProps {
+  globalStyle?: string
+}
 
-export const GlobalStyle = () => {
+export const GlobalStyle = ({ globalStyle }: GlobalStyleProps) => {
   return (
     <Global
       styles={css`
@@ -14,23 +13,74 @@ export const GlobalStyle = () => {
 
         @font-face {
           font-family: 'Pretendard';
-          font-weight: 400;
-          src: url(${regular}) format('woff2');
+          font-weight: 900;
+          font-display: swap;
+          src: local('Pretendard Black'),
+            url('/src/assets/fonts/Pretendard-Black.subset.woff2') format('woff2');
         }
+
         @font-face {
           font-family: 'Pretendard';
-          font-weight: 500;
-          src: url(${medium}) format('woff2');
+          font-weight: 800;
+          font-display: swap;
+          src: local('Pretendard ExtraBold'),
+            url('/src/assets/fonts/Pretendard-ExtraBold.subset.woff2') format('woff2');
         }
-        @font-face {
-          font-family: 'Pretendard';
-          font-weight: 600;
-          src: url(${semiBold}) format('woff2');
-        }
+
         @font-face {
           font-family: 'Pretendard';
           font-weight: 700;
-          src: url(${bold}) format('woff2');
+          font-display: swap;
+          src: local('Pretendard Bold'),
+            url('/src/assets/fonts/Pretendard-Bold.subset.woff2') format('woff2');
+        }
+
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 600;
+          font-display: swap;
+          src: local('Pretendard SemiBold'),
+            url('/src/assets/fonts/Pretendard-SemiBold.subset.woff2') format('woff2');
+        }
+
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 500;
+          font-display: swap;
+          src: local('Pretendard Medium'),
+            url('/src/assets/fonts/Pretendard-Medium.subset.woff2') format('woff2');
+        }
+
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 400;
+          font-display: swap;
+          src: local('Pretendard Regular'),
+            url('/src/assets/fonts/Pretendard-Regular.subset.woff2') format('woff2');
+        }
+
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 300;
+          font-display: swap;
+          src: local('Pretendard Light'),
+            url('/src/assets/fonts/Pretendard-Light.subset.woff2') format('woff2');
+        }
+
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 200;
+          font-display: swap;
+          src: local('Pretendard ExtraLight'),
+            url('/src/assets/fonts/Pretendard-ExtraLight.subset.woff2') format('woff2');
+        }
+
+        @font-face {
+          font-family: 'Pretendard';
+          font-weight: 100;
+          font-display: swap;
+          src: local('Pretendard Thin'),
+            url('/src/assets/fonts/Pretendard-Thin.subset.woff2') format('woff2');
         }
 
         *,
@@ -45,9 +95,12 @@ export const GlobalStyle = () => {
           padding: 0;
           line-height: 1;
         }
+
         li {
           list-style-type: none;
         }
+
+        ${globalStyle}
       `}
     />
   )

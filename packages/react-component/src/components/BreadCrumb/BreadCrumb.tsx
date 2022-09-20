@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react'
 
 import { Typography } from '../Typography'
 import { ReactComponent as HomeIcon } from './images/home.svg'
-import { ReactComponent as SeperatorIcon } from './images/seperator.svg' // import 순서 및 정렬해주세요.
+import { ReactComponent as SeperatorIcon } from './images/seperator.svg'
 
 interface BreadCrumbProps {
   crumbs: string[]
@@ -22,7 +22,7 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
   )
   return (
     <nav>
-      <ol className={css({ display: 'flex', alignItems: 'center' })}>
+      <ol css={{ display: 'flex', alignItems: 'center' }}>
         {crumbs.map((crumb, index) => {
           if (index === 0) {
             return (
@@ -34,11 +34,11 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
             )
           }
           return (
-            <li key={crumb} className={css({ display: 'flex', alignItems: 'center' })}>
+            <li key={crumb} css={{ display: 'flex', alignItems: 'center' }}>
               <SeperatorIcon />
               <button
                 onClick={() => onClick(crumb)}
-                className={css({
+                css={{
                   border: 'solid 1px transparent',
                   backgroundColor: 'transparent',
                   display: 'flex',
@@ -46,7 +46,7 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
                   alignItems: 'center',
                   height: '22px',
                   cursor: 'pointer',
-                })}
+                }}
               >
                 <Typography
                   type="body"
