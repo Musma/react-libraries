@@ -1,11 +1,12 @@
 import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { useKeyEsc, useOutsideListener } from 'src/hooks'
-import { Size } from 'src/styles/theme'
 import { Button, Typography } from 'src/components'
 import { ReactComponent as CloseIcon } from 'src/components/Modal/images/close.svg'
+import { useKeyEsc, useOutsideListener } from 'src/hooks'
+import { Size } from 'src/styles/theme'
 
 interface ModalProps {
   title: string
@@ -138,19 +139,21 @@ export const Modal = ({
         </section>
         <div className={cx(buttonCss.container.base, buttonCss.container.size[size])}>
           <Button
-            label={buttonOption.label}
             size={buttonSize}
             variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
             onClick={buttonOption.onSecondClick}
             className={cx(buttonCss.button[size], buttonOption.className)}
-          />
+          >
+            {buttonOption.label}
+          </Button>
           {buttonOption.secondLabel && (
             <Button
               size={buttonSize}
-              label={buttonOption.secondLabel}
               onClick={buttonOption.onSecondClick}
               className={cx(buttonCss.button[size], buttonOption.secondClassName)}
-            />
+            >
+              {buttonOption.secondLabel}
+            </Button>
           )}
         </div>
       </div>

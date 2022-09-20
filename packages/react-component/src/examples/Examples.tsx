@@ -59,7 +59,12 @@ export const Examples = () => {
           </Typography>
         </Box>
         <Box title="Button">
-          <Button fullWidth={true} label="test" size="lg" />
+          <Button fullWidth={true} size="lg">
+            test
+          </Button>
+          <Button fullWidth={true} size="lg" variant="outlined">
+            test
+          </Button>
         </Box>
         <Box title="Badge">{<BadgeExample />}</Box>
         <Box title="Breadcrumb">

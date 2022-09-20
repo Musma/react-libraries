@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { Button, Modal } from 'src/components'
 import { useModalManager } from 'src/components/Modal/useModalManager'
 
@@ -8,7 +9,9 @@ export const ModalExample = () => {
   const modalManager = useModalManager()
   return (
     <div>
-      <Button label={'Open modal'} variant={'outlined'} onClick={() => setIsOpen(true)} />
+      <Button variant={'outlined'} onClick={() => setIsOpen(true)}>
+        Open Modal
+      </Button>
       <Modal
         title={'첫 번째 모달 입니다'}
         isOpen={isOpen}
@@ -25,7 +28,9 @@ export const ModalExample = () => {
         closeOnOutsideClick={true}
         onClose={() => setIsOpen(false)}
       >
-        <Button label={'Open second modal'} variant={'outlined'} onClick={() => setIsOpen2(true)} />
+        <Button variant={'outlined'} onClick={() => setIsOpen2(true)}>
+          Open second modal
+        </Button>
         contents1
       </Modal>
       <Modal
