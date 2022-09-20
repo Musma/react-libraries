@@ -17,6 +17,7 @@ import {
   IconButtonExample,
   BadgeExample,
   CheckboxExample,
+  IconAdornmentExample,
 } from 'src/examples'
 
 import { TabsExample } from './TabsExample'
@@ -131,6 +132,9 @@ export const Examples = () => {
           <ToggleButton disabled={true} />
           <ToggleButton size="md" disabled={true} />
           <ToggleButton size="sm" disabled={true} />
+        </Box>
+        <Box title="IconAdornment">
+          <IconAdornmentExample />
         </Box>
       </div>
     </div>
