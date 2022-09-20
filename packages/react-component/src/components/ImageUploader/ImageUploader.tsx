@@ -59,8 +59,7 @@ export const ImageUploader = ({
       return {
         lg: (
           <Typography
-            type="subTitle"
-            variant="subTitle2"
+            type="subTitle2"
             className={css({ marginBottom: '4px', color: theme.color.white.main })}
           >
             Upload Picture
@@ -68,8 +67,7 @@ export const ImageUploader = ({
         ),
         md: (
           <Typography
-            type="caption"
-            variant="caption2"
+            type="caption2"
             className={css({ marginBottom: '4px', color: theme.color.white.main })}
           >
             Upload Picture

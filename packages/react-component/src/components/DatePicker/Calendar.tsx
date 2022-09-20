@@ -133,8 +133,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             onClick={() => handleSelectPrevMonthDay(prevMonthDay)}
           >
             <Typography
-              type="caption"
-              variant={size === 'sm' ? 'caption2' : 'caption1'}
+              type={size === 'sm' ? 'caption2' : 'caption1'}
               className={css({ color: theme.color.gray.main })}
             >
               {prevMonthDay}
@@ -159,8 +158,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             onClick={() => handleDayClick(year, month, day)}
           >
             <Typography
-              type="caption"
-              variant={size === 'sm' ? 'caption2' : 'caption1'}
+              type={size === 'sm' ? 'caption2' : 'caption1'}
               className={css({ color: getColor(day) })}
             >
               {day}
@@ -177,8 +175,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             onClick={() => handleSelectNextMonthDay(nextMonthDay)}
           >
             <Typography
-              type="caption"
-              variant={size === 'sm' ? 'caption2' : 'caption1'}
+              type={size === 'sm' ? 'caption2' : 'caption1'}
               className={css({ color: theme.color.gray.main })}
             >
               {nextMonthDay}
@@ -321,24 +318,16 @@ interface TypoProps {
 }
 const MonthAndYear = ({ size, children }: PropsWithChildren<TypoProps>) => {
   return size === 'sm' ? (
-    <Typography type="caption" variant="caption2">
-      {children}
-    </Typography>
+    <Typography type="caption2">{children}</Typography>
   ) : (
-    <Typography type="subTitle" variant="subTitle3">
-      {children}
-    </Typography>
+    <Typography type="subTitle3">{children}</Typography>
   )
 }
 
 const DayOfTheWeek = ({ size, children }: PropsWithChildren<TypoProps>) => {
   return size === 'sm' ? (
-    <Typography type="caption" variant="caption2">
-      {children}
-    </Typography>
+    <Typography type="caption2">{children}</Typography>
   ) : (
-    <Typography type="subTitle" variant="subTitle3">
-      {children}
-    </Typography>
+    <Typography type="subTitle3">{children}</Typography>
   )
 }

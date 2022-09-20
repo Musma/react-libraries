@@ -3,7 +3,8 @@ import { useCallback } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Typography } from '../Typography'
+import { Typography } from 'src/components'
+
 import { ReactComponent as HomeIcon } from './images/home.svg'
 import { ReactComponent as SeperatorIcon } from './images/seperator.svg'
 
@@ -49,8 +50,7 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
                 }}
               >
                 <Typography
-                  type="body"
-                  variant="body2"
+                  type="body2"
                   className={cx(
                     css({ color: isLast(index) ? theme.color.black.dark : theme.color.gray.main }),
                   )}

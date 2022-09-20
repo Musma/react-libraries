@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
@@ -130,11 +131,7 @@ export const Tooltip = ({ children, message, width, position = 'left' }: Tooltip
           className={cx('child', tooltipCss.base, tooltipCss.position[position], color)}
           style={{ width }}
         >
-          <Typography
-            className={css({ color: theme.color.white.main })}
-            type="body"
-            variant="body3"
-          >
+          <Typography className={css({ color: theme.color.white.main })} type="body3">
             {message}
           </Typography>
         </div>

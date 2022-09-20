@@ -1,8 +1,8 @@
-import { css, cx } from '@emotion/css'
 import { PropsWithChildren } from 'react'
 
+import { css, cx } from '@emotion/css'
+
 import { Typography } from 'src/components'
-import { Size } from 'src/styles/theme'
 import { ReactComponent as LgCheckedIcon } from 'src/components/RadioButton/images/checked_lg.svg'
 import { ReactComponent as MdCheckedIcon } from 'src/components/RadioButton/images/checked_md.svg'
 import { ReactComponent as SmCheckedIcon } from 'src/components/RadioButton/images/checked_sm.svg'
@@ -12,6 +12,7 @@ import { ReactComponent as SmDefaultIcon } from 'src/components/RadioButton/imag
 import { ReactComponent as LgDisabledIcon } from 'src/components/RadioButton/images/disabled_lg.svg'
 import { ReactComponent as MdDisabledIcon } from 'src/components/RadioButton/images/disabled_md.svg'
 import { ReactComponent as SmDisabledIcon } from 'src/components/RadioButton/images/disabled_sm.svg'
+import { Size } from 'src/styles/theme'
 
 interface RadioButtonProps {
   label?: string
@@ -105,13 +106,13 @@ interface LabelProps {
 const LabelFactory = ({ size, className, children }: PropsWithChildren<LabelProps>) => {
   if (size === 'sm') {
     return (
-      <Typography type="caption" className={className}>
+      <Typography type="caption1" className={className}>
         {children}
       </Typography>
     )
   }
   return (
-    <Typography type="body" variant={size === 'lg' ? 'body2' : 'body3'} className={className}>
+    <Typography type={size === 'lg' ? 'body2' : 'body3'} className={className}>
       {children}
     </Typography>
   )

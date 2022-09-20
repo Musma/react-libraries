@@ -54,7 +54,7 @@ export const Pagination = ({
       setCurrentPage(1)
       onPageChange(1)
     },
-    [onDataLimitChange],
+    [onDataLimitChange, onPageChange],
   )
 
   const isCurrentPage = useCallback(
@@ -84,14 +84,14 @@ export const Pagination = ({
     setPageGroup(pageGroup - 1)
     setCurrentPage(getLeftEndPage(getRightEndPage(pageGroup - 1)))
     onPageChange(getLeftEndPage(getRightEndPage(pageGroup - 1)))
-  }, [getLeftEndPage, getRightEndPage, pageGroup])
+  }, [getLeftEndPage, getRightEndPage, onPageChange, pageGroup])
 
   const handleNextClick = useCallback(() => {
     if (pageGroup === lastGroup) return
     setPageGroup(pageGroup + 1)
     setCurrentPage(getRightEndPage(pageGroup + 1))
     onPageChange(getRightEndPage(pageGroup + 1))
-  }, [getRightEndPage, lastGroup, pageGroup])
+  }, [getRightEndPage, lastGroup, onPageChange, pageGroup])
 
   const handleFirstClick = useCallback(() => {
     setPageGroup(1)
@@ -103,11 +103,11 @@ export const Pagination = ({
     setPageGroup(lastGroup)
     setCurrentPage(totalPage)
     onPageChange(totalPage)
-  }, [lastGroup, totalPage])
+  }, [lastGroup, onPageChange, totalPage])
 
   return (
     <div className={containerCss}>
-      <Typography type="body" variant="body3" className={css({ marginRight: '8px' })}>
+      <Typography type="body3" className={css({ marginRight: '8px' })}>
         Rows per page
       </Typography>
       <Select
@@ -145,7 +145,7 @@ export const Pagination = ({
             onClick={() => handlePageChange(getPageNumber(index))}
           >
             <Typography
-              type="caption"
+              type="caption1"
               className={cx({
                 [css({ color: theme.color.white.main })]: isCurrentPage(getPageNumber(index)),
               })}

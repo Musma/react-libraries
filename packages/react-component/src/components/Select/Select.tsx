@@ -320,13 +320,13 @@ interface TypographyFactoryProps {
 const LabelFactory = ({ size, label, className }: TypographyFactoryProps) => {
   if (size === 'lg') {
     return (
-      <Typography type="body" variant="body3" className={className}>
+      <Typography type="body3" className={className}>
         {label}
       </Typography>
     )
   }
   return (
-    <Typography type="caption" className={className}>
+    <Typography type="caption1" className={className}>
       {label}
     </Typography>
   )
@@ -335,13 +335,13 @@ const LabelFactory = ({ size, label, className }: TypographyFactoryProps) => {
 const TitleFactory = ({ size, label, className }: TypographyFactoryProps) => {
   if (size === 'lg') {
     return (
-      <Typography type="subTitle" variant="subTitle2" className={className}>
+      <Typography type="subTitle2" className={className}>
         {label}
       </Typography>
     )
   }
   return (
-    <Typography type="subTitle" variant="subTitle3" className={className}>
+    <Typography type="subTitle3" className={className}>
       {label}
     </Typography>
   )

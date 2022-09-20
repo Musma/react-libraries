@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react'
+
 import { css, cx } from '@emotion/css'
 
 import { BodyProps } from 'src/components/Typography/types'

@@ -47,9 +47,7 @@ export const DataTable = ({ data, className = '', columns, pagination, onRowClic
                   }),
                 )}
               >
-                <Typography type="heading" variant="h6">
-                  {column.label}
-                </Typography>
+                <Typography type="h6">{column.label}</Typography>
               </th>
             ))}
           </tr>
@@ -74,7 +72,7 @@ export const DataTable = ({ data, className = '', columns, pagination, onRowClic
                   )}
                   key={column.id}
                 >
-                  <Typography type="body" variant="body2" className="text-center">
+                  <Typography type="body2" className="text-center">
                     {item[column.id]}
                   </Typography>
                 </td>

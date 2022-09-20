@@ -34,30 +34,14 @@ export const Examples = () => {
         })}
       >
         <Box title="Typography">
-          <Typography type="heading" variant="h1">
-            h1
-          </Typography>
-          <Typography type="heading" variant="h2">
-            h2
-          </Typography>
-          <Typography type="heading" variant="h3">
-            h3
-          </Typography>
-          <Typography type="heading" variant="h4">
-            h4
-          </Typography>
-          <Typography type="heading" variant="h5">
-            h5
-          </Typography>
-          <Typography type="heading" variant="h6">
-            h6
-          </Typography>
-          <Typography type="subTitle" variant="subTitle1">
-            subTitle1
-          </Typography>
-          <Typography type="subTitle" variant="subTitle2">
-            subTitle2
-          </Typography>
+          <Typography type="h1">h1</Typography>
+          <Typography type="h2">h2</Typography>
+          <Typography type="h3">h3</Typography>
+          <Typography type="h4">h4</Typography>
+          <Typography type="h5">h5</Typography>
+          <Typography type="h6">h6</Typography>
+          <Typography type="subTitle1">subTitle1</Typography>
+          <Typography type="subTitle2">subTitle2</Typography>
         </Box>
         <Box title="Button">
           <Button fullWidth={true} size="lg">
@@ -154,8 +138,7 @@ const Box = ({ children, title }: { children: ReactNode; title: string }) => {
       })}
     >
       <Typography
-        type="heading"
-        variant="h3"
+        type="h3"
         className={css({ borderBottom: `1px solid ${theme.color.gray.light}` })}
       >
         {title}

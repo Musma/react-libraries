@@ -42,11 +42,7 @@ export const Badge = ({ count, children }: PropsWithChildren<BadgeProps>) => {
         <span
           className={cx(badgeCss.countWrapper, css({ backgroundColor: theme.color.red.light }))}
         >
-          <Typography
-            type="caption"
-            variant="caption2"
-            className={css({ color: theme.color.white.main })}
-          >
+          <Typography type="caption2" className={css({ color: theme.color.white.main })}>
             {countNumber}
           </Typography>
         </span>

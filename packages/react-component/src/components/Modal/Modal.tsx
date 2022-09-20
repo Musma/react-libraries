@@ -122,9 +122,7 @@ export const Modal = ({
         )}
       >
         <section className={cx(headerCss.base, headerCss.size[size])}>
-          <Typography type="subTitle" variant="subTitle2">
-            {title}
-          </Typography>
+          <Typography type="subTitle2">{title}</Typography>
           <CloseIcon onClick={handleModalClose} className={css({ cursor: 'pointer' })} />
         </section>
         <hr

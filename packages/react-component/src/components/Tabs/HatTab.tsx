@@ -13,8 +13,7 @@ export const HatTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
   const theme = useTheme()
   const inActive = (
     <Typography
-      type="subTitle"
-      variant="subTitle2"
+      type="subTitle2"
       className={css({ padding: '10px 34px', color: theme.color.gray.darker })}
     >
       {title}
@@ -24,8 +23,7 @@ export const HatTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
     <Fragment>
       <CurveLeftIcon />
       <Typography
-        type="subTitle"
-        variant="subTitle2"
+        type="subTitle2"
         className={css({
           backgroundColor: theme.color.white.main,
           borderTop: `1px solid ${theme.color.gray.darker}`,

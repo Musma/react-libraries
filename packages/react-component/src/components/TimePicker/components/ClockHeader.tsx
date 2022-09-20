@@ -1,6 +1,7 @@
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
+
 import { getMeridiem, ClockType, Typography } from 'src/components'
 import { Size } from 'src/styles/theme'
 
@@ -139,12 +140,12 @@ interface Label {
 const AmPmLabel = ({ size, className, label }: Label) => {
   if (size === 'sm')
     return (
-      <Typography type="caption" variant="caption2" className={className}>
+      <Typography type="caption2" className={className}>
         {label}
       </Typography>
     )
   return (
-    <Typography type="subTitle" variant="subTitle3" className={className}>
+    <Typography type="subTitle3" className={className}>
       {label}
     </Typography>
   )
@@ -152,7 +153,7 @@ const AmPmLabel = ({ size, className, label }: Label) => {
 
 const HourMinLabel = ({ size, className, label }: Label) => {
   return (
-    <Typography type="heading" variant={size === 'lg' ? 'h2' : 'h3'} className={className}>
+    <Typography type={size === 'lg' ? 'h2' : 'h3'} className={className}>
       {label}
     </Typography>
   )

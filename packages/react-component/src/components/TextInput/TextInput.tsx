@@ -48,11 +48,7 @@ export const TextInput = ({
 
   return (
     <div className={containerCss}>
-      {label && (
-        <Typography type="subTitle" variant={size === 'lg' ? 'subTitle2' : 'subTitle3'}>
-          {label}
-        </Typography>
-      )}
+      {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
       <InputFactory
         className={cx(
           inputBase,
@@ -67,8 +63,7 @@ export const TextInput = ({
         <div className={css({ display: 'flex', alignItems: 'center', columnGap: '4px' })}>
           {helperText.type === 'valid' ? <ValidIcon /> : <InvalidIcon />}
           <Typography
-            type="caption"
-            variant="caption2"
+            type="caption2"
             className={css({
               color: helperText.type === 'valid' ? theme.color.green.main : theme.color.red.main,
             })}

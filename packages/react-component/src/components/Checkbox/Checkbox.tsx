@@ -119,17 +119,13 @@ interface LabelFactoryProps {
 const LabelFactory = ({ label, size }: LabelFactoryProps) => {
   if (size !== 'sm') {
     return (
-      <Typography
-        className={css({ marginLeft: '8px' })}
-        type="body"
-        variant={size === 'lg' ? 'body2' : 'body3'}
-      >
+      <Typography className={css({ marginLeft: '8px' })} type={size === 'lg' ? 'body2' : 'body3'}>
         {label}
       </Typography>
     )
   }
   return (
-    <Typography className={css({ marginLeft: '4px' })} type="caption">
+    <Typography className={css({ marginLeft: '4px' })} type="caption1">
       {label}
     </Typography>
   )

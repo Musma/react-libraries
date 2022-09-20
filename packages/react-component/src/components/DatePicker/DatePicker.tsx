@@ -39,8 +39,7 @@ export const DatePicker = ({
   return (
     <div className={css({ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' })}>
       <Typography
-        type="subTitle"
-        variant={size === 'lg' ? 'subTitle2' : 'subTitle3'}
+        type={size === 'lg' ? 'subTitle2' : 'subTitle3'}
         className={css({ marginBottom: '2px' })}
       >
         {label}

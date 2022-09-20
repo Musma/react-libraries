@@ -83,13 +83,13 @@ interface SizedLabelProps {
 const SizedLabel = ({ className, size, children }: SizedLabelProps) => {
   if (size === 'lg') {
     return (
-      <Typography type="body" variant="body3" className={className}>
+      <Typography type="body3" className={className}>
         {children}
       </Typography>
     )
   }
   return (
-    <Typography type="caption" className={className}>
+    <Typography type="caption1" className={className}>
       {children}
     </Typography>
   )
