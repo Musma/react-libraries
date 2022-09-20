@@ -1,12 +1,13 @@
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { css, cx } from '@emotion/css'
-import _ from 'lodash-es'
-import { useTheme } from '@emotion/react'
 
-import { Size } from 'src/styles/theme'
-import { Typography } from 'src/components/Typography'
+import { css, cx } from '@emotion/css'
+import { useTheme } from '@emotion/react'
+import _ from 'lodash-es'
+
 import { ReactComponent as LgArrowICon } from 'src/components/Select/images/arrow_lg.svg'
 import { ReactComponent as MdArrowICon } from 'src/components/Select/images/arrow_md,sm.svg'
+import { Typography } from 'src/components/Typography'
+import { Size } from 'src/styles/theme'
 
 interface SelectProps {
   id?: string
@@ -176,6 +177,7 @@ export const Select = ({
       '&:focus': {
         border: `1px solid ${theme.color.blue.main}`,
       },
+      outline: 'none',
     })
   }, [theme])
 
@@ -251,7 +253,12 @@ const containerCss = css({
   alignItems: 'flex-start',
   justifyContent: 'center',
 })
-const inputContainerCss = css({ position: 'relative', display: 'flex', alignItems: 'center' })
+const inputContainerCss = css({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  border: 0,
+})
 
 const inputCss = {
   base: css({
