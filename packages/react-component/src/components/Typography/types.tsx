@@ -1,5 +1,5 @@
 export type TypographyProps = {
-  type: headingType | bodyType | captionType | subTitleType
+  type?: headingType | bodyType | captionType | subTitleType
   className?: string
 }
 export interface HeadingProps {
