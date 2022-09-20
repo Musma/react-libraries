@@ -217,6 +217,7 @@ const DisabledButton = ({ children, className, size, ...rest }: BaseButtonProps)
           cursor: 'not-allowed',
           '&:active': {
             boxShadow: 'none',
+            transform: 'none',
           },
         }),
         className,
