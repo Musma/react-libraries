@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react'
 
 import { Typography, Pagination, PaginationProps } from 'src/components'
 
-interface DataTableProps {
+interface TableProps {
   data: Array<Data>
   className?: string
   columns: {
@@ -21,7 +21,29 @@ interface DataTableProps {
 
 type Data = Record<string, string | number | ReactNode>
 
-export const DataTable = ({ data, className = '', columns, pagination, onRowClick }: Props) => {
+const containerCss = css({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+  rowGap: '16px',
+})
+const tableCss = css({
+  width: '100%',
+  borderCollapse: 'collapse',
+  borderRadius: '4px',
+  borderStyle: 'hidden',
+})
+const thCss = css({
+  height: '40px',
+  '&:first-child': {
+    borderTopLeftRadius: '4px',
+  },
+  '&:last-child': {
+    borderTopRightRadius: '4px',
+  },
+})
+const tdCss = css({ height: '40px', textAlign: 'center' })
+
+export const Table = ({ data, className = '', columns, pagination, onRowClick }: TableProps) => {
   const theme = useTheme()
   return (
     <div className={cx(containerCss, className)}>
