@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { DataTable, usePagination } from 'src/components'
+import { Table, usePagination } from 'src/components'
 
 const originData = Array.from({ length: 200 }).map((_, index) => ({
   a: `a${index}`,
@@ -8,7 +8,7 @@ const originData = Array.from({ length: 200 }).map((_, index) => ({
   c: `c${index}`,
 }))
 
-export const DataTableExample = () => {
+export const TableExample = () => {
   const pagination = usePagination({ limit: 5, totalData: originData.length })
 
   const getData = useCallback(() => {
@@ -19,7 +19,7 @@ export const DataTableExample = () => {
   }, [pagination])
 
   return (
-    <DataTable
+    <Table
       data={getData()}
       columns={[
         { id: 'a', label: 'A' },

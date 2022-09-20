@@ -13,7 +13,7 @@ import {
   DividerExample,
   ImageUploaderExample,
   RadioButtonExample,
-  DataTableExample,
+  TableExample,
   IconButtonExample,
   BadgeExample,
   CheckboxExample,
@@ -119,8 +119,8 @@ export const Examples = () => {
         <Box title="Spinner">
           <Spinner />
         </Box>
-        <Box title="DataTable">
-          <DataTableExample />
+        <Box title="Table">
+          <TableExample />
         </Box>
         <Box title="Tabs">
           <TabsExample />
