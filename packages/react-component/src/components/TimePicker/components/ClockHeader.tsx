@@ -3,7 +3,7 @@ import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { getMeridiem, ClockType, Typography } from 'src/components'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles/DefaultTheme'
 
 import { ReactComponent as ColonIcon } from '../images/colon.svg'
 

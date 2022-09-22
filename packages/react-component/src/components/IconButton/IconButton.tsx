@@ -3,7 +3,7 @@ import { useMemo, ButtonHTMLAttributes, ReactNode } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'outlined' | 'contained'
@@ -34,6 +34,9 @@ export const IconButton = ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        '&:active': {
+          transform: 'translateY(1px)',
+        },
       }),
       variants: {
         outlined: css({

@@ -1,7 +1,13 @@
+type headingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+type bodyType = 'body1' | 'body2' | 'body3'
+type captionType = 'caption1' | 'caption2'
+type subTitleType = 'subTitle1' | 'subTitle2' | 'subTitle3'
+
 export type TypographyProps = {
   type?: headingType | bodyType | captionType | subTitleType
   className?: string
 }
+
 export interface HeadingProps {
   type?: 'heading'
   variant?: headingType
@@ -25,8 +31,3 @@ export type SubTitleProps = {
   variant?: subTitleType
   className?: string
 }
-
-type headingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-type bodyType = 'body1' | 'body2' | 'body3'
-type captionType = 'caption1' | 'caption2'
-type subTitleType = 'subTitle1' | 'subTitle2' | 'subTitle3'

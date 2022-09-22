@@ -1,18 +1,18 @@
 import { HTMLAttributes } from 'react'
 
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {
   orientation?: 'horizontal' | 'vertical'
 }
 
-export const Divider = ({ orientation = 'horizontal', className, ...rest }: DividerProps) => {
+export const Divider = ({ orientation = 'horizontal', ...rest }: DividerProps) => {
   const theme = useTheme()
   return (
     <hr
-      className={cx(
-        css({ border: 0 }),
+      css={[
+        { border: 0 },
         {
           [css({ width: '100%', borderTop: `1px solid ${theme.color.gray.lighter}` })]:
             orientation === 'horizontal',
@@ -24,8 +24,7 @@ export const Divider = ({ orientation = 'horizontal', className, ...rest }: Divi
             borderRight: `1px solid ${theme.color.gray.lighter}`,
           })]: orientation === 'vertical',
         },
-        className,
-      )}
+      ]}
       {...rest}
     />
   )

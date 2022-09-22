@@ -2,6 +2,7 @@ import '@emotion/react'
 
 declare module '@emotion/react' {
   export interface Theme {
+    spaceUnit: number
     color: {
       blue: {
         lighter: string

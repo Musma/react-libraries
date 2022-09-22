@@ -43,6 +43,7 @@ export const Examples = () => {
           <Typography type="subTitle1">subTitle1</Typography>
           <Typography type="subTitle2">subTitle2</Typography>
         </Box>
+
         <Box title="Button">
           <Button fullWidth={true} size="lg">
             test
@@ -54,10 +55,13 @@ export const Examples = () => {
             test
           </Button>
         </Box>
+
         <Box title="Badge">{<BadgeExample />}</Box>
+
         <Box title="Breadcrumb">
           <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
         </Box>
+
         <Box title="Tooltip">
           <Tooltip message="I'm Tooltip!" width={100}>
             hover me

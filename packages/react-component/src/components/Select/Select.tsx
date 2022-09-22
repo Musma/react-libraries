@@ -2,12 +2,13 @@ import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from '
 
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import _ from 'lodash-es'
+import { uniqueId } from 'lodash-es'
 
-import { ReactComponent as LgArrowICon } from 'src/components/Select/images/arrow_lg.svg'
-import { ReactComponent as MdArrowICon } from 'src/components/Select/images/arrow_md,sm.svg'
-import { Typography } from 'src/components/Typography'
-import { Size } from 'src/styles/theme'
+import { Typography } from 'src/components'
+import { Size } from 'src/styles'
+
+import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
+import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'
 
 interface SelectProps {
   id?: string
@@ -20,7 +21,7 @@ interface SelectProps {
 }
 
 export const Select = ({
-  id = _.uniqueId(),
+  id = uniqueId(),
   size = 'lg',
   label,
   value,
@@ -186,6 +187,7 @@ export const Select = ({
       <label htmlFor={id}>
         <TitleFactory size={size} label={label} />
       </label>
+
       <div className={inputContainerCss} ref={divRef} onClick={handleDropdownClick}>
         <input
           id={id}
@@ -195,6 +197,7 @@ export const Select = ({
           onChange={handleTextChange}
           className={cx(inputCss.base, inputCss.size[size], inputColorCss, inputClassName)}
         />
+
         {size === 'lg' ? (
           <LgArrowICon className={cx(iconCss.base, isOpen ? css({ rotate: '180deg' }) : '')} />
         ) : (
@@ -206,6 +209,7 @@ export const Select = ({
             )}
           />
         )}
+
         {isOpen && (
           <ul
             className={cx(
@@ -253,6 +257,7 @@ const containerCss = css({
   alignItems: 'flex-start',
   justifyContent: 'center',
 })
+
 const inputContainerCss = css({
   position: 'relative',
   display: 'flex',
@@ -283,12 +288,12 @@ const iconCss = {
 
 const ulCss = {
   base: css({
+    width: '100%',
     position: 'absolute',
     display: 'grid',
-    maxHeight: '158px',
-    width: '100%',
+    maxHeight: '300px',
     gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     borderRadius: '4px',
     padding: '4px 0',
   }),
@@ -312,11 +317,13 @@ const liCss = {
     sm: css({ height: '24px' }),
   },
 }
+
 interface TypographyFactoryProps {
   className?: string
   size: Size
   label: string
 }
+
 const LabelFactory = ({ size, label, className }: TypographyFactoryProps) => {
   if (size === 'lg') {
     return (
@@ -325,6 +332,7 @@ const LabelFactory = ({ size, label, className }: TypographyFactoryProps) => {
       </Typography>
     )
   }
+
   return (
     <Typography type="caption1" className={className}>
       {label}
@@ -340,6 +348,7 @@ const TitleFactory = ({ size, label, className }: TypographyFactoryProps) => {
       </Typography>
     )
   }
+
   return (
     <Typography type="subTitle3" className={className}>
       {label}

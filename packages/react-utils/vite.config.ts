@@ -1,16 +1,11 @@
 import { resolve } from 'path'
 
 import react from '@vitejs/plugin-react'
-import analyze from 'rollup-plugin-analyzer'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts()],
-  resolve: {
-    alias: [{ find: 'src', replacement: resolve('src') }],
-  },
   build: {
     lib: {
       // 빌드 시 src/index.ts을 시작점으로
@@ -22,14 +17,18 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'luxon'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          luxon: 'Luxon',
         },
       },
-      plugins: [analyze()],
     },
   },
+  resolve: {
+    alias: [{ find: 'src', replacement: resolve('src') }],
+  },
+  plugins: [visualizer(), react(), dts()],
 })

@@ -5,12 +5,12 @@ import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
 import { InputFactory } from 'src/components/TextInput/InputFactory'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles/DefaultTheme'
 
 import { ReactComponent as InvalidIcon } from './images/invalid.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
-interface TextInputProps
+export interface TextInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'className'> {
   type?: 'text' | 'password' | 'search'
   size?: Size

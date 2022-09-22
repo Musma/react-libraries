@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { Theme, ThemeContext, ThemeProvider, ThemeProviderProps, useTheme } from '@emotion/react'
 
-import { theme as DefaultTheme } from 'src/styles/theme'
+import { DefaultTheme } from 'src/styles'
 
 export const EmotionThemeProvider = ({ theme, children }: ThemeProviderProps) => {
   return (

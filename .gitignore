@@ -21,3 +21,6 @@ storybook-static
 *.njsproj
 *.sln
 *.sw?
+
+# Bundle analzyze 
+stats.html

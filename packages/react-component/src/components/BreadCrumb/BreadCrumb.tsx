@@ -21,6 +21,7 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
     },
     [crumbs],
   )
+
   return (
     <nav>
       <ol css={{ display: 'flex', alignItems: 'center' }}>

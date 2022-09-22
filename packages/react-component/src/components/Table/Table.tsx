@@ -26,12 +26,14 @@ const containerCss = css({
   gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
   rowGap: '16px',
 })
+
 const tableCss = css({
   width: '100%',
   borderCollapse: 'collapse',
   borderRadius: '4px',
   borderStyle: 'hidden',
 })
+
 const thCss = css({
   height: '40px',
   '&:first-child': {
@@ -41,6 +43,7 @@ const thCss = css({
     borderTopRightRadius: '4px',
   },
 })
+
 const tdCss = css({ height: '40px', textAlign: 'center' })
 
 export const Table = ({ data, className = '', columns, pagination, onRowClick }: TableProps) => {

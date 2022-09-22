@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 
 import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import svgr from 'vite-plugin-svgr'
@@ -17,16 +18,21 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'luxon'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          luxon: 'Luxon',
         },
       },
     },
   },
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' },
+  },
   plugins: [
+    visualizer({ open: true }),
     svgr(),
     react({
       jsxImportSource: '@emotion/react',
@@ -36,9 +42,6 @@ export default defineConfig({
     }),
     dts(),
   ],
-  esbuild: {
-    logOverride: { 'this-is-undefined-in-esm': 'silent' },
-  },
   resolve: {
     alias: [{ find: 'src', replacement: resolve(__dirname, 'src') }],
   },

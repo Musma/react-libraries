@@ -2,16 +2,17 @@ import { Fragment, useMemo } from 'react'
 
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import _ from 'lodash-es'
+import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
-import { ReactComponent as DoneDisabledLgIcon } from 'src/components/Checkbox/images/done_disabled_lg.svg'
-import { ReactComponent as DoneDisabledMdIcon } from 'src/components/Checkbox/images/done_disabled_md.svg'
-import { ReactComponent as DoneDisabledSmIcon } from 'src/components/Checkbox/images/done_disabled_sm.svg'
-import { ReactComponent as DoneLgIcon } from 'src/components/Checkbox/images/done_lg.svg'
-import { ReactComponent as DoneMdIcon } from 'src/components/Checkbox/images/done_md.svg'
-import { ReactComponent as DoneSmIcon } from 'src/components/Checkbox/images/done_sm.svg'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles'
+
+import { ReactComponent as DoneDisabledLgIcon } from './images/done_disabled_lg.svg'
+import { ReactComponent as DoneDisabledMdIcon } from './images/done_disabled_md.svg'
+import { ReactComponent as DoneDisabledSmIcon } from './images/done_disabled_sm.svg'
+import { ReactComponent as DoneLgIcon } from './images/done_lg.svg'
+import { ReactComponent as DoneMdIcon } from './images/done_md.svg'
+import { ReactComponent as DoneSmIcon } from './images/done_sm.svg'
 
 interface CheckboxProps {
   id?: string
@@ -24,7 +25,7 @@ interface CheckboxProps {
 }
 
 export const Checkbox = ({
-  id = _.uniqueId(),
+  id = uniqueId(),
   label,
   size = 'lg',
   checked = false,
@@ -63,9 +64,11 @@ export const Checkbox = ({
         disabled={disabled}
         {...rest}
       />
+
       <div className={cx(containerCss.base, containerCss.size[size], containerColorCss)}>
         <IconFactory checked={checked} disabled={disabled} size={size} />
       </div>
+
       {label && <LabelFactory label={label} size={size} />}
     </label>
   )

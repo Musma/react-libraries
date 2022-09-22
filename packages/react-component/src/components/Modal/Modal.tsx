@@ -4,9 +4,10 @@ import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Button, Typography } from 'src/components'
-import { ReactComponent as CloseIcon } from 'src/components/Modal/images/close.svg'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles'
+
+import { ReactComponent as CloseIcon } from './images/close.svg'
 
 interface ModalProps {
   title: string
@@ -41,123 +42,6 @@ interface ModalProps {
     isNested: (modal: HTMLDivElement) => boolean
   }
   onClose: () => void
-}
-
-export const Modal = ({
-  title,
-  isOpen,
-  size = 'md',
-  buttonOption,
-  children,
-  closeOnEscPress = false,
-  closeOnOutsideClick = false,
-  className = '',
-  modalManager,
-  onClose,
-}: ModalProps) => {
-  const theme = useTheme()
-  const backgroundRef = useRef<HTMLDivElement>(null)
-  const modalRef = useRef<HTMLDivElement>(null)
-  const buttonSize = useMemo(() => {
-    return size === 'md' ? 'lg' : 'md'
-  }, [size])
-  const backgroundColor = useMemo(() => {
-    if (!backgroundRef.current || !modalManager) {
-      return 'rgba(0, 0, 0, 0.3)'
-    }
-    return modalManager.isNested(backgroundRef.current)
-      ? 'rgba(0, 0, 0, 0.6)'
-      : 'rgba(0, 0, 0, 0.3)'
-  }, [modalManager])
-
-  const handleModalClose = useCallback(() => {
-    onClose()
-    modalManager?.pop()
-  }, [modalManager, onClose])
-
-  useKeyEsc(() => {
-    if (!closeOnEscPress || !backgroundRef.current) {
-      return
-    }
-    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) {
-      return
-    }
-    handleModalClose()
-  })
-
-  useOutsideListener(
-    modalRef,
-    () => {
-      if (!closeOnOutsideClick || !backgroundRef.current) {
-        return
-      }
-      if (!modalManager?.isTopModal(backgroundRef.current)) {
-        return
-      }
-      handleModalClose()
-    },
-    [modalManager],
-  )
-
-  useEffect(() => {
-    if (!isOpen || !backgroundRef.current) {
-      return
-    }
-    modalManager?.add(backgroundRef.current)
-  }, [isOpen, modalManager])
-
-  if (!isOpen) {
-    return <Fragment />
-  }
-
-  return (
-    <div className={cx(backgroundBase, css({ backgroundColor }))} ref={backgroundRef}>
-      <div
-        ref={modalRef}
-        className={cx(
-          modalCss.base,
-          css({ backgroundColor: theme.color.white.main }),
-          modalCss.size[size],
-          className,
-        )}
-      >
-        <section className={cx(headerCss.base, headerCss.size[size])}>
-          <Typography type="subTitle2">{title}</Typography>
-          <CloseIcon onClick={handleModalClose} className={css({ cursor: 'pointer' })} />
-        </section>
-        <hr
-          className={css({
-            width: '100%',
-            margin: 0,
-            boxSizing: 'border-box',
-            borderTop: `1px solid ${theme.color.gray.darker}`,
-          })}
-        />
-        <section className={cx(childrenContainerCss, css({ color: theme.color.black.lighter }))}>
-          {children}
-        </section>
-        <div className={cx(buttonCss.container.base, buttonCss.container.size[size])}>
-          <Button
-            size={buttonSize}
-            variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
-            onClick={buttonOption.onSecondClick}
-            className={cx(buttonCss.button[size], buttonOption.className)}
-          >
-            {buttonOption.label}
-          </Button>
-          {buttonOption.secondLabel && (
-            <Button
-              size={buttonSize}
-              onClick={buttonOption.onSecondClick}
-              className={cx(buttonCss.button[size], buttonOption.secondClassName)}
-            >
-              {buttonOption.secondLabel}
-            </Button>
-          )}
-        </div>
-      </div>
-    </div>
-  )
 }
 
 const childrenContainerCss = css({
@@ -236,4 +120,128 @@ const buttonCss = {
       height: '28px',
     }),
   },
+}
+
+export const Modal = ({
+  title,
+  isOpen,
+  size = 'md',
+  buttonOption,
+  children,
+  closeOnEscPress = false,
+  closeOnOutsideClick = false,
+  className = '',
+  modalManager,
+  onClose,
+}: ModalProps) => {
+  const theme = useTheme()
+  const backgroundRef = useRef<HTMLDivElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const buttonSize = useMemo(() => {
+    return size === 'md' ? 'lg' : 'md'
+  }, [size])
+
+  const backgroundColor = useMemo(() => {
+    if (!backgroundRef.current || !modalManager) {
+      return 'rgba(0, 0, 0, 0.3)'
+    }
+
+    return modalManager.isNested(backgroundRef.current)
+      ? 'rgba(0, 0, 0, 0.6)'
+      : 'rgba(0, 0, 0, 0.3)'
+  }, [modalManager])
+
+  const handleModalClose = useCallback(() => {
+    onClose()
+    modalManager?.pop()
+  }, [modalManager, onClose])
+
+  useKeyEsc(() => {
+    if (!closeOnEscPress || !backgroundRef.current) {
+      return
+    }
+    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) {
+      return
+    }
+    handleModalClose()
+  })
+
+  useOutsideListener(
+    modalRef,
+    () => {
+      if (!closeOnOutsideClick || !backgroundRef.current) {
+        return
+      }
+      if (!modalManager?.isTopModal(backgroundRef.current)) {
+        return
+      }
+      handleModalClose()
+    },
+    [modalManager],
+  )
+
+  useEffect(() => {
+    if (!isOpen || !backgroundRef.current) {
+      return
+    }
+
+    modalManager?.add(backgroundRef.current)
+  }, [isOpen, modalManager])
+
+  if (!isOpen) {
+    return <Fragment />
+  }
+
+  return (
+    <div className={cx(backgroundBase, css({ backgroundColor }))} ref={backgroundRef}>
+      <div
+        ref={modalRef}
+        className={cx(
+          modalCss.base,
+          css({ backgroundColor: theme.color.white.main }),
+          modalCss.size[size],
+          className,
+        )}
+      >
+        <section className={cx(headerCss.base, headerCss.size[size])}>
+          <Typography type="subTitle2">{title}</Typography>
+          <CloseIcon onClick={handleModalClose} className={css({ cursor: 'pointer' })} />
+        </section>
+
+        <hr
+          className={css({
+            width: '100%',
+            margin: 0,
+            boxSizing: 'border-box',
+            borderTop: `1px solid ${theme.color.gray.darker}`,
+          })}
+        />
+
+        <section className={cx(childrenContainerCss, css({ color: theme.color.black.lighter }))}>
+          {children}
+        </section>
+
+        <div className={cx(buttonCss.container.base, buttonCss.container.size[size])}>
+          <Button
+            size={buttonSize}
+            variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
+            onClick={buttonOption.onSecondClick}
+            className={cx(buttonCss.button[size], buttonOption.className)}
+          >
+            {buttonOption.label}
+          </Button>
+
+          {buttonOption.secondLabel && (
+            <Button
+              size={buttonSize}
+              onClick={buttonOption.onSecondClick}
+              className={cx(buttonCss.button[size], buttonOption.secondClassName)}
+            >
+              {buttonOption.secondLabel}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 }

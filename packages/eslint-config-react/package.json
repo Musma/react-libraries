@@ -1,18 +1,20 @@
 {
   "name": "@musma/eslint-config-react",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Musma's ESLint config with React",
-  "main": "index.js",
-  "author": "YoungSu Kim (jklasd2001@musma.net)",
-  "license": "MIT",
+  "homepage": "https://developers.musma.net",
   "repository": {
     "type": "git",
     "url": "https://github.com/Musma/react-libraries.git",
     "directory": "packages/eslint-config-react"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "license": "MIT",
+  "author": {
+    "name": "YoungSu Kim",
+    "email": "jklasd2001@musma.net",
+    "url": "https://github.com/jklasd2001"
   },
+  "main": "index.js",
   "files": [
     "index.js"
   ],
@@ -28,5 +30,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "prettier": "^2.7.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

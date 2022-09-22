@@ -2,8 +2,8 @@ import { useState, useCallback } from 'react'
 
 import { css, cx } from '@emotion/css'
 
-import { TextInputProps } from 'src/components/TextInput/types'
-import { Size } from 'src/styles/theme'
+import { TextInputProps } from 'src/components'
+import { Size } from 'src/styles'
 
 import { ReactComponent as LargeOpenEyeIcon } from './images/eye_closed_large.svg'
 import { ReactComponent as OpenSmallEyeIconIcon } from './images/eye_closed_small.svg'
@@ -17,6 +17,7 @@ interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size
   type: 'text' | 'password' | 'search'
   className?: string
 }
+
 export const InputFactory = ({ type, size, className, ...rest }: InputProps) => {
   switch (type) {
     case 'text':

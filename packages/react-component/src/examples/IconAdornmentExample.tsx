@@ -5,13 +5,13 @@ import { ReactComponent as CameraIcon } from './images/camera.svg'
 export const IconAdornmentExample = () => {
   return (
     <div>
-      <IconAdornment size="lg">
+      <IconAdornment>
         <CameraIcon />
       </IconAdornment>
-      <IconAdornment size="md">
+      <IconAdornment>
         <CameraIcon />
       </IconAdornment>
-      <IconAdornment size="sm">
+      <IconAdornment>
         <CameraIcon />
       </IconAdornment>
     </div>

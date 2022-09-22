@@ -1,48 +1,51 @@
 {
   "name": "@musma/react-utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Musma's React utilities",
-  "author": "YoungSu Kim (jklasd2001@musma.net)",
-  "license": "MIT",
+  "homepage": "https://developers.musma.net",
   "repository": {
     "type": "git",
     "url": "https://github.com/Musma/react-libraries.git",
     "directory": "packages/react-utils"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "license": "MIT",
+  "author": {
+    "name": "YoungSu Kim",
+    "email": "jkalsd2001@musma.net",
+    "url": "https://github.com/jklasd2001"
   },
-  "files": [
-    "dist"
-  ],
-  "types": "./dist/index.d.ts",
-  "main": "./dist/lib.umd.js",
-  "module": "./dist/lib.es.js",
+  "sideEffects": false,
   "exports": {
     ".": {
       "import": "./dist/lib.es.js",
       "require": "./dist/lib.umd.js"
     }
   },
+  "main": "./dist/lib.umd.js",
+  "module": "./dist/lib.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
+    "dev": "vite",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "luxon": "^3.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "lodash-es": "^4.17.21"
-  },
   "devDependencies": {
-    "@types/file-saver": "^2.0.5",
     "@types/lodash-es": "^4.17.6",
-    "@types/luxon": "^2.4.0"
-  },
-  "peerDependencies": {
-    "luxon": "^2.4.0",
+    "@types/luxon": "^3.0.1",
+    "lodash-es": "^4.17.21",
+    "luxon": "^3.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "peerDependencies": {
+    "luxon": "^3.0.0",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

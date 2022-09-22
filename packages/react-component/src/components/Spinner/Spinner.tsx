@@ -1,8 +1,9 @@
-import { css } from '@emotion/css'
-import { useTheme } from '@emotion/react'
 import { useMemo } from 'react'
 
-import { Size } from 'src/styles/theme'
+import { css } from '@emotion/css'
+import { useTheme } from '@emotion/react'
+
+import { Size } from 'src/styles'
 
 interface SpinnerProps {
   size?: Size

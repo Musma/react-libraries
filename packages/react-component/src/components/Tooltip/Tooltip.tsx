@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Typography } from 'src/components/Typography'
+import { Typography } from 'src/components'
 
 interface TooltipProps {
   children: React.ReactNode
@@ -92,6 +92,7 @@ const tooltipCss = {
     }),
   },
 }
+
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
 export const Tooltip = ({ children, message, width, position = 'left' }: TooltipProps) => {
   const theme = useTheme()

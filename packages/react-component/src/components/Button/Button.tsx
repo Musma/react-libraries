@@ -12,7 +12,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size | 'xs'
   variant?: 'outlined' | 'contained' | 'danger' // variant Type을 따로 뺴서 사용하는게 좋을 것 같습니다.
   icon?: ReactNode
-  children: ReactNode
 }
 
 export const Button = ({
@@ -20,15 +19,15 @@ export const Button = ({
   fullWidth = false,
   labelClassName = '',
   size = 'lg',
-  className,
   disabled,
   children,
   ...rest
 }: ButtonProps) => {
   const theme = useTheme()
+
   if (disabled) {
     return (
-      <DisabledButton fullWidth={fullWidth} className={className} size={size} {...rest}>
+      <DisabledButton fullWidth={fullWidth} size={size} {...rest}>
         <SizedLabel
           className={cx(css({ color: theme.color.gray.main }), labelClassName)}
           size={size}
@@ -38,10 +37,11 @@ export const Button = ({
       </DisabledButton>
     )
   }
+
   switch (variant) {
     case 'contained':
       return (
-        <ContainedButton fullWidth={fullWidth} className={className} size={size} {...rest}>
+        <ContainedButton fullWidth={fullWidth} size={size} {...rest}>
           <SizedLabel
             className={cx(css({ color: theme.color.white.main }), labelClassName)}
             size={size}
@@ -52,7 +52,7 @@ export const Button = ({
       )
     case 'danger':
       return (
-        <DangerButton fullWidth={fullWidth} className={className} size={size} {...rest}>
+        <DangerButton fullWidth={fullWidth} size={size} {...rest}>
           <SizedLabel
             className={cx(css({ color: theme.color.white.main }), labelClassName)}
             size={size}
@@ -63,7 +63,7 @@ export const Button = ({
       )
     case 'outlined':
       return (
-        <OutlinedButton fullWidth={fullWidth} className={className} size={size} {...rest}>
+        <OutlinedButton fullWidth={fullWidth} size={size} {...rest}>
           <SizedLabel
             className={cx(css({ color: theme.color.blue.main }), labelClassName)}
             size={size}
@@ -80,24 +80,18 @@ interface SizedLabelProps {
   size: Size | 'xs'
   children: ReactNode
 }
-const SizedLabel = ({ className, size, children }: SizedLabelProps) => {
+
+const SizedLabel = ({ size, ...rest }: SizedLabelProps) => {
   if (size === 'lg') {
-    return (
-      <Typography type="body3" className={className}>
-        {children}
-      </Typography>
-    )
+    return <Typography type="body3" {...rest} />
   }
-  return (
-    <Typography type="caption1" className={className}>
-      {children}
-    </Typography>
-  )
+
+  return <Typography type="caption1" {...rest} />
 }
 
 type BaseButtonProps = Omit<ButtonProps, 'label' | 'variant'>
 
-const ButtonBase = ({ children, fullWidth, className, size = 'lg', ...rest }: BaseButtonProps) => {
+const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
   const height = useMemo(() => {
     return {
       lg: '32px',
@@ -106,11 +100,11 @@ const ButtonBase = ({ children, fullWidth, className, size = 'lg', ...rest }: Ba
       xs: '24px',
     }[size]
   }, [size])
+
   return (
     <button
-      className={cx(
-        { [css({ width: '100%' })]: fullWidth },
-        css({
+      css={[
+        {
           appearance: 'none',
           border: 'solid 1px transparent',
           borderRadius: 6,
@@ -123,108 +117,86 @@ const ButtonBase = ({ children, fullWidth, className, size = 'lg', ...rest }: Ba
           alignItems: 'center',
           cursor: 'pointer',
           height,
-        }),
-        className,
-      )}
+        },
+        fullWidth && { width: '100%' },
+      ]}
       {...rest}
-    >
-      {children}
-    </button>
+    />
   )
 }
 
-const OutlinedButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
+const OutlinedButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
       size={size}
-      className={cx(
-        css({
+      css={{
+        backgroundColor: theme.color.white.main,
+        border: `solid 1px ${theme.color.blue.main}`,
+        '&:hover': {
+          backgroundColor: theme.color.blue.lighter,
+        },
+        '&:active': {
           backgroundColor: theme.color.white.main,
-          border: `solid 1px ${theme.color.blue.main}`,
-          '&:hover': {
-            backgroundColor: theme.color.blue.lighter,
-          },
-          '&:active': {
-            backgroundColor: theme.color.white.main,
-          },
-        }),
-        className,
-      )}
+        },
+      }}
       {...rest}
-    >
-      {children}
-    </ButtonBase>
+    />
   )
 }
 
-const ContainedButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
+const ContainedButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
       size={size}
-      className={cx(
-        css({
-          backgroundColor: theme.color.blue.main,
-          '&:hover': {
-            backgroundColor: `${theme.color.blue.main}E6`,
-          },
-          '&:active': {
-            backgroundColor: theme.color.blue.dark,
-          },
-        }),
-        className,
-      )}
+      css={{
+        backgroundColor: theme.color.blue.main,
+        '&:hover': {
+          backgroundColor: `${theme.color.blue.main}E6`,
+        },
+        '&:active': {
+          backgroundColor: theme.color.blue.dark,
+        },
+      }}
       {...rest}
-    >
-      {children}
-    </ButtonBase>
+    />
   )
 }
 
-const DangerButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
+const DangerButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
       size={size}
-      className={cx(
-        css({
-          backgroundColor: theme.color.red.main,
-          '&:hover': {
-            backgroundColor: `${theme.color.red.main}E6`,
-          },
-          '&:active': {
-            backgroundColor: theme.color.red.dark,
-          },
-        }),
-        className,
-      )}
+      css={{
+        backgroundColor: theme.color.red.main,
+        '&:hover': {
+          backgroundColor: `${theme.color.red.main}E6`,
+        },
+        '&:active': {
+          backgroundColor: theme.color.red.dark,
+        },
+      }}
       {...rest}
-    >
-      {children}
-    </ButtonBase>
+    />
   )
 }
 
-const DisabledButton = ({ children, className, size, ...rest }: BaseButtonProps) => {
+const DisabledButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
       size={size}
-      className={cx(
-        css({
-          backgroundColor: theme.color.white.lighter,
-          cursor: 'not-allowed',
-          '&:active': {
-            boxShadow: 'none',
-            transform: 'none',
-          },
-        }),
-        className,
-      )}
+      css={{
+        backgroundColor: theme.color.white.lighter,
+        cursor: 'not-allowed',
+        '&:active': {
+          boxShadow: 'none',
+          transform: 'none',
+        },
+      }}
       {...rest}
-    >
-      {children}
-    </ButtonBase>
+    />
   )
 }

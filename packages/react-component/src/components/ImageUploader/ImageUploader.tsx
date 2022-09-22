@@ -2,15 +2,16 @@ import { Fragment, useCallback, useMemo, useState } from 'react'
 
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
-import _ from 'lodash-es'
+import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
-import { ReactComponent as DefaultLgIcon } from 'src/components/ImageUploader/images/image_default_lg.svg'
-import { ReactComponent as DefaultMdIcon } from 'src/components/ImageUploader/images/image_default_md.svg'
-import { ReactComponent as DefaultSmIcon } from 'src/components/ImageUploader/images/image_default_sm.svg'
-import { ReactComponent as UploadLgIcon } from 'src/components/ImageUploader/images/upload_lg.svg'
-import { ReactComponent as UploadSmIcon } from 'src/components/ImageUploader/images/upload_sm.svg'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles'
+
+import { ReactComponent as DefaultLgIcon } from './images/image_default_lg.svg'
+import { ReactComponent as DefaultMdIcon } from './images/image_default_md.svg'
+import { ReactComponent as DefaultSmIcon } from './images/image_default_sm.svg'
+import { ReactComponent as UploadLgIcon } from './images/upload_lg.svg'
+import { ReactComponent as UploadSmIcon } from './images/upload_sm.svg'
 
 interface ImageUploaderProps {
   id?: string
@@ -20,13 +21,14 @@ interface ImageUploaderProps {
 }
 
 export const ImageUploader = ({
-  id = _.uniqueId(),
+  id = uniqueId(),
   size = 'lg',
   imgUrl,
   onChange,
 }: ImageUploaderProps) => {
   const theme = useTheme()
   const [thumbnail, setThumbnail] = useState<string | undefined>(imgUrl)
+
   const handleImageSelect = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (!event.target.files) return
@@ -36,6 +38,7 @@ export const ImageUploader = ({
     },
     [onChange],
   )
+
   const getDefaultImage = useCallback(() => {
     return {
       lg: <DefaultLgIcon className={css({ position: 'absolute', top: '20px', left: '10px' })} />,

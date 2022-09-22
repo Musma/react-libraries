@@ -17,7 +17,10 @@ export const Tabs = ({ titles, handleSelectTab, variant = 'hat' }: TabsProps) =>
   const [selectedTab, setSelectedTab] = useState(titles[0])
 
   useEffect(() => {
-    if (!handleSelectTab) return
+    if (!handleSelectTab) {
+      return
+    }
+
     handleSelectTab(selectedTab)
   }, [handleSelectTab, selectedTab])
 
@@ -41,6 +44,7 @@ export const Tabs = ({ titles, handleSelectTab, variant = 'hat' }: TabsProps) =>
       </ul>
     )
   }
+
   return (
     <ul className={css({ display: 'flex' })}>
       {titles.map((title, index, array) => (

@@ -5,15 +5,16 @@ import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { Typography } from 'src/components'
-import { ReactComponent as ArrowDoubleLeft } from 'src/components/DatePicker/images/arrow_double_left.svg'
-import { ReactComponent as SmArrowDoubleLeft } from 'src/components/DatePicker/images/arrow_double_left_sm.svg'
-import { ReactComponent as ArrowDoubleRight } from 'src/components/DatePicker/images/arrow_double_right.svg'
-import { ReactComponent as SmArrowDobuleRight } from 'src/components/DatePicker/images/arrow_double_right_sm.svg'
-import { ReactComponent as ArrowLeft } from 'src/components/DatePicker/images/arrow_left.svg'
-import { ReactComponent as SmArrowLeft } from 'src/components/DatePicker/images/arrow_left_sm.svg'
-import { ReactComponent as ArrowRight } from 'src/components/DatePicker/images/arrow_right.svg'
-import { ReactComponent as SmArrowRight } from 'src/components/DatePicker/images/arrow_right_sm.svg'
 import { Size } from 'src/styles'
+
+import { ReactComponent as ArrowDoubleLeft } from './images/arrow_double_left.svg'
+import { ReactComponent as SmArrowDoubleLeft } from './images/arrow_double_left_sm.svg'
+import { ReactComponent as ArrowDoubleRight } from './images/arrow_double_right.svg'
+import { ReactComponent as SmArrowDobuleRight } from './images/arrow_double_right_sm.svg'
+import { ReactComponent as ArrowLeft } from './images/arrow_left.svg'
+import { ReactComponent as SmArrowLeft } from './images/arrow_left_sm.svg'
+import { ReactComponent as ArrowRight } from './images/arrow_right.svg'
+import { ReactComponent as SmArrowRight } from './images/arrow_right_sm.svg'
 
 interface CalendarProps {
   size: Size

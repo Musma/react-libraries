@@ -3,10 +3,7 @@ import { PropsWithChildren } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Body } from './Body'
-import { Caption } from './Caption'
-import { Heading } from './Heading'
-import { SubTitle } from './SubTitle'
+import { Body, Caption, Heading, SubTitle } from './components'
 import { TypographyProps } from './types'
 
 export const Typography = ({ type, className, children }: PropsWithChildren<TypographyProps>) => {

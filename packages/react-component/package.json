@@ -1,53 +1,64 @@
 {
   "name": "@musma/react-component",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "React UI component library",
-  "author": "Jason (jinsoo1391@musma.net)",
-  "license": "MIT",
+  "homepage": "https://developers.musma.net",
   "repository": {
     "type": "git",
     "url": "https://github.com/Musma/react-libraries.git",
     "directory": "packages/react-component"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "license": "MIT",
+  "author": {
+    "name": "Jason",
+    "email": "jinsoo1391@musma.net",
+    "url": "https://github.com/jinchuu1391"
   },
-  "files": [
-    "dist"
+  "contributors": [
+    {
+      "name": "YoungSu Kim",
+      "email": "jklasd2001@musma.net",
+      "url": "https://github.com/jklasd2001"
+    }
   ],
   "sideEffects": false,
-  "types": "./dist/index.d.ts",
-  "main": "./dist/lib.umd.js",
-  "module": "./dist/lib.es.js",
   "exports": {
     ".": {
       "import": "./dist/lib.es.js",
       "require": "./dist/lib.umd.js"
     }
   },
+  "main": "./dist/lib.umd.js",
+  "module": "./dist/lib.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
+    "dev": "vite",
     "preview": "vite preview"
-  },
-  "dependencies": {
-    "@emotion/css": "^11.10.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "lodash-es": "^4.17.21",
-    "luxon": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
     "@emotion/babel-plugin": "^11.10.2",
+    "@emotion/css": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@types/lodash-es": "^4.17.6",
     "@types/luxon": "^3.0.1",
     "emotion-normalize": "^11.0.1",
+    "lodash-es": "^4.17.21",
+    "luxon": "^3.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "peerDependencies": {
+    "luxon": ">3.0.0",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

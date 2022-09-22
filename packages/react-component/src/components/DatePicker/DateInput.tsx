@@ -3,9 +3,10 @@ import { useCallback, useEffect, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import { DateTime } from 'luxon'
 
-import { ReactComponent as LgCalendarIcon } from 'src/components/DatePicker/images/calendar_lg.svg'
-import { ReactComponent as SmCalendarIcon } from 'src/components/DatePicker/images/calendar_sm.svg'
-import { Size, theme } from 'src/styles/theme'
+import { Size, DefaultTheme } from 'src/styles'
+
+import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
+import { ReactComponent as SmCalendarIcon } from './images/calendar_sm.svg'
 
 interface DateInputProps {
   size: Size
@@ -100,7 +101,7 @@ export const DateInput = ({
     >
       <div
         className={cx(inputContainerCss.base, inputContainerCss.size[size], {
-          [css({ border: `1px solid ${theme.color.red.main}` })]: isError,
+          [css({ border: `1px solid ${DefaultTheme.color.red.main}` })]: isError,
         })}
       >
         <div className={css({ display: 'flex' })}>
@@ -111,7 +112,7 @@ export const DateInput = ({
             onChange={(e) => handleYearChange(e.target.value)}
             maxLength={4}
             className={css({
-              color: theme.color.black.dark,
+              color: DefaultTheme.color.black.dark,
               appearance: 'none',
               textAlign: 'center',
               border: 0,
@@ -133,7 +134,7 @@ export const DateInput = ({
             onChange={(e) => handleMonthChange(e.target.value)}
             maxLength={2}
             className={css({
-              color: theme.color.black.dark,
+              color: DefaultTheme.color.black.dark,
               appearance: 'none',
               textAlign: 'center',
               border: 0,
@@ -156,7 +157,7 @@ export const DateInput = ({
             maxLength={2}
             className={cx(
               css({
-                color: theme.color.black.dark,
+                color: DefaultTheme.color.black.dark,
                 appearance: 'none',
                 textAlign: 'center',
                 border: 0,
@@ -182,17 +183,17 @@ export const DateInput = ({
 
 const inputContainerCss = {
   base: css({
-    backgroundColor: theme.color.white.main,
+    backgroundColor: DefaultTheme.color.white.main,
     marginBottom: '4px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: '4px',
-    border: `1px solid ${theme.color.gray.darker}`,
+    border: `1px solid ${DefaultTheme.color.gray.darker}`,
     paddingLeft: '8px',
     outline: 'none',
     '&:focus': {
-      border: `1px solid ${theme.color.blue.main}`,
+      border: `1px solid ${DefaultTheme.color.blue.main}`,
     },
   }),
   size: {

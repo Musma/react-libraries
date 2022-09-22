@@ -3,16 +3,17 @@ import { PropsWithChildren } from 'react'
 import { css, cx } from '@emotion/css'
 
 import { Typography } from 'src/components'
-import { ReactComponent as LgCheckedIcon } from 'src/components/RadioButton/images/checked_lg.svg'
-import { ReactComponent as MdCheckedIcon } from 'src/components/RadioButton/images/checked_md.svg'
-import { ReactComponent as SmCheckedIcon } from 'src/components/RadioButton/images/checked_sm.svg'
-import { ReactComponent as LgDefaultIcon } from 'src/components/RadioButton/images/default_lg.svg'
-import { ReactComponent as MdDefaultIcon } from 'src/components/RadioButton/images/default_md.svg'
-import { ReactComponent as SmDefaultIcon } from 'src/components/RadioButton/images/default_sm.svg'
-import { ReactComponent as LgDisabledIcon } from 'src/components/RadioButton/images/disabled_lg.svg'
-import { ReactComponent as MdDisabledIcon } from 'src/components/RadioButton/images/disabled_md.svg'
-import { ReactComponent as SmDisabledIcon } from 'src/components/RadioButton/images/disabled_sm.svg'
-import { Size } from 'src/styles/theme'
+import { Size } from 'src/styles'
+
+import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'
+import { ReactComponent as MdCheckedIcon } from './images/checked_md.svg'
+import { ReactComponent as SmCheckedIcon } from './images/checked_sm.svg'
+import { ReactComponent as LgDefaultIcon } from './images/default_lg.svg'
+import { ReactComponent as MdDefaultIcon } from './images/default_md.svg'
+import { ReactComponent as SmDefaultIcon } from './images/default_sm.svg'
+import { ReactComponent as LgDisabledIcon } from './images/disabled_lg.svg'
+import { ReactComponent as MdDisabledIcon } from './images/disabled_md.svg'
+import { ReactComponent as SmDisabledIcon } from './images/disabled_sm.svg'
 
 interface RadioButtonProps {
   label?: string
