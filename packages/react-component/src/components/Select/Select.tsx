@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
 import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'

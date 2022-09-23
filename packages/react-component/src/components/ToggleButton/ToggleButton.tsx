@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { cx, css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Size } from 'src/styles/DefaultTheme'
+import { Size } from 'src/types'
 
 interface ToggleButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: Size

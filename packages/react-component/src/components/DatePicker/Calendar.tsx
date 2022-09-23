@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as ArrowDoubleLeft } from './images/arrow_double_left.svg'
 import { ReactComponent as SmArrowDoubleLeft } from './images/arrow_double_left_sm.svg'
@@ -21,6 +21,7 @@ interface CalendarProps {
   date: DateTime | undefined
   handleSelectDay: (y: number, m: number, d: number) => void
 }
+
 export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
   const theme = useTheme()
   const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
@@ -284,7 +285,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
 }
 
 const containerCss = {
-  base: css({ borderRadius: '4px', zIndex: 9999 }),
+  base: css({ borderRadius: '4px', zIndex: 9999, position: 'absolute', top: '100%' }),
   size: {
     lg: css({ width: '200px' }),
     md: css({ width: '180px' }),

@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as DefaultLgIcon } from './images/image_default_lg.svg'
 import { ReactComponent as DefaultMdIcon } from './images/image_default_md.svg'

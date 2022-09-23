@@ -1,7 +1,8 @@
-import { ThemeProvider } from '@emotion/react'
-
 import { Examples } from 'src/examples'
-import { DefaultTheme, GlobalStyle } from 'src/styles'
+import { GlobalStyle } from 'src/styles'
+
+import { ThemeProvider } from './components'
+import { DefaultTheme } from './theme'
 
 export const App = () => {
   return (

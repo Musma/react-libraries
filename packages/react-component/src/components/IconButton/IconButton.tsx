@@ -3,7 +3,7 @@ import { useMemo, ButtonHTMLAttributes, ReactNode } from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'outlined' | 'contained'

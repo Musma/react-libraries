@@ -4,7 +4,7 @@ import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as CloseIcon } from './images/close.svg' // import 순서 및 정렬해주세요.
 

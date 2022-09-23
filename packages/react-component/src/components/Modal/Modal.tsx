@@ -3,9 +3,9 @@ import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef } from 're
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Button, Typography } from 'src/components'
+import { Button, Typography, IconAdornment } from 'src/components'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as CloseIcon } from './images/close.svg'
 
@@ -49,6 +49,7 @@ const childrenContainerCss = css({
   fontSize: '14px',
   fontWeight: 400,
 })
+
 const backgroundBase = css({
   position: 'fixed',
   left: 0,
@@ -205,7 +206,10 @@ export const Modal = ({
       >
         <section className={cx(headerCss.base, headerCss.size[size])}>
           <Typography type="subTitle2">{title}</Typography>
-          <CloseIcon onClick={handleModalClose} className={css({ cursor: 'pointer' })} />
+
+          <IconAdornment>
+            <CloseIcon onClick={handleModalClose} className={css({ cursor: 'pointer' })} />
+          </IconAdornment>
         </section>
 
         <hr

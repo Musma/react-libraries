@@ -1,4 +1,4 @@
-import { Size } from 'src/styles/DefaultTheme' // 절대경로 사용해주세요
+import { Size } from 'src/types' // 절대경로 사용해주세요
 
 export interface TextInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'className'> {

@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 interface SpinnerProps {
   size?: Size

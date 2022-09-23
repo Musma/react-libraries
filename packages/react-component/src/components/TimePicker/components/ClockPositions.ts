@@ -1,4 +1,4 @@
-import { Size } from 'src/styles/DefaultTheme'
+import { Size } from 'src/types'
 
 const Divider = 144 / 7
 

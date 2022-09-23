@@ -1,6 +1,6 @@
-export type Size = 'sm' | 'md' | 'lg'
+import { EmotionTheme } from './types'
 
-export const DefaultTheme = {
+export const DefaultTheme: EmotionTheme = {
   spaceUnit: 4,
   color: {
     blue: {
@@ -51,14 +51,6 @@ export const DefaultTheme = {
       main: '#FD9009',
       dark: '#E76F00',
       darker: '#DB6900',
-    },
-    zIndex: {
-      header: 1000,
-      navigation: 1100,
-      backdrop: 1200,
-      modal: 1300,
-      snackbar: 1400,
-      tooltip: 1500,
     },
   },
 }

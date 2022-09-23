@@ -4,7 +4,7 @@ import { css } from '@emotion/css'
 import { DateTime } from 'luxon'
 
 import { Calendar, DateInput, Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 interface DatePickerProps {
   label?: string
@@ -38,7 +38,14 @@ export const DatePicker = ({
   }, [date, handleDatePick])
 
   return (
-    <div className={css({ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' })}>
+    <div
+      className={css({
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        position: 'relative',
+      })}
+    >
       <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'} css={{ marginBottom: '2px' }}>
         {label}
       </Typography>

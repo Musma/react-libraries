@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { css, cx } from '@emotion/css'
 import { DateTime } from 'luxon'
 
-import { Size, DefaultTheme } from 'src/styles'
+import { DefaultTheme } from 'src/theme'
+import { Size } from 'src/types'
 
 import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
 import { ReactComponent as SmCalendarIcon } from './images/calendar_sm.svg'

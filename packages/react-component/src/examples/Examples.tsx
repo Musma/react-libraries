@@ -1,9 +1,20 @@
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-import { BreadCrumb, Tooltip, Button, Typography, Tag, Spinner, ToggleButton } from 'src/components'
+import {
+  BreadCrumb,
+  Tooltip,
+  Button,
+  Typography,
+  Tag,
+  Spinner,
+  ToggleButton,
+  Backdrop,
+  Skeleton,
+  Drawer,
+} from 'src/components'
 import {
   ModalExample,
   TextInputExample,
@@ -23,6 +34,8 @@ import {
 import { TabsExample } from './TabsExample'
 
 export const Examples = () => {
+  const [showSpinner, setSpinner] = useState(false)
+  const [showDrawer, setDrawer] = useState(false)
   return (
     <div>
       <div
@@ -108,7 +121,25 @@ export const Examples = () => {
           <RadioButtonExample />
         </Box>
         <Box title="Spinner">
-          <Spinner />
+          <Button
+            onClick={() => {
+              setSpinner(!showSpinner)
+            }}
+          >
+            Click me
+          </Button>
+          <Backdrop open={showSpinner}>
+            <div>
+              <Button
+                onClick={() => {
+                  setSpinner(!showSpinner)
+                }}
+              >
+                Close
+              </Button>
+              <Spinner />
+            </div>
+          </Backdrop>
         </Box>
         <Box title="Table">
           <TableExample />
@@ -127,6 +158,34 @@ export const Examples = () => {
         <Box title="IconAdornment">
           <IconAdornmentExample />
         </Box>
+
+        <Box title="Skeleton">
+          <div css={{ height: 300, width: '100%' }}>
+            <Skeleton css={{ height: '100px' }} />
+            <Skeleton variant="circle" css={{ height: 40, width: 40 }} />
+          </div>
+        </Box>
+
+        <Box title="Drawer">
+          <Button
+            onClick={() => {
+              setDrawer(!showDrawer)
+            }}
+          >
+            Drawer Open
+          </Button>
+          <Drawer open={showDrawer}>
+            <Button
+              onClick={() => {
+                setDrawer(!showDrawer)
+              }}
+            >
+              Close
+            </Button>
+          </Drawer>
+        </Box>
+
+        <Box title="Backdrop">{/* <Backdrop /> */}</Box>
       </div>
     </div>
   )

@@ -18,4 +18,6 @@ export { Table, usePagination } from './components/Table'
 export { Tabs } from './components/Tabs'
 export { ToggleButton } from './components/ToggleButton'
 export { RadioButton } from './components/RadioButton'
-export { EmotionThemeProvider } from './components/EmotionThemeProvider'
+
+//
+export { ThemeProvider } from './theme/ThemeProvider'

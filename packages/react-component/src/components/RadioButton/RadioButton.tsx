@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import { css, cx } from '@emotion/css'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'
 import { ReactComponent as MdCheckedIcon } from './images/checked_md.svg'

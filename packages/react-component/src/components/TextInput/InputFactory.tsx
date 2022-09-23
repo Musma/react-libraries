@@ -1,86 +1,60 @@
 import { useState, useCallback } from 'react'
 
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/react'
 
-import { TextInputProps } from 'src/components'
-import { Size } from 'src/styles'
+import { TextInputProps, IconAdornment } from 'src/components'
+import { Size } from 'src/types'
 
 import { ReactComponent as LargeOpenEyeIcon } from './images/eye_closed_large.svg'
 import { ReactComponent as OpenSmallEyeIconIcon } from './images/eye_closed_small.svg'
 import { ReactComponent as ClosedLargeEyeIcon } from './images/eye_opened_large.svg'
 import { ReactComponent as ClosedSmallEyeIconIcon } from './images/eye_opened_small.svg'
-import { ReactComponent as LargeSearchIcon } from './images/search_large.svg'
-import { ReactComponent as SmallSearchIcon } from './images/search_small.svg'
 
 interface InputProps extends Omit<TextInputProps, 'label' | 'helperText' | 'size'> {
   size: Size
-  type: 'text' | 'password' | 'search'
-  className?: string
+  type: 'text' | 'password'
 }
 
-export const InputFactory = ({ type, size, className, ...rest }: InputProps) => {
-  switch (type) {
-    case 'text':
-      return <TextTypeInput size={size} type="text" className={className} {...rest} />
-    case 'password':
-      return <PasswordInput size={size} type="password" className={className} {...rest} />
-    case 'search':
-      return <SearchInput size={size} type="text" className={className} {...rest} />
+export const InputFactory = ({ type, size, ...rest }: InputProps) => {
+  if (type === 'text') {
+    return <TextTypeInput size={size} type="text" {...rest} />
   }
+
+  return <PasswordInput size={size} type="password" {...rest} />
 }
 
-const TextTypeInput = ({ type, size, className, ...rest }: InputProps) => {
+const TextTypeInput = ({ type, size, ...rest }: InputProps) => {
   return (
-    <input
-      type={type}
-      className={cx(inputCss.base, inputCss.size[size], inputCss.types.text, className)}
-      {...rest}
-    />
+    <input type={type} css={[inputCss.base, inputCss.size[size], inputCss.types.text]} {...rest} />
   )
 }
 
-const PasswordInput = ({ type, size, className, ...rest }: InputProps) => {
-  const [showPassword, setShowPassword] = useState(false)
+const PasswordInput = ({ type, size, ...rest }: InputProps) => {
+  const [showPassword, setShowPassword] = useState(type === 'password')
+
   const toggleShowPassword = useCallback(() => {
-    setShowPassword((prev) => !prev)
+    setShowPassword((value) => !value)
   }, [])
 
   return (
-    <div className={inputContainerCss}>
+    <div css={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
       <input
         type={showPassword ? 'text' : 'password'}
-        className={cx(inputCss.base, inputCss.size[size], inputCss.types.password, className)}
+        css={[inputCss.base, inputCss.size[size], inputCss.types.password]}
         {...rest}
       />
-      <span
-        className={cx(iconContainerCss.base, iconContainerCss.position[size])}
+
+      <IconAdornment
         onClick={toggleShowPassword}
+        css={[iconContainerCss.base, iconContainerCss.position[size]]}
       >
         {showPassword && (size === 'lg' ? <LargeOpenEyeIcon /> : <OpenSmallEyeIconIcon />)}
         {!showPassword && (size === 'lg' ? <ClosedLargeEyeIcon /> : <ClosedSmallEyeIconIcon />)}
-      </span>
+      </IconAdornment>
     </div>
   )
 }
 
-const SearchInput = ({ handleSearchClick, size, className, ...rest }: InputProps) => {
-  return (
-    <div className={inputContainerCss}>
-      <input
-        className={cx(inputCss.base, inputCss.size[size], inputCss.types.search, className)}
-        {...rest}
-      />
-      <span
-        className={cx(iconContainerCss.base, iconContainerCss.position[size])}
-        onClick={handleSearchClick}
-      >
-        {size === 'lg' ? <LargeSearchIcon /> : <SmallSearchIcon />}
-      </span>
-    </div>
-  )
-}
-
-const inputContainerCss = css({ position: 'relative', display: 'flex', alignItems: 'center' })
 const iconContainerCss = {
   base: css({
     position: 'absolute',
@@ -88,9 +62,9 @@ const iconContainerCss = {
     cursor: 'pointer',
   }),
   position: {
-    lg: css({ top: '8px' }),
-    md: css({ top: '7px' }),
-    sm: css({ top: '5px' }),
+    lg: css({ top: '4px' }),
+    md: css({ top: '5px' }),
+    sm: css({ top: '6px' }),
   },
 }
 const inputCss = {

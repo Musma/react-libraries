@@ -6,7 +6,7 @@ import { DateTime } from 'luxon'
 
 import { TextInput } from 'src/components'
 import { ClockBody, ClockHeader, ClockType, getMeridiem } from 'src/components/TimePicker'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 import { ReactComponent as LgClockIcon } from './images/clock_large.svg'
 import { ReactComponent as MdClockIcon } from './images/clock_md,sm.svg'

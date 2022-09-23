@@ -4,7 +4,7 @@ import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
-import { Size } from 'src/styles'
+import { Size } from 'src/types'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   labelClassName?: string
@@ -29,7 +29,7 @@ export const Button = ({
     return (
       <DisabledButton fullWidth={fullWidth} size={size} {...rest}>
         <SizedLabel
-          className={cx(css({ color: theme.color.gray.main }), labelClassName)}
+          className={cx(css({ color: theme.color.white.main }), labelClassName)}
           size={size}
         >
           {children}
@@ -108,15 +108,17 @@ const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
           appearance: 'none',
           border: 'solid 1px transparent',
           borderRadius: 6,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minWidth: 64,
+          padding: 8,
+          cursor: 'pointer',
+          height,
           '&:active': {
             boxShadow: 'inset -1px 2px 2px rgba(0, 0, 0, 0.25)',
             transform: 'translateY(1px)',
           },
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          cursor: 'pointer',
-          height,
         },
         fullWidth && { width: '100%' },
       ]}

@@ -7,7 +7,10 @@ export const useKeyEsc = (callback: () => void) => {
         callback()
       }
     }
+
     window.addEventListener('keydown', escKeyModalClose)
-    return () => window.removeEventListener('keydown', escKeyModalClose)
+    return () => {
+      window.removeEventListener('keydown', escKeyModalClose)
+    }
   }, [callback])
 }
