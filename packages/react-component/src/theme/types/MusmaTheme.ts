@@ -1,4 +1,4 @@
-export interface EmotionTheme {
+export interface MusmaTheme {
   spaceUnit: number
   color: {
     blue: {

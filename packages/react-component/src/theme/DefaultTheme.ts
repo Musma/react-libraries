@@ -1,6 +1,6 @@
-import { EmotionTheme } from './types'
+import { MusmaTheme } from './types'
 
-export const DefaultTheme: EmotionTheme = {
+export const DefaultTheme: MusmaTheme = {
   spaceUnit: 4,
   color: {
     blue: {

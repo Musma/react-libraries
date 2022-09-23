@@ -1,5 +1,4 @@
 export * from './DefaultTheme'
-export * from './ThemeProvider'
+export * from './MusmaProvider'
 export * from './NormalizeCSS'
-export * from './GlobalStyles'
 export * from './types'

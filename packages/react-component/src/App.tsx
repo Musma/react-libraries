@@ -1,13 +1,13 @@
 import { Examples } from 'src/examples'
-import { GlobalStyle } from 'src/styles'
 
-import { ThemeProvider, DefaultTheme } from './theme'
+import { GlobalStyle } from './styles'
+import { MusmaProvider, DefaultTheme } from './theme'
 
 export const App = () => {
   return (
-    <ThemeProvider theme={DefaultTheme}>
+    <MusmaProvider theme={DefaultTheme}>
       <GlobalStyle />
       <Examples />
-    </ThemeProvider>
+    </MusmaProvider>
   )
 }

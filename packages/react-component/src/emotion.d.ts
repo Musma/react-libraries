@@ -1,7 +1,7 @@
-import type { EmotionTheme } from './theme/types/index'
+import type { MusmaTheme } from './theme/types'
 import '@emotion/react'
 
 declare module '@emotion/react' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface Theme extends EmotionTheme {}
+  export interface Theme extends MusmaTheme {}
 }
