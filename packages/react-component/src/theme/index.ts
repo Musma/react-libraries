@@ -1,1 +1,5 @@
 export * from './DefaultTheme'
+export * from './ThemeProvider'
+export * from './NormalizeCSS'
+export * from './GlobalStyles'
+export * from './types'

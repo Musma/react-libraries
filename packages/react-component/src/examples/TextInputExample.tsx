@@ -8,7 +8,7 @@ export const TextInputExample = () => {
     <div>
       <TextInput type="text" size="lg" />
       <TextInput label={'TextInput Sample'} type="password" size="lg" />
-      <TextInput label={'TextInput Sample'} type="search" size="lg" />
+      <TextInput label={'TextInput Sample'} size="lg" />
     </div>
   )
 }

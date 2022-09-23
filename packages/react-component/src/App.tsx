@@ -1,8 +1,7 @@
 import { Examples } from 'src/examples'
 import { GlobalStyle } from 'src/styles'
 
-import { ThemeProvider } from './components'
-import { DefaultTheme } from './theme'
+import { ThemeProvider, DefaultTheme } from './theme'
 
 export const App = () => {
   return (
