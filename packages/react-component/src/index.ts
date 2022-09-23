@@ -25,6 +25,6 @@ export { ToggleButton } from './components/ToggleButton'
 export { Tooltip } from './components/Tooltip'
 export { Typography } from './components/Typography'
 //
-export { MusmaProvider as ThemeProvider } from './theme/MusmaProvider'
+export { MusmaProvider } from './theme/MusmaProvider'
 export type { MusmaTheme } from './theme/types'
 export { DefaultTheme } from './theme'
