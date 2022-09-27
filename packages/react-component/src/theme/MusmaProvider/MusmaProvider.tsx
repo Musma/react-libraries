@@ -1,11 +1,8 @@
-import { createContext, ReactNode } from 'react'
+import { createContext, ReactNode, useContext } from 'react'
 
 import { ThemeProvider } from '@emotion/react'
 
-import { DefaultTheme } from '../DefaultTheme'
-import { NormalizeCSS } from '../NormalizeCSS'
-import { PretendardFont } from '../PretendardFont'
-import { MusmaTheme } from '../types'
+import { DefaultTheme, NormalizeCSS, PretendardFont, MusmaTheme } from 'src/theme'
 
 interface MusmaProviderContextType {
   theme?: MusmaTheme
@@ -14,6 +11,10 @@ interface MusmaProviderContextType {
 const MusmaProviderContext = createContext<MusmaProviderContextType>({
   theme: DefaultTheme,
 })
+
+export function useMusmaTheme() {
+  return useContext(MusmaProviderContext)?.theme || DefaultTheme
+}
 
 export interface MusmaProviderProps {
   withNormalizeCSS?: boolean

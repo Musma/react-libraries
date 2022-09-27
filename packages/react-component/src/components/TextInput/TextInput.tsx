@@ -28,6 +28,7 @@ export const TextInput = ({
   const inputBase = useMemo(() => {
     return css({ color: theme.color.black.dark, backgroundColor: theme.color.white.main })
   }, [theme])
+
   const inputBorder = useMemo(() => {
     return {
       base: css({

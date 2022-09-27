@@ -18,12 +18,13 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'luxon'],
+      external: ['react', 'react-dom', 'luxon', '@emotion/react'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
           luxon: 'Luxon',
+          '@emotion/react': '@emotion/react',
         },
       },
     },
