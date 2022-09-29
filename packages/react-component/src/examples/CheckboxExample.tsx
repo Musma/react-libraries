@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import { css } from '@emotion/css'
-
 import { Checkbox } from 'src/components'
 
 export const CheckboxExample = () => {
@@ -10,7 +8,7 @@ export const CheckboxExample = () => {
   const [checked3, setChecked3] = useState(false)
 
   return (
-    <div className={css({ display: 'flex', gap: '16px' })}>
+    <div css={{ display: 'flex', gap: '16px' }}>
       <Checkbox
         checked={checked1}
         onChange={(checked) => setChecked1(checked)}

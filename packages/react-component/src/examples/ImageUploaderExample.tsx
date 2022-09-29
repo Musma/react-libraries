@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { ImageUploader } from 'src/components'
 
 export const ImageUploaderExample = () => {

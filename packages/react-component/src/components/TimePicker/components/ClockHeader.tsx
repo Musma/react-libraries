@@ -1,5 +1,4 @@
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { getMeridiem, ClockType, Typography } from 'src/components'
@@ -19,25 +18,25 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
   const theme = useTheme()
   return (
     <div
-      className={css({
+      css={{
         marginBottom: '16px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         cursor: 'pointer',
         gap: '8px',
-      })}
+      }}
     >
-      <div className={css({ display: 'flex', alignItems: 'center', gap: '8px' })}>
+      <div css={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div
-          className={cx(
+          css={[
             hourMinContainerCss.base,
             hourMinContainerCss.size[size],
             css({
               backgroundColor:
                 clockType === 'hour' ? theme.color.blue.lighter : theme.color.white.light,
             }),
-          )}
+          ]}
           onClick={() => {
             if (clockType !== 'hour') {
               onClockTypeChange('hour')
@@ -46,20 +45,20 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
         >
           <HourMinLabel
             size={size}
-            className={clockType === 'hour' ? css({ color: theme.color.blue.main }) : ''}
+            css={clockType === 'hour' ? { color: theme.color.blue.main } : ''}
             label={date.toFormat('hh')}
           />
         </div>
         <ColonIcon />
         <div
-          className={cx(
+          css={[
             hourMinContainerCss.base,
             hourMinContainerCss.size[size],
             css({
               backgroundColor:
                 clockType === 'hour' ? theme.color.blue.lighter : theme.color.white.light,
             }),
-          )}
+          ]}
           onClick={() => {
             if (clockType !== 'min') {
               onClockTypeChange('min')
@@ -68,7 +67,7 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
         >
           <HourMinLabel
             size={size}
-            className={clockType === 'min' ? css({ color: theme.color.blue.main }) : ''}
+            css={clockType === 'min' ? css({ color: theme.color.blue.main }) : ''}
             label={date.toFormat('mm')}
           />
         </div>
@@ -76,10 +75,10 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
 
       <div
         role="group"
-        className={css({ display: 'flex', flexDirection: 'column', borderRadius: '6px' })}
+        css={css({ display: 'flex', flexDirection: 'column', borderRadius: '6px' })}
       >
         <button
-          className={cx(
+          css={[
             buttonCss.base,
             buttonCss.size[size],
             buttonCss.am,
@@ -87,7 +86,7 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             getMeridiem(date) === 'am'
               ? css({ backgroundColor: theme.color.blue.lighter, color: theme.color.blue.main })
               : css({ backgroundColor: theme.color.white.main, color: theme.color.gray.main }),
-          )}
+          ]}
           onClick={() => {
             if (getMeridiem(date) !== 'am') {
               onDateChange(date.minus({ hour: 12 }))
@@ -96,14 +95,14 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
         >
           <AmPmLabel
             size={size}
-            className={css({
+            css={{
               color: getMeridiem(date) === 'am' ? theme.color.blue.main : theme.color.gray.main,
-            })}
+            }}
             label="AM"
           />
         </button>
         <button
-          className={cx(
+          css={[
             buttonCss.base,
             buttonCss.size[size],
             buttonCss.pm,
@@ -111,7 +110,7 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
             getMeridiem(date) === 'pm'
               ? css({ backgroundColor: theme.color.blue.lighter, color: theme.color.blue.main })
               : css({ backgroundColor: theme.color.white.main, color: theme.color.gray.main }),
-          )}
+          ]}
           onClick={() => {
             if (getMeridiem(date) !== 'pm') {
               onDateChange(date.plus({ hour: 12 }))
@@ -120,9 +119,9 @@ export const ClockHeader = ({ size, date, clockType, onDateChange, onClockTypeCh
         >
           <AmPmLabel
             size={size}
-            className={css({
+            css={{
               color: getMeridiem(date) === 'pm' ? theme.color.blue.main : theme.color.gray.main,
-            })}
+            }}
             label="PM"
           />
         </button>

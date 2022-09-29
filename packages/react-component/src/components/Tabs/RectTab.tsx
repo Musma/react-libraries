@@ -1,4 +1,3 @@
-import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
@@ -10,23 +9,19 @@ export const RectTab = ({ title, selectedTab, setSelectedTab }: TabProps) => {
 
   return (
     <li
-      className={cx(
-        css({ cursor: 'pointer', borderBottom: '1px solid', padding: '10px 24px' }),
-
-        {
-          [css({ borderBottomColor: theme.color.gray.darker })]: title !== selectedTab,
-        },
-        {
-          [css({ borderBottomColor: theme.color.blue.main })]: title === selectedTab,
-        },
-      )}
+      css={{
+        cursor: 'pointer',
+        borderBottom: '1px solid',
+        padding: '10px 24px',
+        borderBottomColor: title === selectedTab ? theme.color.blue.main : theme.color.gray.darker,
+      }}
       onClick={() => setSelectedTab(title)}
     >
       <Typography
         type="subTitle2"
-        className={css({
+        css={{
           color: title === selectedTab ? theme.color.blue.main : theme.color.gray.darker,
-        })}
+        }}
       >
         {title}
       </Typography>

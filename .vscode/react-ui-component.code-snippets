@@ -3,7 +3,6 @@
 		"scope": "typescriptreact",
 		"prefix": "uu",
 		"body": [
-		  "import { css, cx } from '@emotion/css'",
 		  "import { useTheme } from '@emotion/react'",
 		  "",
 		  "interface ${TM_FILENAME_BASE}Props {",

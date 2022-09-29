@@ -1,9 +1,6 @@
-import { useTheme } from '@emotion/react'
-
 import { TextInput } from 'src/components'
 
 export const TextInputExample = () => {
-  const theme = useTheme()
   return (
     <div>
       <TextInput type="text" size="lg" />

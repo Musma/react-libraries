@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/react'
 
 import { CaptionProps } from 'src/components/Typography/types'
 
@@ -24,5 +24,9 @@ export const Caption = ({
   children,
   className,
 }: PropsWithChildren<CaptionProps>) => {
-  return <span className={cx(captionCss[variant], className)}>{children}</span>
+  return (
+    <span css={captionCss[variant]} className={className}>
+      {children}
+    </span>
+  )
 }

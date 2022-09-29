@@ -1,7 +1,6 @@
-import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef } from 'react'
+import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef, CSSProperties } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 import { Button, Typography, IconAdornment } from 'src/components'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
@@ -16,11 +15,11 @@ interface ModalProps {
   children: ReactNode
   buttonOption: {
     label: string
-    className?: string
+    buttonStyle?: CSSProperties
     onClick?: () => void
     /** secondLabel에 값을 전달하면 두 번째 버튼이 나타납니다  */
     secondLabel?: string
-    secondClassName?: string
+    secondButtonStyle?: CSSProperties
     onSecondClick?: () => void
   }
   className?: string
@@ -194,43 +193,39 @@ export const Modal = ({
   }
 
   return (
-    <div className={cx(backgroundBase, css({ backgroundColor }))} ref={backgroundRef}>
+    <div css={[backgroundBase, css({ backgroundColor })]} ref={backgroundRef}>
       <div
         ref={modalRef}
-        className={cx(
-          modalCss.base,
-          css({ backgroundColor: theme.color.white.main }),
-          modalCss.size[size],
-          className,
-        )}
+        css={[modalCss.base, css({ backgroundColor: theme.color.white.main }), modalCss.size[size]]}
+        className={className}
       >
-        <section className={cx(headerCss.base, headerCss.size[size])}>
+        <section css={[headerCss.base, headerCss.size[size]]}>
           <Typography type="subTitle2">{title}</Typography>
 
           <IconAdornment>
-            <CloseIcon onClick={handleModalClose} className={css({ cursor: 'pointer' })} />
+            <CloseIcon onClick={handleModalClose} css={{ cursor: 'pointer' }} />
           </IconAdornment>
         </section>
 
         <hr
-          className={css({
+          css={{
             width: '100%',
             margin: 0,
             boxSizing: 'border-box',
             borderTop: `1px solid ${theme.color.gray.darker}`,
-          })}
+          }}
         />
 
-        <section className={cx(childrenContainerCss, css({ color: theme.color.black.lighter }))}>
+        <section css={[childrenContainerCss, css({ color: theme.color.black.lighter })]}>
           {children}
         </section>
 
-        <div className={cx(buttonCss.container.base, buttonCss.container.size[size])}>
+        <div css={[buttonCss.container.base, buttonCss.container.size[size]]}>
           <Button
             size={buttonSize}
             variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
             onClick={buttonOption.onSecondClick}
-            className={cx(buttonCss.button[size], buttonOption.className)}
+            css={{ ...buttonCss.button[size], ...buttonOption.buttonStyle }}
           >
             {buttonOption.label}
           </Button>
@@ -239,7 +234,7 @@ export const Modal = ({
             <Button
               size={buttonSize}
               onClick={buttonOption.onSecondClick}
-              className={cx(buttonCss.button[size], buttonOption.secondClassName)}
+              css={{ ...buttonCss.button[size], ...buttonOption.secondButtonStyle }}
             >
               {buttonOption.secondLabel}
             </Button>

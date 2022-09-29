@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 
-import { cx, css } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 import { Size } from 'src/types'
 
@@ -30,21 +29,19 @@ export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonPro
         },
       }),
     }
-  }, [disabled])
+  }, [theme])
 
   return (
-    <label className={containerCss}>
+    <label css={containerCss}>
       <input
         type="checkbox"
-        className={cx(
+        css={[
           inputCss.base,
           inputCss.size[size],
-          {
-            [cx(inputCss.animation.base, inputCss.animation.position[size], colorCss.active)]:
-              !disabled,
-          },
-          { [colorCss.disabled]: disabled },
-        )}
+          disabled
+            ? colorCss.disabled
+            : [inputCss.animation.base, inputCss.animation.position[size], colorCss.active],
+        ]}
         disabled={disabled}
         {...rest}
       />

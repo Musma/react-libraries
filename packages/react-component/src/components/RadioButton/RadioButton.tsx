@@ -1,6 +1,4 @@
-import { PropsWithChildren } from 'react'
-
-import { css, cx } from '@emotion/css'
+import { CSSProperties, PropsWithChildren } from 'react'
 
 import { Typography } from 'src/components'
 import { Size } from 'src/types'
@@ -21,7 +19,7 @@ interface RadioButtonProps {
   selected: string
   value: string
   onChange: (value: string) => void
-  labelClassName?: string
+  labelStyle?: CSSProperties
   disabled?: boolean
 }
 
@@ -31,16 +29,16 @@ export const RadioButton = ({
   selected,
   value,
   onChange,
-  labelClassName,
+  labelStyle = {},
   disabled = false,
 }: RadioButtonProps) => {
   return (
     <div
       onClick={() => onChange(value)}
-      className={css({ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' })}
+      css={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}
     >
       <CircleFactory size={size} selected={selected} value={value} disabled={disabled} />
-      <LabelFactory size={size} className={cx(css({ marginLeft: '4px' }, labelClassName))}>
+      <LabelFactory size={size} css={{ marginLeft: '4px', ...labelStyle }}>
         {label}
       </LabelFactory>
     </div>
@@ -52,19 +50,19 @@ const CircleFactory = ({
   selected,
   value,
   disabled,
-}: Omit<RadioButtonProps, 'label' | 'onChange' | 'labelClassName'>) => {
+}: Omit<RadioButtonProps, 'label' | 'onChange' | 'labelStyle'>) => {
   if (disabled) {
-    return <DisabledCircle size={size} className={css({ cursor: 'not-allowed' })} />
+    return <DisabledCircle size={size} css={{ cursor: 'not-allowed' }} />
   }
   if (value && value === selected) {
-    return <CheckedCircle size={size} className={css({ cursor: 'pointer' })} />
+    return <CheckedCircle size={size} css={{ cursor: 'pointer' }} />
   }
-  return <DefaultCircle size={size} className={css({ cursor: 'pointer' })} />
+  return <DefaultCircle size={size} css={{ cursor: 'pointer' }} />
 }
 
 interface CircleProps {
   size: Size
-  className: string
+  className?: string
 }
 
 const CheckedCircle = ({ size, className }: CircleProps) => {
@@ -102,7 +100,7 @@ const DisabledCircle = ({ size, className }: CircleProps) => {
 
 interface LabelProps {
   size: Size
-  className: string
+  className?: string
 }
 const LabelFactory = ({ size, className, children }: PropsWithChildren<LabelProps>) => {
   if (size === 'sm') {

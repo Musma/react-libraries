@@ -1,4 +1,3 @@
-import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 interface ClockPointerProps {
@@ -16,7 +15,7 @@ export const ClockPointer = ({ value }: ClockPointerProps) => {
 
   return (
     <div
-      className={css({
+      css={{
         width: 1,
         position: 'absolute',
         left: 'calc(50% - 0.5px)',
@@ -27,10 +26,10 @@ export const ClockPointer = ({ value }: ClockPointerProps) => {
         transformOrigin: 'center bottom 0px', // Transform 원점, 아래쪽 센터, 0px,
         pointerEvents: 'none',
         backgroundColor: theme.color.blue.main,
-      })}
+      }}
     >
       <div
-        className={css({
+        css={{
           position: 'absolute',
           top: '-8px',
           left: '-9.5px',
@@ -40,7 +39,7 @@ export const ClockPointer = ({ value }: ClockPointerProps) => {
           borderRadius: '9999px',
           border: `8px solid ${theme.color.blue.main}`,
           backgroundColor: theme.color.blue.main,
-        })}
+        }}
       />
     </div>
   )

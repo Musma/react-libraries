@@ -1,13 +1,12 @@
-import { ButtonHTMLAttributes, ReactNode, useMemo } from 'react'
+import { ButtonHTMLAttributes, CSSProperties, ReactNode, useMemo } from 'react'
 
-import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
 import { Size } from 'src/types'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  labelClassName?: string
+  labelStyle?: CSSProperties
   fullWidth?: boolean
   size?: Size | 'xs'
   variant?: 'outlined' | 'contained' | 'danger' // variant Type을 따로 뺴서 사용하는게 좋을 것 같습니다.
@@ -17,7 +16,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   variant = 'contained',
   fullWidth = false,
-  labelClassName = '',
+  labelStyle = {},
   size = 'lg',
   disabled,
   children,
@@ -28,10 +27,7 @@ export const Button = ({
   if (disabled) {
     return (
       <DisabledButton fullWidth={fullWidth} size={size} {...rest}>
-        <SizedLabel
-          className={cx(css({ color: theme.color.white.main }), labelClassName)}
-          size={size}
-        >
+        <SizedLabel css={[{ color: theme.color.white.main, ...labelStyle }]} size={size}>
           {children}
         </SizedLabel>
       </DisabledButton>
@@ -42,10 +38,7 @@ export const Button = ({
     case 'contained':
       return (
         <ContainedButton fullWidth={fullWidth} size={size} {...rest}>
-          <SizedLabel
-            className={cx(css({ color: theme.color.white.main }), labelClassName)}
-            size={size}
-          >
+          <SizedLabel css={{ color: theme.color.white.main, ...labelStyle }} size={size}>
             {children}
           </SizedLabel>
         </ContainedButton>
@@ -53,10 +46,7 @@ export const Button = ({
     case 'danger':
       return (
         <DangerButton fullWidth={fullWidth} size={size} {...rest}>
-          <SizedLabel
-            className={cx(css({ color: theme.color.white.main }), labelClassName)}
-            size={size}
-          >
+          <SizedLabel css={{ color: theme.color.white.main, ...labelStyle }} size={size}>
             {children}
           </SizedLabel>
         </DangerButton>
@@ -64,10 +54,7 @@ export const Button = ({
     case 'outlined':
       return (
         <OutlinedButton fullWidth={fullWidth} size={size} {...rest}>
-          <SizedLabel
-            className={cx(css({ color: theme.color.blue.main }), labelClassName)}
-            size={size}
-          >
+          <SizedLabel css={{ color: theme.color.blue.main, ...labelStyle }} size={size}>
             {children}
           </SizedLabel>
         </OutlinedButton>

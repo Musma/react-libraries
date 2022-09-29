@@ -1,6 +1,5 @@
 import { ReactNode, useState } from 'react'
 
-import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import {
@@ -29,9 +28,8 @@ import {
   BadgeExample,
   CheckboxExample,
   IconAdornmentExample,
+  TabsExample,
 } from 'src/examples'
-
-import { TabsExample } from './TabsExample'
 
 export const Examples = () => {
   const [showSpinner, setSpinner] = useState(false)
@@ -39,12 +37,12 @@ export const Examples = () => {
   return (
     <div>
       <div
-        className={css({
+        css={{
           padding: 32,
           display: 'grid',
           gridTemplateRows: 'auto',
           gridTemplateColumns: 'repeat(4, 400px)',
-        })}
+        }}
       >
         <Box title="Typography">
           <Typography type="h1">h1</Typography>
@@ -55,6 +53,9 @@ export const Examples = () => {
           <Typography type="h6">h6</Typography>
           <Typography type="subTitle1">subTitle1</Typography>
           <Typography type="subTitle2">subTitle2</Typography>
+          <Typography type="body1">body1</Typography>
+          <Typography type="body2">body2</Typography>
+          <Typography type="body3">body3</Typography>
         </Box>
 
         <Box title="Button">
@@ -195,28 +196,25 @@ const Box = ({ children, title }: { children: ReactNode; title: string }) => {
   const theme = useTheme()
   return (
     <div
-      className={css({
+      css={{
         margin: 8,
         border: '1px solid gray',
         borderRadius: '6px',
         padding: 16,
-      })}
+      }}
     >
-      <Typography
-        type="h3"
-        className={css({ borderBottom: `1px solid ${theme.color.gray.light}` })}
-      >
+      <Typography type="h3" css={{ borderBottom: `1px solid ${theme.color.gray.light}` }}>
         {title}
       </Typography>
       <div
-        className={css({
+        css={{
           marginTop: 16,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '4px',
-        })}
+        }}
       >
         {children}
       </div>

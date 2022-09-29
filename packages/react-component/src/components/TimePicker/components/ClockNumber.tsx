@@ -1,5 +1,4 @@
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components/Typography'
 
@@ -15,16 +14,8 @@ interface ClockNumberProps {
 export const ClockNumber = ({ label, position, isSelected }: ClockNumberProps) => {
   const theme = useTheme()
   return (
-    <div
-      className={cx(
-        containerCss,
-        css({ transform: `translate(${position.x}px, ${position.y}px)` }),
-      )}
-    >
-      <Typography
-        type="caption2"
-        className={isSelected ? css({ color: theme.color.white.main }) : ''}
-      >
+    <div css={[containerCss, css({ transform: `translate(${position.x}px, ${position.y}px)` })]}>
+      <Typography type="caption2" css={isSelected ? css({ color: theme.color.white.main }) : ''}>
         {label}
       </Typography>
     </div>

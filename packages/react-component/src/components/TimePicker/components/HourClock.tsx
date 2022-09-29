@@ -1,5 +1,7 @@
-import { DateTime } from 'luxon'
 import { Fragment } from 'react'
+
+import { DateTime } from 'luxon'
+
 import { getMeridiem, ClockNumber, ClockPositions } from 'src/components'
 
 interface HourClockProps {

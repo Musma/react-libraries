@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { css } from '@emotion/css'
 import { DateTime } from 'luxon'
 
 import { Calendar, DateInput, Typography } from 'src/components'
@@ -39,12 +38,12 @@ export const DatePicker = ({
 
   return (
     <div
-      className={css({
+      css={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
         position: 'relative',
-      })}
+      }}
     >
       <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'} css={{ marginBottom: '2px' }}>
         {label}

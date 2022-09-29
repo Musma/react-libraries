@@ -1,7 +1,6 @@
-import { Fragment, useMemo } from 'react'
+import { CSSProperties, Fragment, useMemo } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
@@ -20,13 +19,14 @@ interface CheckboxProps {
   onChange?: (checked: boolean) => void
   disabled?: boolean
   label?: string
-  labelClassName?: string
+  labelStyle?: CSSProperties
   size?: Size
 }
 
 export const Checkbox = ({
   id = uniqueId(),
   label,
+  labelStyle = {},
   size = 'lg',
   checked = false,
   onChange,
@@ -49,7 +49,7 @@ export const Checkbox = ({
   }, [theme, checked, disabled])
 
   return (
-    <label htmlFor={id} className={labelCss}>
+    <label htmlFor={id} css={labelCss}>
       <input
         id={id}
         type="checkbox"
@@ -60,16 +60,16 @@ export const Checkbox = ({
           }
           onChange(e.target.checked)
         }}
-        className={cx(css({ visibility: 'hidden', appearance: 'none' }))}
+        css={css({ visibility: 'hidden', appearance: 'none' })}
         disabled={disabled}
         {...rest}
       />
 
-      <div className={cx(containerCss.base, containerCss.size[size], containerColorCss)}>
+      <div css={[containerCss.base, containerCss.size[size], containerColorCss]}>
         <IconFactory checked={checked} disabled={disabled} size={size} />
       </div>
 
-      {label && <LabelFactory label={label} size={size} />}
+      {label && <LabelFactory label={label} size={size} labelStyle={labelStyle} />}
     </label>
   )
 }
@@ -118,17 +118,18 @@ const disabledIcon = {
 interface LabelFactoryProps {
   size: Size
   label: string
+  labelStyle: CSSProperties
 }
 const LabelFactory = ({ label, size }: LabelFactoryProps) => {
   if (size !== 'sm') {
     return (
-      <Typography className={css({ marginLeft: '8px' })} type={size === 'lg' ? 'body2' : 'body3'}>
+      <Typography css={css({ marginLeft: '8px' })} type={size === 'lg' ? 'body2' : 'body3'}>
         {label}
       </Typography>
     )
   }
   return (
-    <Typography className={css({ marginLeft: '4px' })} type="caption1">
+    <Typography css={css({ marginLeft: '4px' })} type="caption1">
       {label}
     </Typography>
   )

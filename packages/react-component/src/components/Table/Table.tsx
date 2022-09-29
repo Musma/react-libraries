@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 import { Typography, Pagination, PaginationProps } from 'src/components'
 
@@ -36,7 +35,7 @@ const tableCss = css({
 
 const thCss = css({
   height: '40px',
-  '&:first-child': {
+  '&:first-of-type': {
     borderTopLeftRadius: '4px',
   },
   '&:last-child': {
@@ -49,28 +48,28 @@ const tdCss = css({ height: '40px', textAlign: 'center' })
 export const Table = ({ data, className = '', columns, pagination, onRowClick }: TableProps) => {
   const theme = useTheme()
   return (
-    <div className={cx(containerCss, className)}>
+    <div css={containerCss} className={className}>
       <table
-        className={cx(
+        css={[
           tableCss,
           css({
             boxShadow: `0 0 0 1px ${theme.color.gray.main}`,
             backgroundColor: theme.color.white.main,
           }),
-        )}
+        ]}
       >
         <thead>
           <tr>
             {columns.map((column) => (
               <th
                 key={column.id}
-                className={cx(
+                css={[
                   thCss,
                   css({
                     border: `1px solid ${theme.color.gray.lighter}`,
                     backgroundColor: theme.color.white.lighter,
                   }),
-                )}
+                ]}
               >
                 <Typography type="h6">{column.label}</Typography>
               </th>
@@ -82,22 +81,21 @@ export const Table = ({ data, className = '', columns, pagination, onRowClick }:
             <tr
               key={index}
               onClick={onRowClick && (() => onRowClick(item))}
-              className={cx({
-                [css({
-                  cursor: 'pointer',
-                  '&:hover': { backgroundColor: theme.color.blue.lighter },
-                })]: Boolean(onRowClick),
-              })}
+              css={
+                onRowClick
+                  ? {
+                      cursor: 'pointer',
+                      '&:hover': { backgroundColor: theme.color.blue.lighter },
+                    }
+                  : {}
+              }
             >
               {columns.map((column) => (
                 <td
-                  className={cx(
-                    tdCss,
-                    css({ borderBottom: `1px solid ${theme.color.gray.lighter}` }),
-                  )}
+                  css={[tdCss, css({ borderBottom: `1px solid ${theme.color.gray.lighter}` })]}
                   key={column.id}
                 >
-                  <Typography type="body2" className="text-center">
+                  <Typography type="body2" css={{ textAlign: 'center' }}>
                     {item[column.id]}
                   </Typography>
                 </td>

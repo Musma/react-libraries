@@ -1,6 +1,5 @@
 import { HTMLAttributes } from 'react'
 
-import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {
@@ -13,17 +12,9 @@ export const Divider = ({ orientation = 'horizontal', ...rest }: DividerProps) =
     <hr
       css={[
         { border: 0 },
-        {
-          [css({ width: '100%', borderTop: `1px solid ${theme.color.gray.lighter}` })]:
-            orientation === 'horizontal',
-        },
-        {
-          [css({
-            height: '100%',
-            width: '1px',
-            borderRight: `1px solid ${theme.color.gray.lighter}`,
-          })]: orientation === 'vertical',
-        },
+        orientation === 'horizontal'
+          ? { width: '100%', borderTop: `1px solid ${theme.color.gray.lighter}` }
+          : { height: '100%', width: '1px', borderRight: `1px solid ${theme.color.gray.lighter}` },
       ]}
       {...rest}
     />

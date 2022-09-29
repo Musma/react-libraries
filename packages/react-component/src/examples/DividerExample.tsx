@@ -1,18 +1,24 @@
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/react'
+
 import { Divider } from 'src/components'
 
 export const DividerExample = () => {
   return (
-    <div className={css({ display: 'flex', gap: '8px' })}>
-      <div className={contentsContainerCss}>
-        <div className={contentsCss}>some contents</div>
+    <div css={{ display: 'flex', gap: '8px' }}>
+      <div css={contentsContainerCss}>
+        <div css={contentsCss}>some contents</div>
         <Divider />
-        <div className={contentsCss}>other contents</div>
+        <div css={contentsCss}>other contents</div>
       </div>
-      <div className={cx(contentsContainerCss, css({ display: 'flex' }))}>
-        <div className={contentsCss}>some contents</div>
+      <div
+        css={[
+          contentsContainerCss,
+          { display: 'flex', backgroundColor: 'yellow', alignItems: 'center' },
+        ]}
+      >
+        <div css={contentsCss}>some contents</div>
         <Divider orientation="vertical" />
-        <div className={contentsCss}>other contents</div>
+        <div css={contentsCss}>other contents</div>
       </div>
     </div>
   )

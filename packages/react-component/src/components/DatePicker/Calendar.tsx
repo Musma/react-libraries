@@ -1,7 +1,6 @@
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { Typography } from 'src/components'
@@ -131,12 +130,12 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         return (
           <div
             key={index}
-            className={cx(dayCss.base, dayCss.size[size])}
+            css={[(dayCss.base, dayCss.size[size])]}
             onClick={() => handleSelectPrevMonthDay(prevMonthDay)}
           >
             <Typography
               type={size === 'sm' ? 'caption2' : 'caption1'}
-              className={css({ color: theme.color.gray.main })}
+              css={{ color: theme.color.gray.main }}
             >
               {prevMonthDay}
             </Typography>
@@ -148,20 +147,17 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         return (
           <div
             key={index}
-            className={cx(
+            css={[
               dayCss.base,
               dayCss.size[size],
-              {
-                [css({ backgroundColor: theme.color.blue.main })]:
-                  isToday(day) && !isSelectedDay(day),
-              },
-              { [css({ backgroundColor: theme.color.blue.lighter })]: isSelectedDay(day) },
-            )}
+              isToday(day) && !isSelectedDay(day) ? { backgroundColor: theme.color.blue.main } : {},
+              isSelectedDay(day) ? { backgroundColor: theme.color.blue.lighter } : {},
+            ]}
             onClick={() => handleDayClick(year, month, day)}
           >
             <Typography
               type={size === 'sm' ? 'caption2' : 'caption1'}
-              className={css({ color: getColor(day) })}
+              css={{ color: getColor(day) }}
             >
               {day}
             </Typography>
@@ -173,12 +169,12 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         return (
           <div
             key={index}
-            className={cx(dayCss.base, dayCss.size[size])}
+            css={[dayCss.base, dayCss.size[size]]}
             onClick={() => handleSelectNextMonthDay(nextMonthDay)}
           >
             <Typography
               type={size === 'sm' ? 'caption2' : 'caption1'}
-              className={css({ color: theme.color.gray.main })}
+              css={{ color: theme.color.gray.main }}
             >
               {nextMonthDay}
             </Typography>
@@ -226,52 +222,52 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
 
   return (
     <div
-      className={cx(
+      css={[
         containerCss.base,
         containerCss.size[size],
-        css({
+        {
           border: `1px solid ${theme.color.gray.darker}`,
           backgroundColor: theme.color.white.main,
-        }),
-      )}
+        },
+      ]}
     >
       <div
-        className={cx(
+        css={[
           sencondContainerCss.base,
           sencondContainerCss.size[size],
-          css({ borderBottom: `1px solid ${theme.color.white.dark}` }),
-        )}
+          { borderBottom: `1px solid ${theme.color.white.dark}` },
+        ]}
       >
-        <div className={css({ display: 'flex', alignItems: 'center' })}>
-          <span className={css({ cursor: 'pointer' })} onClick={() => setYear(year - 1)}>
+        <div css={{ display: 'flex', alignItems: 'center' }}>
+          <span css={{ cursor: 'pointer' }} onClick={() => setYear(year - 1)}>
             {size === 'sm' ? <SmArrowDoubleLeft /> : <ArrowDoubleLeft />}
           </span>
-          <span className={css({ cursor: 'pointer' })} onClick={handlePrevMonthClick}>
+          <span css={{ cursor: 'pointer' }} onClick={handlePrevMonthClick}>
             {size === 'sm' ? <SmArrowLeft /> : <ArrowLeft />}
           </span>
         </div>
         <MonthAndYear size={size}>
           {MONTHS[month - 1]} {year}
         </MonthAndYear>
-        <div className={css({ display: 'flex', alignItems: 'center' })}>
-          <span className={css({ cursor: 'pointer' })} onClick={handleNextMonthClick}>
+        <div css={{ display: 'flex', alignItems: 'center' }}>
+          <span css={{ cursor: 'pointer' }} onClick={handleNextMonthClick}>
             {size === 'sm' ? <SmArrowRight /> : <ArrowRight />}
           </span>
-          <span className={css({ cursor: 'pointer' })} onClick={() => setYear(year + 1)}>
+          <span css={{ cursor: 'pointer' }} onClick={() => setYear(year + 1)}>
             {size === 'sm' ? <SmArrowDobuleRight /> : <ArrowDoubleRight />}
           </span>
         </div>
       </div>
-      <div className={cx(slotContainerCss.base, slotContainerCss.columnGap[size])}>
+      <div css={[slotContainerCss.base, slotContainerCss.columnGap[size]]}>
         {DAYS_OF_THE_WEEK.map((d) => (
           <div
             key={d}
-            className={css({
+            css={{
               display: 'flex',
               height: '18px',
               alignItems: 'center',
               justifyContent: 'center',
-            })}
+            }}
           >
             <DayOfTheWeek key={d} size={size}>
               {d}

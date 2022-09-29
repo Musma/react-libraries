@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/react'
 
 import { BodyProps } from 'src/components/Typography/types'
 
@@ -28,5 +28,9 @@ const bodyCss = {
 }
 
 export const Body = ({ variant = 'body1', children, className }: PropsWithChildren<BodyProps>) => {
-  return <p className={cx(bodyCss[variant], className)}>{children}</p>
+  return (
+    <p css={bodyCss[variant]} className={className}>
+      {children}
+    </p>
+  )
 }

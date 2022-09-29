@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 import { HatTab } from './HatTab'
@@ -27,11 +26,11 @@ export const Tabs = ({ titles, handleSelectTab, variant = 'hat' }: TabsProps) =>
   if (variant === 'hat') {
     return (
       <ul
-        className={css({
+        css={{
           display: 'flex',
           alignItems: 'center',
           borderBottom: `1px solid ${theme.color.gray.darker}`,
-        })}
+        }}
       >
         {titles.map((title) => (
           <HatTab
@@ -46,9 +45,9 @@ export const Tabs = ({ titles, handleSelectTab, variant = 'hat' }: TabsProps) =>
   }
 
   return (
-    <ul className={css({ display: 'flex' })}>
+    <ul css={{ display: 'flex' }}>
       {titles.map((title, index, array) => (
-        <div key={title} className={css({ display: 'flex', alignItems: 'center' })}>
+        <div key={title} css={{ display: 'flex', alignItems: 'center' }}>
           <RectTab
             key={title}
             title={title}
@@ -57,15 +56,15 @@ export const Tabs = ({ titles, handleSelectTab, variant = 'hat' }: TabsProps) =>
           />
           {index !== array.length - 1 && (
             <div
-              className={css({
+              css={{
                 height: '16px',
                 borderLeft: `1px solid ${theme.color.gray.darker}`,
-              })}
+              }}
             />
           )}
         </div>
       ))}
-      <div className={css({ flex: 1, borderBottom: `1px solid ${theme.color.gray.darker}` })} />
+      <div css={{ flex: 1, borderBottom: `1px solid ${theme.color.gray.darker}` }} />
     </ul>
   )
 }

@@ -1,5 +1,4 @@
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import {
@@ -50,13 +49,13 @@ export const ClockBody = ({ clockType, date, value, onDateChange }: ClockProps) 
   }
 
   return (
-    <div className={containerCss}>
-      <div className={cx(secondContainerCss, css({ backgroundColor: theme.color.white.light }))}>
+    <div css={containerCss}>
+      <div css={[secondContainerCss, css({ backgroundColor: theme.color.white.light })]}>
         {/* 시계 div 하위에 있는 엘리먼트들의 pointer-events 속성을 none으로 하지 않으면 offset 값을 정상적으로 받지 못함 */}
         <div
           role="menu"
           tabIndex={-1}
-          className={clockContainerCss}
+          css={clockContainerCss}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
         >

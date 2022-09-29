@@ -1,5 +1,3 @@
-import { css } from '@emotion/css'
-
 import { IconButton } from 'src/components'
 
 import { ReactComponent as XlsIcon } from './images/xls.svg'
@@ -8,7 +6,7 @@ import { ReactComponent as XlsOutlinedIcon } from './images/xls_outlined.svg'
 
 export const IconButtonExample = () => {
   return (
-    <div className={css({ display: 'flex', columnGap: '8px' })}>
+    <div css={{ display: 'flex', columnGap: '8px' }}>
       <IconButton>
         <XlsIcon />
       </IconButton>

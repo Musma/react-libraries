@@ -1,7 +1,6 @@
 import { Fragment, useCallback, useMemo, useState } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
@@ -41,11 +40,9 @@ export const ImageUploader = ({
 
   const getDefaultImage = useCallback(() => {
     return {
-      lg: <DefaultLgIcon className={css({ position: 'absolute', top: '20px', left: '10px' })} />,
-      md: (
-        <DefaultMdIcon className={css({ position: 'absolute', top: '14.29px', left: '7.14px' })} />
-      ),
-      sm: <DefaultSmIcon className={css({ position: 'absolute', top: '4px', left: '1px' })} />,
+      lg: <DefaultLgIcon css={{ position: 'absolute', top: '20px', left: '10px' }} />,
+      md: <DefaultMdIcon css={{ position: 'absolute', top: '14.29px', left: '7.14px' }} />,
+      sm: <DefaultSmIcon css={{ position: 'absolute', top: '4px', left: '1px' }} />,
     }[size]
   }, [size])
 
@@ -61,18 +58,12 @@ export const ImageUploader = ({
     (size: Size) => {
       return {
         lg: (
-          <Typography
-            type="subTitle2"
-            className={css({ marginBottom: '4px', color: theme.color.white.main })}
-          >
+          <Typography type="subTitle2" css={{ marginBottom: '4px', color: theme.color.white.main }}>
             Upload Picture
           </Typography>
         ),
         md: (
-          <Typography
-            type="caption2"
-            className={css({ marginBottom: '4px', color: theme.color.white.main })}
-          >
+          <Typography type="caption2" css={{ marginBottom: '4px', color: theme.color.white.main }}>
             Upload Picture
           </Typography>
         ),
@@ -91,9 +82,9 @@ export const ImageUploader = ({
   }, [size])
 
   return (
-    <label htmlFor={id} className={css({ display: 'inline-block', cursor: 'pointer' })}>
+    <label htmlFor={id} css={css({ display: 'inline-block', cursor: 'pointer' })}>
       <div
-        className={cx(
+        css={[
           css({
             position: 'relative',
             display: 'flex',
@@ -109,23 +100,23 @@ export const ImageUploader = ({
             overflow: 'hidden',
           }),
           divSize,
-        )}
+        ]}
       >
         {thumbnail ? (
           <img
             src={thumbnail}
-            className={css({
+            css={{
               height: '100%',
               width: '100%',
               borderRadius: '9999px',
               objectFit: 'cover',
-            })}
+            }}
           />
         ) : (
           getDefaultImage()
         )}
         <div
-          className={cx(
+          css={[
             'child',
             divSize,
             css({
@@ -137,14 +128,14 @@ export const ImageUploader = ({
               justifyContent: 'center',
               backgroundColor: `${theme.color.black.main}99`,
             }),
-          )}
+          ]}
         >
           {getHelperIcon(size)}
           {getHelperText(size)}
         </div>
         <input
           id={id}
-          className={css({ display: 'none' })}
+          css={{ display: 'none' }}
           type="file"
           multiple={false}
           accept="image/*"

@@ -1,7 +1,6 @@
 import { useMemo, ButtonHTMLAttributes, ReactNode } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 import { Size } from 'src/types'
 
@@ -59,13 +58,12 @@ export const IconButton = ({
   return (
     <button
       {...rest}
-      className={cx(
+      css={[
         buttonCss.base,
         buttonCss.size[size],
         buttonCss.variants[variant],
-        { [buttonCss.variants[variant]]: !disabled },
-        { [buttonCss.disabled]: disabled },
-      )}
+        disabled ? buttonCss.disabled : buttonCss.variants[variant],
+      ]}
     >
       {children}
     </button>

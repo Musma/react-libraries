@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { DefaultTheme } from 'src/theme'
@@ -93,26 +93,28 @@ export const DateInput = ({
 
   return (
     <div
-      className={css({
+      css={{
         display: 'flex',
         alignItems: 'center',
         cursor: 'pointer',
-      })}
+      }}
       onClick={() => toggleIsOpen()}
     >
       <div
-        className={cx(inputContainerCss.base, inputContainerCss.size[size], {
-          [css({ border: `1px solid ${DefaultTheme.color.red.main}` })]: isError,
-        })}
+        css={[
+          inputContainerCss.base,
+          inputContainerCss.size[size],
+          isError ? { border: `1px solid ${DefaultTheme.color.red.main}` } : {},
+        ]}
       >
-        <div className={css({ display: 'flex' })}>
+        <div css={{ display: 'flex' }}>
           <input
             placeholder="YYYY"
             onClick={(e) => e.stopPropagation()}
             value={year}
             onChange={(e) => handleYearChange(e.target.value)}
             maxLength={4}
-            className={css({
+            css={{
               color: DefaultTheme.color.black.dark,
               appearance: 'none',
               textAlign: 'center',
@@ -125,7 +127,7 @@ export const DateInput = ({
                 letterSpacing: '-0.08em',
               },
               width: size === 'sm' ? '32px' : '38px',
-            })}
+            }}
           />
           -
           <input
@@ -134,7 +136,7 @@ export const DateInput = ({
             value={month}
             onChange={(e) => handleMonthChange(e.target.value)}
             maxLength={2}
-            className={css({
+            css={{
               color: DefaultTheme.color.black.dark,
               appearance: 'none',
               textAlign: 'center',
@@ -147,7 +149,7 @@ export const DateInput = ({
                 letterSpacing: '-0.08em',
               },
               width: size === 'sm' ? '24px' : '28px',
-            })}
+            }}
           />
           -
           <input
@@ -156,8 +158,8 @@ export const DateInput = ({
             value={day}
             onChange={(e) => handleDayChange(e.target.value)}
             maxLength={2}
-            className={cx(
-              css({
+            css={[
+              {
                 color: DefaultTheme.color.black.dark,
                 appearance: 'none',
                 textAlign: 'center',
@@ -168,11 +170,11 @@ export const DateInput = ({
                   outlineOffset: '2px',
                 },
                 width: size === 'sm' ? '20px' : '28px',
-              }),
-            )}
+              },
+            ]}
           />
         </div>
-        <div className={cx(iconContainerCss.base, iconContainerCss.position[size])}>
+        <div css={[iconContainerCss.base, iconContainerCss.position[size]]}>
           <span onClick={toggleIsOpen}>
             {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
           </span>

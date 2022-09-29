@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import { css, cx } from '@emotion/css'
+import { css } from '@emotion/react'
 
 import { SubTitleProps } from '../types'
 
@@ -31,5 +31,9 @@ export const SubTitle = ({
   children,
   className,
 }: PropsWithChildren<SubTitleProps>) => {
-  return <p className={cx(subTitleCss[variant], className)}>{children}</p>
+  return (
+    <p css={subTitleCss[variant]} className={className}>
+      {children}
+    </p>
+  )
 }

@@ -37,7 +37,12 @@ const PasswordInput = ({ type, size, ...rest }: InputProps) => {
   }, [])
 
   return (
-    <div css={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+    <div
+      css={[
+        inputCss.size[size],
+        css({ position: 'relative', display: 'flex', alignItems: 'center' }),
+      ]}
+    >
       <input
         type={showPassword ? 'text' : 'password'}
         css={[inputCss.base, inputCss.size[size], inputCss.types.password]}
@@ -81,8 +86,14 @@ const inputCss = {
     search: css({ paddingRight: '28px' }),
   },
   size: {
-    sm: css({ height: '24px', width: '148px', fontSize: '12px', lineHeight: '16px' }),
-    md: css({ height: '28px', width: '180px', fontSize: '12px', lineHeight: '16px' }),
-    lg: css({ height: '32px', width: '200px', fontSize: '14px', lineHeight: '20px' }),
+    sm: css({ height: '24px', minWidth: '148px', fontSize: '12px', lineHeight: '16px' }),
+    md: css({ height: '28px', minWidth: '180px', fontSize: '12px', lineHeight: '16px' }),
+    lg: css({
+      height: '32px',
+      minWidth: '200px',
+      width: '100%',
+      fontSize: '14px',
+      lineHeight: '20px',
+    }),
   },
 }

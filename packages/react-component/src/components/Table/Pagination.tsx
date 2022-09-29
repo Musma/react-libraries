@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 
 import { Typography, PaginationProps, Select, LimitType } from 'src/components'
 
@@ -10,10 +9,23 @@ import { ReactComponent as ArrowLastIcon } from './images/arrow_last.svg'
 import { ReactComponent as ArrowLeftIcon } from './images/arrow_left.svg'
 import { ReactComponent as ArrowRightIcon } from './images/arrow_right.svg'
 
+const containerCss = css({ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' })
+
+const pageNumberCss = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '24px',
+  width: '24px',
+  cursor: 'pointer',
+  borderRadius: '9999px',
+})
+
 export const Pagination = ({
   dataLimit,
   totalData,
   page,
+  className,
   onPageChange,
   onDataLimitChange,
 }: PaginationProps) => {
@@ -97,7 +109,7 @@ export const Pagination = ({
     setPageGroup(1)
     setCurrentPage(1)
     onPageChange(1)
-  }, [])
+  }, [onPageChange])
 
   const handleLastClick = useCallback(() => {
     setPageGroup(lastGroup)
@@ -106,8 +118,8 @@ export const Pagination = ({
   }, [lastGroup, onPageChange, totalPage])
 
   return (
-    <div className={containerCss}>
-      <Typography type="body3" className={css({ marginRight: '8px' })}>
+    <div css={containerCss} className={className}>
+      <Typography type="body3" css={{ marginRight: '8px' }}>
         Rows per page
       </Typography>
       <Select
@@ -121,15 +133,15 @@ export const Pagination = ({
           { label: '25', value: '25' },
         ]}
         onChange={(value) => handleLimitChange(Number(value))}
-        inputClassName={css({ width: '67px' })}
+        inputStyle={{ width: '67px' }}
       />
       <ArrowFirstIcon
-        className={css({ marginLeft: '8px', cursor: 'pointer' })}
+        css={{ marginLeft: '8px', cursor: 'pointer' }}
         onClick={handleFirstClick}
         stroke={currentPage === 1 ? '#D0D5DD' : '#242E40'}
       />
       <ArrowLeftIcon
-        className={css({ cursor: 'pointer' })}
+        css={{ cursor: 'pointer' }}
         onClick={handlePrevClick}
         stroke={pageGroup === 1 ? '#D0D5DD' : '#242E40'}
       />
@@ -137,18 +149,17 @@ export const Pagination = ({
         return (
           <span
             key={index}
-            className={cx(pageNumberCss, {
-              [css({ backgroundColor: theme.color.blue.main })]: isCurrentPage(
-                getPageNumber(index),
-              ),
-            })}
+            css={[
+              pageNumberCss,
+              isCurrentPage(getPageNumber(index))
+                ? css({ backgroundColor: theme.color.blue.main })
+                : {},
+            ]}
             onClick={() => handlePageChange(getPageNumber(index))}
           >
             <Typography
               type="caption1"
-              className={cx({
-                [css({ color: theme.color.white.main })]: isCurrentPage(getPageNumber(index)),
-              })}
+              css={isCurrentPage(getPageNumber(index)) ? { color: theme.color.white.main } : {}}
             >
               {getPageNumber(index)}
             </Typography>
@@ -156,25 +167,15 @@ export const Pagination = ({
         )
       })}
       <ArrowRightIcon
-        className={css({ cursor: 'pointer' })}
+        css={{ cursor: 'pointer' }}
         onClick={handleNextClick}
         stroke={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'}
       />
       <ArrowLastIcon
-        className={css({ cursor: 'pointer' })}
+        css={{ cursor: 'pointer' }}
         onClick={handleLastClick}
         stroke={currentPage === totalPage ? '#D0D5DD' : '#242E40'}
       />
     </div>
   )
 }
-const containerCss = css({ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' })
-const pageNumberCss = css({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '24px',
-  width: '24px',
-  cursor: 'pointer',
-  borderRadius: '9999px',
-})

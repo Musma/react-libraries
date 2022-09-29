@@ -1,7 +1,14 @@
-import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  ChangeEvent,
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
@@ -17,7 +24,8 @@ interface SelectProps {
   value: string
   options: { label: string; value: string }[]
   onChange: (value: string) => void
-  inputClassName?: string
+  inputStyle?: CSSProperties
+  className?: string
 }
 
 export const Select = ({
@@ -27,7 +35,8 @@ export const Select = ({
   value,
   options,
   onChange,
-  inputClassName = '',
+  inputStyle = {},
+  className,
 }: SelectProps) => {
   const theme = useTheme()
   const inputRef = useRef<HTMLInputElement>(null)
@@ -183,49 +192,45 @@ export const Select = ({
   }, [theme])
 
   return (
-    <div className={containerCss}>
+    <div css={containerCss} className={className}>
       <label htmlFor={id}>
         <TitleFactory size={size} label={label} />
       </label>
 
-      <div className={inputContainerCss} ref={divRef} onClick={handleDropdownClick}>
+      <div css={inputContainerCss} ref={divRef} onClick={handleDropdownClick}>
         <input
           id={id}
           ref={inputRef}
           value={text}
           placeholder={getLabel(value)}
           onChange={handleTextChange}
-          className={cx(inputCss.base, inputCss.size[size], inputColorCss, inputClassName)}
+          css={[inputCss.base, inputCss.size[size], inputColorCss, css({ ...inputStyle })]}
         />
 
         {size === 'lg' ? (
-          <LgArrowICon className={cx(iconCss.base, isOpen ? css({ rotate: '180deg' }) : '')} />
+          <LgArrowICon css={[iconCss.base, isOpen ? css({ rotate: '180deg' }) : '']} />
         ) : (
           <MdArrowICon
-            className={cx(
-              iconCss.base,
-              iconCss.size[size],
-              isOpen ? css({ rotate: '180deg' }) : '',
-            )}
+            css={[iconCss.base, iconCss.size[size], isOpen ? css({ rotate: '180deg' }) : '']}
           />
         )}
 
         {isOpen && (
           <ul
-            className={cx(
+            css={[
               ulCss.base,
               ulCss.size[size],
               css({
                 border: `1px solid ${theme.color.gray.darker}`,
                 backgroundColor: theme.color.white.main,
               }),
-            )}
+            ]}
           >
             {filteredOptions.map(({ label, value }) => (
               <li
                 key={label}
                 onClick={() => handleOptionSelect(value)}
-                className={cx(
+                css={[
                   liCss.base,
                   liCss.size[size],
                   css({
@@ -234,13 +239,13 @@ export const Select = ({
                       color: theme.color.blue.main,
                     },
                   }),
-                  { [css({ backgroundColor: theme.color.blue.main })]: isSelected(value) },
-                )}
+                  isSelected(value) ? { backgroundColor: theme.color.blue.main } : {},
+                ]}
               >
                 <LabelFactory
                   size={size}
                   label={label}
-                  className={isSelected(value) ? css({ color: theme.color.white.main }) : ''}
+                  css={isSelected(value) ? { color: theme.color.white.main } : {}}
                 />
               </li>
             ))}

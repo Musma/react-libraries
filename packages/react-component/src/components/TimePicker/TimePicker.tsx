@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
 
-import { css, cx } from '@emotion/css'
-import { useTheme } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { TextInput } from 'src/components'
@@ -62,31 +61,31 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
   }, [ref])
 
   return (
-    <div className={containerCss} ref={ref}>
-      <div className={css({ position: 'relative', cursor: 'pointer' })} onClick={toggleShowClock}>
+    <div css={containerCss} ref={ref}>
+      <div css={{ position: 'relative', cursor: 'pointer' }} onClick={toggleShowClock}>
         <TextInput
           label={label}
           size={size}
           value={date.toFormat('HH:mm')}
           readOnly={true}
           placeholder="00:00"
-          className={css({ cursor: 'pointer' })}
+          css={{ cursor: 'pointer' }}
         />
-        <span className={cx(iconContainerCss.base, iconContainerCss.position[size])}>
+        <span css={[iconContainerCss.base, iconContainerCss.position[size]]}>
           {size === 'lg' ? <LgClockIcon /> : <MdClockIcon />}
         </span>
       </div>
 
       {showClock && (
         <div
-          className={cx(
+          css={[
             clockContainer.base,
             clockContainer.width[size],
             css({
               backgroundColor: theme.color.white.main,
               border: `1px solid ${theme.color.gray.darker}`,
             }),
-          )}
+          ]}
         >
           <ClockHeader
             size={size}
