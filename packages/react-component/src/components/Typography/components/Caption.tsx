@@ -9,11 +9,13 @@ const captionCss = {
     fontSize: '12px',
     fontWeight: 400,
     lineHeight: '16px',
+    margin: 0,
   }),
   caption2: css({
     fontSize: '10px',
     fontWeight: 400,
     lineHeight: '14px',
+    margin: 0,
   }),
 }
 
