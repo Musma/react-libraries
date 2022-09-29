@@ -45,13 +45,13 @@ export const MusmaProvider = ({
 }: MusmaProviderProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <CacheProvider value={DefaultEmotionCache}>
-        <MusmaProviderContext.Provider value={{ theme, emotionCache }}>
+      <MusmaProviderContext.Provider value={{ theme, emotionCache }}>
+        <CacheProvider value={emotionCache}>
           {withNormalizeCSS && <NormalizeCSS />}
           {withPretendardFont && <PretendardFont />}
           {children}
-        </MusmaProviderContext.Provider>
-      </CacheProvider>
+        </CacheProvider>
+      </MusmaProviderContext.Provider>
     </ThemeProvider>
   )
 }
