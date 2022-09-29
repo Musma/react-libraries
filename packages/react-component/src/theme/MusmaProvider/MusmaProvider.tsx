@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react'
 
-import { EmotionCache, ThemeProvider } from '@emotion/react'
+import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react'
 
 import {
   DefaultTheme,
@@ -45,11 +45,13 @@ export const MusmaProvider = ({
 }: MusmaProviderProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <MusmaProviderContext.Provider value={{ theme, emotionCache }}>
-        {withNormalizeCSS && <NormalizeCSS />}
-        {withPretendardFont && <PretendardFont />}
-        {children}
-      </MusmaProviderContext.Provider>
+      <CacheProvider value={DefaultEmotionCache}>
+        <MusmaProviderContext.Provider value={{ theme, emotionCache }}>
+          {withNormalizeCSS && <NormalizeCSS />}
+          {withPretendardFont && <PretendardFont />}
+          {children}
+        </MusmaProviderContext.Provider>
+      </CacheProvider>
     </ThemeProvider>
   )
 }
