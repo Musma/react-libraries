@@ -23,7 +23,7 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          luxon: 'Luxon',
+          luxon: 'luxon',
           '@emotion/react': '@emotion/react',
         },
       },

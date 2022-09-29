@@ -103,7 +103,6 @@ const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
           cursor: 'pointer',
           height,
           '&:active': {
-            boxShadow: 'inset -1px 2px 2px rgba(0, 0, 0, 0.25)',
             transform: 'translateY(1px)',
           },
         },

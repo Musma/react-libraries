@@ -30,6 +30,8 @@ export const Tabs = ({ titles, handleSelectTab, variant = 'hat' }: TabsProps) =>
           display: 'flex',
           alignItems: 'center',
           borderBottom: `1px solid ${theme.color.gray.darker}`,
+          margin: 0,
+          padding: 0,
         }}
       >
         {titles.map((title) => (
