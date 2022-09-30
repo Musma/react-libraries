@@ -78,7 +78,7 @@ const SizedLabel = ({ size, ...rest }: SizedLabelProps) => {
 
 type BaseButtonProps = Omit<ButtonProps, 'label' | 'variant'>
 
-const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
+const ButtonBase = ({ fullWidth, size = 'lg', className, ...rest }: BaseButtonProps) => {
   const height = useMemo(() => {
     return {
       lg: '32px',
@@ -108,6 +108,7 @@ const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
           },
         },
         fullWidth && { width: '100%' },
+        className,
       ]}
     />
   )
