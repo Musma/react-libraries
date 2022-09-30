@@ -90,6 +90,7 @@ const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
 
   return (
     <button
+      {...rest}
       css={[
         {
           appearance: 'none',
@@ -108,7 +109,6 @@ const ButtonBase = ({ fullWidth, size = 'lg', ...rest }: BaseButtonProps) => {
         },
         fullWidth && { width: '100%' },
       ]}
-      {...rest}
     />
   )
 }
@@ -117,6 +117,7 @@ const OutlinedButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      {...rest}
       size={size}
       css={{
         backgroundColor: theme.color.white.main,
@@ -128,7 +129,6 @@ const OutlinedButton = ({ size, ...rest }: BaseButtonProps) => {
           backgroundColor: theme.color.white.main,
         },
       }}
-      {...rest}
     />
   )
 }
@@ -137,6 +137,7 @@ const ContainedButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      {...rest}
       size={size}
       css={{
         backgroundColor: theme.color.blue.main,
@@ -147,7 +148,6 @@ const ContainedButton = ({ size, ...rest }: BaseButtonProps) => {
           backgroundColor: theme.color.blue.dark,
         },
       }}
-      {...rest}
     />
   )
 }
@@ -156,6 +156,7 @@ const DangerButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      {...rest}
       size={size}
       css={{
         backgroundColor: theme.color.red.main,
@@ -166,7 +167,6 @@ const DangerButton = ({ size, ...rest }: BaseButtonProps) => {
           backgroundColor: theme.color.red.dark,
         },
       }}
-      {...rest}
     />
   )
 }
@@ -175,6 +175,7 @@ const DisabledButton = ({ size, ...rest }: BaseButtonProps) => {
   const theme = useTheme()
   return (
     <ButtonBase
+      {...rest}
       size={size}
       css={{
         backgroundColor: theme.color.white.lighter,
@@ -184,7 +185,6 @@ const DisabledButton = ({ size, ...rest }: BaseButtonProps) => {
           transform: 'none',
         },
       }}
-      {...rest}
     />
   )
 }
