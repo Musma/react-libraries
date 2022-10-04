@@ -1,6 +1,6 @@
-import { createElement, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
-import { css } from '@emotion/react'
+import { css, jsx } from '@emotion/react'
 
 import { HeadingProps } from 'src/components/Typography/types'
 
@@ -54,5 +54,5 @@ export const Heading = ({
   children,
   className,
 }: PropsWithChildren<HeadingProps>) => {
-  return createElement(variant, { css: headingCss[variant], className }, children)
+  return jsx(variant, { css: headingCss[variant], className }, children)
 }
