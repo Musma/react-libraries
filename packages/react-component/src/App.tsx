@@ -1,7 +1,8 @@
 import { Examples } from 'src/examples'
 
 import { GlobalStyle } from './styles'
-import { MusmaProvider, DefaultTheme } from './theme'
+import { MusmaProvider } from './theme'
+import { DefaultTheme } from './theme/MusmaProvider/DefaultTheme'
 
 export const App = () => {
   return (

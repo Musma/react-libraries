@@ -2,13 +2,10 @@ import { createContext, ReactNode, useContext } from 'react'
 
 import { EmotionCache, ThemeProvider } from '@emotion/react'
 
-import {
-  DefaultTheme,
-  DefaultEmotionCache,
-  NormalizeCSS,
-  PretendardFont,
-  MusmaTheme,
-} from 'src/theme'
+import { NormalizeCSS, PretendardFont, MusmaTheme } from 'src/theme'
+
+import { DefaultEmotionCache } from './DefaultEmotionCache'
+import { DefaultTheme } from './DefaultTheme'
 
 interface MusmaProviderContextType {
   theme?: MusmaTheme
