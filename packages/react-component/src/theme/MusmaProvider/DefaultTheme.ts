@@ -1,4 +1,4 @@
-import { MusmaTheme } from './types'
+import { MusmaTheme } from 'src/theme/types'
 
 export const DefaultTheme: MusmaTheme = {
   spaceUnit: 4,

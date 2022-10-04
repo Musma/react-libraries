@@ -27,4 +27,4 @@ export { Typography } from './components/Typography'
 //
 export { MusmaProvider, useMusmaTheme } from './theme/MusmaProvider'
 export type { MusmaTheme } from './theme/types'
-export { DefaultTheme } from './theme'
+export { DefaultTheme } from './theme/MusmaProvider/DefaultTheme'
