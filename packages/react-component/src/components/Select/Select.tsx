@@ -223,6 +223,7 @@ export const Select = ({
               css({
                 border: `1px solid ${theme.color.gray.darker}`,
                 backgroundColor: theme.color.white.main,
+                margin: 0,
               }),
             ]}
           >
@@ -235,7 +236,7 @@ export const Select = ({
                   liCss.size[size],
                   css({
                     '&:hover': {
-                      backgroundColor: theme.color.blue.lighter,
+                      backgroundColor: isSelected(value) ? undefined : theme.color.blue.lighter,
                       color: theme.color.blue.main,
                     },
                   }),
