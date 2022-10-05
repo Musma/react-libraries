@@ -1,6 +1,6 @@
 {
   "name": "@musma/react-component",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "React UI component library",
   "homepage": "https://developers.musma.net",
   "repository": {
@@ -44,6 +44,7 @@
     "@babel/core": "^7.19.3",
     "@emotion/babel-plugin": "^11.10.2",
     "@emotion/cache": "^11.10.3",
+    "@emotion/css": "^11.10.0",
     "@emotion/react": "^11.10.4",
     "@types/lodash-es": "^4.17.6",
     "@types/luxon": "^3.0.1",

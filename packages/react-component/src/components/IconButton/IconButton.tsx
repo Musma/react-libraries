@@ -18,7 +18,6 @@ export const IconButton = ({
   disabled = false,
   color,
   size = 'lg',
-  children,
   ...rest
 }: IconButtonProps) => {
   const theme = useTheme()
@@ -57,15 +56,13 @@ export const IconButton = ({
 
   return (
     <button
-      {...rest}
       css={[
         buttonCss.base,
         buttonCss.size[size],
         buttonCss.variants[variant],
         disabled ? buttonCss.disabled : buttonCss.variants[variant],
       ]}
-    >
-      {children}
-    </button>
+      {...rest}
+    />
   )
 }
