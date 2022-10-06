@@ -103,6 +103,9 @@ export const Table = ({
                   css={[tdCss, css({ borderBottom: `1px solid ${theme.color.gray.lighter}` })]}
                   key={column.id}
                 >
+                  {
+                    //FIXME: body2 타입의 Typography는 p태그인데, 자식으로 div태그가 올 수 있음. 이것 때문에 경고뜨니 수정해야함.
+                  }
                   <Typography type="body2" css={{ textAlign: 'center' }}>
                     {item[column.id]}
                   </Typography>

@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { CSSProperties, useMemo } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 
@@ -17,6 +17,7 @@ interface TagProps {
   variant?: 'rectangle' | 'stadium'
   label: string
   className?: string
+  labelStyle?: CSSProperties
 }
 
 export const Tag = ({
@@ -26,6 +27,7 @@ export const Tag = ({
   variant = 'stadium',
   label,
   className = '',
+  labelStyle,
 }: TagProps) => {
   const theme = useTheme()
 
@@ -53,7 +55,10 @@ export const Tag = ({
       css={[tagBase, sizeCss[size], colorCss.container[color], variantCss[variant]]}
       className={className}
     >
-      <Typography type={size === 'lg' ? 'caption1' : 'caption2'} css={colorCss.text[color]}>
+      <Typography
+        type={size === 'lg' ? 'caption1' : 'caption2'}
+        css={[colorCss.text[color], css({ ...labelStyle })]}
+      >
         {label}
       </Typography>
       {onClose && (
