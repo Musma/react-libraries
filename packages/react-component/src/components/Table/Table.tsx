@@ -16,6 +16,7 @@ interface TableProps {
    */
   pagination?: UsePaginationType
   totalCount: number
+  targetId?: string
   onRowClick?: (data: Data) => void
 }
 
@@ -52,6 +53,7 @@ export const Table = ({
   columns,
   pagination,
   totalCount,
+  targetId,
   onRowClick,
 }: TableProps) => {
   const theme = useTheme()
@@ -89,14 +91,17 @@ export const Table = ({
             <tr
               key={index}
               onClick={onRowClick && (() => onRowClick(item))}
-              css={
+              css={[
                 onRowClick
                   ? {
                       cursor: 'pointer',
                       '&:hover': { backgroundColor: theme.color.blue.lighter },
                     }
-                  : {}
-              }
+                  : {},
+                targetId && item.id && targetId === item.id
+                  ? css({ backgroundColor: theme.color.blue.lighter })
+                  : {},
+              ]}
             >
               {columns.map((column) => (
                 <td
