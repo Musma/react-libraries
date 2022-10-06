@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 
-import { Typography, Pagination, PaginationProps } from 'src/components'
+import { Pagination, Typography, UsePaginationType } from 'src/components'
 
 interface TableProps {
   data: Array<Data>
@@ -14,7 +14,7 @@ interface TableProps {
   /**
    * usePagination의 반환값을 전달해주세요
    */
-  pagination?: PaginationProps
+  pagination?: UsePaginationType
   totalCount: number
   onRowClick?: (data: Data) => void
 }
@@ -112,7 +112,7 @@ export const Table = ({
           ))}
         </tbody>
       </table>
-      {pagination && <Pagination {...pagination} totalCount={totalCount} />}
+      {pagination && <Pagination totalCount={totalCount} pagination={pagination} />}
     </div>
   )
 }

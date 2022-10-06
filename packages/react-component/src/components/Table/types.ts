@@ -1,10 +1,6 @@
-export interface PaginationProps {
-  totalCount: number
-  dataLimit: LimitType
+export interface UsePaginationType {
+  limit: number
   page: number
-  className?: string
   onPageChange: (page: number) => void
-  onDataLimitChange: (dataLimit: LimitType) => void
+  onDataLimitChange: (dataLimit: number) => void
 }
-
-export type LimitType = 5 | 10 | 15 | 20 | 25

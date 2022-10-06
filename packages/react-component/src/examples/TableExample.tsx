@@ -9,23 +9,25 @@ const originData = Array.from({ length: 200 }).map((_, index) => ({
 }))
 
 export const TableExample = () => {
-  const pagination = usePagination({ limit: 5, totalData: originData.length })
+  const pagination = usePagination()
 
   const getData = useCallback(() => {
-    const { page, dataLimit } = pagination
-    const start = (page - 1) * dataLimit
-    const end = page * dataLimit
+    const { page, limit } = pagination
+    const start = (page - 1) * limit
+    const end = page * limit
     return originData.slice(start, end)
   }, [pagination])
 
   return (
     <Table
+      css={{ width: '100%' }}
       data={getData()}
       columns={[
         { id: 'a', label: 'A' },
         { id: 'b', label: 'B' },
         { id: 'c', label: 'C' },
       ]}
+      totalCount={originData.length}
       pagination={pagination}
     />
   )

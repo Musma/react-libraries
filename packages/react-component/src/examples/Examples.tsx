@@ -13,9 +13,6 @@ import {
   Backdrop,
   Skeleton,
   Drawer,
-  Text,
-  Text2,
-  Text3,
 } from 'src/components'
 import {
   ModalExample,
@@ -195,23 +192,6 @@ export const Examples = () => {
         </Box>
 
         <Box title="Backdrop">{/* <Backdrop /> */}</Box>
-
-        <Box title="Text">
-          <Text>Origin</Text>
-          <Text css={{ marginTop: 40, color: 'red' }}>style</Text>
-        </Box>
-
-        <Box title="Text2">
-          <Text2>Origin</Text2>
-          <Text2 css={css({color: 'red'})}>style</Text2>
-          <Text2 css={({color: 'red'})}>style</Text2>
-        </Box>
-
-        <Box title="Text3">
-          <Text3>Origin</Text3>
-          <Text3 css={aaa}>style</Text3>
-          <Text3 css={{color: 'yellow'}}>3333333</Text3>
-        </Box>
       </div>
     </div>
   )

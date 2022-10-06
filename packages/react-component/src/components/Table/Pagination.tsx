@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 
-import { Typography, PaginationProps, Select, LimitType } from 'src/components'
+import { Typography, UsePaginationType, Select } from 'src/components'
 
 import { ReactComponent as ArrowFirstIcon } from './images/arrow_first.svg'
 import { ReactComponent as ArrowLastIcon } from './images/arrow_last.svg'
@@ -20,23 +20,20 @@ const pageNumberCss = css({
   cursor: 'pointer',
   borderRadius: '9999px',
 })
-
-export const Pagination = ({
-  dataLimit,
-  totalCount,
-  page,
-  className,
-  onPageChange,
-  onDataLimitChange,
-}: PaginationProps) => {
+interface PaginationProps {
+  pagination: UsePaginationType
+  totalCount: number
+}
+export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
+  const { limit, page, onDataLimitChange, onPageChange } = pagination
   const theme = useTheme()
   const pageCount = 5
   const [currentPage, setCurrentPage] = useState(page)
   const [pageGroup, setPageGroup] = useState(1)
 
   const totalPage = useMemo(() => {
-    return Math.ceil(totalCount / dataLimit)
-  }, [dataLimit, totalCount])
+    return Math.ceil(totalCount / limit)
+  }, [limit, totalCount])
 
   const lastGroup = useMemo(() => {
     return Math.ceil(totalPage / pageCount)
@@ -62,7 +59,7 @@ export const Pagination = ({
 
   const handleLimitChange = useCallback(
     (value: number) => {
-      onDataLimitChange(value as LimitType)
+      onDataLimitChange(value)
       setCurrentPage(1)
       onPageChange(1)
     },
@@ -118,13 +115,13 @@ export const Pagination = ({
   }, [lastGroup, onPageChange, totalPage])
 
   return (
-    <div css={containerCss} className={className}>
+    <div css={containerCss}>
       <Typography type="body3" css={{ marginRight: '8px' }}>
         Rows per page
       </Typography>
       <Select
         label=""
-        value={String(dataLimit)}
+        value={String(limit)}
         options={[
           { label: '5', value: '5' },
           { label: '10', value: '10' },
