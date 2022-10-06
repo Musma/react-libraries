@@ -23,7 +23,7 @@ const pageNumberCss = css({
 
 export const Pagination = ({
   dataLimit,
-  totalData,
+  totalCount,
   page,
   className,
   onPageChange,
@@ -35,8 +35,8 @@ export const Pagination = ({
   const [pageGroup, setPageGroup] = useState(1)
 
   const totalPage = useMemo(() => {
-    return Math.ceil(totalData / dataLimit)
-  }, [dataLimit, totalData])
+    return Math.ceil(totalCount / dataLimit)
+  }, [dataLimit, totalCount])
 
   const lastGroup = useMemo(() => {
     return Math.ceil(totalPage / pageCount)

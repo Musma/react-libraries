@@ -15,6 +15,7 @@ interface TableProps {
    * usePagination의 반환값을 전달해주세요
    */
   pagination?: PaginationProps
+  totalCount: number
   onRowClick?: (data: Data) => void
 }
 
@@ -45,7 +46,14 @@ const thCss = css({
 
 const tdCss = css({ height: '40px', textAlign: 'center' })
 
-export const Table = ({ data, className = '', columns, pagination, onRowClick }: TableProps) => {
+export const Table = ({
+  data,
+  className = '',
+  columns,
+  pagination,
+  totalCount,
+  onRowClick,
+}: TableProps) => {
   const theme = useTheme()
   return (
     <div css={containerCss} className={className}>
@@ -104,7 +112,7 @@ export const Table = ({ data, className = '', columns, pagination, onRowClick }:
           ))}
         </tbody>
       </table>
-      {pagination && <Pagination {...pagination} />}
+      {pagination && <Pagination {...pagination} totalCount={totalCount} />}
     </div>
   )
 }
