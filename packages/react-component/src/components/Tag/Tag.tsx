@@ -2,7 +2,6 @@ import { CSSProperties, useMemo } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 
-import { Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as CloseIcon } from './images/close.svg' // import 순서 및 정렬해주세요.
@@ -55,12 +54,18 @@ export const Tag = ({
       css={[tagBase, sizeCss[size], colorCss.container[color], variantCss[variant]]}
       className={className}
     >
-      <Typography
-        type={size === 'lg' ? 'caption1' : 'caption2'}
-        css={[colorCss.text[color], css({ ...labelStyle })]}
+      {
+        //label을 Typography컴포넌트의 caption타입(p태그)으로 감쌌으나 label에 ReactNode가 올 경우(특히 div), warnning이 떠서 div 태그로 바꿨습니다.
+      }
+      <div
+        css={[
+          size === 'lg' ? labelCss.caption1 : labelCss.caption2,
+          colorCss.text[color],
+          css({ ...labelStyle }),
+        ]}
       >
         {label}
-      </Typography>
+      </div>
       {onClose && (
         <CloseIcon
           onClick={() => onClose(label)}
@@ -96,4 +101,19 @@ const sizeCss = {
 const variantCss = {
   stadium: css({ borderWidth: '1px', borderStyle: 'solid', borderRadius: '100px' }),
   rectangle: css({ border: '1px solid transparent', borderRadius: '2px' }),
+}
+
+const labelCss = {
+  caption1: css({
+    fontSize: '12px',
+    fontWeight: 400,
+    lineHeight: '16px',
+    margin: 0,
+  }),
+  caption2: css({
+    fontSize: '10px',
+    fontWeight: 400,
+    lineHeight: '14px',
+    margin: 0,
+  }),
 }
