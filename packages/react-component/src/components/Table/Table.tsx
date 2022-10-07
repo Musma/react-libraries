@@ -81,7 +81,9 @@ export const Table = ({
                   }),
                 ]}
               >
-                <Typography type="h6">{column.label}</Typography>
+                <Typography type="h6" css={{ color: theme.color.black.dark }}>
+                  {column.label}
+                </Typography>
               </th>
             ))}
           </tr>
@@ -116,6 +118,7 @@ export const Table = ({
                       letterSpacing: '-0.2px',
                       margin: 0,
                       textAlign: 'center',
+                      color: theme.color.black.dark,
                     }}
                   >
                     {item[column.id]}
