@@ -1,6 +1,6 @@
-import { MusmaTheme } from 'src/theme/types'
+import { MusmaTheme } from 'src/theme'
 
-export const DefaultTheme: MusmaTheme = {
+const DefaultTheme: MusmaTheme = {
   spaceUnit: 4,
   color: {
     blue: {
@@ -54,3 +54,5 @@ export const DefaultTheme: MusmaTheme = {
     },
   },
 }
+
+export { DefaultTheme }

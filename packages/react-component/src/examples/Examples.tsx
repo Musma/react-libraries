@@ -31,10 +31,12 @@ import {
   TabsExample,
 } from 'src/examples'
 
-const aaa = css`
-  background-color: pink;
-  color: red;
-`
+const BBB = css({
+  marginTop: 40,
+  color: 'red',
+})
+
+console.log(BBB)
 
 export const Examples = () => {
   const [showSpinner, setSpinner] = useState(false)
