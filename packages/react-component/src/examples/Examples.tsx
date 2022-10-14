@@ -31,6 +31,9 @@ import {
   TabsExample,
 } from 'src/examples'
 
+import icon from './images/bell.svg'
+import { ReactComponent as XlsIcon } from './images/xls.svg'
+
 const BBB = css({
   marginTop: 40,
   color: 'red',
@@ -74,6 +77,17 @@ export const Examples = () => {
           </Button>
           <Button fullWidth={true} size="lg" disabled={true}>
             test
+          </Button>
+          <Button fullWidth={true} size="lg" icon={<XlsIcon />}>
+            icon label button
+          </Button>
+          <Button
+            fullWidth={true}
+            size="lg"
+            disabled={true}
+            icon={<img src={icon} alt="아이콘 버튼" />}
+          >
+            icon label button
           </Button>
         </Box>
 
