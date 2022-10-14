@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, CSSProperties, ReactNode, useMemo } from 'react'
+import { ButtonHTMLAttributes, CSSProperties, Fragment, ReactNode, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean
   size?: Size | 'xs'
   variant?: 'outlined' | 'contained' | 'danger' // variant Type을 따로 뺴서 사용하는게 좋을 것 같습니다.
-  icon?: ReactNode
+  icon?: JSX.Element
 }
 
 export const Button = ({
@@ -27,6 +27,7 @@ export const Button = ({
   if (disabled) {
     return (
       <DisabledButton fullWidth={fullWidth} size={size} {...rest}>
+        <Icon icon={rest?.icon} disabled={disabled} />
         <SizedLabel css={[{ color: theme.color.white.main, ...labelStyle }]} size={size}>
           {children}
         </SizedLabel>
@@ -38,6 +39,7 @@ export const Button = ({
     case 'contained':
       return (
         <ContainedButton fullWidth={fullWidth} size={size} {...rest}>
+          <Icon icon={rest?.icon} disabled={disabled} />
           <SizedLabel css={{ color: theme.color.white.main, ...labelStyle }} size={size}>
             {children}
           </SizedLabel>
@@ -46,6 +48,7 @@ export const Button = ({
     case 'danger':
       return (
         <DangerButton fullWidth={fullWidth} size={size} {...rest}>
+          <Icon icon={rest?.icon} disabled={disabled} />
           <SizedLabel css={{ color: theme.color.white.main, ...labelStyle }} size={size}>
             {children}
           </SizedLabel>
@@ -54,6 +57,7 @@ export const Button = ({
     case 'outlined':
       return (
         <OutlinedButton fullWidth={fullWidth} size={size} {...rest}>
+          <Icon icon={rest?.icon} disabled={disabled} />
           <SizedLabel css={{ color: theme.color.blue.main, ...labelStyle }} size={size}>
             {children}
           </SizedLabel>
@@ -74,6 +78,31 @@ const SizedLabel = ({ size, ...rest }: SizedLabelProps) => {
   }
 
   return <Typography type="caption1" {...rest} />
+}
+
+interface IconProps {
+  icon?: JSX.Element
+  disabled?: boolean
+}
+
+const Icon = ({ disabled, icon }: IconProps) => {
+  if (icon) {
+    return (
+      <span
+        css={{
+          display: 'inline-flex',
+          marginRight: '3px',
+          filter: disabled
+            ? 'invert(100%) sepia(0%) saturate(0%) brightness(1000%) contrast(102%)'
+            : 'none',
+        }}
+      >
+        {icon}
+      </span>
+    )
+  }
+
+  return <Fragment />
 }
 
 type BaseButtonProps = Omit<ButtonProps, 'label' | 'variant'>
