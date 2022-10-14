@@ -92,9 +92,7 @@ const Icon = ({ disabled, icon }: IconProps) => {
         css={{
           display: 'inline-flex',
           marginRight: '3px',
-          filter: disabled
-            ? 'invert(100%) sepia(0%) saturate(0%) brightness(1000%) contrast(102%)'
-            : 'none',
+          filter: disabled ? 'brightness(1000%)' : 'none',
         }}
       >
         {icon}
