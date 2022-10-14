@@ -60,5 +60,8 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.10.0"
   }
 }

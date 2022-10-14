@@ -12,7 +12,7 @@ export default defineConfig({
       // 빌드 시 src/index.ts을 시작점으로
       entry: resolve(__dirname, 'src/index.ts'),
       // 빌드 이름
-      name: 'musma-react-component',
+      name: '@musma/react-component',
       formats: ['es', 'umd'],
       // 빌드 결과물 파일 이름
       fileName: (format) => `lib.${format}.js`,
@@ -23,8 +23,8 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          luxon: 'luxon',
-          '@emotion/react': '@emotion/react',
+          luxon: 'Luxon',
+          '@emotion/react': 'emotionReact',
         },
       },
     },
@@ -33,7 +33,7 @@ export default defineConfig({
     logOverride: { 'this-is-undefined-in-esm': 'silent' },
   },
   plugins: [
-    visualizer({ open: true }),
+    visualizer({ open: false }),
     svgr(),
     react({
       jsxImportSource: '@emotion/react',

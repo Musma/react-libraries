@@ -1,0 +1,40 @@
+name: '@musma/react-component' build and publish
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: echo 'dev deployment'
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: yarn install
+      - run: yarn build:all
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1.1.0
+
+      - name: Slack channel notification
+        uses: 8398a7/action-slack@v3
+        with:
+          channel: '#musma-web-ui'
+          status: ${{ job.status }}
+          text: ${{steps.tag.outputs.tag}}
+          fields: message, commit, author
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
