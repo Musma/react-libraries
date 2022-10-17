@@ -8,9 +8,9 @@
   },
   "scripts": {
     "changeset": "changeset",
-    "changeset:version": "changeset version",
+    "ci:version": "changeset version",
     "prerelease": "pnpm -r build",
-    "release": "changeset publish"
+    "ci:publish": "changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
