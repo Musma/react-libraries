@@ -1,20 +1,18 @@
-import { useState } from 'react'
-
-import { Tabs } from 'src/components'
+import { Tab, TabContainer, TabPanel, Tabs } from 'src/components'
 
 export const TabsExample = () => {
-  const [currentTab, setCurrentTab] = useState('a')
-  const [currentTab2, setCurrentTab2] = useState('a')
   return (
     <div>
-      <Tabs titles={['tab1', 'tab2', 'tab3']} handleSelectTab={(title) => setCurrentTab(title)} />
-      current tab: {currentTab}
-      <Tabs
-        titles={['tab1', 'tab2', 'tab3']}
-        handleSelectTab={(title) => setCurrentTab2(title)}
-        variant="rect"
-      />
-      current tab: {currentTab2}
+      <TabContainer defaultTab={1} variant="rect">
+        <Tabs>
+          <Tab label="one two" value={1} />
+          <Tab label="two" value={2} />
+          <Tab label="three" value={3} />
+        </Tabs>
+        <TabPanel value={1}>Item one panel</TabPanel>
+        <TabPanel value={2}>Item two panel</TabPanel>
+        <TabPanel value={3}>Item three panel</TabPanel>
+      </TabContainer>
     </div>
   )
 }

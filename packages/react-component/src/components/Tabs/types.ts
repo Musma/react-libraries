@@ -1,5 +1,3 @@
-export interface TabProps {
-  title: string
-  selectedTab: string
-  setSelectedTab: (title: string) => void
-}
+export type TabValue = string | number
+export type HandleTabClick = (value: TabValue) => void
+export type Variant = 'hat' | 'rect'
