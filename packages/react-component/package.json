@@ -37,8 +37,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite",
-    "preview": "vite preview",
-    "publish": "pnpm publish"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
