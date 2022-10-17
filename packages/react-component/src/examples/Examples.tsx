@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 
 import {
   BreadCrumb,
@@ -33,13 +33,6 @@ import {
 
 import icon from './images/bell.svg'
 import { ReactComponent as XlsIcon } from './images/xls.svg'
-
-const BBB = css({
-  marginTop: 40,
-  color: 'red',
-})
-
-console.log(BBB)
 
 export const Examples = () => {
   const [showSpinner, setSpinner] = useState(false)
