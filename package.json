@@ -8,7 +8,7 @@
   },
   "scripts": {
     "changeset": "changeset",
-    "prerelease": "pnpm build",
+    "prerelease": "pnpm -r build",
     "release": "changeset publish"
   },
   "devDependencies": {
