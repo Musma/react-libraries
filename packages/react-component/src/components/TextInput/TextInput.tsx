@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 
+import { cx, css as _css } from '@emotion/css'
 import { useTheme, css } from '@emotion/react'
 
 import { Typography, InputFactory } from 'src/components'
@@ -21,6 +22,7 @@ export const TextInput = ({
   label,
   type = 'text',
   helperText,
+  className,
   ...rest
 }: TextInputProps) => {
   const theme = useTheme()
@@ -44,12 +46,15 @@ export const TextInput = ({
 
   return (
     <div
-      css={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-      }}
+      className={cx(
+        _css({
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+        }),
+        className,
+      )}
     >
       {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
 

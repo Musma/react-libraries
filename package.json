@@ -8,6 +8,7 @@
   },
   "scripts": {
     "changeset": "changeset",
+    "changeset:version": "changeset version",
     "prerelease": "pnpm -r build",
     "release": "changeset publish"
   },
