@@ -2,8 +2,6 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "redvanworkshop.explorer-exclude-vscode-extension",
-    "bradlc.vscode-tailwindcss",
     "eamodio.gitlens",
     "pkief.material-icon-theme",
     "codeandstuff.package-json-upgrade",
