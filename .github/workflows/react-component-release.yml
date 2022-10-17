@@ -2,36 +2,54 @@ name: '@musma/react-component' build and publish
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
-
+    branches:
+      - main
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - run: echo 'dev deployment'
-
-      - uses: actions/setup-node@v2
+      # 레포지토리에 체크아웃하여 소스를 가져온다.
+      - name: Checkout branch
+        uses: actions/checkout@v2
         with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
+          fetch-depth: 0
 
-      - run: yarn install
-      - run: yarn build:all
-      - run: npm publish
+​      # Node.js를 설치한다.
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+
+      # pnpm 설치한다.
+      - name: install pnpm
+        run: npm i pnpm@latest -g
+
+      # .npmrc 파일 생성하고 NPM TOKEN을 넣는다.
+      - name: Setup npmrc
+        run: echo "@musma:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > .npmrc"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1.1.0
+      # 의존성 설치한다.
+      - name: Install dependencies
+        run: pnpm install
 
+      # Changesets에서 제공하는 Action 사용
+      - name: Create release Pull Request or Publish to Github Packages
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          commit: "ci(changesets): version packages"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Slack에 빌드 결과 표시
       - name: Slack channel notification
         uses: 8398a7/action-slack@v3
         with:
-          channel: '#musma-web-ui'
+          channel: '#fe-library'
           status: ${{ job.status }}
           text: ${{steps.tag.outputs.tag}}
           fields: message, commit, author
