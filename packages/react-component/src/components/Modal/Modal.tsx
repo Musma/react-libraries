@@ -224,7 +224,7 @@ export const Modal = ({
           <Button
             size={buttonSize}
             variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
-            onClick={buttonOption.onSecondClick}
+            onClick={buttonOption.onClick}
             css={{ ...buttonCss.button[size], ...buttonOption.buttonStyle }}
           >
             {buttonOption.label}

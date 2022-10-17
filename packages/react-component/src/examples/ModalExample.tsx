@@ -17,10 +17,10 @@ export const ModalExample = () => {
         isOpen={isOpen}
         buttonOption={{
           label: 'button1',
-          onClick: () => console.log('button1'),
+          onClick: () => alert('button1 클릭'),
           secondLabel: 'button2',
           onSecondClick() {
-            console.log('button2')
+            alert('button2 클릭')
           },
         }}
         modalManager={modalManager}
