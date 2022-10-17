@@ -26,5 +26,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [visualizer({ open: true }), react(), dts()],
+  plugins: [visualizer({ open: false }), react(), dts()],
 })
