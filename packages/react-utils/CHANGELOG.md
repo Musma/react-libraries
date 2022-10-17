@@ -1,13 +1,7 @@
-# @musma/react-component
+# @musma/react-utils
 
-## 0.0.55
+## 0.0.5
 
 ### Patch Changes
 
 - [`9596273`](https://github.com/Musma/react-libraries/commit/9596273cdffea470f5b2fd3a5b97c7faa2adf058) Thanks [@jklasd2001](https://github.com/jklasd2001)! - Change all things
-
-## 0.0.53
-
-### Patch Changes
-
-- summary
