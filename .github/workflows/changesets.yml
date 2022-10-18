@@ -8,6 +8,10 @@ on:
       - "packages/**"
     branches:
       - main
+
+# 단일 실행 및 작업만 진행되도록 할 수 있는 키
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -38,8 +42,8 @@ jobs:
       - name: Create release Pull Request or Publish to Github Packages
         uses: changesets/action@v1
         with:
-          publish: pnpm ci:publish
           commit: "chore: update versions"
+          publish: pnpm ci:publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
