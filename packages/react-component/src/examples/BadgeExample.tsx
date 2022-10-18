@@ -5,16 +5,16 @@ import { ReactComponent as BellIcon } from './images/bell.svg'
 export const BadgeExample = () => {
   return (
     <div css={{ width: '100%', display: 'flex', justifyContent: 'space-around' }}>
-      <Badge count={0}>
+      <Badge value={0}>
         <BellIcon />
       </Badge>
-      <Badge count={1}>
+      <Badge value={1}>
         <BellIcon />
       </Badge>
-      <Badge count={10}>
+      <Badge value={10}>
         <BellIcon />
       </Badge>
-      <Badge count={100}>
+      <Badge value={100}>
         <BellIcon />
       </Badge>
     </div>

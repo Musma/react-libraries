@@ -1,24 +1,21 @@
 import { PropsWithChildren, useMemo } from 'react'
 
-import { useTheme } from '@emotion/react'
-
 import { Typography } from 'src/components'
 
 interface BadgeProps {
-  count: number
+  value: number
 }
 
-export const Badge = ({ count, children }: PropsWithChildren<BadgeProps>) => {
-  const theme = useTheme()
-  const countNumber = useMemo(() => {
-    return count > 99 ? `99+` : count
-  }, [count])
+export const Badge = ({ value, children }: PropsWithChildren<BadgeProps>) => {
+  const computedValue = useMemo(() => {
+    return value > 99 ? `99+` : value
+  }, [value])
 
   return (
     <div css={{ position: 'relative', display: 'inline-flex' }}>
-      {countNumber !== 0 && (
+      {computedValue !== 0 && (
         <span
-          css={{
+          css={(theme) => ({
             position: 'absolute',
             top: -3.5,
             left: 12,
@@ -31,10 +28,10 @@ export const Badge = ({ count, children }: PropsWithChildren<BadgeProps>) => {
             padding: '0 4.5px',
             borderRadius: '12px',
             backgroundColor: theme.color.red.light,
-          }}
+          })}
         >
-          <Typography type="caption2" css={{ color: theme.color.white.main }}>
-            {countNumber}
+          <Typography type="caption2" css={(theme) => ({ color: theme.color.white.main })}>
+            {computedValue}
           </Typography>
         </span>
       )}
