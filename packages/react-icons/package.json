@@ -26,7 +26,7 @@
   "scripts": {
     "build:script": "rimraf ./src/components & node ./src/scripts/build.js",
     "build:optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
-    "build": "yarn build:optimize && yarn build:script",
+    "build": "pnpm build:optimize && pnpm build:script",
     "postbuild": "tsc && vite build"
   },
   "devDependencies": {
