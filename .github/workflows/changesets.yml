@@ -33,9 +33,9 @@ jobs:
         run: npm i pnpm@latest -g
       # .npmrc 파일 생성하고 NPM TOKEN을 넣는다.
       - name: Setup npmrc
-        run: echo "@musma:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN > .npmrc"
+        run: mv .ci.npmrc .npmrc
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       # 의존성 설치한다.
       - name: Install dependencies
         run: pnpm install

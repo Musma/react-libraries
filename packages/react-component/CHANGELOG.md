@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.0.58
+
+### Patch Changes
+
+- [#52](https://github.com/Musma/react-libraries/pull/52) [`acd2728`](https://github.com/Musma/react-libraries/commit/acd2728b1052643ce94cc8bc9f712c60e6a4340f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Text4 제거
+
 ## 0.0.57
 
 ### Patch Changes
