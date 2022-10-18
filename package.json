@@ -10,7 +10,8 @@
     "changeset": "changeset",
     "ci:version": "changeset version",
     "prerelease": "pnpm -r build",
-    "ci:publish": "changeset publish"
+    "ci:publish": "changeset publish",
+    "release": "pnpm ci:publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
