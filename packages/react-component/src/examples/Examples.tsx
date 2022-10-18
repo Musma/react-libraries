@@ -5,7 +5,6 @@ import { useTheme } from '@emotion/react'
 import {
   BreadCrumb,
   Tooltip,
-  Button,
   Typography,
   Tag,
   Spinner,
@@ -13,6 +12,7 @@ import {
   Backdrop,
   Skeleton,
   Drawer,
+  Button,
 } from 'src/components'
 import {
   ModalExample,
@@ -73,6 +73,9 @@ export const Examples = () => {
           </Button>
           <Button fullWidth={true} size="lg" icon={<XlsIcon />}>
             icon label button
+          </Button>
+          <Button fullWidth={true} variant="danger">
+            danger
           </Button>
           <Button
             fullWidth={true}
