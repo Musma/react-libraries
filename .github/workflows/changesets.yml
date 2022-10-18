@@ -13,7 +13,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  publish:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       # 레포지토리에 체크아웃하여 소스를 가져온다.
@@ -42,7 +43,9 @@ jobs:
       - name: Create release Pull Request or Publish to Github Packages
         uses: changesets/action@v1
         with:
+          version: pnpm ci:version
           commit: "chore: update versions"
+          title: "chore: update versions"
           publish: pnpm ci:publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
