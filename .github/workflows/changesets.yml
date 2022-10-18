@@ -36,13 +36,10 @@ jobs:
         run: pnpm install
       # Changesets에서 제공하는 Action 사용
       - name: Create release Pull Request or Publish to Github Packages
-        id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm ci:version
-          commit: "chore: update versions"
-          title: "chore: update versions"
           publish: pnpm ci:publish
+          commit: "chore: update versions"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
