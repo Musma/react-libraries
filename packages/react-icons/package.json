@@ -1,6 +1,6 @@
 {
   "name": "@musma/react-icons",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Musma react icons library",
   "homepage": "https://developers.musma.net",
   "repository": {
@@ -24,13 +24,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && vite build",
-    "build-script": "rimraf ./src/components & node ./src/scripts/build.js",
-    "build:all": "yarn optimize && yarn build-script && yarn build",
-    "dev": "vite",
-    "optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
-    "preview": "vite preview",
-    "release": "yarn changeset publish"
+    "build:script": "rimraf ./src/components & node ./src/scripts/build.js",
+    "build:optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
+    "build": "yarn build:optimize && yarn build:script",
+    "postbuild": "tsc && vite build"
   },
   "devDependencies": {
     "@svgr/cli": "^6.2.1",
