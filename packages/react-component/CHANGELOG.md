@@ -1,5 +1,13 @@
 # @musma/react-component
 
+## 0.0.59
+
+### Patch Changes
+
+- [`d33ffe9`](https://github.com/Musma/react-libraries/commit/d33ffe9a61ac39e526ff7f84e69bec25eb7a2fa6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Text3 제거
+
+- [`c5ddf83`](https://github.com/Musma/react-libraries/commit/c5ddf8353a51fe1111490eb6a9af639ba4cbe16f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Text1,2 제거
+
 ## 0.0.58
 
 ### Patch Changes
