@@ -45,7 +45,9 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
               >
                 <Typography
                   type="body2"
-                  css={{ color: isLast(index) ? theme.color.black.dark : theme.color.gray.main }}
+                  css={(theme) => ({
+                    color: isLast(index) ? theme.color.black.dark : theme.color.gray.main,
+                  })}
                 >
                   {crumb}
                 </Typography>
