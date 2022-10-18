@@ -1,5 +1,11 @@
 # @musma/eslint-config-react
 
+## 0.1.2
+
+### Patch Changes
+
+- [`15a1693`](https://github.com/Musma/react-libraries/commit/15a169352ba53a50a5516f2d85b9d01d855db640) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 빌드 결과물이 배포 안되어 patch 버전 올려서 배포(2)
+
 ## 0.1.1
 
 ### Patch Changes
