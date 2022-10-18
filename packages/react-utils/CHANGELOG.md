@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.1
+
+### Patch Changes
+
+- [`5b7cb75`](https://github.com/Musma/react-libraries/commit/5b7cb75c6573f1423f3286b7aa37b0c0fff28ff0) Thanks [@jklasd2001](https://github.com/jklasd2001)! - chore: 빌드 결과물이 배포 안되어 패치 버전 올려서 배포
+
 ## 0.1.0
 
 ### Minor Changes
