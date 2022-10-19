@@ -10,13 +10,13 @@
     "changeset": "changeset",
     "ci:version": "changeset version",
     "build": "pnpm -r build",
-    "ci:publish": "changeset publish"
+    "ci:publish": "pnpm build && changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
     "@changesets/cli": "^2.25.0",
     "@musma/eslint-config-react": "workspace:*",
-    "@types/node": "^18.11.0",
+    "@types/node": "^18.11.2",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",

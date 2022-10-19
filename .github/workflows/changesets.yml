@@ -33,7 +33,11 @@ jobs:
         run: npm i pnpm@latest -g
       # .npmrc 파일 생성하고 NPM TOKEN을 넣는다.
       - name: Setup npmrc
-        run: mv .ci.npmrc .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            @musma:registry=https://npm.pkg.github.com/
+            //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+          EOF
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       # 의존성 설치한다.
@@ -53,9 +57,6 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # .npmrc 삭제
-      - name: .npmrc Delete
-        run: rm -rf .npmrc
       # Slack에 빌드 결과 표시
       - name: Slack channel notification
         uses: 8398a7/action-slack@v3

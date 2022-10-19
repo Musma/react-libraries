@@ -12,5 +12,6 @@
     "**/Thumbs.db": true,
     "**/node_modules": true
   },
-  "explorerExclude.backup": {}
+  "explorerExclude.backup": {},
+  "npm.packageManager": "pnpm"
 }
