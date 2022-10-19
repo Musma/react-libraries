@@ -26,8 +26,7 @@
   "scripts": {
     "build:script": "rimraf ./src/components & node ./src/scripts/build.js",
     "build:optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
-    "build": "pnpm build:optimize && pnpm build:script",
-    "postbuild": "tsc && vite build"
+    "build": "pnpm build:optimize && pnpm build:script && tsc && vite build"
   },
   "devDependencies": {
     "@svgr/cli": "^6.2.1",
