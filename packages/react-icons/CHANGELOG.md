@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.4
+
+### Patch Changes
+
+- [`ce34a78`](https://github.com/Musma/react-libraries/commit/ce34a78a11a4f8b93035f743e0f5b6df3a04f0fe) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: package.json script 중 postbuild 커맨드 실행안하는 버그 수정
+
 ## 0.1.3
 
 ### Patch Changes
