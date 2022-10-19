@@ -43,9 +43,6 @@ jobs:
       # 의존성 설치한다.
       - name: Install dependencies
         run: pnpm install
-      # 하위 패키지들을 모두 빌드한다
-      - name: Package Build
-        run: pnpm build
       # Changesets에서 제공하는 Action 사용
       - name: Create release Pull Request or Publish to Github Packages
         uses: changesets/action@v1
