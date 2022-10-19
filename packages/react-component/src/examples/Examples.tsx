@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
+import { FillAddBoxIcon } from '@musma/react-icons'
 
 import {
   BreadCrumb,
@@ -203,7 +204,9 @@ export const Examples = () => {
           </Drawer>
         </Box>
 
-        <Box title="Backdrop">{/* <Backdrop /> */}</Box>
+        <Box title="React Icons">
+          <FillAddBoxIcon />
+        </Box>
       </div>
     </div>
   )
