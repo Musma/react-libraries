@@ -3,7 +3,7 @@ import { useEffect, RefObject } from 'react'
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-const useOutsideListener = (ref: RefObject<HTMLDivElement>, action: () => void) => {
+export const useOutsideListener = (ref: RefObject<HTMLDivElement>, action: () => void) => {
   /**
    * Alert if clicked on outside of element
    */
@@ -25,5 +25,3 @@ const useOutsideListener = (ref: RefObject<HTMLDivElement>, action: () => void) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref])
 }
-
-export default useOutsideListener

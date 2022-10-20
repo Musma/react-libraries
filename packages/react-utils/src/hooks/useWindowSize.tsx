@@ -6,7 +6,7 @@ import { debounce } from 'lodash-es'
  *
  * @description: 브라우저의 width, height를 가져올 수 있습니다.
  */
-const useWindowSize = () => {
+export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -32,5 +32,3 @@ const useWindowSize = () => {
 
   return { windowSize }
 }
-
-export default useWindowSize

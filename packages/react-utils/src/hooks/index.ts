@@ -1,3 +1,4 @@
-export { default as useModal } from './useModal'
-export { default as useOutsideListener } from './useOutsideListener'
-export { default as useWindowSize } from './useWindowSize'
+export * from './useEscKeyPress'
+export * from './useModal'
+export * from './useOutsideListener'
+export * from './useWindowSize'

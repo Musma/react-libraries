@@ -1,4 +1,10 @@
-/**첫글자만 대문자로, 언더바는 띄어쓰기로 변경 */
+/**
+ * @description
+ * String을 받아서 첫글자는 대문자, dash는 공백으로 처리하여 리턴합니다.
+ * @param str
+ * @param dash
+ * @returns
+ */
 export const firstLetterUppercase = (str?: string | null, dash?: boolean) => {
   if (str && str.length > 1) {
     const repString = str.replace(/_/gi, ' ')
