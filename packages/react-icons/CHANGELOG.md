@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.5
+
+### Patch Changes
+
+- [`105c05c`](https://github.com/Musma/react-libraries/commit/105c05c3e87c255a7ea69d6565f0c978df02240f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-component 리팩토링 및 react-utils, react-icons 코드 정리
+
 ## 0.1.4
 
 ### Patch Changes
