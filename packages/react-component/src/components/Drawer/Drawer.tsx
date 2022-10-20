@@ -1,13 +1,16 @@
 import { Fragment, HTMLAttributes } from 'react'
 
+import { useTheme } from '@emotion/react'
+
 import { Backdrop, Box } from 'src/components'
 
 interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean
-  // direction?: 'top' | 'right' | 'bottom' | 'left'
+  width?: number
 }
 
-export const Drawer = ({ open, ...rest }: DrawerProps) => {
+export const Drawer = ({ open, width = 400, ...rest }: DrawerProps) => {
+  const theme = useTheme()
   if (open) {
     return (
       <Backdrop open={open}>
@@ -15,13 +18,13 @@ export const Drawer = ({ open, ...rest }: DrawerProps) => {
           css={{
             top: 0,
             right: 0,
-            width: 400,
+            width: width,
             height: '100%',
             position: 'fixed',
-            backgroundColor: 'white',
+            backgroundColor: theme.colors.white.main,
             overflowY: 'auto',
-            borderTopLeftRadius: 10,
-            borderBottomLeftRadius: 10,
+            borderTopLeftRadius: theme.rounded.lg,
+            borderBottomLeftRadius: theme.rounded.lg,
             display: 'flex',
             flexDirection: 'column',
             boxShadow:

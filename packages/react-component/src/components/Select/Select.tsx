@@ -300,6 +300,7 @@ const ulCss = {
     overflowY: 'auto',
     borderRadius: '4px',
     padding: '4px 0',
+    boxSize: 'border-box',
   }),
   size: {
     lg: css({ top: '34px' }),

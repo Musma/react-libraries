@@ -20,7 +20,7 @@ export const Header = ({ zIndex, backgroundColor, ...rest }: HeaderProps) => {
         right: 0,
         height: theme.layoutSize.headerHeight,
         display: 'flex',
-        // TODO: 그림자
+        boxShadow: theme.shadow.md,
       }}
       {...rest}
     />
