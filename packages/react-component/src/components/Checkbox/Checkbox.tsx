@@ -55,12 +55,9 @@ export const Checkbox = ({
         type="checkbox"
         checked={checked}
         onChange={(e) => {
-          if (!onChange) {
-            return
-          }
-          onChange(e.target.checked)
+          onChange && onChange(e.target.checked)
         }}
-        css={css({ visibility: 'hidden', appearance: 'none' })}
+        css={{ visibility: 'hidden', appearance: 'none' }}
         disabled={disabled}
         {...rest}
       />
@@ -99,9 +96,11 @@ const IconFactory = ({ checked, disabled, size }: IconFactoryProps) => {
   if (disabled) {
     return disabledIcon[size]
   }
+
   if (checked) {
     return activeIcon[size]
   }
+
   return <Fragment />
 }
 const activeIcon = {
@@ -109,6 +108,7 @@ const activeIcon = {
   md: <DoneMdIcon />,
   sm: <DoneSmIcon />,
 }
+
 const disabledIcon = {
   lg: <DoneDisabledLgIcon />,
   md: <DoneDisabledMdIcon />,
@@ -120,6 +120,7 @@ interface LabelFactoryProps {
   label: string
   labelStyle: CSSProperties
 }
+
 const LabelFactory = ({ label, size }: LabelFactoryProps) => {
   if (size !== 'sm') {
     return (

@@ -1,11 +1,15 @@
 import { StrictMode } from 'react'
 import { render } from 'react-dom'
 
-import { App } from 'src/App'
+import { MusmaProvider } from '@musma/react-component'
+
+import { LayoutTest } from './LayoutTest'
 
 render(
   <StrictMode>
-    <App />
+    <MusmaProvider>
+      <LayoutTest />
+    </MusmaProvider>
   </StrictMode>,
   document.getElementById('root'),
 )

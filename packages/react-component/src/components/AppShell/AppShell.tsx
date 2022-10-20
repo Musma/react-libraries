@@ -13,12 +13,19 @@ interface AppShellProps {
 export const AppShell = ({ header, navBar, children }: AppShellProps) => {
   const theme = useTheme()
   return (
-    <Box>
+    <Box
+      css={{
+        height: '100vh',
+        display: 'flex',
+        minWidth: theme.layoutSize.minBodyWidth,
+        backgroundColor: theme.colors.white.main,
+      }}
+    >
       {header}
       {navBar}
       <main
         css={{
-          width: '100%',
+          flexGrow: 1,
           paddingTop: theme.layoutSize.headerHeight,
           paddingLeft: theme.layoutSize.navBarWidth,
           backgroundColor: theme.colors.white.light,

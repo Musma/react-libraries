@@ -1,9 +1,9 @@
 import { MusmaTheme } from 'src/theme'
 
 const breakpoints = {
-  sm: 20,
-  md: 200,
-  lg: 600,
+  sm: 600,
+  md: 1440,
+  lg: 1920,
 }
 
 const DefaultTheme: MusmaTheme = {
@@ -65,9 +65,9 @@ const DefaultTheme: MusmaTheme = {
     lg: 6,
   },
   shadow: {
-    sm: 'none',
-    md: 'none',
-    lg: 'none',
+    sm: '0px 4px 4px 4px rgba(0, 0, 0, 0.02)',
+    md: '0px 4px 4px 4px rgba(0, 0, 0, 0.05)',
+    lg: '0px 4px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   breakpoints,
   mediaQueries: {

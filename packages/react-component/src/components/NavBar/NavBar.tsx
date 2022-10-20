@@ -17,10 +17,15 @@ export const NavBar = ({ zIndex, children, ...rest }: NavBarProps) => {
         zIndex: zIndex || theme.zIndex.navBar,
         position: 'fixed',
         top: theme.layoutSize.headerHeight,
-        height: `calc(100% - ${theme.layoutSize.headerHeight})`,
+        height: `calc(100% - ${theme.layoutSize.headerHeight}px)`,
         left: 0,
         bottom: 0,
+        boxShadow: theme.shadow.md,
         overflow: 'auto',
+        boxSizing: 'border-box',
+        borderTopWidth: 1,
+        borderTopStyle: 'solid',
+        borderTopColor: theme.colors.gray.lighter,
       }}
       {...rest}
     >
