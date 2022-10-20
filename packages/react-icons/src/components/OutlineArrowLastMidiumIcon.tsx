@@ -1,5 +1,3 @@
 import { SVGProps } from "react";
-
-const OutlineArrowLastMidiumIcon = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={24} height={24} {...props}><path stroke={props.color || '#000'} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 16.25 16.5 12 12 7.75m-4.5 8.5L12 12 7.5 7.75" /></svg>;
-
+const OutlineArrowLastMidiumIcon = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" role="img" width={24} height={24} {...props}><path stroke={props.color || '#000'} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 16.25 16.5 12 12 7.75m-4.5 8.5L12 12 7.5 7.75" /></svg>;
 export default OutlineArrowLastMidiumIcon;

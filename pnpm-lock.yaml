@@ -60,6 +60,36 @@ importers:
       eslint-plugin-unused-imports: 2.0.0_flxewya73otdbjwmwobuymqcuq
       prettier: 2.7.1
 
+  packages/libraries-test:
+    specifiers:
+      '@babel/core': ^7.19.3
+      '@emotion/babel-plugin': ^11.10.2
+      '@emotion/css': ^11.10.0
+      '@emotion/react': ^11.10.4
+      '@musma/react-component': '*'
+      '@musma/react-icons': '*'
+      '@musma/react-utils': '*'
+      '@types/lodash-es': ^4.17.6
+      '@types/luxon': ^3.0.2
+      lodash-es: ^4.17.21
+      luxon: ^3.0.4
+      react: 17.0.2
+      react-dom: 17.0.2
+    devDependencies:
+      '@babel/core': 7.19.3
+      '@emotion/babel-plugin': 11.10.2_@babel+core@7.19.3
+      '@emotion/css': 11.10.0_@babel+core@7.19.3
+      '@emotion/react': 11.10.4_ph7rcd4v2li52df2b6sabhe4ga
+      '@musma/react-component': link:../react-component
+      '@musma/react-icons': link:../react-icons
+      '@musma/react-utils': link:../react-utils
+      '@types/lodash-es': 4.17.6
+      '@types/luxon': 3.0.2
+      lodash-es: 4.17.21
+      luxon: 3.0.4
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+
   packages/react-component:
     specifiers:
       '@babel/core': ^7.19.3
@@ -67,6 +97,7 @@ importers:
       '@emotion/css': ^11.10.0
       '@emotion/react': ^11.10.4
       '@musma/react-icons': 0.1.4
+      '@musma/react-utils': 0.1.4
       '@types/lodash-es': ^4.17.6
       '@types/luxon': ^3.0.2
       lodash-es: ^4.17.21
@@ -79,6 +110,7 @@ importers:
       '@emotion/css': 11.10.0_@babel+core@7.19.3
       '@emotion/react': 11.10.4_ph7rcd4v2li52df2b6sabhe4ga
       '@musma/react-icons': link:../react-icons
+      '@musma/react-utils': link:../react-utils
       '@types/lodash-es': 4.17.6
       '@types/luxon': 3.0.2
       lodash-es: 4.17.21
