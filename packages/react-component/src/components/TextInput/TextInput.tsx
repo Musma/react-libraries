@@ -27,18 +27,18 @@ export const TextInput = ({
   const theme = useTheme()
 
   const inputBase = useMemo(() => {
-    return css({ color: theme.color.black.dark, backgroundColor: theme.color.white.main })
+    return css({ color: theme.colors.black.dark, backgroundColor: theme.colors.white.main })
   }, [theme])
 
   const inputBorder = useMemo(() => {
     return {
       base: css({
-        border: `1px solid ${theme.color.gray.darker}`,
-        '&:focus': { borderColor: theme.color.blue.main },
+        border: `1px solid ${theme.colors.gray.darker}`,
+        '&:focus': { borderColor: theme.colors.blue.main },
       }),
       helper: {
-        valid: css({ border: `1px solid ${theme.color.green.main}` }),
-        invalid: css({ border: `1px solid ${theme.color.red.main}` }),
+        valid: css({ border: `1px solid ${theme.colors.green.main}` }),
+        invalid: css({ border: `1px solid ${theme.colors.red.main}` }),
       },
     }
   }, [theme])
@@ -68,7 +68,7 @@ export const TextInput = ({
           <Typography
             type="caption2"
             css={{
-              color: helperText.type === 'valid' ? theme.color.green.main : theme.color.red.main,
+              color: helperText.type === 'valid' ? theme.colors.green.main : theme.colors.red.main,
             }}
           >
             {helperText.message}

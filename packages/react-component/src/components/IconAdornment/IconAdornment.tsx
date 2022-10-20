@@ -1,8 +1,11 @@
 import { HTMLAttributes } from 'react'
 
+import { useTheme } from '@emotion/react'
+
 type IconAdornmentProps = HTMLAttributes<HTMLButtonElement>
 
 export const IconAdornment = (props: IconAdornmentProps) => {
+  const theme = useTheme()
   return (
     <button
       css={{
@@ -15,7 +18,7 @@ export const IconAdornment = (props: IconAdornmentProps) => {
         cursor: 'pointer',
         outline: 0,
         border: 0,
-        backgroundColor: 'transparent',
+        backgroundColor: theme.colors.transparent,
         '&:hover': {
           backgroundColor: 'rgba(0, 0, 0, 0.04)',
         },

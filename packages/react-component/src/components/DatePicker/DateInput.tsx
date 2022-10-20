@@ -1,13 +1,27 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { css } from '@emotion/react'
+import { css, useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
-import { DefaultTheme } from 'src/theme/MusmaProvider/DefaultTheme'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
 import { ReactComponent as SmCalendarIcon } from './images/calendar_sm.svg'
+
+const inputContainerCss = {
+  size: {
+    sm: css({ fontSize: '12px', lineHeight: '16px', height: '24px', width: '148px' }),
+    md: css({ fontSize: '14px', lineHeight: '20px', height: '28px', width: '180px' }),
+    lg: css({ fontSize: '14px', lineHeight: '20px', height: '32px', width: '200px' }),
+  },
+}
+const iconContainerCss = {
+  position: {
+    lg: css({ top: '8px' }),
+    md: css({ top: '7px' }),
+    sm: css({ top: '5px' }),
+  },
+}
 
 interface DateInputProps {
   size: Size
@@ -23,6 +37,7 @@ export const DateInput = ({
   clearDate,
   handleSelectDay,
 }: DateInputProps) => {
+  const theme = useTheme()
   const [year, setYear] = useState('')
   const [month, setMonth] = useState('')
   const [day, setDay] = useState('')
@@ -102,9 +117,22 @@ export const DateInput = ({
     >
       <div
         css={[
-          inputContainerCss.base,
+          {
+            backgroundColor: theme.colors.white.main,
+            marginBottom: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderRadius: '4px',
+            border: `1px solid ${theme.colors.gray.darker}`,
+            paddingLeft: '8px',
+            outline: 'none',
+            '&:focus': {
+              border: `1px solid ${theme.colors.blue.main}`,
+            },
+          },
           inputContainerCss.size[size],
-          isError ? { border: `1px solid ${DefaultTheme.color.red.main}` } : {},
+          isError && { border: `1px solid ${theme.colors.red.main}` },
         ]}
       >
         <div css={{ display: 'flex' }}>
@@ -115,7 +143,7 @@ export const DateInput = ({
             onChange={(e) => handleYearChange(e.target.value)}
             maxLength={4}
             css={{
-              color: DefaultTheme.color.black.dark,
+              color: theme.colors.black.dark,
               appearance: 'none',
               textAlign: 'center',
               border: 0,
@@ -137,7 +165,7 @@ export const DateInput = ({
             onChange={(e) => handleMonthChange(e.target.value)}
             maxLength={2}
             css={{
-              color: DefaultTheme.color.black.dark,
+              color: theme.colors.black.dark,
               appearance: 'none',
               textAlign: 'center',
               border: 0,
@@ -160,7 +188,7 @@ export const DateInput = ({
             maxLength={2}
             css={[
               {
-                color: DefaultTheme.color.black.dark,
+                color: theme.colors.black.dark,
                 appearance: 'none',
                 textAlign: 'center',
                 border: 0,
@@ -174,7 +202,7 @@ export const DateInput = ({
             ]}
           />
         </div>
-        <div css={[iconContainerCss.base, iconContainerCss.position[size]]}>
+        <div css={[{ marginRight: '8px' }, iconContainerCss.position[size]]}>
           <span onClick={toggleIsOpen}>
             {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
           </span>
@@ -182,34 +210,4 @@ export const DateInput = ({
       </div>
     </div>
   )
-}
-
-const inputContainerCss = {
-  base: css({
-    backgroundColor: DefaultTheme.color.white.main,
-    marginBottom: '4px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: '4px',
-    border: `1px solid ${DefaultTheme.color.gray.darker}`,
-    paddingLeft: '8px',
-    outline: 'none',
-    '&:focus': {
-      border: `1px solid ${DefaultTheme.color.blue.main}`,
-    },
-  }),
-  size: {
-    sm: css({ fontSize: '12px', lineHeight: '16px', height: '24px', width: '148px' }),
-    md: css({ fontSize: '14px', lineHeight: '20px', height: '28px', width: '180px' }),
-    lg: css({ fontSize: '14px', lineHeight: '20px', height: '32px', width: '200px' }),
-  },
-}
-const iconContainerCss = {
-  base: css({ marginRight: '8px' }),
-  position: {
-    lg: css({ top: '8px' }),
-    md: css({ top: '7px' }),
-    sm: css({ top: '5px' }),
-  },
 }

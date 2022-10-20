@@ -14,18 +14,18 @@ export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonPro
   const colorCss = useMemo(() => {
     return {
       active: css({
-        backgroundColor: theme.color.gray.main,
+        backgroundColor: theme.colors.gray.main,
         '&:checked': {
-          backgroundColor: theme.color.green.main,
+          backgroundColor: theme.colors.green.main,
         },
         '&::before': {
-          backgroundColor: theme.color.white.main,
+          backgroundColor: theme.colors.white.main,
         },
       }),
       disabled: css({
-        backgroundColor: theme.color.white.light,
+        backgroundColor: theme.colors.white.light,
         '&::before': {
-          backgroundColor: theme.color.gray.main,
+          backgroundColor: theme.colors.gray.main,
         },
       }),
     }

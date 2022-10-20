@@ -1,6 +1,7 @@
+import { Size } from 'src/types'
+
 export interface MusmaTheme {
-  spaceUnit: number
-  color: {
+  colors: {
     blue: {
       lighter: string
       light: string
@@ -50,5 +51,23 @@ export interface MusmaTheme {
       dark: string
       darker: string
     }
+    transparent: string
+  }
+  rounded: Record<Size, number | string>
+  shadow: Record<Size, string>
+  breakpoints: Record<Size, number>
+  mediaQueries: Record<Size, string>
+  spacing: Record<Size, number>
+  background: Record<Size, string>
+  layoutSize: {
+    headerHeight: number
+    navBarWidth: number
+    minBodyWidth: number
+  }
+  zIndex: {
+    header: number
+    navBar: number
+    modal: number
+    tooltip: number
   }
 }

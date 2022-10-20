@@ -50,7 +50,7 @@ export const ClockBody = ({ clockType, date, value, onDateChange }: ClockProps) 
 
   return (
     <div css={containerCss}>
-      <div css={[secondContainerCss, css({ backgroundColor: theme.color.white.light })]}>
+      <div css={[secondContainerCss, { backgroundColor: theme.colors.white.light }]}>
         {/* 시계 div 하위에 있는 엘리먼트들의 pointer-events 속성을 none으로 하지 않으면 offset 값을 정상적으로 받지 못함 */}
         <div
           role="menu"

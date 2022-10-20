@@ -135,7 +135,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
           >
             <Typography
               type={size === 'sm' ? 'caption2' : 'caption1'}
-              css={{ color: theme.color.gray.main }}
+              css={{ color: theme.colors.gray.main }}
             >
               {prevMonthDay}
             </Typography>
@@ -150,8 +150,10 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             css={[
               dayCss.base,
               dayCss.size[size],
-              isToday(day) && !isSelectedDay(day) ? { backgroundColor: theme.color.blue.main } : {},
-              isSelectedDay(day) ? { backgroundColor: theme.color.blue.lighter } : {},
+              isToday(day) && !isSelectedDay(day)
+                ? { backgroundColor: theme.colors.blue.main }
+                : {},
+              isSelectedDay(day) ? { backgroundColor: theme.colors.blue.lighter } : {},
             ]}
             onClick={() => handleDayClick(year, month, day)}
           >
@@ -174,7 +176,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
           >
             <Typography
               type={size === 'sm' ? 'caption2' : 'caption1'}
-              css={{ color: theme.color.gray.main }}
+              css={{ color: theme.colors.gray.main }}
             >
               {nextMonthDay}
             </Typography>
@@ -183,8 +185,8 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
       }
     })
     function getColor(day: number) {
-      if (isToday(day) && !isSelectedDay(day)) return theme.color.white.main
-      if (isSelectedDay(day)) return theme.color.blue.main
+      if (isToday(day) && !isSelectedDay(day)) return theme.colors.white.main
+      if (isSelectedDay(day)) return theme.colors.blue.main
       return ''
     }
     function isPrevMonth(index: number) {
@@ -226,8 +228,8 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         containerCss.base,
         containerCss.size[size],
         {
-          border: `1px solid ${theme.color.gray.darker}`,
-          backgroundColor: theme.color.white.main,
+          border: `1px solid ${theme.colors.gray.darker}`,
+          backgroundColor: theme.colors.white.main,
         },
       ]}
     >
@@ -235,7 +237,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         css={[
           sencondContainerCss.base,
           sencondContainerCss.size[size],
-          { borderBottom: `1px solid ${theme.color.white.dark}` },
+          { borderBottom: `1px solid ${theme.colors.white.dark}` },
         ]}
       >
         <div css={{ display: 'flex', alignItems: 'center' }}>

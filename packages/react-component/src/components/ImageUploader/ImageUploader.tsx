@@ -58,12 +58,15 @@ export const ImageUploader = ({
     (size: Size) => {
       return {
         lg: (
-          <Typography type="subTitle2" css={{ marginBottom: '4px', color: theme.color.white.main }}>
+          <Typography
+            type="subTitle2"
+            css={{ marginBottom: '4px', color: theme.colors.white.main }}
+          >
             Upload Picture
           </Typography>
         ),
         md: (
-          <Typography type="caption2" css={{ marginBottom: '4px', color: theme.color.white.main }}>
+          <Typography type="caption2" css={{ marginBottom: '4px', color: theme.colors.white.main }}>
             Upload Picture
           </Typography>
         ),
@@ -91,8 +94,8 @@ export const ImageUploader = ({
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: '9999px',
-            backgroundColor: theme.color.white.main,
-            border: `1px solid ${theme.color.gray.dark}`,
+            backgroundColor: theme.colors.white.main,
+            border: `1px solid ${theme.colors.gray.dark}`,
             '&:hover .child': {
               visibility: 'visible',
             },
@@ -126,7 +129,7 @@ export const ImageUploader = ({
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: `${theme.color.black.main}99`,
+              backgroundColor: `${theme.colors.black.main}99`,
             }),
           ]}
         >

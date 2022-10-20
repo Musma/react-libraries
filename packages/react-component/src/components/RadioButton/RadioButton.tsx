@@ -18,9 +18,9 @@ interface RadioButtonProps {
   size?: Size
   selected: string
   value: string
-  onChange: (value: string) => void
   labelStyle?: CSSProperties
   disabled?: boolean
+  onChange: (value: string) => void
 }
 
 export const RadioButton = ({
@@ -102,6 +102,7 @@ interface LabelProps {
   size: Size
   className?: string
 }
+
 const LabelFactory = ({ size, className, children }: PropsWithChildren<LabelProps>) => {
   if (size === 'sm') {
     return (

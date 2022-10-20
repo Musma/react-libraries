@@ -1,4 +1,4 @@
-import type { MusmaTheme } from './theme/types'
+import type { MusmaTheme } from 'src/theme'
 import '@emotion/react'
 
 declare module '@emotion/react' {

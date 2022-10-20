@@ -37,14 +37,14 @@ export const Checkbox = ({
 
   const containerColorCss = useMemo(() => {
     if (disabled) {
-      return css({ backgroundColor: theme.color.white.lighter })
+      return css({ backgroundColor: theme.colors.white.lighter })
     }
     if (checked) {
-      return css({ backgroundColor: theme.color.green.main })
+      return css({ backgroundColor: theme.colors.green.main })
     }
     return css({
-      backgroundColor: theme.color.white.main,
-      border: `1px solid ${theme.color.gray.darker}`,
+      backgroundColor: theme.colors.white.main,
+      border: `1px solid ${theme.colors.gray.darker}`,
     })
   }, [theme, checked, disabled])
 

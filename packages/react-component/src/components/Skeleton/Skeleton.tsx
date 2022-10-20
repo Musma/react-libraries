@@ -1,10 +1,12 @@
 import { HTMLAttributes } from 'react'
 
-import { cx, css } from '@emotion/css'
 import { keyframes } from '@emotion/react'
+
+import { Box } from 'src/components'
 
 interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   variant?: 'circle' | 'rectangle'
+  backgroundColor?: string
 }
 
 const pulse = keyframes`
@@ -13,17 +15,14 @@ const pulse = keyframes`
   }
 `
 
-export const Skeleton = ({ variant = 'rectangle', className, ...rest }: SkeletonProps) => {
+export const Skeleton = ({ variant = 'rectangle', backgroundColor, ...rest }: SkeletonProps) => {
   return (
-    <div
-      className={cx(
-        css({
-          borderRadius: variant === 'rectangle' ? 6 : '50%',
-          backgroundColor: 'rgb(203,213,225)',
-          animation: `${pulse} 2s cubic-bezier(.4,0,.6,1) infinite`,
-        }),
-        className,
-      )}
+    <Box
+      css={{
+        borderRadius: variant === 'rectangle' ? 6 : '50%',
+        backgroundColor: backgroundColor || 'rgb(203,213,225)',
+        animation: `${pulse} 2s cubic-bezier(.4,0,.6,1) infinite`,
+      }}
       {...rest}
     />
   )

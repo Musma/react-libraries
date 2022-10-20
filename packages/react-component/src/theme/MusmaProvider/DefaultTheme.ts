@@ -1,8 +1,13 @@
 import { MusmaTheme } from 'src/theme'
 
+const breakpoints = {
+  sm: 20,
+  md: 200,
+  lg: 600,
+}
+
 const DefaultTheme: MusmaTheme = {
-  spaceUnit: 4,
-  color: {
+  colors: {
     blue: {
       lighter: '#F2F8FB',
       light: '#118EE5',
@@ -52,6 +57,44 @@ const DefaultTheme: MusmaTheme = {
       dark: '#E76F00',
       darker: '#DB6900',
     },
+    transparent: 'transparent',
+  },
+  rounded: {
+    sm: 2,
+    md: 4,
+    lg: 6,
+  },
+  shadow: {
+    sm: 'none',
+    md: 'none',
+    lg: 'none',
+  },
+  breakpoints,
+  mediaQueries: {
+    sm: `@media (min-width: ${breakpoints.sm}px)`,
+    md: `@media (min-width: ${breakpoints.md}px)`,
+    lg: `@media (min-width: ${breakpoints.lg}px)`,
+  },
+  spacing: {
+    sm: 8,
+    md: 16,
+    lg: 16,
+  },
+  background: {
+    sm: 'rgba(0, 0, 0, 0.02)',
+    md: 'rgba(0, 0, 0, 0.02)',
+    lg: 'rgba(0, 0, 0, 0.02)',
+  },
+  layoutSize: {
+    headerHeight: 48,
+    navBarWidth: 226,
+    minBodyWidth: 1440,
+  },
+  zIndex: {
+    header: 1000,
+    navBar: 1100,
+    modal: 1200,
+    tooltip: 1300,
   },
 }
 

@@ -97,31 +97,31 @@ export const Tooltip = ({ children, message, width, position = 'left' }: Tooltip
   const theme = useTheme()
 
   const color = useMemo(() => {
-    const background = css({ backgroundColor: theme.color.black.main })
+    const background = css({ backgroundColor: theme.colors.black.main })
     const arrow = {
       left: css({
         '&::after': {
-          borderColor: `transparent transparent transparent ${theme.color.black.main}`,
+          borderColor: `transparent transparent transparent ${theme.colors.black.main}`,
         },
       }),
       right: css({
         '&::after': {
-          borderColor: `transparent ${theme.color.black.main} transparent transparent`,
+          borderColor: `transparent ${theme.colors.black.main} transparent transparent`,
         },
       }),
       top: css({
         '&::after': {
-          borderColor: `${theme.color.black.main} transparent transparent transparent`,
+          borderColor: `${theme.colors.black.main} transparent transparent transparent`,
         },
       }),
       bottom: css({
         '&::after': {
-          borderColor: `transparent transparent ${theme.color.black.main} transparent`,
+          borderColor: `transparent transparent ${theme.colors.black.main} transparent`,
         },
       }),
     }
     return [background, arrow[position]]
-  }, [position, theme.color.black.main])
+  }, [position, theme.colors.black.main])
 
   return (
     <div css={tooltipCss.container}>
@@ -132,7 +132,7 @@ export const Tooltip = ({ children, message, width, position = 'left' }: Tooltip
           className="child"
           style={{ width }}
         >
-          <Typography css={{ color: theme.color.white.main }} type="body3">
+          <Typography css={{ color: theme.colors.white.main }} type="body3">
             {message}
           </Typography>
         </div>

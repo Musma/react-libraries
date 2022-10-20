@@ -1,5 +1,7 @@
 import { Fragment } from 'react'
 
+import { useTheme } from '@emotion/react'
+
 import { Typography } from '../Typography'
 import { ReactComponent as CurveLeftIcon } from './images/curve_left.svg'
 import { ReactComponent as CurveRightIcon } from './images/curve_right.svg'
@@ -29,6 +31,7 @@ interface HatOrRectTabProps extends TabProps {
 }
 
 const HatTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps) => {
+  const theme = useTheme()
   return (
     <li
       css={{ display: 'flex', height: 40, cursor: 'pointer' }}
@@ -39,11 +42,11 @@ const HatTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps)
           <CurveLeftIcon />
           <Typography
             type="subTitle2"
-            css={(theme) => ({
-              backgroundColor: theme.color.white.main,
-              borderTop: `1px solid ${theme.color.gray.darker}`,
+            css={{
+              backgroundColor: theme.colors.white.main,
+              borderTop: `1px solid ${theme.colors.gray.darker}`,
               padding: '10px 24px',
-            })}
+            }}
           >
             {label}
           </Typography>
@@ -52,7 +55,7 @@ const HatTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps)
       ) : (
         <Typography
           type="subTitle2"
-          css={(theme) => ({ padding: '10px 34px', color: theme.color.gray.darker })}
+          css={(theme) => ({ padding: '10px 34px', color: theme.colors.gray.darker })}
         >
           {label}
         </Typography>
@@ -62,22 +65,21 @@ const HatTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps)
 }
 
 const RectTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps) => {
+  const theme = useTheme()
   return (
     <li
-      css={(theme) => ({
+      css={{
         cursor: 'pointer',
         borderBottom: '1px solid',
         padding: '10px 24px',
-        backgroundColor: theme.color.white.main,
-        borderBottomColor: value === currentTab ? theme.color.blue.main : theme.color.gray.darker,
-      })}
+        backgroundColor: theme.colors.white.main,
+        borderBottomColor: value === currentTab ? theme.colors.blue.main : theme.colors.gray.darker,
+      }}
       onClick={() => handleTabClick(value)}
     >
       <Typography
         type="subTitle2"
-        css={(theme) => ({
-          color: value === currentTab ? theme.color.blue.main : theme.color.gray.darker,
-        })}
+        css={{ color: value === currentTab ? theme.colors.blue.main : theme.colors.gray.darker }}
       >
         {label}
       </Typography>

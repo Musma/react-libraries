@@ -1,6 +1,6 @@
 import { Fragment, HTMLAttributes } from 'react'
 
-import { Backdrop } from '../Backdrop'
+import { Backdrop, Box } from 'src/components'
 
 interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean
@@ -11,7 +11,7 @@ export const Drawer = ({ open, ...rest }: DrawerProps) => {
   if (open) {
     return (
       <Backdrop open={open}>
-        <div
+        <Box
           css={{
             top: 0,
             right: 0,

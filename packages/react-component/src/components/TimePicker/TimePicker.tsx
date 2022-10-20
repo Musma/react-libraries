@@ -81,10 +81,10 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
           css={[
             clockContainer.base,
             clockContainer.width[size],
-            css({
-              backgroundColor: theme.color.white.main,
-              border: `1px solid ${theme.color.gray.darker}`,
-            }),
+            {
+              backgroundColor: theme.colors.white.main,
+              border: `1px solid ${theme.colors.gray.darker}`,
+            },
           ]}
         >
           <ClockHeader

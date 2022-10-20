@@ -1,16 +1,19 @@
 import { Fragment, HTMLAttributes } from 'react'
 
-import { ReactPortal } from '../ReactPortal'
+import { useTheme } from '@emotion/react'
+
+import { Box, ReactPortal } from 'src/components'
 
 interface BackdropProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean
 }
 
 export const Backdrop = ({ open, ...rest }: BackdropProps) => {
+  const theme = useTheme()
   if (open) {
     return (
       <ReactPortal>
-        <div
+        <Box
           aria-hidden={true}
           tabIndex={-1}
           css={{
@@ -21,7 +24,7 @@ export const Backdrop = ({ open, ...rest }: BackdropProps) => {
             width: '100vw',
             height: '100vh',
             inset: 0,
-            zIndex: 1000,
+            zIndex: theme.zIndex.navBar + 1,
             backgroundColor: 'rgba(0,0,0,0.6)',
           }}
           {...rest}

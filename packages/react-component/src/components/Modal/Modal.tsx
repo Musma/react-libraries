@@ -197,7 +197,7 @@ export const Modal = ({
     <div css={[backgroundBase, css({ backgroundColor })]} ref={backgroundRef}>
       <div
         ref={modalRef}
-        css={[modalCss.base, css({ backgroundColor: theme.color.white.main }), modalCss.size[size]]}
+        css={[modalCss.base, { backgroundColor: theme.colors.white.main }, modalCss.size[size]]}
         className={className}
       >
         <section css={[headerCss.base, headerCss.size[size]]}>
@@ -213,11 +213,11 @@ export const Modal = ({
             width: '100%',
             margin: 0,
             boxSizing: 'border-box',
-            borderTop: `1px solid ${theme.color.gray.darker}`,
+            borderTop: `1px solid ${theme.colors.gray.darker}`,
           }}
         />
 
-        <section css={[childrenContainerCss, css({ color: theme.color.black.lighter })]}>
+        <section css={[childrenContainerCss, css({ color: theme.colors.black.lighter })]}>
           {children}
         </section>
 

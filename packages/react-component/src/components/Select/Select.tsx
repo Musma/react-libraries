@@ -9,13 +9,11 @@ import {
 } from 'react'
 
 import { css, useTheme } from '@emotion/react'
+import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
 import { Size } from 'src/types'
-
-import { ReactComponent as LgArrowICon } from './images/arrow_lg.svg'
-import { ReactComponent as MdArrowICon } from './images/arrow_md,sm.svg'
 
 interface SelectProps {
   id?: string
@@ -154,10 +152,10 @@ export const Select = ({
       setIsOpen(false)
     }
     document.addEventListener('click', selectOption)
-    return function cleanup() {
+    return () => {
       document.removeEventListener('click', selectOption)
     }
-  }, [getLabel, handleOptionSelect, isValid, onChange, text, value])
+  }, [])
 
   // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
   // useEffect(() => {
@@ -179,13 +177,13 @@ export const Select = ({
   // }, [downPointer, filteredOptions, isOpen, options.length, pointer, upPointer])
   const inputColorCss = useMemo(() => {
     return css({
-      color: theme.color.black.dark,
-      border: `1px solid ${theme.color.gray.darker}`,
+      color: theme.colors.black.dark,
+      border: `1px solid ${theme.colors.gray.darker}`,
       '&::placeholder': {
-        color: theme.color.black.main,
+        color: theme.colors.black.main,
       },
       '&:focus': {
-        border: `1px solid ${theme.color.blue.main}`,
+        border: `1px solid ${theme.colors.blue.main}`,
       },
       outline: 'none',
     })
@@ -208,10 +206,10 @@ export const Select = ({
         />
 
         {size === 'lg' ? (
-          <LgArrowICon css={[iconCss.base, isOpen ? css({ rotate: '180deg' }) : '']} />
+          <OutlineArrowBottomSmallIcon css={[iconCss.base, isOpen && { rotate: '180deg' }]} />
         ) : (
-          <MdArrowICon
-            css={[iconCss.base, iconCss.size[size], isOpen ? css({ rotate: '180deg' }) : '']}
+          <OutlineArrowBottomSmallIcon
+            css={[iconCss.base, iconCss.size[size], isOpen && { rotate: '180deg' }]}
           />
         )}
 
@@ -220,11 +218,11 @@ export const Select = ({
             css={[
               ulCss.base,
               ulCss.size[size],
-              css({
-                border: `1px solid ${theme.color.gray.darker}`,
-                backgroundColor: theme.color.white.main,
+              {
+                border: `1px solid ${theme.colors.gray.darker}`,
+                backgroundColor: theme.colors.white.main,
                 margin: 0,
-              }),
+              },
             ]}
           >
             {filteredOptions.map(({ label, value }) => (
@@ -234,19 +232,19 @@ export const Select = ({
                 css={[
                   liCss.base,
                   liCss.size[size],
-                  css({
+                  {
                     '&:hover': {
-                      backgroundColor: isSelected(value) ? undefined : theme.color.blue.lighter,
-                      color: theme.color.blue.main,
+                      backgroundColor: isSelected(value) ? undefined : theme.colors.blue.lighter,
+                      color: theme.colors.blue.main,
                     },
-                  }),
-                  isSelected(value) ? { backgroundColor: theme.color.blue.main } : {},
+                  },
+                  isSelected(value) && { backgroundColor: theme.colors.blue.main },
                 ]}
               >
                 <LabelFactory
                   size={size}
                   label={label}
-                  css={isSelected(value) ? { color: theme.color.white.main } : {}}
+                  css={isSelected(value) && { color: theme.colors.white.main }}
                 />
               </li>
             ))}

@@ -35,17 +35,17 @@ export const Tag = ({
     return {
       container: {
         white: css({
-          backgroundColor: theme.color.white.light,
-          borderColor: theme.color.gray.darker,
+          backgroundColor: theme.colors.white.light,
+          borderColor: theme.colors.gray.darker,
         }),
         blue: css({
-          backgroundColor: `${theme.color.blue.main}33`,
-          borderColor: theme.color.blue.main,
+          backgroundColor: `${theme.colors.blue.main}33`,
+          borderColor: theme.colors.blue.main,
         }),
       },
       text: {
-        white: css({ color: theme.color.black.main }),
-        blue: css({ color: theme.color.blue.main }),
+        white: css({ color: theme.colors.black.main }),
+        blue: css({ color: theme.colors.blue.main }),
       },
     }
   }, [theme])
@@ -65,7 +65,7 @@ export const Tag = ({
         <CloseIcon
           onClick={() => onClose(label)}
           css={css({ marginLeft: '4px', cursor: 'pointer' })}
-          fill={color === 'white' ? theme.color.black.main : theme.color.blue.main}
+          fill={color === 'white' ? theme.colors.black.main : theme.colors.blue.main}
         />
       )}
     </div>

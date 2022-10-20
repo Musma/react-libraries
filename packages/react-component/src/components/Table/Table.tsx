@@ -63,8 +63,8 @@ export const Table = ({
         css={[
           tableCss,
           css({
-            boxShadow: `0 0 0 1px ${theme.color.gray.main}`,
-            backgroundColor: theme.color.white.main,
+            boxShadow: `0 0 0 1px ${theme.colors.gray.main}`,
+            backgroundColor: theme.colors.white.main,
           }),
         ]}
       >
@@ -75,13 +75,13 @@ export const Table = ({
                 key={column.id}
                 css={[
                   thCss,
-                  css({
-                    border: `1px solid ${theme.color.gray.lighter}`,
-                    backgroundColor: theme.color.white.lighter,
-                  }),
+                  {
+                    border: `1px solid ${theme.colors.gray.lighter}`,
+                    backgroundColor: theme.colors.white.lighter,
+                  },
                 ]}
               >
-                <Typography type="h6" css={{ color: theme.color.black.dark }}>
+                <Typography type="h6" css={{ color: theme.colors.black.dark }}>
                   {column.label}
                 </Typography>
               </th>
@@ -97,17 +97,17 @@ export const Table = ({
                 onRowClick
                   ? {
                       cursor: 'pointer',
-                      '&:hover': { backgroundColor: theme.color.blue.lighter },
+                      '&:hover': { backgroundColor: theme.colors.blue.lighter },
                     }
                   : {},
                 targetId && item.id && targetId === item.id
-                  ? css({ backgroundColor: theme.color.blue.lighter })
+                  ? css({ backgroundColor: theme.colors.blue.lighter })
                   : {},
               ]}
             >
               {columns.map((column) => (
                 <td
-                  css={[tdCss, css({ borderBottom: `1px solid ${theme.color.gray.lighter}` })]}
+                  css={[tdCss, css({ borderBottom: `1px solid ${theme.colors.gray.lighter}` })]}
                   key={column.id}
                 >
                   <div
@@ -118,7 +118,7 @@ export const Table = ({
                       letterSpacing: '-0.2px',
                       margin: 0,
                       textAlign: 'center',
-                      color: theme.color.black.dark,
+                      color: theme.colors.black.dark,
                     }}
                   >
                     {item[column.id]}

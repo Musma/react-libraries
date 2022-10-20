@@ -149,14 +149,14 @@ export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
             css={[
               pageNumberCss,
               isCurrentPage(getPageNumber(index))
-                ? css({ backgroundColor: theme.color.blue.main })
+                ? css({ backgroundColor: theme.colors.blue.main })
                 : {},
             ]}
             onClick={() => handlePageChange(getPageNumber(index))}
           >
             <Typography
               type="caption1"
-              css={isCurrentPage(getPageNumber(index)) ? { color: theme.color.white.main } : {}}
+              css={isCurrentPage(getPageNumber(index)) ? { color: theme.colors.white.main } : {}}
             >
               {getPageNumber(index)}
             </Typography>

@@ -12,7 +12,7 @@ export const ClockPin = () => {
         width: '8px',
         transform: 'translate(-50%, -50%)',
         borderRadius: '9999px',
-        backgroundColor: theme.color.blue.main,
+        backgroundColor: theme.colors.blue.main,
       }}
     />
   )

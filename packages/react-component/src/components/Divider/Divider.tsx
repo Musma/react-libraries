@@ -13,8 +13,8 @@ export const Divider = ({ orientation = 'horizontal', ...rest }: DividerProps) =
       css={[
         { border: 0 },
         orientation === 'horizontal'
-          ? { width: '100%', borderTop: `1px solid ${theme.color.gray.lighter}` }
-          : { height: '100%', width: '1px', borderRight: `1px solid ${theme.color.gray.lighter}` },
+          ? { width: '100%', borderTop: `1px solid ${theme.colors.gray.lighter}` }
+          : { height: '100%', width: '1px', borderRight: `1px solid ${theme.colors.gray.lighter}` },
       ]}
       {...rest}
     />

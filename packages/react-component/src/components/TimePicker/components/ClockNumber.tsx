@@ -15,7 +15,7 @@ export const ClockNumber = ({ label, position, isSelected }: ClockNumberProps) =
   const theme = useTheme()
   return (
     <div css={[containerCss, css({ transform: `translate(${position.x}px, ${position.y}px)` })]}>
-      <Typography type="caption2" css={isSelected ? css({ color: theme.color.white.main }) : ''}>
+      <Typography type="caption2" css={isSelected && { color: theme.colors.white.main }}>
         {label}
       </Typography>
     </div>

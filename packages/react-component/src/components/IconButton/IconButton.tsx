@@ -38,14 +38,14 @@ export const IconButton = ({
       }),
       variants: {
         outlined: css({
-          border: `1px solid ${color || theme.color.green.main}`,
-          backgroundColor: theme.color.white.main,
+          border: `1px solid ${color || theme.colors.green.main}`,
+          backgroundColor: theme.colors.white.main,
         }),
         contained: css({
-          backgroundColor: color || theme.color.green.main,
+          backgroundColor: color || theme.colors.green.main,
         }),
       },
-      disabled: css({ backgroundColor: theme.color.white.lighter }),
+      disabled: css({ backgroundColor: theme.colors.white.lighter }),
       size: {
         lg: css({ width: '32px', height: '32px' }),
         md: css({ width: '28px', height: '28px' }),

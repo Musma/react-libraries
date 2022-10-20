@@ -9,14 +9,14 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
   const theme = useTheme()
   if (type === 'body1' || type === 'body2' || type === 'body3') {
     return (
-      <Body variant={type} css={{ color: theme.color.black.dark }} className={className}>
+      <Body variant={type} css={{ color: theme.colors.black.dark }} className={className}>
         {children}
       </Body>
     )
   }
   if (type === 'caption1' || type === 'caption2') {
     return (
-      <Caption variant={type} css={{ color: theme.color.black.dark }} className={className}>
+      <Caption variant={type} css={{ color: theme.colors.black.dark }} className={className}>
         {children}
       </Caption>
     )
@@ -30,20 +30,20 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
     type === 'h6'
   ) {
     return (
-      <Heading variant={type} css={{ color: theme.color.black.dark }} className={className}>
+      <Heading variant={type} css={{ color: theme.colors.black.dark }} className={className}>
         {children}
       </Heading>
     )
   }
   if (type === 'subTitle1' || type === 'subTitle2' || type === 'subTitle3') {
     return (
-      <SubTitle variant={type} css={{ color: theme.color.black.dark }} className={className}>
+      <SubTitle variant={type} css={{ color: theme.colors.black.dark }} className={className}>
         {children}
       </SubTitle>
     )
   }
   return (
-    <Body variant={'body1'} css={{ color: theme.color.black.dark }} className={className}>
+    <Body variant={'body1'} css={{ color: theme.colors.black.dark }} className={className}>
       {children}
     </Body>
   )

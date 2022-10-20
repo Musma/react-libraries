@@ -25,7 +25,7 @@ export const ClockPointer = ({ value }: ClockPointerProps) => {
         // https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
         transformOrigin: 'center bottom 0px', // Transform 원점, 아래쪽 센터, 0px,
         pointerEvents: 'none',
-        backgroundColor: theme.color.blue.main,
+        backgroundColor: theme.colors.blue.main,
       }}
     >
       <div
@@ -37,8 +37,8 @@ export const ClockPointer = ({ value }: ClockPointerProps) => {
           height: '4px',
           width: '4px',
           borderRadius: '9999px',
-          border: `8px solid ${theme.color.blue.main}`,
-          backgroundColor: theme.color.blue.main,
+          border: `8px solid ${theme.colors.blue.main}`,
+          backgroundColor: theme.colors.blue.main,
         }}
       />
     </div>
