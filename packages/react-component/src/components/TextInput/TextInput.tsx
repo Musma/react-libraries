@@ -1,8 +1,9 @@
-import { useMemo } from 'react'
+import { ReactNode, useCallback, useState } from 'react'
 
-import { useTheme, css } from '@emotion/react'
+import { useTheme } from '@emotion/react'
+import { OutlineEyeCloseIcon, OutlineEyeIcon } from '@musma/react-icons'
 
-import { Typography, InputFactory } from 'src/components'
+import { Box, IconAdornment, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as InvalidIcon } from './images/invalid.svg'
@@ -13,68 +14,135 @@ export interface TextInputProps
   type?: 'text' | 'password'
   size?: Size
   label?: string
-  helperText?: { type: 'invalid' | 'valid'; message: string }
+  startAdornment?: ReactNode
+  endAdornment?: ReactNode
+  error?: boolean
+  helperText?: string
 }
 
 export const TextInput = ({
-  size = 'lg',
   label,
-  type = 'text',
+  size = 'md',
+  type: _type = 'text',
   helperText,
+  id,
+  disabled = false,
+  error = false,
+  startAdornment,
+  endAdornment,
   className,
   ...rest
 }: TextInputProps) => {
   const theme = useTheme()
+  const [type, setType] = useState(_type)
 
-  const inputBase = useMemo(() => {
-    return css({ color: theme.colors.black.dark, backgroundColor: theme.colors.white.main })
-  }, [theme])
-
-  const inputBorder = useMemo(() => {
-    return {
-      base: css({
-        border: `1px solid ${theme.colors.gray.darker}`,
-        '&:focus': { borderColor: theme.colors.blue.main },
-      }),
-      helper: {
-        valid: css({ border: `1px solid ${theme.colors.green.main}` }),
-        invalid: css({ border: `1px solid ${theme.colors.red.main}` }),
-      },
-    }
-  }, [theme])
+  const toggleType = useCallback(() => {
+    setType(type === 'text' ? 'password' : 'text')
+  }, [type])
 
   return (
-    <div
-      css={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-      }}
+    // Wrapper Box
+    <Box
+      css={{ display: 'flex', flexDirection: 'column', width: '100%', minWidth: 64 }}
       className={className}
     >
+      {/* 라벨 */}
       {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
 
-      <InputFactory
-        css={[inputBase, helperText ? inputBorder.helper[helperText.type] : inputBorder.base]}
-        size={size}
-        type={type}
-        {...rest}
-      />
+      {/* Input Container */}
+      <Box
+        css={[
+          // Base CSS
+          {
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: theme.colors.white.main,
+            borderWidth: 1,
+            borderStyle: 'solid',
+            borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
+            borderRadius: theme.rounded.md,
+            paddingLeft: theme.spacing.sm,
+            paddingRight: theme.spacing.sm,
+            overflow: 'hidden',
+            '&:focus-within': {
+              borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
+              boxShadow: theme.shadow.md,
+            },
+          },
+          size === 'sm' && {
+            fontSize: 12,
+            height: theme.inputSize.sm,
+          },
+          size === 'md' && {
+            fontSize: 12,
+            height: theme.inputSize.md,
+          },
+          size === 'lg' && {
+            fontSize: 14,
+            height: theme.inputSize.lg,
+          },
+          // Disabled CSS
+          disabled && {
+            cursor: 'not-allowed',
+            borderColor: theme.colors.white.darker,
+          },
+        ]}
+      >
+        {/* Start Adornment */}
+        {startAdornment}
+
+        {/* Input */}
+        <input
+          id={id}
+          type={type}
+          css={{
+            flex: 1,
+            border: 'none',
+            appearance: 'none',
+            outline: 'none',
+            paddingLeft: startAdornment ? theme.spacing.sm : 0,
+            paddingRight: endAdornment ? theme.spacing.sm : 0,
+            '&:disabled': {
+              backgroundColor: theme.colors.transparent,
+              cursor: 'inherit',
+            },
+            '&::placeholder': {
+              color: theme.colors.gray.light,
+            },
+          }}
+          disabled={disabled}
+          {...rest}
+        />
+
+        {/* Password Eye */}
+        {_type === 'password' && (
+          <IconAdornment onClick={toggleType}>
+            {type === 'text' ? (
+              <OutlineEyeCloseIcon width={16} height={16} />
+            ) : (
+              <OutlineEyeIcon width={16} height={16} />
+            )}
+          </IconAdornment>
+        )}
+
+        {/* End Adornment */}
+        {type !== 'password' && endAdornment}
+      </Box>
 
       {helperText && (
-        <div css={{ display: 'flex', alignItems: 'center', columnGap: '4px' }}>
-          {helperText.type === 'valid' ? <ValidIcon /> : <InvalidIcon />}
-          <Typography
-            type="caption2"
-            css={{
-              color: helperText.type === 'valid' ? theme.colors.green.main : theme.colors.red.main,
-            }}
-          >
-            {helperText.message}
-          </Typography>
-        </div>
+        <Typography
+          type="caption2"
+          css={{
+            display: 'flex',
+            gap: 4,
+            color: error ? theme.colors.red.main : theme.colors.green.main,
+          }}
+        >
+          {error ? <InvalidIcon /> : <ValidIcon />}
+          {helperText}
+        </Typography>
       )}
-    </div>
+    </Box>
   )
 }

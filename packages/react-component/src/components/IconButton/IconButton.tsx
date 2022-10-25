@@ -1,66 +1,53 @@
-import { useMemo, ButtonHTMLAttributes, ReactNode } from 'react'
+import { ButtonHTMLAttributes } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 
 import { Size } from 'src/types'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'outlined' | 'contained'
-  disabled?: boolean
   color?: string
   size?: Size
-  children: ReactNode
-  className?: string
 }
 
 export const IconButton = ({
   variant = 'contained',
-  disabled = false,
   color,
   size = 'lg',
   ...rest
 }: IconButtonProps) => {
   const theme = useTheme()
 
-  const buttonCss = useMemo(() => {
-    return {
-      base: css({
-        cursor: 'pointer',
-        borderRadius: '4px',
-        border: 0,
-        lineHeight: 1,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        '&:active': {
-          transform: 'translateY(1px)',
-        },
-      }),
-      variants: {
-        outlined: css({
-          border: `1px solid ${color || theme.colors.green.main}`,
-          backgroundColor: theme.colors.white.main,
-        }),
-        contained: css({
-          backgroundColor: color || theme.colors.green.main,
-        }),
-      },
-      disabled: css({ backgroundColor: theme.colors.white.lighter }),
-      size: {
-        lg: css({ width: '32px', height: '32px' }),
-        md: css({ width: '28px', height: '28px' }),
-        sm: css({ width: '24px', height: '24px' }),
-      },
-    }
-  }, [color, theme])
-
   return (
     <button
       css={[
-        buttonCss.base,
-        buttonCss.size[size],
-        buttonCss.variants[variant],
-        disabled ? buttonCss.disabled : buttonCss.variants[variant],
+        {
+          width: theme.inputSize[size],
+          height: theme.inputSize[size],
+          cursor: 'pointer',
+          borderRadius: '4px',
+          appearance: 'none',
+          outline: 'none',
+          border: 'none',
+          lineHeight: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          '&:active': {
+            transform: 'translateY(1px)',
+          },
+          '&:disabled': {
+            backgroundColor: theme.colors.white.lighter,
+            cursor: 'not-allowed',
+          },
+        },
+        variant === 'contained' && {
+          backgroundColor: color || theme.colors.green.main,
+        },
+        variant === 'outlined' && {
+          border: `1px solid ${color || theme.colors.green.main}`,
+          backgroundColor: theme.colors.white.main,
+        },
       ]}
       {...rest}
     />

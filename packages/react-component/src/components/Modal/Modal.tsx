@@ -1,13 +1,13 @@
 import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef, CSSProperties } from 'react'
 
 import { css, useTheme } from '@emotion/react'
+import { OutlineCloseIcon } from '@musma/react-icons'
 
 import { Button, Typography, IconAdornment } from 'src/components'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/types'
 
 // TODO: react-icons의 FillClose으로 교체
-import { ReactComponent as CloseIcon } from './images/close.svg'
 
 interface ModalProps {
   title: string
@@ -46,7 +46,7 @@ interface ModalProps {
 
 const childrenContainerCss = css({
   flex: '1 1 0',
-  fontSize: '14px',
+  fontSize: 14,
   fontWeight: 400,
 })
 
@@ -203,8 +203,8 @@ export const Modal = ({
         <section css={[headerCss.base, headerCss.size[size]]}>
           <Typography type="subTitle2">{title}</Typography>
 
-          <IconAdornment>
-            <CloseIcon onClick={handleModalClose} css={{ cursor: 'pointer' }} />
+          <IconAdornment onClick={handleModalClose}>
+            <OutlineCloseIcon />
           </IconAdornment>
         </section>
 

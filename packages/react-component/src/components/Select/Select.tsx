@@ -12,7 +12,7 @@ import { css, useTheme } from '@emotion/react'
 import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
 import { uniqueId } from 'lodash-es'
 
-import { Typography } from 'src/components'
+import { Box, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 interface SelectProps {
@@ -175,34 +175,51 @@ export const Select = ({
   //     document.removeEventListener('keydown', handleUpDown)
   //   }
   // }, [downPointer, filteredOptions, isOpen, options.length, pointer, upPointer])
-  const inputColorCss = useMemo(() => {
-    return css({
-      color: theme.colors.black.dark,
-      border: `1px solid ${theme.colors.gray.darker}`,
-      '&::placeholder': {
-        color: theme.colors.black.main,
-      },
-      '&:focus': {
-        border: `1px solid ${theme.colors.blue.main}`,
-      },
-      outline: 'none',
-    })
-  }, [theme])
 
   return (
-    <div css={containerCss} className={className}>
+    <Box
+      css={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        minWidth: 64,
+      }}
+      className={className}
+    >
       <label htmlFor={id}>
         <TitleFactory size={size} label={label} />
       </label>
 
-      <div css={inputContainerCss} ref={divRef} onClick={handleDropdownClick}>
+      <div
+        css={{ position: 'relative', display: 'flex', alignItems: 'center', border: 0 }}
+        ref={divRef}
+        onClick={handleDropdownClick}
+      >
         <input
           id={id}
           ref={inputRef}
           value={text}
           placeholder={getLabel(value)}
           onChange={handleTextChange}
-          css={[inputCss.base, inputCss.size[size], inputColorCss, css({ ...inputStyle })]}
+          css={[
+            {
+              cursor: 'pointer',
+              borderRadius: '4px',
+              paddingLeft: '8px',
+              outline: 'none',
+              color: theme.colors.black.dark,
+              border: `1px solid ${theme.colors.gray.darker}`,
+              '&:focus': {
+                border: `1px solid ${theme.colors.blue.main}`,
+              },
+              '&::placeholder': {
+                color: theme.colors.black.main,
+              },
+            },
+            inputCss.size[size],
+            { ...inputStyle },
+          ]}
         />
 
         {size === 'lg' ? (
@@ -251,34 +268,15 @@ export const Select = ({
           </ul>
         )}
       </div>
-    </div>
+    </Box>
   )
 }
 
-const containerCss = css({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
-})
-
-const inputContainerCss = css({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  border: 0,
-})
-
 const inputCss = {
-  base: css({
-    cursor: 'pointer',
-    borderRadius: '4px',
-    paddingLeft: '8px',
-  }),
   size: {
-    lg: css({ width: '200px', fontSize: '14px', height: '32px' }),
-    md: css({ width: '180px', fontSize: '12px', height: '28px' }),
-    sm: css({ width: '148px', fontSize: '12px', height: '24px' }),
+    lg: css({ width: '200px', fontSize: '14px', height: 44 }),
+    md: css({ width: '180px', fontSize: '12px', height: 32 }),
+    sm: css({ width: '148px', fontSize: '12px', height: 28 }),
   },
 }
 

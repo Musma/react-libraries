@@ -85,10 +85,10 @@ export const ImageUploader = ({
   }, [size])
 
   return (
-    <label htmlFor={id} css={css({ display: 'inline-block', cursor: 'pointer' })}>
+    <label htmlFor={id} css={{ display: 'inline-block', cursor: 'pointer' }}>
       <div
         css={[
-          css({
+          {
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
@@ -101,7 +101,7 @@ export const ImageUploader = ({
             },
             textAlign: 'center',
             overflow: 'hidden',
-          }),
+          },
           divSize,
         ]}
       >
@@ -136,9 +136,10 @@ export const ImageUploader = ({
           {getHelperIcon(size)}
           {getHelperText(size)}
         </div>
+
         <input
           id={id}
-          css={{ display: 'none' }}
+          hidden={true}
           type="file"
           multiple={false}
           accept="image/*"

@@ -17,6 +17,7 @@ export const Spinner = ({ size = 'md' }: SpinnerProps) => {
       height: svgSize,
     }
   }, [size])
+
   return (
     <svg
       viewBox="0 0 16 16"

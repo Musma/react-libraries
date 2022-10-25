@@ -14,6 +14,7 @@ export const Card = ({ rounded = 'md', ...rest }: CardProps) => {
   return (
     <Box
       css={{
+        backgroundColor: theme.colors.white.main,
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: theme.colors.gray.lighter,
