@@ -2,10 +2,10 @@ import { useCallback, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
-  OutlineArrowFirstMidiumIcon,
-  OutlineArrowLeftMidiumIcon,
-  OutlineArrowLastMidiumIcon,
-  OutlineArrowRightMidiumIcon,
+  OutlineArrowFirstMediumIcon,
+  OutlineArrowLeftMediumIcon,
+  OutlineArrowLastMediumIcon,
+  OutlineArrowRightMediumIcon,
 } from '@musma/react-icons'
 
 import { Typography, UsePaginationType, Select, IconAdornment, Box } from 'src/components'
@@ -130,11 +130,11 @@ export const Pagination = ({
       />
 
       <IconAdornment onClick={handleFirstClick} noPadding={true} disabled={currentPage === 1}>
-        <OutlineArrowFirstMidiumIcon color={currentPage === 1 ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowFirstMediumIcon color={currentPage === 1 ? '#D0D5DD' : '#242E40'} />
       </IconAdornment>
 
       <IconAdornment onClick={handlePrevClick} noPadding={true} disabled={pageGroup === 1}>
-        <OutlineArrowLeftMidiumIcon color={pageGroup === 1 ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowLeftMediumIcon color={pageGroup === 1 ? '#D0D5DD' : '#242E40'} />
       </IconAdornment>
 
       {Array.from({ length: totalPage >= pageCount ? pageCount : totalPage }).map((_, index) => {
@@ -169,7 +169,7 @@ export const Pagination = ({
         )
       })}
       <IconAdornment onClick={handleNextClick} noPadding={true} disabled={pageGroup === lastGroup}>
-        <OutlineArrowRightMidiumIcon color={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowRightMediumIcon color={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'} />
       </IconAdornment>
 
       <IconAdornment
@@ -177,7 +177,7 @@ export const Pagination = ({
         noPadding={true}
         disabled={currentPage === totalPage}
       >
-        <OutlineArrowLastMidiumIcon color={currentPage === totalPage ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowLastMediumIcon color={currentPage === totalPage ? '#D0D5DD' : '#242E40'} />
       </IconAdornment>
     </Box>
   )
