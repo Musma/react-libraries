@@ -1,16 +1,16 @@
-import { ButtonHTMLAttributes, CSSProperties, useMemo } from 'react'
+import { ButtonHTMLAttributes, CSSProperties } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 
-import { Typography } from 'src/components/Typography'
+import { Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ButtonVariant } from './types'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   labelStyle?: CSSProperties
+  size?: Size
   fullWidth?: boolean
-  size?: Size | 'xs'
   variant?: ButtonVariant
   icon?: JSX.Element
 }
@@ -19,7 +19,7 @@ export const Button = ({
   variant = 'contained',
   fullWidth = false,
   labelStyle = {},
-  size = 'lg',
+  size = 'md',
   disabled,
   children,
   icon,
@@ -28,76 +28,65 @@ export const Button = ({
 }: ButtonProps) => {
   const theme = useTheme()
 
-  const buttonStyle = useMemo(() => {
-    if (disabled) {
-      return css({
-        backgroundColor: theme.colors.white.lighter,
-        cursor: 'not-allowed',
-        '&:active': {
-          boxShadow: 'none',
-          transform: 'none',
-        },
-      })
-    }
-    return {
-      outlined: css({
-        backgroundColor: theme.colors.white.main,
-        border: `solid 1px ${theme.colors.blue.main}`,
-        '&:hover': {
-          backgroundColor: theme.colors.blue.lighter,
-        },
-        '&:active': {
-          backgroundColor: theme.colors.white.main,
-        },
-      }),
-      contained: css({
-        backgroundColor: theme.colors.blue.main,
-        '&:hover': {
-          backgroundColor: `${theme.colors.blue.main}E6`,
-        },
-        '&:active': {
-          backgroundColor: theme.colors.blue.dark,
-        },
-      }),
-      danger: css({
-        backgroundColor: theme.colors.red.main,
-        '&:hover': {
-          backgroundColor: `${theme.colors.red.main}E6`,
-        },
-        '&:active': {
-          backgroundColor: theme.colors.red.dark,
-        },
-      }),
-    }[variant]
-  }, [disabled, variant, theme])
-
   return (
     <button
-      disabled={disabled}
       css={[
         {
           appearance: 'none',
-          border: 'solid 1px transparent',
-          borderRadius: 6,
+          border: 'none',
+          borderRadius: theme.rounded.md,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           minWidth: 64,
-          padding: 8,
+          padding: theme.spacing.sm,
           cursor: 'pointer',
-          height: {
-            lg: 32,
-            md: 28,
-            sm: 26,
-            xs: 24,
-          }[size],
+          height: theme.inputSize[size],
           '&:active': {
             transform: 'translateY(1px)',
           },
         },
-        fullWidth ? { width: '100%' } : {},
-        buttonStyle,
+        variant === 'contained' && {
+          backgroundColor: theme.colors.blue.main,
+          '&:hover': {
+            backgroundColor: `${theme.colors.blue.main}E6`,
+          },
+          '&:active': {
+            backgroundColor: theme.colors.blue.dark,
+          },
+        },
+        variant === 'outlined' && {
+          backgroundColor: theme.colors.white.main,
+          border: `solid 1px ${theme.colors.blue.main}`,
+          '&:hover': {
+            backgroundColor: theme.colors.blue.lighter,
+          },
+          '&:active': {
+            backgroundColor: theme.colors.white.main,
+          },
+        },
+        variant === 'danger' && {
+          backgroundColor: theme.colors.red.main,
+          '&:hover': {
+            backgroundColor: `${theme.colors.red.main}E6`,
+          },
+          '&:active': {
+            backgroundColor: theme.colors.red.dark,
+          },
+        },
+        disabled && {
+          backgroundColor: theme.colors.white.darker,
+          cursor: 'not-allowed',
+          '&:active': {
+            transform: 'none',
+          },
+          '&:hover': {
+            backgroundColor: theme.colors.white.darker,
+          },
+        },
+        fullWidth && { width: '100%' },
       ]}
+      disabled={disabled}
       className={className}
       {...rest}
     >
@@ -105,18 +94,22 @@ export const Button = ({
         <span
           css={{
             display: 'inline-flex',
-            marginRight: '3px',
+            marginRight: '4px',
             filter: disabled ? 'brightness(1000%)' : 'none',
           }}
         >
           {icon}
         </span>
       )}
+
       <Typography
-        css={{
-          color: variant === 'outlined' ? theme.colors.blue.main : theme.colors.white.main,
-          ...labelStyle,
-        }}
+        css={[
+          {
+            color: variant === 'outlined' ? theme.colors.blue.main : theme.colors.white.main,
+            ...labelStyle,
+          },
+          disabled && { color: theme.colors.gray.main },
+        ]}
         type={size === 'lg' ? 'body3' : 'caption1'}
       >
         {children}
