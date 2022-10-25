@@ -64,6 +64,11 @@ const DefaultTheme: MusmaTheme = {
     md: 4,
     lg: 6,
   },
+  inputSize: {
+    sm: 28,
+    md: 32,
+    lg: 44,
+  },
   shadow: {
     sm: '0px 4px 4px 4px rgba(0, 0, 0, 0.02)',
     md: '0px 4px 4px 4px rgba(0, 0, 0, 0.05)',
@@ -82,8 +87,8 @@ const DefaultTheme: MusmaTheme = {
   },
   background: {
     sm: 'rgba(0, 0, 0, 0.02)',
-    md: 'rgba(0, 0, 0, 0.02)',
-    lg: 'rgba(0, 0, 0, 0.02)',
+    md: 'rgba(0, 0, 0, 0.04)',
+    lg: 'rgba(0, 0, 0, 0.06)',
   },
   layoutSize: {
     headerHeight: 48,

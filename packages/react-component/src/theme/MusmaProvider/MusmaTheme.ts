@@ -2,6 +2,9 @@ import { Size } from 'src/types'
 
 export interface MusmaTheme {
   colors: {
+    /**
+     * light: #F2F8FB
+     */
     blue: {
       lighter: string
       light: string
@@ -54,6 +57,7 @@ export interface MusmaTheme {
     transparent: string
   }
   rounded: Record<Size, number | string>
+  inputSize: Record<Size, number>
   shadow: Record<Size, string>
   breakpoints: Record<Size, number>
   mediaQueries: Record<Size, string>
