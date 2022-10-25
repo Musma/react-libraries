@@ -1,5 +1,13 @@
 # @musma/react-icons
 
+## 0.1.6
+
+### Patch Changes
+
+- [`d4430fb`](https://github.com/Musma/react-libraries/commit/d4430fba2712acb0f696c3d33e82a770227a0eac) Thanks [@jklasd2001](https://github.com/jklasd2001)! - 일부 svg 파일명 오타 수정
+
+- [`de648b7`](https://github.com/Musma/react-libraries/commit/de648b79e4247fe86ec2fe03e6721d40c07ad6fe) Thanks [@jklasd2001](https://github.com/jklasd2001)! - react-icons components, optimized 폴더 최신화
+
 ## 0.1.5
 
 ### Patch Changes
