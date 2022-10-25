@@ -1,40 +1,33 @@
 import { useCallback, useMemo, useState } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
+import {
+  OutlineArrowFirstMidiumIcon,
+  OutlineArrowLeftMidiumIcon,
+  OutlineArrowLastMidiumIcon,
+  OutlineArrowRightMidiumIcon,
+} from '@musma/react-icons'
 
-import { Typography, UsePaginationType, Select } from 'src/components'
-
-import { ReactComponent as ArrowFirstIcon } from './images/arrow_first.svg'
-import { ReactComponent as ArrowLastIcon } from './images/arrow_last.svg'
-import { ReactComponent as ArrowLeftIcon } from './images/arrow_left.svg'
-import { ReactComponent as ArrowRightIcon } from './images/arrow_right.svg'
-
-const containerCss = css({ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' })
-
-const pageNumberCss = css({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '24px',
-  width: '24px',
-  cursor: 'pointer',
-  borderRadius: '9999px',
-})
+import { Typography, UsePaginationType, Select, IconAdornment, Box } from 'src/components'
 interface PaginationProps {
   pagination: UsePaginationType
   totalCount: number
 }
-export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
-  const { limit, page, onDataLimitChange, onPageChange } = pagination
+export const Pagination = ({
+  totalCount,
+  pagination: { limit, page, onDataLimitChange, onPageChange },
+}: PaginationProps) => {
   const theme = useTheme()
   const pageCount = 5
   const [currentPage, setCurrentPage] = useState(page)
   const [pageGroup, setPageGroup] = useState(1)
 
+  // 전체 페이지 수
   const totalPage = useMemo(() => {
     return Math.ceil(totalCount / limit)
   }, [limit, totalCount])
 
+  // 마지막 그룹 수
   const lastGroup = useMemo(() => {
     return Math.ceil(totalPage / pageCount)
   }, [totalPage])
@@ -89,14 +82,18 @@ export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
   )
 
   const handlePrevClick = useCallback(() => {
-    if (pageGroup === 1) return
+    if (pageGroup === 1) {
+      return
+    }
     setPageGroup(pageGroup - 1)
     setCurrentPage(getLeftEndPage(getRightEndPage(pageGroup - 1)))
     onPageChange(getLeftEndPage(getRightEndPage(pageGroup - 1)))
   }, [getLeftEndPage, getRightEndPage, onPageChange, pageGroup])
 
   const handleNextClick = useCallback(() => {
-    if (pageGroup === lastGroup) return
+    if (pageGroup === lastGroup) {
+      return
+    }
     setPageGroup(pageGroup + 1)
     setCurrentPage(getRightEndPage(pageGroup + 1))
     onPageChange(getRightEndPage(pageGroup + 1))
@@ -115,7 +112,7 @@ export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
   }, [lastGroup, onPageChange, totalPage])
 
   return (
-    <div css={containerCss}>
+    <Box css={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
       <Typography type="body3" css={{ marginRight: '8px' }}>
         Rows per page
       </Typography>
@@ -123,7 +120,6 @@ export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
         label=""
         value={String(limit)}
         options={[
-          { label: '5', value: '5' },
           { label: '10', value: '10' },
           { label: '15', value: '15' },
           { label: '20', value: '20' },
@@ -132,47 +128,57 @@ export const Pagination = ({ totalCount, pagination }: PaginationProps) => {
         onChange={(value) => handleLimitChange(Number(value))}
         inputStyle={{ width: '67px' }}
       />
-      <ArrowFirstIcon
-        css={{ marginLeft: '8px', cursor: 'pointer' }}
-        onClick={handleFirstClick}
-        stroke={currentPage === 1 ? '#D0D5DD' : '#242E40'}
-      />
-      <ArrowLeftIcon
-        css={{ cursor: 'pointer' }}
-        onClick={handlePrevClick}
-        stroke={pageGroup === 1 ? '#D0D5DD' : '#242E40'}
-      />
+
+      <IconAdornment onClick={handleFirstClick} noPadding={true} disabled={currentPage === 1}>
+        <OutlineArrowFirstMidiumIcon color={currentPage === 1 ? '#D0D5DD' : '#242E40'} />
+      </IconAdornment>
+
+      <IconAdornment onClick={handlePrevClick} noPadding={true} disabled={pageGroup === 1}>
+        <OutlineArrowLeftMidiumIcon color={pageGroup === 1 ? '#D0D5DD' : '#242E40'} />
+      </IconAdornment>
+
       {Array.from({ length: totalPage >= pageCount ? pageCount : totalPage }).map((_, index) => {
         return (
-          <span
+          <IconAdornment
             key={index}
-            css={[
-              pageNumberCss,
-              isCurrentPage(getPageNumber(index))
-                ? css({ backgroundColor: theme.colors.blue.main })
-                : {},
-            ]}
+            noPadding={true}
             onClick={() => handlePageChange(getPageNumber(index))}
           >
-            <Typography
-              type="caption1"
-              css={isCurrentPage(getPageNumber(index)) ? { color: theme.colors.white.main } : {}}
+            <span
+              css={[
+                {
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '24px',
+                  width: '24px',
+                  cursor: 'pointer',
+                  borderRadius: '9999px',
+                },
+                isCurrentPage(getPageNumber(index)) && { backgroundColor: theme.colors.blue.main },
+              ]}
             >
-              {getPageNumber(index)}
-            </Typography>
-          </span>
+              <Typography
+                type="caption1"
+                css={isCurrentPage(getPageNumber(index)) ? { color: theme.colors.white.main } : {}}
+              >
+                {getPageNumber(index)}
+              </Typography>
+            </span>
+          </IconAdornment>
         )
       })}
-      <ArrowRightIcon
-        css={{ cursor: 'pointer' }}
-        onClick={handleNextClick}
-        stroke={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'}
-      />
-      <ArrowLastIcon
-        css={{ cursor: 'pointer' }}
+      <IconAdornment onClick={handleNextClick} noPadding={true} disabled={pageGroup === lastGroup}>
+        <OutlineArrowRightMidiumIcon color={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'} />
+      </IconAdornment>
+
+      <IconAdornment
         onClick={handleLastClick}
-        stroke={currentPage === totalPage ? '#D0D5DD' : '#242E40'}
-      />
-    </div>
+        noPadding={true}
+        disabled={currentPage === totalPage}
+      >
+        <OutlineArrowLastMidiumIcon color={currentPage === totalPage ? '#D0D5DD' : '#242E40'} />
+      </IconAdornment>
+    </Box>
   )
 }

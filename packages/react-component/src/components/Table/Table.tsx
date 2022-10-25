@@ -5,7 +5,7 @@ import { css, useTheme } from '@emotion/react'
 import { Pagination, Typography, UsePaginationType } from 'src/components'
 
 interface TableProps {
-  data: Array<Data>
+  data: Data[]
   className?: string
   columns: {
     id: string
@@ -20,7 +20,7 @@ interface TableProps {
   onRowClick?: (data: Data) => void
 }
 
-type Data = Record<string, string | number | ReactNode>
+type Data = Record<string, ReactNode>
 
 const containerCss = css({
   display: 'grid',
@@ -49,7 +49,7 @@ const tdCss = css({ height: '40px', textAlign: 'center' })
 
 export const Table = ({
   data,
-  className = '',
+  className,
   columns,
   pagination,
   totalCount,
@@ -94,20 +94,19 @@ export const Table = ({
               key={index}
               onClick={onRowClick && (() => onRowClick(item))}
               css={[
-                onRowClick
-                  ? {
-                      cursor: 'pointer',
-                      '&:hover': { backgroundColor: theme.colors.blue.lighter },
-                    }
-                  : {},
-                targetId && item.id && targetId === item.id
-                  ? css({ backgroundColor: theme.colors.blue.lighter })
-                  : {},
+                onRowClick && {
+                  cursor: 'pointer',
+                  '&:hover': { backgroundColor: theme.colors.blue.lighter },
+                },
+                targetId &&
+                  item.id &&
+                  targetId === item.id &&
+                  css({ backgroundColor: theme.colors.blue.lighter }),
               ]}
             >
               {columns.map((column) => (
                 <td
-                  css={[tdCss, css({ borderBottom: `1px solid ${theme.colors.gray.lighter}` })]}
+                  css={[tdCss, { borderBottom: `1px solid ${theme.colors.gray.lighter}` }]}
                   key={column.id}
                 >
                   <div
@@ -129,6 +128,7 @@ export const Table = ({
           ))}
         </tbody>
       </table>
+
       {pagination && <Pagination totalCount={totalCount} pagination={pagination} />}
     </div>
   )
