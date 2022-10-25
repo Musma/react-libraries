@@ -1,5 +1,21 @@
 # @musma/react-component
 
+## 0.1.5
+
+### Patch Changes
+
+- [`c387c14`](https://github.com/Musma/react-libraries/commit/c387c14656bd0dc0b42eb87a8be3b71cb6043b29) Thanks [@jklasd2001](https://github.com/jklasd2001)! - Pagination 아이콘 이름 변경
+
+- [`d912f0b`](https://github.com/Musma/react-libraries/commit/d912f0bc949050c122d4782d40a6ac0ae1047a21) Thanks [@jklasd2001](https://github.com/jklasd2001)! - Theme inputSize 추가 및 불필요 파일 및 코드 삭제
+
+- [`300e7f0`](https://github.com/Musma/react-libraries/commit/300e7f00e7f120804386cfa96fec083cf4b59e4e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - Button, Divider, IconAdornment, TextButton 재구성
+
+- [`afc45cc`](https://github.com/Musma/react-libraries/commit/afc45cc4801729cd120fea7195dd4e01042d7201) Thanks [@jklasd2001](https://github.com/jklasd2001)! - TextInput 재구성 및 css 정리
+
+- [`15d81a5`](https://github.com/Musma/react-libraries/commit/15d81a5272181b85f93a4db3958a46bca3f89a9b) Thanks [@jklasd2001](https://github.com/jklasd2001)! - 테이블 컴포넌트 재구성
+
+- [`6715f14`](https://github.com/Musma/react-libraries/commit/6715f1475864ed9238d5e85112940b45cf4de3ac) Thanks [@jklasd2001](https://github.com/jklasd2001)! - AuthShell 추가 및 AppShell 주석 추가
+
 ## 0.1.4
 
 ### Patch Changes
