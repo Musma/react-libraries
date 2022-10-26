@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.6
+
+### Patch Changes
+
+- [`5224e11`](https://github.com/Musma/react-libraries/commit/5224e11578fdd6efa67b8db345bac544ee1be9b2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - 가독성 위해 CSS 순서 재정렬 및 전체 재구성
+
 ## 0.1.5
 
 ### Patch Changes
