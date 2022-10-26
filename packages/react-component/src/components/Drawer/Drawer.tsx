@@ -16,19 +16,18 @@ export const Drawer = ({ open, width = 400, ...rest }: DrawerProps) => {
       <Backdrop open={open}>
         <Box
           css={{
+            display: 'flex',
+            flexDirection: 'column',
+            position: 'fixed',
             top: 0,
             right: 0,
             width: width,
             height: '100%',
-            position: 'fixed',
-            backgroundColor: theme.colors.white.main,
             overflowY: 'auto',
+            backgroundColor: theme.colors.white.main,
             borderTopLeftRadius: theme.rounded.lg,
             borderBottomLeftRadius: theme.rounded.lg,
-            display: 'flex',
-            flexDirection: 'column',
-            boxShadow:
-              'rgb(0 0 0 / 20%) 0px 8px 10px -5px, rgb(0 0 0 / 14%) 0px 16px 24px 2px, rgb(0 0 0 / 12%) 0px 6px 30px 5px',
+            boxShadow: theme.shadow.md,
           }}
           {...rest}
         />

@@ -16,9 +16,9 @@ export const AppShell = ({ header, navBar, children }: AppShellProps) => {
     // AppShell Wrapper
     <Box
       css={{
-        height: '100vh',
         display: 'flex',
         minWidth: theme.layoutSize.minBodyWidth,
+        height: '100vh',
         backgroundColor: theme.colors.white.main,
       }}
     >
@@ -32,9 +32,9 @@ export const AppShell = ({ header, navBar, children }: AppShellProps) => {
       <main
         css={{
           flexGrow: 1,
+          backgroundColor: theme.colors.white.light,
           paddingTop: theme.layoutSize.headerHeight,
           paddingLeft: theme.layoutSize.navBarWidth,
-          backgroundColor: theme.colors.white.light,
         }}
       >
         {children}

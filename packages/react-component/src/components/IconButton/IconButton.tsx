@@ -13,7 +13,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const IconButton = ({
   variant = 'contained',
   color,
-  size = 'lg',
+  size = 'md',
   ...rest
 }: IconButtonProps) => {
   const theme = useTheme()
@@ -22,6 +22,9 @@ export const IconButton = ({
     <button
       css={[
         {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           width: theme.inputSize[size],
           height: theme.inputSize[size],
           cursor: 'pointer',
@@ -29,10 +32,6 @@ export const IconButton = ({
           appearance: 'none',
           outline: 'none',
           border: 'none',
-          lineHeight: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
           '&:active': {
             transform: 'translateY(1px)',
           },

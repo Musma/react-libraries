@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { css, useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
+import { Box } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
@@ -107,7 +108,7 @@ export const DateInput = ({
   }, [day, handleSelectDay, isDateValid, month, year])
 
   return (
-    <div
+    <Box
       css={{
         display: 'flex',
         alignItems: 'center',
@@ -115,7 +116,7 @@ export const DateInput = ({
       }}
       onClick={() => toggleIsOpen()}
     >
-      <div
+      <Box
         css={[
           {
             backgroundColor: theme.colors.white.main,
@@ -135,7 +136,7 @@ export const DateInput = ({
           isError && { border: `1px solid ${theme.colors.red.main}` },
         ]}
       >
-        <div css={{ display: 'flex' }}>
+        <Box css={{ display: 'flex' }}>
           <input
             placeholder="YYYY"
             onClick={(e) => e.stopPropagation()}
@@ -192,22 +193,22 @@ export const DateInput = ({
                 appearance: 'none',
                 textAlign: 'center',
                 border: 0,
-                '&::placeholder': { letterSpacing: '-0.08em' },
                 '&:focus': {
                   outline: '2px solid transparent',
                   outlineOffset: '2px',
                 },
+                '&::placeholder': { letterSpacing: '-0.08em' },
                 width: size === 'sm' ? '20px' : '28px',
               },
             ]}
           />
-        </div>
-        <div css={[{ marginRight: '8px' }, iconContainerCss.position[size]]}>
+        </Box>
+        <Box css={[{ marginRight: '8px' }, iconContainerCss.position[size]]}>
           <span onClick={toggleIsOpen}>
             {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
           </span>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   )
 }

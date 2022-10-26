@@ -2,7 +2,8 @@ import { Fragment } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Typography } from '../Typography'
+import { Typography } from 'src/components'
+
 import { ReactComponent as CurveLeftIcon } from './images/curve_left.svg'
 import { ReactComponent as CurveRightIcon } from './images/curve_right.svg'
 import { useTabContext } from './TabContext'
@@ -20,6 +21,7 @@ export const Tab = ({ label, value }: TabProps) => {
       <HatTab currentTab={currentTab} handleTabClick={handleTabClick} label={label} value={value} />
     )
   }
+
   return (
     <RectTab currentTab={currentTab} handleTabClick={handleTabClick} label={label} value={value} />
   )

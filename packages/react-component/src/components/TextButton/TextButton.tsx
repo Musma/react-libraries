@@ -26,15 +26,11 @@ export const TextButton = ({
           appearance: 'none',
           outline: 'none',
           cursor: 'pointer',
-          height: {
-            sm: 26,
-            lg: 32,
-            md: 28,
-          }[size],
+          height: theme.inputSize[size],
           backgroundColor: theme.colors.transparent,
           '&:hover': {
             borderRadius: theme.rounded.md,
-            backgroundColor: theme.background.md,
+            backgroundColor: theme.buttonBackgroundColor,
           },
           '&:active': {
             transform: 'translateY(1px)',

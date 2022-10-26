@@ -6,30 +6,28 @@ interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
   zIndex?: number
 }
 
-export const NavBar = ({ zIndex, children, ...rest }: NavBarProps) => {
+export const NavBar = ({ zIndex, ...rest }: NavBarProps) => {
   const theme = useTheme()
   return (
     <nav
       css={{
         width: theme.layoutSize.navBarWidth,
-        padding: theme.spacing.md,
-        backgroundColor: theme.colors.white.main,
-        zIndex: zIndex || theme.zIndex.navBar,
+        height: `calc(100% - ${theme.layoutSize.headerHeight}px)`,
         position: 'fixed',
         top: theme.layoutSize.headerHeight,
-        height: `calc(100% - ${theme.layoutSize.headerHeight}px)`,
         left: 0,
         bottom: 0,
-        boxShadow: theme.shadow.md,
+        padding: theme.spacing.md,
         overflow: 'auto',
         boxSizing: 'border-box',
+        backgroundColor: theme.colors.white.main,
         borderTopWidth: 1,
         borderTopStyle: 'solid',
         borderTopColor: theme.colors.gray.lighter,
+        boxShadow: theme.shadow.md,
+        zIndex: zIndex || theme.zIndex.navBar,
       }}
       {...rest}
-    >
-      {children}
-    </nav>
+    />
   )
 }

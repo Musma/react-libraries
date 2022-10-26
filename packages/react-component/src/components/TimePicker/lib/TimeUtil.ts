@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 
-import { Meridiem } from 'src/components/TimePicker/type/TimeType'
+import { Meridiem } from 'src/components'
 
 const clockCenter = {
   x: 144 / 2,

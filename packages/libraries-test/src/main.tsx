@@ -3,16 +3,16 @@ import { render } from 'react-dom'
 
 import { MusmaProvider } from '@musma/react-component'
 
-// import { App } from './App'
+import { App } from './App'
 // import { AppContainer } from './layout'
-import { AuthContainer } from './layout'
+// import { AuthContainer } from './layout'
 
 render(
   <StrictMode>
     <MusmaProvider>
-      {/* <App /> */}
+      <App />
       {/* <AppContainer /> */}
-      <AuthContainer />
+      {/* <AuthContainer /> */}
     </MusmaProvider>
   </StrictMode>,
   document.getElementById('root'),

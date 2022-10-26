@@ -1,10 +1,9 @@
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
-import { TextInput } from 'src/components'
-import { ClockBody, ClockHeader, ClockType, getMeridiem } from 'src/components/TimePicker'
+import { ClockBody, ClockHeader, ClockType, getMeridiem, TextInput } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgClockIcon } from './images/clock_large.svg'
@@ -61,7 +60,7 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
   }, [ref])
 
   return (
-    <div css={containerCss} ref={ref}>
+    <div css={{ position: 'relative', display: 'flex', alignItems: 'center' }} ref={ref}>
       <div css={{ position: 'relative', cursor: 'pointer' }} onClick={toggleShowClock}>
         <TextInput
           label={label}
@@ -71,7 +70,15 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
           placeholder="00:00"
           css={{ cursor: 'pointer' }}
         />
-        <span css={[iconContainerCss.base, iconContainerCss.position[size]]}>
+
+        <span
+          css={[
+            { position: 'absolute', right: '8px' },
+            size === 'sm' && { bottom: 8, height: 14 },
+            size === 'md' && { bottom: 10, height: 14 },
+            size === 'lg' && { bottom: 20, height: 10 },
+          ]}
+        >
           {size === 'lg' ? <LgClockIcon /> : <MdClockIcon />}
         </span>
       </div>
@@ -79,9 +86,13 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
       {showClock && (
         <div
           css={[
-            clockContainer.base,
-            clockContainer.width[size],
             {
+              position: 'absolute',
+              top: '100%',
+              zIndex: 10,
+              marginTop: 4,
+              borderRadius: 6,
+              padding: '16px 8px',
               backgroundColor: theme.colors.white.main,
               border: `1px solid ${theme.colors.gray.darker}`,
             },
@@ -111,29 +122,4 @@ export const TimePicker = ({ label, size = 'lg', date, onDateChange }: TimePicke
       )}
     </div>
   )
-}
-
-const containerCss = css({ position: 'relative', display: 'flex', alignItems: 'center' })
-const iconContainerCss = {
-  base: css({ position: 'absolute', right: '8px' }),
-  position: {
-    lg: css({ bottom: '8px', height: '16px' }),
-    md: css({ bottom: '7px', height: '14px' }),
-    sm: css({ bottom: '5px', height: '14px' }),
-  },
-}
-const clockContainer = {
-  base: css({
-    position: 'absolute',
-    top: '100%',
-    zIndex: 10,
-    marginTop: '4px',
-    borderRadius: '6px',
-    padding: '16px 8px',
-  }),
-  width: {
-    lg: css({ width: '200px' }),
-    md: css({ width: '180px' }),
-    sm: css({ width: '148px' }),
-  },
 }

@@ -25,7 +25,7 @@ export const Backdrop = ({ open, ...rest }: BackdropProps) => {
             height: '100vh',
             inset: 0,
             zIndex: theme.zIndex.navBar + 1,
-            backgroundColor: theme.background.md,
+            backgroundColor: theme.dimmed.md,
           }}
           {...rest}
         />

@@ -15,6 +15,23 @@ export const SelectExample = () => {
         value={selected}
         options={options}
         onChange={(value) => setSelected(value)}
+        size="lg"
+      />
+
+      <Select
+        label={'Sample Select'}
+        value={selected}
+        options={options}
+        onChange={(value) => setSelected(value)}
+        size="md"
+      />
+
+      <Select
+        label={'Sample Select'}
+        value={selected}
+        options={options}
+        onChange={(value) => setSelected(value)}
+        size="sm"
       />
     </div>
   )

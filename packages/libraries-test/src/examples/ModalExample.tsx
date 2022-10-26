@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button, Modal, useModalManager } from '@musma/react-component'
+import { OutlineAddBoxIcon } from '@musma/react-icons'
 
 export const ModalExample = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,7 +14,7 @@ export const ModalExample = () => {
       </Button>
       <Modal
         title={'첫 번째 모달 입니다'}
-        isOpen={isOpen}
+        open={isOpen}
         buttonOption={{
           label: 'button1',
           onClick: () => alert('button1 클릭'),
@@ -27,6 +28,7 @@ export const ModalExample = () => {
         closeOnOutsideClick={true}
         onClose={() => setIsOpen(false)}
       >
+        <OutlineAddBoxIcon css={{ color: '#dd9c4f' }} />
         <Button variant={'outlined'} onClick={() => setIsOpen2(true)}>
           Open second modal
         </Button>
@@ -34,7 +36,7 @@ export const ModalExample = () => {
       </Modal>
       <Modal
         title={'두 번째 모달 입니다'}
-        isOpen={isOpen2}
+        open={isOpen2}
         buttonOption={{
           label: 'button1',
           onClick: () => console.log('button1'),

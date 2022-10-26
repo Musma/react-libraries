@@ -14,11 +14,11 @@ export const AuthShell = ({ backgroundImage, ...rest }: AuthShellProps) => {
     <Box
       css={{
         display: 'flex',
-        backgroundSize: 'cover',
         alignItems: 'center',
-        height: '100vh',
-        backgroundImage: `url(${backgroundImage})`,
         minWidth: theme.layoutSize.minBodyWidth,
+        height: '100vh',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${backgroundImage})`,
       }}
       {...rest}
     />

@@ -98,6 +98,7 @@ export const TextInput = ({
           type={type}
           css={{
             flex: 1,
+            height: '100%',
             border: 'none',
             appearance: 'none',
             outline: 'none',

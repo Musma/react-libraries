@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
 import { uniqueId } from 'lodash-es'
 
@@ -18,7 +18,7 @@ import { Size } from 'src/types'
 interface SelectProps {
   id?: string
   size?: Size
-  label: string
+  label?: string
   value: string
   options: { label: string; value: string }[]
   onChange: (value: string) => void
@@ -28,12 +28,11 @@ interface SelectProps {
 
 export const Select = ({
   id = uniqueId(),
-  size = 'lg',
+  size = 'md',
   label,
   value,
   options,
   onChange,
-  inputStyle = {},
   className,
 }: SelectProps) => {
   const theme = useTheme()
@@ -52,8 +51,6 @@ export const Select = ({
 
   const [text, setText] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
-  // const [pointer, setPointer] = useState(0)
 
   const filteredOptions = useMemo(() => {
     if (!text) {
@@ -72,23 +69,6 @@ export const Select = ({
     [options],
   )
 
-  // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
-  // const upPointer = useCallback(() => {
-  //   if (pointer === 0) {
-  //     setPointer(filteredOptions.length - 1)
-  //     return
-  //   }
-  //   setPointer((prev) => prev - 1)
-  // }, [filteredOptions.length, pointer])
-
-  // const downPointer = useCallback(() => {
-  //   if (pointer === filteredOptions.length - 1) {
-  //     setPointer(0)
-  //     return
-  //   }
-  //   setPointer((prev) => prev + 1)
-  // }, [filteredOptions.length, pointer])
-
   const handleTextChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
   }, [])
@@ -100,22 +80,6 @@ export const Select = ({
     },
     [onChange],
   )
-  // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
-  // const handleKeyPress = useCallback(
-  //   (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //     if (!isOpen && e.key === 'ArrowDown') {
-  //       setIsOpen(true)
-  //     }
-  //     if (e.key === 'Enter' && pointer >= 0) {
-  //       handleOptionSelect(filteredOptions[pointer].value)
-  //       return
-  //     }
-  //     if (e.key === 'Enter' && isValid(e.target.value)) {
-  //       handleOptionSelect(e.target.value)
-  //     }
-  //   },
-  //   [filteredOptions, handleOptionSelect, isOpen, isValid, pointer],
-  // )
 
   const handleDropdownClick = useCallback(() => {
     if (!inputRef.current) {
@@ -157,25 +121,6 @@ export const Select = ({
     }
   }, [])
 
-  // FIXME: 키보드로 옵션 선택할 수 있는 기능 구현중 선택된 항목을 따라 스크롤이 움직이는 부분에서 막혔음... 추후 구현
-  // useEffect(() => {
-  //   if (!isOpen) return
-  //   const handleUpDown = (e: KeyboardEvent) => {
-  //     if (e.key === 'ArrowDown') {
-  //       downPointer()
-  //       return
-  //     }
-  //     if (e.key === 'ArrowUp') {
-  //       upPointer()
-  //       return
-  //     }
-  //   }
-  //   document.addEventListener('keydown', handleUpDown)
-  //   return function cleanup() {
-  //     document.removeEventListener('keydown', handleUpDown)
-  //   }
-  // }, [downPointer, filteredOptions, isOpen, options.length, pointer, upPointer])
-
   return (
     <Box
       css={{
@@ -187,9 +132,7 @@ export const Select = ({
       }}
       className={className}
     >
-      <label htmlFor={id}>
-        <TitleFactory size={size} label={label} />
-      </label>
+      {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
 
       <div
         css={{ position: 'relative', display: 'flex', alignItems: 'center', border: 0 }}
@@ -204,12 +147,14 @@ export const Select = ({
           onChange={handleTextChange}
           css={[
             {
+              height: theme.inputSize[size],
               cursor: 'pointer',
               borderRadius: '4px',
               paddingLeft: '8px',
               outline: 'none',
-              color: theme.colors.black.dark,
               border: `1px solid ${theme.colors.gray.darker}`,
+              color: theme.colors.black.dark,
+              fontSize: size === 'lg' ? 14 : 12,
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
               },
@@ -217,39 +162,50 @@ export const Select = ({
                 color: theme.colors.black.main,
               },
             },
-            inputCss.size[size],
-            { ...inputStyle },
           ]}
         />
 
-        {size === 'lg' ? (
-          <OutlineArrowBottomSmallIcon css={[iconCss.base, isOpen && { rotate: '180deg' }]} />
-        ) : (
-          <OutlineArrowBottomSmallIcon
-            css={[iconCss.base, iconCss.size[size], isOpen && { rotate: '180deg' }]}
-          />
-        )}
+        <OutlineArrowBottomSmallIcon
+          css={[
+            { position: 'absolute', right: '4px', cursor: 'pointer' },
+            size === 'sm' && { bottom: '4px' },
+            size === 'md' && { bottom: '6px' },
+            isOpen && { rotate: '180deg' },
+          ]}
+        />
 
         {isOpen && (
           <ul
             css={[
-              ulCss.base,
-              ulCss.size[size],
               {
+                display: 'grid',
+                width: '100%',
+                position: 'absolute',
+                maxHeight: '300px',
+                gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+                overflowY: 'auto',
+                borderRadius: '4px',
+                padding: '4px 0',
+                boxSizing: 'border-box',
                 border: `1px solid ${theme.colors.gray.darker}`,
                 backgroundColor: theme.colors.white.main,
                 margin: 0,
+                zIndex: theme.zIndex.navBar + 1,
+                top: `calc(100% + 4px)`,
               },
             ]}
           >
             {filteredOptions.map(({ label, value }) => (
               <li
-                key={label}
+                key={`key-${value}`}
                 onClick={() => handleOptionSelect(value)}
                 css={[
-                  liCss.base,
-                  liCss.size[size],
                   {
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '4px 0 4px 8px',
+                    height: 24,
+                    cursor: 'pointer',
                     '&:hover': {
                       backgroundColor: isSelected(value) ? undefined : theme.colors.blue.lighter,
                       color: theme.colors.blue.main,
@@ -258,103 +214,17 @@ export const Select = ({
                   isSelected(value) && { backgroundColor: theme.colors.blue.main },
                 ]}
               >
-                <LabelFactory
-                  size={size}
-                  label={label}
+                <Typography
+                  type={size === 'lg' ? 'body3' : 'caption1'}
                   css={isSelected(value) && { color: theme.colors.white.main }}
-                />
+                >
+                  {label}
+                </Typography>
               </li>
             ))}
           </ul>
         )}
       </div>
     </Box>
-  )
-}
-
-const inputCss = {
-  size: {
-    lg: css({ width: '200px', fontSize: '14px', height: 44 }),
-    md: css({ width: '180px', fontSize: '12px', height: 32 }),
-    sm: css({ width: '148px', fontSize: '12px', height: 28 }),
-  },
-}
-
-const iconCss = {
-  base: css({ position: 'absolute', right: '4px', cursor: 'pointer' }),
-  size: {
-    sm: css({ bottom: '6.5px' }),
-    md: css({ bottom: '7px' }),
-  },
-}
-
-const ulCss = {
-  base: css({
-    width: '100%',
-    position: 'absolute',
-    display: 'grid',
-    maxHeight: '300px',
-    gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-    overflowY: 'auto',
-    borderRadius: '4px',
-    padding: '4px 0',
-    boxSize: 'border-box',
-  }),
-  size: {
-    lg: css({ top: '34px' }),
-    md: css({ top: '30px' }),
-    sm: css({ top: '26px' }),
-  },
-}
-
-const liCss = {
-  base: css({
-    display: 'flex',
-    cursor: 'pointer',
-    alignItems: 'center',
-    padding: '4px 0 4px 8px',
-  }),
-  size: {
-    lg: css({ height: '32px' }),
-    md: css({ height: '28px' }),
-    sm: css({ height: '24px' }),
-  },
-}
-
-interface TypographyFactoryProps {
-  className?: string
-  size: Size
-  label: string
-}
-
-const LabelFactory = ({ size, label, className }: TypographyFactoryProps) => {
-  if (size === 'lg') {
-    return (
-      <Typography type="body3" className={className}>
-        {label}
-      </Typography>
-    )
-  }
-
-  return (
-    <Typography type="caption1" className={className}>
-      {label}
-    </Typography>
-  )
-}
-
-const TitleFactory = ({ size, label, className }: TypographyFactoryProps) => {
-  if (size === 'lg') {
-    return (
-      <Typography type="subTitle2" className={className}>
-        {label}
-      </Typography>
-    )
-  }
-
-  return (
-    <Typography type="subTitle3" className={className}>
-      {label}
-    </Typography>
   )
 }

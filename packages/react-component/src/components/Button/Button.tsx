@@ -32,16 +32,16 @@ export const Button = ({
     <button
       css={[
         {
-          appearance: 'none',
-          border: 'none',
-          borderRadius: theme.rounded.md,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          appearance: 'none',
           minWidth: 64,
+          height: theme.inputSize[size],
+          border: 'none',
+          borderRadius: theme.rounded.md,
           padding: theme.spacing.sm,
           cursor: 'pointer',
-          height: theme.inputSize[size],
           '&:active': {
             transform: 'translateY(1px)',
           },

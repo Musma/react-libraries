@@ -12,15 +12,15 @@ export const Header = ({ zIndex, backgroundColor, ...rest }: HeaderProps) => {
   return (
     <header
       css={{
-        zIndex: zIndex,
-        backgroundColor: backgroundColor || theme.colors.white.main,
+        display: 'flex',
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         height: theme.layoutSize.headerHeight,
-        display: 'flex',
+        backgroundColor: backgroundColor || theme.colors.white.main,
         boxShadow: theme.shadow.md,
+        zIndex: zIndex,
       }}
       {...rest}
     />

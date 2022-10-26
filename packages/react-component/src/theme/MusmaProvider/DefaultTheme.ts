@@ -83,12 +83,13 @@ const DefaultTheme: MusmaTheme = {
   spacing: {
     sm: 8,
     md: 16,
-    lg: 16,
+    lg: 24,
   },
-  background: {
-    sm: 'rgba(0, 0, 0, 0.02)',
-    md: 'rgba(0, 0, 0, 0.04)',
-    lg: 'rgba(0, 0, 0, 0.06)',
+  buttonBackgroundColor: 'rgba(0, 0, 0, 0.04)',
+  dimmed: {
+    sm: 'rgba(0, 0, 0, 0.4)',
+    md: 'rgba(0, 0, 0, 0.5)',
+    lg: 'rgba(0, 0, 0, 0.6)',
   },
   layoutSize: {
     headerHeight: 48,

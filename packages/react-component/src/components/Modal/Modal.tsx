@@ -1,17 +1,15 @@
-import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef, CSSProperties } from 'react'
+import { useMemo, ReactNode, useCallback, useEffect, useRef, CSSProperties, Fragment } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 import { OutlineCloseIcon } from '@musma/react-icons'
 
-import { Button, Typography, IconAdornment } from 'src/components'
+import { Button, Typography, IconAdornment, Backdrop } from 'src/components'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/types'
 
-// TODO: react-icons의 FillClose으로 교체
-
 interface ModalProps {
   title: string
-  isOpen: boolean
+  open: boolean
   size?: Extract<Size, 'md' | 'sm'>
   children: ReactNode
   buttonOption: {
@@ -44,30 +42,7 @@ interface ModalProps {
   onClose: () => void
 }
 
-const childrenContainerCss = css({
-  flex: '1 1 0',
-  fontSize: 14,
-  fontWeight: 400,
-})
-
-const backgroundBase = css({
-  position: 'fixed',
-  left: 0,
-  right: 0,
-  top: 0,
-  bottom: 0,
-  zIndex: 9999,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-})
-
 const modalCss = {
-  base: css({
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: '6px',
-  }),
   size: {
     md: css({
       width: '456px',
@@ -125,13 +100,13 @@ const buttonCss = {
 
 export const Modal = ({
   title,
-  isOpen,
+  open,
   size = 'md',
   buttonOption,
   children,
   closeOnEscPress = false,
   closeOnOutsideClick = false,
-  className = '',
+  className,
   modalManager,
   onClose,
 }: ModalProps) => {
@@ -142,15 +117,15 @@ export const Modal = ({
     return size === 'md' ? 'lg' : 'md'
   }, [size])
 
-  const backgroundColor = useMemo(() => {
-    if (!backgroundRef.current || !modalManager) {
-      return 'rgba(0, 0, 0, 0.3)'
-    }
+  // const backgroundColor = useMemo(() => {
+  //   if (!backgroundRef.current || !modalManager) {
+  //     return 'rgba(0, 0, 0, 0.3)'
+  //   }
 
-    return modalManager.isNested(backgroundRef.current)
-      ? 'rgba(0, 0, 0, 0.6)'
-      : 'rgba(0, 0, 0, 0.3)'
-  }, [modalManager])
+  //   return modalManager.isNested(backgroundRef.current)
+  //     ? 'rgba(0, 0, 0, 0.6)'
+  //     : 'rgba(0, 0, 0, 0.3)'
+  // }, [modalManager])
 
   const handleModalClose = useCallback(() => {
     onClose()
@@ -182,66 +157,82 @@ export const Modal = ({
   )
 
   useEffect(() => {
-    if (!isOpen || !backgroundRef.current) {
+    if (!open || !backgroundRef.current) {
       return
     }
 
     modalManager?.add(backgroundRef.current)
-  }, [isOpen, modalManager])
+  }, [open, modalManager])
 
-  if (!isOpen) {
-    return <Fragment />
-  }
+  if (open) {
+    return (
+      <Backdrop open={open}>
+        <div
+          ref={modalRef}
+          css={[
+            {
+              display: 'flex',
+              flexDirection: 'column',
+              borderRadius: theme.rounded.lg,
+              backgroundColor: theme.colors.white.main,
+              boxShadow: theme.shadow.lg,
+            },
+            modalCss.size[size],
+          ]}
+          className={className}
+        >
+          <section css={[headerCss.base, headerCss.size[size]]}>
+            <Typography type="subTitle2">{title}</Typography>
 
-  return (
-    <div css={[backgroundBase, css({ backgroundColor })]} ref={backgroundRef}>
-      <div
-        ref={modalRef}
-        css={[modalCss.base, { backgroundColor: theme.colors.white.main }, modalCss.size[size]]}
-        className={className}
-      >
-        <section css={[headerCss.base, headerCss.size[size]]}>
-          <Typography type="subTitle2">{title}</Typography>
+            <IconAdornment onClick={handleModalClose}>
+              <OutlineCloseIcon width={16} height={16} color={theme.colors.black.lighter} />
+            </IconAdornment>
+          </section>
 
-          <IconAdornment onClick={handleModalClose}>
-            <OutlineCloseIcon />
-          </IconAdornment>
-        </section>
+          <hr
+            css={{
+              width: '100%',
+              margin: 0,
+              boxSizing: 'border-box',
+              borderTop: `1px solid ${theme.colors.gray.darker}`,
+            }}
+          />
 
-        <hr
-          css={{
-            width: '100%',
-            margin: 0,
-            boxSizing: 'border-box',
-            borderTop: `1px solid ${theme.colors.gray.darker}`,
-          }}
-        />
-
-        <section css={[childrenContainerCss, css({ color: theme.colors.black.lighter })]}>
-          {children}
-        </section>
-
-        <div css={[buttonCss.container.base, buttonCss.container.size[size]]}>
-          <Button
-            size={buttonSize}
-            variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
-            onClick={buttonOption.onClick}
-            css={{ ...buttonCss.button[size], ...buttonOption.buttonStyle }}
+          <section
+            css={{
+              flex: '1 1 0',
+              fontSize: 14,
+              fontWeight: 400,
+              color: theme.colors.black.lighter,
+            }}
           >
-            {buttonOption.label}
-          </Button>
+            {children}
+          </section>
 
-          {buttonOption.secondLabel && (
+          <div css={[buttonCss.container.base, buttonCss.container.size[size]]}>
             <Button
               size={buttonSize}
-              onClick={buttonOption.onSecondClick}
-              css={{ ...buttonCss.button[size], ...buttonOption.secondButtonStyle }}
+              variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
+              onClick={buttonOption.onClick}
+              css={{ ...buttonCss.button[size], ...buttonOption.buttonStyle }}
             >
-              {buttonOption.secondLabel}
+              {buttonOption.label}
             </Button>
-          )}
+
+            {buttonOption.secondLabel && (
+              <Button
+                size={buttonSize}
+                onClick={buttonOption.onSecondClick}
+                css={{ ...buttonCss.button[size], ...buttonOption.secondButtonStyle }}
+              >
+                {buttonOption.secondLabel}
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-    </div>
-  )
+      </Backdrop>
+    )
+  }
+
+  return <Fragment />
 }

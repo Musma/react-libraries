@@ -1,9 +1,9 @@
-import { CSSProperties, Fragment, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
-import { Typography } from 'src/components'
+import { Box, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as DoneDisabledLgIcon } from './images/done_disabled_lg.svg'
@@ -19,15 +19,13 @@ interface CheckboxProps {
   onChange?: (checked: boolean) => void
   disabled?: boolean
   label?: string
-  labelStyle?: CSSProperties
   size?: Size
 }
 
 export const Checkbox = ({
   id = uniqueId(),
   label,
-  labelStyle = {},
-  size = 'lg',
+  size = 'md',
   checked = false,
   onChange,
   disabled = false,
@@ -35,21 +33,49 @@ export const Checkbox = ({
 }: CheckboxProps) => {
   const theme = useTheme()
 
-  const containerColorCss = useMemo(() => {
+  const iconElement = useMemo(() => {
+    const disabledIcon = {
+      lg: <DoneDisabledLgIcon />,
+      md: <DoneDisabledMdIcon />,
+      sm: <DoneDisabledSmIcon />,
+    }
+
+    const activeIcon = {
+      lg: <DoneLgIcon />,
+      md: <DoneMdIcon />,
+      sm: <DoneSmIcon />,
+    }
+
     if (disabled) {
-      return css({ backgroundColor: theme.colors.white.lighter })
+      return disabledIcon[size]
     }
+
     if (checked) {
-      return css({ backgroundColor: theme.colors.green.main })
+      return activeIcon[size]
     }
-    return css({
-      backgroundColor: theme.colors.white.main,
-      border: `1px solid ${theme.colors.gray.darker}`,
-    })
-  }, [theme, checked, disabled])
+  }, [checked, disabled, size])
+
+  const labelElement = useMemo(() => {
+    if (size === 'sm') {
+      return (
+        <Typography css={css({ marginLeft: '4px' })} type="caption1">
+          {label}
+        </Typography>
+      )
+    }
+
+    return (
+      <Typography css={css({ marginLeft: '8px' })} type={size === 'lg' ? 'body2' : 'body3'}>
+        {label}
+      </Typography>
+    )
+  }, [size, label])
 
   return (
-    <label htmlFor={id} css={labelCss}>
+    <label
+      htmlFor={id}
+      css={{ display: 'flex', alignItems: 'center', cursor: disabled ? 'not-allowed' : 'pointer' }}
+    >
       <input
         id={id}
         type="checkbox"
@@ -57,81 +83,33 @@ export const Checkbox = ({
         onChange={(e) => {
           onChange && onChange(e.target.checked)
         }}
-        css={{ visibility: 'hidden', appearance: 'none' }}
+        hidden={true}
         disabled={disabled}
         {...rest}
       />
 
-      <div css={[containerCss.base, containerCss.size[size], containerColorCss]}>
-        <IconFactory checked={checked} disabled={disabled} size={size} />
-      </div>
+      <Box
+        css={[
+          {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            borderRadius: '2px',
+            backgroundColor: theme.colors.white.main,
+            border: `1px solid ${theme.colors.gray.darker}`,
+          },
+          size === 'sm' && { width: '14px', height: '14px' },
+          size === 'md' && { width: '16px', height: '16px' },
+          size === 'lg' && { width: '24px', height: '24px' },
+          checked && { backgroundColor: theme.colors.green.main },
+          disabled && { backgroundColor: theme.colors.white.lighter, cursor: 'not-allowed' },
+        ]}
+      >
+        {iconElement}
+      </Box>
 
-      {label && <LabelFactory label={label} size={size} labelStyle={labelStyle} />}
+      {labelElement}
     </label>
-  )
-}
-
-const labelCss = css({ display: 'flex', alignItems: 'center', cursor: 'pointer' })
-const containerCss = {
-  base: css({
-    cursor: 'pointer',
-    borderRadius: '2px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }),
-  size: {
-    lg: css({ width: '24px', height: '24px' }),
-    md: css({ width: '16px', height: '16px' }),
-    sm: css({ width: '14px', height: '14px' }),
-  },
-}
-interface IconFactoryProps {
-  checked: boolean
-  disabled: boolean
-  size: Size
-}
-
-const IconFactory = ({ checked, disabled, size }: IconFactoryProps) => {
-  if (disabled) {
-    return disabledIcon[size]
-  }
-
-  if (checked) {
-    return activeIcon[size]
-  }
-
-  return <Fragment />
-}
-const activeIcon = {
-  lg: <DoneLgIcon />,
-  md: <DoneMdIcon />,
-  sm: <DoneSmIcon />,
-}
-
-const disabledIcon = {
-  lg: <DoneDisabledLgIcon />,
-  md: <DoneDisabledMdIcon />,
-  sm: <DoneDisabledSmIcon />,
-}
-
-interface LabelFactoryProps {
-  size: Size
-  label: string
-  labelStyle: CSSProperties
-}
-
-const LabelFactory = ({ label, size }: LabelFactoryProps) => {
-  if (size !== 'sm') {
-    return (
-      <Typography css={css({ marginLeft: '8px' })} type={size === 'lg' ? 'body2' : 'body3'}>
-        {label}
-      </Typography>
-    )
-  }
-  return (
-    <Typography css={css({ marginLeft: '4px' })} type="caption1">
-      {label}
-    </Typography>
   )
 }

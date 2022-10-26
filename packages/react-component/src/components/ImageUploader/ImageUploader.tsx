@@ -21,7 +21,7 @@ interface ImageUploaderProps {
 
 export const ImageUploader = ({
   id = uniqueId(),
-  size = 'lg',
+  size = 'md',
   imgUrl,
   onChange,
 }: ImageUploaderProps) => {

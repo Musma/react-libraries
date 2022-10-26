@@ -14,6 +14,7 @@ interface BreadCrumbProps {
 
 export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
   const theme = useTheme()
+
   const isLast = useCallback(
     (index: number) => {
       return index === crumbs.length - 1

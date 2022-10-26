@@ -10,9 +10,11 @@ interface TabContainerProps extends PropsWithChildren {
 
 export const TabContainer = ({ children, defaultTab, variant = 'rect' }: TabContainerProps) => {
   const [currentTab, setCurrentTab] = useState<string | number>(defaultTab)
+
   const handleTabClick = useCallback((value: string | number) => {
     setCurrentTab(value)
   }, [])
+
   const value = useMemo(() => {
     return {
       variant,
@@ -20,6 +22,7 @@ export const TabContainer = ({ children, defaultTab, variant = 'rect' }: TabCont
       handleTabClick,
     }
   }, [currentTab, handleTabClick, variant])
+
   return (
     <div>
       <TabContext.Provider value={value}>{children}</TabContext.Provider>

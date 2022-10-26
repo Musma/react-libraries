@@ -7,6 +7,7 @@ import { useTabContext } from './TabContext'
 export const Tabs = ({ children }: PropsWithChildren) => {
   const theme = useTheme()
   const { variant } = useTabContext({ name: 'Tabs' })
+
   return (
     <ul
       css={[

@@ -8,5 +8,6 @@ interface PanelProps extends PropsWithChildren {
 
 export const TabPanel = ({ value, children }: PanelProps) => {
   const { currentTab } = useTabContext({ name: 'TabPanel' })
-  return value === currentTab ? <Fragment>{children}</Fragment> : <Fragment />
+
+  return <Fragment>{value === currentTab && children}</Fragment>
 }

@@ -1,6 +1,6 @@
 import { CSSProperties, PropsWithChildren } from 'react'
 
-import { Typography } from 'src/components'
+import { Box, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'
@@ -33,7 +33,7 @@ export const RadioButton = ({
   disabled = false,
 }: RadioButtonProps) => {
   return (
-    <div
+    <Box
       onClick={() => onChange(value)}
       css={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}
     >
@@ -41,7 +41,7 @@ export const RadioButton = ({
       <LabelFactory size={size} css={{ marginLeft: '4px', ...labelStyle }}>
         {label}
       </LabelFactory>
-    </div>
+    </Box>
   )
 }
 

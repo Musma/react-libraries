@@ -15,16 +15,20 @@ export const Divider = ({ orientation = 'horizontal', padding = 'md', ...rest }:
     <hr
       css={[
         { border: 0 },
-        orientation === 'horizontal'
-          ? { width: '100%', borderTop: `1px solid ${theme.colors.black.lighter}` }
-          : {
-              height: 'auto',
-              alignSelf: 'stretch',
-              width: '1px',
-              borderRight: `1px solid ${theme.colors.black.lighter}`,
-              marginLeft: theme.spacing[padding],
-              marginRight: theme.spacing[padding],
-            },
+        orientation === 'horizontal' && {
+          width: '100%',
+          borderTop: `1px solid ${theme.colors.black.lighter}`,
+          marginTop: theme.spacing[padding],
+          marginBottom: theme.spacing[padding],
+        },
+        orientation === 'vertical' && {
+          width: '1px',
+          height: 'auto',
+          alignSelf: 'stretch',
+          borderRight: `1px solid ${theme.colors.black.lighter}`,
+          marginLeft: theme.spacing[padding],
+          marginRight: theme.spacing[padding],
+        },
       ]}
       {...rest}
     />

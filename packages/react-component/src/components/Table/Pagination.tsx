@@ -44,7 +44,9 @@ export const Pagination = ({
 
   const getLeftEndPage = useCallback(
     (lastNumber: number) => {
-      if (totalPage <= pageCount) return 1
+      if (totalPage <= pageCount) {
+        return 1
+      }
       return lastNumber - (pageCount - 1)
     },
     [totalPage],

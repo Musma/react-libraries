@@ -11,18 +11,18 @@ export const IconAdornment = ({ noPadding = false, ...rest }: IconAdornmentProps
   return (
     <button
       css={{
-        padding: noPadding ? 0 : 4,
-        borderRadius: '50%',
-        userSelect: 'none',
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        cursor: 'pointer',
+        borderRadius: '50%',
+        padding: noPadding ? 0 : 4,
+        userSelect: 'none',
         outline: 0,
         border: 0,
+        cursor: 'pointer',
         backgroundColor: theme.colors.transparent,
         '&:hover': {
-          backgroundColor: theme.background.md,
+          backgroundColor: theme.buttonBackgroundColor,
         },
         '&:active': {
           transform: 'translateY(1px)',

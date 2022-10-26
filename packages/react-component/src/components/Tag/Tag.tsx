@@ -1,11 +1,11 @@
-import { CSSProperties, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
 import { Size } from 'src/types'
 
-import { ReactComponent as CloseIcon } from './images/close.svg' // import 순서 및 정렬해주세요.
+import { ReactComponent as CloseIcon } from './images/close.svg'
 
 interface TagProps {
   /**
@@ -17,7 +17,6 @@ interface TagProps {
   variant?: 'rectangle' | 'stadium'
   label: string
   className?: string
-  labelStyle?: CSSProperties
 }
 
 export const Tag = ({
@@ -27,7 +26,6 @@ export const Tag = ({
   variant = 'stadium',
   label,
   className = '',
-  labelStyle,
 }: TagProps) => {
   const theme = useTheme()
 
@@ -55,10 +53,7 @@ export const Tag = ({
       css={[tagBase, sizeCss[size], colorCss.container[color], variantCss[variant]]}
       className={className}
     >
-      <Typography
-        type={size === 'lg' ? 'caption1' : 'caption2'}
-        css={[colorCss.text[color], css({ ...labelStyle })]}
-      >
+      <Typography type={size === 'lg' ? 'caption1' : 'caption2'} css={colorCss.text[color]}>
         {label}
       </Typography>
       {onClose && (

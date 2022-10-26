@@ -142,6 +142,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
           </div>
         )
       }
+
       if (isCurrentMonth(index)) {
         const day = index + 1 - startDay
         return (
@@ -166,6 +167,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
           </div>
         )
       }
+
       if (isNextMonth(index)) {
         const nextMonthDay = index - (daysInMonth + startDay - 1)
         return (
@@ -184,6 +186,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         )
       }
     })
+
     function getColor(day: number) {
       if (isToday(day) && !isSelectedDay(day)) return theme.colors.white.main
       if (isSelectedDay(day)) return theme.colors.blue.main
@@ -212,6 +215,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
     theme,
     year,
   ])
+
   useEffect(() => {
     setStartDay(getStartDayOfMonth(year, month))
   }, [year, month])
@@ -283,7 +287,13 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
 }
 
 const containerCss = {
-  base: css({ borderRadius: '4px', zIndex: 9999, position: 'absolute', top: '100%' }),
+  base: css({
+    width: '100%',
+    borderRadius: '4px',
+    zIndex: 9999,
+    position: 'absolute',
+    top: 'calc(100% + 4px)',
+  }),
   size: {
     lg: css({ width: '200px' }),
     md: css({ width: '180px' }),

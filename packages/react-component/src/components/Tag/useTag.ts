@@ -12,6 +12,7 @@ import { useCallback, useMemo, useState } from 'react'
  */
 export function useTags(labels: string[]) {
   const [tagMap, setTagMap] = useState(new Map(labels.map((label) => [label, label])))
+
   const add = useCallback((tag: string) => {
     setTagMap((prev) => {
       const newTags = new Map(prev)
@@ -31,5 +32,6 @@ export function useTags(labels: string[]) {
   const tags = useMemo(() => {
     return Array.from(tagMap.values())
   }, [tagMap])
+
   return { tags, add, remove }
 }
