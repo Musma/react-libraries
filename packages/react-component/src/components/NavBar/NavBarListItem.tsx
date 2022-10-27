@@ -1,25 +1,23 @@
-import { ReactNode } from 'react'
+import { Link, LinkProps } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 
-import { Typography, Box } from 'src/components'
+import { Typography } from 'src/components'
 
-interface NavBarListItemProps {
+interface NavBarListItemProps extends LinkProps {
   active?: boolean
   activeColor: string
-  children?: ReactNode
-  onClick?: () => void
 }
 
 export const NavBarListItem = ({
   active = false,
-  children,
   activeColor,
-  onClick,
+  children,
+  ...rest
 }: NavBarListItemProps) => {
   const theme = useTheme()
   return (
-    <Box
+    <Link
       css={{
         display: 'flex',
         alignItems: 'center',
@@ -29,6 +27,7 @@ export const NavBarListItem = ({
         paddingLeft: 52,
         color: active ? activeColor : theme.colors.black.dark,
         margin: '4px 0px',
+        textDecoration: 'none',
         '&:hover': {
           color: activeColor,
         },
@@ -36,11 +35,11 @@ export const NavBarListItem = ({
           marginBottom: 0,
         },
       }}
-      onClick={onClick}
+      {...rest}
     >
       <Typography type={active ? 'subTitle2' : 'body3'} css={{ color: 'currentcolor' }}>
         {children}
       </Typography>
-    </Box>
+    </Link>
   )
 }

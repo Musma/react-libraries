@@ -1,17 +1,17 @@
-import { ReactNode, SVGProps } from 'react'
+import { SVGProps } from 'react'
+import { Link, LinkProps, To } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 import { OutlineArrowTopLargeIcon } from '@musma/react-icons'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { Typography, Box } from 'src/components'
+import { Typography } from 'src/components'
 
-interface NavBarListProps {
+interface NavBarListProps extends Omit<LinkProps, 'to'> {
   active?: boolean
   icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
   activeColor: string
-  children?: ReactNode
-  onClick?: () => void
+  to?: To
 }
 
 export const NavBarList = ({
@@ -19,11 +19,13 @@ export const NavBarList = ({
   children,
   activeColor,
   icon: Icon,
+  to = '/',
   onClick,
+  ...rest
 }: NavBarListProps) => {
   const theme = useTheme()
   return (
-    <Box
+    <Link
       css={{
         display: 'flex',
         alignItems: 'center',
@@ -34,26 +36,40 @@ export const NavBarList = ({
         paddingLeft: theme.spacing.sm,
         paddingRight: theme.spacing.sm,
         color: active ? activeColor : theme.colors.black.dark,
+        textDecoration: 'none',
         '&:hover': {
           backgroundColor: convertHexToRGB(activeColor, 0.1),
+          color: activeColor,
         },
       }}
-      onClick={onClick}
+      to={to}
+      onClick={(e) => {
+        if (!to) {
+          e.preventDefault()
+        }
+
+        if (onClick) {
+          onClick(e)
+        }
+      }}
+      {...rest}
     >
-      {Icon && <Icon color="currentColor" css={{ marginRight: theme.spacing.md }} />}
+      <Icon color="currentColor" width={16} height={16} css={{ marginRight: theme.spacing.md }} />
 
       <Typography type={active ? 'h6' : 'body2'} css={{ color: 'currentcolor' }}>
         {children}
       </Typography>
 
-      <OutlineArrowTopLargeIcon
-        color="currentColor"
-        css={{
-          marginLeft: 'auto',
-          transform: active ? 'rotate(180deg)' : 'rotate(0deg)',
-          transition: 'all 0.2s ease',
-        }}
-      />
-    </Box>
+      {!to && (
+        <OutlineArrowTopLargeIcon
+          color="currentColor"
+          css={{
+            marginLeft: 'auto',
+            transform: active ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'all 0.2s ease',
+          }}
+        />
+      )}
+    </Link>
   )
 }

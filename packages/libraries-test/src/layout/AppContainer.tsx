@@ -33,21 +33,36 @@ export const AppContainer = () => {
       }
       navBar={
         <NavBar>
-          <NavBarList icon={FillDashboardIcon} activeColor={'#dd9c4f'} active={true}>
+          <NavBarList icon={FillDashboardIcon} activeColor={'#dd9c4f'} active={true} to="/">
             ASKDAK
           </NavBarList>
 
-          <NavBarListItem activeColor={'#dd9c4f'} active={false}>
+          <NavBarListItem activeColor={'#dd9c4f'} active={false} to="/123123">
             ASKDAK
           </NavBarListItem>
 
-          <NavBarListItem activeColor={'#dd9c4f'} active={false}>
+          <NavBarListItem activeColor={'#dd9c4f'} active={false} to="123123">
             ASKDAK
           </NavBarListItem>
 
-          <NavBarListItem activeColor={'#dd9c4f'} active={false}>
+          <NavBarListItem activeColor={'#dd9c4f'} active={false} to="99898">
             ASKDAK
           </NavBarListItem>
+
+          <NavBarList icon={FillDashboardIcon} activeColor={'#dd9c4f'} active={true} to="/2222">
+            222222222
+          </NavBarList>
+
+          <NavBarList
+            icon={FillDashboardIcon}
+            activeColor={'#dd9c4f'}
+            active={false}
+            onClick={() => {
+              alert('1232131290830')
+            }}
+          >
+            222222222
+          </NavBarList>
         </NavBar>
       }
     >
