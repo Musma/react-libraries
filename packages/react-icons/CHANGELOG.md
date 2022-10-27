@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.7
+
+### Patch Changes
+
+- [`ff6ebf0`](https://github.com/Musma/react-libraries/commit/ff6ebf0224db88b55e35bb83e5a14ba5d4d3d758) Thanks [@jklasd2001](https://github.com/jklasd2001)! - OutlineMenu.svg 추가
+
 ## 0.1.6
 
 ### Patch Changes

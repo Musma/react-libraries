@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.7
+
+### Patch Changes
+
+- [`8d62940`](https://github.com/Musma/react-libraries/commit/8d6294098706faaa05b94efc535930220f5b860e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - TextInput forwardRef 추가 및 리팩토링
+
 ## 0.1.6
 
 ### Patch Changes
