@@ -7,6 +7,6 @@
     "baseUrl": "./",
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["**/*.ts", "**/*.tsx", "../react-utils/src/hooks/useEscKeyPress.ts"],
+  "include": ["**/*.ts", "**/*.tsx",],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

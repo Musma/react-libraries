@@ -157,7 +157,9 @@ export const Pagination = ({
                   cursor: 'pointer',
                   borderRadius: '9999px',
                 },
-                isCurrentPage(getPageNumber(index)) && { backgroundColor: theme.colors.blue.main },
+                isCurrentPage(getPageNumber(index)) && {
+                  backgroundColor: theme.colors.primary.main,
+                },
               ]}
             >
               <Typography

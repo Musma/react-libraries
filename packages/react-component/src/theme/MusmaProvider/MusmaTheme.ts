@@ -10,6 +10,21 @@ export interface MusmaTheme {
      * dark: '#025996',
      * darker: '#003E6A',
      */
+    primary: {
+      lighter: string
+      light: string
+      main: string
+      dark: string
+      darker: string
+    }
+    /**
+     * @default
+     * lighter: '#F2F8FB',
+     * light: '#118EE5',
+     * main: '#036DB7',
+     * dark: '#025996',
+     * darker: '#003E6A',
+     */
     blue: {
       lighter: string
       light: string

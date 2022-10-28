@@ -6,15 +6,9 @@ import { Typography } from 'src/components'
 
 interface NavBarListItemProps extends LinkProps {
   active?: boolean
-  activeColor: string
 }
 
-export const NavBarListItem = ({
-  active = false,
-  activeColor,
-  children,
-  ...rest
-}: NavBarListItemProps) => {
+export const NavBarListItem = ({ active = false, children, ...rest }: NavBarListItemProps) => {
   const theme = useTheme()
   return (
     <Link
@@ -24,12 +18,12 @@ export const NavBarListItem = ({
         cursor: 'pointer',
         height: 40,
         borderRadius: theme.rounded.lg,
-        paddingLeft: 52,
-        color: active ? activeColor : theme.colors.black.dark,
+        paddingLeft: 40,
+        color: active ? theme.colors.primary.main : theme.colors.black.dark,
         margin: '4px 0px',
         textDecoration: 'none',
         '&:hover': {
-          color: activeColor,
+          color: theme.colors.primary.main,
         },
         '&:last-of-type': {
           marginBottom: 0,

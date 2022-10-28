@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, CSSProperties } from 'react'
 
 import { useTheme } from '@emotion/react'
+import { convertHexToRGB } from '@musma/react-utils'
 
 import { Typography } from 'src/components'
 import { Size } from 'src/types'
@@ -18,12 +19,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({
   variant = 'contained',
   fullWidth = false,
-  labelStyle = {},
   size = 'md',
   disabled,
-  children,
   icon,
   className,
+  children,
   ...rest
 }: ButtonProps) => {
   const theme = useTheme()
@@ -35,9 +35,9 @@ export const Button = ({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          appearance: 'none',
           minWidth: 64,
           height: theme.inputSize[size],
+          appearance: 'none',
           border: 'none',
           borderRadius: theme.rounded.md,
           padding: theme.spacing.sm,
@@ -47,31 +47,22 @@ export const Button = ({
           },
         },
         variant === 'contained' && {
-          backgroundColor: theme.colors.blue.main,
+          backgroundColor: theme.colors.primary.main,
           '&:hover': {
-            backgroundColor: `${theme.colors.blue.main}E6`,
-          },
-          '&:active': {
-            backgroundColor: theme.colors.blue.dark,
+            backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.9),
           },
         },
         variant === 'outlined' && {
           backgroundColor: theme.colors.white.main,
-          border: `solid 1px ${theme.colors.blue.main}`,
+          border: `solid 1px ${theme.colors.primary.main}`,
           '&:hover': {
-            backgroundColor: theme.colors.blue.lighter,
-          },
-          '&:active': {
-            backgroundColor: theme.colors.white.main,
+            backgroundColor: theme.colors.primary.lighter,
           },
         },
         variant === 'danger' && {
           backgroundColor: theme.colors.red.main,
           '&:hover': {
-            backgroundColor: `${theme.colors.red.main}E6`,
-          },
-          '&:active': {
-            backgroundColor: theme.colors.red.dark,
+            backgroundColor: convertHexToRGB(theme.colors.red.main, 0.9),
           },
         },
         disabled && {
@@ -105,8 +96,7 @@ export const Button = ({
       <Typography
         css={[
           {
-            color: variant === 'outlined' ? theme.colors.blue.main : theme.colors.white.main,
-            ...labelStyle,
+            color: variant === 'outlined' ? theme.colors.primary.main : theme.colors.white.main,
           },
           disabled && { color: theme.colors.gray.main },
         ]}

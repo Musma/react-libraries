@@ -8,6 +8,13 @@ const breakpoints = {
 
 const DefaultTheme: MusmaTheme = {
   colors: {
+    primary: {
+      lighter: '#F2F8FB',
+      light: '#118EE5',
+      main: '#036DB7',
+      dark: '#025996',
+      darker: '#003E6A',
+    },
     blue: {
       lighter: '#F2F8FB',
       light: '#118EE5',

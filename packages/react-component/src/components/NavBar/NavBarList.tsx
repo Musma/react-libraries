@@ -10,16 +10,14 @@ import { Typography } from 'src/components'
 interface NavBarListProps extends Omit<LinkProps, 'to'> {
   active?: boolean
   icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
-  activeColor: string
   to?: To
 }
 
 export const NavBarList = ({
   active = false,
   children,
-  activeColor,
   icon: Icon,
-  to = '/',
+  to,
   onClick,
   ...rest
 }: NavBarListProps) => {
@@ -31,18 +29,20 @@ export const NavBarList = ({
         alignItems: 'center',
         cursor: 'pointer',
         height: 40,
-        backgroundColor: active ? convertHexToRGB(activeColor, 0.1) : theme.colors.transparent,
+        backgroundColor: active
+          ? convertHexToRGB(theme.colors.primary.main, 0.1)
+          : theme.colors.transparent,
         borderRadius: theme.rounded.lg,
         paddingLeft: theme.spacing.sm,
         paddingRight: theme.spacing.sm,
-        color: active ? activeColor : theme.colors.black.dark,
+        color: active ? theme.colors.primary.main : theme.colors.black.dark,
         textDecoration: 'none',
         '&:hover': {
-          backgroundColor: convertHexToRGB(activeColor, 0.1),
-          color: activeColor,
+          backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
+          color: theme.colors.primary.main,
         },
       }}
-      to={to}
+      to={to ?? '/'}
       onClick={(e) => {
         if (!to) {
           e.preventDefault()
@@ -60,7 +60,7 @@ export const NavBarList = ({
         {children}
       </Typography>
 
-      {!to && (
+      {to && (
         <OutlineArrowTopLargeIcon
           color="currentColor"
           css={{
