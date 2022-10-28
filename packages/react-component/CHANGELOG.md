@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.8
+
+### Patch Changes
+
+- [`ac1ff4d`](https://github.com/Musma/react-libraries/commit/ac1ff4d783c4a5b10c1a44c7200d588f0484f76c) Thanks [@jklasd2001](https://github.com/jklasd2001)! - MusmaTheme primary 색상 추가
+
 ## 0.1.7
 
 ### Patch Changes
