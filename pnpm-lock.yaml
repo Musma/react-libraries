@@ -7,32 +7,32 @@ importers:
       '@changesets/changelog-github': ^0.4.7
       '@changesets/cli': ^2.25.0
       '@musma/eslint-config-react': workspace:*
-      '@types/node': ^18.11.5
-      '@types/react': ^18.0.23
-      '@types/react-dom': ^18.0.7
-      '@vitejs/plugin-react': ^2.1.0
+      '@types/node': ^18.11.7
+      '@types/react': ^18.0.24
+      '@types/react-dom': ^18.0.8
+      '@vitejs/plugin-react': ^2.2.0
       path: ^0.12.7
       rollup-plugin-analyzer: ^4.0.0
       rollup-plugin-visualizer: ^5.8.3
       typescript: ^4.8.4
-      vite: ^3.1.8
+      vite: ^3.2.0
       vite-plugin-dts: ^1.6.6
       vite-plugin-svgr: ^2.2.2
     devDependencies:
       '@changesets/changelog-github': 0.4.7
       '@changesets/cli': 2.25.0
       '@musma/eslint-config-react': link:packages/eslint-config-react
-      '@types/node': 18.11.5
-      '@types/react': 18.0.23
-      '@types/react-dom': 18.0.7
-      '@vitejs/plugin-react': 2.1.0_vite@3.1.8
+      '@types/node': 18.11.7
+      '@types/react': 18.0.24
+      '@types/react-dom': 18.0.8
+      '@vitejs/plugin-react': 2.2.0_vite@3.2.0
       path: 0.12.7
       rollup-plugin-analyzer: 4.0.0
       rollup-plugin-visualizer: 5.8.3
       typescript: 4.8.4
-      vite: 3.1.8
-      vite-plugin-dts: 1.6.6_vite@3.1.8
-      vite-plugin-svgr: 2.2.2_vite@3.1.8
+      vite: 3.2.0
+      vite-plugin-dts: 1.6.6_vite@3.2.0
+      vite-plugin-svgr: 2.2.2_vite@3.2.0
 
   packages/eslint-config-react:
     specifiers:
@@ -62,9 +62,8 @@ importers:
 
   packages/libraries-test:
     specifiers:
-      '@emotion/babel-plugin': ^11.10.2
-      '@emotion/css': ^11.10.0
-      '@emotion/react': ^11.10.4
+      '@emotion/babel-plugin': ^11.10.5
+      '@emotion/react': ^11.10.5
       '@musma/react-component': workspace:*
       '@musma/react-icons': workspace:*
       '@musma/react-utils': workspace:*
@@ -78,9 +77,8 @@ importers:
     dependencies:
       react-router-dom: 6.4.2_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
-      '@emotion/babel-plugin': 11.10.2
-      '@emotion/css': 11.10.0
-      '@emotion/react': 11.10.4_react@17.0.2
+      '@emotion/babel-plugin': 11.10.5
+      '@emotion/react': 11.10.5_react@17.0.2
       '@musma/react-component': link:../react-component
       '@musma/react-icons': link:../react-icons
       '@musma/react-utils': link:../react-utils
@@ -94,9 +92,8 @@ importers:
   packages/react-component:
     specifiers:
       '@babel/core': ^7.19.6
-      '@emotion/babel-plugin': ^11.10.2
-      '@emotion/css': ^11.10.0
-      '@emotion/react': ^11.10.4
+      '@emotion/babel-plugin': ^11.10.5
+      '@emotion/react': ^11.10.5
       '@musma/react-icons': workspace:*
       '@musma/react-utils': workspace:*
       '@types/lodash-es': ^4.17.6
@@ -108,9 +105,8 @@ importers:
       react-router-dom: ^6.4.2
     devDependencies:
       '@babel/core': 7.19.6
-      '@emotion/babel-plugin': 11.10.2_@babel+core@7.19.6
-      '@emotion/css': 11.10.0_@babel+core@7.19.6
-      '@emotion/react': 11.10.4_suifg2tpibp7yrhp2co27vag4i
+      '@emotion/babel-plugin': 11.10.5_@babel+core@7.19.6
+      '@emotion/react': 11.10.5_suifg2tpibp7yrhp2co27vag4i
       '@musma/react-icons': link:../react-icons
       '@musma/react-utils': link:../react-utils
       '@types/lodash-es': 4.17.6
@@ -642,8 +638,8 @@ packages:
       prettier: 2.7.1
     dev: true
 
-  /@emotion/babel-plugin/11.10.2:
-    resolution: {integrity: sha512-xNQ57njWTFVfPAc3cjfuaPdsgLp5QOSuRsj9MA6ndEhH/AzuZM86qIQzt6rq+aGBwj3n5/TkLmU5lhAfdRmogA==}
+  /@emotion/babel-plugin/11.10.5:
+    resolution: {integrity: sha512-xE7/hyLHJac7D2Ve9dKroBBZqBT7WuPQmWcq7HSGb84sUuP4mlOWoB8dvVfD9yk5DHkU1m6RW7xSoDtnQHNQeA==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
@@ -652,17 +648,17 @@ packages:
       '@babel/runtime': 7.19.4
       '@emotion/hash': 0.9.0
       '@emotion/memoize': 0.8.0
-      '@emotion/serialize': 1.1.0
+      '@emotion/serialize': 1.1.1
       babel-plugin-macros: 3.1.0
       convert-source-map: 1.9.0
       escape-string-regexp: 4.0.0
       find-root: 1.1.0
       source-map: 0.5.7
-      stylis: 4.0.13
+      stylis: 4.1.3
     dev: true
 
-  /@emotion/babel-plugin/11.10.2_@babel+core@7.19.6:
-    resolution: {integrity: sha512-xNQ57njWTFVfPAc3cjfuaPdsgLp5QOSuRsj9MA6ndEhH/AzuZM86qIQzt6rq+aGBwj3n5/TkLmU5lhAfdRmogA==}
+  /@emotion/babel-plugin/11.10.5_@babel+core@7.19.6:
+    resolution: {integrity: sha512-xE7/hyLHJac7D2Ve9dKroBBZqBT7WuPQmWcq7HSGb84sUuP4mlOWoB8dvVfD9yk5DHkU1m6RW7xSoDtnQHNQeA==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
@@ -672,54 +668,23 @@ packages:
       '@babel/runtime': 7.19.4
       '@emotion/hash': 0.9.0
       '@emotion/memoize': 0.8.0
-      '@emotion/serialize': 1.1.0
+      '@emotion/serialize': 1.1.1
       babel-plugin-macros: 3.1.0
       convert-source-map: 1.9.0
       escape-string-regexp: 4.0.0
       find-root: 1.1.0
       source-map: 0.5.7
-      stylis: 4.0.13
+      stylis: 4.1.3
     dev: true
 
-  /@emotion/cache/11.10.3:
-    resolution: {integrity: sha512-Psmp/7ovAa8appWh3g51goxu/z3iVms7JXOreq136D8Bbn6dYraPnmL6mdM8GThEx9vwSn92Fz+mGSjBzN8UPQ==}
+  /@emotion/cache/11.10.5:
+    resolution: {integrity: sha512-dGYHWyzTdmK+f2+EnIGBpkz1lKc4Zbj2KHd4cX3Wi8/OWr5pKslNjc3yABKH4adRGCvSX4VDC0i04mrrq0aiRA==}
     dependencies:
       '@emotion/memoize': 0.8.0
-      '@emotion/sheet': 1.2.0
+      '@emotion/sheet': 1.2.1
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
-      stylis: 4.0.13
-    dev: true
-
-  /@emotion/css/11.10.0:
-    resolution: {integrity: sha512-dH9f+kSCucc8ilMg0MUA1AemabcyzYpe5EKX24F528PJjD7HyIY/VBNJHxfUdc8l400h2ncAjR6yEDu+DBj2cg==}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-    dependencies:
-      '@emotion/babel-plugin': 11.10.2
-      '@emotion/cache': 11.10.3
-      '@emotion/serialize': 1.1.0
-      '@emotion/sheet': 1.2.0
-      '@emotion/utils': 1.2.0
-    dev: true
-
-  /@emotion/css/11.10.0_@babel+core@7.19.6:
-    resolution: {integrity: sha512-dH9f+kSCucc8ilMg0MUA1AemabcyzYpe5EKX24F528PJjD7HyIY/VBNJHxfUdc8l400h2ncAjR6yEDu+DBj2cg==}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-    dependencies:
-      '@babel/core': 7.19.6
-      '@emotion/babel-plugin': 11.10.2_@babel+core@7.19.6
-      '@emotion/cache': 11.10.3
-      '@emotion/serialize': 1.1.0
-      '@emotion/sheet': 1.2.0
-      '@emotion/utils': 1.2.0
+      stylis: 4.1.3
     dev: true
 
   /@emotion/hash/0.9.0:
@@ -730,8 +695,8 @@ packages:
     resolution: {integrity: sha512-G/YwXTkv7Den9mXDO7AhLWkE3q+I92B+VqAE+dYG4NGPaHZGvt3G8Q0p9vmE+sq7rTGphUbAvmQ9YpbfMQGGlA==}
     dev: true
 
-  /@emotion/react/11.10.4_react@17.0.2:
-    resolution: {integrity: sha512-j0AkMpr6BL8gldJZ6XQsQ8DnS9TxEQu1R+OGmDZiWjBAJtCcbt0tS3I/YffoqHXxH6MjgI7KdMbYKw3MEiU9eA==}
+  /@emotion/react/11.10.5_react@17.0.2:
+    resolution: {integrity: sha512-TZs6235tCJ/7iF6/rvTaOH4oxQg2gMAcdHemjwLKIjKz4rRuYe1HJ2TQJKnAcRAfOUDdU8XoDadCe1rl72iv8A==}
     peerDependencies:
       '@babel/core': ^7.0.0
       '@types/react': '*'
@@ -743,9 +708,9 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.19.4
-      '@emotion/babel-plugin': 11.10.2
-      '@emotion/cache': 11.10.3
-      '@emotion/serialize': 1.1.0
+      '@emotion/babel-plugin': 11.10.5
+      '@emotion/cache': 11.10.5
+      '@emotion/serialize': 1.1.1
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.0_react@17.0.2
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
@@ -753,8 +718,8 @@ packages:
       react: 17.0.2
     dev: true
 
-  /@emotion/react/11.10.4_suifg2tpibp7yrhp2co27vag4i:
-    resolution: {integrity: sha512-j0AkMpr6BL8gldJZ6XQsQ8DnS9TxEQu1R+OGmDZiWjBAJtCcbt0tS3I/YffoqHXxH6MjgI7KdMbYKw3MEiU9eA==}
+  /@emotion/react/11.10.5_suifg2tpibp7yrhp2co27vag4i:
+    resolution: {integrity: sha512-TZs6235tCJ/7iF6/rvTaOH4oxQg2gMAcdHemjwLKIjKz4rRuYe1HJ2TQJKnAcRAfOUDdU8XoDadCe1rl72iv8A==}
     peerDependencies:
       '@babel/core': ^7.0.0
       '@types/react': '*'
@@ -767,9 +732,9 @@ packages:
     dependencies:
       '@babel/core': 7.19.6
       '@babel/runtime': 7.19.4
-      '@emotion/babel-plugin': 11.10.2_@babel+core@7.19.6
-      '@emotion/cache': 11.10.3
-      '@emotion/serialize': 1.1.0
+      '@emotion/babel-plugin': 11.10.5_@babel+core@7.19.6
+      '@emotion/cache': 11.10.5
+      '@emotion/serialize': 1.1.1
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.0_react@17.0.2
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
@@ -777,8 +742,8 @@ packages:
       react: 17.0.2
     dev: true
 
-  /@emotion/serialize/1.1.0:
-    resolution: {integrity: sha512-F1ZZZW51T/fx+wKbVlwsfchr5q97iW8brAnXmsskz4d0hVB4O3M/SiA3SaeH06x02lSNzkkQv+n3AX3kCXKSFA==}
+  /@emotion/serialize/1.1.1:
+    resolution: {integrity: sha512-Zl/0LFggN7+L1liljxXdsVSVlg6E/Z/olVWpfxUTxOAmi8NU7YoeWeLfi1RmnB2TATHoaWwIBRoL+FvAJiTUQA==}
     dependencies:
       '@emotion/hash': 0.9.0
       '@emotion/memoize': 0.8.0
@@ -787,8 +752,8 @@ packages:
       csstype: 3.1.1
     dev: true
 
-  /@emotion/sheet/1.2.0:
-    resolution: {integrity: sha512-OiTkRgpxescko+M51tZsMq7Puu/KP55wMT8BgpcXVG2hqXc0Vo0mfymJ/Uj24Hp0i083ji/o0aLddh08UEjq8w==}
+  /@emotion/sheet/1.2.1:
+    resolution: {integrity: sha512-zxRBwl93sHMsOj4zs+OslQKg/uhF38MB+OMKoCrVuS0nyTkqnau+BM3WGEoOptg9Oz45T/aIGs1qbVAsEFo3nA==}
     dev: true
 
   /@emotion/unitless/0.8.0:
@@ -1268,8 +1233,8 @@ packages:
     resolution: {integrity: sha512-yxDeaQIAJlMav7fH5AQqPH1u8YIuhYJXYBzxaQ4PifsU0GDO38MSdmEDeRlIxrKbC6NbEaaEHDanWb+y30U8SQ==}
     dev: true
 
-  /@types/node/18.11.5:
-    resolution: {integrity: sha512-3JRwhbjI+cHLAkUorhf8RnqUbFXajvzX4q6fMn5JwkgtuwfYtRQYI3u4V92vI6NJuTsbBQWWh3RZjFsuevyMGQ==}
+  /@types/node/18.11.7:
+    resolution: {integrity: sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1284,14 +1249,14 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react-dom/18.0.7:
-    resolution: {integrity: sha512-HaXc+BbqAZE1RdsK3tC8SbkFy6UL2xF76lT9rQs5JkPrJg3rWA3Ou/Lhw3YJQzEDkBpmJ79nBsfnd05WrBd2QQ==}
+  /@types/react-dom/18.0.8:
+    resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
     dependencies:
-      '@types/react': 18.0.23
+      '@types/react': 18.0.24
     dev: true
 
-  /@types/react/18.0.23:
-    resolution: {integrity: sha512-R1wTULtCiJkudAN2DJGoYYySbGtOdzZyUWAACYinKdiQC8auxso4kLDUhQ7AJ2kh3F6A6z4v69U6tNY39hihVQ==}
+  /@types/react/18.0.24:
+    resolution: {integrity: sha512-wRJWT6ouziGUy+9uX0aW4YOJxAY0bG6/AOk5AW5QSvZqI7dk6VBIbXvcVgIw/W5Jrl24f77df98GEKTJGOLx7Q==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -1434,8 +1399,8 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: false
 
-  /@vitejs/plugin-react/2.1.0_vite@3.1.8:
-    resolution: {integrity: sha512-am6rPyyU3LzUYne3Gd9oj9c4Rzbq5hQnuGXSMT6Gujq45Il/+bunwq3lrB7wghLkiF45ygMwft37vgJ/NE8IAA==}
+  /@vitejs/plugin-react/2.2.0_vite@3.2.0:
+    resolution: {integrity: sha512-FFpefhvExd1toVRlokZgxgy2JtnBOdp4ZDsq7ldCWaqGSGn9UhWMAVm/1lxPL14JfNS5yGz+s9yFrQY6shoStA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
@@ -1447,7 +1412,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.19.6
       magic-string: 0.26.7
       react-refresh: 0.14.0
-      vite: 3.1.8
+      vite: 3.2.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3810,8 +3775,8 @@ packages:
       yargs: 17.6.0
     dev: true
 
-  /rollup/2.78.1:
-    resolution: {integrity: sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==}
+  /rollup/2.79.1:
+    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -4047,8 +4012,8 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  /stylis/4.0.13:
-    resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}
+  /stylis/4.1.3:
+    resolution: {integrity: sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==}
     dev: true
 
   /supports-color/5.5.0:
@@ -4274,7 +4239,7 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vite-plugin-dts/1.6.6_vite@3.1.8:
+  /vite-plugin-dts/1.6.6_vite@3.2.0:
     resolution: {integrity: sha512-XEZQlcAN5Bi1PWL0l/E08cI3VpjTCWY5x7C4/bVyC7lpS+/q9CDBCV8gGsqV97/g34N7gNNRNhqs8r0m6JAmIQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -4287,32 +4252,33 @@ packages:
       fs-extra: 10.1.0
       kolorist: 1.6.0
       ts-morph: 16.0.0
-      vite: 3.1.8
+      vite: 3.2.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-svgr/2.2.2_vite@3.1.8:
+  /vite-plugin-svgr/2.2.2_vite@3.2.0:
     resolution: {integrity: sha512-u8Ac27uZmDHTVGawpAhvLMJMuzbGeZGhe61TGeHoRQLxVhmQfIYCefa0iLbjC0ui1zFo6XZnS8EkzPITCYp85g==}
     peerDependencies:
       vite: ^2.6.0 || 3
     dependencies:
       '@rollup/pluginutils': 5.0.1
       '@svgr/core': 6.5.0
-      vite: 3.1.8
+      vite: 3.2.0
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
 
-  /vite/3.1.8:
-    resolution: {integrity: sha512-m7jJe3nufUbuOfotkntGFupinL/fmuTNuQmiVE7cH2IZMuf4UbfbGYMUT3jVWgGYuRVLY9j8NnrRqgw5rr5QTg==}
+  /vite/3.2.0:
+    resolution: {integrity: sha512-Ovj7+cqIdM1I0LPCk2CWxzgADXMix3NLXpUT6g7P7zg/a9grk/TaC3qn9YMg7w7M0POIVCBOp1aBANJW+RH7oA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
       less: '*'
       sass: '*'
       stylus: '*'
+      sugarss: '*'
       terser: ^5.4.0
     peerDependenciesMeta:
       less:
@@ -4321,13 +4287,15 @@ packages:
         optional: true
       stylus:
         optional: true
+      sugarss:
+        optional: true
       terser:
         optional: true
     dependencies:
       esbuild: 0.15.12
       postcss: 8.4.18
       resolve: 1.22.1
-      rollup: 2.78.1
+      rollup: 2.79.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true

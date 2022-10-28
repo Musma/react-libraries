@@ -25,9 +25,8 @@
     "dev": "vite"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.10.2",
-    "@emotion/css": "^11.10.0",
-    "@emotion/react": "^11.10.4",
+    "@emotion/babel-plugin": "^11.10.5",
+    "@emotion/react": "^11.10.5",
     "@musma/react-component": "workspace:*",
     "@musma/react-icons": "workspace:*",
     "@musma/react-utils": "workspace:*",
