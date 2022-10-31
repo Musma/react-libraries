@@ -74,7 +74,7 @@ const DefaultTheme: MusmaTheme = {
   inputSize: {
     sm: 28,
     md: 32,
-    lg: 44,
+    lg: 36,
   },
   shadow: {
     sm: '0px 4px 4px 4px rgba(0, 0, 0, 0.02)',

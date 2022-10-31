@@ -128,7 +128,6 @@ export const Pagination = ({
           { label: '25', value: '25' },
         ]}
         onChange={(value) => handleLimitChange(Number(value))}
-        inputStyle={{ width: '67px' }}
       />
 
       <IconAdornment onClick={handleFirstClick} noPadding={true} disabled={currentPage === 1}>

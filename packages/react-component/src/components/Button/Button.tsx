@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, CSSProperties } from 'react'
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { Typography } from 'src/components'
+import { ButtonBase, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ButtonVariant } from './types'
@@ -22,29 +22,21 @@ export const Button = ({
   size = 'md',
   disabled,
   icon,
-  className,
   children,
   ...rest
 }: ButtonProps) => {
   const theme = useTheme()
 
   return (
-    <button
+    <ButtonBase
       css={[
         {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minWidth: 64,
           height: theme.inputSize[size],
-          appearance: 'none',
-          border: 'none',
           borderRadius: theme.rounded.md,
           padding: theme.spacing.sm,
-          cursor: 'pointer',
-          '&:active': {
-            transform: 'translateY(1px)',
-          },
         },
         variant === 'contained' && {
           backgroundColor: theme.colors.primary.main,
@@ -78,7 +70,6 @@ export const Button = ({
         fullWidth && { width: '100%' },
       ]}
       disabled={disabled}
-      className={className}
       {...rest}
     >
       {icon && (
@@ -104,6 +95,6 @@ export const Button = ({
       >
         {children}
       </Typography>
-    </button>
+    </ButtonBase>
   )
 }

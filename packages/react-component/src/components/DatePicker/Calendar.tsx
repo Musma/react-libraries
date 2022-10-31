@@ -1,19 +1,20 @@
-import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
+import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
+import {
+  OutlineArrowFirstLargeIcon,
+  OutlineArrowFirstMediumIcon,
+  OutlineArrowLastLargeIcon,
+  OutlineArrowLastMediumIcon,
+  OutlineArrowLeftLargeIcon,
+  OutlineArrowLeftMediumIcon,
+  OutlineArrowRightLargeIcon,
+  OutlineArrowRightMediumIcon,
+} from '@musma/react-icons'
 import { DateTime } from 'luxon'
 
-import { Typography } from 'src/components'
+import { Box, IconAdornment, Typography } from 'src/components'
 import { Size } from 'src/types'
-
-import { ReactComponent as ArrowDoubleLeft } from './images/arrow_double_left.svg'
-import { ReactComponent as SmArrowDoubleLeft } from './images/arrow_double_left_sm.svg'
-import { ReactComponent as ArrowDoubleRight } from './images/arrow_double_right.svg'
-import { ReactComponent as SmArrowDobuleRight } from './images/arrow_double_right_sm.svg'
-import { ReactComponent as ArrowLeft } from './images/arrow_left.svg'
-import { ReactComponent as SmArrowLeft } from './images/arrow_left_sm.svg'
-import { ReactComponent as ArrowRight } from './images/arrow_right.svg'
-import { ReactComponent as SmArrowRight } from './images/arrow_right_sm.svg'
 
 interface CalendarProps {
   size: Size
@@ -21,23 +22,12 @@ interface CalendarProps {
   handleSelectDay: (y: number, m: number, d: number) => void
 }
 
+const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
   const theme = useTheme()
-  const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-  const MONTHS = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
 
   const [year, setYear] = useState(DateTime.local().year)
   const [month, setMonth] = useState(DateTime.local().month)
@@ -103,23 +93,6 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
     [date, month, year],
   )
 
-  const dayCss = useMemo(() => {
-    return {
-      base: css({
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '1px',
-      }),
-      size: {
-        sm: css({ height: '18px' }),
-        md: css({ height: '25px' }),
-        lg: css({ height: '25px' }),
-      },
-    }
-  }, [])
-
   const createSlots = useCallback(() => {
     const daysInMonth = DateTime.local(year, month).daysInMonth
     const length = daysInMonth + startDay > 35 ? 42 : 35
@@ -128,9 +101,20 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         const prevMonthDay =
           DateTime.local(year, getPrevMonth()).daysInMonth - (startDay - 1) + index
         return (
-          <div
+          <Box
             key={index}
-            css={[(dayCss.base, dayCss.size[size])]}
+            css={[
+              {
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '1px',
+              },
+              size === 'sm' && { height: 18 },
+              size === 'md' && { height: 25 },
+              size === 'lg' && { height: 25 },
+            ]}
             onClick={() => handleSelectPrevMonthDay(prevMonthDay)}
           >
             <Typography
@@ -139,18 +123,26 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             >
               {prevMonthDay}
             </Typography>
-          </div>
+          </Box>
         )
       }
 
       if (isCurrentMonth(index)) {
         const day = index + 1 - startDay
         return (
-          <div
+          <Box
             key={index}
             css={[
-              dayCss.base,
-              dayCss.size[size],
+              {
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '1px',
+              },
+              size === 'sm' && { height: 18 },
+              size === 'md' && { height: 25 },
+              size === 'lg' && { height: 25 },
               isToday(day) && !isSelectedDay(day)
                 ? { backgroundColor: theme.colors.blue.main }
                 : {},
@@ -164,7 +156,7 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             >
               {day}
             </Typography>
-          </div>
+          </Box>
         )
       }
 
@@ -173,7 +165,18 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
         return (
           <div
             key={index}
-            css={[dayCss.base, dayCss.size[size]]}
+            css={[
+              {
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '1px',
+              },
+              size === 'sm' && { height: 18 },
+              size === 'md' && { height: 25 },
+              size === 'lg' && { height: 25 },
+            ]}
             onClick={() => handleSelectNextMonthDay(nextMonthDay)}
           >
             <Typography
@@ -202,7 +205,6 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
       return index >= startDay + daysInMonth
     }
   }, [
-    dayCss,
     getPrevMonth,
     handleDayClick,
     handleSelectNextMonthDay,
@@ -221,52 +223,82 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
   }, [year, month])
 
   useEffect(() => {
-    if (!date) return
+    if (!date) {
+      return
+    }
+
     setYear(date.year)
     setMonth(date.month)
   }, [date])
 
   return (
-    <div
+    <Box
       css={[
-        containerCss.base,
-        containerCss.size[size],
         {
+          width: '100%',
+          borderRadius: '4px',
+          zIndex: theme.zIndex.navBar + 1,
+          position: 'absolute',
+          top: 'calc(100% + 4px)',
           border: `1px solid ${theme.colors.gray.darker}`,
           backgroundColor: theme.colors.white.main,
         },
       ]}
     >
-      <div
+      <Box
         css={[
-          sencondContainerCss.base,
-          sencondContainerCss.size[size],
-          { borderBottom: `1px solid ${theme.colors.white.dark}` },
+          {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderBottom: `1px solid ${theme.colors.white.dark}`,
+          },
+          size === 'sm' && { height: 24 },
+          size === 'md' && { height: 34 },
+          size === 'lg' && { height: 34 },
         ]}
       >
-        <div css={{ display: 'flex', alignItems: 'center' }}>
-          <span css={{ cursor: 'pointer' }} onClick={() => setYear(year - 1)}>
-            {size === 'sm' ? <SmArrowDoubleLeft /> : <ArrowDoubleLeft />}
-          </span>
-          <span css={{ cursor: 'pointer' }} onClick={handlePrevMonthClick}>
-            {size === 'sm' ? <SmArrowLeft /> : <ArrowLeft />}
-          </span>
-        </div>
+        <Box css={{ display: 'flex', alignItems: 'center' }}>
+          <IconAdornment onClick={() => setYear(year - 1)}>
+            {size === 'sm' ? <OutlineArrowFirstMediumIcon /> : <OutlineArrowFirstLargeIcon />}
+          </IconAdornment>
+
+          <IconAdornment onClick={handlePrevMonthClick}>
+            {size === 'sm' ? <OutlineArrowLeftMediumIcon /> : <OutlineArrowLeftLargeIcon />}
+          </IconAdornment>
+        </Box>
+
         <MonthAndYear size={size}>
           {MONTHS[month - 1]} {year}
         </MonthAndYear>
-        <div css={{ display: 'flex', alignItems: 'center' }}>
-          <span css={{ cursor: 'pointer' }} onClick={handleNextMonthClick}>
-            {size === 'sm' ? <SmArrowRight /> : <ArrowRight />}
-          </span>
-          <span css={{ cursor: 'pointer' }} onClick={() => setYear(year + 1)}>
-            {size === 'sm' ? <SmArrowDobuleRight /> : <ArrowDoubleRight />}
-          </span>
-        </div>
-      </div>
-      <div css={[slotContainerCss.base, slotContainerCss.columnGap[size]]}>
+
+        <Box css={{ display: 'flex', alignItems: 'center' }}>
+          <IconAdornment onClick={handleNextMonthClick}>
+            {size === 'sm' ? <OutlineArrowRightMediumIcon /> : <OutlineArrowRightLargeIcon />}
+          </IconAdornment>
+
+          <IconAdornment onClick={() => setYear(year + 1)}>
+            {size === 'sm' ? <OutlineArrowLastMediumIcon /> : <OutlineArrowLastLargeIcon />}
+          </IconAdornment>
+        </Box>
+      </Box>
+
+      <Box
+        css={[
+          {
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
+            rowGap: '4px',
+            padding: '8px',
+          },
+          size === 'sm' && { gap: 4 },
+          size === 'md' && { gap: 8 },
+          size === 'lg' && { gap: 8 },
+        ]}
+      >
         {DAYS_OF_THE_WEEK.map((d) => (
-          <div
+          <Box
             key={d}
             css={{
               display: 'flex',
@@ -278,49 +310,12 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
             <DayOfTheWeek key={d} size={size}>
               {d}
             </DayOfTheWeek>
-          </div>
+          </Box>
         ))}
         {createSlots()}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
-}
-
-const containerCss = {
-  base: css({
-    width: '100%',
-    borderRadius: '4px',
-    zIndex: 9999,
-    position: 'absolute',
-    top: 'calc(100% + 4px)',
-  }),
-  size: {
-    lg: css({ width: '200px' }),
-    md: css({ width: '180px' }),
-    sm: css({ width: '148px' }),
-  },
-}
-const sencondContainerCss = {
-  base: css({ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }),
-  size: {
-    sm: css({ height: '24px' }),
-    md: css({ height: '34px' }),
-    lg: css({ height: '34px' }),
-  },
-}
-const slotContainerCss = {
-  base: css({
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
-    rowGap: '4px',
-    padding: '8px',
-  }),
-  columnGap: {
-    sm: css({ columnGap: '4px' }),
-    md: css({ columnGap: '8px' }),
-    lg: css({ columnGap: '8px' }),
-  },
 }
 
 interface TypoProps {

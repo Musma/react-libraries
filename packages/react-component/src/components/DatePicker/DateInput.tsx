@@ -1,21 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { css, useTheme } from '@emotion/react'
+import { FillCalendarIcon } from '@musma/react-icons'
 import { DateTime } from 'luxon'
 
-import { Box } from 'src/components'
+import { Box, IconAdornment, InputBase } from 'src/components'
 import { Size } from 'src/types'
 
-import { ReactComponent as LgCalendarIcon } from './images/calendar_lg.svg'
-import { ReactComponent as SmCalendarIcon } from './images/calendar_sm.svg'
-
-const inputContainerCss = {
-  size: {
-    sm: css({ fontSize: '12px', lineHeight: '16px', height: '24px', width: '148px' }),
-    md: css({ fontSize: '14px', lineHeight: '20px', height: '28px', width: '180px' }),
-    lg: css({ fontSize: '14px', lineHeight: '20px', height: '32px', width: '200px' }),
-  },
-}
 const iconContainerCss = {
   position: {
     lg: css({ top: '8px' }),
@@ -31,6 +22,7 @@ interface DateInputProps {
   clearDate: () => void
   handleSelectDay: (y: number, m: number, d: number) => void
 }
+
 export const DateInput = ({
   size,
   toggleIsOpen,
@@ -124,20 +116,20 @@ export const DateInput = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderRadius: '4px',
+            borderRadius: theme.rounded.md,
             border: `1px solid ${theme.colors.gray.darker}`,
-            paddingLeft: '8px',
-            outline: 'none',
+            paddingLeft: theme.spacing.sm,
+            fontSize: size === 'lg' ? 14 : 12,
+            height: theme.inputSize[size],
             '&:focus': {
               border: `1px solid ${theme.colors.blue.main}`,
             },
           },
-          inputContainerCss.size[size],
           isError && { border: `1px solid ${theme.colors.red.main}` },
         ]}
       >
         <Box css={{ display: 'flex' }}>
-          <input
+          <InputBase
             placeholder="YYYY"
             onClick={(e) => e.stopPropagation()}
             value={year}
@@ -159,7 +151,7 @@ export const DateInput = ({
             }}
           />
           -
-          <input
+          <InputBase
             placeholder="MM"
             onClick={(e) => e.stopPropagation()}
             value={month}
@@ -181,7 +173,7 @@ export const DateInput = ({
             }}
           />
           -
-          <input
+          <InputBase
             placeholder="DD"
             onClick={(e) => e.stopPropagation()}
             value={day}
@@ -203,10 +195,11 @@ export const DateInput = ({
             ]}
           />
         </Box>
+
         <Box css={[{ marginRight: '8px' }, iconContainerCss.position[size]]}>
-          <span onClick={toggleIsOpen}>
-            {size === 'sm' ? <SmCalendarIcon /> : <LgCalendarIcon />}
-          </span>
+          <IconAdornment onClick={toggleIsOpen}>
+            <FillCalendarIcon width={16} height={16} />
+          </IconAdornment>
         </Box>
       </Box>
     </Box>

@@ -30,9 +30,9 @@ export default defineConfig({
       },
     },
   },
-  esbuild: {
-    logOverride: { 'this-is-undefined-in-esm': 'silent' },
-  },
+  // esbuild: {
+  //   logOverride: { 'this-is-undefined-in-esm': 'silent' },
+  // },
   plugins: [
     visualizer({ open: false }),
     svgr(),

@@ -2,6 +2,7 @@ import { ButtonHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
+import { ButtonBase } from 'src/components'
 import { Size } from 'src/types'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,7 +20,7 @@ export const IconButton = ({
   const theme = useTheme()
 
   return (
-    <button
+    <ButtonBase
       css={[
         {
           display: 'flex',
@@ -27,14 +28,7 @@ export const IconButton = ({
           justifyContent: 'center',
           width: theme.inputSize[size],
           height: theme.inputSize[size],
-          cursor: 'pointer',
-          borderRadius: '4px',
-          appearance: 'none',
-          outline: 'none',
-          border: 'none',
-          '&:active': {
-            transform: 'translateY(1px)',
-          },
+          borderRadius: theme.rounded.md,
           '&:disabled': {
             backgroundColor: theme.colors.white.lighter,
             cursor: 'not-allowed',

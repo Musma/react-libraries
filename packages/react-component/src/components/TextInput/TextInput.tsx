@@ -1,16 +1,16 @@
-import { forwardRef, ReactNode, useCallback, useState } from 'react'
+import { forwardRef, InputHTMLAttributes, ReactNode, useCallback, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineEyeCloseIcon, OutlineEyeIcon } from '@musma/react-icons'
 
-import { Box, IconAdornment, Typography } from 'src/components'
+import { Box, IconAdornment, InputBase, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 import { ReactComponent as InvalidIcon } from './images/invalid.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 export interface TextInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   type?: 'text' | 'password'
   size?: Size
   label?: string
@@ -69,22 +69,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               paddingLeft: theme.spacing.sm,
               paddingRight: theme.spacing.sm,
               overflow: 'hidden',
+              boxSizing: 'border-box',
+              fontSize: size === 'lg' ? 14 : 12,
+              height: theme.inputSize[size],
               '&:focus-within': {
                 borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
                 boxShadow: theme.shadow.md,
               },
-            },
-            size === 'sm' && {
-              fontSize: 12,
-              height: theme.inputSize.sm,
-            },
-            size === 'md' && {
-              fontSize: 12,
-              height: theme.inputSize.md,
-            },
-            size === 'lg' && {
-              fontSize: 14,
-              height: theme.inputSize.lg,
             },
             // Disabled CSS
             disabled && {
@@ -97,16 +88,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           {startAdornment}
 
           {/* Input */}
-          <input
+          <InputBase
             id={id}
             type={type}
             ref={ref}
             css={{
               flex: 1,
               height: '100%',
-              border: 'none',
-              appearance: 'none',
-              outline: 'none',
               paddingLeft: startAdornment ? theme.spacing.sm : 0,
               paddingRight: endAdornment ? theme.spacing.sm : 0,
               '&:disabled': {

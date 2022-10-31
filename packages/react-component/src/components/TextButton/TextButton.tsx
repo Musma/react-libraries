@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Typography } from 'src/components'
+import { ButtonBase, Typography } from 'src/components'
 import { Size } from 'src/types'
 
 interface TextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,22 +18,14 @@ export const TextButton = ({
 }: TextButtonProps) => {
   const theme = useTheme()
   return (
-    <button
+    <ButtonBase
       css={[
         {
-          minWidth: 64,
-          border: 'none',
-          appearance: 'none',
-          outline: 'none',
-          cursor: 'pointer',
           height: theme.inputSize[size],
           backgroundColor: theme.colors.transparent,
           '&:hover': {
             borderRadius: theme.rounded.md,
             backgroundColor: theme.buttonBackgroundColor,
-          },
-          '&:active': {
-            transform: 'translateY(1px)',
           },
         },
         fullWidth && { width: '100%' },
@@ -41,6 +33,6 @@ export const TextButton = ({
       {...rest}
     >
       <Typography type={size === 'lg' ? 'body3' : 'caption1'}>{children}</Typography>
-    </button>
+    </ButtonBase>
   )
 }

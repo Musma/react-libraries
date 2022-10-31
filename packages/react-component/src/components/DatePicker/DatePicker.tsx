@@ -38,10 +38,13 @@ export const DatePicker = ({ label, size = 'md', dateTime, handleDatePick }: Dat
         flexDirection: 'column',
         alignItems: 'flex-start',
         position: 'relative',
+        minWidth: 64,
       }}
     >
+      {/* 라벨 */}
       {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
 
+      {/* Input */}
       <DateInput
         size={size}
         handleSelectDay={handleSelectDay}
@@ -50,6 +53,7 @@ export const DatePicker = ({ label, size = 'md', dateTime, handleDatePick }: Dat
         clearDate={clearDate}
       />
 
+      {/* 달력 */}
       {isOpen && <Calendar size={size} date={date} handleSelectDay={handleSelectDay} />}
     </Box>
   )
