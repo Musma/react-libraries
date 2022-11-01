@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.9
+
+### Patch Changes
+
+- [`714551d`](https://github.com/Musma/react-libraries/commit/714551dfd27618237e78037bf5a15d655d7f7cb6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - InputLabel, InputIcon 추가 및 elements 폴더 추가
+
 ## 0.1.8
 
 ### Patch Changes
