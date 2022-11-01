@@ -38,7 +38,7 @@ export const ImageUploader = ({
     [onChange],
   )
 
-  const getDefaultImage = useCallback(() => {
+  const defaultImage = useMemo(() => {
     return {
       lg: <DefaultLgIcon css={{ position: 'absolute', top: '20px', left: '10px' }} />,
       md: <DefaultMdIcon css={{ position: 'absolute', top: '14.29px', left: '7.14px' }} />,
@@ -116,7 +116,7 @@ export const ImageUploader = ({
             }}
           />
         ) : (
-          getDefaultImage()
+          defaultImage
         )}
         <div
           css={[

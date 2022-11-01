@@ -2,7 +2,8 @@ import { Fragment, HTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Backdrop, Box } from 'src/components'
+import { Backdrop } from 'src/components'
+import { Box } from 'src/elements'
 
 interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean

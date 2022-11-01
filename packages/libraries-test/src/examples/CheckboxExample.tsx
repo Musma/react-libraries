@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
-import { Checkbox } from '@musma/react-component'
+import { Checkbox, Form } from '@musma/react-component'
 
 type CheckBoxType = {
   first: boolean
@@ -20,9 +20,31 @@ export const CheckboxExample = () => {
 
   return (
     <div css={{ display: 'flex', gap: '16px' }}>
-      {/* <Checkbox {...register('first')} size="sm" label="label" /> */}
+      <Form>
+        <Controller
+          name="first"
+          control={control}
+          render={({ field: { value, ...rest } }) => (
+            <Checkbox size="sm" checked={value} label="label" {...rest} />
+          )}
+        />
 
-      <Controller name="first" control={control} render={({ field }) => <Checkbox {...field} />} />
+        <Controller
+          name="first"
+          control={control}
+          render={({ field: { value, ...rest } }) => (
+            <Checkbox size="md" checked={value} label="label" {...rest} />
+          )}
+        />
+
+        <Controller
+          name="first"
+          control={control}
+          render={({ field: { value, ...rest } }) => (
+            <Checkbox size="lg" checked={value} label="label" {...rest} />
+          )}
+        />
+      </Form>
     </div>
   )
 }

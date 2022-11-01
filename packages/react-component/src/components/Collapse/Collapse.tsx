@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
 
-import { Box } from 'src/components'
+import { Box } from 'src/elements'
 
 interface CollapseProps extends HTMLAttributes<HTMLDivElement> {
   show?: boolean

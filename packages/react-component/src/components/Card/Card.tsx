@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Box } from 'src/components'
+import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {

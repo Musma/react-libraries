@@ -4,7 +4,8 @@ import { Link, To } from 'react-router-dom'
 import { useTheme } from '@emotion/react'
 import { OutlineMenuIcon } from '@musma/react-icons'
 
-import { Box, IconAdornment } from 'src/components'
+import { IconAdornment } from 'src/components'
+import { Box } from 'src/elements'
 
 interface HeaderLeftSectionProps {
   logo: (props: SVGProps<SVGSVGElement>) => JSX.Element

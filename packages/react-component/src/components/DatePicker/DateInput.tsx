@@ -1,19 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 import { FillCalendarIcon } from '@musma/react-icons'
 import { DateTime } from 'luxon'
 
-import { Box, IconAdornment, InputBase } from 'src/components'
+import { IconAdornment } from 'src/components'
+import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
-
-const iconContainerCss = {
-  position: {
-    lg: css({ top: '8px' }),
-    md: css({ top: '7px' }),
-    sm: css({ top: '5px' }),
-  },
-}
 
 interface DateInputProps {
   size: Size
@@ -34,7 +27,7 @@ export const DateInput = ({
   const [year, setYear] = useState('')
   const [month, setMonth] = useState('')
   const [day, setDay] = useState('')
-  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleYearChange = useCallback(
     (value: string) => {
@@ -77,26 +70,32 @@ export const DateInput = ({
     [clearDate],
   )
 
-  const isDateValid = useCallback(() => {
+  const isDateValid = useMemo(() => {
     return DateTime.fromObject({ year: Number(year), month: Number(month), day: Number(day) })
       .isValid
   }, [day, month, year])
 
   useEffect(() => {
-    if (!date) return
+    if (!date) {
+      return
+    }
+
     setYear(`${date.year}`)
     setMonth(`${date.month}`.padStart(2, '0'))
     setDay(`${date.day}`.padStart(2, '0'))
   }, [date])
 
   useEffect(() => {
-    if (year.length !== 4 || month.length !== 2 || day.length !== 2) return
-    if (!isDateValid()) {
-      setIsError(true)
+    if (year.length !== 4 || month.length !== 2 || day.length !== 2) {
+      return
+    }
+
+    if (!isDateValid) {
+      setError(true)
       return
     }
     handleSelectDay(Number(year), Number(month), Number(day))
-    setIsError(false)
+    setError(false)
   }, [day, handleSelectDay, isDateValid, month, year])
 
   return (
@@ -106,16 +105,15 @@ export const DateInput = ({
         alignItems: 'center',
         cursor: 'pointer',
       }}
-      onClick={() => toggleIsOpen()}
+      onClick={toggleIsOpen}
     >
       <Box
         css={[
           {
-            backgroundColor: theme.colors.white.main,
-            marginBottom: '4px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            backgroundColor: theme.colors.white.main,
             borderRadius: theme.rounded.md,
             border: `1px solid ${theme.colors.gray.darker}`,
             paddingLeft: theme.spacing.sm,
@@ -125,79 +123,74 @@ export const DateInput = ({
               border: `1px solid ${theme.colors.blue.main}`,
             },
           },
-          isError && { border: `1px solid ${theme.colors.red.main}` },
+          error && { border: `1px solid ${theme.colors.red.main}` },
         ]}
       >
         <Box css={{ display: 'flex' }}>
           <InputBase
-            placeholder="YYYY"
-            onClick={(e) => e.stopPropagation()}
             value={year}
-            onChange={(e) => handleYearChange(e.target.value)}
+            placeholder="YYYY"
             maxLength={4}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => handleYearChange(e.target.value)}
             css={{
               color: theme.colors.black.dark,
-              appearance: 'none',
               textAlign: 'center',
-              border: 0,
-              '&:focus': {
-                outline: '2px solid transparent',
-                outlineOffset: '2px',
-              },
-              '&::placeholder': {
-                letterSpacing: '-0.08em',
-              },
               width: size === 'sm' ? '32px' : '38px',
-            }}
-          />
-          -
-          <InputBase
-            placeholder="MM"
-            onClick={(e) => e.stopPropagation()}
-            value={month}
-            onChange={(e) => handleMonthChange(e.target.value)}
-            maxLength={2}
-            css={{
-              color: theme.colors.black.dark,
-              appearance: 'none',
-              textAlign: 'center',
-              border: 0,
-              '&:focus': {
-                outline: '2px solid transparent',
-                outlineOffset: '2px',
-              },
               '&::placeholder': {
                 letterSpacing: '-0.08em',
               },
-              width: size === 'sm' ? '24px' : '28px',
             }}
           />
           -
           <InputBase
-            placeholder="DD"
-            onClick={(e) => e.stopPropagation()}
-            value={day}
-            onChange={(e) => handleDayChange(e.target.value)}
+            value={month}
+            placeholder="MM"
             maxLength={2}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => handleMonthChange(e.target.value)}
+            css={{
+              color: theme.colors.black.dark,
+              textAlign: 'center',
+              width: size === 'sm' ? 20 : 28,
+              '&::placeholder': {
+                letterSpacing: '-0.08em',
+              },
+            }}
+          />
+          -
+          <InputBase
+            value={day}
+            placeholder="DD"
+            maxLength={2}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => handleDayChange(e.target.value)}
             css={[
               {
                 color: theme.colors.black.dark,
-                appearance: 'none',
                 textAlign: 'center',
-                border: 0,
-                '&:focus': {
-                  outline: '2px solid transparent',
-                  outlineOffset: '2px',
-                },
+                width: size === 'sm' ? 20 : 28,
                 '&::placeholder': { letterSpacing: '-0.08em' },
-                width: size === 'sm' ? '20px' : '28px',
               },
             ]}
           />
         </Box>
 
-        <Box css={[{ marginRight: '8px' }, iconContainerCss.position[size]]}>
-          <IconAdornment onClick={toggleIsOpen}>
+        <Box
+          css={[
+            { marginRight: '8px' },
+            size === 'sm' && {
+              top: 5,
+            },
+            size === 'md' && {
+              top: 7,
+            },
+            size === 'lg' && {
+              top: 8,
+            },
+          ]}
+        >
+          <IconAdornment>
             <FillCalendarIcon width={16} height={16} />
           </IconAdornment>
         </Box>

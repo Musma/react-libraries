@@ -2,7 +2,8 @@ import { ButtonHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { ButtonBase, Typography } from 'src/components'
+import { Typography } from 'src/components'
+import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
 interface TextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

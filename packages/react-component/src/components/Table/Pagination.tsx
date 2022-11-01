@@ -8,7 +8,8 @@ import {
   OutlineArrowRightMediumIcon,
 } from '@musma/react-icons'
 
-import { Typography, UsePaginationType, Select, IconAdornment, Box } from 'src/components'
+import { Typography, UsePaginationType, Select, IconAdornment } from 'src/components'
+import { Box } from 'src/elements'
 interface PaginationProps {
   pagination: UsePaginationType
   totalCount: number

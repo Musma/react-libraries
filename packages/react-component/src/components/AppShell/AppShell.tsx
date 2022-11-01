@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Box } from 'src/components'
+import { Box } from 'src/elements'
 
 interface AppShellProps {
   header: ReactNode

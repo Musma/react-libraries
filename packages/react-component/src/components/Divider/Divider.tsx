@@ -6,10 +6,14 @@ import { Size } from 'src/types'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {
   orientation?: 'horizontal' | 'vertical'
-  padding?: Size
+  margin?: Size
 }
 
-export const Divider = ({ orientation = 'horizontal', padding = 'md', ...rest }: DividerProps) => {
+export const Divider = ({
+  orientation = 'horizontal',
+  margin: padding = 'md',
+  ...rest
+}: DividerProps) => {
   const theme = useTheme()
   return (
     <hr

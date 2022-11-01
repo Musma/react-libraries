@@ -56,10 +56,11 @@ export const Tag = ({
       <Typography type={size === 'lg' ? 'caption1' : 'caption2'} css={colorCss.text[color]}>
         {label}
       </Typography>
+
       {onClose && (
         <CloseIcon
           onClick={() => onClose(label)}
-          css={css({ marginLeft: '4px', cursor: 'pointer' })}
+          css={{ marginLeft: '4px', cursor: 'pointer' }}
           fill={color === 'white' ? theme.colors.black.main : theme.colors.blue.main}
         />
       )}

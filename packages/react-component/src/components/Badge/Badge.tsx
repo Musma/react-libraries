@@ -3,6 +3,7 @@ import { PropsWithChildren, useMemo } from 'react'
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
+import { Box } from 'src/elements'
 
 interface BadgeProps {
   value: number
@@ -15,7 +16,7 @@ export const Badge = ({ value, children }: PropsWithChildren<BadgeProps>) => {
   }, [value])
 
   return (
-    <div css={{ position: 'relative', display: 'inline-flex' }}>
+    <Box css={{ position: 'relative', display: 'inline-flex' }}>
       {computedValue !== 0 && (
         <span
           css={{
@@ -40,6 +41,6 @@ export const Badge = ({ value, children }: PropsWithChildren<BadgeProps>) => {
       )}
 
       {children}
-    </div>
+    </Box>
   )
 }

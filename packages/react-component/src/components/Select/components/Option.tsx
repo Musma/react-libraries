@@ -2,13 +2,15 @@ import { useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Box, SelectOption, Typography } from 'src/components'
+import { SelectOption, Typography } from 'src/components'
+import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
 interface OptionProps<T> {
   size?: Size
   option: SelectOption<T>
   selectedOption?: SelectOption<T>
+  onClick: () => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
@@ -16,6 +18,7 @@ export const Option = <T extends unknown>({
   size = 'md',
   option,
   selectedOption,
+  onClick,
 }: OptionProps<T>) => {
   const theme = useTheme()
 
@@ -26,6 +29,7 @@ export const Option = <T extends unknown>({
 
   return (
     <Box
+      tabIndex={-1}
       css={[
         {
           display: 'flex',
@@ -47,7 +51,10 @@ export const Option = <T extends unknown>({
           },
         },
       ]}
-      tabIndex={-1}
+      onClick={(e) => {
+        e.stopPropagation()
+        onClick()
+      }}
     >
       <Typography type={size === 'lg' ? 'body3' : 'caption1'} css={{ color: 'currentcolor' }}>
         {option.label}

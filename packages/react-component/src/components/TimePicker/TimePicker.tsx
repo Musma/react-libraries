@@ -13,15 +13,14 @@ import { FillTimeIcon } from '@musma/react-icons'
 import { DateTime } from 'luxon'
 
 import {
-  Box,
   ClockBody,
   ClockHeader,
   ClockType,
   getMeridiem,
   IconAdornment,
-  InputBase,
   Typography,
 } from 'src/components'
+import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 interface TimePickerProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -99,7 +98,6 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(
               paddingLeft: theme.spacing.sm,
               paddingRight: theme.spacing.sm,
               overflow: 'hidden',
-              boxSizing: 'border-box',
               '&:focus-within': {
                 borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
                 boxShadow: theme.shadow.md,

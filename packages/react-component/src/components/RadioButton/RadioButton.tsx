@@ -1,6 +1,7 @@
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react'
 
-import { Box, InputBase, Typography } from 'src/components'
+import { Typography } from 'src/components'
+import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'

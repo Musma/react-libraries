@@ -13,7 +13,8 @@ import {
 } from '@musma/react-icons'
 import { DateTime } from 'luxon'
 
-import { Box, IconAdornment, Typography } from 'src/components'
+import { IconAdornment, Typography } from 'src/components'
+import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
 interface CalendarProps {

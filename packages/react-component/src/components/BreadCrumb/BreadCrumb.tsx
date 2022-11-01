@@ -1,11 +1,9 @@
 import { useCallback } from 'react'
 
 import { useTheme } from '@emotion/react'
+import { FillHomeIcon, OutlineArrowRightMediumIcon } from '@musma/react-icons'
 
 import { Typography } from 'src/components'
-
-import { ReactComponent as HomeIcon } from './images/home.svg'
-import { ReactComponent as SeperatorIcon } from './images/seperator.svg'
 
 interface BreadCrumbProps {
   crumbs: string[]
@@ -27,13 +25,11 @@ export const BreadCrumb = ({ crumbs, onClick }: BreadCrumbProps) => {
       <ol css={{ display: 'flex', alignItems: 'center' }}>
         {crumbs.map((crumb, index) => {
           if (index === 0) {
-            return (
-              <HomeIcon key={crumb} css={{ cursor: 'pointer' }} fill={theme.colors.blue.main} />
-            )
+            return <FillHomeIcon key={crumb} fill={theme.colors.primary.main} />
           }
           return (
             <li key={crumb} css={{ display: 'flex', alignItems: 'center' }}>
-              <SeperatorIcon />
+              <OutlineArrowRightMediumIcon />
               <button
                 onClick={() => onClick(crumb)}
                 css={{

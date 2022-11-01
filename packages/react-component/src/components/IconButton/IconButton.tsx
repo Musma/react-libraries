@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { ButtonBase } from 'src/components'
+import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -26,6 +26,7 @@ export const IconButton = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          minWidth: 'auto',
           width: theme.inputSize[size],
           height: theme.inputSize[size],
           borderRadius: theme.rounded.md,

@@ -3,7 +3,8 @@ import { ButtonHTMLAttributes, CSSProperties } from 'react'
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { ButtonBase, Typography } from 'src/components'
+import { Typography } from 'src/components'
+import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { ButtonVariant } from './types'

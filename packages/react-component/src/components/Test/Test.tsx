@@ -2,7 +2,8 @@ import { ReactNode } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Box, Typography } from 'src/components'
+import { Typography } from 'src/components'
+import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
 export type TableData = Record<string, ReactNode>

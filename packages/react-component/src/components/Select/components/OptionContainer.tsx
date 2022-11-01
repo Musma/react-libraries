@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Box } from 'src/components'
+import { Box } from 'src/elements'
 
 export const OptionContainer = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme()
@@ -18,7 +18,7 @@ export const OptionContainer = ({ children }: { children?: ReactNode }) => {
         borderRadius: theme.rounded.md,
         border: `1px solid ${theme.colors.gray.darker}`,
         padding: '4px 0px',
-        boxSizing: 'border-box',
+
         zIndex: theme.zIndex.navBar + 1,
       }}
     >

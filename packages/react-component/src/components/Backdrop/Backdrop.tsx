@@ -2,7 +2,8 @@ import { Fragment, HTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Box, ReactPortal } from 'src/components'
+import { ReactPortal } from 'src/components'
+import { Box } from 'src/elements'
 
 interface BackdropProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean

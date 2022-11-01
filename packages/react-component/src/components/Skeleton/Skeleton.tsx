@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 
 import { keyframes } from '@emotion/react'
 
-import { Box } from 'src/components'
+import { Box } from 'src/elements'
 
 interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   variant?: 'circle' | 'rectangle'

@@ -1,80 +1,90 @@
-import { ChangeEvent, InputHTMLAttributes, useCallback, useMemo, useRef, useState } from 'react'
+import { InputHTMLAttributes, MouseEvent, useCallback, useMemo, useRef, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
+import { useOutsideListener } from '@musma/react-utils'
 import { uniqueId } from 'lodash-es'
 
-import { Box, InputBase, SelectOption, Typography } from 'src/components'
+import { InputLabel, SelectOption, Typography } from 'src/components'
+import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { Option, OptionContainer } from './components'
 
-interface SelectProps<T> extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value'> {
+interface SelectProps<T>
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange'> {
   size?: Size
   label?: string
   value: T
   options: SelectOption<T>[]
+  onChange: (value: T) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const Select = <T extends unknown>({
-  id = uniqueId(),
+  id: _id,
   size = 'md',
   label,
   value,
   options,
+  onChange,
   ...rest
 }: SelectProps<T>) => {
   const theme = useTheme()
   const divRef = useRef<HTMLDivElement>(null)
-
-  const [text, setText] = useState('')
   const [open, setOpen] = useState(false)
 
-  // Input에 검색했을 때 나타나는 옵션 목록
-  const filteredOptions = useMemo(() => {
-    if (!text) {
-      return options
-    }
+  useOutsideListener(divRef, () => {
+    // Select 영역 말고 다른 영역 클릭 시 닫힘
+    setOpen(false)
+  })
 
-    return options.filter((option) => option.label.toLowerCase().includes(text.toLowerCase()))
-  }, [text, options])
+  const id = useMemo(() => {
+    return _id || uniqueId()
+  }, [_id])
 
   const selectedOption = useMemo(() => {
     return options.find((option) => option.value === value)
   }, [value, options])
 
-  const handleTextChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value)
+  const handleSelectClick = useCallback((event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
+    setOpen((value) => !value)
   }, [])
 
-  const handleSelectClick = useCallback(() => {
-    setOpen((value) => !value)
-  }, [open])
+  const handleOptionClick = useCallback(
+    (value: T) => {
+      onChange(value)
+      setOpen(false)
+    },
+    [onChange],
+  )
 
   return (
     <Box
       css={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
+        width: '100%',
         minWidth: 64,
       }}
     >
-      {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
+      {/* 라벨 */}
+      {label && <InputLabel size={size}>{label}</InputLabel>}
 
       <Box
+        tabIndex={-1}
         css={{ position: 'relative', display: 'flex', alignItems: 'center' }}
         ref={divRef}
         onClick={handleSelectClick}
       >
         <InputBase
           id={id}
-          value={text}
-          onChange={handleTextChange}
+          value={selectedOption?.label}
+          readOnly={true}
           css={[
             {
+              flex: 1,
               height: theme.inputSize[size],
               cursor: 'pointer',
               borderRadius: '4px',
@@ -90,24 +100,30 @@ export const Select = <T extends unknown>({
               },
             },
           ]}
+          {...rest}
         />
 
         <OutlineArrowBottomSmallIcon
           css={[
             { position: 'absolute', right: '4px', cursor: 'pointer' },
-            size === 'sm' && { bottom: '4px' },
-            size === 'md' && { bottom: '6px' },
             open && { rotate: '180deg' },
           ]}
         />
 
         {open && (
           <OptionContainer>
-            {filteredOptions.map((option) => (
-              <Option key={`key-${value}`} option={option} selectedOption={selectedOption} />
+            {options.map((option) => (
+              <Option
+                key={`key-${option.value}`}
+                option={option}
+                selectedOption={selectedOption}
+                onClick={() => {
+                  handleOptionClick(option.value)
+                }}
+              />
             ))}
 
-            {filteredOptions.length === 0 && (
+            {options.length === 0 && (
               <Typography
                 type="caption1"
                 css={{

@@ -4,6 +4,7 @@ import { css, useTheme } from '@emotion/react'
 import { OutlineCloseIcon } from '@musma/react-icons'
 
 import { Button, Typography, IconAdornment, Backdrop } from 'src/components'
+import { Box } from 'src/elements'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/types'
 
@@ -117,16 +118,6 @@ export const Modal = ({
     return size === 'md' ? 'lg' : 'md'
   }, [size])
 
-  // const backgroundColor = useMemo(() => {
-  //   if (!backgroundRef.current || !modalManager) {
-  //     return 'rgba(0, 0, 0, 0.3)'
-  //   }
-
-  //   return modalManager.isNested(backgroundRef.current)
-  //     ? 'rgba(0, 0, 0, 0.6)'
-  //     : 'rgba(0, 0, 0, 0.3)'
-  // }, [modalManager])
-
   const handleModalClose = useCallback(() => {
     onClose()
     modalManager?.pop()
@@ -167,7 +158,7 @@ export const Modal = ({
   if (open) {
     return (
       <Backdrop open={open}>
-        <div
+        <Box
           ref={modalRef}
           css={[
             {
@@ -229,7 +220,7 @@ export const Modal = ({
               </Button>
             )}
           </div>
-        </div>
+        </Box>
       </Backdrop>
     )
   }

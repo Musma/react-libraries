@@ -10,21 +10,21 @@ export const DatePickerExample = () => {
       <DatePicker
         label="Sample DatePicker"
         dateTime={date}
-        handleDatePick={(dateTime) => setDate(dateTime)}
+        onDateChange={(dateTime) => setDate(dateTime)}
         size="lg"
       />
 
       <DatePicker
         label="Sample DatePicker"
         dateTime={date}
-        handleDatePick={(dateTime) => setDate(dateTime)}
+        onDateChange={(dateTime) => setDate(dateTime)}
         size="md"
       />
 
       <DatePicker
         label="Sample DatePicker"
         dateTime={date}
-        handleDatePick={(dateTime) => setDate(dateTime)}
+        onDateChange={(dateTime) => setDate(dateTime)}
         size="sm"
       />
     </Box>
