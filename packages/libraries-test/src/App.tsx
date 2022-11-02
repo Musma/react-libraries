@@ -11,6 +11,7 @@ import {
   Drawer,
   Button,
   Card,
+  Stepper,
 } from '@musma/react-component'
 
 import {
@@ -183,6 +184,10 @@ export const App = () => {
               Close
             </Button>
           </Drawer>
+        </Card>
+
+        <Card title="Steppr">
+          <Stepper activeStep={1} totalStep={2} />
         </Card>
       </div>
     </div>

@@ -19,6 +19,7 @@ export interface TextInputProps
   endAdornment?: ReactNode
   error?: boolean
   helperText?: string
+  required?: boolean
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -33,6 +34,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       error = false,
       startAdornment,
       endAdornment,
+      required,
       className,
       ...rest
     },
@@ -52,7 +54,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         className={className}
       >
         {/* 라벨 */}
-        <InputLabel size={size}>{label}</InputLabel>
+        <InputLabel size={size} required={required}>
+          {label}
+        </InputLabel>
 
         {/* Input Container */}
         <Box

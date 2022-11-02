@@ -9,11 +9,7 @@ interface DividerProps extends HTMLAttributes<HTMLHRElement> {
   margin?: Size
 }
 
-export const Divider = ({
-  orientation = 'horizontal',
-  margin: padding = 'md',
-  ...rest
-}: DividerProps) => {
+export const Divider = ({ orientation = 'horizontal', margin = 'md', ...rest }: DividerProps) => {
   const theme = useTheme()
   return (
     <hr
@@ -22,16 +18,16 @@ export const Divider = ({
         orientation === 'horizontal' && {
           width: '100%',
           borderTop: `1px solid ${theme.colors.gray.lighter}`,
-          marginTop: theme.spacing[padding],
-          marginBottom: theme.spacing[padding],
+          marginTop: theme.spacing[margin],
+          marginBottom: theme.spacing[margin],
         },
         orientation === 'vertical' && {
           width: '1px',
           height: 'auto',
           alignSelf: 'stretch',
           borderRight: `1px solid ${theme.colors.gray.lighter}`,
-          marginLeft: theme.spacing[padding],
-          marginRight: theme.spacing[padding],
+          marginLeft: theme.spacing[margin],
+          marginRight: theme.spacing[margin],
         },
       ]}
       {...rest}

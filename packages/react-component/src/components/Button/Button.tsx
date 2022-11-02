@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, CSSProperties } from 'react'
+import { ButtonHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
@@ -10,7 +10,6 @@ import { Size } from 'src/types'
 import { ButtonVariant } from './types'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  labelStyle?: CSSProperties
   size?: Size
   fullWidth?: boolean
   variant?: ButtonVariant

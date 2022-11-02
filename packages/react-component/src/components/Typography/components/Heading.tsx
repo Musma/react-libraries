@@ -21,6 +21,7 @@ export const Heading = ({
       css: [
         {
           margin: 0,
+          lineHeight: 1,
         },
         {
           h1: { fontSize: 40, fontWeight: 700, letterSpacing: -0.6 },

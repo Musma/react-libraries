@@ -18,6 +18,7 @@ export const SubTitle = ({
       css={[
         {
           margin: 0,
+          lineHeight: 1,
         },
         {
           subTitle1: {

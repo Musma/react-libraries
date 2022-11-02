@@ -15,6 +15,7 @@ export const Body = ({ variant = 'body1', children, className }: PropsWithChildr
         {
           margin: 0,
           fontWeight: 400,
+          lineHeight: 1,
         },
         {
           body1: {
