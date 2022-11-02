@@ -1,29 +1,11 @@
 import { PropsWithChildren } from 'react'
 
-import { css } from '@emotion/react'
+export type SubTitleType = 'subTitle1' | 'subTitle2' | 'subTitle3'
 
-import { SubTitleProps } from '../types'
-
-const subTitleCss = {
-  subTitle1: css({
-    fontSize: '20px',
-    fontWeight: 400,
-    lineHeight: 1,
-    letterSpacing: '-0.2px',
-    margin: 0,
-  }),
-  subTitle2: css({
-    fontSize: '14px',
-    fontWeight: 600,
-    lineHeight: '20px',
-    margin: 0,
-  }),
-  subTitle3: css({
-    fontSize: '12px',
-    fontWeight: 600,
-    lineHeight: '18px',
-    margin: 0,
-  }),
+export type SubTitleProps = {
+  type?: 'subTitle'
+  variant?: SubTitleType
+  className?: string
 }
 
 export const SubTitle = ({
@@ -32,7 +14,29 @@ export const SubTitle = ({
   className,
 }: PropsWithChildren<SubTitleProps>) => {
   return (
-    <p css={subTitleCss[variant]} className={className}>
+    <p
+      css={[
+        {
+          margin: 0,
+        },
+        {
+          subTitle1: {
+            fontSize: 20,
+            fontWeight: 400,
+            letterSpacing: -0.2,
+          },
+          subTitle2: {
+            fontSize: 14,
+            fontWeight: 600,
+          },
+          subTitle3: {
+            fontSize: 12,
+            fontWeight: 600,
+          },
+        }[variant],
+      ]}
+      className={className}
+    >
       {children}
     </p>
   )

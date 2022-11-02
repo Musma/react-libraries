@@ -1,35 +1,37 @@
 import { PropsWithChildren } from 'react'
 
-import { css } from '@emotion/react'
+export type BodyType = 'body1' | 'body2' | 'body3'
 
-import { BodyProps } from 'src/components/Typography/types'
-
-const bodyCss = {
-  body1: css({
-    fontSize: '18px',
-    fontWeight: 400,
-    lineHeight: '24px',
-    letterSpacing: '-0.2px',
-    margin: 0,
-  }),
-  body2: css({
-    fontSize: '16px',
-    fontWeight: 400,
-    lineHeight: '22px',
-    letterSpacing: '-0.2px',
-    margin: 0,
-  }),
-  body3: css({
-    fontSize: '14px',
-    fontWeight: 400,
-    lineHeight: '20px',
-    margin: 0,
-  }),
+export interface BodyProps {
+  type?: 'body'
+  variant?: BodyType
+  className?: string
 }
 
 export const Body = ({ variant = 'body1', children, className }: PropsWithChildren<BodyProps>) => {
   return (
-    <p css={bodyCss[variant]} className={className}>
+    <p
+      css={[
+        {
+          margin: 0,
+          fontWeight: 400,
+        },
+        {
+          body1: {
+            fontSize: 18,
+            letterSpacing: -0.2,
+          },
+          body2: {
+            fontSize: 16,
+            letterSpacing: -0.2,
+          },
+          body3: {
+            fontSize: 14,
+          },
+        }[variant],
+      ]}
+      className={className}
+    >
       {children}
     </p>
   )

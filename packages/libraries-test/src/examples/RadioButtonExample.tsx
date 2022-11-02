@@ -1,28 +1,46 @@
-import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 
 import { RadioButton } from '@musma/react-component'
 
+type RadioButtonExample = {
+  first: string
+}
+
 export const RadioButtonExample = () => {
-  const [selected, setSelected] = useState('one')
+  const { register, control } = useForm<RadioButtonExample>({
+    defaultValues: {
+      first: 'first',
+    },
+  })
+
   return (
     <div>
-      <RadioButton
-        selected={selected}
-        value={'one'}
-        onChange={(value) => setSelected(value)}
-        label="one"
+      <Controller
+        name="first"
+        control={control}
+        render={({ field: { value, ...rest } }) => (
+          <RadioButton
+            size="sm"
+            checked={value === 'first'}
+            value="first"
+            label="label"
+            {...rest}
+          />
+        )}
       />
-      <RadioButton
-        selected={selected}
-        value={'two'}
-        onChange={(value) => setSelected(value)}
-        label="two"
-      />
-      <RadioButton
-        selected={selected}
-        value={'three'}
-        onChange={(value) => setSelected(value)}
-        label="three"
+
+      <Controller
+        name="first"
+        control={control}
+        render={({ field: { value, ...rest } }) => (
+          <RadioButton
+            size="sm"
+            checked={value === 'second'}
+            value="second"
+            label="label"
+            {...rest}
+          />
+        )}
       />
     </div>
   )

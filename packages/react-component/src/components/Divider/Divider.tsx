@@ -21,7 +21,7 @@ export const Divider = ({
         { border: 0 },
         orientation === 'horizontal' && {
           width: '100%',
-          borderTop: `1px solid ${theme.colors.black.lighter}`,
+          borderTop: `1px solid ${theme.colors.gray.lighter}`,
           marginTop: theme.spacing[padding],
           marginBottom: theme.spacing[padding],
         },
@@ -29,7 +29,7 @@ export const Divider = ({
           width: '1px',
           height: 'auto',
           alignSelf: 'stretch',
-          borderRight: `1px solid ${theme.colors.black.lighter}`,
+          borderRight: `1px solid ${theme.colors.gray.lighter}`,
           marginLeft: theme.spacing[padding],
           marginRight: theme.spacing[padding],
         },

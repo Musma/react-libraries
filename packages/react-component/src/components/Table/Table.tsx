@@ -113,7 +113,6 @@ export const Table = ({
                     css={{
                       fontSize: '16px',
                       fontWeight: 400,
-                      lineHeight: '22px',
                       letterSpacing: '-0.2px',
                       margin: 0,
                       textAlign: 'center',

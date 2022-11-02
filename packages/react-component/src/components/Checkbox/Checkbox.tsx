@@ -22,7 +22,7 @@ interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'siz
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
-    { id: _id, label, size = 'md', onChange, checked, className, disabled = false, ...rest },
+    { id: _id, label, size = 'md', checked, disabled = false, className, onChange, ...rest },
     ref,
   ) => {
     const theme = useTheme()
@@ -32,38 +32,35 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     }, [_id])
 
     const iconElement = useMemo(() => {
-      const disabledIcon = {
-        lg: <DoneDisabledLgIcon />,
-        md: <DoneDisabledMdIcon />,
-        sm: <DoneDisabledSmIcon />,
-      }
-
-      const activeIcon = {
-        lg: <DoneLgIcon />,
-        md: <DoneMdIcon />,
-        sm: <DoneSmIcon />,
-      }
-
       if (disabled) {
-        return disabledIcon[size]
+        return {
+          sm: <DoneDisabledSmIcon />,
+          md: <DoneDisabledMdIcon />,
+          lg: <DoneDisabledLgIcon />,
+        }[size]
       }
 
       if (checked) {
-        return activeIcon[size]
+        return {
+          sm: <DoneSmIcon />,
+          md: <DoneMdIcon />,
+          lg: <DoneLgIcon />,
+        }[size]
       }
     }, [checked, disabled, size])
 
     const labelElement = useMemo(() => {
-      if (size === 'sm') {
-        return (
-          <Typography css={{ marginLeft: '4px' }} type="caption1">
-            {label}
-          </Typography>
-        )
-      }
-
       return (
-        <Typography css={{ marginLeft: '8px' }} type={size === 'lg' ? 'body2' : 'body3'}>
+        <Typography
+          css={{
+            marginLeft: {
+              sm: 4,
+              md: 4,
+              lg: 8,
+            }[size],
+          }}
+          type={size === 'sm' ? 'caption1' : size === 'md' ? 'body3' : 'body2'}
+        >
           {label}
         </Typography>
       )
@@ -73,7 +70,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       <Label
         htmlFor={id}
         css={{
-          display: 'flex',
+          display: 'inline-flex',
           alignItems: 'center',
           cursor: disabled ? 'not-allowed' : 'pointer',
         }}
@@ -99,13 +96,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              borderRadius: '2px',
+              borderRadius: 2,
               backgroundColor: theme.colors.white.main,
               border: `1px solid ${theme.colors.gray.darker}`,
             },
-            size === 'sm' && { width: '14px', height: '14px' },
-            size === 'md' && { width: '16px', height: '16px' },
-            size === 'lg' && { width: '24px', height: '24px' },
+            size === 'sm' && { width: 14, height: 14 },
+            size === 'md' && { width: 16, height: 16 },
+            size === 'lg' && { width: 24, height: 24 },
             checked && { backgroundColor: theme.colors.green.main, border: 'none' },
             disabled && {
               backgroundColor: theme.colors.white.lighter,

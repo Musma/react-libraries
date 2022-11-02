@@ -1,22 +1,11 @@
 import { PropsWithChildren } from 'react'
 
-import { css } from '@emotion/react'
+export type CaptionType = 'caption1' | 'caption2'
 
-import { CaptionProps } from 'src/components/Typography/types'
-
-const captionCss = {
-  caption1: css({
-    fontSize: '12px',
-    fontWeight: 400,
-    lineHeight: '16px',
-    margin: 0,
-  }),
-  caption2: css({
-    fontSize: '10px',
-    fontWeight: 400,
-    lineHeight: '14px',
-    margin: 0,
-  }),
+export type CaptionProps = {
+  type?: 'caption'
+  variant?: CaptionType
+  className?: string
 }
 
 export const Caption = ({
@@ -25,7 +14,23 @@ export const Caption = ({
   className,
 }: PropsWithChildren<CaptionProps>) => {
   return (
-    <span css={captionCss[variant]} className={className}>
+    <span
+      css={[
+        {
+          margin: 0,
+          fontWeight: 400,
+        },
+        {
+          caption1: {
+            fontSize: 12,
+          },
+          caption2: {
+            fontSize: 10,
+          },
+        }[variant],
+      ]}
+      className={className}
+    >
       {children}
     </span>
   )

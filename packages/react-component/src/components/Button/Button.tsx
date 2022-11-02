@@ -49,7 +49,7 @@ export const Button = ({
           backgroundColor: theme.colors.white.main,
           border: `solid 1px ${theme.colors.primary.main}`,
           '&:hover': {
-            backgroundColor: theme.colors.primary.lighter,
+            backgroundColor: theme.colors.white.lighter,
           },
         },
         variant === 'danger' && {

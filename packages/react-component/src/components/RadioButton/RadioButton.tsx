@@ -1,7 +1,9 @@
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react'
 
+import { uniqueId } from 'lodash-es'
+
 import { Typography } from 'src/components'
-import { Box, InputBase } from 'src/elements'
+import { InputBase, Label } from 'src/elements'
 import { Size } from 'src/types'
 
 import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'
@@ -14,69 +16,96 @@ import { ReactComponent as LgDisabledIcon } from './images/disabled_lg.svg'
 import { ReactComponent as MdDisabledIcon } from './images/disabled_md.svg'
 import { ReactComponent as SmDisabledIcon } from './images/disabled_sm.svg'
 
-interface RadioButtonProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+// TODO: RadioGroup을 따로 만들 예쩡
+
+interface RadioButtonProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'> {
+  /**
+   *
+   */
   label?: string
+  /**
+   * @default
+   * sm:
+   * md:
+   * lg:
+   */
   size?: Size
-  selected: string
+  /**
+   * (required)
+   *
+   */
+  onChange: (value: string) => void
 }
 
 export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
-  ({ label, size = 'md', selected, value, disabled = false, ...rest }, ref) => {
+  (
+    { id: _id, label, size = 'md', checked, disabled = false, className, onChange, ...rest },
+    ref,
+  ) => {
+    const id = useMemo(() => {
+      return _id || uniqueId()
+    }, [_id])
+
     const radio = useMemo(() => {
       if (disabled) {
-        if (size === 'sm') {
-          return <SmDisabledIcon css={{ cursor: 'not-allowed' }} />
-        }
-
-        if (size === 'md') {
-          return <MdDisabledIcon css={{ cursor: 'not-allowed' }} />
-        }
-
-        if (size === 'lg') {
-          return <LgDisabledIcon css={{ cursor: 'not-allowed' }} />
-        }
+        return {
+          sm: <SmDisabledIcon css={{ cursor: 'not-allowed' }} />,
+          md: <MdDisabledIcon css={{ cursor: 'not-allowed' }} />,
+          lg: <LgDisabledIcon css={{ cursor: 'not-allowed' }} />,
+        }[size]
       }
 
-      if (value && value === selected) {
-        if (size === 'sm') {
-          return <SmCheckedIcon />
-        }
-
-        if (size === 'md') {
-          return <MdCheckedIcon />
-        }
-
-        if (size === 'lg') {
-          return <LgCheckedIcon />
-        }
+      if (checked) {
+        return {
+          sm: <SmCheckedIcon />,
+          md: <MdCheckedIcon />,
+          lg: <LgCheckedIcon />,
+        }[size]
       }
 
-      if (size === 'sm') {
-        return <SmDefaultIcon />
-      }
-
-      if (size === 'md') {
-        return <MdDefaultIcon />
-      }
-
-      if (size === 'lg') {
-        return <LgDefaultIcon />
-      }
-    }, [value, size, disabled, selected])
+      return {
+        sm: <SmDefaultIcon />,
+        md: <MdDefaultIcon />,
+        lg: <LgDefaultIcon />,
+      }[size]
+    }, [size, disabled, checked])
 
     return (
-      <Box css={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}>
-        <InputBase ref={ref} value={value} hidden={true} {...rest} />
+      <Label
+        htmlFor={id}
+        css={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          cursor: disabled ? 'not-allowed' : 'pointer',
+        }}
+        className={className}
+      >
+        {/* InputBase */}
+        {/* hidden={true} 로 렌더링되지 않음 */}
+        <InputBase
+          id={id}
+          type="radio"
+          ref={ref}
+          checked={checked}
+          hidden={true}
+          disabled={disabled}
+          onChange={(e) => {
+            console.log(e.target)
+            onChange(e.target.value)
+          }}
+          {...rest}
+        />
 
         {radio}
 
         <Typography
-          type={size === 'sm' ? 'caption1' : size === 'lg' ? 'body2' : 'body3'}
-          css={{ marginLeft: '4px' }}
+          type={size === 'sm' ? 'caption1' : size === 'md' ? 'body3' : 'body2'}
+          css={{ marginLeft: size === 'lg' ? 8 : 4 }}
         >
           {label}
         </Typography>
-      </Box>
+      </Label>
     )
   },
 )
