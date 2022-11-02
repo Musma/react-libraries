@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.11
+
+### Patch Changes
+
+- [`1e3c0bc`](https://github.com/Musma/react-libraries/commit/1e3c0bc5b4411887e7052b2b21426d2251753013) Thanks [@jklasd2001](https://github.com/jklasd2001)! - Stepper 추가
+
 ## 0.1.10
 
 ### Patch Changes
