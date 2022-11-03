@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.12
+
+### Patch Changes
+
+- [`e035019`](https://github.com/Musma/react-libraries/commit/e03501968be58104a2159f4136d38d84e9606395) Thanks [@jklasd2001](https://github.com/jklasd2001)! - Table 재구성
+
 ## 0.1.11
 
 ### Patch Changes
