@@ -1,9 +1,9 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, SVGProps } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { Typography } from 'src/components'
+import { InputIcon, Typography } from 'src/components'
 import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
@@ -13,7 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   fullWidth?: boolean
   variant?: ButtonVariant
-  icon?: JSX.Element
+  startIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
 
 export const Button = ({
@@ -21,7 +21,7 @@ export const Button = ({
   fullWidth = false,
   size = 'md',
   disabled,
-  icon,
+  startIcon,
   children,
   ...rest
 }: ButtonProps) => {
@@ -72,16 +72,19 @@ export const Button = ({
       disabled={disabled}
       {...rest}
     >
-      {icon && (
-        <span
-          css={{
-            display: 'inline-flex',
-            marginRight: '4px',
-            filter: disabled ? 'brightness(1000%)' : 'none',
-          }}
-        >
-          {icon}
-        </span>
+      {startIcon && (
+        <InputIcon
+          icon={startIcon}
+          size={size}
+          color={
+            disabled
+              ? theme.colors.gray.main
+              : variant === 'outlined'
+              ? theme.colors.primary.main
+              : theme.colors.white.main
+          }
+          css={{ marginRight: 4 }}
+        />
       )}
 
       <Typography

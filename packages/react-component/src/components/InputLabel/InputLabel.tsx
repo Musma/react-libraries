@@ -23,6 +23,7 @@ export const InputLabel = ({
       <Typography
         type={size === 'lg' ? 'subTitle2' : 'subTitle3'}
         css={[
+          { marginBottom: 4 },
           required && {
             '&:after': {
               color: theme.colors.red.main,

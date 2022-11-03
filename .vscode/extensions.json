@@ -7,6 +7,7 @@
     "codeandstuff.package-json-upgrade",
     "wayou.vscode-todo-highlight",
     "formulahendry.auto-rename-tag",
-    "meganrogge.template-string-converter"
+    "meganrogge.template-string-converter",
+    "PeterSchmalfeldt.explorer-exclude"
   ]
 }

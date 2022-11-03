@@ -1,13 +1,20 @@
-import { useCallback, useState } from 'react'
+import { Fragment, useCallback, useState } from 'react'
 
-import { Table, usePagination } from '@musma/react-component'
+import { Button, Table, usePagination } from '@musma/react-component'
+import { OutlineAddIcon } from '@musma/react-icons'
 
-const originData = Array.from({ length: 200 }).map((_, index) => ({
+const originData = Array.from({ length: 10 }).map((_, index) => ({
   id: `${index}`,
   a: `a${index}`,
   b: `b${index}`,
   c: `c${index}`,
 }))
+
+const columns = [
+  { columnName: 'a', columnLabel: 'A' },
+  { columnName: 'b', columnLabel: 'B' },
+  { columnName: 'c', columnLabel: 'C' },
+]
 
 export const TableExample = () => {
   const pagination = usePagination()
@@ -19,21 +26,23 @@ export const TableExample = () => {
     return originData.slice(start, end)
   }, [pagination])
 
-  const [targetId, setTargetId] = useState<string>()
+  const [checkedItems, setCheckedItems] = useState<string[]>([])
 
   return (
-    <Table
-      targetId={targetId}
-      css={{ width: '100%' }}
-      onRowClick={(data) => setTargetId(data.id as string)}
-      data={getData()}
-      columns={[
-        { id: 'a', label: 'A' },
-        { id: 'b', label: 'B' },
-        { id: 'c', label: 'C' },
-      ]}
-      totalCount={originData.length}
-      pagination={pagination}
-    />
+    <Fragment>
+      <Table
+        columns={columns}
+        data={originData}
+        withCheckbox={true}
+        checkedItems={checkedItems}
+        onCheckItemChange={setCheckedItems}
+        toolbar={{
+          title: '123',
+          totalCount: 3,
+          children: <Button startIcon={OutlineAddIcon}>asd</Button>,
+        }}
+        withPagination={true}
+      />
+    </Fragment>
   )
 }

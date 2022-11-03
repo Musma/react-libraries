@@ -14,7 +14,7 @@ export const Drawer = ({ open, width = 400, ...rest }: DrawerProps) => {
   const theme = useTheme()
   if (open) {
     return (
-      <Backdrop open={open}>
+      <Backdrop>
         <Box
           css={{
             display: 'flex',

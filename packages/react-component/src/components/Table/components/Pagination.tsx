@@ -8,18 +8,22 @@ import {
   OutlineArrowRightMediumIcon,
 } from '@musma/react-icons'
 
-import { Typography, UsePaginationType, Select, IconAdornment } from 'src/components'
+import { Typography, Select, IconAdornment, usePaginationProps } from 'src/components'
 import { Box } from 'src/elements'
+
 interface PaginationProps {
-  pagination: UsePaginationType
+  pagination: usePaginationProps
   totalCount: number
 }
+
+const PAGE_COUNT = 5
+
 export const Pagination = ({
   totalCount,
   pagination: { limit, page, onDataLimitChange, onPageChange },
 }: PaginationProps) => {
   const theme = useTheme()
-  const pageCount = 5
+
   const [currentPage, setCurrentPage] = useState(page)
   const [pageGroup, setPageGroup] = useState(1)
 
@@ -30,25 +34,25 @@ export const Pagination = ({
 
   // 마지막 그룹 수
   const lastGroup = useMemo(() => {
-    return Math.ceil(totalPage / pageCount)
+    return Math.ceil(totalPage / PAGE_COUNT)
   }, [totalPage])
 
   const getRightEndPage = useCallback(
     (group: number) => {
-      if (group * pageCount > totalPage) {
+      if (group * PAGE_COUNT > totalPage) {
         return totalPage
       }
-      return group * pageCount
+      return group * PAGE_COUNT
     },
     [totalPage],
   )
 
   const getLeftEndPage = useCallback(
     (lastNumber: number) => {
-      if (totalPage <= pageCount) {
+      if (totalPage <= PAGE_COUNT) {
         return 1
       }
-      return lastNumber - (pageCount - 1)
+      return lastNumber - (PAGE_COUNT - 1)
     },
     [totalPage],
   )
@@ -116,11 +120,11 @@ export const Pagination = ({
 
   return (
     <Box css={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-      <Typography type="body3" css={{ marginRight: '8px' }}>
+      <Typography type="body3" css={{ marginRight: theme.spacing.sm }}>
         Rows per page
       </Typography>
+
       <Select
-        label=""
         value={String(limit)}
         options={[
           { label: '10', value: '10' },
@@ -128,25 +132,30 @@ export const Pagination = ({
           { label: '20', value: '20' },
           { label: '25', value: '25' },
         ]}
+        css={{ width: 80, marginRight: theme.spacing.md }}
         onChange={(value) => handleLimitChange(Number(value))}
       />
 
       <IconAdornment onClick={handleFirstClick} noPadding={true} disabled={currentPage === 1}>
-        <OutlineArrowFirstMediumIcon color={currentPage === 1 ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowFirstMediumIcon
+          color={currentPage === 1 ? theme.colors.gray.main : theme.colors.black.dark}
+        />
       </IconAdornment>
 
       <IconAdornment onClick={handlePrevClick} noPadding={true} disabled={pageGroup === 1}>
-        <OutlineArrowLeftMediumIcon color={pageGroup === 1 ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowLeftMediumIcon
+          color={pageGroup === 1 ? theme.colors.gray.main : theme.colors.black.dark}
+        />
       </IconAdornment>
 
-      {Array.from({ length: totalPage >= pageCount ? pageCount : totalPage }).map((_, index) => {
+      {Array.from({ length: totalPage >= PAGE_COUNT ? PAGE_COUNT : totalPage }).map((_, index) => {
         return (
           <IconAdornment
             key={index}
             noPadding={true}
             onClick={() => handlePageChange(getPageNumber(index))}
           >
-            <span
+            <Box
               css={[
                 {
                   display: 'flex',
@@ -155,7 +164,7 @@ export const Pagination = ({
                   height: '24px',
                   width: '24px',
                   cursor: 'pointer',
-                  borderRadius: '9999px',
+                  borderRadius: '50%',
                 },
                 isCurrentPage(getPageNumber(index)) && {
                   backgroundColor: theme.colors.primary.main,
@@ -164,24 +173,31 @@ export const Pagination = ({
             >
               <Typography
                 type="caption1"
-                css={isCurrentPage(getPageNumber(index)) ? { color: theme.colors.white.main } : {}}
+                css={[isCurrentPage(getPageNumber(index)) && { color: theme.colors.white.main }]}
               >
                 {getPageNumber(index)}
               </Typography>
-            </span>
+            </Box>
           </IconAdornment>
         )
       })}
+
+      {/* 뒷 페이지 이동 버튼 */}
       <IconAdornment onClick={handleNextClick} noPadding={true} disabled={pageGroup === lastGroup}>
-        <OutlineArrowRightMediumIcon color={pageGroup === lastGroup ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowRightMediumIcon
+          color={pageGroup === lastGroup ? theme.colors.gray.main : theme.colors.black.dark}
+        />
       </IconAdornment>
 
+      {/* 끝 페이지로 이동 버튼 */}
       <IconAdornment
         onClick={handleLastClick}
         noPadding={true}
         disabled={currentPage === totalPage}
       >
-        <OutlineArrowLastMediumIcon color={currentPage === totalPage ? '#D0D5DD' : '#242E40'} />
+        <OutlineArrowLastMediumIcon
+          color={currentPage === totalPage ? theme.colors.gray.main : theme.colors.black.dark}
+        />
       </IconAdornment>
     </Box>
   )

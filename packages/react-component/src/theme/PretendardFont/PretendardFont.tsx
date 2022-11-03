@@ -1,7 +1,6 @@
 import { css, Global } from '@emotion/react'
 
 import PretendardBold from 'src/assets/fonts/Pretendard-Bold.subset.woff2'
-import PretendardLight from 'src/assets/fonts/Pretendard-Light.subset.woff2'
 import PretendardMedium from 'src/assets/fonts/Pretendard-Medium.subset.woff2'
 import PretendardRegular from 'src/assets/fonts/Pretendard-Regular.subset.woff2'
 import PretendardSemiBold from 'src/assets/fonts/Pretendard-SemiBold.subset.woff2'
@@ -36,13 +35,6 @@ export const PretendardFont = () => {
           font-weight: 400;
           font-display: swap;
           src: local('Pretendard Regular'), url(${PretendardRegular}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Pretendard';
-          font-weight: 300;
-          font-display: swap;
-          src: local('Pretendard Light'), url(${PretendardLight}) format('woff2');
         }
 
         html {

@@ -2,7 +2,7 @@ import { SVGProps, useMemo } from 'react'
 
 import { Size } from 'src/types'
 
-interface InputIconProps {
+interface InputIconProps extends SVGProps<SVGSVGElement> {
   /**
    * size에 따라 아이콘의 크기가 달라집니다.
    *
@@ -18,7 +18,7 @@ interface InputIconProps {
   icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
 
-export const InputIcon = ({ size: _size = 'md', icon: Icon }: InputIconProps) => {
+export const InputIcon = ({ size: _size = 'md', icon: Icon, ...rest }: InputIconProps) => {
   const size = useMemo(() => {
     if (_size === 'lg') {
       return {
@@ -32,5 +32,5 @@ export const InputIcon = ({ size: _size = 'md', icon: Icon }: InputIconProps) =>
     }
   }, [_size])
 
-  return <Icon {...size} />
+  return <Icon {...size} {...rest} />
 }

@@ -1,8 +1,13 @@
 import { useCallback, useState } from 'react'
 
-import { UsePaginationType } from './types'
+export interface usePaginationProps {
+  limit: number
+  page: number
+  onPageChange: (page: number) => void
+  onDataLimitChange: (dataLimit: number) => void
+}
 
-export function usePagination(): UsePaginationType {
+export function usePagination(): usePaginationProps {
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(10)
 

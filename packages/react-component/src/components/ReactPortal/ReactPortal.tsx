@@ -41,7 +41,9 @@ export const ReactPortal = ({ wrapperId = 'react-portal', children }: ReactPorta
   }, [wrapperId])
 
   // wrapperElement state will be null on very first render.
-  if (wrapperElement === null) return null
+  if (wrapperElement === null) {
+    return null
+  }
 
   return createPortal(children, wrapperElement)
 }

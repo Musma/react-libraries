@@ -49,23 +49,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       }
     }, [checked, disabled, size])
 
-    const labelElement = useMemo(() => {
-      return (
-        <Typography
-          css={{
-            marginLeft: {
-              sm: 4,
-              md: 4,
-              lg: 8,
-            }[size],
-          }}
-          type={size === 'sm' ? 'caption1' : size === 'md' ? 'body3' : 'body2'}
-        >
-          {label}
-        </Typography>
-      )
-    }, [size, label])
-
     return (
       <Label
         htmlFor={id}
@@ -82,6 +65,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           ref={ref}
           checked={checked}
           hidden={true}
+          readOnly={true}
           disabled={disabled}
           onChange={(e) => {
             onChange(e.target.checked)
@@ -114,7 +98,20 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           {iconElement}
         </Box>
 
-        {labelElement}
+        {label && (
+          <Typography
+            css={{
+              marginLeft: {
+                sm: 4,
+                md: 4,
+                lg: 8,
+              }[size],
+            }}
+            type={size === 'sm' ? 'caption1' : size === 'md' ? 'body3' : 'body2'}
+          >
+            {label}
+          </Typography>
+        )}
       </Label>
     )
   },

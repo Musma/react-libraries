@@ -7,6 +7,7 @@ import { Box } from 'src/elements'
 interface AppShellProps {
   header: ReactNode
   navBar: ReactNode
+  disabledPadding?: boolean
   children: ReactNode
 }
 

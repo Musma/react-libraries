@@ -88,10 +88,10 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
           type="radio"
           ref={ref}
           checked={checked}
+          readOnly={true}
           hidden={true}
           disabled={disabled}
           onChange={(e) => {
-            console.log(e.target)
             onChange(e.target.value)
           }}
           {...rest}

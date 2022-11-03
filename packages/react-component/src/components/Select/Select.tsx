@@ -17,6 +17,7 @@ interface SelectProps<T>
   label?: string
   value: T
   options: SelectOption<T>[]
+  wrapperClassName?: string
   onChange: (value: T) => void
 }
 
@@ -27,6 +28,7 @@ export const Select = <T extends unknown>({
   label,
   value,
   options,
+  className,
   onChange,
   ...rest
 }: SelectProps<T>) => {
@@ -63,11 +65,12 @@ export const Select = <T extends unknown>({
   return (
     <Box
       css={{
-        display: 'flex',
+        display: 'inline-flex',
         flexDirection: 'column',
         width: '100%',
         minWidth: 64,
       }}
+      className={className}
     >
       {/* 라벨 */}
       {label && <InputLabel size={size}>{label}</InputLabel>}
@@ -84,7 +87,7 @@ export const Select = <T extends unknown>({
           readOnly={true}
           css={[
             {
-              flex: 1,
+              width: '100%',
               height: theme.inputSize[size],
               cursor: 'pointer',
               borderRadius: '4px',

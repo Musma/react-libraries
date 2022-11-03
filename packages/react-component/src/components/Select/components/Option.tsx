@@ -46,7 +46,7 @@ export const Option = <T extends unknown>({
         },
         !isSelected && {
           '&:hover': {
-            backgroundColor: theme.colors.blue.lighter,
+            backgroundColor: theme.colors.white.lighter,
             color: theme.colors.blue.main,
           },
         },

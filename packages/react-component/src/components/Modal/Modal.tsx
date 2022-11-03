@@ -1,9 +1,9 @@
-import { useMemo, ReactNode, useCallback, useEffect, useRef, CSSProperties, Fragment } from 'react'
+import { ReactNode, useCallback, useEffect, useRef, CSSProperties, Fragment } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 import { OutlineCloseIcon } from '@musma/react-icons'
 
-import { Button, Typography, IconAdornment, Backdrop } from 'src/components'
+import { Button, Typography, IconAdornment, Backdrop, Divider } from 'src/components'
 import { Box } from 'src/elements'
 import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/types'
@@ -12,7 +12,7 @@ interface ModalProps {
   title: string
   open: boolean
   size?: Extract<Size, 'md' | 'sm'>
-  children: ReactNode
+  children?: ReactNode
   buttonOption: {
     label: string
     buttonStyle?: CSSProperties
@@ -43,62 +43,6 @@ interface ModalProps {
   onClose: () => void
 }
 
-const modalCss = {
-  size: {
-    md: css({
-      width: '456px',
-      height: '378px',
-    }),
-    sm: css({
-      width: '328px',
-      height: '202px',
-    }),
-  },
-}
-
-const headerCss = {
-  base: css({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '14px 16px',
-  }),
-  size: {
-    md: css({ paddingLeft: '24px' }),
-    sm: css({ paddingLeft: '16px' }),
-  },
-}
-
-const buttonCss = {
-  container: {
-    base: css({
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      columnGap: '8px',
-      borderRadius: '6px',
-    }),
-    size: {
-      md: css({
-        marginBottom: '24px',
-      }),
-      sm: css({
-        marginBottom: '16px',
-      }),
-    },
-  },
-  button: {
-    md: css({
-      width: '200px',
-      height: '32px',
-    }),
-    sm: css({
-      width: '144px',
-      height: '28px',
-    }),
-  },
-}
-
 export const Modal = ({
   title,
   open,
@@ -112,11 +56,7 @@ export const Modal = ({
   onClose,
 }: ModalProps) => {
   const theme = useTheme()
-  const backgroundRef = useRef<HTMLDivElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
-  const buttonSize = useMemo(() => {
-    return size === 'md' ? 'lg' : 'md'
-  }, [size])
 
   const handleModalClose = useCallback(() => {
     onClose()
@@ -124,10 +64,12 @@ export const Modal = ({
   }, [modalManager, onClose])
 
   useKeyEsc(() => {
-    if (!closeOnEscPress || !backgroundRef.current) {
+    console.log(`modalRef`)
+    console.log(modalRef)
+    if (!closeOnEscPress || !modalRef.current) {
       return
     }
-    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) {
+    if (modalManager && !modalManager.isTopModal(modalRef.current)) {
       return
     }
     handleModalClose()
@@ -136,28 +78,28 @@ export const Modal = ({
   useOutsideListener(
     modalRef,
     () => {
-      if (!closeOnOutsideClick || !backgroundRef.current) {
+      if (!closeOnOutsideClick || !modalRef.current) {
         return
       }
-      if (!modalManager?.isTopModal(backgroundRef.current)) {
+      if (!modalManager?.isTopModal(modalRef.current)) {
         return
       }
       handleModalClose()
     },
-    [modalManager],
+    [modalRef, modalManager],
   )
 
   useEffect(() => {
-    if (!open || !backgroundRef.current) {
+    if (!open || !modalRef.current) {
       return
     }
 
-    modalManager?.add(backgroundRef.current)
+    modalManager?.add(modalRef.current)
   }, [open, modalManager])
 
   if (open) {
     return (
-      <Backdrop open={open}>
+      <Backdrop>
         <Box
           ref={modalRef}
           css={[
@@ -168,58 +110,94 @@ export const Modal = ({
               backgroundColor: theme.colors.white.main,
               boxShadow: theme.shadow.lg,
             },
-            modalCss.size[size],
+            {
+              sm: {
+                width: 328,
+                height: 202,
+              },
+              md: {
+                width: 456,
+                height: 378,
+              },
+              lg: {
+                width: 456,
+                height: 378,
+              },
+            }[size],
           ]}
           className={className}
         >
-          <section css={[headerCss.base, headerCss.size[size]]}>
+          <Box
+            css={[
+              {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '14px 16px',
+              },
+              {
+                sm: { padingLeft: theme.spacing.md },
+                md: { paddingLeft: theme.spacing.lg },
+                lg: { paddingLeft: theme.spacing.lg },
+              }[size],
+            ]}
+          >
             <Typography type="subTitle2">{title}</Typography>
 
             <IconAdornment onClick={handleModalClose}>
               <OutlineCloseIcon width={16} height={16} color={theme.colors.black.lighter} />
             </IconAdornment>
-          </section>
+          </Box>
 
-          <hr
+          <Divider
             css={{
-              width: '100%',
               margin: 0,
-              boxSizing: 'border-box',
               borderTop: `1px solid ${theme.colors.gray.darker}`,
             }}
           />
 
-          <section
+          <Box
             css={{
-              flex: '1 1 0',
-              fontSize: 14,
-              fontWeight: 400,
-              color: theme.colors.black.lighter,
+              flex: 1,
             }}
           >
             {children}
-          </section>
+          </Box>
 
-          <div css={[buttonCss.container.base, buttonCss.container.size[size]]}>
+          <Box
+            css={[
+              {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                columnGap: theme.spacing.sm,
+              },
+              {
+                sm: { marginBottom: 16 },
+                md: { marginBottom: 24 },
+                lg: { marginBottom: 24 },
+              }[size],
+            ]}
+          >
             <Button
-              size={buttonSize}
+              size={size === 'md' ? 'lg' : 'md'}
               variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
               onClick={buttonOption.onClick}
-              css={{ ...buttonCss.button[size], ...buttonOption.buttonStyle }}
+              css={[{ sm: { width: 144 }, md: { width: 200 }, lg: { width: 200 } }[size]]}
             >
               {buttonOption.label}
             </Button>
 
             {buttonOption.secondLabel && (
               <Button
-                size={buttonSize}
+                size={size === 'md' ? 'lg' : 'md'}
                 onClick={buttonOption.onSecondClick}
-                css={{ ...buttonCss.button[size], ...buttonOption.secondButtonStyle }}
+                css={[{ sm: { width: 144 }, md: { width: 200 }, lg: { width: 200 } }[size]]}
               >
                 {buttonOption.secondLabel}
               </Button>
             )}
-          </div>
+          </Box>
         </Box>
       </Backdrop>
     )
