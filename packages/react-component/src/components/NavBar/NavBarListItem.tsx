@@ -1,39 +1,42 @@
-import { Link, LinkProps } from 'react-router-dom'
+import { NavLink, NavLinkProps } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
+import { Box } from 'src/elements'
 
-interface NavBarListItemProps extends LinkProps {
-  active?: boolean
+interface NavBarListItemProps extends NavLinkProps {
+  label: string
 }
 
-export const NavBarListItem = ({ active = false, children, ...rest }: NavBarListItemProps) => {
+export const NavBarListItem = ({ label, ...rest }: NavBarListItemProps) => {
   const theme = useTheme()
   return (
-    <Link
-      css={{
-        display: 'flex',
-        alignItems: 'center',
-        cursor: 'pointer',
-        height: 40,
-        borderRadius: theme.rounded.lg,
-        paddingLeft: 40,
-        color: active ? theme.colors.primary.main : theme.colors.black.dark,
-        margin: '4px 0px',
-        textDecoration: 'none',
-        '&:hover': {
-          color: theme.colors.primary.main,
-        },
-        '&:last-of-type': {
-          marginBottom: 0,
-        },
-      }}
-      {...rest}
-    >
-      <Typography type={active ? 'subTitle2' : 'body3'} css={{ color: 'currentcolor' }}>
-        {children}
-      </Typography>
-    </Link>
+    <NavLink css={{ textDecoration: 'none' }} {...rest}>
+      {({ isActive }) => (
+        <Box
+          css={{
+            display: 'flex',
+            alignItems: 'center',
+            cursor: 'pointer',
+            height: 40,
+            borderRadius: theme.rounded.lg,
+            paddingLeft: 40,
+            margin: '4px 0px',
+            textDecoration: 'none',
+            '&:hover': {
+              color: theme.colors.primary.main,
+            },
+          }}
+        >
+          <Typography
+            type={isActive ? 'subTitle2' : 'body3'}
+            css={{ color: isActive ? theme.colors.primary.main : theme.colors.black.dark }}
+          >
+            {label}
+          </Typography>
+        </Box>
+      )}
+    </NavLink>
   )
 }

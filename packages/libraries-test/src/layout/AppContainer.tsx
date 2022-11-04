@@ -1,11 +1,14 @@
+import { useCallback, useState } from 'react'
+
 import {
   AppShell,
   NavBarList,
   Header,
   NavBar,
   NavBarListItem,
-  Test,
+  Table,
   Button,
+  Collapse,
 } from '@musma/react-component'
 import { FillDashboardIcon } from '@musma/react-icons'
 
@@ -23,46 +26,47 @@ const COLUMNS = [
 ]
 
 export const AppContainer = () => {
+  const [test, setTest] = useState(false)
+
+  const toggle = useCallback(() => {
+    setTest((value) => !value)
+  }, [])
   return (
     <AppShell
       header={<Header>askdo</Header>}
       navBar={
         <NavBar>
-          <NavBarList icon={FillDashboardIcon} active={true} to="/">
-            ASKDAK
-          </NavBarList>
+          <NavBarList
+            icon={FillDashboardIcon}
+            label="123123"
+            onClick={() => {
+              console.log('123123')
+            }}
+          />
 
-          <NavBarListItem active={false} to="/123123">
-            ASKDAK
-          </NavBarListItem>
-
-          <NavBarListItem active={false} to="123123">
-            ASKDAK
-          </NavBarListItem>
-
-          <NavBarListItem active={false} to="99898">
-            ASKDAK
-          </NavBarListItem>
-
-          <NavBarList icon={FillDashboardIcon} active={true} to="/2222">
-            222222222
-          </NavBarList>
+          <Collapse show={test}>
+            <NavBarListItem to="/123123" label="123123" />
+          </Collapse>
 
           <NavBarList
             icon={FillDashboardIcon}
-            active={false}
+            label="123123"
             onClick={() => {
-              alert('1232131290830')
+              console.log('123123')
             }}
-          >
-            222222222
-          </NavBarList>
+          />
         </NavBar>
       }
     >
-      <Test data={DATA} columns={COLUMNS} />
+      <Table data={DATA} columns={COLUMNS} />
 
-      <Button>apsodikspoak</Button>
+      <Button
+        onClick={() => {
+          toggle()
+        }}
+      >
+        Nav Open
+      </Button>
       <Button variant="outlined">apsodikspoak</Button>
     </AppShell>
   )

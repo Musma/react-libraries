@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { MusmaProvider, DefaultTheme } from '@musma/react-component'
 
-import { App } from './App'
-// import { AppContainer } from './layout'
+// import { App } from './App'
+import { AppContainer } from './layout'
 // import { AuthContainer } from './layout'
 
 const theme = {
@@ -27,8 +27,8 @@ render(
     <MusmaProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<AppContainer />} /> */}
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<AppContainer />} />
+          {/* <Route path="/" element={<App />} /> */}
         </Routes>
       </BrowserRouter>
 
