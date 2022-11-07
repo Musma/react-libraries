@@ -18,7 +18,7 @@ export const Badge = ({ value, children }: PropsWithChildren<BadgeProps>) => {
   return (
     <Box css={{ position: 'relative', display: 'inline-flex' }}>
       {computedValue !== 0 && (
-        <span
+        <Box
           css={{
             position: 'absolute',
             top: -3.5,
@@ -37,7 +37,7 @@ export const Badge = ({ value, children }: PropsWithChildren<BadgeProps>) => {
           <Typography type="caption2" css={{ color: theme.colors.white.main }}>
             {computedValue}
           </Typography>
-        </span>
+        </Box>
       )}
 
       {children}

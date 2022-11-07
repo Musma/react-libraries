@@ -7,7 +7,13 @@ import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
 interface TextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * @description
+   */
   size?: Size
+  /**
+   * @description
+   */
   fullWidth?: boolean
 }
 

@@ -12,7 +12,13 @@ import { Typography, Select, IconAdornment, usePaginationProps } from 'src/compo
 import { Box } from 'src/elements'
 
 interface PaginationProps {
+  /**
+   * @description
+   */
   pagination: usePaginationProps
+  /**
+   * @description
+   */
   totalCount: number
 }
 

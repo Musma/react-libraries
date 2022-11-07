@@ -14,7 +14,13 @@ import {
 } from './components'
 
 export type TypographyProps = {
+  /**
+   * @description
+   */
   type?: HeadingType | BodyType | CaptionType | SubTitleType
+  /**
+   * @description
+   */
   className?: string
 }
 

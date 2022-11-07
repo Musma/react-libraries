@@ -12,13 +12,37 @@ import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+  /**
+   * @description
+   */
   type?: 'text' | 'password'
+  /**
+   * @description
+   */
   size?: Size
+  /**
+   * @description
+   */
   label?: string
+  /**
+   * @description
+   */
   startAdornment?: ReactNode
+  /**
+   * @description
+   */
   endAdornment?: ReactNode
+  /**
+   * @description
+   */
   error?: boolean
+  /**
+   * @description
+   */
   helperText?: string
+  /**
+   * @description
+   */
   required?: boolean
 }
 

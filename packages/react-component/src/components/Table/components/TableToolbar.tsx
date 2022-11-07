@@ -6,8 +6,17 @@ import { Typography } from 'src/components'
 import { Box } from 'src/elements'
 
 interface TableToolbarProps {
+  /**
+   * @description
+   */
   title: string
+  /**
+   * @description
+   */
   totalCount?: number
+  /**
+   * @description
+   */
   children?: ReactNode
 }
 

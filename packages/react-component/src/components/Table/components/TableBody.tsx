@@ -8,11 +8,29 @@ import { Box } from 'src/elements'
 import { TableColumn } from '../Table'
 
 interface TableBodyProps {
+  /**
+   * @description
+   */
   columns: TableColumn[]
+  /**
+   * @description
+   */
   data: Record<string, unknown>[]
+  /**
+   * @description
+   */
   withCheckbox?: boolean
+  /**
+   * @description
+   */
   checkedItems?: string[]
+  /**
+   * @description
+   */
   onRowClick?: (rowData: Record<string, unknown>[]) => void
+  /**
+   * @description
+   */
   onCheckboxClick?: (rowData: Record<string, unknown>) => void
 }
 

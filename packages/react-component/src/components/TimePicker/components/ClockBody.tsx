@@ -12,9 +12,21 @@ import {
 } from 'src/components'
 
 interface ClockProps {
+  /**
+   * @description
+   */
   clockType: ClockType
+  /**
+   * @description
+   */
   date: DateTime
+  /**
+   * @description
+   */
   value: number
+  /**
+   * @description
+   */
   onDateChange: (dateTime: DateTime) => void
 }
 

@@ -5,10 +5,11 @@ import {
   NavBarList,
   Header,
   NavBar,
-  NavBarListItem,
-  Table,
+  NavBarLink,
   Button,
   Collapse,
+  HeaderLeftSection,
+  HeaderRightSection,
 } from '@musma/react-component'
 import { FillDashboardIcon } from '@musma/react-icons'
 
@@ -31,21 +32,36 @@ export const AppContainer = () => {
   const toggle = useCallback(() => {
     setTest((value) => !value)
   }, [])
+
   return (
     <AppShell
-      header={<Header>askdo</Header>}
+      header={
+        <Header>
+          <HeaderLeftSection logo={FillDashboardIcon} to="/" />
+          <HeaderRightSection>aspoldksapodksapo</HeaderRightSection>
+        </Header>
+      }
       navBar={
         <NavBar>
+          <NavBarLink to="/" label="123123" icon={FillDashboardIcon} />
+
           <NavBarList
             icon={FillDashboardIcon}
             label="123123"
             onClick={() => {
               console.log('123123')
             }}
+            active={test}
           />
 
           <Collapse show={test}>
-            <NavBarListItem to="/123123" label="123123" />
+            <NavBarLink to="/" label="123123" />
+            <NavBarLink to="/1" label="123123" />
+            <NavBarLink to="/2" label="123123" />
+            <NavBarLink to="/3" label="123123" />
+            <NavBarLink to="/4" label="123123" />
+            <NavBarLink to="/5" label="123123" />
+            <NavBarLink to="/6" label="123123" />
           </Collapse>
 
           <NavBarList
@@ -58,7 +74,7 @@ export const AppContainer = () => {
         </NavBar>
       }
     >
-      <Table data={DATA} columns={COLUMNS} />
+      {/* <Table data={DATA} columns={COLUMNS} /> */}
 
       <Button
         onClick={() => {

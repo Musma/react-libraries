@@ -21,12 +21,14 @@ interface ToolbarOptions {
 
 export interface TableProps {
   /**
+   * @description
    * 테이블 데이터
    * Record<string, unknown>
    * id 컬럼이 필수
    */
   data: Record<string, unknown>[]
   /**
+   * @description
    * 테이블 컬럼
    * id 컬럼이 필수
    */
@@ -59,14 +61,17 @@ export interface TableProps {
    */
   withPagination?: boolean
   /**
+   * @description
    * 체크박스 체크한 데이터의 ID 목록
    */
   checkedItems?: string[]
   /**
+   * @description
    * 체크박스 클릭 이벤트
    */
   onCheckItemChange?: (items: string[]) => void
   /**
+   * @description
    * 로우 클릭 이벤트
    */
   onRowClick?: (rowData: Record<string, unknown>) => void

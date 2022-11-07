@@ -18,11 +18,29 @@ export interface SelectOption<T> {
 
 interface SelectProps<T>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange'> {
+  /**
+   *
+   */
   size?: Size
+  /**
+   *
+   */
   label?: string
+  /**
+   *
+   */
   value: T
+  /**
+   *
+   */
   options: SelectOption<T>[]
+  /**
+   *
+   */
   wrapperClassName?: string
+  /**
+   *
+   */
   onChange: (value: T) => void
 }
 

@@ -5,6 +5,9 @@ import { css, useTheme } from '@emotion/react'
 import { Size } from 'src/types'
 
 interface ToggleButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /**
+   * @description
+   */
   size?: Size
 }
 

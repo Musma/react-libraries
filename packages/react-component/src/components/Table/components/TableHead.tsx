@@ -8,9 +8,21 @@ import { Box } from 'src/elements'
 import { TableColumn } from '../Table'
 
 interface TableHeadProps {
+  /**
+   * @description
+   */
   columns: TableColumn[]
+  /**
+   * @description
+   */
   withCheckbox?: boolean
+  /**
+   * @description
+   */
   allChecked?: boolean
+  /**
+   * @description
+   */
   onAllCheckClick?: () => void
 }
 

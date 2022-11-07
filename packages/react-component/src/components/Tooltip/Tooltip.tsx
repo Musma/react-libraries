@@ -1,13 +1,25 @@
-import { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 import { css, useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
 
 interface TooltipProps {
-  children: React.ReactNode
-  message: React.ReactNode
+  /**
+   * @description
+   */
+  children: ReactNode
+  /**
+   * @description
+   */
+  message: ReactNode
+  /**
+   * @description
+   */
   position?: 'left' | 'right' | 'top' | 'bottom'
+  /**
+   * @description
+   */
   width?: number
 }
 

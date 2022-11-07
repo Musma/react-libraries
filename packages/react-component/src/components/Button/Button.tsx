@@ -7,15 +7,30 @@ import { InputIcon, Typography } from 'src/components'
 import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
-import { ButtonVariant } from './types'
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   *
+   */
   size?: Size
+  /**
+   *
+   */
   fullWidth?: boolean
-  variant?: ButtonVariant
+  /**
+   *
+   */
+  variant?: 'outlined' | 'contained' | 'danger'
+  /**
+   *
+   */
   startIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
 
+/**
+ *
+ * @param param0
+ * @returns
+ */
 export const Button = ({
   variant = 'contained',
   fullWidth = false,

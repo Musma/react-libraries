@@ -7,6 +7,11 @@ import { Box } from 'src/elements'
 
 type BackdropProps = HTMLAttributes<HTMLDivElement>
 
+/**
+ * Backdrop
+ * @description
+ * Modal, Drawer 등이 나타날 때 뒤에 깔리는 어두운 배경 화면입니다.
+ */
 export const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
   const theme = useTheme()
 

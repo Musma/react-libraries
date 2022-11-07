@@ -24,10 +24,25 @@ import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 interface TimePickerProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /**
+   * @description
+   */
   label: string
+  /**
+   * @description
+   */
   size?: Size
+  /**
+   * @description
+   */
   date: DateTime
+  /**
+   * @description
+   */
   error?: boolean
+  /**
+   * @description
+   */
   onDateChange: (date: DateTime) => void
 }
 
