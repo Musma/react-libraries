@@ -22,39 +22,52 @@ interface ToolbarOptions {
 export interface TableProps {
   /**
    * 테이블 데이터
-   * Record<string, ReactNode>
+   * Record<string, unknown>
+   * id 컬럼이 필수
    */
   data: Record<string, unknown>[]
   /**
-   *
+   * 테이블 컬럼
+   * id 컬럼이 필수
    */
   columns: TableColumn[]
   /**
    * Wrapper Container의 둥글기
+   * @default
+   * sm: 8
+   * md: 16
+   * lg: 24
    */
   rounded?: Size
   /**
-   *
+   * @description
+   * title: 테이블 제목
+   * totalCount: 데이터 전체 갯수
+   * 오른쪽에 렌더링 될 ReactNode
    */
   toolbar?: ToolbarOptions
   /**
-   *
+   * @default false
+   * 체크박스 표시 여부
    */
   withCheckbox?: boolean
   /**
-   *
+   * @default false
+   * 페이지네이션 표시 여부
+   * TODO:
+   * 페이지네이션 관련 로직 개발이 아직 안됨
    */
   withPagination?: boolean
   /**
-   *
+   * 체크박스 체크한 데이터의 ID 목록
    */
   checkedItems?: string[]
   /**
-   *
+   * 체크박스 클릭 이벤트
    */
   onCheckItemChange?: (items: string[]) => void
   /**
-   *
+   * 로우 클릭 이벤트
    */
   onRowClick?: (rowData: Record<string, unknown>) => void
 }

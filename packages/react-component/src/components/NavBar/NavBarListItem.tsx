@@ -12,18 +12,15 @@ interface NavBarListItemProps extends NavLinkProps {
 export const NavBarListItem = ({ label, ...rest }: NavBarListItemProps) => {
   const theme = useTheme()
   return (
-    <NavLink css={{ textDecoration: 'none' }} {...rest}>
+    <NavLink css={{ textDecoration: 'none', margin: '8px 0px' }} {...rest}>
       {({ isActive }) => (
         <Box
           css={{
             display: 'flex',
             alignItems: 'center',
-            cursor: 'pointer',
             height: 40,
             borderRadius: theme.rounded.lg,
             paddingLeft: 40,
-            margin: '4px 0px',
-            textDecoration: 'none',
             '&:hover': {
               color: theme.colors.primary.main,
             },

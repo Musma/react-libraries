@@ -1,9 +1,10 @@
 import { Fragment, useCallback, useMemo, useState } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 import { uniqueId } from 'lodash-es'
 
 import { Typography } from 'src/components'
+import { Box, Image, InputBase, Label } from 'src/elements'
 import { Size } from 'src/types'
 
 import { ReactComponent as DefaultLgIcon } from './images/image_default_lg.svg'
@@ -46,47 +47,33 @@ export const ImageUploader = ({
     }[size]
   }, [size])
 
-  const getHelperIcon = useCallback((size: Size) => {
+  const getHelperIcon = useMemo(() => {
     return {
       lg: <UploadLgIcon />,
       md: <UploadLgIcon />,
       sm: <UploadSmIcon />,
     }[size]
-  }, [])
-
-  const getHelperText = useCallback(
-    (size: Size) => {
-      return {
-        lg: (
-          <Typography
-            type="subTitle2"
-            css={{ marginBottom: '4px', color: theme.colors.white.main }}
-          >
-            Upload Picture
-          </Typography>
-        ),
-        md: (
-          <Typography type="caption2" css={{ marginBottom: '4px', color: theme.colors.white.main }}>
-            Upload Picture
-          </Typography>
-        ),
-        sm: <Fragment />,
-      }[size]
-    },
-    [theme],
-  )
-
-  const divSize = useMemo(() => {
-    return {
-      lg: css({ height: '140px', width: '140px' }),
-      md: css({ height: '100px', width: '100px' }),
-      sm: css({ height: '32px', width: '32px' }),
-    }[size]
   }, [size])
 
+  const getHelperText = useMemo(() => {
+    return {
+      lg: (
+        <Typography type="subTitle2" css={{ marginBottom: '4px', color: theme.colors.white.main }}>
+          Upload Picture
+        </Typography>
+      ),
+      md: (
+        <Typography type="caption2" css={{ marginBottom: '4px', color: theme.colors.white.main }}>
+          Upload Picture
+        </Typography>
+      ),
+      sm: <Fragment />,
+    }[size]
+  }, [size, theme.colors.white.main])
+
   return (
-    <label htmlFor={id} css={{ display: 'inline-block', cursor: 'pointer' }}>
-      <div
+    <Label htmlFor={id} css={{ display: 'inline-block', cursor: 'pointer' }}>
+      <Box
         css={[
           {
             position: 'relative',
@@ -102,11 +89,15 @@ export const ImageUploader = ({
             textAlign: 'center',
             overflow: 'hidden',
           },
-          divSize,
+          {
+            lg: { height: '140px', width: '140px' },
+            md: { height: '100px', width: '100px' },
+            sm: { height: '32px', width: '32px' },
+          }[size],
         ]}
       >
         {thumbnail ? (
-          <img
+          <Image
             src={thumbnail}
             css={{
               height: '100%',
@@ -118,11 +109,10 @@ export const ImageUploader = ({
         ) : (
           defaultImage
         )}
-        <div
+
+        <Box
           css={[
-            'child',
-            divSize,
-            css({
+            {
               visibility: 'hidden',
               position: 'absolute',
               display: 'flex',
@@ -130,14 +120,19 @@ export const ImageUploader = ({
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: `${theme.colors.black.main}99`,
-            }),
+            },
+            {
+              lg: { height: '140px', width: '140px' },
+              md: { height: '100px', width: '100px' },
+              sm: { height: '32px', width: '32px' },
+            }[size],
           ]}
         >
-          {getHelperIcon(size)}
-          {getHelperText(size)}
-        </div>
+          {getHelperIcon}
+          {getHelperText}
+        </Box>
 
-        <input
+        <InputBase
           id={id}
           hidden={true}
           type="file"
@@ -145,7 +140,7 @@ export const ImageUploader = ({
           accept="image/*"
           onChange={handleImageSelect}
         />
-      </div>
-    </label>
+      </Box>
+    </Label>
   )
 }

@@ -5,11 +5,16 @@ import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
 import { useOutsideListener } from '@musma/react-utils'
 import { uniqueId } from 'lodash-es'
 
-import { InputLabel, SelectOption, Typography } from 'src/components'
+import { InputLabel, Typography } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { Option, OptionContainer } from './components'
+
+export interface SelectOption<T> {
+  label: string
+  value: T
+}
 
 interface SelectProps<T>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange'> {

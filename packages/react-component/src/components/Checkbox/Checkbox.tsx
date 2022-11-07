@@ -84,9 +84,20 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               backgroundColor: theme.colors.white.main,
               border: `1px solid ${theme.colors.gray.darker}`,
             },
-            size === 'sm' && { width: 14, height: 14 },
-            size === 'md' && { width: 16, height: 16 },
-            size === 'lg' && { width: 24, height: 24 },
+            {
+              sm: {
+                width: 14,
+                height: 14,
+              },
+              md: {
+                width: 16,
+                height: 16,
+              },
+              lg: {
+                width: 24,
+                height: 24,
+              },
+            }[size],
             checked && { backgroundColor: theme.colors.green.main, border: 'none' },
             disabled && {
               backgroundColor: theme.colors.white.lighter,

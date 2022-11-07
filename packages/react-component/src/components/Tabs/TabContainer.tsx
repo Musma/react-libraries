@@ -1,5 +1,7 @@
 import { PropsWithChildren, useCallback, useMemo, useState } from 'react'
 
+import { Box } from 'src/elements'
+
 import { TabContext } from './TabContext'
 import { TabValue, Variant } from './types'
 
@@ -24,8 +26,8 @@ export const TabContainer = ({ children, defaultTab, variant = 'rect' }: TabCont
   }, [currentTab, handleTabClick, variant])
 
   return (
-    <div>
+    <Box>
       <TabContext.Provider value={value}>{children}</TabContext.Provider>
-    </div>
+    </Box>
   )
 }
