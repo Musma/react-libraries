@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.14
+
+### Patch Changes
+
+- [`367b5be`](https://github.com/Musma/react-libraries/commit/367b5be192c3cc7f08a1cc069788911c02d647f7) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: NavList, NavListItem 마진 추가
+
 ## 0.1.13
 
 ### Patch Changes
