@@ -2,8 +2,8 @@ import { createContext, useContext } from 'react'
 
 interface ITabContext {
   variant: 'hat' | 'rect'
-  currentTab: string | number
-  handleTabClick: (value: string | number) => void
+  value: string | number
+  onTabValueChange: (value: string | number) => void
 }
 
 export const TabContext = createContext<ITabContext | null>(null)

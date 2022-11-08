@@ -7,12 +7,7 @@ import { Typography } from 'src/components'
 import { Box, InputBase, Label } from 'src/elements'
 import { Size } from 'src/types'
 
-import { ReactComponent as DoneDisabledLgIcon } from './images/done_disabled_lg.svg'
-import { ReactComponent as DoneDisabledMdIcon } from './images/done_disabled_md.svg'
-import { ReactComponent as DoneDisabledSmIcon } from './images/done_disabled_sm.svg'
-import { ReactComponent as DoneLgIcon } from './images/done_lg.svg'
-import { ReactComponent as DoneMdIcon } from './images/done_md.svg'
-import { ReactComponent as DoneSmIcon } from './images/done_sm.svg'
+import { ReactComponent as Check } from './images/check.svg'
 
 interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'> {
   label?: ReactNode
@@ -31,23 +26,44 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       return _id || uniqueId()
     }, [_id])
 
-    const iconElement = useMemo(() => {
+    const checkColor = useMemo(() => {
       if (disabled) {
-        return {
-          sm: <DoneDisabledSmIcon />,
-          md: <DoneDisabledMdIcon />,
-          lg: <DoneDisabledLgIcon />,
-        }[size]
+        return theme.colors.gray.darker
       }
 
       if (checked) {
-        return {
-          sm: <DoneSmIcon />,
-          md: <DoneMdIcon />,
-          lg: <DoneLgIcon />,
-        }[size]
+        return theme.colors.white.main
       }
-    }, [checked, disabled, size])
+
+      return theme.colors.transparent
+    }, [
+      checked,
+      disabled,
+      theme.colors.gray.darker,
+      theme.colors.transparent,
+      theme.colors.white.main,
+    ])
+
+    const checkSize = useMemo(() => {
+      if (size === 'sm') {
+        return {
+          width: 10,
+          height: 10,
+        }
+      }
+      if (size === 'md') {
+        return {
+          width: 12,
+          height: 12,
+        }
+      }
+      if (size === 'lg') {
+        return {
+          width: 20,
+          height: 20,
+        }
+      }
+    }, [size])
 
     return (
       <Label
@@ -59,6 +75,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         }}
         className={className}
       >
+        {/* Hidden true로 Input이 화면에 나타나지 않음 */}
         <InputBase
           id={id}
           ref={ref}
@@ -79,7 +96,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
               borderRadius: 2,
               backgroundColor: theme.colors.white.main,
               border: `1px solid ${theme.colors.gray.darker}`,
@@ -101,12 +117,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             checked && { backgroundColor: theme.colors.green.main, border: 'none' },
             disabled && {
               backgroundColor: theme.colors.white.lighter,
-              cursor: 'not-allowed',
               border: 'none',
             },
           ]}
         >
-          {iconElement}
+          <Check color={checkColor} {...checkSize} />
         </Box>
 
         {label && (
