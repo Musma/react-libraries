@@ -151,7 +151,7 @@ export const Table = ({
         <TableBody
           columns={columns}
           data={data}
-          withCheckbox={true}
+          withCheckbox={withCheckbox}
           checkedItems={checkedItems}
           onCheckboxClick={handleCheckboxClick}
         />

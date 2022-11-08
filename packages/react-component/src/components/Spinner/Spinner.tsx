@@ -11,7 +11,7 @@ interface SpinnerProps {
 export const Spinner = ({ size = 'md' }: SpinnerProps) => {
   const theme = useTheme()
   const svgSize = useMemo(() => {
-    const svgSize = size === 'sm' ? 16 : size === 'md' ? 32 : 40
+    const svgSize = size === 'sm' ? 16 : size === 'md' ? 32 : 48
     return {
       width: svgSize,
       height: svgSize,
@@ -30,6 +30,7 @@ export const Spinner = ({ size = 'md' }: SpinnerProps) => {
           },
         },
         animation: 'spin 1s linear infinite',
+        shapeRendering: 'geometricPrecision',
       }}
       {...svgSize}
     >

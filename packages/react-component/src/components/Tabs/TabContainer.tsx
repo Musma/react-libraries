@@ -3,11 +3,10 @@ import { PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import { Box } from 'src/elements'
 
 import { TabContext } from './TabContext'
-import { TabValue, Variant } from './types'
 
 interface TabContainerProps extends PropsWithChildren {
-  defaultTab: TabValue
-  variant?: Variant
+  defaultTab: string | number
+  variant?: 'hat' | 'rect'
 }
 
 export const TabContainer = ({ children, defaultTab, variant = 'rect' }: TabContainerProps) => {

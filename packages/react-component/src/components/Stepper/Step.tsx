@@ -14,6 +14,7 @@ export const Step = ({ step, first, active }: StepProps) => {
   const theme = useTheme()
 
   return (
+    // Wrapper Box
     <Box
       css={[
         {
@@ -30,7 +31,7 @@ export const Step = ({ step, first, active }: StepProps) => {
             top: 9,
             left: 'calc(-50% + 9px)',
             right: 'calc(50% + 9px)',
-            height: '1px',
+            height: '2px',
             backgroundColor: active ? theme.colors.primary.main : theme.colors.gray.lighter,
           }}
         />

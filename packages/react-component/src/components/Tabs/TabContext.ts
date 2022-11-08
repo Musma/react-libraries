@@ -1,11 +1,9 @@
 import { createContext, useContext } from 'react'
 
-import { HandleTabClick, TabValue } from './types'
-
 interface ITabContext {
   variant: 'hat' | 'rect'
-  currentTab: TabValue
-  handleTabClick: HandleTabClick
+  currentTab: string | number
+  handleTabClick: (value: string | number) => void
 }
 
 export const TabContext = createContext<ITabContext | null>(null)

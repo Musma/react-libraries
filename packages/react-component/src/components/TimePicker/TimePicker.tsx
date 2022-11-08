@@ -18,7 +18,7 @@ import {
   ClockType,
   getMeridiem,
   IconAdornment,
-  Typography,
+  InputLabel,
 } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
@@ -96,7 +96,7 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(
         ref={containerRef}
       >
         {/* 라벨 */}
-        {label && <Typography type={size === 'lg' ? 'subTitle2' : 'subTitle3'}>{label}</Typography>}
+        {label && <InputLabel size={size}>{label}</InputLabel>}
 
         <Box
           css={[

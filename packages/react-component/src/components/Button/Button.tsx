@@ -13,11 +13,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   size?: Size
   /**
-   *
+   * @default false
    */
   fullWidth?: boolean
   /**
-   *
+   * @default contained
    */
   variant?: 'outlined' | 'contained' | 'danger'
   /**

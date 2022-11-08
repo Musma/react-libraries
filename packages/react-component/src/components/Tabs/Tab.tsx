@@ -3,14 +3,14 @@ import { Fragment } from 'react'
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
+import { ButtonBase } from 'src/elements'
 
 import { ReactComponent as CurveLeftIcon } from './images/curve_left.svg'
 import { ReactComponent as CurveRightIcon } from './images/curve_right.svg'
 import { useTabContext } from './TabContext'
-import { HandleTabClick, TabValue } from './types'
 
 export interface TabProps {
-  value: TabValue
+  value: string | number
   label: string
 }
 
@@ -28,17 +28,14 @@ export const Tab = ({ label, value }: TabProps) => {
 }
 
 interface HatOrRectTabProps extends TabProps {
-  currentTab: TabValue
-  handleTabClick: HandleTabClick
+  currentTab: string | number
+  handleTabClick: (value: string | number) => void
 }
 
 const HatTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps) => {
   const theme = useTheme()
   return (
-    <li
-      css={{ display: 'flex', height: 40, cursor: 'pointer' }}
-      onClick={() => handleTabClick(value)}
-    >
+    <ButtonBase css={{ height: 40 }} onClick={() => handleTabClick(value)}>
       {value === currentTab ? (
         <Fragment>
           <CurveLeftIcon />
@@ -57,19 +54,19 @@ const HatTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps)
       ) : (
         <Typography
           type="subTitle2"
-          css={(theme) => ({ padding: '10px 34px', color: theme.colors.gray.darker })}
+          css={{ padding: '10px 34px', color: theme.colors.gray.darker }}
         >
           {label}
         </Typography>
       )}
-    </li>
+    </ButtonBase>
   )
 }
 
 const RectTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps) => {
   const theme = useTheme()
   return (
-    <li
+    <ButtonBase
       css={{
         cursor: 'pointer',
         borderBottom: '1px solid',
@@ -85,6 +82,6 @@ const RectTab = ({ value, label, currentTab, handleTabClick }: HatOrRectTabProps
       >
         {label}
       </Typography>
-    </li>
+    </ButtonBase>
   )
 }

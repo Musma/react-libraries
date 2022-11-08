@@ -78,9 +78,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         className={className}
       >
         {/* 라벨 */}
-        <InputLabel size={size} required={required}>
-          {label}
-        </InputLabel>
+        {label && (
+          <InputLabel size={size} required={required}>
+            {label}
+          </InputLabel>
+        )}
 
         {/* Input Container */}
         <Box
@@ -157,6 +159,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             type="caption2"
             css={{
               display: 'flex',
+              alignItems: 'center',
               gap: 4,
               color: error ? theme.colors.red.main : theme.colors.green.main,
             }}

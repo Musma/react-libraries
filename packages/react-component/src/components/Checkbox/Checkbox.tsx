@@ -61,8 +61,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <InputBase
           id={id}
-          type="checkbox"
           ref={ref}
+          type="checkbox"
           checked={checked}
           hidden={true}
           readOnly={true}
