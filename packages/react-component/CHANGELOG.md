@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.16
+
+### Patch Changes
+
+- [`495b11c`](https://github.com/Musma/react-libraries/commit/495b11c24b9da3c879e57b416ca99989c28b681f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Checkbox, Tab 리팩토링
+
 ## 0.1.15
 
 ### Patch Changes
