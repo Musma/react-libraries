@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.17
+
+### Patch Changes
+
+- [`3763ed9`](https://github.com/Musma/react-libraries/commit/3763ed92349e3de6812bd392b27dab20d0cd9735) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Rect Tab 구분선 추가
+
 ## 0.1.16
 
 ### Patch Changes
