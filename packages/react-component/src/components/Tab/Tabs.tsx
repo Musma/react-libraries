@@ -81,7 +81,7 @@ export const Tabs = ({ children, ...rest }: TabsProps) => {
     <Box
       css={{
         display: 'flex',
-        backgroundColor: theme.colors.white.main,
+        backgroundColor: variant === 'rect' ? theme.colors.white.main : theme.colors.transparent,
         borderBottom: `1px solid ${theme.colors.gray.darker}`,
       }}
       {...rest}

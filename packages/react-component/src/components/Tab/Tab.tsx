@@ -35,9 +35,6 @@ export const Tab = ({ value, label }: TabProps) => {
           paddingRight: theme.spacing.lg,
           backgroundColor: theme.colors.transparent,
           whiteSpace: 'nowrap',
-          // '&:active': {
-          //   transform: 'none',
-          // },
         },
         variant === 'hat' && {
           color: active ? theme.colors.black.main : theme.colors.gray.darker,
@@ -51,6 +48,17 @@ export const Tab = ({ value, label }: TabProps) => {
         },
         variant === 'rect' && {
           color: active ? theme.colors.blue.main : theme.colors.gray.darker,
+          position: 'relative',
+          '&:not(:first-child)': {
+            '&:before': {
+              position: 'absolute',
+              left: 0,
+              top: 'auto',
+              bottom: 'auto',
+              color: theme.colors.gray.darker,
+              content: '"|"',
+            },
+          },
         },
       ]}
       onClick={() => {
