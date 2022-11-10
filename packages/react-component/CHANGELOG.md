@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.18
+
+### Patch Changes
+
+- [`1d615f9`](https://github.com/Musma/react-libraries/commit/1d615f9236774571755a04bcbff5cce0b1d9d6ff) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 폰트 크기 px -> rem 으로 변경
+
 ## 0.1.17
 
 ### Patch Changes
