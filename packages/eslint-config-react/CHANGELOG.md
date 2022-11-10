@@ -1,5 +1,11 @@
 # @musma/eslint-config-react
 
+## 0.1.5
+
+### Patch Changes
+
+- [`fcdd1ee`](https://github.com/Musma/react-libraries/commit/fcdd1ee36fd22a27b77aaf5276102a4f3ab75380) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: rules: 'react/prop-types': 'off' 추가
+
 ## 0.1.4
 
 ### Patch Changes

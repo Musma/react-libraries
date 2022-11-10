@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.6
+
+### Patch Changes
+
+- [`cd59cdc`](https://github.com/Musma/react-libraries/commit/cd59cdc3492bde59d14378e7e3ba142a33413f50) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 정규표현식 RegExps 파일 추가
+
 ## 0.1.5
 
 ### Patch Changes
