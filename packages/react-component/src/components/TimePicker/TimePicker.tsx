@@ -92,7 +92,12 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(
 
     return (
       <Box
-        css={{ display: 'flex', flexDirection: 'column', width: '100%', minWidth: 64 }}
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          minWidth: theme.inputSize.minWidth,
+        }}
         ref={containerRef}
       >
         {/* 라벨 */}
@@ -113,22 +118,12 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(
               paddingLeft: theme.spacing.sm,
               paddingRight: theme.spacing.sm,
               overflow: 'hidden',
+              fontSize: theme.inputSize.fontSize[size],
+              height: theme.inputSize.height[size],
               '&:focus-within': {
                 borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
                 boxShadow: theme.shadow.md,
               },
-            },
-            size === 'sm' && {
-              fontSize: 12,
-              height: theme.inputSize.sm,
-            },
-            size === 'md' && {
-              fontSize: 12,
-              height: theme.inputSize.md,
-            },
-            size === 'lg' && {
-              fontSize: 14,
-              height: theme.inputSize.lg,
             },
             // Disabled CSS
             disabled && {

@@ -27,16 +27,16 @@ const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
+function getStartDayOfMonth(year: number, month: number) {
+  return DateTime.fromObject({ year, month, day: 1 }).weekday
+}
+
 export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
   const theme = useTheme()
 
   const [year, setYear] = useState(DateTime.local().year)
   const [month, setMonth] = useState(DateTime.local().month)
   const [startDay, setStartDay] = useState(getStartDayOfMonth(year, month))
-
-  function getStartDayOfMonth(year: number, month: number) {
-    return DateTime.fromObject({ year, month, day: 1 }).weekday
-  }
 
   const handleDayClick = useCallback(
     (y: number, m: number, d: number) => {
@@ -144,10 +144,8 @@ export const Calendar = ({ size, date, handleSelectDay }: CalendarProps) => {
               size === 'sm' && { height: 18 },
               size === 'md' && { height: 25 },
               size === 'lg' && { height: 25 },
-              isToday(day) && !isSelectedDay(day)
-                ? { backgroundColor: theme.colors.blue.main }
-                : {},
-              isSelectedDay(day) ? { backgroundColor: theme.colors.blue.lighter } : {},
+              isToday(day) && !isSelectedDay(day) && { backgroundColor: theme.colors.blue.main },
+              isSelectedDay(day) && { backgroundColor: theme.colors.blue.lighter },
             ]}
             onClick={() => handleDayClick(year, month, day)}
           >

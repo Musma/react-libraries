@@ -9,13 +9,6 @@ import { Size } from 'src/types'
 import { ReactComponent as InvalidIcon } from './images/invalid.svg'
 import { ReactComponent as ValidIcon } from './images/valid.svg'
 
-const COUNTRY_LIST = [
-  {
-    label: '대한민국 +82',
-    value: '+82',
-  },
-]
-
 export interface PhoneInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: Size
   label?: string
@@ -55,8 +48,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               paddingLeft: theme.spacing.sm,
               paddingRight: theme.spacing.sm,
               overflow: 'hidden',
-              fontSize: size === 'lg' ? 14 : 12,
-              height: theme.inputSize[size],
+              fontSize: theme.inputSize.fontSize[size],
+              height: theme.inputSize.height[size],
               '&:focus-within': {
                 borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
                 boxShadow: theme.shadow.md,

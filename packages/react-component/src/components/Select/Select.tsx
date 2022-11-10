@@ -111,13 +111,13 @@ export const Select = <T extends unknown>({
           css={[
             {
               width: '100%',
-              height: theme.inputSize[size],
+              height: theme.inputSize.height[size],
+              fontSize: theme.inputSize.fontSize[size],
               cursor: 'pointer',
-              borderRadius: '4px',
+              borderRadius: theme.rounded.md,
               paddingLeft: theme.spacing.sm,
               border: `1px solid ${theme.colors.gray.darker}`,
               color: theme.colors.black.dark,
-              fontSize: size === 'lg' ? 14 : 12,
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
               },

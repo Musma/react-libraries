@@ -6,6 +6,7 @@ const options = Array.from({ length: 10 }).map((_, index) => ({
   label: `option_${index}`,
   value: `${index}`,
 }))
+
 export const SelectExample = () => {
   const [selected, setSelected] = useState(options[0].value)
   return (

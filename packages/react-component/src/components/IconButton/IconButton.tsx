@@ -27,8 +27,8 @@ export const IconButton = ({
           alignItems: 'center',
           justifyContent: 'center',
           minWidth: 'auto',
-          width: theme.inputSize[size],
-          height: theme.inputSize[size],
+          width: theme.inputSize.height[size],
+          height: theme.inputSize.height[size],
           borderRadius: theme.rounded.md,
           '&:disabled': {
             backgroundColor: theme.colors.white.lighter,

@@ -22,16 +22,16 @@ export const SubTitle = ({
         },
         {
           subTitle1: {
-            fontSize: 20,
+            fontSize: '1.25',
             fontWeight: 400,
             letterSpacing: -0.2,
           },
           subTitle2: {
-            fontSize: 14,
+            fontSize: '0.875rem',
             fontWeight: 600,
           },
           subTitle3: {
-            fontSize: 12,
+            fontSize: '0.75rem',
             fontWeight: 600,
           },
         }[variant],

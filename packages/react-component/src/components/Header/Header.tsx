@@ -20,7 +20,7 @@ export const Header = ({ zIndex, backgroundColor, ...rest }: HeaderProps) => {
         height: theme.layoutSize.headerHeight,
         backgroundColor: backgroundColor || theme.colors.white.main,
         boxShadow: theme.shadow.md,
-        zIndex: zIndex ?? theme.zIndex.header,
+        zIndex: zIndex || theme.zIndex.header,
       }}
       {...rest}
     />

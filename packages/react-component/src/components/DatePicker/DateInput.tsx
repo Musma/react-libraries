@@ -117,8 +117,8 @@ export const DateInput = ({
             borderRadius: theme.rounded.md,
             border: `1px solid ${theme.colors.gray.darker}`,
             paddingLeft: theme.spacing.sm,
-            fontSize: size === 'lg' ? 14 : 12,
-            height: theme.inputSize[size],
+            fontSize: theme.inputSize.fontSize[size],
+            height: theme.inputSize.height[size],
             '&:focus': {
               border: `1px solid ${theme.colors.blue.main}`,
             },
@@ -136,7 +136,7 @@ export const DateInput = ({
             css={{
               color: theme.colors.black.dark,
               textAlign: 'center',
-              width: size === 'sm' ? '32px' : '38px',
+              width: size === 'sm' ? 32 : 38,
               '&::placeholder': {
                 letterSpacing: '-0.08em',
               },

@@ -135,13 +135,26 @@ export interface MusmaTheme {
     lg: 6,
    */
   rounded: Record<Size, number | string>
-  /**
+  inputSize: {
+    /**
+     * @default 64
+     */
+    minWidth: number
+    /**
    * @default
     sm: 28,
     md: 32,
     lg: 44,
    */
-  inputSize: Record<Size, number>
+    height: Record<Size, number>
+    /**
+    * @default
+    sm: 12,
+    md: 12,
+    lg: 14,
+   */
+    fontSize: Record<Size, string>
+  }
   /**
    * @default
     sm: '0px 4px 4px 4px rgba(0, 0, 0, 0.02)',

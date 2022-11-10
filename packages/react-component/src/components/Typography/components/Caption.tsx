@@ -23,10 +23,10 @@ export const Caption = ({
         },
         {
           caption1: {
-            fontSize: 12,
+            fontSize: '0.75rem',
           },
           caption2: {
-            fontSize: 10,
+            fontSize: '0.625rem',
           },
         }[variant],
       ]}

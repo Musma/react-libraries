@@ -15,7 +15,7 @@ export const Indicator = ({ width, left }: IndicatorProps) => {
         width: width,
         bottom: -1,
         height: 2,
-        backgroundColor: theme.colors.blue.main,
+        backgroundColor: theme.colors.primary.main,
         position: 'absolute',
         left: left,
         transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
