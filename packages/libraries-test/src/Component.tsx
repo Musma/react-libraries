@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 import {
   BreadCrumb,
@@ -33,9 +34,29 @@ import {
 } from 'src/examples'
 import { ReactComponent as XlsIcon } from 'src/examples/images/xls.svg'
 
+type CCC = {
+  aaa: number
+}
+
+const AAA = [
+  {
+    label: '000',
+    value: 1,
+  },
+  {
+    label: '222',
+    value: 2,
+  },
+]
+
 export const Component = () => {
   const [showSpinner, setSpinner] = useState(false)
   const [showDrawer, setDrawer] = useState(false)
+  const { control } = useForm<CCC>({
+    defaultValues: {
+      aaa: 1,
+    },
+  })
 
   return (
     <Box>

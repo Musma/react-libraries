@@ -64,14 +64,21 @@ export const TableBody = ({
       {data.map((item, index) => (
         <Box
           key={index}
-          css={{
-            display: 'grid',
-            gridTemplateColumns,
-            borderBottom: `1px solid ${theme.colors.white.lighter}`,
-            '&:last-of-type': {
-              borderBottom: 'none',
+          css={[
+            {
+              display: 'grid',
+              gridTemplateColumns,
+              borderBottom: `1px solid ${theme.colors.white.lighter}`,
+              '&:last-of-type': {
+                borderBottom: 'none',
+              },
             },
-          }}
+            onRowClick && {
+              '&:hover': {
+                backgroundColor: theme.colors.blue.lighter,
+              },
+            },
+          ]}
         >
           {withCheckbox && (
             <Box

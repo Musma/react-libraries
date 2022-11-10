@@ -49,7 +49,7 @@ export const Button = ({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: theme.inputSize[size],
+          height: theme.inputSize.height[size],
           borderRadius: theme.rounded.md,
           padding: theme.spacing.sm,
         },

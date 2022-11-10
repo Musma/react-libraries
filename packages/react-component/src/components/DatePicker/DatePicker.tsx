@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 
+import { useTheme } from '@emotion/react'
 import { DateTime } from 'luxon'
 
 import { Calendar, DateInput, InputLabel } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
+
+/**
+ * FIXME: @jinchuu
+ * 리팩토링 해주세요. Input 3개 사용하지 않고 1개만 사용해서 ref 전달받을 수 있도록 수정 부탁드립니다.
+ */
 
 interface DatePickerProps {
   label?: string
@@ -14,6 +20,8 @@ interface DatePickerProps {
 }
 
 export const DatePicker = ({ label, size = 'md', dateTime, onDateChange }: DatePickerProps) => {
+  const theme = useTheme()
+
   const [open, setOpen] = useState(false)
   const [date, setDate] = useState<DateTime | undefined>(dateTime)
 
@@ -40,11 +48,11 @@ export const DatePicker = ({ label, size = 'md', dateTime, onDateChange }: DateP
         flexDirection: 'column',
         position: 'relative',
         width: '100%',
-        minWidth: 64,
+        minWidth: theme.inputSize.minWidth,
       }}
     >
       {/* 라벨 */}
-      <InputLabel size={size}>{label}</InputLabel>
+      {label && <InputLabel size={size}>{label}</InputLabel>}
 
       {/* Input */}
       <DateInput

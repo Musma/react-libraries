@@ -28,7 +28,7 @@ export const TextButton = ({
     <ButtonBase
       css={[
         {
-          height: theme.inputSize[size],
+          height: theme.inputSize.height[size],
           backgroundColor: theme.colors.transparent,
           '&:hover': {
             borderRadius: theme.rounded.md,

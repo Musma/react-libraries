@@ -45,24 +45,20 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     ])
 
     const checkSize = useMemo(() => {
-      if (size === 'sm') {
-        return {
+      return {
+        sm: {
           width: 10,
           height: 10,
-        }
-      }
-      if (size === 'md') {
-        return {
+        },
+        md: {
           width: 12,
           height: 12,
-        }
-      }
-      if (size === 'lg') {
-        return {
+        },
+        lg: {
           width: 20,
           height: 20,
-        }
-      }
+        },
+      }[size]
     }, [size])
 
     return (

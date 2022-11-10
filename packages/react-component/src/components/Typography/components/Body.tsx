@@ -19,15 +19,15 @@ export const Body = ({ variant = 'body1', children, className }: PropsWithChildr
         },
         {
           body1: {
-            fontSize: 18,
+            fontSize: '1.125rem',
             letterSpacing: -0.2,
           },
           body2: {
-            fontSize: 16,
+            fontSize: '1rem',
             letterSpacing: -0.2,
           },
           body3: {
-            fontSize: 14,
+            fontSize: '0.875rem',
           },
         }[variant],
       ]}

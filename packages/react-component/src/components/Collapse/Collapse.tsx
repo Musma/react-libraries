@@ -8,7 +8,7 @@ interface CollapseProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Collapse = ({ show, ...rest }: CollapseProps) => {
   if (show) {
-    return <Box css={{}} {...rest} />
+    return <Box {...rest} />
   }
   return <Fragment />
 }

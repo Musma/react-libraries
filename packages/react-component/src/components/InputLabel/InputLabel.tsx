@@ -28,7 +28,7 @@ export const InputLabel = ({
             '&:after': {
               color: theme.colors.red.main,
               content: "'*'",
-              fontSize: 12,
+              fontSize: '0.75rem',
               fontWeight: 600,
             },
           },

@@ -72,9 +72,17 @@ const DefaultTheme: MusmaTheme = {
     lg: 6,
   },
   inputSize: {
-    sm: 28,
-    md: 32,
-    lg: 36,
+    minWidth: 64,
+    height: {
+      sm: 28,
+      md: 32,
+      lg: 36,
+    },
+    fontSize: {
+      sm: '0.75rem',
+      md: '0.75rem',
+      lg: '0.855rem',
+    },
   },
   shadow: {
     sm: '0px 4px 4px 4px rgba(0, 0, 0, 0.02)',

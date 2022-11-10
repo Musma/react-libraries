@@ -13,26 +13,40 @@ import { ReactComponent as ValidIcon } from './images/valid.svg'
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /**
+   *
+   * @default text
+   *
    * @description
+   *
    */
   type?: 'text' | 'password'
   /**
+   *
+   * @default md
+   *
    * @description
    */
   size?: Size
   /**
+   * @optional
+   *
    * @description
    */
   label?: string
   /**
+   * @optional
+   *
    * @description
    */
   startAdornment?: ReactNode
   /**
+   * @optional
+   *
    * @description
    */
   endAdornment?: ReactNode
   /**
+   * @optional
    * @description
    */
   error?: boolean
@@ -74,7 +88,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     return (
       // Wrapper Box
       <Box
-        css={{ display: 'flex', flexDirection: 'column', width: '100%', minWidth: 64 }}
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          minWidth: theme.inputSize.minWidth,
+        }}
         className={className}
       >
         {/* 라벨 */}
@@ -100,8 +119,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               paddingLeft: theme.spacing.sm,
               paddingRight: theme.spacing.sm,
               overflow: 'hidden',
-              fontSize: size === 'lg' ? 14 : 12,
-              height: theme.inputSize[size],
+              fontSize: theme.inputSize.fontSize[size],
+              height: theme.inputSize.height[size],
               '&:focus-within': {
                 borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
                 boxShadow: theme.shadow.md,

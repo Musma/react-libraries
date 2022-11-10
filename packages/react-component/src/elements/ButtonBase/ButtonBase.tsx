@@ -1,13 +1,16 @@
 import { ButtonHTMLAttributes } from 'react'
 
+import { useTheme } from '@emotion/react'
+
 type ButtonBaseProps = ButtonHTMLAttributes<HTMLButtonElement>
 
 export const ButtonBase = ({ type = 'button', ...rest }: ButtonBaseProps) => {
+  const theme = useTheme()
   return (
     <button
       type={type}
       css={{
-        minWidth: 64,
+        minWidth: theme.inputSize.minWidth,
         appearance: 'none',
         border: 'none',
         outline: 'none',

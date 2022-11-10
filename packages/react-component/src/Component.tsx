@@ -4,10 +4,17 @@ import { Box } from 'src/elements'
 
 import { Tabs, Tab, TabContainer, TabPanel, Checkbox } from './components'
 
+const OPTIONS = [
+  { label: '31', value: 31 },
+  { label: '32', value: 32 },
+]
+
+const data = [{}]
+
 export const Component = () => {
   const [tabIndex, setTabIndex] = useState<string | number>(0)
-
   const [checked, setChecked] = useState(false)
+  const [selectValue, setSelectValue] = useState(31)
 
   const toggleCheck = useCallback(() => {
     setChecked(!checked)
@@ -39,6 +46,13 @@ export const Component = () => {
               onChange={toggleCheck}
               disabled={true}
             />
+            {/* <Select
+              value={selectValue}
+              onChange={(value: number) => {
+                setSelectValue(value)
+              }}
+              options={OPTIONS}
+            /> */}
           </Box>
         </TabPanel>
         <TabPanel value={1}>
