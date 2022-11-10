@@ -47,16 +47,18 @@ export const Tab = ({ value, label }: TabProps) => {
           backgroundColor: active ? theme.colors.white.main : theme.colors.transparent,
         },
         variant === 'rect' && {
-          color: active ? theme.colors.blue.main : theme.colors.gray.darker,
+          color: active ? theme.colors.primary.main : theme.colors.gray.darker,
           position: 'relative',
-          '&:not(:first-child)': {
+          '&:not(:first-type-of)': {
             '&:before': {
               position: 'absolute',
               left: 0,
               top: 'auto',
               bottom: 'auto',
-              color: theme.colors.gray.darker,
-              content: '"|"',
+              content: '""',
+              width: 1,
+              height: 16,
+              backgroundColor: theme.colors.gray.darker,
             },
           },
         },
