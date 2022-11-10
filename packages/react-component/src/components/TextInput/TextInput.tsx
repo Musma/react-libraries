@@ -1,4 +1,11 @@
-import { forwardRef, InputHTMLAttributes, ReactNode, useCallback, useState } from 'react'
+import {
+  ChangeEvent,
+  forwardRef,
+  InputHTMLAttributes,
+  ReactNode,
+  useCallback,
+  useState,
+} from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineEyeCloseIcon, OutlineEyeIcon } from '@musma/react-icons'
@@ -58,6 +65,14 @@ export interface TextInputProps
    * @description
    */
   required?: boolean
+  /**
+   * @optional
+   *
+   * @description
+   * 정규표현식입니다
+   * react-utils 패키지에 있는 RegExps를 넣어서 사용하면 됩니다.
+   */
+  regExp?: RegExp
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -74,6 +89,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       endAdornment,
       required,
       className,
+      regExp,
+      onChange,
       ...rest
     },
     ref,
@@ -84,6 +101,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const toggleType = useCallback(() => {
       setType(type === 'text' ? 'password' : 'text')
     }, [type])
+
+    console.log(regExp)
 
     return (
       // Wrapper Box
@@ -155,6 +174,17 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               },
             }}
             disabled={disabled}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              if (onChange) {
+                if (regExp) {
+                  if (regExp.test(event.target.value)) {
+                    onChange(event)
+                  }
+                  return
+                }
+                onChange(event)
+              }
+            }}
             {...rest}
           />
 
