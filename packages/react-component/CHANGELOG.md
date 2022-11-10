@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 0.1.19
+
+### Patch Changes
+
+- [`a565e97`](https://github.com/Musma/react-libraries/commit/a565e9715e4c2f2987323c6b06c27de241529862) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Textarea 컴포넌트 추가
+
+- [`906988c`](https://github.com/Musma/react-libraries/commit/906988c93a7d26d3a1ff3b5ea5867fdbd13fdcdb) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: TextInput에 정규표현식 받도록 수정
+
+- [`f60afd7`](https://github.com/Musma/react-libraries/commit/f60afd7d86d7e4b005fb1bb4c161a36c03495dd5) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Tab color 수정
+
 ## 0.1.18
 
 ### Patch Changes
