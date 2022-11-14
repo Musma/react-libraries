@@ -59,7 +59,7 @@ export const Select = <T extends unknown>({
   const divRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
 
-  useOutsideListener(divRef, () => {
+  useOutsideListener(divRef.current, () => {
     // Select 영역 말고 다른 영역 클릭 시 닫힘
     setOpen(false)
   })

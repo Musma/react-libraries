@@ -89,10 +89,8 @@ export const Dropdown = ({
   }, [anchorEl, anchorOrigin.horizontal])
 
   // Dropdown 이외의 영역 클릭 시 콜백 이벤트
-  useOutsideListener(ref, () => {
-    if (anchorEl) {
-      onClose()
-    }
+  useOutsideListener(ref.current, () => {
+    onClose()
   })
 
   if (show) {

@@ -7,7 +7,7 @@ import { InputIcon, Typography } from 'src/components'
 import { ButtonBase } from 'src/elements'
 import { Size } from 'src/types'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    *
    */
