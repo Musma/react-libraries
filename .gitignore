@@ -24,3 +24,11 @@ storybook-static
 
 # Bundle analzyze 
 stats.html
+
+# react-icons 패키지
+
+## src/components
+packages/react-icons/components/**
+## src/optimized
+packages/react-icons/optimized/**
+

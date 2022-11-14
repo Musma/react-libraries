@@ -1,10 +1,6 @@
 import { useEffect } from 'react'
 
-interface useEscKeyPressProps {
-  callback: () => void
-}
-
-export const useEscKeyPress = ({ callback }: useEscKeyPressProps) => {
+export const useEscKeyPress = (callback: () => void) => {
   useEffect(() => {
     const escKeyModalClose = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
