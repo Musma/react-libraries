@@ -49,13 +49,13 @@ export const Tab = ({ value, label }: TabProps) => {
         variant === 'rect' && {
           color: active ? theme.colors.primary.main : theme.colors.gray.darker,
           position: 'relative',
-          '&:not(:first-type-of)': {
+          '&:not(:first-of-type)': {
             '&:before': {
               position: 'absolute',
               left: 0,
               top: 'auto',
               bottom: 'auto',
-              content: '""',
+              content: '" "',
               width: 1,
               height: 16,
               backgroundColor: theme.colors.gray.darker,

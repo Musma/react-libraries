@@ -79,6 +79,7 @@ export const Tabs = ({ children, ...rest }: TabsProps) => {
 
   return (
     <Box
+      role="tablist"
       css={{
         display: 'flex',
         backgroundColor: variant === 'rect' ? theme.colors.white.main : theme.colors.transparent,
