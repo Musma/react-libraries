@@ -6,11 +6,11 @@ import { useModalManager } from 'src/components/Modal/useModalManager'
 export const ToastPopupExample = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
-  const modalManager = useModalManager()
+  const popupManager = useModalManager()
   return (
     <div>
-      <Button variant={'outlined'} onClick={() => setIsOpen(true)}>
-        Open Modal
+      <Button variant="danger" onClick={() => setIsOpen(true)}>
+        Open Toast Popup
       </Button>
       <Modal
         title={'첫 번째 모달 입니다'}
@@ -23,7 +23,7 @@ export const ToastPopupExample = () => {
             alert('button2 클릭')
           },
         }}
-        modalManager={modalManager}
+        modalManager={popupManager}
         closeOnEscPress={true}
         closeOnOutsideClick={true}
         onClose={() => setIsOpen(false)}
@@ -32,24 +32,6 @@ export const ToastPopupExample = () => {
           Open second modal
         </Button>
         contents1
-      </Modal>
-      <Modal
-        title={'두 번째 모달 입니다'}
-        isOpen={isOpen2}
-        buttonOption={{
-          label: 'button1',
-          onClick: () => console.log('button1'),
-          secondLabel: 'button2',
-          onSecondClick() {
-            console.log('button2')
-          },
-        }}
-        modalManager={modalManager}
-        closeOnEscPress={true}
-        closeOnOutsideClick={true}
-        onClose={() => setIsOpen2(false)}
-      >
-        contents2
       </Modal>
     </div>
   )
