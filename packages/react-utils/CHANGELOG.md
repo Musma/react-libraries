@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.8
+
+### Patch Changes
+
+- [`5e3845e`](https://github.com/Musma/react-libraries/commit/5e3845e3a334a27e62a458bac69e70b4e9435422) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useSetRef hooks 추가
+
 ## 0.1.7
 
 ### Patch Changes
