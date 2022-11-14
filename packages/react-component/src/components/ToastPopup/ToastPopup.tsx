@@ -1,246 +1,129 @@
-import { useMemo, Fragment, ReactNode, useCallback, useEffect, useRef, CSSProperties } from 'react'
+import { Fragment, useEffect, useMemo } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
+import {
+  FillCautionIcon,
+  FillErrorIcon,
+  FillCheckCircleIcon,
+  FillInformationIcon,
+  OutlineCloseIcon,
+} from '@musma/react-icons'
 
-import { Button, Typography, IconAdornment } from 'src/components'
-import { useKeyEsc, useOutsideListener } from 'src/hooks'
-import { Size } from 'src/types'
-
-// TODO: react-icons의 FillClose으로 교체
-import { ReactComponent as CloseIcon } from './images/close.svg'
-
-interface ModalProps {
-  title: string
+interface IProps {
+  height?: string // header의 높이(단위까지 입력하기, 기본 설정은 0px)
   isOpen: boolean
-  size?: Extract<Size, 'md' | 'sm'>
-  children: ReactNode
-  buttonOption: {
-    label: string
-    buttonStyle?: CSSProperties
-    onClick?: () => void
-    /** secondLabel에 값을 전달하면 두 번째 버튼이 나타납니다  */
-    secondLabel?: string
-    secondButtonStyle?: CSSProperties
-    onSecondClick?: () => void
-  }
-  className?: string
-  /**
-   * 모달 외부 클릭했을 때 모달 종료. 한 페이지에 여러 모달이 중첩될 경우 modalManager를 사용해야 정상 작동합니다
-   */
-  closeOnOutsideClick?: boolean
-  /**
-   * esc키 눌렀을 때 모달 종료. 한 페이지에 여러 모달이 중첩될 경우 modalManager를 사용해야 정상 작동합니다
-   */
-  closeOnEscPress?: boolean
-  /**
-   * useModalManager의 반환값을 전달해주세요
-   */
-  modalManager?: {
-    add: (modal: HTMLDivElement) => void
-    pop: () => void
-    isTopModal: (modal: HTMLDivElement) => boolean
-    isNested: (modal: HTMLDivElement) => boolean
-  }
-  onClose: () => void
-}
-
-const childrenContainerCss = css({
-  flex: '1 1 0',
-  fontSize: '14px',
-  fontWeight: 400,
-})
-
-const backgroundBase = css({
-  position: 'fixed',
-  left: 0,
-  right: 0,
-  top: 0,
-  bottom: 0,
-  zIndex: 9999,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-})
-
-const modalCss = {
-  base: css({
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: '6px',
-  }),
-  size: {
-    md: css({
-      width: '456px',
-      height: '378px',
-    }),
-    sm: css({
-      width: '328px',
-      height: '202px',
-    }),
-  },
-}
-
-const headerCss = {
-  base: css({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '14px 16px',
-  }),
-  size: {
-    md: css({ paddingLeft: '24px' }),
-    sm: css({ paddingLeft: '16px' }),
-  },
-}
-
-const buttonCss = {
-  container: {
-    base: css({
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      columnGap: '8px',
-      borderRadius: '6px',
-    }),
-    size: {
-      md: css({
-        marginBottom: '24px',
-      }),
-      sm: css({
-        marginBottom: '16px',
-      }),
-    },
-  },
-  button: {
-    md: css({
-      width: '200px',
-      height: '32px',
-    }),
-    sm: css({
-      width: '144px',
-      height: '28px',
-    }),
-  },
+  setIsOpen(open: boolean): void
+  state?: 'info' | 'warning' | 'error' | 'success'
+  title: string
+  description?: string
+  mode?: 'light' | 'dark'
 }
 
 export const ToastPopup = ({
-  title,
+  height = '0px',
   isOpen,
-  size = 'md',
-  buttonOption,
-  children,
-  closeOnEscPress = false,
-  closeOnOutsideClick = false,
-  className = '',
-  modalManager,
-  onClose,
-}: ModalProps) => {
-  const theme = useTheme()
-  const backgroundRef = useRef<HTMLDivElement>(null)
-  const modalRef = useRef<HTMLDivElement>(null)
-  const buttonSize = useMemo(() => {
-    return size === 'md' ? 'lg' : 'md'
-  }, [size])
+  setIsOpen,
+  state = 'info',
+  title,
+  description,
+  mode = 'light',
+}: IProps) => {
+  const { color } = useTheme()
 
-  const backgroundColor = useMemo(() => {
-    if (!backgroundRef.current || !modalManager) {
-      return 'rgba(0, 0, 0, 0.3)'
-    }
+  const stylesByState = useMemo(
+    () => ({
+      info: {
+        img: <FillInformationIcon color={color.blue.main} />,
+        bgColor: color.gray.light,
+        bgDarkColor: '#44505C',
+      },
+      warning: {
+        img: <FillCautionIcon color={color.orange.main} />,
+        bgColor: color.orange.lighter,
+        bgDarkColor: '#4A4643',
+      },
+      error: {
+        img: <FillErrorIcon color={color.red.main} />,
+        bgColor: color.red.lighter,
+        bgDarkColor: '#4A4347',
+      },
+      success: {
+        img: <FillCheckCircleIcon color={color.green.main} />,
+        bgColor: color.green.lighter,
+        bgDarkColor: '#494A43',
+      },
+    }),
+    [
+      color.blue.main,
+      color.gray.light,
+      color.green.lighter,
+      color.green.main,
+      color.orange.lighter,
+      color.orange.main,
+      color.red.lighter,
+      color.red.main,
+    ],
+  )
 
-    return modalManager.isNested(backgroundRef.current)
-      ? 'rgba(0, 0, 0, 0.6)'
-      : 'rgba(0, 0, 0, 0.3)'
-  }, [modalManager])
-
-  const handleModalClose = useCallback(() => {
-    onClose()
-    modalManager?.pop()
-  }, [modalManager, onClose])
-
-  useKeyEsc(() => {
-    if (!closeOnEscPress || !backgroundRef.current) {
-      return
-    }
-    if (modalManager && !modalManager.isTopModal(backgroundRef.current)) {
-      return
-    }
-    handleModalClose()
-  })
-
-  useOutsideListener(
-    modalRef,
-    () => {
-      if (!closeOnOutsideClick || !backgroundRef.current) {
-        return
-      }
-      if (!modalManager?.isTopModal(backgroundRef.current)) {
-        return
-      }
-      handleModalClose()
-    },
-    [modalManager],
+  const stylesByMode = useMemo(
+    () => ({
+      light: {
+        fontColor: 'black',
+        bgColor: stylesByState[state].bgColor,
+      },
+      dark: {
+        fontColor: 'white',
+        bgColor: stylesByState[state].bgDarkColor,
+      },
+    }),
+    [state, stylesByState],
   )
 
   useEffect(() => {
-    if (!isOpen || !backgroundRef.current) {
-      return
-    }
-
-    modalManager?.add(backgroundRef.current)
-  }, [isOpen, modalManager])
-
-  if (!isOpen) {
-    return <Fragment />
-  }
+    const timer = setTimeout(() => {
+      setIsOpen(false)
+    }, 1000 * 3.5)
+    return () => clearInterval(timer)
+  }, [isOpen, setIsOpen])
 
   return (
-    <div css={[backgroundBase, css({ backgroundColor })]} ref={backgroundRef}>
+    <div
+      css={{
+        opacity: isOpen ? 1 : 0,
+        position: 'fixed',
+        top: isOpen ? `calc(${height} + 16px)` : 0,
+        right: 10,
+        padding: '12px 16px',
+        background: stylesByMode[mode].bgColor,
+        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
+        zIndex: 9999,
+        borderRadius: '3px',
+        transition: 'all 1s',
+      }}
+    >
       <div
-        ref={modalRef}
-        css={[modalCss.base, css({ backgroundColor: theme.color.white.main }), modalCss.size[size]]}
-        className={className}
+        css={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: description ? 'normal' : 'center',
+          color: stylesByMode[mode].fontColor,
+        }}
       >
-        <section css={[headerCss.base, headerCss.size[size]]}>
-          <Typography type="subTitle2">{title}</Typography>
-
-          <IconAdornment>
-            <CloseIcon onClick={handleModalClose} css={{ cursor: 'pointer' }} />
-          </IconAdornment>
-        </section>
-
-        <hr
-          css={{
-            width: '100%',
-            margin: 0,
-            boxSizing: 'border-box',
-            borderTop: `1px solid ${theme.color.gray.darker}`,
-          }}
-        />
-
-        <section css={[childrenContainerCss, css({ color: theme.color.black.lighter })]}>
-          {children}
-        </section>
-
-        <div css={[buttonCss.container.base, buttonCss.container.size[size]]}>
-          <Button
-            size={buttonSize}
-            variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
-            onClick={buttonOption.onClick}
-            css={{ ...buttonCss.button[size], ...buttonOption.buttonStyle }}
-          >
-            {buttonOption.label}
-          </Button>
-
-          {buttonOption.secondLabel && (
-            <Button
-              size={buttonSize}
-              onClick={buttonOption.onSecondClick}
-              css={{ ...buttonCss.button[size], ...buttonOption.secondButtonStyle }}
-            >
-              {buttonOption.secondLabel}
-            </Button>
+        {stylesByState[state].img}
+        <div css={{ margin: '0 54px 0 10px' }}>
+          <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
+          {description && (
+            <Fragment>
+              <br />
+              {description}
+            </Fragment>
           )}
         </div>
+        <OutlineCloseIcon
+          cursor="pointer"
+          color={stylesByMode[mode].fontColor}
+          onClick={() => setIsOpen(false)}
+        />
       </div>
     </div>
   )
