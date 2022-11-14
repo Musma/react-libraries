@@ -1,5 +1,13 @@
 # @musma/react-component
 
+## 0.1.21
+
+### Patch Changes
+
+- [`21173aa`](https://github.com/Musma/react-libraries/commit/21173aa8f11ddddfa62f568d63bf1f6b4c72a662) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-component 내부의 hook 파일을 react-utils로 옮김
+
+- [`2839911`](https://github.com/Musma/react-libraries/commit/28399115f9e5dc578644c5fdad9379f25f030bc2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Modal 컴포넌트 재구성 및 컴포넌트 분산
+
 ## 0.1.20
 
 ### Patch Changes

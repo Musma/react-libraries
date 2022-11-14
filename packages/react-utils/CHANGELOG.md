@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.7
+
+### Patch Changes
+
+- [`865524e`](https://github.com/Musma/react-libraries/commit/865524ef5104018a62eacd69282d67ea52931b02) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-utils 재구성 및 package.json 정리
+
 ## 0.1.6
 
 ### Patch Changes
