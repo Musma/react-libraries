@@ -1,7 +1,7 @@
-import { useCallback, useEffect, Fragment, HTMLAttributes, useState } from 'react'
+import { useCallback, useEffect, Fragment, HTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { useOutsideListener, useEscKeyPress } from '@musma/react-utils'
+import { useOutsideListener, useEscKeyPress, useSetRef } from '@musma/react-utils'
 
 import { Backdrop, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
@@ -38,10 +38,10 @@ interface ModalProps extends HTMLAttributes<HTMLElement> {
    * useModalManager의 반환값을 전달해주세요
    */
   modalManager?: {
-    add: (modal: HTMLDivElement) => void
+    add: (modal: HTMLElement) => void
     pop: () => void
-    isTopModal: (modal: HTMLDivElement) => boolean
-    isNested: (modal: HTMLDivElement) => boolean
+    isTopModal: (modal: HTMLElement) => boolean
+    isNested: (modal: HTMLElement) => boolean
   }
   /**
    * @required
@@ -64,7 +64,7 @@ export const Modal = ({
 }: ModalProps) => {
   const theme = useTheme()
 
-  const [modalRef, setModalRef] = useState<HTMLDivElement | null>(null)
+  const { ref, setRef } = useSetRef()
 
   /**
    * 모달 닫기 버튼 클릭 시 이벤트
@@ -74,23 +74,17 @@ export const Modal = ({
     modalManager?.pop()
   }, [modalManager, onClose])
 
-  const setRef = useCallback((node: HTMLDivElement) => {
-    if (node !== null) {
-      setModalRef(node)
-    }
-  }, [])
-
   /**
    * 키보드 'ESC'를 눌렀을 때 콜백 Hooks
    */
   useEscKeyPress(() => {
     if (show) {
-      if (disableEscPress || !modalRef) {
+      if (disableEscPress || !ref) {
         return
       }
 
       // 여러개 모달이 열려있을 때의 처리
-      if (modalManager && !modalManager.isTopModal(modalRef)) {
+      if (modalManager && !modalManager.isTopModal(ref)) {
         return
       }
       handleModalClose()
@@ -100,13 +94,13 @@ export const Modal = ({
   /**
    * Modal 영역 이외의 HTMLElement를 클릭했을 경우 콜백 Hooks
    */
-  useOutsideListener(modalRef, () => {
+  useOutsideListener(ref, () => {
     if (show) {
-      if (disableOutsideClick || !modalRef) {
+      if (disableOutsideClick || !ref) {
         return
       }
 
-      if (modalManager && !modalManager.isTopModal(modalRef)) {
+      if (modalManager && !modalManager.isTopModal(ref)) {
         return
       }
       handleModalClose()
@@ -114,12 +108,12 @@ export const Modal = ({
   })
 
   useEffect(() => {
-    if (!show || !modalRef) {
+    if (!show || !ref) {
       return
     }
 
-    modalManager?.add(modalRef)
-  }, [show, modalManager, modalRef])
+    modalManager?.add(ref)
+  }, [show, modalManager, ref])
 
   if (show) {
     return (

@@ -1,9 +1,8 @@
-import { useCallback, useState } from 'react'
+import { MouseEvent, useCallback, useMemo, useState } from 'react'
 
 import { Box } from 'src/elements'
 
-import { Button, Modal, ModalActions, ModalButton } from './components'
-import { ModalContent } from './components/Modal/components/ModalContent'
+import { Button, Dropdown, Select } from './components'
 
 const OPTIONS = [
   { label: '31', value: 31 },
@@ -11,38 +10,45 @@ const OPTIONS = [
 ]
 
 export const Component = () => {
-  const [modal, setModal] = useState(false)
+  const [dropdown, setDropdown] = useState<HTMLButtonElement | null>(null)
 
-  const toggleModal = useCallback(() => {
-    setModal(!modal)
-  }, [modal])
+  const toggleModal = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    setDropdown(event.currentTarget)
+  }, [])
+
+  const show = useMemo(() => {
+    return Boolean(dropdown)
+  }, [dropdown])
+
+  const close = useCallback(() => {
+    setDropdown(null)
+  }, [])
 
   return (
     <Box>
-      <Button
-        onClick={() => {
-          toggleModal()
-        }}
-      >
-        dkdkdkdk
-      </Button>
-      <Modal
-        size={'lg'}
-        show={modal}
-        title="123123"
-        onClose={() => {
-          toggleModal()
-        }}
-      >
-        <ModalContent>
-          12-03912-039 129-031203 129308129038213821 120938120938 1290381209381290 12938120938
-          129038120938 12390812039
-        </ModalContent>
+      <Box css={{ textAlign: 'center', padding: 40 }}>
+        <Button onClick={toggleModal}>드롭다운 버튼</Button>
+      </Box>
 
-        <ModalActions>
-          <ModalButton>ㅁㅁㅁ</ModalButton>
-        </ModalActions>
-      </Modal>
+      <Dropdown
+        show={show}
+        anchorEl={dropdown}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        onClose={() => {
+          close()
+        }}
+      />
+
+      <Select
+        value={31}
+        options={OPTIONS}
+        onChange={() => {
+          return
+        }}
+      />
     </Box>
   )
 }

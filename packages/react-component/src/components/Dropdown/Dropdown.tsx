@@ -1,11 +1,10 @@
-import { Fragment, HTMLAttributes, useMemo, useRef } from 'react'
+import { Fragment, HTMLAttributes, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { useOutsideListener } from '@musma/react-utils'
+import { useOutsideListener, useSetRef } from '@musma/react-utils'
 
+import { Backdrop } from 'src/components'
 import { Box } from 'src/elements'
-
-import { Backdrop } from '../Backdrop'
 
 interface DropdownProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -37,13 +36,17 @@ interface DropdownProps extends HTMLAttributes<HTMLElement> {
    * vertical: 'bottom'
    *
    * @description
-   * horizontal: 수평 위치
-   * vertical: 수직 위치
+   * horizontal: 수평 기준점
+   * vertical: 수직 기준점
    */
   anchorOrigin?: {
     horizontal: 'center' | 'left' | 'right'
     vertical: 'bottom' | 'center' | 'top'
   }
+  /**
+   * 설명 쓰기가 너무 어렵구만..
+   */
+  align?: 'start' | 'end'
 }
 
 /**
@@ -61,7 +64,7 @@ export const Dropdown = ({
   ...rest
 }: DropdownProps) => {
   const theme = useTheme()
-  const ref = useRef<HTMLDivElement>(null)
+  const { ref, setRef } = useSetRef()
 
   // Dropdown
   const top = useMemo(() => {
@@ -79,17 +82,20 @@ export const Dropdown = ({
   const left = useMemo(() => {
     if (anchorEl) {
       const { width, left } = anchorEl.getBoundingClientRect()
+
+      const refWidth = ref?.getBoundingClientRect().width || 0
+
       return {
         left: left,
-        center: left + width / 2,
-        right: left + width,
+        center: left + width / 2 - refWidth / 2,
+        right: left + width - refWidth,
       }[anchorOrigin.horizontal]
     }
     return 0
-  }, [anchorEl, anchorOrigin.horizontal])
+  }, [anchorEl, anchorOrigin.horizontal, ref])
 
   // Dropdown 이외의 영역 클릭 시 콜백 이벤트
-  useOutsideListener(ref.current, () => {
+  useOutsideListener(ref, () => {
     onClose()
   })
 
@@ -97,7 +103,7 @@ export const Dropdown = ({
     return (
       <Backdrop disabledDimmed={true}>
         <Box
-          ref={ref}
+          ref={setRef}
           tabIndex={-1}
           css={{
             position: 'absolute',

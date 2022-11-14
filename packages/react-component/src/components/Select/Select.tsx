@@ -1,8 +1,8 @@
-import { InputHTMLAttributes, MouseEvent, useCallback, useMemo, useRef, useState } from 'react'
+import { InputHTMLAttributes, MouseEvent, useCallback, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
-import { useOutsideListener } from '@musma/react-utils'
+import { useOutsideListener, useSetRef } from '@musma/react-utils'
 import { uniqueId } from 'lodash-es'
 
 import { InputLabel, Typography } from 'src/components'
@@ -56,10 +56,12 @@ export const Select = <T extends unknown>({
   ...rest
 }: SelectProps<T>) => {
   const theme = useTheme()
-  const divRef = useRef<HTMLDivElement>(null)
+
+  const { ref, setRef } = useSetRef()
+
   const [open, setOpen] = useState(false)
 
-  useOutsideListener(divRef.current, () => {
+  useOutsideListener(ref, () => {
     // Select 영역 말고 다른 영역 클릭 시 닫힘
     setOpen(false)
   })
@@ -87,6 +89,7 @@ export const Select = <T extends unknown>({
 
   return (
     <Box
+      ref={setRef}
       css={{
         display: 'inline-flex',
         flexDirection: 'column',
@@ -101,7 +104,6 @@ export const Select = <T extends unknown>({
       <Box
         tabIndex={-1}
         css={{ position: 'relative', display: 'flex', alignItems: 'center' }}
-        ref={divRef}
         onClick={handleSelectClick}
       >
         <InputBase
