@@ -1,3 +1,0 @@
-import { SVGProps } from "react";
-const OutlineDescribeIcon = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" role="img" width={24} height={24} {...props}><path fill={props.color || '#000'} d="M18.8384 2.09508c.5467 0 .9904.44374.9904.99049v3.72127l-1.9809 1.98099V4.07606H3.98098V19.9239H17.8479v-2.7318l1.9809-1.9809v5.7032c0 .5468-.4437.9905-.9904.9905H2.99049c-.54675 0-.99049-.4437-.99049-.9905V3.08557c0-.54675.44374-.99049.99049-.99049H18.8384Zm1.761 6.74326L22 10.2389l-7.704 7.704-1.4026-.0019.002-1.3986 7.704-7.70406ZM11.9049 12v1.981H6.95246V12h4.95244Zm2.9715-3.96197V10.019H6.95246V8.03803h7.92394Z" /></svg>;
-export default OutlineDescribeIcon;
