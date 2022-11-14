@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
-import { Box } from 'src/elements'
+import { Box, List } from 'src/elements'
 
-import { Tabs, Tab, TabContainer, TabPanel, Checkbox, TextInput } from './components'
+import { Tabs, Tab, TabContainer, TabPanel, Checkbox, TextInput, Dropdown } from './components'
 import { Textarea } from './components/Textarea'
 
 const OPTIONS = [
@@ -19,11 +19,18 @@ export const Component = () => {
 
   const [selectValue2, setSelectValue2] = useState('12312312')
 
+  const [ref, setRef] = useState<HTMLElement | null>(null)
+
+  const show = useMemo(() => {
+    return Boolean(ref)
+  }, [ref])
+
   const toggleCheck = useCallback(() => {
     setChecked(!checked)
   }, [checked])
+
   return (
-    <Box css={{ padding: 24 }}>
+    <Box>
       {/* TODO:테스트할 컴포넌트를 넣어주세요 */}
       <TabContainer
         variant="hat"
@@ -40,22 +47,24 @@ export const Component = () => {
         </Tabs>
 
         <TabPanel value={0}>
-          <Box css={{}}>
-            <Checkbox size="sm" label="SM" checked={checked} onChange={toggleCheck} />
-            <Checkbox
-              size="sm"
-              label="SM"
-              checked={checked}
-              onChange={toggleCheck}
-              disabled={true}
-            />
-            {/* <Select
-              value={selectValue}
-              onChange={(value: number) => {
-                setSelectValue(value)
+          <Box css={{ position: 'relative' }}>
+            <Box
+              css={{ width: 200 }}
+              onClick={(event) => {
+                setRef(event.currentTarget)
               }}
-              options={OPTIONS}
-            /> */}
+              aria-haspopup="true"
+            >
+              토글
+            </Box>
+            <Dropdown
+              show={show}
+              onClose={() => {
+                setRef(null)
+              }}
+            >
+              <List></List>
+            </Dropdown>
           </Box>
         </TabPanel>
         <TabPanel value={1}>
