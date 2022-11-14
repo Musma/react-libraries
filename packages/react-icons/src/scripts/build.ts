@@ -1,15 +1,23 @@
-const fs = require('fs/promises')
+import fs from 'fs/promises'
 
-const { transform } = require('@svgr/core')
-const rimraf = require('rimraf')
+import { transform } from '@svgr/core'
+import rimraf from 'rimraf'
 
-const { generateComponentName } = require('./utils')
+import { generateComponentName } from './utils'
 
+/**
+ * 빌드 결과물이 담길 폴더
+ */
 const outputPath = './dist'
 
-async function buildComponents() {
+/**
+ * SVG 이미지가 최적화 끝난 후 실행해야합니다.
+ */
+const buildComponents = async () => {
+  // src/optimized 폴더안에 있는 파일을 읽습니다.
   const files = await fs.readdir('./src/optimized/', 'utf-8')
 
+  // src/components 폴더를 생성합니다.
   await fs.mkdir('./src/components')
 
   await Promise.all(
@@ -29,8 +37,8 @@ async function buildComponents() {
           typescript: true,
           replaceAttrValues: { '#000': "{props.color || '#000'}" },
           svgProps: {
-            width: 24,
-            height: 24,
+            width: '24',
+            height: '24',
           },
         },
         { componentName },
@@ -55,6 +63,7 @@ async function buildComponents() {
 
 ;(function main() {
   console.log('🏗 아이콘 패키지 빌드 시작합니다.')
+
   new Promise((resolve) => {
     rimraf(`${outputPath}/*`, resolve)
     rimraf(`./src/index.ts`, resolve)

@@ -28,7 +28,9 @@ stats.html
 # react-icons 패키지
 
 ## src/components
-packages/react-icons/components/**
+packages/react-icons/src/components/**
 ## src/optimized
-packages/react-icons/optimized/**
+packages/react-icons/src/optimized/**
+## src/index.ts
+packages/react-icons/src/index.ts
 

@@ -24,9 +24,10 @@
     "dist"
   ],
   "scripts": {
-    "build:script": "rimraf ./src/components & node ./src/scripts/build.js",
+    "build:script": "rimraf ./src/components & ts-node ./src/scripts/build.ts",
     "build:optimize": "rimraf ./src/optimized & svgo -q -p 8 -f ./src/raw -o ./src/optimized",
-    "build": "pnpm build:optimize && pnpm build:script && tsc && vite build"
+    "build:clear": "rm -rf ./src/components ./src/optimized ./src/index.ts",
+    "build": "pnpm build:optimize && pnpm build:script && tsc && vite build && pnpm build:clear"
   },
   "devDependencies": {
     "@svgr/cli": "^6.2.1",
@@ -34,7 +35,6 @@
     "camelcase": "^6.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "rimraf": "^3.0.2",
     "svgo": "^2.8.0"
   },
   "peerDependencies": {
