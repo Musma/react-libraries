@@ -1,36 +1,39 @@
-import { ReactNode, useCallback, useEffect, useRef, CSSProperties, Fragment } from 'react'
+import { useCallback, useEffect, Fragment, HTMLAttributes, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { OutlineCloseIcon } from '@musma/react-icons'
+import { useOutsideListener, useEscKeyPress } from '@musma/react-utils'
 
-import { Button, Typography, IconAdornment, Backdrop, Divider } from 'src/components'
+import { Backdrop, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
-import { useKeyEsc, useOutsideListener } from 'src/hooks'
 import { Size } from 'src/types'
 
-interface ModalProps {
+interface ModalProps extends HTMLAttributes<HTMLElement> {
+  /**
+   * @required
+   *
+   * Modal의 제목입니다.
+   */
   title: string
-  open: boolean
-  size?: Extract<Size, 'md' | 'sm'>
-  children?: ReactNode
-  buttonOption: {
-    label: string
-    buttonStyle?: CSSProperties
-    onClick?: () => void
-    /** secondLabel에 값을 전달하면 두 번째 버튼이 나타납니다  */
-    secondLabel?: string
-    secondButtonStyle?: CSSProperties
-    onSecondClick?: () => void
-  }
-  className?: string
+  /**
+   * @required
+   *
+   *
+   */
+  show: boolean
+  /**
+   * @default md
+   *
+   *
+   */
+  size?: Size
   /**
    * 모달 외부 클릭했을 때 모달 종료. 한 페이지에 여러 모달이 중첩될 경우 modalManager를 사용해야 정상 작동합니다
    */
-  closeOnOutsideClick?: boolean
+  disableOutsideClick?: boolean
   /**
    * esc키 눌렀을 때 모달 종료. 한 페이지에 여러 모달이 중첩될 경우 modalManager를 사용해야 정상 작동합니다
    */
-  closeOnEscPress?: boolean
+  disableEscPress?: boolean
   /**
    * useModalManager의 반환값을 전달해주세요
    */
@@ -40,68 +43,89 @@ interface ModalProps {
     isTopModal: (modal: HTMLDivElement) => boolean
     isNested: (modal: HTMLDivElement) => boolean
   }
+  /**
+   * @required
+   *
+   * Modal이 닫힐 때 콜백 이벤트
+   */
   onClose: () => void
 }
 
 export const Modal = ({
   title,
-  open,
+  show,
   size = 'md',
-  buttonOption,
-  children,
-  closeOnEscPress = false,
-  closeOnOutsideClick = false,
-  className,
+  disableEscPress = false,
+  disableOutsideClick = false,
   modalManager,
+  children,
   onClose,
+  ...rest
 }: ModalProps) => {
   const theme = useTheme()
-  const modalRef = useRef<HTMLDivElement>(null)
 
+  const [modalRef, setModalRef] = useState<HTMLDivElement | null>(null)
+
+  /**
+   * 모달 닫기 버튼 클릭 시 이벤트
+   */
   const handleModalClose = useCallback(() => {
     onClose()
     modalManager?.pop()
   }, [modalManager, onClose])
 
-  useKeyEsc(() => {
-    console.log(`modalRef`)
-    console.log(modalRef)
-    if (!closeOnEscPress || !modalRef.current) {
-      return
+  const setRef = useCallback((node: HTMLDivElement) => {
+    if (node !== null) {
+      setModalRef(node)
     }
-    if (modalManager && !modalManager.isTopModal(modalRef.current)) {
-      return
-    }
-    handleModalClose()
-  })
+  }, [])
 
-  useOutsideListener(
-    modalRef,
-    () => {
-      if (!closeOnOutsideClick || !modalRef.current) {
+  /**
+   * 키보드 'ESC'를 눌렀을 때 콜백 Hooks
+   */
+  useEscKeyPress(() => {
+    if (show) {
+      if (disableEscPress || !modalRef) {
         return
       }
-      if (!modalManager?.isTopModal(modalRef.current)) {
+
+      // 여러개 모달이 열려있을 때의 처리
+      if (modalManager && !modalManager.isTopModal(modalRef)) {
         return
       }
       handleModalClose()
-    },
-    [modalRef, modalManager],
-  )
+    }
+  })
+
+  /**
+   * Modal 영역 이외의 HTMLElement를 클릭했을 경우 콜백 Hooks
+   */
+  useOutsideListener(modalRef, () => {
+    if (show) {
+      if (disableOutsideClick || !modalRef) {
+        return
+      }
+
+      if (modalManager && !modalManager.isTopModal(modalRef)) {
+        return
+      }
+      handleModalClose()
+    }
+  })
 
   useEffect(() => {
-    if (!open || !modalRef.current) {
+    if (!show || !modalRef) {
       return
     }
 
-    modalManager?.add(modalRef.current)
-  }, [open, modalManager])
+    modalManager?.add(modalRef)
+  }, [show, modalManager, modalRef])
 
-  if (open) {
+  if (show) {
     return (
       <Backdrop>
         <Box
-          ref={modalRef}
+          ref={setRef}
           css={[
             {
               display: 'flex',
@@ -113,90 +137,30 @@ export const Modal = ({
             {
               sm: {
                 width: 328,
-                height: 202,
+                minHeight: 202,
               },
               md: {
                 width: 456,
-                height: 378,
+                minHeight: 378,
               },
               lg: {
                 width: 456,
-                height: 378,
+                minHeight: 378,
               },
             }[size],
           ]}
-          className={className}
+          {...rest}
         >
-          <Box
-            css={[
-              {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '14px 16px',
-              },
-              {
-                sm: { padingLeft: theme.spacing.md },
-                md: { paddingLeft: theme.spacing.lg },
-                lg: { paddingLeft: theme.spacing.lg },
-              }[size],
-            ]}
-          >
-            <Typography type="subTitle2">{title}</Typography>
-
-            <IconAdornment onClick={handleModalClose}>
-              <OutlineCloseIcon width={16} height={16} color={theme.colors.black.lighter} />
-            </IconAdornment>
-          </Box>
-
-          <Divider
-            css={{
-              margin: 0,
-              borderTop: `1px solid ${theme.colors.gray.darker}`,
-            }}
-          />
+          <ModalTitle onClose={onClose}>{title}</ModalTitle>
 
           <Box
             css={{
+              display: 'flex',
+              flexDirection: 'column',
               flex: 1,
             }}
           >
             {children}
-          </Box>
-
-          <Box
-            css={[
-              {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                columnGap: theme.spacing.sm,
-              },
-              {
-                sm: { marginBottom: 16 },
-                md: { marginBottom: 24 },
-                lg: { marginBottom: 24 },
-              }[size],
-            ]}
-          >
-            <Button
-              size={size === 'md' ? 'lg' : 'md'}
-              variant={buttonOption.secondLabel ? 'outlined' : 'contained'}
-              onClick={buttonOption.onClick}
-              css={[{ sm: { width: 144 }, md: { width: 200 }, lg: { width: 200 } }[size]]}
-            >
-              {buttonOption.label}
-            </Button>
-
-            {buttonOption.secondLabel && (
-              <Button
-                size={size === 'md' ? 'lg' : 'md'}
-                onClick={buttonOption.onSecondClick}
-                css={[{ sm: { width: 144 }, md: { width: 200 }, lg: { width: 200 } }[size]]}
-              >
-                {buttonOption.secondLabel}
-              </Button>
-            )}
           </Box>
         </Box>
       </Backdrop>
