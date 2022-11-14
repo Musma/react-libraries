@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.8
+
+### Patch Changes
+
+- [`3245cbc`](https://github.com/Musma/react-libraries/commit/3245cbc3984af0d5cf7f0bb9d332bfa4b53ba8e7) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: components, optimized, index.ts 파일 Build시에만 생성되도록 수정
+
 ## 0.1.7
 
 ### Patch Changes
