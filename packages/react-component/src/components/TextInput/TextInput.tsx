@@ -102,8 +102,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       setType(type === 'text' ? 'password' : 'text')
     }, [type])
 
-    console.log(regExp)
-
     return (
       // Wrapper Box
       <Box

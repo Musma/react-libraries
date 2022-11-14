@@ -7,10 +7,25 @@ import { Label } from 'src/elements'
 import { Size } from 'src/types'
 
 interface InputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+  /**
+   * @default md
+   *
+   * @description
+   */
   size?: Size
+  /**
+   * @default md
+   *
+   * @description
+   */
   required?: boolean
 }
 
+/**
+ *
+ * @description
+ * Input Element 위에 라벨을 표시나타내는 컴포넌트입니다.
+ */
 export const InputLabel = ({
   size = 'md',
   required = false,
