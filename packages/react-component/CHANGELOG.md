@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.22
+
+### Patch Changes
+
+- [`ac6e740`](https://github.com/Musma/react-libraries/commit/ac6e7404d52be0f1f7cd638977b472b8dfd2bb1b) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useOutsideClick 쓰는 컴포넌트들 useSetRef 사용하도록 수정
+
 ## 0.1.21
 
 ### Patch Changes
