@@ -28,7 +28,9 @@ export const IconAdornment = ({ noPadding = false, ...rest }: IconAdornmentProps
         '&:disabled': {
           backgroundColor: theme.colors.transparent,
           cursor: 'not-allowed',
-          pointerEvents: 'none',
+          '&:active': {
+            transform: 'none',
+          },
         },
       }}
       {...rest}

@@ -2,11 +2,11 @@ import { ReactNode, useCallback, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
+import { Pagination, PaginationProps } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
-import { Pagination, TableBody, TableHead, TableToolbar } from './components'
-import { usePagination } from './hooks'
+import { TableBody, TableHead, TableToolbar } from './components'
 
 export interface TableColumn {
   columnName: string
@@ -54,12 +54,9 @@ export interface TableProps {
    */
   withCheckbox?: boolean
   /**
-   * @default false
-   * 페이지네이션 표시 여부
-   * TODO:
-   * 페이지네이션 관련 로직 개발이 아직 안됨
+   *
    */
-  withPagination?: boolean
+  pagination?: PaginationProps
   /**
    * @description
    * 체크박스 체크한 데이터의 ID 목록
@@ -83,12 +80,11 @@ export const Table = ({
   rounded = 'md',
   toolbar,
   withCheckbox = false,
-  withPagination = false,
+  pagination,
   checkedItems = [],
   onCheckItemChange,
 }: TableProps) => {
   const theme = useTheme()
-  const pagination = usePagination()
 
   const handleCheckboxClick = useCallback(
     (rowData: Record<string, unknown>) => {
@@ -96,7 +92,7 @@ export const Table = ({
         const id = rowData.id as string
 
         if (checkedItems.includes(id)) {
-          onCheckItemChange(checkedItems.filter((item) => item != id))
+          onCheckItemChange?.(checkedItems.filter((item) => item != id))
           return
         }
 
@@ -123,8 +119,8 @@ export const Table = ({
         return
       }
 
-      const ccc = data.map((data) => data.id as string)
-      onCheckItemChange(ccc)
+      const checedItemIds = data.map((data) => data.id as string)
+      onCheckItemChange(checedItemIds)
     }
   }, [allChecked, data, onCheckItemChange])
 
@@ -157,9 +153,10 @@ export const Table = ({
         />
       </Box>
 
-      {withPagination && (
+      {/* Pagination 있어야하며, totalPage의 값이 0 이상이어야 함 */}
+      {pagination && pagination.totalPage > 0 && (
         <Box css={{ marginTop: theme.spacing.md }}>
-          <Pagination pagination={pagination} totalCount={toolbar?.totalCount || 0} />
+          <Pagination {...pagination} />
         </Box>
       )}
     </Box>

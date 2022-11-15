@@ -1,55 +1,38 @@
-import { MouseEvent, useCallback, useMemo, useState } from 'react'
-
 import { Box } from 'src/elements'
 
-import { Button, Dropdown, Select, Typography } from './components'
+import { Button, Table, usePagination } from './components'
 
-const OPTIONS = [
-  { label: '31', value: 31 },
-  { label: '32', value: 32 },
+const DATA = [
+  {
+    id: '0',
+    modelName: 'GS100',
+  },
+]
+
+const COLUMNS = [
+  {
+    columnLabel: 'id',
+    columnName: 'id',
+  },
+  {
+    columnLabel: 'modelName',
+    columnName: 'modelName',
+  },
 ]
 
 export const Component = () => {
-  const [dropdown, setDropdown] = useState<HTMLButtonElement | null>(null)
-
-  const toggleModal = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    setDropdown(event.currentTarget)
-  }, [])
-
-  const show = useMemo(() => {
-    return Boolean(dropdown)
-  }, [dropdown])
-
-  const close = useCallback(() => {
-    setDropdown(null)
-  }, [])
+  const { pagination, setTotalPage } = usePagination()
 
   return (
     <Box>
-      <Typography type="h1">안녕하시렵니까.</Typography>
-      <Box css={{ textAlign: 'center', padding: 40 }}>
-        <Button onClick={toggleModal}>드롭다운 버튼</Button>
-      </Box>
-
-      <Dropdown
-        show={show}
-        anchorEl={dropdown}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+      <Button
+        onClick={() => {
+          setTotalPage(100)
         }}
-        onClose={() => {
-          close()
-        }}
-      />
-
-      <Select
-        value={31}
-        options={OPTIONS}
-        onChange={() => {
-          return
-        }}
-      />
+      >
+        테스트
+      </Button>
+      <Table data={DATA} columns={COLUMNS} pagination={pagination} />
     </Box>
   )
 }
