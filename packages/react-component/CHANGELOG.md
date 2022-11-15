@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.24
+
+### Patch Changes
+
+- [`395aad9`](https://github.com/Musma/react-libraries/commit/395aad952e302a343b50bd9eec6ab58ed0e14de1) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Pagination 및 Table 재구성
+
 ## 0.1.23
 
 ### Patch Changes
