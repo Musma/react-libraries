@@ -2,7 +2,7 @@ import { MouseEvent, useCallback, useMemo, useState } from 'react'
 
 import { Box } from 'src/elements'
 
-import { Button, Dropdown, Select } from './components'
+import { Button, Dropdown, Select, Typography } from './components'
 
 const OPTIONS = [
   { label: '31', value: 31 },
@@ -26,6 +26,7 @@ export const Component = () => {
 
   return (
     <Box>
+      <Typography type="h1">안녕하시렵니까.</Typography>
       <Box css={{ textAlign: 'center', padding: 40 }}>
         <Button onClick={toggleModal}>드롭다운 버튼</Button>
       </Box>
