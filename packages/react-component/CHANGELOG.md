@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.23
+
+### Patch Changes
+
+- [`de9fd5a`](https://github.com/Musma/react-libraries/commit/de9fd5aa043b3fc95f5041774fd9161078639825) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Pretendard Regular woff2 하나만 남겨놓고 제거
+
 ## 0.1.22
 
 ### Patch Changes
