@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.25
+
+### Patch Changes
+
+- [`327c24b`](https://github.com/Musma/react-libraries/commit/327c24b095a3131ddee796d87eef04f45cb7a77f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: AppShell main 태그에 minWidth:0 추가
+
 ## 0.1.24
 
 ### Patch Changes
