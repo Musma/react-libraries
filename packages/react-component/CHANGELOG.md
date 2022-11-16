@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.26
+
+### Patch Changes
+
+- [`8e30f99`](https://github.com/Musma/react-libraries/commit/8e30f9929dd3b612e6ac898a70bc5f3fe9e19a04) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: usePagination을 react-utils로 이동 및 SearchForm 추가
+
 ## 0.1.25
 
 ### Patch Changes
