@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import {
-  BreadCrumb,
   Tooltip,
   Typography,
   Tag,
@@ -103,10 +102,6 @@ export const Component = () => {
 
         <Card title="Badge" css={{ padding: 24 }}>
           {<BadgeExample />}
-        </Card>
-
-        <Card title="Breadcrumb" css={{ padding: 24 }}>
-          <BreadCrumb crumbs={['a', 'b', 'c']} onClick={(c) => console.log(c)} />
         </Card>
 
         <Card title="Tooltip" css={{ padding: 24 }}>

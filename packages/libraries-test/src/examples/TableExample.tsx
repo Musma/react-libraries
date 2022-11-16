@@ -1,7 +1,8 @@
 import { Fragment, useCallback, useState } from 'react'
 
-import { Button, Table, usePagination } from '@musma/react-component'
+import { Button, Table } from '@musma/react-component'
 import { OutlineAddIcon } from '@musma/react-icons'
+import { usePagination } from '@musma/react-utils'
 
 const originData = Array.from({ length: 10 }).map((_, index) => ({
   id: `${index}`,
@@ -17,10 +18,14 @@ const columns = [
 ]
 
 export const TableExample = () => {
-  const pagination = usePagination()
+  const pagination = usePagination({
+    fetch: () => {
+      console.log('123123')
+    },
+  })
 
   const getData = useCallback(() => {
-    const { page, limit } = pagination
+    const { page, limit } = pagination.pageable
     const start = (page - 1) * limit
     const end = page * limit
     return originData.slice(start, end)
@@ -41,7 +46,6 @@ export const TableExample = () => {
           totalCount: 3,
           children: <Button startIcon={OutlineAddIcon}>asd</Button>,
         }}
-        withPagination={true}
       />
     </Fragment>
   )

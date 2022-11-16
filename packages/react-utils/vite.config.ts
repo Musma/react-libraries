@@ -17,7 +17,7 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-router-dom', 'react-hook-form', 'luxon'],
+      external: ['react', 'react-dom', 'react-router-dom', 'react-hook-form', 'luxon', 'lodash-es'],
       output: {
         globals: {
           react: 'React',
@@ -25,6 +25,7 @@ export default defineConfig({
           'react-router-dom': 'ReactRouterDOM',
           'react-hook-form': 'ReactHookForm',
           luxon: 'Luxon',
+          'lodash-es': 'LodashEs',
         },
       },
     },
