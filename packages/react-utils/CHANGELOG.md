@@ -1,5 +1,13 @@
 # @musma/react-utils
 
+## 0.1.9
+
+### Patch Changes
+
+- [`9f2573d`](https://github.com/Musma/react-libraries/commit/9f2573d2c07d892d97bb9b290144cb16f2e420ed) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useFormSearch pagination 관련 로직 수정
+
+- [`f3300db`](https://github.com/Musma/react-libraries/commit/f3300db090e2aac8256503aa1e391d0165a0843e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: lodash-es 번들링에서 제외
+
 ## 0.1.8
 
 ### Patch Changes
