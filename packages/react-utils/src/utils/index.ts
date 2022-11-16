@@ -1,6 +1,7 @@
 export * from './ArrayUtil'
 export * from './ColorUtil'
 export * from './DateUtil'
+export * from './LodashUtils'
 export * from './MapUtil'
 export * from './NumberUtil'
 export * from './RandomUtil'

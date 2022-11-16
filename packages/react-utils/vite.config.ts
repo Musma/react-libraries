@@ -7,6 +7,7 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   build: {
+    sourcemap: true,
     lib: {
       // 빌드 시 src/index.ts을 시작점으로
       entry: resolve(__dirname, 'src/index.ts'),
@@ -17,7 +18,7 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-router-dom', 'react-hook-form', 'luxon', 'lodash-es'],
+      external: ['react', 'react-dom', 'react-router-dom', 'react-hook-form', 'luxon'],
       output: {
         globals: {
           react: 'React',
@@ -25,7 +26,6 @@ export default defineConfig({
           'react-router-dom': 'ReactRouterDOM',
           'react-hook-form': 'ReactHookForm',
           luxon: 'Luxon',
-          'lodash-es': 'LodashEs',
         },
       },
     },
@@ -33,5 +33,5 @@ export default defineConfig({
   resolve: {
     alias: [{ find: 'src', replacement: resolve('src') }],
   },
-  plugins: [visualizer(), react(), dts()],
+  plugins: [react(), dts(), visualizer({ open: false })],
 })

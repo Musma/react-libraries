@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Checkbox, Typography } from 'src/components'
+import { Checkbox } from 'src/components'
 import { Box } from 'src/elements'
 
 import { TableColumn } from '../Table'
@@ -73,12 +73,15 @@ export const TableHead = ({
       )}
 
       {columns.map((column, index) => (
-        <Typography
+        <Box
           css={{
             height: 40,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            color: theme.colors.black.dark,
+            fontWeight: 600,
+            fontSize: 14,
             textAlign: 'center',
             borderRight: `1px solid ${theme.colors.gray.lighter}`,
             '&:last-of-type': {
@@ -88,7 +91,7 @@ export const TableHead = ({
           key={`TableHead-${index}-${column.columnName}}`}
         >
           {column.columnLabel}
-        </Typography>
+        </Box>
       ))}
     </Box>
   )

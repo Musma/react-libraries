@@ -1,6 +1,6 @@
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react'
 
-import { uniqueId } from 'lodash-es'
+import { uniqueId } from '@musma/react-utils'
 
 import { Typography } from 'src/components'
 import { InputBase, Label } from 'src/elements'

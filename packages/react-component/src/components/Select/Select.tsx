@@ -2,8 +2,7 @@ import { InputHTMLAttributes, MouseEvent, useCallback, useMemo, useState } from 
 
 import { useTheme } from '@emotion/react'
 import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
-import { useOutsideListener, useSetRef } from '@musma/react-utils'
-import { uniqueId } from 'lodash-es'
+import { useOutsideListener, useSetRef, uniqueId } from '@musma/react-utils'
 
 import { InputLabel, Typography } from 'src/components'
 import { Box, InputBase } from 'src/elements'

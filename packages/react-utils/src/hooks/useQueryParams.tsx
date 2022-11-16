@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { isEmpty } from 'lodash-es'
+import { isEmpty } from 'src/utils'
 
 import { Pageable } from './usePagination'
 

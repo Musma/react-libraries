@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { uniqueId } from 'lodash-es'
+import { uniqueId } from '@musma/react-utils'
 
 import { Typography } from 'src/components'
 import { Box, Image, InputBase, Label } from 'src/elements'

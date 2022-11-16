@@ -8,6 +8,7 @@ import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
   build: {
+    sourcemap: true,
     lib: {
       // 빌드 시 src/index.ts을 시작점으로
       entry: resolve(__dirname, 'src/index.ts'),
@@ -18,7 +19,7 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-router-dom', 'luxon', '@emotion/react', 'lodash-es'],
+      external: ['react', 'react-dom', 'react-router-dom', 'luxon', '@emotion/react'],
       output: {
         globals: {
           react: 'React',
@@ -26,17 +27,11 @@ export default defineConfig({
           'react-router-dom': 'ReactRouterDOM',
           luxon: 'Luxon',
           '@emotion/react': 'emotionReact',
-          'lodash-es': 'LodashEs',
         },
       },
     },
   },
-  // esbuild: {
-  //   logOverride: { 'this-is-undefined-in-esm': 'silent' },
-  // },
   plugins: [
-    visualizer({ open: false }),
-    svgr(),
     react({
       jsxImportSource: '@emotion/react',
       babel: {
@@ -44,6 +39,8 @@ export default defineConfig({
       },
     }),
     dts(),
+    svgr(),
+    visualizer({ open: false }),
   ],
   resolve: {
     alias: [{ find: 'src', replacement: resolve(__dirname, 'src') }],

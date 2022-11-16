@@ -7,6 +7,7 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   build: {
+    sourcemap: true,
     lib: {
       // 빌드 시 src/index.ts을 시작점으로
       entry: resolve(__dirname, 'src/index.ts'),
@@ -26,5 +27,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [visualizer({ open: false }), react(), dts()],
+  plugins: [react(), dts(), visualizer({ open: false })],
 })

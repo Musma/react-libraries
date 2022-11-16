@@ -2,7 +2,7 @@ import { Fragment, ReactNode, useCallback, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Checkbox, Typography } from 'src/components'
+import { Checkbox } from 'src/components'
 import { Box } from 'src/elements'
 
 import { TableColumn } from '../Table'
@@ -101,18 +101,19 @@ export const TableBody = ({
           )}
 
           {columns.map((column) => (
-            <Typography
-              type="body2"
+            <Box
               key={column.columnName}
               css={{
+                fontSize: 14,
                 height: 40,
+                color: theme.colors.black.dark,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
               {item[column.columnName] as ReactNode}
-            </Typography>
+            </Box>
           ))}
         </Box>
       ))}
