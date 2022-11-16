@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 import { DefaultTheme, MusmaProvider } from 'src/theme'
 
@@ -25,7 +26,9 @@ if (rootElement) {
   render(
     <StrictMode>
       <MusmaProvider theme={theme}>
-        <Component />
+        <BrowserRouter>
+          <Component />
+        </BrowserRouter>
       </MusmaProvider>
     </StrictMode>,
     rootElement,

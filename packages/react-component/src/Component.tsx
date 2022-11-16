@@ -1,6 +1,8 @@
-import { Box } from 'src/elements'
+import { useEffect } from 'react'
 
-import { Table } from './components'
+import { Box, Span } from 'src/elements'
+
+import { Button, SearchForm, Table, TextInput } from './components'
 
 const DATA = [
   {
@@ -20,13 +22,18 @@ const COLUMNS = [
   },
 ]
 
-export const Component = () => {
-  const on = () => {
-    alert('12312')
-  }
+type TestInput = {
+  name: string
+}
 
+const defaultValues = {
+  name: '',
+}
+
+export const Component = () => {
   return (
     <Box>
+
       <Table data={DATA} columns={COLUMNS} />
     </Box>
   )

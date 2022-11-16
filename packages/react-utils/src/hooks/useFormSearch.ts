@@ -12,20 +12,22 @@ export const useFormSearch = <T extends object>({
   useFormProps,
   fetchAPI,
 }: UseFormSearchProps<T>) => {
-  const { formValues, setFormDataQueryParams, setPageableQueryParams } = useQueryParams()
+  const { queryFormValues, queryPageable, setFormDataQueryParams, setPageableQueryParams } =
+    useQueryParams()
 
   const form = useForm<T>({
     ...useFormProps,
     defaultValues: {
       ...useFormProps.defaultValues,
-      formValues,
+      ...queryFormValues,
     } as DeepPartial<T>,
   })
 
-  const { pageable, pagination } = usePagination({
+  const { pagination, pageable } = usePagination({
+    initPageable: queryPageable,
     fetch: () => {
       fetchAPI()
-      setPageableQueryParams({ ...pageable })
+      setPageableQueryParams(pageable)
     },
   })
 
@@ -34,8 +36,14 @@ export const useFormSearch = <T extends object>({
     setFormDataQueryParams(data as Record<string, string>)
   }
 
+  const onReset = () => {
+    form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
+    setFormDataQueryParams({})
+  }
+
   return {
     onSubmit,
+    onReset,
     pagination,
     ...form,
   }

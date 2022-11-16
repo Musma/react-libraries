@@ -1,19 +1,23 @@
 import { useState } from 'react'
 
-export type Pageable = {
+export interface Pageable {
   page: number
   limit: number
 }
 
 interface UsePaginationProps {
+  initPageable?: Pageable
   fetch: () => void
 }
 
-export const usePagination = ({ fetch }: UsePaginationProps) => {
-  const [pageable, setPageable] = useState<Pageable>({
+export const usePagination = ({
+  initPageable = {
     page: 1,
     limit: 10,
-  })
+  },
+  fetch,
+}: UsePaginationProps) => {
+  const [pageable, setPageable] = useState<Pageable>(initPageable)
 
   const [totalPage, setTotalPage] = useState(0)
 
