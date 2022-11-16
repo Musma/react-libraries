@@ -1,6 +1,6 @@
 import { Box } from 'src/elements'
 
-import { Button, Table, usePagination } from './components'
+import { Table } from './components'
 
 const DATA = [
   {
@@ -21,18 +21,13 @@ const COLUMNS = [
 ]
 
 export const Component = () => {
-  const { pagination, setTotalPage } = usePagination()
+  const on = () => {
+    alert('12312')
+  }
 
   return (
     <Box>
-      <Button
-        onClick={() => {
-          setTotalPage(100)
-        }}
-      >
-        테스트
-      </Button>
-      <Table data={DATA} columns={COLUMNS} pagination={pagination} />
+      <Table data={DATA} columns={COLUMNS} />
     </Box>
   )
 }

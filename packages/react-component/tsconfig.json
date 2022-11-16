@@ -7,6 +7,6 @@
     "baseUrl": "./",
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "../react-utils/src/hooks/usePagination.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

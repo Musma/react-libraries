@@ -52,15 +52,18 @@ export interface PaginationProps {
    */
   totalPage: number
   /**
-   *
+   * Page Change Callback
    */
   onPageChange: (page: number) => void
   /**
-   *
+   * Row Per Page Change Callback
    */
   onRowPerPageChange: (rowPerPage: number) => void
 }
 
+/**
+ * 페이지네이션 컴포넌트입니다.
+ */
 export const Pagination = ({
   currentPage,
   rowPerPage = 10,
