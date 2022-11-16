@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.27
+
+### Patch Changes
+
+- [`04be407`](https://github.com/Musma/react-libraries/commit/04be4079f81ee08bf0577bbf917b54b1366163b0) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-component 번들링에서 lodash-es 제거
+
 ## 0.1.26
 
 ### Patch Changes
