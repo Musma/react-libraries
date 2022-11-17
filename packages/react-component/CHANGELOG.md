@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.28
+
+### Patch Changes
+
+- [`b7b7759`](https://github.com/Musma/react-libraries/commit/b7b775991b7a6380b0be79ca0db7e91ea5a117fe) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Table Head, Body에 Typography 제거
+
 ## 0.1.27
 
 ### Patch Changes
