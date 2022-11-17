@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.30
+
+### Patch Changes
+
+- [`571ea94`](https://github.com/Musma/react-libraries/commit/571ea9419f4485040dc45536241574d638d54c6e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 로컬 폰트 제거하고 웹 폰트 불러오도록 수정
+
 ## 0.1.29
 
 ### Patch Changes
