@@ -1,16 +1,15 @@
 import { css, Global } from '@emotion/react'
 
-import PretendardRegular from 'src/assets/fonts/Pretendard-Regular.subset.woff2'
-
 export const PretendardFont = () => {
   return (
     <Global
       styles={css`
         @font-face {
-          font-family: 'Pretendard';
+          font-family: 'Pretendard-Regular';
+          src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+            format('woff');
           font-weight: 400;
-          font-display: swap;
-          src: local('Pretendard Regular'), url(${PretendardRegular}) format('woff2');
+          font-style: normal;
         }
 
         html {

@@ -114,6 +114,7 @@ export const TableBody = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                textAlign: 'center',
               }}
             >
               {item[column.columnName] as ReactNode}

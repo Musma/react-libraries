@@ -22,12 +22,14 @@ export const Divider = ({ orientation = 'horizontal', margin = 'md', ...rest }: 
           marginBottom: theme.spacing[margin],
         },
         orientation === 'vertical' && {
-          width: '1px',
+          width: 1,
           height: 'auto',
           alignSelf: 'stretch',
           borderRight: `1px solid ${theme.colors.gray.lighter}`,
           marginLeft: theme.spacing[margin],
           marginRight: theme.spacing[margin],
+          marginTop: 0,
+          marginBottom: 0,
         },
       ]}
       {...rest}
