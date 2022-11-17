@@ -27,7 +27,7 @@ interface TableBodyProps {
   /**
    * @description
    */
-  onRowClick?: (rowData: Record<string, unknown>[]) => void
+  onRowClick?: (rowData: Record<string, unknown>) => void
   /**
    * @description
    */
@@ -69,16 +69,21 @@ export const TableBody = ({
               display: 'grid',
               gridTemplateColumns,
               borderBottom: `1px solid ${theme.colors.white.lighter}`,
+              color: theme.colors.black.dark,
               '&:last-of-type': {
                 borderBottom: 'none',
               },
             },
             onRowClick && {
               '&:hover': {
-                backgroundColor: theme.colors.blue.lighter,
+                cursor: 'pointer',
+                backgroundColor: theme.colors.white.darker,
               },
             },
           ]}
+          onClick={() => {
+            onRowClick?.(item)
+          }}
         >
           {withCheckbox && (
             <Box
@@ -106,7 +111,6 @@ export const TableBody = ({
               css={{
                 fontSize: 14,
                 height: 40,
-                color: theme.colors.black.dark,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

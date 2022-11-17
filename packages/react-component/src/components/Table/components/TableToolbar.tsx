@@ -31,9 +31,9 @@ export const TableToolbar = ({ title, totalCount, children }: TableToolbarProps)
         marginBottom: theme.spacing.sm,
       }}
     >
-      <Box css={{ display: 'flex' }}>
+      <Box css={{ display: 'flex', gap: 4 }}>
         {/* 제목 */}
-        <Typography type="h6" css={{ color: theme.colors.black.lighter, marginRight: 4 }}>
+        <Typography type="h6" css={{ color: theme.colors.black.lighter }}>
           {title}
         </Typography>
 

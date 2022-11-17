@@ -41,7 +41,7 @@ export const AppShell = ({ header, navBar, disablePadding = false, children }: A
       css={{
         display: 'flex',
         minWidth: theme.layoutSize.minBodyWidth,
-        height: '100vh',
+        minHeight: '100vh',
         backgroundColor: theme.colors.white.main,
       }}
     >

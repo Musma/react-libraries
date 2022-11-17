@@ -1,4 +1,4 @@
-import { Children, FormHTMLAttributes } from 'react'
+import { FormHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -16,10 +16,6 @@ interface SearchFormProps extends FormHTMLAttributes<HTMLFormElement> {
    * 검색 버튼 라벨
    */
   searchLabel?: string
-  /**
-   * @default = 200
-   */
-  gridItemWidth?: number
 }
 
 /**
@@ -28,13 +24,10 @@ interface SearchFormProps extends FormHTMLAttributes<HTMLFormElement> {
 export const SearchForm = ({
   resetLabel = '초기화',
   searchLabel = '검색',
-  gridItemWidth = 200,
   children,
   ...rest
 }: SearchFormProps) => {
   const theme = useTheme()
-
-  const childrenCount = Children.count(children) // children의 개수
 
   return (
     <Form {...rest}>
@@ -43,17 +36,7 @@ export const SearchForm = ({
           padding: theme.spacing.lg,
         }}
       >
-        <Box
-          css={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${childrenCount}, ${gridItemWidth}px)`, // Grid Item의 가로 크기는 200px
-            justifyContent: 'center',
-            gap: theme.spacing.lg,
-            marginBottom: theme.spacing.lg,
-          }}
-        >
-          {children}
-        </Box>
+        {children}
 
         <Box
           css={{
@@ -61,6 +44,7 @@ export const SearchForm = ({
             gridTemplateColumns: `repeat(2, 200px)`,
             justifyContent: 'center',
             gap: theme.spacing.lg,
+            marginTop: theme.spacing.lg,
           }}
         >
           <Button type="reset" variant="outlined">

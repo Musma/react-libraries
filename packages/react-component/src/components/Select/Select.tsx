@@ -1,4 +1,12 @@
-import { InputHTMLAttributes, MouseEvent, useCallback, useMemo, useState } from 'react'
+import {
+  ForwardedRef,
+  forwardRef,
+  InputHTMLAttributes,
+  MouseEvent,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
@@ -15,17 +23,24 @@ export interface SelectOption<T> {
   value: T
 }
 
+/**
+ * ForwardRef + Generic Type
+ * https://fettblog.eu/typescript-react-generic-forward-refs/
+ *
+ */
+
 interface SelectProps<T>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange'> {
   /**
-   *
+   * @default md
    */
   size?: Size
   /**
-   *
+   * @optional
    */
   label?: string
   /**
+   * @required
    *
    */
   value: T
@@ -36,24 +51,14 @@ interface SelectProps<T>
   /**
    *
    */
-  wrapperClassName?: string
-  /**
-   *
-   */
   onChange: (value: T) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-export const Select = <T extends unknown>({
-  id: _id,
-  size = 'md',
-  label,
-  value,
-  options,
-  className,
-  onChange,
-  ...rest
-}: SelectProps<T>) => {
+const _Select = <T extends unknown>(
+  { id: _id, size = 'md', label, value, options, className, onChange, ...rest }: SelectProps<T>,
+  inputRef: ForwardedRef<HTMLInputElement>,
+) => {
   const theme = useTheme()
 
   const { ref, setRef } = useSetRef()
@@ -106,6 +111,7 @@ export const Select = <T extends unknown>({
         onClick={handleSelectClick}
       >
         <InputBase
+          ref={inputRef}
           id={id}
           value={selectedOption?.label}
           readOnly={true}
@@ -169,3 +175,7 @@ export const Select = <T extends unknown>({
     </Box>
   )
 }
+
+export const Select = forwardRef(_Select) as <T>(
+  props: SelectProps<T> & { ref?: ForwardedRef<HTMLInputElement> },
+) => ReturnType<typeof _Select>

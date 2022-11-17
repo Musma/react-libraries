@@ -7,7 +7,7 @@ import { Backdrop, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
-interface ModalProps extends HTMLAttributes<HTMLElement> {
+export interface ModalProps extends HTMLAttributes<HTMLElement> {
   /**
    * @required
    *
@@ -64,6 +64,9 @@ export const Modal = ({
 }: ModalProps) => {
   const theme = useTheme()
 
+  /**
+   * useKeyPress, useOutsideClick에 넣을 ref
+   */
   const { ref, setRef } = useSetRef()
 
   /**
@@ -87,6 +90,7 @@ export const Modal = ({
       if (modalManager && !modalManager.isTopModal(ref)) {
         return
       }
+
       handleModalClose()
     }
   })
@@ -94,6 +98,7 @@ export const Modal = ({
   /**
    * Modal 영역 이외의 HTMLElement를 클릭했을 경우 콜백 Hooks
    */
+
   useOutsideListener(ref, () => {
     if (show) {
       if (disableOutsideClick || !ref) {
@@ -130,15 +135,15 @@ export const Modal = ({
             },
             {
               sm: {
-                width: 328,
+                minWidth: 328,
                 minHeight: 202,
               },
               md: {
-                width: 456,
+                minWidth: 456,
                 minHeight: 378,
               },
               lg: {
-                width: 456,
+                minWidth: 944,
                 minHeight: 378,
               },
             }[size],

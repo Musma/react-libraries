@@ -83,6 +83,7 @@ export const Table = ({
   pagination,
   checkedItems = [],
   onCheckItemChange,
+  onRowClick,
 }: TableProps) => {
   const theme = useTheme()
 
@@ -150,6 +151,7 @@ export const Table = ({
           withCheckbox={withCheckbox}
           checkedItems={checkedItems}
           onCheckboxClick={handleCheckboxClick}
+          onRowClick={onRowClick}
         />
       </Box>
 
