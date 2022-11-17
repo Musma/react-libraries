@@ -37,7 +37,7 @@ export const SearchForm = ({
   const childrenCount = Children.count(children) // children의 개수
 
   return (
-    <Form css={{ marginBottom: theme.spacing.lg }} {...rest}>
+    <Form {...rest}>
       <Card
         css={{
           padding: theme.spacing.lg,
