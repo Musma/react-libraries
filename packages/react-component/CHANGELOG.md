@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.29
+
+### Patch Changes
+
+- [`427b9ad`](https://github.com/Musma/react-libraries/commit/427b9adc62cf22db666fd146c857bd393db8e2eb) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: SearchForm css 수정, Table onRowClick 작동하지 않는 버그 수정
+
+- Updated dependencies [[`84ef694`](https://github.com/Musma/react-libraries/commit/84ef694e2652afb326a8f6965958c23e8189feeb)]:
+  - @musma/react-utils@0.1.10
+
 ## 0.1.28
 
 ### Patch Changes

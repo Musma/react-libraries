@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.10
+
+### Patch Changes
+
+- [`84ef694`](https://github.com/Musma/react-libraries/commit/84ef694e2652afb326a8f6965958c23e8189feeb) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: peerDependencies lodash-es 제거
+
 ## 0.1.9
 
 ### Patch Changes
