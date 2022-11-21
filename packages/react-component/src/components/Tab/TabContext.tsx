@@ -1,12 +1,17 @@
 import { createContext, useContext } from 'react'
 
-interface ITabContext {
+interface ITabContext<T> {
   variant: 'hat' | 'rect'
-  value: string | number
-  onTabValueChange: (value: string | number) => void
+  value: T
+  onTabValueChange: (value: T) => void
 }
 
-export const TabContext = createContext<ITabContext | null>(null)
+export const createTabContext = <T extends string | number>() => {
+  const tabContext = createContext<ITabContext<T> | null>(null)
+  return tabContext
+}
+
+export const TabContext = createTabContext()
 
 interface UseTabContextArgs {
   name: 'Tab' | 'TabPanel' | 'Tabs'

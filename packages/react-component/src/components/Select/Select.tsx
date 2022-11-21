@@ -61,7 +61,7 @@ const _Select = <T extends unknown>(
 ) => {
   const theme = useTheme()
 
-  const { ref, setRef } = useSetRef()
+  const [ref, setRef] = useSetRef()
 
   const [open, setOpen] = useState(false)
 

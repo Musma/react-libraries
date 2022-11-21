@@ -7,12 +7,12 @@ import { ButtonBase } from 'src/elements'
 
 import { useTabContext } from './TabContext'
 
-export interface TabProps {
-  value: string | number
+export interface TabProps<T extends string | number> {
+  value: T
   label: string
 }
 
-export const Tab = ({ value, label }: TabProps) => {
+export const Tab = <T extends string | number>({ value, label }: TabProps<T>) => {
   const theme = useTheme()
   const { value: tabValue, onTabValueChange, variant = 'hat' } = useTabContext({ name: 'Tab' })
 

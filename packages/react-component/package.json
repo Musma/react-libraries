@@ -46,6 +46,7 @@
     "luxon": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.39.4",
     "react-router-dom": "^6.4.3"
   },
   "devDependencies": {

@@ -4,12 +4,16 @@ import { Box } from 'src/elements'
 
 import { useTabContext } from './TabContext'
 
-interface TabPanelProps extends HTMLAttributes<HTMLDivElement> {
-  value: string | number
+interface TabPanelProps<T> extends HTMLAttributes<HTMLDivElement> {
+  value: T
   children?: ReactNode
 }
 
-export const TabPanel = ({ value, children, ...rest }: TabPanelProps) => {
+export const TabPanel = <T extends string | number>({
+  value,
+  children,
+  ...rest
+}: TabPanelProps<T>) => {
   const { value: tabValue } = useTabContext({ name: 'TabPanel' })
   return (
     <Box role="tabpanel" {...rest}>

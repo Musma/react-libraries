@@ -9,18 +9,34 @@ import { Size } from 'src/types'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
+   * @default md
    *
+   *
+   * sm: 28
+   * md: 32
+   * lg: 36
    */
   size?: Size
   /**
    * @default false
+   *
+   * 부모 컨테이너 Width 꽉 차게 할지 여부
    */
   fullWidth?: boolean
   /**
    * @default contained
+   * outlined : 외곽선
+   * contained: 채워져 있음
    */
-  variant?: 'outlined' | 'contained' | 'danger'
+  variant?: 'outlined' | 'contained'
   /**
+   * @optional
+   * 버튼의 색을 커스텀하게 바꾸고 싶을 때 사용합니다.
+   */
+  color?: string
+  /**
+   * @optional
+   * 버튼 텍스트 앞에 렌더링되는 SVG 아이콘입니다.
    *
    */
   startIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
@@ -36,6 +52,7 @@ export const Button = ({
   fullWidth = false,
   size = 'md',
   disabled,
+  color,
   startIcon,
   children,
   ...rest
@@ -54,22 +71,16 @@ export const Button = ({
           padding: theme.spacing.sm,
         },
         variant === 'contained' && {
-          backgroundColor: theme.colors.primary.main,
+          backgroundColor: color || theme.colors.primary.main,
           '&:hover': {
-            backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.9),
+            backgroundColor: convertHexToRGB(color || theme.colors.primary.main, 0.9),
           },
         },
         variant === 'outlined' && {
           backgroundColor: theme.colors.white.main,
-          border: `solid 1px ${theme.colors.primary.main}`,
+          border: `solid 1px ${color || theme.colors.primary.main}`,
           '&:hover': {
             backgroundColor: theme.colors.white.lighter,
-          },
-        },
-        variant === 'danger' && {
-          backgroundColor: theme.colors.red.main,
-          '&:hover': {
-            backgroundColor: convertHexToRGB(theme.colors.red.main, 0.9),
           },
         },
         disabled && {
@@ -105,7 +116,8 @@ export const Button = ({
       <Typography
         css={[
           {
-            color: variant === 'outlined' ? theme.colors.primary.main : theme.colors.white.main,
+            color:
+              variant === 'outlined' ? color || theme.colors.primary.main : theme.colors.white.main,
           },
           disabled && { color: theme.colors.gray.main },
         ]}

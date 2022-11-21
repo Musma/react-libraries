@@ -22,7 +22,7 @@ interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-export const Tabs = ({ children, ...rest }: TabsProps) => {
+export const Tabs = <T extends string | number>({ children, ...rest }: TabsProps) => {
   const theme = useTheme()
   const { value, variant } = useTabContext({ name: 'Tabs' })
 
@@ -33,12 +33,12 @@ export const Tabs = ({ children, ...rest }: TabsProps) => {
   // 활성화된 Tab의 Index 알아내는 코드
   const activeTabIndex = useMemo(() => {
     const items = Children.map(children, (children) => {
-      const item = children as ReactElement<TabProps>
+      const item = children as ReactElement<TabProps<T>>
       return item.props.value
     })
 
     if (items) {
-      return items.indexOf(value)
+      return items.indexOf(value as any)
     }
     return 0
   }, [children, value])

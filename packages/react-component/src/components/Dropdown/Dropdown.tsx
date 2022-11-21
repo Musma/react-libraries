@@ -64,7 +64,7 @@ export const Dropdown = ({
   ...rest
 }: DropdownProps) => {
   const theme = useTheme()
-  const { ref, setRef } = useSetRef()
+  const [ref, setRef] = useSetRef()
 
   // Dropdown
   const top = useMemo(() => {
