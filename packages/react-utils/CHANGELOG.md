@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.12
+
+### Patch Changes
+
+- [`cd20e6e`](https://github.com/Musma/react-libraries/commit/cd20e6ec27942c118af6fd85ada68e9a4b163e1b) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useFormSearch onSubmit 로직 수정
+
 ## 0.1.11
 
 ### Patch Changes
