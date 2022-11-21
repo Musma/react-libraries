@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.32
+
+### Patch Changes
+
+- [`172f884`](https://github.com/Musma/react-libraries/commit/172f884e9acd8bcc1e435917cd53774651e6ac1f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-component 의존성 정리
+
 ## 0.1.31
 
 ### Patch Changes
