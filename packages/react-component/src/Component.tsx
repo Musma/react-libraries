@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Controller } from 'react-hook-form'
 
 import { useTheme } from '@emotion/react'
 import { useFormSearch } from '@musma/react-utils'
@@ -7,7 +6,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { DatePicker, Modal, ModalActions, ModalButton, SearchForm, Table } from './components'
+import { Modal, ModalActions, ModalButton, SearchForm, Table } from './components'
 
 const DATA = [
   {
@@ -64,23 +63,6 @@ export const Component = () => {
             <ModalButton>aspo[dkasopk]</ModalButton>
           </ModalActions>
         </Modal>
-
-        <Controller
-          name="date"
-          control={control}
-          render={({ field: { value, onChange, ...rest } }) => (
-            <Box css={{ width: 200 }}>
-              <DatePicker
-                value={DateTime.fromISO(value)}
-                onChange={(dateTime) => {
-                  const dd = dateTime.toISO()
-                  onChange(dd)
-                }}
-                {...rest}
-              />
-            </Box>
-          )}
-        />
       </SearchForm>
 
       <Table
