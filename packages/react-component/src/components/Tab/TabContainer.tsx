@@ -3,10 +3,10 @@ import { ReactNode } from 'react'
 import { TabContext } from './TabContext'
 
 interface TabContainerProps {
-  value: string | number
+  value: string
   variant?: 'hat' | 'rect'
   children?: ReactNode
-  onTabValueChange: (value: string | number) => void
+  onTabValueChange: (value: string) => void
 }
 
 export const TabContainer = ({

@@ -83,16 +83,16 @@ export const ImageUploader = ({
             borderRadius: '9999px',
             backgroundColor: theme.colors.white.main,
             border: `1px solid ${theme.colors.gray.dark}`,
+            textAlign: 'center',
+            overflow: 'hidden',
             '&:hover .child': {
               visibility: 'visible',
             },
-            textAlign: 'center',
-            overflow: 'hidden',
           },
           {
-            lg: { height: '140px', width: '140px' },
-            md: { height: '100px', width: '100px' },
-            sm: { height: '32px', width: '32px' },
+            lg: { height: 140, width: 140 },
+            md: { height: 100, width: 100 },
+            sm: { height: 32, width: 32 },
           }[size],
         ]}
       >

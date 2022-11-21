@@ -67,7 +67,7 @@ export const Modal = ({
   /**
    * useKeyPress, useOutsideClick에 넣을 ref
    */
-  const { ref, setRef } = useSetRef()
+  const [ref, setRef] = useSetRef()
 
   /**
    * 모달 닫기 버튼 클릭 시 이벤트

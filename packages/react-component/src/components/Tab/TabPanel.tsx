@@ -5,7 +5,7 @@ import { Box } from 'src/elements'
 import { useTabContext } from './TabContext'
 
 interface TabPanelProps extends HTMLAttributes<HTMLDivElement> {
-  value: string | number
+  value: string
   children?: ReactNode
 }
 

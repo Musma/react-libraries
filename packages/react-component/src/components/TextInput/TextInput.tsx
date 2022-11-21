@@ -10,12 +10,9 @@ import {
 import { useTheme } from '@emotion/react'
 import { OutlineEyeCloseIcon, OutlineEyeIcon } from '@musma/react-icons'
 
-import { IconAdornment, InputLabel, Typography } from 'src/components'
+import { IconAdornment, InputHelper, InputLabel } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
-
-import { ReactComponent as InvalidIcon } from './images/invalid.svg'
-import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
@@ -23,52 +20,42 @@ export interface TextInputProps
    *
    * @default text
    *
-   * @description
-   *
    */
   type?: 'text' | 'password'
   /**
    *
    * @default md
    *
-   * @description
    */
   size?: Size
   /**
    * @optional
    *
-   * @description
    */
   label?: string
   /**
    * @optional
    *
-   * @description
    */
   startAdornment?: ReactNode
   /**
    * @optional
    *
-   * @description
    */
   endAdornment?: ReactNode
   /**
    * @optional
-   * @description
    */
   error?: boolean
   /**
-   * @description
    */
   helperText?: string
   /**
-   * @description
    */
   required?: boolean
   /**
    * @optional
    *
-   * @description
    * 정규표현식입니다
    * react-utils 패키지에 있는 RegExps를 넣어서 사용하면 됩니다.
    */
@@ -160,6 +147,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             ref={ref}
             css={{
               flex: 1,
+              width: '100%',
               height: '100%',
               paddingLeft: startAdornment ? theme.spacing.sm : 0,
               paddingRight: endAdornment ? theme.spacing.sm : 0,
@@ -201,20 +189,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           {type !== 'password' && endAdornment}
         </Box>
 
-        {helperText && (
-          <Typography
-            type="caption2"
-            css={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              color: error ? theme.colors.red.main : theme.colors.green.main,
-            }}
-          >
-            {error ? <InvalidIcon /> : <ValidIcon />}
-            {helperText}
-          </Typography>
-        )}
+        {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
       </Box>
     )
   },
