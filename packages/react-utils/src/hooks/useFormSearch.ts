@@ -1,7 +1,6 @@
-import { DeepPartial, SubmitHandler, useForm, UseFormProps } from 'react-hook-form'
+import { DeepPartial, useForm, UseFormProps } from 'react-hook-form'
 
-import { usePagination } from './usePagination'
-import { useQueryParams } from './useQueryParams'
+import { usePagination, useQueryParams } from 'src/hooks'
 
 interface UseFormSearchProps<T extends object> {
   useFormProps: UseFormProps<T>
@@ -12,8 +11,13 @@ export const useFormSearch = <T extends object>({
   useFormProps,
   fetchAPI,
 }: UseFormSearchProps<T>) => {
-  const { queryFormValues, queryPageable, setFormDataQueryParams, setPageableQueryParams } =
-    useQueryParams()
+  const {
+    queryFormValues,
+    queryPageable,
+    setFormDataQueryParams,
+    clearQueryParams,
+    setPageableQueryParams,
+  } = useQueryParams()
 
   const form = useForm<T>({
     ...useFormProps,
@@ -31,14 +35,14 @@ export const useFormSearch = <T extends object>({
     },
   })
 
-  const onSubmit: SubmitHandler<T> = (data: T) => {
+  const onSubmit = () => {
     fetchAPI()
-    setFormDataQueryParams(data as Record<string, string>)
+    setFormDataQueryParams(form.getValues() as Record<string, string>)
   }
 
   const onReset = () => {
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
-    setFormDataQueryParams({})
+    clearQueryParams()
   }
 
   return {
