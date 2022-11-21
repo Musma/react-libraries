@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.11
+
+### Patch Changes
+
+- [`90eacb0`](https://github.com/Musma/react-libraries/commit/90eacb03084c7b10dc5674d5df4cda6a69fb8eac) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useModal를 useToggle로 변경
+
 ## 0.1.10
 
 ### Patch Changes
