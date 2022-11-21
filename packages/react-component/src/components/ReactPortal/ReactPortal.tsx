@@ -27,6 +27,7 @@ export const ReactPortal = ({ wrapperId = 'react-portal', children }: ReactPorta
     }
 
     document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
 
     setWrapperElement(element)
 
@@ -37,6 +38,7 @@ export const ReactPortal = ({ wrapperId = 'react-portal', children }: ReactPorta
       }
 
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
   }, [wrapperId])
 

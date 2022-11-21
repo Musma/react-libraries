@@ -47,9 +47,13 @@ export const SearchForm = ({
             marginTop: theme.spacing.lg,
           }}
         >
+          {/* Reset 버튼 */}
+
           <Button type="reset" variant="outlined">
             {resetLabel}
           </Button>
+
+          {/* Submit 버튼 */}
           <Button type="submit">{searchLabel}</Button>
         </Box>
       </Card>

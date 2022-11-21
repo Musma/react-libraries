@@ -8,7 +8,7 @@ import { ButtonBase } from 'src/elements'
 import { useTabContext } from './TabContext'
 
 export interface TabProps {
-  value: string | number
+  value: string
   label: string
 }
 
