@@ -23,7 +23,18 @@ export interface ModalProps extends HTMLAttributes<HTMLElement> {
   /**
    * @default md
    *
-   *
+   *  sm: {
+        maxWidth: 328,
+        minHeight: 202,
+      },
+      md: {
+        maxWidth: 456,
+        minHeight: 378,
+      },
+      lg: {
+        maxWidth: 944,
+        minHeight: 378,
+      },
    */
   size?: Size
   /**
@@ -135,15 +146,15 @@ export const Modal = ({
             },
             {
               sm: {
-                minWidth: 328,
+                maxWidth: 328,
                 minHeight: 202,
               },
               md: {
-                minWidth: 456,
+                maxWidth: 456,
                 minHeight: 378,
               },
               lg: {
-                minWidth: 944,
+                maxWidth: 944,
                 minHeight: 378,
               },
             }[size],

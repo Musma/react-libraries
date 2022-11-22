@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { useFormSearch } from '@musma/react-utils'
+import { useFormSearch, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Modal, ModalActions, ModalButton, SearchForm, Table } from './components'
+import { Button, Grid, Modal, ModalActions, ModalButton, SearchForm, Table } from './components'
 
 const DATA = [
   {
@@ -32,7 +32,7 @@ type DDD = {
 
 export const Component = () => {
   const theme = useTheme()
-  const [test, setTest] = useState(false)
+  const [test, setTest] = useToggle(false)
   const [date, setDate] = useState<DateTime>(DateTime.local())
   const [tab, setTab] = useState('1')
 
@@ -50,6 +50,17 @@ export const Component = () => {
   return (
     <Box>
       <SearchForm onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
+        <Grid cols={3} spacing="lg" itemWidth={200}>
+          <Button
+            onClick={() => {
+              setTest(true)
+            }}
+          >
+            akak
+          </Button>
+          <Button>akak</Button>
+          <Button>akak</Button>
+        </Grid>
         <Modal
           size="lg"
           show={test}
@@ -59,8 +70,8 @@ export const Component = () => {
           title="1231"
         >
           <ModalActions>
-            <ModalButton>aspo[dkasopk]</ModalButton>
-            <ModalButton>aspo[dkasopk]</ModalButton>
+            <ModalButton modalSize="sm">aspo[dkasopk]</ModalButton>
+            <ModalButton modalSize="sm">aspo[dkasopk]</ModalButton>
           </ModalActions>
         </Modal>
       </SearchForm>

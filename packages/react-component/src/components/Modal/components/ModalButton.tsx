@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from 'src/components'
 import { Size } from 'src/types'
 
-interface ModalButtonProps extends ButtonProps {
+interface ModalButtonProps extends Omit<ButtonProps, 'size'> {
   /**
    * @optional
    * Modal Size에 따라서 버튼의 크기도 같이 따라갑니다.
@@ -16,13 +16,6 @@ interface ModalButtonProps extends ButtonProps {
 export const ModalButton = ({ modalSize = 'md', ...rest }: ModalButtonProps) => {
   return (
     <Button
-      css={
-        {
-          sm: { width: 144 },
-          md: { width: 200 },
-          lg: { width: 200 },
-        }[modalSize]
-      }
       type="button"
       size={
         {
@@ -31,6 +24,13 @@ export const ModalButton = ({ modalSize = 'md', ...rest }: ModalButtonProps) => 
           lg: 'md',
         }[modalSize] as Size
       }
+      css={[
+        {
+          sm: { width: 144 },
+          md: { width: 200 },
+          lg: { width: 200 },
+        }[modalSize],
+      ]}
       {...rest}
     />
   )

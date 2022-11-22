@@ -27,7 +27,10 @@ export const ModalTitle = ({ children, onClose, ...rest }: ModalTitleProps) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: theme.spacing.md,
+            paddingTop: theme.spacing.md,
+            paddingBottom: theme.spacing.md,
+            paddingLeft: theme.spacing.lg,
+            paddingRight: theme.spacing.lg,
           },
         ]}
         {...rest}
