@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.9
+
+### Patch Changes
+
+- [`297d22e`](https://github.com/Musma/react-libraries/commit/297d22e651c79ea60efad9ee68dcad068fe4bb17) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-icons 빌드 UMD 포맷 제거
+
 ## 0.1.8
 
 ### Patch Changes
