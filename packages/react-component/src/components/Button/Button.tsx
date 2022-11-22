@@ -10,8 +10,6 @@ import { Size } from 'src/types'
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * @default md
-   *
-   *
    * sm: 28
    * md: 32
    * lg: 36

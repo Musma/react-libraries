@@ -5,11 +5,23 @@ import { useTheme } from '@emotion/react'
 import { Size } from 'src/types'
 
 interface DividerProps extends HTMLAttributes<HTMLHRElement> {
+  /**
+   * Divider 방향
+   */
   orientation?: 'horizontal' | 'vertical'
+  /**
+   * @optional
+   * sm: 8
+   * md: 16
+   * lg: 24
+   */
   margin?: Size
 }
 
-export const Divider = ({ orientation = 'horizontal', margin = 'md', ...rest }: DividerProps) => {
+/**
+ * 구분선
+ */
+export const Divider = ({ orientation = 'horizontal', margin, ...rest }: DividerProps) => {
   const theme = useTheme()
   return (
     <hr
@@ -18,16 +30,16 @@ export const Divider = ({ orientation = 'horizontal', margin = 'md', ...rest }: 
         orientation === 'horizontal' && {
           width: '100%',
           borderTop: `1px solid ${theme.colors.gray.lighter}`,
-          marginTop: theme.spacing[margin],
-          marginBottom: theme.spacing[margin],
+          marginTop: margin ? theme.spacing[margin] : 0,
+          marginBottom: margin ? theme.spacing[margin] : 0,
         },
         orientation === 'vertical' && {
           width: 1,
           height: 'auto',
           alignSelf: 'stretch',
           borderRight: `1px solid ${theme.colors.gray.lighter}`,
-          marginLeft: theme.spacing[margin],
-          marginRight: theme.spacing[margin],
+          marginLeft: margin ? theme.spacing[margin] : 0,
+          marginRight: margin ? theme.spacing[margin] : 0,
           marginTop: 0,
           marginBottom: 0,
         },
