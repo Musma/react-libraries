@@ -95,9 +95,6 @@ export const Component = () => {
           <Button fullWidth={true} size="lg" startIcon={XlsIcon as any}>
             icon label button
           </Button>
-          <Button fullWidth={true} variant="danger">
-            danger
-          </Button>
         </Card>
 
         <Card title="Badge" css={{ padding: 24 }}>
