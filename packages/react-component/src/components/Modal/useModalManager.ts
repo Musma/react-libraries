@@ -10,7 +10,7 @@ export const useModalManager = () => {
   const [modals, setModals] = useState<HTMLElement[]>([])
 
   const add = useCallback(
-    (modal: HTMLDivElement) => {
+    (modal: HTMLElement) => {
       if (modals.indexOf(modal) !== -1) {
         return
       }
