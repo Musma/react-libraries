@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.13
+
+### Patch Changes
+
+- [`eee964b`](https://github.com/Musma/react-libraries/commit/eee964b8e33e50d6345364b440d75474da6ad9d2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-utils 빌드 UMD 포맷 제거
+
 ## 0.1.12
 
 ### Patch Changes

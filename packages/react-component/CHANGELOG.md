@@ -1,5 +1,23 @@
 # @musma/react-component
 
+## 0.1.34
+
+### Patch Changes
+
+- [`2c153fd`](https://github.com/Musma/react-libraries/commit/2c153fd328dcf68009fccac4923897f98a4b1f97) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: react-component 빌드 UMD 포맷 제거
+
+- [`0d25888`](https://github.com/Musma/react-libraries/commit/0d25888de716c34fe22d6245c4e94fa4346be48c) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Divider margin Props 수정
+
+- [`25ccc2b`](https://github.com/Musma/react-libraries/commit/25ccc2ba62e3d3de9a62f08bf92f7827742a948d) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Grid 컴포넌트 Props itemWidth 추가
+
+- [`cb73021`](https://github.com/Musma/react-libraries/commit/cb73021c56e5be519ff763386b6c3f385ea7ad1c) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Modal, useModalManager 수정
+
+- [`12ff900`](https://github.com/Musma/react-libraries/commit/12ff900c835ebfaec7b263dc3c64da32d2fb6d93) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useModalManager add 함수 파라미터 타입 수정
+
+- Updated dependencies [[`eee964b`](https://github.com/Musma/react-libraries/commit/eee964b8e33e50d6345364b440d75474da6ad9d2), [`297d22e`](https://github.com/Musma/react-libraries/commit/297d22e651c79ea60efad9ee68dcad068fe4bb17)]:
+  - @musma/react-utils@0.1.13
+  - @musma/react-icons@0.1.9
+
 ## 0.1.33
 
 ### Patch Changes
