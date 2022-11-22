@@ -19,15 +19,19 @@ interface GridProps extends HTMLAttributes<HTMLDivElement> {
    * lg: 24
    */
   spacing: Size
+  /**
+   *
+   */
+  itemWidth?: number
 }
 
-export const Grid = ({ cols, spacing, ...rest }: GridProps) => {
+export const Grid = ({ cols, spacing, itemWidth, ...rest }: GridProps) => {
   const theme = useTheme()
   return (
     <Box
       css={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${cols}, 1fr)`,
+        gridTemplateColumns: `repeat(${cols}, ${itemWidth ? itemWidth + 'px' : '1fr'})`,
         gap: theme.spacing[spacing],
       }}
       {...rest}
