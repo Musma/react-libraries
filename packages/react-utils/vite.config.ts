@@ -13,7 +13,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       // 빌드 이름
       name: '@musma/react-utils',
-      formats: ['es', 'umd'],
+      formats: ['es'],
       // 빌드 결과물 파일 이름
       fileName: (format) => `lib.${format}.js`,
     },
