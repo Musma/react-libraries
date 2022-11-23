@@ -1,9 +1,9 @@
-import { useCallback, useEffect, Fragment, HTMLAttributes } from 'react'
+import { useCallback, Fragment, HTMLAttributes, useEffect } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { useOutsideListener, useEscKeyPress, useSetRef } from '@musma/react-utils'
+import { useEscKeyPress, useOutsideListener, useSetRef } from '@musma/react-utils'
 
-import { Backdrop, ModalTitle } from 'src/components'
+import { Backdrop, ModalManager, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
@@ -46,14 +46,13 @@ export interface ModalProps extends HTMLAttributes<HTMLElement> {
    */
   disableEscPress?: boolean
   /**
+   *
+   */
+  modalId?: string
+  /**
    * useModalManager의 반환값을 전달해주세요
    */
-  modalManager?: {
-    add: (modal: HTMLElement) => void
-    pop: () => void
-    isTopModal: (modal: HTMLElement) => boolean
-    isNested: (modal: HTMLElement) => boolean
-  }
+  modalManager?: ModalManager
   /**
    * @required
    *
@@ -68,13 +67,13 @@ export const Modal = ({
   size = 'md',
   disableEscPress = false,
   disableOutsideClick = false,
+  modalId,
   modalManager,
   children,
   onClose,
   ...rest
 }: ModalProps) => {
   const theme = useTheme()
-
   /**
    * useKeyPress, useOutsideClick에 넣을 ref
    */
@@ -88,6 +87,12 @@ export const Modal = ({
     modalManager?.pop()
   }, [modalManager, onClose])
 
+  useEffect(() => {
+    if (modalId && modalManager) {
+      modalManager.add(modalId)
+    }
+  }, [modalId, modalManager])
+
   /**
    * 키보드 'ESC'를 눌렀을 때 콜백 Hooks
    */
@@ -98,7 +103,7 @@ export const Modal = ({
       }
 
       // 여러개 모달이 열려있을 때의 처리
-      if (modalManager && !modalManager.isTopModal(ref)) {
+      if (modalId && modalManager && !modalManager.isTopModal(modalId)) {
         return
       }
 
@@ -109,27 +114,20 @@ export const Modal = ({
   /**
    * Modal 영역 이외의 HTMLElement를 클릭했을 경우 콜백 Hooks
    */
-
   useOutsideListener(ref, () => {
     if (show) {
       if (disableOutsideClick || !ref) {
         return
       }
 
-      if (modalManager && !modalManager.isTopModal(ref)) {
+      // 여러개 모달이 열려있을 때의 처리
+      if (modalId && modalManager && !modalManager.isTopModal(modalId)) {
         return
       }
+
       handleModalClose()
     }
   })
-
-  useEffect(() => {
-    if (!show || !ref) {
-      return
-    }
-
-    modalManager?.add(ref)
-  }, [show, modalManager, ref])
 
   if (show) {
     return (
@@ -161,7 +159,9 @@ export const Modal = ({
           ]}
           {...rest}
         >
-          <ModalTitle onClose={onClose}>{title}</ModalTitle>
+          <ModalTitle size={size} onClose={onClose}>
+            {title}
+          </ModalTitle>
 
           <Box
             css={{

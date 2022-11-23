@@ -82,6 +82,7 @@ export const Button = ({
           },
         },
         disabled && {
+          border: 0,
           backgroundColor: theme.colors.white.darker,
           cursor: 'not-allowed',
           '&:active': {

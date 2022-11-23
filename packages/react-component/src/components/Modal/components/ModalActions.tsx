@@ -10,7 +10,7 @@ export interface ModalActionsProps extends HTMLAttributes<HTMLDivElement> {
    * @default md
    * 모달 사이즈에 따라 버튼 컨테이너의 패딩이 결정됩니다.
    */
-  modalSize?: Size
+  size?: Size
   /**
    * @optional
    * If true, 내부의 패딩이 사라집니다.
@@ -21,7 +21,7 @@ export interface ModalActionsProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Modal 하단의 버튼을 만들 때 사용하는 Wrapper Component 입니다.
  */
-export const ModalActions = ({ modalSize = 'md', disablePadding, ...rest }: ModalActionsProps) => {
+export const ModalActions = ({ size = 'md', disablePadding, ...rest }: ModalActionsProps) => {
   const theme = useTheme()
   const padding = useMemo(() => {
     if (disablePadding) {
@@ -32,8 +32,8 @@ export const ModalActions = ({ modalSize = 'md', disablePadding, ...rest }: Moda
       sm: theme.spacing.md,
       md: theme.spacing.lg,
       lg: theme.spacing.lg,
-    }[modalSize]
-  }, [disablePadding, modalSize, theme.spacing.lg, theme.spacing.md])
+    }[size]
+  }, [disablePadding, size, theme.spacing.lg, theme.spacing.md])
   return (
     <Box
       css={[

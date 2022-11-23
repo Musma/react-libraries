@@ -1,12 +1,11 @@
-import { useState } from 'react'
-
 import { useTheme } from '@emotion/react'
 import { useFormSearch, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, Grid, Modal, ModalActions, ModalButton, SearchForm, Table } from './components'
+import { Button, Grid, SearchForm, Table, useModalManager } from './components'
+import { ModalTest } from './ModalTest'
 
 const DATA = [
   {
@@ -33,10 +32,11 @@ type DDD = {
 export const Component = () => {
   const theme = useTheme()
   const [test, setTest] = useToggle(false)
-  const [date, setDate] = useState<DateTime>(DateTime.local())
-  const [tab, setTab] = useState('1')
+  const modalManager = useModalManager()
 
-  const { handleSubmit, onSubmit, onReset, control } = useFormSearch<DDD>({
+  const [두번쨰, toggle두번째] = useToggle()
+
+  const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
     useFormProps: {
       defaultValues: {
         date: DateTime.local().toISO(),
@@ -58,22 +58,19 @@ export const Component = () => {
           >
             akak
           </Button>
-          <Button>akak</Button>
-          <Button>akak</Button>
         </Grid>
-        <Modal
-          size="lg"
-          show={test}
-          onClose={() => {
-            setTest(!test)
-          }}
-          title="1231"
-        >
-          <ModalActions>
-            <ModalButton modalSize="sm">aspo[dkasopk]</ModalButton>
-            <ModalButton modalSize="sm">aspo[dkasopk]</ModalButton>
-          </ModalActions>
-        </Modal>
+
+        {test && (
+          <ModalTest
+            title="첫번째"
+            show={test}
+            modalId="첫번째"
+            modalManager={modalManager}
+            onClose={() => {
+              setTest(false)
+            }}
+          />
+        )}
       </SearchForm>
 
       <Table

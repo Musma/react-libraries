@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { HTMLAttributes, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -7,12 +7,12 @@ import { ButtonBase } from 'src/elements'
 
 import { useTabContext } from './TabContext'
 
-export interface TabProps {
+export interface TabProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   value: string
   label: string
 }
 
-export const Tab = ({ value, label }: TabProps) => {
+export const Tab = ({ value, label, ...rest }: TabProps) => {
   const theme = useTheme()
   const { value: tabValue, onTabValueChange, variant = 'hat' } = useTabContext({ name: 'Tab' })
 
@@ -66,6 +66,7 @@ export const Tab = ({ value, label }: TabProps) => {
       onClick={() => {
         onTabValueChange(value)
       }}
+      {...rest}
     >
       <Typography type="subTitle2" css={{ color: 'currentcolor' }}>
         {label}
