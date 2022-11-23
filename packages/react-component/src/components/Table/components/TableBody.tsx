@@ -81,8 +81,10 @@ export const TableBody = ({
               },
             },
           ]}
-          onClick={() => {
-            onRowClick?.(item)
+          onClick={(e) => {
+            if (e.target instanceof HTMLDivElement) {
+              onRowClick?.(item)
+            }
           }}
         >
           {withCheckbox && (

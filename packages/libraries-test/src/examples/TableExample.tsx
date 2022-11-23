@@ -41,6 +41,7 @@ export const TableExample = () => {
         withCheckbox={true}
         checkedItems={checkedItems}
         onCheckItemChange={setCheckedItems}
+        onRowClick={() => alert('Table의 Row를 클릭하셨습니다!')}
         toolbar={{
           title: '123',
           totalCount: 3,
