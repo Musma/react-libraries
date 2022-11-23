@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.36
+
+### Patch Changes
+
+- [`f2ba6d9`](https://github.com/Musma/react-libraries/commit/f2ba6d95a3c03572655e497f3da55ec65cda4269) Thanks [@mcoding777](https://github.com/mcoding777)! - Table 컴포넌트에서 onRowClick과 onCheckboxClick 이벤트 버블링 현상 수정
+
 ## 0.1.35
 
 ### Patch Changes
