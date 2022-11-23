@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.35
+
+### Patch Changes
+
+- [`20ef7f4`](https://github.com/Musma/react-libraries/commit/20ef7f4b90c4b975c6a5c5a45989cf5f5f5c0a23) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useModalManager 로직 변경
+
+- Updated dependencies [[`7827180`](https://github.com/Musma/react-libraries/commit/78271807cf27996914eab723c3b17593cce4f81a)]:
+  - @musma/react-utils@0.1.14
+
 ## 0.1.34
 
 ### Patch Changes
