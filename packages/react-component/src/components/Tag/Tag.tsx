@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
 
 import { css, useTheme } from '@emotion/react'
+import { FillCloseCircleIcon } from '@musma/react-icons'
 
 import { Typography } from 'src/components'
 import { Size } from 'src/types'
-
-import { ReactComponent as CloseIcon } from './images/close.svg'
 
 interface TagProps {
   /**
@@ -58,10 +57,12 @@ export const Tag = ({
       </Typography>
 
       {onClose && (
-        <CloseIcon
+        <FillCloseCircleIcon
+          width={12}
+          height={12}
           onClick={() => onClose(label)}
-          css={{ marginLeft: '4px', cursor: 'pointer' }}
-          fill={color === 'white' ? theme.colors.black.main : theme.colors.blue.main}
+          css={{ marginLeft: 4, cursor: 'pointer' }}
+          color={color === 'white' ? theme.colors.black.main : theme.colors.blue.main}
         />
       )}
     </div>

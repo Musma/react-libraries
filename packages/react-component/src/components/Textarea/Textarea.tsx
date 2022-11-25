@@ -2,12 +2,9 @@ import { forwardRef, TextareaHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { InputLabel, Typography } from 'src/components'
+import { InputHelper, InputLabel } from 'src/components'
 import { Box, TextareaBase } from 'src/elements'
 import { Size } from 'src/types'
-
-import { ReactComponent as InvalidIcon } from './images/invalid.svg'
-import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   /**
@@ -130,20 +127,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
         </Box>
 
-        {helperText && (
-          <Typography
-            type="caption2"
-            css={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              color: error ? theme.colors.red.main : theme.colors.green.main,
-            }}
-          >
-            {error ? <InvalidIcon /> : <ValidIcon />}
-            {helperText}
-          </Typography>
-        )}
+        {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
       </Box>
     )
   },

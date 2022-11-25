@@ -2,12 +2,9 @@ import { forwardRef, InputHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { InputLabel, Typography } from 'src/components'
+import { InputHelper, InputLabel } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
-
-import { ReactComponent as InvalidIcon } from './images/invalid.svg'
-import { ReactComponent as ValidIcon } from './images/valid.svg'
 
 export interface PhoneInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: Size
@@ -88,19 +85,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           />
         </Box>
 
-        {helperText && (
-          <Typography
-            type="caption2"
-            css={{
-              display: 'flex',
-              gap: 4,
-              color: error ? theme.colors.red.main : theme.colors.green.main,
-            }}
-          >
-            {error ? <InvalidIcon /> : <ValidIcon />}
-            {helperText}
-          </Typography>
-        )}
+        {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
       </Box>
     )
   },
