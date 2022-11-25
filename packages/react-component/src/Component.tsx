@@ -1,11 +1,10 @@
 import { useTheme } from '@emotion/react'
-import { useFormSearch, useToggle } from '@musma/react-utils'
+import { useFormSearch } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, Grid, SearchForm, Table, useModalManager } from './components'
-import { ModalTest } from './ModalTest'
+import { Grid, SearchForm, Table } from './components'
 
 const DATA = [
   {
@@ -31,10 +30,6 @@ type DDD = {
 
 export const Component = () => {
   const theme = useTheme()
-  const [test, setTest] = useToggle(false)
-  const modalManager = useModalManager()
-
-  const [두번쨰, toggle두번째] = useToggle()
 
   const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
     useFormProps: {
@@ -50,24 +45,7 @@ export const Component = () => {
   return (
     <Box>
       <SearchForm onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
-        <Grid cols={3} spacing="lg" itemWidth={200}>
-          <Button
-            onClick={() => {
-              setTest(true)
-            }}
-          >
-            akak
-          </Button>
-        </Grid>
-
-        <ModalTest
-          title="첫번째"
-          show={test}
-          modalManager={modalManager}
-          onClose={() => {
-            setTest(false)
-          }}
-        />
+        <Grid cols={3} spacing="lg" itemWidth={200}></Grid>
       </SearchForm>
 
       <Table
