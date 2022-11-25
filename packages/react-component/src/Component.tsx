@@ -60,24 +60,22 @@ export const Component = () => {
           </Button>
         </Grid>
 
-        {test && (
-          <ModalTest
-            title="첫번째"
-            show={test}
-            modalId="첫번째"
-            modalManager={modalManager}
-            onClose={() => {
-              setTest(false)
-            }}
-          />
-        )}
+        <ModalTest
+          title="첫번째"
+          show={test}
+          modalManager={modalManager}
+          onClose={() => {
+            setTest(false)
+          }}
+        />
       </SearchForm>
 
       <Table
         data={DATA}
         columns={COLUMNS}
+        withCheckbox={true}
         onRowClick={(row) => {
-          console.log(row)
+          alert('12312321')
         }}
       />
     </Box>

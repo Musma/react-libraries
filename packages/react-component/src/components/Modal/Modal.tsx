@@ -1,7 +1,7 @@
-import { useCallback, Fragment, HTMLAttributes, useEffect } from 'react'
+import { useCallback, Fragment, HTMLAttributes, useEffect, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { useEscKeyPress, useOutsideListener, useSetRef } from '@musma/react-utils'
+import { uniqueId, useEscKeyPress, useOutsideListener, useSetRef } from '@musma/react-utils'
 
 import { Backdrop, ModalManager, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
@@ -46,10 +46,6 @@ export interface ModalProps extends HTMLAttributes<HTMLElement> {
    */
   disableEscPress?: boolean
   /**
-   *
-   */
-  modalId?: string
-  /**
    * useModalManager의 반환값을 전달해주세요
    */
   modalManager?: ModalManager
@@ -62,18 +58,22 @@ export interface ModalProps extends HTMLAttributes<HTMLElement> {
 }
 
 export const Modal = ({
+  id,
   title,
   show,
   size = 'md',
   disableEscPress = false,
   disableOutsideClick = false,
-  modalId,
   modalManager,
   children,
   onClose,
   ...rest
 }: ModalProps) => {
   const theme = useTheme()
+
+  const modalId = useMemo(() => {
+    return id || uniqueId()
+  }, [id])
   /**
    * useKeyPress, useOutsideClick에 넣을 ref
    */
@@ -88,10 +88,10 @@ export const Modal = ({
   }, [modalManager, onClose])
 
   useEffect(() => {
-    if (modalId && modalManager) {
+    if (show && modalManager) {
       modalManager.add(modalId)
     }
-  }, [modalId, modalManager])
+  }, [modalId, modalManager, show])
 
   /**
    * 키보드 'ESC'를 눌렀을 때 콜백 Hooks
@@ -103,7 +103,7 @@ export const Modal = ({
       }
 
       // 여러개 모달이 열려있을 때의 처리
-      if (modalId && modalManager && !modalManager.isTopModal(modalId)) {
+      if (modalManager && !modalManager.isTopModal(modalId)) {
         return
       }
 
@@ -121,7 +121,7 @@ export const Modal = ({
       }
 
       // 여러개 모달이 열려있을 때의 처리
-      if (modalId && modalManager && !modalManager.isTopModal(modalId)) {
+      if (modalManager && !modalManager.isTopModal(modalId)) {
         return
       }
 
