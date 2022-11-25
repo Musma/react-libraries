@@ -49,6 +49,7 @@ export const useFormSearch = <T extends object>({
     onSubmit,
     onReset,
     pagination,
+    pageable,
     ...form,
   }
 }
