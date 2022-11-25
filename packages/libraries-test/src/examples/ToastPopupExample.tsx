@@ -1,4 +1,6 @@
-import { IToastPopupProps, Toast } from 'src/components'
+import { useState } from 'react'
+
+import { Button, IToastPopupProps, Toast } from 'src/components'
 
 export interface IToastPopupListProps extends IToastPopupProps {
   id: number
@@ -7,7 +9,7 @@ export interface IToastPopupListProps extends IToastPopupProps {
 export const ToastPopupExample = () => {
   const toastList: IToastPopupListProps[] = [
     {
-      id: 1,
+      id: Math.floor(Math.random() * 100 + 1),
       state: 'info',
       title: 'Information',
       description: '안녕하십니까. 정보입니다.',
@@ -15,7 +17,7 @@ export const ToastPopupExample = () => {
       onCloseClick: () => console.log('1번 팝업 닫습니다.'),
     },
     {
-      id: 2,
+      id: Math.floor(Math.random() * 100 + 1),
       state: 'error',
       title: 'Error',
       description: '삐빅 에러입니다',
@@ -23,7 +25,7 @@ export const ToastPopupExample = () => {
       onCloseClick: () => console.log('2번 팝업 닫습니다.'),
     },
     {
-      id: 3,
+      id: Math.floor(Math.random() * 100 + 1),
       state: 'success',
       title: 'Success',
       description: '성공쓰! 축하축하!',
@@ -31,7 +33,7 @@ export const ToastPopupExample = () => {
       onCloseClick: () => console.log('3번 팝업 닫습니다.'),
     },
     {
-      id: 4,
+      id: Math.floor(Math.random() * 100 + 1),
       state: 'warning',
       title: 'Warning',
       description: '위험해!!!!!!!!!',
@@ -40,5 +42,22 @@ export const ToastPopupExample = () => {
     },
   ]
 
-  return <Toast toastList={toastList} height="50px" />
+  const [showList, setShowList] = useState<IToastPopupListProps[]>([])
+
+  const showToast = (item: IToastPopupListProps) => {
+    setShowList([...showList, item])
+  }
+
+  return (
+    <div>
+      {toastList.map((item) => {
+        return (
+          <Button key={item.id} onClick={() => showToast(item)}>
+            {item.title}
+          </Button>
+        )
+      })}
+      <Toast toastList={showList} height="50px" />
+    </div>
+  )
 }
