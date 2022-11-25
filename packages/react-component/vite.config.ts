@@ -19,16 +19,15 @@ export default defineConfig({
       fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-router-dom', 'luxon', '@emotion/react'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react-router-dom': 'ReactRouterDOM',
-          luxon: 'Luxon',
-          '@emotion/react': 'emotionReact',
-        },
-      },
+      external: [
+        'react',
+        'react-dom',
+        'react-router-dom',
+        'luxon',
+        '@emotion/react',
+        '@musma/react-icons',
+        '@musma/react-utils',
+      ],
     },
   },
   plugins: [
