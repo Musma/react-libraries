@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -9,25 +9,23 @@ import {
   OutlineCloseIcon,
 } from '@musma/react-icons'
 
-interface IProps {
-  height?: string // header의 높이(단위까지 입력하기, 기본 설정은 0px)
-  isOpen: boolean
-  setIsOpen(open: boolean): void
-  state?: 'info' | 'warning' | 'error' | 'success'
+export type StateType = 'info' | 'warning' | 'error' | 'success'
+
+export interface IToastPopupProps {
+  state?: StateType
   title: string
   description?: string
   mode?: 'light' | 'dark'
+  onCloseClick(): void
 }
 
 export const ToastPopup = ({
-  height = '0px',
-  isOpen,
-  setIsOpen,
   state = 'info',
   title,
   description,
   mode = 'light',
-}: IProps) => {
+  onCloseClick,
+}: IToastPopupProps) => {
   const { color } = useTheme()
 
   const stylesByState = useMemo(
@@ -79,24 +77,14 @@ export const ToastPopup = ({
     [state, stylesByState],
   )
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(false)
-    }, 1000 * 3.5)
-    return () => clearInterval(timer)
-  }, [isOpen, setIsOpen])
-
   return (
     <div
       css={{
-        opacity: isOpen ? 1 : 0,
-        position: 'fixed',
-        top: isOpen ? `calc(${height} + 16px)` : 0,
-        right: 10,
+        opacity: 1,
+        margin: '10px 0',
         padding: '12px 16px',
         background: stylesByMode[mode].bgColor,
         boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
-        zIndex: 9999,
         borderRadius: '3px',
         transition: 'all 1s',
       }}
@@ -122,7 +110,7 @@ export const ToastPopup = ({
         <OutlineCloseIcon
           cursor="pointer"
           color={stylesByMode[mode].fontColor}
-          onClick={() => setIsOpen(false)}
+          onClick={onCloseClick}
         />
       </div>
     </div>

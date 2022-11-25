@@ -1,95 +1,44 @@
-import { useMemo, useState } from 'react'
+import { IToastPopupProps, Toast } from 'src/components'
 
-import { Button, ToastPopup } from 'src/components'
+export interface IToastPopupListProps extends IToastPopupProps {
+  id: number
+}
 
 export const ToastPopupExample = () => {
-  const [isOpen1, setIsOpen1] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
-  const [isOpen3, setIsOpen3] = useState(false)
-
-  const toast1 = useMemo(() => {
-    return {
+  const toastList: IToastPopupListProps[] = [
+    {
       id: 1,
-      height: '50px',
-      isOpen: isOpen1,
-      setIsOpen: setIsOpen1,
       state: 'info',
       title: 'Information',
       description: '안녕하십니까. 정보입니다.',
       mode: 'dark',
-    }
-  }, [isOpen1])
-
-  const toast2 = useMemo(() => {
-    return {
+      onCloseClick: () => console.log('1번 팝업 닫습니다.'),
+    },
+    {
       id: 2,
-      height: '50px',
-      isOpen: isOpen2,
-      setIsOpen: setIsOpen2,
       state: 'error',
       title: 'Error',
       description: '삐빅 에러입니다',
-      mode: 'light',
-    }
-  }, [isOpen2])
-
-  const toast3 = useMemo(() => {
-    return {
+      mode: 'dark',
+      onCloseClick: () => console.log('2번 팝업 닫습니다.'),
+    },
+    {
       id: 3,
-      height: '50px',
-      isOpen: isOpen3,
-      setIsOpen: setIsOpen3,
       state: 'success',
       title: 'Success',
-      description: '성공쓰',
+      description: '성공쓰! 축하축하!',
       mode: 'light',
-    }
-  }, [isOpen3])
+      onCloseClick: () => console.log('3번 팝업 닫습니다.'),
+    },
+    {
+      id: 4,
+      state: 'warning',
+      title: 'Warning',
+      description: '위험해!!!!!!!!!',
+      mode: 'light',
+      onCloseClick: () => console.log('4번 팝업 닫습니다.'),
+    },
+  ]
 
-  return (
-    <div>
-      <div css={{ margin: '5px 0' }}>
-        <Button variant="contained" onClick={() => setIsOpen1(true)}>
-          Open Toast Popup 1
-        </Button>
-        <ToastPopup
-          height="50px"
-          isOpen={isOpen1}
-          setIsOpen={setIsOpen1}
-          state="info"
-          title="Information"
-          description="안녕하십니까. 정보입니다."
-          mode="dark"
-        />
-      </div>
-      <div>
-        <Button variant="danger" onClick={() => setIsOpen2(true)}>
-          Open Toast Popup 2
-        </Button>
-        <ToastPopup
-          height="50px"
-          isOpen={isOpen2}
-          setIsOpen={setIsOpen2}
-          state="error"
-          title="Error"
-          description="삐빅 에러입니다"
-          mode="light"
-        />
-      </div>
-      <div css={{ margin: '5px 0' }}>
-        <Button variant="outlined" onClick={() => setIsOpen3(true)}>
-          Open Toast Popup 3
-        </Button>
-        <ToastPopup
-          height="50px"
-          isOpen={isOpen3}
-          setIsOpen={setIsOpen3}
-          state="success"
-          title="Success"
-          description="성공쓰"
-          mode="light"
-        />
-      </div>
-    </div>
-  )
+  return <Toast toastList={toastList} height="50px" />
 }
