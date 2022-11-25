@@ -1,5 +1,17 @@
 # @musma/react-component
 
+## 0.1.37
+
+### Patch Changes
+
+- [`7bca8db`](https://github.com/Musma/react-libraries/commit/7bca8db60ebf89045b9123a3c962841e0af1c48f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] 미사용 컴포넌트, SVG 제거
+
+- [`c79a4d1`](https://github.com/Musma/react-libraries/commit/c79a4d11e831fc0030b745f3b350252bcb6bc21f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] MusmaProvider, withGlobalStyle Props 및 컴포넌트 제거
+
+- [`ba04af1`](https://github.com/Musma/react-libraries/commit/ba04af145786e4e09f4ddaa9a05ab7af8ff93e00) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component], 의존성 정리
+
+- [`634cf9e`](https://github.com/Musma/react-libraries/commit/634cf9ebb2280ce6dbaf10bb775bb16459bf75d0) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Modal Component, modalId Props 제거
+
 ## 0.1.36
 
 ### Patch Changes
