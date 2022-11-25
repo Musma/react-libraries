@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react'
 
-import { css, EmotionCache, Global, ThemeProvider } from '@emotion/react'
+import { EmotionCache, ThemeProvider } from '@emotion/react'
 
 import { NormalizeCSS, PretendardFont, MusmaTheme } from 'src/theme'
 
@@ -20,7 +20,6 @@ export function useMusmaTheme() {
 }
 
 export interface MusmaProviderProps {
-  withGlobalCSS?: boolean
   withNormalizeCSS?: boolean
   withPretendardFont?: boolean
   theme?: MusmaTheme
@@ -29,7 +28,6 @@ export interface MusmaProviderProps {
 }
 
 export const MusmaProvider = ({
-  withGlobalCSS = true,
   withNormalizeCSS = true,
   withPretendardFont = true,
   theme = DefaultTheme,
@@ -38,15 +36,6 @@ export const MusmaProvider = ({
   return (
     <ThemeProvider theme={theme}>
       <MusmaProviderContext.Provider value={{ theme }}>
-        {withGlobalCSS && (
-          <Global
-            styles={css`
-              html {
-                overflow: overlay;
-              }
-            `}
-          />
-        )}
         {withNormalizeCSS && <NormalizeCSS />}
         {withPretendardFont && <PretendardFont />}
         {children}
