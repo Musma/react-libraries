@@ -16,7 +16,7 @@ export interface IToastPopupProps {
   title: string
   description?: string
   mode?: 'light' | 'dark'
-  onCloseClick(): void
+  onCloseClick(id?: number): void
 }
 
 export const ToastPopup = ({
@@ -110,7 +110,7 @@ export const ToastPopup = ({
         <OutlineCloseIcon
           cursor="pointer"
           color={stylesByMode[mode].fontColor}
-          onClick={onCloseClick}
+          onClick={() => onCloseClick()}
         />
       </div>
     </div>

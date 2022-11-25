@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
 
-import { IToastPopupProps, ToastPopup } from './ToastPopup'
+import { IToastPopupListProps } from 'src/examples'
+
+import { ToastPopup } from './ToastPopup'
 
 interface IToastProps {
   height: string
-  toastList: IToastPopupProps[]
+  toastList: IToastPopupListProps[]
 }
 
 export const Toast = ({ height, toastList }: IToastProps) => {
-  const [list, setList] = useState<IToastPopupProps[]>(toastList)
+  const [list, setList] = useState<IToastPopupListProps[]>([])
 
   useEffect(() => {
     setList(toastList)
-  }, [toastList, list])
+  }, [toastList])
 
   return (
     <div
@@ -23,12 +25,12 @@ export const Toast = ({ height, toastList }: IToastProps) => {
         zIndex: 9999,
       }}
     >
-      {toastList.map((item: IToastPopupProps) => {
+      {list.map((item: IToastPopupListProps) => {
         return (
           <ToastPopup
-            key={item.title}
+            key={item.id}
             title={item.title}
-            onCloseClick={item.onCloseClick}
+            onCloseClick={() => item.onCloseClick(item.id)}
             state={item.state}
             mode={item.mode}
           />
