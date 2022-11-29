@@ -28,7 +28,7 @@ interface ChipProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *
    */
-  color: string
+  color?: string
 }
 
 /**
@@ -38,11 +38,16 @@ export const Chip = ({
   size = 'md',
   variant = 'contained',
   shape = 'rectangle',
-  color,
+  color: colorProp,
   children,
   ...rest
 }: ChipProps) => {
   const theme = useTheme()
+
+  const color = useMemo(() => {
+    return colorProp || theme.colors.primary.main
+  }, [colorProp])
+
   const backgroundColor = useMemo(() => {
     return convertHexToRGB(color, 0.2)
   }, [color])
@@ -51,12 +56,11 @@ export const Chip = ({
     <Box
       css={[
         {
-          minWidth: theme.inputSize.minWidth,
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingLeft: 8,
-          paddingRight: 8,
+          paddingLeft: theme.spacing.sm,
+          paddingRight: theme.spacing.sm,
           color,
           backgroundColor,
         },
@@ -93,7 +97,7 @@ export const Chip = ({
       ]}
       {...rest}
     >
-      <Typography type={size === 'lg' ? 'caption1' : 'caption2'} css={{ color: 'inherit' }}>
+      <Typography type={size === 'sm' ? 'caption2' : 'caption1'} css={{ color: 'inherit' }}>
         {children}
       </Typography>
     </Box>

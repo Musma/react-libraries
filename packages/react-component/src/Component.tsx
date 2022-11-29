@@ -1,10 +1,11 @@
-import { useFormSearch } from '@musma/react-utils'
+import { useFormSearch, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Grid, SearchForm, Table } from './components'
+import { Grid, SearchForm, Table, useModalManager } from './components'
 import { Chip } from './components/Chip'
+import { Modal1 } from './Modal1'
 
 const DATA = [
   {
@@ -39,6 +40,8 @@ export const Component = () => {
       console.log(';fetchposdkdspokpo')
     },
   })
+  const modalManager = useModalManager()
+  const [isOpen1, setIsOpen1] = useToggle(false)
 
   return (
     <Box>
@@ -53,10 +56,23 @@ export const Component = () => {
           spokdopkasdsadas
         </Chip>
 
-        <Chip color="#dd9c4f">spokdopk</Chip>
+        <Chip
+          color="#dd9c4f"
+          onClick={() => {
+            setIsOpen1(true)
+          }}
+        >
+          spokdopk
+        </Chip>
 
         <Grid cols={3} spacing="lg" itemWidth={200}></Grid>
       </SearchForm>
+
+      {isOpen1 && (
+        <Modal1 show={isOpen1} modalManager={modalManager} onClose={() => setIsOpen1(false)}>
+          Modal1
+        </Modal1>
+      )}
 
       <Table
         data={DATA}

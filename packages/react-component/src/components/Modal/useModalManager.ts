@@ -7,11 +7,9 @@ import { useCallback, useState } from 'react'
  * useModalManager에서 모달들을 관리하며, isTopModal 메서드를 통해 마지막에 켜진 모달인지 확인 후 모달을 종료시킬 수 있도록 구현했습니다.
  */
 export interface ModalManager {
-  modalIds: string[]
   add: (modalId: string) => void
-  pop: () => void
+  remove: (modalId: string) => void
   isTopModal: (modal: string) => boolean
-  isNested: (modal: string) => boolean
 }
 
 export const useModalManager = (): ModalManager => {
@@ -19,20 +17,25 @@ export const useModalManager = (): ModalManager => {
 
   const add = useCallback(
     (modalId: string) => {
-      if (modalIds.indexOf(modalId) !== -1) {
-        return
+      const set = new Set(modalIds)
+      if (!set.has(modalId)) {
+        setModalIds((value) => [...value, modalId])
       }
-
-      setModalIds([...modalIds, modalId])
     },
     [modalIds],
   )
 
-  const pop = useCallback(() => {
-    const newModals = [...modalIds]
-    newModals.pop()
-    setModalIds(newModals)
-  }, [modalIds])
+  const remove = useCallback(
+    (modalId: string) => {
+      const set = new Set(modalIds)
+      if (set.has(modalId)) {
+        set.delete(modalId)
+        const values = Array.from(set.values())
+        setModalIds(values)
+      }
+    },
+    [modalIds],
+  )
 
   const isTopModal = useCallback(
     (modal: string) => {
@@ -41,12 +44,5 @@ export const useModalManager = (): ModalManager => {
     [modalIds],
   )
 
-  const isNested = useCallback(
-    (modal: string) => {
-      return modalIds.indexOf(modal) > 0
-    },
-    [modalIds],
-  )
-
-  return { add, pop, isTopModal, isNested, modalIds }
+  return { add, remove, isTopModal }
 }

@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -24,13 +23,11 @@ const rootElement = document.getElementById('root')
 
 if (rootElement) {
   render(
-    <StrictMode>
-      <MusmaProvider theme={theme}>
-        <BrowserRouter>
-          <Component />
-        </BrowserRouter>
-      </MusmaProvider>
-    </StrictMode>,
+    <MusmaProvider theme={theme}>
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
+    </MusmaProvider>,
     rootElement,
   )
 }

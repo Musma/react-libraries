@@ -84,7 +84,7 @@ export const Modal = ({
    * 모달 닫기 버튼 클릭 시 이벤트
    */
   const handleModalClose = useCallback(() => {
-    modalManager?.pop()
+    modalManager?.remove(modalId)
     onClose()
   }, [modalManager, onClose])
 
