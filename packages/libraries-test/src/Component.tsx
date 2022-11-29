@@ -11,7 +11,6 @@ import {
   Drawer,
   Button,
   Card,
-  Stepper,
   Box,
 } from '@musma/react-component'
 
@@ -19,10 +18,8 @@ import {
   ModalExample,
   TextInputExample,
   SelectExample,
-  TimePickerExample,
   DatePickerExample,
   DividerExample,
-  ImageUploaderExample,
   RadioButtonExample,
   TableExample,
   IconButtonExample,
@@ -134,10 +131,6 @@ export const Component = () => {
           <CheckboxExample />
         </Card>
 
-        <Card title="TimePicker" css={{ padding: 24 }}>
-          <TimePickerExample />
-        </Card>
-
         <Card title="DatePicker" css={{ padding: 24 }}>
           <DatePickerExample />
         </Card>
@@ -148,10 +141,6 @@ export const Component = () => {
 
         <Card title="IconButton" css={{ padding: 24 }}>
           <IconButtonExample />
-        </Card>
-
-        <Card title="ImageUploader" css={{ padding: 24 }}>
-          <ImageUploaderExample />
         </Card>
 
         <Card title="RadioButton" css={{ padding: 24 }}>
@@ -207,10 +196,6 @@ export const Component = () => {
               Close
             </Button>
           </Drawer>
-        </Card>
-
-        <Card title="Steppr" css={{ padding: 24 }}>
-          <Stepper activeStep={1} totalStep={2} />
         </Card>
       </Box>
     </Box>
