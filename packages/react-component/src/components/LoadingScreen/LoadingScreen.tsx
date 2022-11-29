@@ -11,7 +11,7 @@ interface LoadingScreenProps {
    * @value fetching
    * API 요청 대기 시 사용합니다.
    */
-  type: 'fallback' | 'fetching'
+  type?: 'fallback' | 'fetching'
 }
 
 export const LoadingScreen = ({ type = 'fetching' }: LoadingScreenProps) => {
