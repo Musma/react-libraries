@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.16
+
+### Patch Changes
+
+- [`0751c20`](https://github.com/Musma/react-libraries/commit/0751c2029de59fbcd7b6b07fb63790c27525b1b6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useLocalStorage 훅 추가
+
 ## 0.1.15
 
 ### Patch Changes
