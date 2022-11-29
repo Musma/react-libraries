@@ -68,6 +68,7 @@ module.exports = {
       'warn',
       { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
+    'react-hooks/exhaustive-deps': 'off', // useEffect, useCallback, useMemo 2번째 인자 안넣어도 경고 뜨지 않음
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'prettier/prettier': [
       'error',
