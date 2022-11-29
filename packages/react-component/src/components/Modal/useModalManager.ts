@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react'
  * useModalManager에서 모달들을 관리하며, isTopModal 메서드를 통해 마지막에 켜진 모달인지 확인 후 모달을 종료시킬 수 있도록 구현했습니다.
  */
 export interface ModalManager {
+  modalIds: string[]
   add: (modalId: string) => void
   pop: () => void
   isTopModal: (modal: string) => boolean
@@ -21,6 +22,7 @@ export const useModalManager = (): ModalManager => {
       if (modalIds.indexOf(modalId) !== -1) {
         return
       }
+
       setModalIds([...modalIds, modalId])
     },
     [modalIds],
@@ -46,5 +48,5 @@ export const useModalManager = (): ModalManager => {
     [modalIds],
   )
 
-  return { add, pop, isTopModal, isNested }
+  return { add, pop, isTopModal, isNested, modalIds }
 }

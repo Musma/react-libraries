@@ -74,6 +74,7 @@ export const Modal = ({
   const modalId = useMemo(() => {
     return id || uniqueId()
   }, [id])
+
   /**
    * useKeyPress, useOutsideClick에 넣을 ref
    */
@@ -83,15 +84,13 @@ export const Modal = ({
    * 모달 닫기 버튼 클릭 시 이벤트
    */
   const handleModalClose = useCallback(() => {
-    onClose()
     modalManager?.pop()
+    onClose()
   }, [modalManager, onClose])
 
   useEffect(() => {
-    if (show && modalManager) {
-      modalManager.add(modalId)
-    }
-  }, [modalId, modalManager, show])
+    modalManager?.add(modalId)
+  }, [])
 
   /**
    * 키보드 'ESC'를 눌렀을 때 콜백 Hooks

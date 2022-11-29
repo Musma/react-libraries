@@ -11,6 +11,7 @@ export const ButtonBase = ({ type = 'button', ...rest }: ButtonBaseProps) => {
       type={type}
       css={{
         minWidth: theme.inputSize.minWidth,
+        padding: 0,
         appearance: 'none',
         border: 'none',
         outline: 'none',

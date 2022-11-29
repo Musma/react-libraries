@@ -1,10 +1,10 @@
-import { useTheme } from '@emotion/react'
 import { useFormSearch } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
 import { Grid, SearchForm, Table } from './components'
+import { Chip } from './components/Chip'
 
 const DATA = [
   {
@@ -29,8 +29,6 @@ type DDD = {
 }
 
 export const Component = () => {
-  const theme = useTheme()
-
   const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
     useFormProps: {
       defaultValues: {
@@ -45,6 +43,18 @@ export const Component = () => {
   return (
     <Box>
       <SearchForm onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
+        <Chip color="#dd9c4f">spokdopk</Chip>
+
+        <Chip color="#dd9c4f" size="sm">
+          spokdopk
+        </Chip>
+
+        <Chip color="#006CE8" size="lg" shape="rounded" variant="outlined">
+          spokdopkasdsadas
+        </Chip>
+
+        <Chip color="#dd9c4f">spokdopk</Chip>
+
         <Grid cols={3} spacing="lg" itemWidth={200}></Grid>
       </SearchForm>
 
