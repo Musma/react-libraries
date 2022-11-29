@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 0.1.41
+
+### Patch Changes
+
+- [`0457e78`](https://github.com/Musma/react-libraries/commit/0457e78fcfb74e75426d8687171396bd6480e21d) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: LoadingScreen type optional로 변경
+
+- [`f556774`](https://github.com/Musma/react-libraries/commit/f556774db2220318561a2a0e633169a4b5371c62) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Tag 컴포넌트 제거, Chip 컴포넌트 추가
+
+- [`775c156`](https://github.com/Musma/react-libraries/commit/775c156a6c2f1e8d1c31f8dffeebabe346bf875e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Spinner 컴포넌트 제거 및 modalManager 관련 로직 수정
+
 ## 0.1.40
 
 ### Patch Changes
