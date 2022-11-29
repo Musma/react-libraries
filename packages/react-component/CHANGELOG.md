@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.42
+
+### Patch Changes
+
+- [`613b0c9`](https://github.com/Musma/react-libraries/commit/613b0c99169dbed88c7f7107b595cd3e423065f1) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Chip minWidth 제거 및 Modal 중첩 시 버그 수정
+
+- Updated dependencies [[`0751c20`](https://github.com/Musma/react-libraries/commit/0751c2029de59fbcd7b6b07fb63790c27525b1b6)]:
+  - @musma/react-utils@0.1.16
+
 ## 0.1.41
 
 ### Patch Changes

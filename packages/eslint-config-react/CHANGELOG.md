@@ -1,5 +1,11 @@
 # @musma/eslint-config-react
 
+## 0.1.6
+
+### Patch Changes
+
+- [`4ccfaa4`](https://github.com/Musma/react-libraries/commit/4ccfaa471621d4cdd259a73184bfd11fea222297) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [eslint-config-react] useEffect, useCallback, useMemo 2번째 인자 안넣어도 경고 뜨지 않음
+
 ## 0.1.5
 
 ### Patch Changes
