@@ -4,8 +4,6 @@ import { useForm } from 'react-hook-form'
 import {
   Tooltip,
   Typography,
-  Tag,
-  Spinner,
   ToggleButton,
   Skeleton,
   Drawer,
@@ -104,17 +102,6 @@ export const Component = () => {
           </Tooltip>
         </Card>
 
-        <Card title="Tag" css={{ padding: 24 }}>
-          <Tag label="sampleTag" />
-          <Tag label="sampleTag" variant="rectangle" />
-          <Tag label="sampleTag" color="blue" />
-          <Tag label="sampleTag" variant="rectangle" color="blue" />
-          <Tag label="sampleTag" onClose={() => undefined} />
-          <Tag label="sampleTag" variant="rectangle" onClose={() => undefined} />
-          <Tag label="sampleTag" color="blue" onClose={() => undefined} />
-          <Tag label="sampleTag" variant="rectangle" color="blue" onClose={() => undefined} />
-        </Card>
-
         <Card title="Modal" css={{ padding: 24 }}>
           <ModalExample />
         </Card>
@@ -145,10 +132,6 @@ export const Component = () => {
 
         <Card title="RadioButton" css={{ padding: 24 }}>
           <RadioButtonExample />
-        </Card>
-
-        <Card title="Spinner" css={{ padding: 24 }}>
-          <Spinner size="lg" />
         </Card>
 
         <Card title="Table" css={{ padding: 24 }}>
