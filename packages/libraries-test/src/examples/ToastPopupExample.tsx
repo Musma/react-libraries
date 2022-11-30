@@ -8,6 +8,8 @@ export interface IToastPopupListProps extends IToastPopupProps {
 
 export const ToastPopupExample = () => {
   const [showList, setShowList] = useState<IToastPopupListProps[]>([])
+  const [checkValue, setCheckValue] = useState(true)
+  const [autoDeleteTime, setAutoDeleteTime] = useState(1000 * 3.5)
 
   const showToast = (item: IToastPopupProps) => {
     setShowList((current) => {
@@ -71,7 +73,13 @@ export const ToastPopupExample = () => {
           </Button>
         )
       })}
-      <Toast toastList={showList} height="50px" onCloseClick={deleteToast} />
+      <Toast
+        toastList={showList}
+        height="50px"
+        onCloseClick={deleteToast}
+        autoDelete={checkValue}
+        autoDeleteTime={autoDeleteTime}
+      />
     </div>
   )
 }
