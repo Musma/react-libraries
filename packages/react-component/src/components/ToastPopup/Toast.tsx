@@ -50,11 +50,7 @@ export const Toast = ({
           <ToastPopup
             key={item.id}
             title={item.title}
-            onCloseClick={() => {
-              console.log('지금 삭제 클릭한 item의 id는', item.id)
-              console.log('지금 이 시각에 list의 정보는', list)
-              onCloseClick(item.id)
-            }}
+            onCloseClick={() => onCloseClick(item.id)}
             state={item.state}
             mode={item.mode}
             description={item?.description}

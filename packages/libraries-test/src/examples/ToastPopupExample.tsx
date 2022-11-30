@@ -6,6 +6,14 @@ export interface IToastPopupListProps extends IToastPopupProps {
   id: number
 }
 
+const add = (function () {
+  let counter = 0
+  return function () {
+    counter += 1
+    return counter
+  }
+})()
+
 export const ToastPopupExample = () => {
   const [showList, setShowList] = useState<IToastPopupListProps[]>([])
   const [checkValue, setCheckValue] = useState(true)
@@ -16,6 +24,7 @@ export const ToastPopupExample = () => {
       return [
         {
           id: Math.floor(Math.random() * 100 + 1),
+          isActive: true,
           ...item,
         },
         ...current,
@@ -25,6 +34,8 @@ export const ToastPopupExample = () => {
 
   const deleteToast = useCallback(
     (id: number) => {
+      console.log('id', id)
+      console.log('showList', showList)
       const index = showList.findIndex((e) => e.id === id)
       if (index >= 0) {
         showList.splice(index, 1)
@@ -39,14 +50,13 @@ export const ToastPopupExample = () => {
       {
         state: 'info',
         title: 'Information',
-        description: '안녕하십니까. 정보입니다.',
         mode: 'light',
       },
       {
         state: 'error',
         title: 'Error',
         description: '삐빅 에러입니다',
-        mode: 'dark',
+        mode: 'light',
       },
       {
         state: 'success',

@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -27,6 +27,7 @@ export const ToastPopup = ({
   onCloseClick,
 }: IToastPopupProps) => {
   const { color } = useTheme()
+  const [isActive, setIsActive] = useState<boolean>(false)
 
   const stylesByState = useMemo(
     () => ({
@@ -77,15 +78,21 @@ export const ToastPopup = ({
     [state, stylesByState],
   )
 
+  useEffect(() => {
+    setIsActive(true)
+    return () => setIsActive(false)
+  }, [onCloseClick])
+
   return (
     <div
       css={{
-        opacity: 1,
+        opacity: isActive ? 1 : 0,
         margin: '10px 0',
         padding: '12px 16px',
         background: stylesByMode[mode].bgColor,
         boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
         borderRadius: '3px',
+        transform: isActive ? 'translateY(10px)' : 'translateY(0)',
         transition: 'all 1s',
       }}
     >
@@ -93,6 +100,7 @@ export const ToastPopup = ({
         css={{
           display: 'flex',
           flexDirection: 'row',
+          justifyContent: 'space-between',
           alignItems: description ? 'normal' : 'center',
           color: stylesByMode[mode].fontColor,
         }}
