@@ -20,7 +20,7 @@
     "@changesets/cli": "^2.25.2",
     "@musma/eslint-config-react": "workspace:*",
     "@types/luxon": "^3.1.0",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.11.10",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@types/rimraf": "^3.0.2",

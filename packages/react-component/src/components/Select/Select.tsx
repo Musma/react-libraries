@@ -18,16 +18,21 @@ import { Size } from 'src/types'
 
 import { Option, OptionContainer } from './components'
 
-export interface SelectOption<T> {
-  label: string
-  value: T
-}
-
 /**
  * ForwardRef + Generic Type
  * https://fettblog.eu/typescript-react-generic-forward-refs/
  *
  */
+export interface SelectOption<T> {
+  /**
+   * 라벨
+   */
+  label: string
+  /**
+   * 밸류
+   */
+  value: T
+}
 
 interface SelectProps<T>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange'> {
@@ -41,15 +46,16 @@ interface SelectProps<T>
   label?: string
   /**
    * @required
-   *
+   * Select의 Value 값입니다.₩
    */
   value: T
   /**
+   * @required
    *
    */
   options: SelectOption<T>[]
   /**
-   *
+   * @required
    */
   onChange: (value: T) => void
 }
@@ -162,8 +168,8 @@ const _Select = <T extends unknown>(
                 css={{
                   textAlign: 'center',
                   paddingLeft: theme.spacing.sm,
-                  paddingTop: 4,
-                  paddingBottom: 4,
+                  paddingTop: theme.spacing.sm,
+                  paddingBottom: theme.spacing.sm,
                 }}
               >
                 No Items

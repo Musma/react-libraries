@@ -9,7 +9,6 @@ interface HeaderRightSectionProps extends HTMLAttributes<HTMLDivElement> {
    * @default false
    * @description
    * 패딩 여부
-   *
    */
   disablePadding?: boolean
 }

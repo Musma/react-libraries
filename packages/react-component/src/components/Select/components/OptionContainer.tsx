@@ -18,7 +18,6 @@ export const OptionContainer = ({ children }: { children?: ReactNode }) => {
         borderRadius: theme.rounded.md,
         border: `1px solid ${theme.colors.gray.darker}`,
         padding: '4px 0px',
-
         zIndex: theme.zIndex.navBar + 1,
       }}
     >

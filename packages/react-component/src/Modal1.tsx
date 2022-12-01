@@ -9,22 +9,17 @@ type Modal1Props = Omit<ModalProps, 'title'>
 export const Modal1 = (props: Modal1Props) => {
   const [isOpen2, setIsOpen2] = useToggle(false)
   return (
-    <Modal title={'1 번째 모달 입니다'} {...props}>
+    <Modal title={'1 번째 모달 입니다'} size="lg" {...props}>
       Modal2
       <Button
         onClick={() => {
           setIsOpen2(true)
         }}
       >
-        2 모달 열기
+        2 모달 열기 aspodkasopdksa
+        dkasopdkasopdkaspodkaspodkaspodkaspodkaspodkaspodkaspodkasopdkaspodksapodksapodskaodpkasdopakspo
       </Button>
-      {isOpen2 && (
-        <Modal2
-          show={isOpen2}
-          modalManager={props.modalManager}
-          onClose={() => setIsOpen2(false)}
-        />
-      )}
+      {isOpen2 && <Modal2 show={isOpen2} onClose={() => setIsOpen2(false)} />}
     </Modal>
   )
 }

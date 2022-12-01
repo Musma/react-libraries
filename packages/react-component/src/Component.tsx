@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Grid, SearchForm, Table, useModalManager } from './components'
+import { Grid, RadioButton, SearchForm, Table, TextInput } from './components'
 import { Chip } from './components/Chip'
 import { Modal1 } from './Modal1'
 
@@ -40,7 +40,6 @@ export const Component = () => {
       console.log(';fetchposdkdspokpo')
     },
   })
-  const modalManager = useModalManager()
   const [isOpen1, setIsOpen1] = useToggle(false)
 
   return (
@@ -65,15 +64,120 @@ export const Component = () => {
           spokdopk
         </Chip>
 
+        <TextInput value="123" css={{ marginBottom: 24 }} />
+
+        <TextInput
+          value="123"
+          disabled={true}
+          css={{ marginBottom: 24 }}
+          helperText="!@312312321"
+        />
+
+        <RadioButton
+          checked={true}
+          onChange={(value) => {
+            console.log(value)
+          }}
+        />
+
+        <RadioButton
+          checked={true}
+          onChange={(value) => {
+            console.log(value)
+          }}
+        />
+
+        <RadioButton
+          checked={true}
+          onChange={(value) => {
+            console.log(value)
+          }}
+        />
+
+        {/* <Select options={[]} value="2" onChange={() => {}} disabled={false} /> */}
+
         <Grid cols={3} spacing="lg" itemWidth={200}></Grid>
       </SearchForm>
 
       {isOpen1 && (
-        <Modal1 show={isOpen1} modalManager={modalManager} onClose={() => setIsOpen1(false)}>
+        <Modal1 show={isOpen1} onClose={() => setIsOpen1(false)}>
           Modal1
         </Modal1>
       )}
 
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
+      <Table
+        data={DATA}
+        columns={COLUMNS}
+        withCheckbox={true}
+        onRowClick={(row) => {
+          alert('12312321')
+        }}
+      />
       <Table
         data={DATA}
         columns={COLUMNS}

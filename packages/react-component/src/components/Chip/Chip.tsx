@@ -3,10 +3,9 @@ import { HTMLAttributes, useMemo } from 'react'
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
 
+import { Typography } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
-
-import { Typography } from '../Typography'
 
 interface ChipProps extends HTMLAttributes<HTMLDivElement> {
   /**

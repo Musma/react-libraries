@@ -11,6 +11,7 @@ import {
 import { Typography, Select, IconAdornment } from 'src/components'
 import { Box } from 'src/elements'
 
+// 디폴트 페이지 당 아이템 개수
 const DEFAULT_ROW_PER_PAGE_OPTIONS = [
   {
     label: '10',
@@ -167,6 +168,7 @@ export const Pagination = ({
         }}
       />
 
+      {/* 맨 처음 페이지로 이동 */}
       <IconAdornment
         onClick={() => {
           onPageChange(1)
@@ -179,6 +181,7 @@ export const Pagination = ({
         />
       </IconAdornment>
 
+      {/* 이전 페이지로 이동 */}
       <IconAdornment
         onClick={() => {
           onPageChange(prevPage)

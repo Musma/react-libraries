@@ -7,6 +7,9 @@ interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
   backgroundColor?: string
 }
 
+/**
+ * 헤더
+ */
 export const Header = ({ zIndex, backgroundColor, ...rest }: HeaderProps) => {
   const theme = useTheme()
   return (

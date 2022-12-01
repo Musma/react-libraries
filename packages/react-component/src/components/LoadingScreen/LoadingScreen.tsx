@@ -14,6 +14,10 @@ interface LoadingScreenProps {
   type?: 'fallback' | 'fetching'
 }
 
+/**
+ * @description
+ * API Fetching 시나 페이지 전환 시 나타나는 로딩 스크린입니다.
+ */
 export const LoadingScreen = ({ type = 'fetching' }: LoadingScreenProps) => {
   if (type === 'fallback') {
     return (
