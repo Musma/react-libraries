@@ -1,11 +1,46 @@
-import { useCallback, Fragment, HTMLAttributes, useEffect, useMemo } from 'react'
+import { Fragment, HTMLAttributes, useEffect, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId, useEscKeyPress, useOutsideListener, useSetRef } from '@musma/react-utils'
 
-import { Backdrop, ModalManager, ModalTitle } from 'src/components'
+import { Backdrop, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
+
+class ModalManager {
+  private modalIds: string[] = []
+
+  // modalIds로 Set을 만듬
+  get modalIdSet() {
+    return new Set(this.modalIds)
+  }
+
+  // Modal이 componentDidMount 될 때 modalId를 인자로 받아서 넣어놓음
+  public add(modalId: string) {
+    if (!this.modalIdSet.has(modalId)) {
+      this.modalIds = [...this.modalIds, modalId]
+    }
+  }
+
+  // Modal이 componentWillUnmount 될 때 modalId를 인자로 받아서 지움
+  public remove(modalId: string) {
+    if (this.modalIdSet.has(modalId)) {
+      const newSet = new Set(this.modalIdSet)
+
+      if (newSet.delete(modalId)) {
+        const values = Array.from(newSet.values())
+        this.modalIds = values
+      }
+    }
+  }
+
+  // 현재 모달이 최상위 모달인지 체크
+  public isTopModal(modalId: string) {
+    return this.modalIds.length > 0 && this.modalIds[this.modalIds.length - 1] === modalId
+  }
+}
+
+const modalManager = new ModalManager()
 
 export interface ModalProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -46,10 +81,6 @@ export interface ModalProps extends HTMLAttributes<HTMLElement> {
    */
   disableEscPress?: boolean
   /**
-   * useModalManager의 반환값을 전달해주세요
-   */
-  modalManager?: ModalManager
-  /**
    * @required
    *
    * Modal이 닫힐 때 콜백 이벤트
@@ -64,7 +95,6 @@ export const Modal = ({
   size = 'md',
   disableEscPress = false,
   disableOutsideClick = false,
-  modalManager,
   children,
   onClose,
   ...rest
@@ -72,7 +102,7 @@ export const Modal = ({
   const theme = useTheme()
 
   const modalId = useMemo(() => {
-    return id || uniqueId()
+    return id || uniqueId() + ''
   }, [id])
 
   /**
@@ -83,13 +113,16 @@ export const Modal = ({
   /**
    * 모달 닫기 버튼 클릭 시 이벤트
    */
-  const handleModalClose = useCallback(() => {
-    modalManager?.remove(modalId)
-    onClose()
-  }, [modalManager, onClose])
+  // const handleModalClose = useCallback(() => {
+  //   onClose()
+  // }, [modalManager, onClose])
 
   useEffect(() => {
-    modalManager?.add(modalId)
+    modalManager.add(modalId)
+
+    return () => {
+      modalManager.remove(modalId)
+    }
   }, [])
 
   /**
@@ -102,11 +135,11 @@ export const Modal = ({
       }
 
       // 여러개 모달이 열려있을 때의 처리
-      if (modalManager && !modalManager.isTopModal(modalId)) {
+      if (!modalManager.isTopModal(modalId)) {
         return
       }
 
-      handleModalClose()
+      onClose()
     }
   })
 
@@ -120,11 +153,11 @@ export const Modal = ({
       }
 
       // 여러개 모달이 열려있을 때의 처리
-      if (modalManager && !modalManager.isTopModal(modalId)) {
+      if (!modalManager.isTopModal(modalId)) {
         return
       }
 
-      handleModalClose()
+      onClose()
     }
   })
 

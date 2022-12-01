@@ -13,7 +13,7 @@ interface ModalButtonProps extends Omit<ButtonProps, 'size'> {
  * Modal 하단의 버튼 컴포넌트입니다.
  * ModalActions 컴포넌트를 부모 컴포넌트로 감싸서 사용해주세요
  */
-export const ModalButton = ({ size = 'md', ...rest }: ModalButtonProps) => {
+export const ModalButton = ({ size = 'md', fullWidth, ...rest }: ModalButtonProps) => {
   return (
     <Button
       type="button"
@@ -25,11 +25,12 @@ export const ModalButton = ({ size = 'md', ...rest }: ModalButtonProps) => {
         }[size] as Size
       }
       css={[
-        {
-          sm: { width: 144 },
-          md: { width: 200 },
-          lg: { width: 200 },
-        }[size],
+        !fullWidth &&
+          {
+            sm: { width: 144 },
+            md: { width: 200 },
+            lg: { width: 200 },
+          }[size],
       ]}
       {...rest}
     />
