@@ -101,7 +101,7 @@ export const Dropdown = ({
 
   if (show) {
     return (
-      <Backdrop disabledDimmed={true}>
+      <Backdrop disableDimmed={true} disableOverflowHidden={true}>
         <Box
           ref={setRef}
           tabIndex={-1}

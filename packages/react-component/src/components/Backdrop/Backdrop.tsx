@@ -12,7 +12,12 @@ interface BackdropProps extends HTMLAttributes<HTMLDivElement> {
    * @description
    * 뒷 배경 어둡게 하는 것을 사용하지 않을지 여부
    */
-  disabledDimmed?: boolean
+  disableDimmed?: boolean
+  /**
+   * @default flase
+   * Backdrop 렌더링 시 body 태그의 overflow: 'hidden'을 비활성화 시킴
+   */
+  disableOverflowHidden?: boolean
 }
 
 /**
@@ -21,11 +26,11 @@ interface BackdropProps extends HTMLAttributes<HTMLDivElement> {
  * Modal, Drawer 등이 나타날 때 뒤에 깔리는 어두운 배경 화면입니다.
  */
 export const Backdrop = forwardRef<HTMLDivElement, BackdropProps>(
-  ({ disabledDimmed, ...rest }, ref) => {
+  ({ disableDimmed, disableOverflowHidden = false, ...rest }, ref) => {
     const theme = useTheme()
 
     return (
-      <ReactPortal>
+      <ReactPortal disableOverflowHidden={disableOverflowHidden}>
         <Box
           ref={ref}
           aria-hidden={true}
@@ -39,7 +44,7 @@ export const Backdrop = forwardRef<HTMLDivElement, BackdropProps>(
             height: '100vh',
             inset: 0,
             zIndex: theme.zIndex.navBar + 1,
-            backgroundColor: disabledDimmed ? theme.colors.transparent : theme.dimmed.md,
+            backgroundColor: disableDimmed ? theme.colors.transparent : theme.dimmed.md,
           }}
           {...rest}
         />

@@ -144,7 +144,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             },
           ]}
           onClick={() => {
-            toggleCalendar(true)
+            if (!disabled) {
+              toggleCalendar(true)
+            }
           }}
         >
           {/* Input */}

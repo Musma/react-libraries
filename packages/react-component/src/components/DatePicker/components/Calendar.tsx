@@ -124,7 +124,7 @@ export const Calendar = ({
   }, [value])
 
   return (
-    <Backdrop disabledDimmed={true}>
+    <Backdrop disableDimmed={true} disableOverflowHidden={true}>
       <Box
         ref={setRef}
         tabIndex={-1}

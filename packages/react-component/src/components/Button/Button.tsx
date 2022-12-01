@@ -35,7 +35,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * @optional
    * 버튼 텍스트 앞에 렌더링되는 SVG 아이콘입니다.
-   *
    */
   startIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
