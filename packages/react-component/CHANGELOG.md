@@ -1,5 +1,17 @@
 # @musma/react-component
 
+## 0.1.43
+
+### Patch Changes
+
+- [`d678bdb`](https://github.com/Musma/react-libraries/commit/d678bdbc2a0b2b148a9e9bd46b2e7573fcba30e7) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Backdrop 렌더링 시 body 태그에 overflow: 'hidden' 여부 결정하는 Props 추가
+
+- [`2718b8f`](https://github.com/Musma/react-libraries/commit/2718b8f03959b1b506b80936c8c23a89f75a2ca9) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] TextInput helperText position:'absolute'로 변경
+
+- [`b6b8352`](https://github.com/Musma/react-libraries/commit/b6b8352f560a3c4ae08dbdce5f01202b005fba10) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Grid spacing Props 수정, IconAdornment, IconButton, TextButton forwardRef 감쌈
+
+- [`d8b402c`](https://github.com/Musma/react-libraries/commit/d8b402c71ab4a21c023b9d0207e79dc9a747b0cd) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] useModalManager 제거 후 ModalManagerClass 추가
+
 ## 0.1.42
 
 ### Patch Changes
