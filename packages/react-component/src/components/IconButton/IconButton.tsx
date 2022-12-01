@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, forwardRef } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -11,39 +11,39 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
 }
 
-export const IconButton = ({
-  variant = 'contained',
-  color,
-  size = 'md',
-  ...rest
-}: IconButtonProps) => {
-  const theme = useTheme()
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+  ({ variant = 'contained', color, size = 'md', ...rest }, ref) => {
+    const theme = useTheme()
 
-  return (
-    <ButtonBase
-      css={[
-        {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minWidth: 'auto',
-          width: theme.inputSize.height[size],
-          height: theme.inputSize.height[size],
-          borderRadius: theme.rounded.md,
-          '&:disabled': {
-            backgroundColor: theme.colors.white.lighter,
-            cursor: 'not-allowed',
+    return (
+      <ButtonBase
+        ref={ref}
+        css={[
+          {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minWidth: 'auto',
+            width: theme.inputSize.height[size],
+            height: theme.inputSize.height[size],
+            borderRadius: theme.rounded.md,
+            '&:disabled': {
+              backgroundColor: theme.colors.white.lighter,
+              cursor: 'not-allowed',
+            },
           },
-        },
-        variant === 'contained' && {
-          backgroundColor: color || theme.colors.green.main,
-        },
-        variant === 'outlined' && {
-          border: `1px solid ${color || theme.colors.green.main}`,
-          backgroundColor: theme.colors.white.main,
-        },
-      ]}
-      {...rest}
-    />
-  )
-}
+          variant === 'contained' && {
+            backgroundColor: color || theme.colors.green.main,
+          },
+          variant === 'outlined' && {
+            border: `1px solid ${color || theme.colors.green.main}`,
+            backgroundColor: theme.colors.white.main,
+          },
+        ]}
+        {...rest}
+      />
+    )
+  },
+)
+
+IconButton.displayName = 'IconButton'

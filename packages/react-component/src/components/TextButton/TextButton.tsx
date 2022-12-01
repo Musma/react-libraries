@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, forwardRef } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -17,29 +17,29 @@ interface TextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean
 }
 
-export const TextButton = ({
-  size = 'md',
-  fullWidth = false,
-  children,
-  ...rest
-}: TextButtonProps) => {
-  const theme = useTheme()
-  return (
-    <ButtonBase
-      css={[
-        {
-          height: theme.inputSize.height[size],
-          backgroundColor: theme.colors.transparent,
-          '&:hover': {
-            borderRadius: theme.rounded.md,
-            backgroundColor: theme.buttonBackgroundColor,
+export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
+  ({ size = 'md', fullWidth = false, children, ...rest }, ref) => {
+    const theme = useTheme()
+    return (
+      <ButtonBase
+        ref={ref}
+        css={[
+          {
+            height: theme.inputSize.height[size],
+            backgroundColor: theme.colors.transparent,
+            '&:hover': {
+              borderRadius: theme.rounded.md,
+              backgroundColor: theme.buttonBackgroundColor,
+            },
           },
-        },
-        fullWidth && { width: '100%' },
-      ]}
-      {...rest}
-    >
-      <Typography type={size === 'lg' ? 'body3' : 'caption1'}>{children}</Typography>
-    </ButtonBase>
-  )
-}
+          fullWidth && { width: '100%' },
+        ]}
+        {...rest}
+      >
+        <Typography type={size === 'lg' ? 'body3' : 'caption1'}>{children}</Typography>
+      </ButtonBase>
+    )
+  },
+)
+
+TextButton.displayName = 'TextButton'

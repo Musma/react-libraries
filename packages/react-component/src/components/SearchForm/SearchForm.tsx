@@ -43,7 +43,7 @@ export const SearchForm = ({
             display: 'grid',
             gridTemplateColumns: `repeat(2, 200px)`,
             justifyContent: 'center',
-            gap: theme.spacing.lg,
+            gap: theme.spacing.sm,
             marginTop: theme.spacing.lg,
           }}
         >

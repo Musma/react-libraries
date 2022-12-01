@@ -18,7 +18,7 @@ interface GridProps extends HTMLAttributes<HTMLDivElement> {
    * md: 16
    * lg: 24
    */
-  spacing: Size
+  spacing?: Size
   /**
    *
    */
@@ -32,7 +32,7 @@ export const Grid = ({ cols, spacing, itemWidth, ...rest }: GridProps) => {
       css={{
         display: 'grid',
         gridTemplateColumns: `repeat(${cols}, ${itemWidth ? itemWidth + 'px' : '1fr'})`,
-        gap: theme.spacing[spacing],
+        gap: spacing ? theme.spacing[spacing] : 0,
       }}
       {...rest}
     />
