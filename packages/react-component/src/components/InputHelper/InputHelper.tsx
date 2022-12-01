@@ -10,8 +10,8 @@ interface InputHelperProps extends HTMLAttributes<HTMLElement> {
 }
 
 const iconSize = {
-  width: 14,
-  height: 14,
+  width: 12,
+  height: 12,
 }
 
 export const InputHelper = ({ error, children, ...rest }: InputHelperProps) => {
@@ -23,12 +23,19 @@ export const InputHelper = ({ error, children, ...rest }: InputHelperProps) => {
       css={{
         display: 'flex',
         alignItems: 'center',
+        position: 'absolute',
+        bottom: -14,
+        left: 4,
         gap: 4,
         color: error ? theme.colors.red.main : theme.colors.green.main,
       }}
       {...rest}
     >
-      {error ? <OutlineCautionIcon {...iconSize} /> : <OutlineCheckCircleIcon {...iconSize} />}
+      {error ? (
+        <OutlineCautionIcon {...iconSize} color={theme.colors.red.main} />
+      ) : (
+        <OutlineCheckCircleIcon {...iconSize} color={theme.colors.green.main} />
+      )}
 
       {children}
     </Typography>

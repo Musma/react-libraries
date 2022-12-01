@@ -97,6 +97,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           flexDirection: 'column',
           width: '100%',
           minWidth: theme.inputSize.minWidth,
+          position: 'relative',
         }}
         className={className}
       >
