@@ -50,7 +50,6 @@ export const Component = () => {
         css={{
           height: 400,
           backgroundColor: theme.colors.blue.main,
-          padding: theme.convertSpacing(8, 16, 4),
         }}
       >
         <Box css={{ height: 400, backgroundColor: theme.colors.red.main }}></Box>

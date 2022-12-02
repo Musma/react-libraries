@@ -175,7 +175,6 @@ export interface MusmaTheme {
     md: `@media (min-width: 1440px)`,
     lg: `@media (min-width: 1920px)`,
    */
-
   mediaQueries: Record<Size, string>
   /**
    * @default
@@ -184,6 +183,15 @@ export interface MusmaTheme {
     lg: 24,
    */
   spacing: Record<Size, number>
+  /**
+   *
+   */
+  spacingUtil: (
+    arg0: number | Size,
+    arg1?: number | Size,
+    arg2?: number | Size,
+    arg3?: number | Size,
+  ) => string
   /**
    * @default
    * rgba(0, 0, 0, 0.04)

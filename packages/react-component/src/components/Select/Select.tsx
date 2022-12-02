@@ -46,7 +46,7 @@ interface SelectProps<T>
   label?: string
   /**
    * @required
-   * Select의 Value 값입니다.₩
+   * Select의 Value 값입니다.
    */
   value: T
   /**
@@ -104,7 +104,7 @@ const _Select = <T extends unknown>(
         display: 'inline-flex',
         flexDirection: 'column',
         width: '100%',
-        minWidth: 64,
+        minWidth: theme.inputSize.minWidth,
       }}
       className={className}
     >
@@ -167,9 +167,7 @@ const _Select = <T extends unknown>(
                 type="caption1"
                 css={{
                   textAlign: 'center',
-                  paddingLeft: theme.spacing.sm,
-                  paddingTop: theme.spacing.sm,
-                  paddingBottom: theme.spacing.sm,
+                  padding: theme.spacing.sm,
                 }}
               >
                 No Items

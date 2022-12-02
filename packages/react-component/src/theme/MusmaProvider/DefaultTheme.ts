@@ -1,9 +1,17 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { MusmaTheme } from 'src/theme'
+import { Size } from 'src/types'
 
 const breakpoints = {
   sm: 600,
   md: 1440,
   lg: 1920,
+}
+
+const spacing = {
+  sm: 8,
+  md: 16,
+  lg: 24,
 }
 
 const DefaultTheme: MusmaTheme = {
@@ -95,11 +103,36 @@ const DefaultTheme: MusmaTheme = {
     md: `@media (min-width: ${breakpoints.md}px)`,
     lg: `@media (min-width: ${breakpoints.lg}px)`,
   },
-  spacing: {
-    sm: 8,
-    md: 16,
-    lg: 24,
+  spacing,
+  spacingUtil: (
+    arg0: number | Size,
+    arg1?: number | Size,
+    arg2?: number | Size,
+    arg3?: number | Size,
+  ) => {
+    const convert = (arg: number | Size) => {
+      if (typeof arg === 'number') {
+        return `${arg}px`
+      }
+      const size = arg as Size
+      return `${spacing[size]}px`
+    }
+
+    if (arg3) {
+      return `${convert(arg0)} ${convert(arg1!)} ${convert(arg2!)} ${convert(arg3)}`
+    }
+
+    if (arg2) {
+      return `${convert(arg0)} ${convert(arg1!)} ${convert(arg2)}`
+    }
+
+    if (arg1) {
+      return `${convert(arg0)} ${convert(arg1)}`
+    }
+
+    return `${convert(arg0)}`
   },
+
   buttonBackgroundColor: 'rgba(0, 0, 0, 0.04)',
   dimmed: {
     sm: 'rgba(0, 0, 0, 0.4)',
