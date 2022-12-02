@@ -110,13 +110,6 @@ export const Modal = ({
    */
   const [ref, setRef] = useSetRef()
 
-  /**
-   * 모달 닫기 버튼 클릭 시 이벤트
-   */
-  // const handleModalClose = useCallback(() => {
-  //   onClose()
-  // }, [modalManager, onClose])
-
   useEffect(() => {
     modalManager.add(modalId)
 

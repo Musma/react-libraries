@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react'
 import { useFormSearch, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
@@ -40,10 +41,21 @@ export const Component = () => {
       console.log(';fetchposdkdspokpo')
     },
   })
+  const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
 
   return (
     <Box>
+      <Box
+        css={{
+          height: 400,
+          backgroundColor: theme.colors.blue.main,
+          padding: theme.convertSpacing(8, 16, 4),
+        }}
+      >
+        <Box css={{ height: 400, backgroundColor: theme.colors.red.main }}></Box>
+      </Box>
+
       <SearchForm onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
         <Chip color="#dd9c4f">spokdopk</Chip>
 
@@ -74,6 +86,15 @@ export const Component = () => {
         />
 
         <RadioButton
+          size="sm"
+          checked={false}
+          onChange={(value) => {
+            console.log(value)
+          }}
+        />
+
+        <RadioButton
+          size="md"
           checked={true}
           onChange={(value) => {
             console.log(value)
@@ -81,20 +102,13 @@ export const Component = () => {
         />
 
         <RadioButton
-          checked={true}
+          size="lg"
+          disabled={true}
+          checked={false}
           onChange={(value) => {
             console.log(value)
           }}
         />
-
-        <RadioButton
-          checked={true}
-          onChange={(value) => {
-            console.log(value)
-          }}
-        />
-
-        {/* <Select options={[]} value="2" onChange={() => {}} disabled={false} /> */}
 
         <Grid cols={3} spacing="lg" itemWidth={200}></Grid>
       </SearchForm>

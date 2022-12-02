@@ -6,15 +6,7 @@ import { Typography } from 'src/components'
 import { InputBase, Label } from 'src/elements'
 import { Size } from 'src/types'
 
-import { ReactComponent as LgCheckedIcon } from './images/checked_lg.svg'
-import { ReactComponent as MdCheckedIcon } from './images/checked_md.svg'
-import { ReactComponent as SmCheckedIcon } from './images/checked_sm.svg'
-import { ReactComponent as LgDefaultIcon } from './images/default_lg.svg'
-import { ReactComponent as MdDefaultIcon } from './images/default_md.svg'
-import { ReactComponent as SmDefaultIcon } from './images/default_sm.svg'
-import { ReactComponent as LgDisabledIcon } from './images/disabled_lg.svg'
-import { ReactComponent as MdDisabledIcon } from './images/disabled_md.svg'
-import { ReactComponent as SmDisabledIcon } from './images/disabled_sm.svg'
+import { Radio } from './components'
 
 // TODO: RadioGroup을 따로 만들 예쩡
 
@@ -47,30 +39,6 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
       return _id || uniqueId()
     }, [_id])
 
-    const radio = useMemo(() => {
-      if (disabled) {
-        return {
-          sm: <SmDisabledIcon css={{ cursor: 'not-allowed' }} />,
-          md: <MdDisabledIcon css={{ cursor: 'not-allowed' }} />,
-          lg: <LgDisabledIcon css={{ cursor: 'not-allowed' }} />,
-        }[size]
-      }
-
-      if (checked) {
-        return {
-          sm: <SmCheckedIcon />,
-          md: <MdCheckedIcon />,
-          lg: <LgCheckedIcon />,
-        }[size]
-      }
-
-      return {
-        sm: <SmDefaultIcon />,
-        md: <MdDefaultIcon />,
-        lg: <LgDefaultIcon />,
-      }[size]
-    }, [size, disabled, checked])
-
     return (
       <Label
         htmlFor={id}
@@ -97,7 +65,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
           {...rest}
         />
 
-        {radio}
+        <Radio size={size} checked={checked} disabled={disabled} />
 
         <Typography
           type={size === 'sm' ? 'caption1' : size === 'md' ? 'body3' : 'body2'}
