@@ -185,6 +185,16 @@ export interface MusmaTheme {
    */
   spacing: Record<Size, number>
   /**
+  //  
+   * 이름을 뭘로 짓지..
+   */
+  spacingUtil: (
+    arg0: number | Size,
+    arg1?: number | Size,
+    arg2?: number | Size,
+    arg3?: number | Size,
+  ) => string
+  /**
    * @default
    * rgba(0, 0, 0, 0.04)
    */

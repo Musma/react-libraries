@@ -2,8 +2,8 @@ import { FormHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Button, Card } from 'src/components'
-import { Box, Form } from 'src/elements'
+import { Button, Card, Grid } from 'src/components'
+import { Form } from 'src/elements'
 
 interface SearchFormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**
@@ -38,12 +38,12 @@ export const SearchForm = ({
       >
         {children}
 
-        <Box
+        <Grid
+          cols={2}
+          spacing="sm"
+          itemWidth={200}
           css={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(2, 200px)`,
             justifyContent: 'center',
-            gap: theme.spacing.sm,
             marginTop: theme.spacing.lg,
           }}
         >
@@ -55,7 +55,7 @@ export const SearchForm = ({
 
           {/* Submit 버튼 */}
           <Button type="submit">{searchLabel}</Button>
-        </Box>
+        </Grid>
       </Card>
     </Form>
   )

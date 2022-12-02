@@ -42,8 +42,8 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
           borderStyle: 'solid',
           borderColor: theme.colors.gray.darker,
           borderBottom: 'none',
-          borderTopLeftRadius: active ? 8 : 0,
-          borderTopRightRadius: active ? 8 : 0,
+          borderTopLeftRadius: active ? theme.spacing.sm : 0,
+          borderTopRightRadius: active ? theme.spacing.sm : 0,
           backgroundColor: active ? theme.colors.white.main : theme.colors.transparent,
         },
         variant === 'rect' && {
