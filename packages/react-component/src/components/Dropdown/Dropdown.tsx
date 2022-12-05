@@ -111,7 +111,6 @@ export const Dropdown = ({
             left: left,
             backgroundColor: theme.colors.white.main,
             minWidth: theme.inputSize.minWidth,
-            minHeight: 100,
             boxShadow: theme.shadow.sm,
             borderRadius: theme.rounded.lg,
             border: `1px solid ${theme.colors.gray.dark}}`,
