@@ -9,10 +9,12 @@ export interface StepBarProps extends HTMLAttributes<HTMLDivElement> {
    * 현재 스텝의 인덱스
    */
   activeStep: number
+  /**
+   * 전체 스텝의 수
+   */
   totalStep: number
 }
 
-// TODO: 테마 사용, styled 사용하여 코드 정리
 export const Stepper = ({ activeStep, totalStep, ...rest }: StepBarProps) => {
   return (
     <Box css={{ display: 'flex' }} {...rest}>

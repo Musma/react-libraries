@@ -17,30 +17,25 @@ import { Size } from 'src/types'
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /**
-   *
    * @default text
-   *
    */
   type?: 'text' | 'password'
   /**
-   *
    * @default md
-   *
    */
   size?: Size
   /**
    * @optional
-   *
    */
   label?: string
   /**
    * @optional
-   *
+   * @description
+   * TextInput 앞에 나타날 장식품
    */
   startAdornment?: ReactNode
   /**
    * @optional
-   *
    */
   endAdornment?: ReactNode
   /**
@@ -48,14 +43,19 @@ export interface TextInputProps
    */
   error?: boolean
   /**
+   * @optional
+   * @description
    */
   helperText?: string
   /**
+   * @optional
+   * @description
+   *
    */
   required?: boolean
   /**
    * @optional
-   *
+   * @description
    * 정규표현식입니다
    * react-utils 패키지에 있는 RegExps를 넣어서 사용하면 됩니다.
    */

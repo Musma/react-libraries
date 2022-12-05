@@ -8,6 +8,7 @@ interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
 
 export const NavBar = ({ zIndex, ...rest }: NavBarProps) => {
   const theme = useTheme()
+
   return (
     <nav
       css={{

@@ -31,7 +31,7 @@ export const Step = ({ step, first, active }: StepProps) => {
             top: 9,
             left: 'calc(-50% + 9px)',
             right: 'calc(50% + 9px)',
-            height: '2px',
+            height: 2,
             backgroundColor: active ? theme.colors.primary.main : theme.colors.gray.lighter,
           }}
         />

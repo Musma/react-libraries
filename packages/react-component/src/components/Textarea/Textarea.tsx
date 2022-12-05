@@ -8,9 +8,7 @@ import { Size } from 'src/types'
 
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   /**
-   *
    * @default md
-   *
    * @description
    * sm: minHeight: 28, fontSize: 12
    * md: minHeight: 32, fontSize: 12
@@ -19,7 +17,6 @@ export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
   size?: Size
   /**
    * @optional
-   *
    * @description
    * 라벨입니다.
    */
@@ -31,11 +28,13 @@ export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
    */
   error?: boolean
   /**
+   * @optional
    * @description
    * Textarea 태그밑에 설명 글입니다.
    */
   helperText?: string
   /**
+   * @optional
    * @description
    * label에 별표를 추가할 수 있습니다.
    */

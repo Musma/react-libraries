@@ -66,15 +66,8 @@ const _Select = <T extends unknown>(
   inputRef: ForwardedRef<HTMLInputElement>,
 ) => {
   const theme = useTheme()
-
   const [ref, setRef] = useSetRef()
-
   const [open, setOpen] = useState(false)
-
-  useOutsideListener(ref, () => {
-    // Select 영역 말고 다른 영역 클릭 시 닫힘
-    setOpen(false)
-  })
 
   const id = useMemo(() => {
     return _id || uniqueId()
@@ -96,6 +89,11 @@ const _Select = <T extends unknown>(
     },
     [onChange],
   )
+
+  useOutsideListener(ref, () => {
+    // Select 영역 말고 다른 영역 클릭 시 닫힘
+    setOpen(false)
+  })
 
   return (
     <Box
@@ -144,7 +142,7 @@ const _Select = <T extends unknown>(
 
         <OutlineArrowBottomSmallIcon
           css={[
-            { position: 'absolute', right: '4px', cursor: 'pointer' },
+            { position: 'absolute', right: 4, cursor: 'pointer' },
             open && { rotate: '180deg' },
           ]}
         />

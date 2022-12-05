@@ -4,7 +4,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Grid, RadioButton, SearchForm, Table, TextInput } from './components'
+import { Grid, LoadingScreen, RadioButton, SearchForm, Table, TextInput } from './components'
 import { Chip } from './components/Chip'
 import { Modal1 } from './Modal1'
 
@@ -46,6 +46,7 @@ export const Component = () => {
 
   return (
     <Box>
+      <LoadingScreen type="fallback" />
       <Box
         css={{
           height: 400,
