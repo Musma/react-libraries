@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.45
+
+### Patch Changes
+
+- [`6688df2`](https://github.com/Musma/react-libraries/commit/6688df2bf370537589230cdece2abca245d62679) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Dropdown minHeight CSS 제거
+
+- Updated dependencies [[`cd34823`](https://github.com/Musma/react-libraries/commit/cd348231e9ef347ccd93fe4b9088ecd0ee259611)]:
+  - @musma/react-utils@0.1.17
+
 ## 0.1.44
 
 ### Patch Changes
