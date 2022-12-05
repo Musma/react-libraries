@@ -1,5 +1,6 @@
 export * from './useEscKeyPress'
 export * from './useFormSearch'
+export * from './useInterval'
 export * from './useIsMounted'
 export * from './useIsomorphicLayoutEffect'
 export * from './useLocalStorage'

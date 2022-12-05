@@ -1,4 +1,5 @@
 export * from './ArrayUtil'
+export * from './BrowserUtil'
 export * from './ColorUtil'
 export * from './DateUtil'
 export * from './LodashUtils'

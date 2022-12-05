@@ -18,7 +18,6 @@ export const usePagination = ({
   fetch,
 }: UsePaginationProps) => {
   const [pageable, setPageable] = useState<Pageable>(initPageable)
-
   const [totalPage, setTotalPage] = useState(0)
 
   const resetPage = () => setPageable((pageable) => ({ ...pageable, page: 1 }))

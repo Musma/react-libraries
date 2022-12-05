@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
+import { isBrowser } from 'src/utils'
+
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
-    if (typeof window === 'undefined') {
+    if (!isBrowser) {
       return initialValue
     }
     try {
@@ -12,7 +14,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
       return item ? JSON.parse(item) : initialValue
     } catch (error) {
       // If error also return initialValue
-      console.log(error)
+      console.error(error)
       return initialValue
     }
   })
@@ -31,7 +33,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
       }
     } catch (error) {
       // A more advanced implementation would handle the error case
-      console.log(error)
+      console.error(error)
     }
   }
 
