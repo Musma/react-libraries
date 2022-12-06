@@ -22,6 +22,9 @@ interface CalendarProps {
   inputRef: HTMLElement | null
   minDate?: DateTime
   maxDate?: DateTime
+  anchorOrigin?: {
+    vertical: 'bottom' | 'top'
+  }
   onChange: (dateTime: DateTime) => void
   onClose: () => void
 }
@@ -31,6 +34,9 @@ export const Calendar = ({
   inputRef,
   minDate,
   maxDate,
+  anchorOrigin = {
+    vertical: 'bottom',
+  },
   onChange,
   onClose,
 }: CalendarProps) => {
@@ -45,8 +51,18 @@ export const Calendar = ({
     if (inputRef) {
       const { top, left, height } = inputRef.getBoundingClientRect()
 
+      const topValue = {
+        bottom: {
+          top: top + height + 4,
+        },
+        top: {
+          top: top - 4,
+          transform: 'translateY(-100%)',
+        },
+      }[anchorOrigin.vertical]
+
       return {
-        top: top + height + 4,
+        ...topValue,
         left: left,
       }
     }
@@ -124,7 +140,7 @@ export const Calendar = ({
   }, [value])
 
   return (
-    <Backdrop disableDimmed={true} disableOverflowHidden={true}>
+    <Backdrop disableDimmed={true}>
       <Box
         ref={setRef}
         tabIndex={-1}

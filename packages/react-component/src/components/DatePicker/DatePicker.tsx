@@ -65,6 +65,12 @@ interface DatePickerProps
    */
   maxDate?: DateTime
   /**
+   * TODO: 방향은 추후에 더 추가하겠습니다.
+   */
+  anchorOrigin?: {
+    vertical: 'bottom' | 'top'
+  }
+  /**
    * @required
    *
    * 날짜 변경 이벤트
@@ -85,6 +91,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       minDate,
       maxDate,
       value,
+      anchorOrigin = {
+        vertical: 'bottom',
+      },
       onChange,
       ...rest
     },
@@ -182,6 +191,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             inputRef={inputRef}
             minDate={minDate}
             maxDate={maxDate}
+            anchorOrigin={anchorOrigin}
             onChange={onChange}
             onClose={() => {
               toggleCalendar(false)

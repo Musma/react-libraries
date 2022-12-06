@@ -4,7 +4,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Grid, LoadingScreen, RadioButton, SearchForm, Table, TextInput } from './components'
+import { DatePicker, Grid, RadioButton, SearchForm, Select, Table, TextInput } from './components'
 import { Chip } from './components/Chip'
 import { Modal1 } from './Modal1'
 
@@ -46,7 +46,7 @@ export const Component = () => {
 
   return (
     <Box>
-      <LoadingScreen type="fallback" />
+      {/* <LoadingScreen type="fallback" /> */}
       <Box
         css={{
           height: 400,
@@ -78,6 +78,14 @@ export const Component = () => {
 
         <TextInput value="123" css={{ marginBottom: 24 }} />
 
+        <DatePicker
+          value={DateTime.now()}
+          onChange={() => {
+            return null
+          }}
+          anchorOrigin={{ vertical: 'top' }}
+        />
+
         <TextInput
           value="123"
           disabled={true}
@@ -107,6 +115,14 @@ export const Component = () => {
           checked={false}
           onChange={(value) => {
             console.log(value)
+          }}
+        />
+
+        <Select
+          options={[]}
+          value="1"
+          onChange={() => {
+            return null
           }}
         />
 

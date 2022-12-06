@@ -12,6 +12,10 @@ interface SearchFormProps extends FormHTMLAttributes<HTMLFormElement> {
    */
   resetLabel?: string
   /**
+   * 검색 버튼 비활성화 여부
+   */
+  disabled?: boolean
+  /**
    * @default = '검색'
    * 검색 버튼 라벨
    */
@@ -24,6 +28,7 @@ interface SearchFormProps extends FormHTMLAttributes<HTMLFormElement> {
 export const SearchForm = ({
   resetLabel = '초기화',
   searchLabel = '검색',
+  disabled = false,
   children,
   ...rest
 }: SearchFormProps) => {
@@ -54,7 +59,9 @@ export const SearchForm = ({
           </Button>
 
           {/* Submit 버튼 */}
-          <Button type="submit">{searchLabel}</Button>
+          <Button type="submit" disabled={disabled}>
+            {searchLabel}
+          </Button>
         </Grid>
       </Card>
     </Form>
