@@ -9,25 +9,18 @@ import {
   OutlineCloseIcon,
 } from '@musma/react-icons'
 
-export type StateType = 'info' | 'warning' | 'error' | 'success'
-
-export interface IToastPopupProps {
-  state?: StateType
-  title: string
-  description?: string
-  mode?: 'light' | 'dark'
-  onCloseClick?: () => void
-}
+import { IToastPopupProps } from '.'
 
 export const ToastPopup = ({
+  id,
+  onCloseClick,
   state = 'info',
   title,
   description,
   mode = 'light',
-  onCloseClick,
 }: IToastPopupProps) => {
   const { color } = useTheme()
-  const [isActive, setIsActive] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const stylesByState = useMemo(
     () => ({
@@ -79,20 +72,28 @@ export const ToastPopup = ({
   )
 
   useEffect(() => {
-    setIsActive(true)
-    return () => setIsActive(false)
-  }, [onCloseClick])
+    setIsOpen(true)
+
+    return () => setIsOpen(false)
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onCloseClick()
+    }, 1000 * 3.5)
+    return () => clearTimeout(timer)
+  }, [isOpen, onCloseClick, setIsOpen])
 
   return (
     <div
       css={{
-        opacity: isActive ? 1 : 0,
-        margin: '10px 0',
+        opacity: isOpen ? 1 : 0,
+        transform: isOpen ? 'translateY(10px)' : 'translateY(0px)',
         padding: '12px 16px',
+        marginBottom: '10px',
         background: stylesByMode[mode].bgColor,
         boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
         borderRadius: '3px',
-        transform: isActive ? 'translateY(10px)' : 'translateY(0)',
         transition: 'all 1s',
       }}
     >
