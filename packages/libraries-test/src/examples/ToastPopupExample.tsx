@@ -44,7 +44,7 @@ export const ToastPopupExample = () => {
         return (
           <Button
             key={item.state}
-            onClick={() => setShowToastPopup({ ...item })}
+            onClick={() => setShowToastPopup(item)}
             css={{
               background: item.state === 'error' ? 'red' : undefined,
             }}

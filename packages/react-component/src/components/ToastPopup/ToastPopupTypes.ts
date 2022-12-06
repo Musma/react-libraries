@@ -9,3 +9,8 @@ export interface IToastPopupList {
 export interface IToastPopupProps extends IToastPopupList {
   onCloseClick(): void
 }
+
+export interface IToastContainerProps {
+  height: string
+  newToastPopup?: IToastPopupList
+}

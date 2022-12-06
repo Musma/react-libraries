@@ -77,13 +77,6 @@ export const ToastPopup = ({
     return () => setIsOpen(false)
   }, [])
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onCloseClick()
-    }, 1000 * 3.5)
-    return () => clearTimeout(timer)
-  }, [isOpen, onCloseClick, setIsOpen])
-
   return (
     <div
       css={{

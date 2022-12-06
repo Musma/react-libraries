@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { IToastPopupList } from '.'
+import { IToastContainerProps, IToastPopupList } from '.'
 import { ToastPopup } from './ToastPopup'
 import { toastPopupManager } from './ToastPopupManager'
-
-interface IToastContainerProps {
-  height: string
-  newToastPopup?: IToastPopupList
-}
 
 export const ToastContainer = ({ height, newToastPopup }: IToastContainerProps) => {
   const [list, setList] = useState<IToastPopupList[]>(toastPopupManager.list)
@@ -23,6 +18,13 @@ export const ToastContainer = ({ height, newToastPopup }: IToastContainerProps) 
       setList(toastPopupManager.list)
     }
   }, [newToastPopup])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (list.length) handleClose(list.at(-1) as IToastPopupList)
+    }, 1000 * 3.5)
+    return () => clearInterval(timer)
+  }, [list])
 
   return (
     <div
