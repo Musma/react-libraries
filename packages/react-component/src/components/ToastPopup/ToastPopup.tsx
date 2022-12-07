@@ -19,41 +19,41 @@ export const ToastPopup = ({
   description,
   mode = 'light',
 }: IToastPopupProps) => {
-  const { color } = useTheme()
+  const theme = useTheme()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const stylesByState = useMemo(
     () => ({
       info: {
-        img: <FillInformationIcon color={color.blue.main} />,
-        bgColor: color.gray.light,
+        img: <FillInformationIcon color={theme.colors.blue.main} />,
+        bgColor: theme.colors.gray.light,
         bgDarkColor: '#44505C',
       },
       warning: {
-        img: <FillCautionIcon color={color.orange.main} />,
-        bgColor: color.orange.lighter,
+        img: <FillCautionIcon color={theme.colors.orange.main} />,
+        bgColor: theme.colors.orange.lighter,
         bgDarkColor: '#4A4643',
       },
       error: {
-        img: <FillErrorIcon color={color.red.main} />,
-        bgColor: color.red.lighter,
+        img: <FillErrorIcon color={theme.colors.red.main} />,
+        bgColor: theme.colors.red.lighter,
         bgDarkColor: '#4A4347',
       },
       success: {
-        img: <FillCheckCircleIcon color={color.green.main} />,
-        bgColor: color.green.lighter,
+        img: <FillCheckCircleIcon color={theme.colors.green.main} />,
+        bgColor: theme.colors.green.lighter,
         bgDarkColor: '#494A43',
       },
     }),
     [
-      color.blue.main,
-      color.gray.light,
-      color.green.lighter,
-      color.green.main,
-      color.orange.lighter,
-      color.orange.main,
-      color.red.lighter,
-      color.red.main,
+      theme.colors.blue.main,
+      theme.colors.gray.light,
+      theme.colors.green.lighter,
+      theme.colors.green.main,
+      theme.colors.orange.lighter,
+      theme.colors.orange.main,
+      theme.colors.red.lighter,
+      theme.colors.red.main,
     ],
   )
 
