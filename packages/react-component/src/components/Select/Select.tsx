@@ -55,6 +55,10 @@ interface SelectProps<T>
    */
   options: SelectOption<T>[]
   /**
+   * @optional
+   */
+  required?: boolean
+  /**
    * @required
    */
   onChange: (value: T) => void
@@ -62,7 +66,17 @@ interface SelectProps<T>
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 const _Select = <T extends unknown>(
-  { id: _id, size = 'md', label, value, options, className, onChange, ...rest }: SelectProps<T>,
+  {
+    id: _id,
+    size = 'md',
+    label,
+    value,
+    options,
+    className,
+    required,
+    onChange,
+    ...rest
+  }: SelectProps<T>,
   inputRef: ForwardedRef<HTMLInputElement>,
 ) => {
   const theme = useTheme()
@@ -107,7 +121,11 @@ const _Select = <T extends unknown>(
       className={className}
     >
       {/* 라벨 */}
-      {label && <InputLabel size={size}>{label}</InputLabel>}
+      {label && (
+        <InputLabel size={size} required={required}>
+          {label}
+        </InputLabel>
+      )}
 
       <Box
         tabIndex={-1}
