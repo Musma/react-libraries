@@ -1,4 +1,4 @@
-export interface IToastPopupList {
+export interface IToastPopupData {
   id: number
   state?: 'info' | 'warning' | 'error' | 'success'
   title: string
@@ -6,11 +6,11 @@ export interface IToastPopupList {
   mode?: 'light' | 'dark'
 }
 
-export interface IToastPopupProps extends IToastPopupList {
+export interface IToastPopupProps extends IToastPopupData {
   onCloseClick(): void
 }
 
 export interface IToastContainerProps {
   height: string
-  newToastPopup?: IToastPopupList
+  newToastPopup?: IToastPopupData
 }

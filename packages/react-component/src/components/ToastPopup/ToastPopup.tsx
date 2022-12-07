@@ -75,7 +75,7 @@ export const ToastPopup = ({
     setIsOpen(true)
 
     return () => setIsOpen(false)
-  }, [])
+  }, [id])
 
   return (
     <div

@@ -1,26 +1,27 @@
-import { IToastPopupList } from '.'
+import { IToastPopupData } from '.'
 
+// 지금은 IToastPopupData로 받지만, id만 받는 형태로 바꿔도 될 듯
 class ToastPopupManager {
-  private popupList: Map<number, IToastPopupList> = new Map()
+  private popupList: Map<number, IToastPopupData> = new Map()
 
   get list() {
-    const list: IToastPopupList[] = []
+    const list: IToastPopupData[] = []
     this.popupList.forEach((item) => list.unshift(item))
     return list
   }
 
-  // ToastPopup이 componentDidMount 될 때 popupId를 인자로 받아서 넣어놓음
-  public add(toastPopup: IToastPopupList) {
+  public add(toastPopup: IToastPopupData): IToastPopupData[] {
     if (!this.popupList.has(toastPopup.id)) {
       this.popupList.set(toastPopup.id, toastPopup)
     }
+    return this.list
   }
 
-  // ToastPopup이 componentWillUnmount 될 때 popupId를 인자로 받아서 지움
-  public remove(toastPopup: IToastPopupList) {
+  public remove(toastPopup: IToastPopupData): IToastPopupData[] {
     if (this.popupList.has(toastPopup.id)) {
       this.popupList.delete(toastPopup.id)
     }
+    return this.list
   }
 }
 

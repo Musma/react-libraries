@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
 
-import { Button, IToastPopupList, ToastContainer } from 'src/components'
+import { Button, IToastPopupData, ToastContainer } from 'src/components'
 
 export const ToastPopupExample = () => {
-  const [showToastPopup, setShowToastPopup] = useState<IToastPopupList>()
+  const [showToastPopup, setShowToastPopup] = useState<IToastPopupData>()
 
-  const toastList: IToastPopupList[] = useMemo(
+  const toastList: IToastPopupData[] = useMemo(
     () => [
       {
         id: 1,
