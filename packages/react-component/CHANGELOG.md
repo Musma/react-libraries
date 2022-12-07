@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.48
+
+### Patch Changes
+
+- [`d7c1585`](https://github.com/Musma/react-libraries/commit/d7c1585f7d1398b8083722d9ec75d240488489de) Thanks [@jinchuu1391](https://github.com/jinchuu1391)! - feat: Select에 required prop 추가
+
 ## 0.1.47
 
 ### Patch Changes
