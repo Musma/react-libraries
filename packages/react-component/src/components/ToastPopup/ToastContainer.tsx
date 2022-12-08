@@ -4,10 +4,8 @@ import { IToastContainerProps, IToastPopupData } from '.'
 import { ToastPopup } from './ToastPopup'
 import { toastPopupManager } from './ToastPopupManager'
 
-// header의 height(ex. '10px')를 넘기면 디자인 가이드 상 height + 16px 띄워서 적용 => 추후에 height가 px이 아니어도 적용할 수 있도록 수정
 export const ToastContainer = ({ height = '0px', newToastPopup }: IToastContainerProps) => {
   const [list, setList] = useState<IToastPopupData[]>(toastPopupManager.list)
-  console.log('list', list)
 
   const handleClose = (toastPopup: IToastPopupData) => {
     setList(toastPopupManager.remove(toastPopup))
@@ -24,7 +22,7 @@ export const ToastContainer = ({ height = '0px', newToastPopup }: IToastContaine
     <div
       css={{
         position: 'fixed',
-        top: `calc(${height} + 16px)`,
+        top: height,
         right: 10,
         zIndex: 9999,
       }}
