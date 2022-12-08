@@ -2,7 +2,7 @@ import { IToastPopupData } from '.'
 
 // 지금은 IToastPopupData로 받지만, id만 받는 형태로 바꿔도 될 듯
 class ToastPopupManager {
-  private popupList: Map<number, IToastPopupData> = new Map()
+  private popupList: Map<string, IToastPopupData> = new Map()
 
   get list() {
     const list: IToastPopupData[] = []

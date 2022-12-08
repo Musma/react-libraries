@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -18,6 +19,7 @@ export const ToastPopup = ({
   title,
   description,
   mode = 'light',
+  ref,
 }: IToastPopupProps) => {
   const theme = useTheme()
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -78,43 +80,76 @@ export const ToastPopup = ({
   }, [id])
 
   return (
-    <div
+    <CSSTransition
+      key={id}
+      in={isOpen}
+      classNames="toast-popup"
+      timeout={3000}
+      nodeRef={ref}
       css={{
-        opacity: isOpen ? 1 : 0,
-        transform: isOpen ? 'translateY(10px)' : 'translateY(0px)',
-        padding: '12px 16px',
-        marginBottom: '10px',
-        background: stylesByMode[mode].bgColor,
-        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
-        borderRadius: '3px',
-        transition: 'all 1s',
+        '&.toast-popup-enter': {
+          opacity: 0,
+          transform: 'translateY(0px)',
+        },
+        '&.toast-popup-enter-active': {
+          opacity: 1,
+          transform: 'translateY(10px)',
+          transition: 'all 1s',
+        },
+        '&.toast-popup-enter-done': {
+          opacity: 0,
+          transform: 'translateY(10px)',
+        },
+        '&.toast-popup-exit': {
+          opacity: 1,
+          transform: 'translateY(10px)',
+        },
+        '&.toast-popup-exit-active': {
+          opacity: 0,
+          transform: 'translateY(-10px)',
+        },
+        '&.toast-popup-exit-done': {
+          opacity: 0,
+          transform: 'translateY(-10px)',
+        },
       }}
     >
       <div
         css={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: description ? 'normal' : 'center',
-          color: stylesByMode[mode].fontColor,
+          padding: '12px 16px',
+          marginBottom: '10px',
+          background: stylesByMode[mode].bgColor,
+          boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
+          borderRadius: '3px',
         }}
+        ref={ref}
       >
-        {stylesByState[state].img}
-        <div css={{ margin: '0 54px 0 10px' }}>
-          <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
-          {description && (
-            <Fragment>
-              <br />
-              {description}
-            </Fragment>
-          )}
+        <div
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: description ? 'normal' : 'center',
+            color: stylesByMode[mode].fontColor,
+          }}
+        >
+          {stylesByState[state].img}
+          <div css={{ margin: '0 54px 0 10px' }}>
+            <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
+            {description && (
+              <Fragment>
+                <br />
+                {description}
+              </Fragment>
+            )}
+          </div>
+          <OutlineCloseIcon
+            cursor="pointer"
+            color={stylesByMode[mode].fontColor}
+            onClick={onCloseClick}
+          />
         </div>
-        <OutlineCloseIcon
-          cursor="pointer"
-          color={stylesByMode[mode].fontColor}
-          onClick={onCloseClick}
-        />
       </div>
-    </div>
+    </CSSTransition>
   )
 }

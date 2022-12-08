@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { TransitionGroup } from 'react-transition-group'
 
 import { IToastContainerProps, IToastPopupData } from '.'
 import { ToastPopup } from './ToastPopup'
@@ -36,19 +37,22 @@ export const ToastContainer = ({ height = '0px', newToastPopup }: IToastContaine
         zIndex: 9999,
       }}
     >
-      {list.map((item: IToastPopupData) => {
-        return (
-          <ToastPopup
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            onCloseClick={() => handleClose(item)}
-            state={item.state}
-            mode={item.mode}
-            description={item?.description}
-          />
-        )
-      })}
+      <TransitionGroup className="popup-list">
+        {list.map((item: IToastPopupData) => {
+          return (
+            <ToastPopup
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              onCloseClick={() => handleClose(item)}
+              state={item.state}
+              mode={item.mode}
+              description={item?.description}
+              ref={item.ref}
+            />
+          )
+        })}
+      </TransitionGroup>
     </div>
   )
 }

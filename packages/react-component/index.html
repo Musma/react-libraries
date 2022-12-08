@@ -5,6 +5,28 @@
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
+    <style>
+              .toast-popup-enter {
+          opacity: 0;
+          transform: 'translateY(0px)';
+        }
+
+        .toast-popup-enter-active {
+          opacity: 1;
+          transform: 'translateY(10px)';
+          transition: all 1s;
+        }
+
+        .toast-popup-exit {
+          opacity: 1;
+          transform: translateY(10px);
+        }
+
+         .toast-popup-exit-active {
+          opacity: 0;
+          transform: translateY(0px);
+        }
+    </style>
   </head>
   <body>
     <div id="root"></div>
