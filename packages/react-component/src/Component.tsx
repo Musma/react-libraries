@@ -56,24 +56,22 @@ export const Component = () => {
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
   const [toastPopup, setToastPopup] = useState<IToastPopupData>()
-  const popupSample: IToastPopupData[] = [
-    {
-      id: uniqueId(),
-      title: '에러났다 어쩔래',
-      description: '어쩔어쩔어쩔어쩔어쩔',
-      mode: 'dark',
-      state: 'error',
-      ref: createRef(),
-    },
-    {
-      id: uniqueId(),
-      title: '잘했다임마',
-      description: '굿 잘 됨',
-      mode: 'light',
-      state: 'success',
-      ref: createRef(),
-    },
-  ]
+  const popupSample1: IToastPopupData = {
+    id: uniqueId(),
+    title: '에러났다 어쩔래',
+    description: '어쩔어쩔어쩔어쩔어쩔',
+    mode: 'dark',
+    state: 'error',
+    ref: createRef<HTMLDivElement>(),
+  }
+  const popupSample2: IToastPopupData = {
+    id: uniqueId(),
+    title: '잘했다임마',
+    description: '굿 잘 됨',
+    mode: 'light',
+    state: 'success',
+    ref: createRef<HTMLDivElement>(),
+  }
 
   return (
     <Box>
@@ -111,7 +109,7 @@ export const Component = () => {
           color={theme.colors.red.main}
           shape="rounded"
           onClick={() => {
-            popupSample[0] && setToastPopup(popupSample[0])
+            setToastPopup(popupSample1)
           }}
         >
           토스트 팝업 1
@@ -120,7 +118,7 @@ export const Component = () => {
           color={theme.colors.green.main}
           shape="rounded"
           onClick={() => {
-            popupSample[1] && setToastPopup(popupSample[1])
+            setToastPopup(popupSample2)
           }}
         >
           토스트 팝업 2

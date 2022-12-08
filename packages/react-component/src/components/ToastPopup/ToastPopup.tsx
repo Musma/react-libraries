@@ -1,16 +1,16 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
 
 import { useTheme } from '@emotion/react'
 import {
+  FillInformationIcon,
   FillCautionIcon,
   FillErrorIcon,
   FillCheckCircleIcon,
-  FillInformationIcon,
   OutlineCloseIcon,
 } from '@musma/react-icons'
 
-import { IToastPopupProps } from '.'
+import { toastPopupManager } from './ToastPopupManager'
+import { IToastPopupProps } from './ToastPopupTypes'
 
 export const ToastPopup = ({
   id,
@@ -19,7 +19,6 @@ export const ToastPopup = ({
   title,
   description,
   mode = 'light',
-  ref,
 }: IToastPopupProps) => {
   const theme = useTheme()
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -73,83 +72,60 @@ export const ToastPopup = ({
     [state, stylesByState],
   )
 
+  // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
     setIsOpen(true)
-
-    return () => setIsOpen(false)
-  }, [id])
+    const timer = setTimeout(() => {
+      toastPopupManager.remove({
+        id,
+        state,
+        title,
+        description,
+        mode,
+      })
+      setIsOpen(false)
+    }, 1000 * 3.5) // 임의로 1초를 해놨지만, 디자인 가이드 상 3.5초
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
-    <CSSTransition
-      key={id}
-      in={isOpen}
-      classNames="toast-popup"
-      timeout={3000}
-      nodeRef={ref}
+    <div
       css={{
-        '&.toast-popup-enter': {
-          opacity: 0,
-          transform: 'translateY(0px)',
-        },
-        '&.toast-popup-enter-active': {
-          opacity: 1,
-          transform: 'translateY(10px)',
-          transition: 'all 1s',
-        },
-        '&.toast-popup-enter-done': {
-          opacity: 0,
-          transform: 'translateY(10px)',
-        },
-        '&.toast-popup-exit': {
-          opacity: 1,
-          transform: 'translateY(10px)',
-        },
-        '&.toast-popup-exit-active': {
-          opacity: 0,
-          transform: 'translateY(-10px)',
-        },
-        '&.toast-popup-exit-done': {
-          opacity: 0,
-          transform: 'translateY(-10px)',
-        },
+        opacity: isOpen ? 1 : 0,
+        transform: isOpen ? 'translateY(10px)' : 'translateY(0px)',
+        padding: '12px 16px',
+        marginBottom: '10px',
+        background: stylesByMode[mode].bgColor,
+        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
+        borderRadius: '3px',
+        transition: 'all 1s',
       }}
     >
       <div
         css={{
-          padding: '12px 16px',
-          marginBottom: '10px',
-          background: stylesByMode[mode].bgColor,
-          boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
-          borderRadius: '3px',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: description ? 'normal' : 'center',
+          color: stylesByMode[mode].fontColor,
         }}
-        ref={ref}
       >
-        <div
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: description ? 'normal' : 'center',
-            color: stylesByMode[mode].fontColor,
-          }}
-        >
-          {stylesByState[state].img}
-          <div css={{ margin: '0 54px 0 10px' }}>
-            <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
-            {description && (
-              <Fragment>
-                <br />
-                {description}
-              </Fragment>
-            )}
-          </div>
-          <OutlineCloseIcon
-            cursor="pointer"
-            color={stylesByMode[mode].fontColor}
-            onClick={onCloseClick}
-          />
+        {stylesByState[state].img}
+        <div css={{ margin: '0 54px 0 10px' }}>
+          <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
+          {description && (
+            <Fragment>
+              <br />
+              {description}
+            </Fragment>
+          )}
         </div>
+        <OutlineCloseIcon
+          cursor="pointer"
+          color={stylesByMode[mode].fontColor}
+          onClick={onCloseClick}
+        />
       </div>
-    </CSSTransition>
+    </div>
   )
 }
