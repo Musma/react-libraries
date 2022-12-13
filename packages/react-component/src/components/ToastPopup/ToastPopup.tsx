@@ -89,6 +89,7 @@ export const ToastPopup = forwardRef<HTMLDivElement, IToastPopupProps>(
 
     return (
       <CSSTransition
+        unmountOnExit
         timeout={1000 * 3.5}
         in={isOpen}
         classNames="popup"
