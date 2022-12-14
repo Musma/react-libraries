@@ -1,3 +1,3 @@
-import { uniqueId, isEmpty, debounce } from 'lodash-es'
+import { uniqueId, isEmpty, debounce, isUndefined } from 'lodash-es'
 
-export { uniqueId, isEmpty, debounce }
+export { uniqueId, isEmpty, debounce, isUndefined }
