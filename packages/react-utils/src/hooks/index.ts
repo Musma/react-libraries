@@ -1,3 +1,4 @@
+export * from './useDetectCapsLock'
 export * from './useEscKeyPress'
 export * from './useFormSearch'
 export * from './useFullScreen'
