@@ -74,6 +74,7 @@ const _Select = <T extends unknown>(
     options,
     className,
     required,
+    disabled,
     onChange,
     ...rest
   }: SelectProps<T>,
@@ -92,8 +93,10 @@ const _Select = <T extends unknown>(
   }, [value, options])
 
   const handleSelectClick = useCallback((event: MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation()
-    setOpen((value) => !value)
+    if (!disabled) {
+      event.stopPropagation()
+      setOpen((value) => !value)
+    }
   }, [])
 
   const handleOptionClick = useCallback(
@@ -129,7 +132,12 @@ const _Select = <T extends unknown>(
 
       <Box
         tabIndex={-1}
-        css={{ position: 'relative', display: 'flex', alignItems: 'center' }}
+        css={[
+          { position: 'relative', display: 'flex', alignItems: 'center', cursor: 'pointer' },
+          disabled && {
+            cursor: 'not-allowed',
+          },
+        ]}
         onClick={handleSelectClick}
       >
         <InputBase
@@ -137,21 +145,29 @@ const _Select = <T extends unknown>(
           id={id}
           value={selectedOption?.label}
           readOnly={true}
+          disabled={disabled}
           css={[
             {
               width: '100%',
               height: theme.inputSize.height[size],
               fontSize: theme.inputSize.fontSize[size],
-              cursor: 'pointer',
               borderRadius: theme.rounded.md,
               paddingLeft: theme.spacing.sm,
-              border: `1px solid ${theme.colors.gray.darker}`,
+              borderWidth: 1,
+              borderStyle: 'solid',
+              borderColor: theme.colors.gray.darker,
               color: theme.colors.black.dark,
+              cursor: 'inherit',
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
               },
               '&::placeholder': {
                 color: theme.colors.black.main,
+              },
+              '&:disabled': {
+                color: theme.colors.gray.main,
+                backgroundColor: theme.colors.white.light,
+                borderColor: theme.colors.gray.main,
               },
             },
           ]}
@@ -159,10 +175,8 @@ const _Select = <T extends unknown>(
         />
 
         <OutlineArrowBottomSmallIcon
-          css={[
-            { position: 'absolute', right: 4, cursor: 'pointer' },
-            open && { rotate: '180deg' },
-          ]}
+          color={disabled ? theme.colors.gray.main : theme.colors.black.main}
+          css={[{ position: 'absolute', right: 4 }, open && { rotate: '180deg' }]}
         />
 
         {open && (

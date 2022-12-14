@@ -134,6 +134,7 @@ export const Table = ({
         css={{
           borderRadius: theme.rounded[rounded],
           border: `1px solid ${theme.colors.gray.lighter}`,
+          overflow: 'hidden',
         }}
       >
         {/* Table Header */}

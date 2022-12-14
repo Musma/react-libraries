@@ -25,6 +25,7 @@ export const TextButton = forwardRef<HTMLButtonElement, TextButtonProps>(
         ref={ref}
         css={[
           {
+            minWidth: theme.inputSize.minWidth,
             height: theme.inputSize.height[size],
             backgroundColor: theme.colors.transparent,
             '&:hover': {

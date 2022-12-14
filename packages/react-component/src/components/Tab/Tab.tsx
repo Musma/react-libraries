@@ -26,6 +26,7 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
       tabIndex={-1}
       css={[
         {
+          minWidth: theme.inputSize.minWidth,
           flex: 1,
           height: 40,
           display: 'flex',

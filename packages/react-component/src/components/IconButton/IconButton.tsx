@@ -23,7 +23,6 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minWidth: 'auto',
             width: theme.inputSize.height[size],
             height: theme.inputSize.height[size],
             borderRadius: theme.rounded.md,

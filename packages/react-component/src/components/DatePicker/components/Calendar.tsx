@@ -10,7 +10,7 @@ import {
 import { useOutsideListener, useSetRef } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
-import { Backdrop, DATE_FORMAT, IconAdornment, Typography } from 'src/components'
+import { DATE_FORMAT, IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
 const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
@@ -31,7 +31,6 @@ interface CalendarProps {
 
 export const Calendar = ({
   value,
-  inputRef,
   minDate,
   maxDate,
   anchorOrigin = {
@@ -44,29 +43,18 @@ export const Calendar = ({
   const [boxRef, setRef] = useSetRef()
   const [calendarDateTime, setCalendarDateTime] = useState(value)
 
-  /**
-   * 캘린더의 위치 계산
-   */
   const calendarPosition = useMemo(() => {
-    if (inputRef) {
-      const { top, left, height } = inputRef.getBoundingClientRect()
-
-      const topValue = {
-        bottom: {
-          top: top + height + 4,
-        },
-        top: {
-          top: top - 4,
-          transform: 'translateY(-100%)',
-        },
-      }[anchorOrigin.vertical]
-
+    if (anchorOrigin.vertical === 'top') {
       return {
-        ...topValue,
-        left: left,
+        top: -4,
+        transform: 'translateY(-100%)',
       }
     }
-  }, [inputRef])
+
+    return {
+      top: `calc(100% + 4px)`,
+    }
+  }, [anchorOrigin.vertical])
 
   const month = useMemo(() => {
     return calendarDateTime.month
@@ -140,160 +128,158 @@ export const Calendar = ({
   }, [value])
 
   return (
-    <Backdrop disableDimmed={true}>
+    <Box
+      ref={setRef}
+      tabIndex={-1}
+      css={{
+        backgroundColor: theme.colors.white.main,
+        border: `1px solid ${theme.colors.gray.darker}`,
+        borderRadius: theme.rounded.md,
+        position: 'absolute',
+        zIndex: theme.zIndex.navBar + 1,
+        ...calendarPosition,
+      }}
+    >
       <Box
-        ref={setRef}
-        tabIndex={-1}
-        css={{
-          backgroundColor: theme.colors.white.main,
-          border: `1px solid ${theme.colors.gray.darker}`,
-          borderRadius: theme.rounded.md,
-          position: 'absolute',
-          zIndex: theme.zIndex.navBar + 1,
-          ...calendarPosition,
-        }}
+        css={[
+          {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderBottom: `1px solid ${theme.colors.white.dark}`,
+            padding: '8px 16px',
+          },
+        ]}
       >
-        <Box
-          css={[
-            {
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              borderBottom: `1px solid ${theme.colors.white.dark}`,
-              padding: '8px 16px',
-            },
-          ]}
-        >
-          <Box css={{ display: 'flex', alignItems: 'center' }}>
-            {/* Prev Year */}
-            <IconAdornment
-              noPadding={true}
-              onClick={() => {
-                const dateTime = calendarDateTime.minus({ year: 1 })
-                setCalendarDateTime(dateTime)
-              }}
-            >
-              <OutlineArrowFirstLargeIcon />
-            </IconAdornment>
+        <Box css={{ display: 'flex', alignItems: 'center' }}>
+          {/* Prev Year */}
+          <IconAdornment
+            noPadding={true}
+            onClick={() => {
+              const dateTime = calendarDateTime.minus({ year: 1 })
+              setCalendarDateTime(dateTime)
+            }}
+          >
+            <OutlineArrowFirstLargeIcon />
+          </IconAdornment>
 
-            {/* Prev Month */}
-            <IconAdornment
-              noPadding={true}
-              onClick={() => {
-                const dateTime = calendarDateTime.minus({ month: 1 })
-                setCalendarDateTime(dateTime)
-              }}
-            >
-              <OutlineArrowLeftLargeIcon />
-            </IconAdornment>
-          </Box>
-
-          <Box css={{ marginLeft: 40, marginRight: 40 }}>
-            <Typography type="subTitle2">{`${MONTHS[month - 1]} ${year}`}</Typography>
-          </Box>
-
-          <Box css={{ display: 'flex', alignItems: 'center' }}>
-            {/* Next Month */}
-            <IconAdornment
-              noPadding={true}
-              onClick={() => {
-                const dateTime = calendarDateTime.plus({ month: 1 })
-                setCalendarDateTime(dateTime)
-              }}
-            >
-              <OutlineArrowRightLargeIcon />
-            </IconAdornment>
-
-            {/* Next Year */}
-            <IconAdornment
-              noPadding={true}
-              onClick={() => {
-                const dateTime = calendarDateTime.plus({ year: 1 })
-                setCalendarDateTime(dateTime)
-              }}
-            >
-              <OutlineArrowLastLargeIcon />
-            </IconAdornment>
-          </Box>
+          {/* Prev Month */}
+          <IconAdornment
+            noPadding={true}
+            onClick={() => {
+              const dateTime = calendarDateTime.minus({ month: 1 })
+              setCalendarDateTime(dateTime)
+            }}
+          >
+            <OutlineArrowLeftLargeIcon />
+          </IconAdornment>
         </Box>
 
-        <Box
-          css={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(7, 1fr)',
-            backgroundColor: theme.colors.white.main,
-            borderRadius: theme.rounded.md,
-            textAlign: 'center',
-            padding: theme.spacing.md,
-            gap: theme.spacing.sm,
-          }}
-        >
-          {/* Monday ~ Sunday 날짜 */}
-          {DAYS_OF_THE_WEEK.map((week) => (
-            <Typography
-              key={week}
-              type="subTitle3"
-              css={{
+        <Box css={{ marginLeft: 40, marginRight: 40 }}>
+          <Typography type="subTitle2">{`${MONTHS[month - 1]} ${year}`}</Typography>
+        </Box>
+
+        <Box css={{ display: 'flex', alignItems: 'center' }}>
+          {/* Next Month */}
+          <IconAdornment
+            noPadding={true}
+            onClick={() => {
+              const dateTime = calendarDateTime.plus({ month: 1 })
+              setCalendarDateTime(dateTime)
+            }}
+          >
+            <OutlineArrowRightLargeIcon />
+          </IconAdornment>
+
+          {/* Next Year */}
+          <IconAdornment
+            noPadding={true}
+            onClick={() => {
+              const dateTime = calendarDateTime.plus({ year: 1 })
+              setCalendarDateTime(dateTime)
+            }}
+          >
+            <OutlineArrowLastLargeIcon />
+          </IconAdornment>
+        </Box>
+      </Box>
+
+      <Box
+        css={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(7, 1fr)',
+          backgroundColor: theme.colors.white.main,
+          borderRadius: theme.rounded.md,
+          textAlign: 'center',
+          padding: theme.spacing.md,
+          gap: theme.spacing.sm,
+        }}
+      >
+        {/* Monday ~ Sunday 날짜 */}
+        {DAYS_OF_THE_WEEK.map((week) => (
+          <Typography
+            key={week}
+            type="subTitle3"
+            css={{
+              width: 20,
+              height: 24,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {week}
+          </Typography>
+        ))}
+
+        {/* 일자  */}
+        {calendar.map((day) => (
+          <Span
+            key={day.toFormat(DATE_FORMAT)}
+            css={[
+              {
                 width: 20,
                 height: 24,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-              }}
-            >
-              {week}
-            </Typography>
-          ))}
-
-          {/* 일자  */}
-          {calendar.map((day) => (
-            <Span
-              key={day.toFormat(DATE_FORMAT)}
-              css={[
-                {
-                  width: 20,
-                  height: 24,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  lineHeight: 1,
-                  fontSize: 12,
-                  userSelect: 'none',
-                  borderRadius: 2,
-                  color: theme.colors.black.main,
-                  '&:hover': {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.main,
-                  },
-                },
-                // 현재 달력에 나타나는 달의 날짜가 아닌 경우
-                !calendarDateTime.hasSame(day, 'month') && {
-                  color: theme.colors.gray.main,
-                },
-                // value로 받은 DateTime과 같은 날인지
-                value.hasSame(day, 'day') && {
+                cursor: 'pointer',
+                lineHeight: 1,
+                fontSize: 12,
+                userSelect: 'none',
+                borderRadius: 2,
+                color: theme.colors.black.main,
+                '&:hover': {
                   color: theme.colors.white.main,
                   backgroundColor: theme.colors.primary.main,
                 },
-                // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
-                isInvalidDate(day) && {
-                  pointerEvents: 'none',
-                  backgroundColor: 'inherit',
-                  '&:hover': {
-                    cursor: 'not-allowed',
-                  },
+              },
+              // 현재 달력에 나타나는 달의 날짜가 아닌 경우
+              !calendarDateTime.hasSame(day, 'month') && {
+                color: theme.colors.gray.main,
+              },
+              // value로 받은 DateTime과 같은 날인지
+              value.hasSame(day, 'day') && {
+                color: theme.colors.white.main,
+                backgroundColor: theme.colors.primary.main,
+              },
+              // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
+              isInvalidDate(day) && {
+                pointerEvents: 'none',
+                backgroundColor: 'inherit',
+                '&:hover': {
+                  cursor: 'not-allowed',
                 },
-              ]}
-              onClick={() => {
-                onChange(day)
-              }}
-            >
-              {day.toFormat('dd')}
-            </Span>
-          ))}
-        </Box>
+              },
+            ]}
+            onClick={() => {
+              onChange(day)
+            }}
+          >
+            {day.toFormat('dd')}
+          </Span>
+        ))}
       </Box>
-    </Backdrop>
+    </Box>
   )
 }

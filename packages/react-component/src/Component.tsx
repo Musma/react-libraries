@@ -1,24 +1,11 @@
-import { createRef, useState } from 'react'
-
 import { useTheme } from '@emotion/react'
-import { uniqueId, useFormSearch, useToggle } from '@musma/react-utils'
+import { FillAddBoxIcon } from '@musma/react-icons'
+import { useDetectCapsLock } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import {
-  DatePicker,
-  Grid,
-  IToastPopupData,
-  RadioButton,
-  SearchForm,
-  Select,
-  Table,
-  TextInput,
-  ToastContainer,
-} from './components'
-import { Chip } from './components/Chip'
-import { Modal1 } from './Modal1'
+import { DatePicker, Select, Table, Textarea, TextInput } from './components'
 
 const DATA = [
   {
@@ -38,233 +25,79 @@ const COLUMNS = [
   },
 ]
 
-type DDD = {
-  date: string
-}
+const options = [
+  {
+    label: '1',
+    value: '1',
+  },
+  {
+    label: '2',
+    value: '2',
+  },
+  {
+    label: '3',
+    value: '3',
+  },
+  {
+    label: '4',
+    value: '4',
+  },
+]
 
 export const Component = () => {
-  const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
-    useFormProps: {
-      defaultValues: {
-        date: DateTime.local().toISO(),
-      },
-    },
-    fetchAPI() {
-      console.log(';fetchposdkdspokpo')
-    },
-  })
   const theme = useTheme()
-  const [isOpen1, setIsOpen1] = useToggle(false)
-  const [toastPopup, setToastPopup] = useState<IToastPopupData>()
-  const popupSample1: IToastPopupData = {
-    id: uniqueId(),
-    title: '에러났다 어쩔래',
-    description: '어쩔어쩔어쩔어쩔어쩔',
-    mode: 'dark',
-    state: 'error',
-    ref: createRef<HTMLDivElement>(),
-  }
-  const popupSample2: IToastPopupData = {
-    id: uniqueId(),
-    title: '잘했다임마',
-    description: '굿 잘 됨',
-    mode: 'light',
-    state: 'success',
-    ref: createRef<HTMLDivElement>(),
-  }
+  const { activeCapsLock } = useDetectCapsLock()
 
   return (
-    <Box>
-      {/* <LoadingScreen type="fallback" /> */}
-      <Box
-        css={{
-          height: 400,
-          backgroundColor: theme.colors.blue.main,
+    <Box css={{ padding: theme.spacingUtil(100) }}>
+      <Textarea rows={10} disabled={false} css={{ marginBottom: 16 }} />
+
+      <TextInput
+        css={{ marginBottom: 16 }}
+        startAdornment={FillAddBoxIcon}
+        endAdornment={FillAddBoxIcon}
+        placeholder="1230812309218309128309 입력하세요"
+      />
+
+      <TextInput
+        value="12309128309128"
+        size="sm"
+        type="password"
+        disabled={true}
+        css={{ marginBottom: 16 }}
+      />
+
+      {activeCapsLock ? '활성' : '비활성'}
+
+      <Select
+        options={options}
+        value={'1'}
+        onChange={() => {
+          return null
         }}
-      >
-        <Box css={{ height: 400, backgroundColor: theme.colors.red.main }}></Box>
-      </Box>
+        css={{ marginBottom: 16 }}
+      />
 
-      <SearchForm onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
-        <Chip color="#dd9c4f">spokdopk</Chip>
+      <Select
+        disabled={true}
+        options={options}
+        value={'1'}
+        onChange={() => {
+          return null
+        }}
+        css={{ marginBottom: 16 }}
+      />
 
-        <Chip color="#dd9c4f" size="sm">
-          spokdopk
-        </Chip>
-
-        <Chip color="#006CE8" size="lg" shape="rounded" variant="outlined">
-          spokdopkasdsadas
-        </Chip>
-
-        <Chip
-          color="#dd9c4f"
-          onClick={() => {
-            setIsOpen1(true)
-          }}
-        >
-          첫번째 모달 열기
-        </Chip>
-
-        <Chip
-          color={theme.colors.red.main}
-          shape="rounded"
-          onClick={() => {
-            setToastPopup(popupSample1)
-          }}
-        >
-          토스트 팝업 1
-        </Chip>
-        <Chip
-          color={theme.colors.green.main}
-          shape="rounded"
-          onClick={() => {
-            setToastPopup(popupSample2)
-          }}
-        >
-          토스트 팝업 2
-        </Chip>
-
-        <TextInput value="123" css={{ marginBottom: 24 }} />
-
-        <DatePicker
-          value={DateTime.now()}
-          onChange={() => {
-            return null
-          }}
-          anchorOrigin={{ vertical: 'top' }}
-        />
-
-        <TextInput
-          value="123"
-          disabled={true}
-          css={{ marginBottom: 24 }}
-          helperText="!@312312321"
-        />
-
-        <RadioButton
-          size="sm"
-          checked={false}
-          onChange={(value) => {
-            console.log(value)
-          }}
-        />
-
-        <RadioButton
-          size="md"
-          checked={true}
-          onChange={(value) => {
-            console.log(value)
-          }}
-        />
-
-        <RadioButton
-          size="lg"
-          disabled={true}
-          checked={false}
-          onChange={(value) => {
-            console.log(value)
-          }}
-        />
-
-        <Select
-          options={[]}
-          value="1"
-          onChange={() => {
-            return null
-          }}
-        />
-
-        <Grid cols={3} spacing="lg" itemWidth={200}></Grid>
-      </SearchForm>
-
-      {isOpen1 && (
-        <Modal1 show={isOpen1} onClose={() => setIsOpen1(false)}>
-          Modal1
-        </Modal1>
-      )}
-      <ToastContainer height="30px" newToastPopup={toastPopup} />
-
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
+      <DatePicker
+        disabled={true}
+        value={DateTime.now()}
+        anchorOrigin={{ vertical: 'bottom' }}
+        onChange={() => {
+          return null
         }}
       />
 
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
-      <Table
-        data={DATA}
-        columns={COLUMNS}
-        withCheckbox={true}
-        onRowClick={(row) => {
-          alert('12312321')
-        }}
-      />
+      <Table data={DATA} columns={COLUMNS} withCheckbox={true} />
     </Box>
   )
 }

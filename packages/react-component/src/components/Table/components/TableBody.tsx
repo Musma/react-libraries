@@ -68,6 +68,7 @@ export const TableBody = ({
             {
               display: 'grid',
               gridTemplateColumns,
+              backgroundColor: theme.colors.white.main,
               borderBottom: `1px solid ${theme.colors.white.lighter}`,
               color: theme.colors.black.dark,
               '&:last-of-type': {

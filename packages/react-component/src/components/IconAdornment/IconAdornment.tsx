@@ -15,7 +15,8 @@ export const IconAdornment = forwardRef<HTMLButtonElement, IconAdornmentProps>(
       <ButtonBase
         ref={ref}
         css={{
-          minWidth: 'auto',
+          width: 'fit-content',
+          height: 'fit-content',
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -28,6 +29,7 @@ export const IconAdornment = forwardRef<HTMLButtonElement, IconAdornmentProps>(
             backgroundColor: theme.buttonBackgroundColor,
           },
           '&:disabled': {
+            color: theme.colors.gray.main,
             backgroundColor: theme.colors.transparent,
             cursor: 'not-allowed',
             '&:active': {

@@ -1,7 +1,7 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { FillCalendarIcon } from '@musma/react-icons'
+import { OutlineDaterangeIcon } from '@musma/react-icons'
 import { uniqueId, useSetRef, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
@@ -139,6 +139,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               paddingLeft: theme.spacing.sm,
               paddingRight: theme.spacing.sm,
               overflow: 'hidden',
+              color: theme.colors.black.dark,
               fontSize: theme.inputSize.fontSize[size],
               height: theme.inputSize.height[size],
               '&:focus-within': {
@@ -148,8 +149,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             },
             // Disabled CSS
             disabled && {
+              backgroundColor: theme.colors.white.light,
+              color: theme.colors.gray.main,
               cursor: 'not-allowed',
-              borderColor: theme.colors.white.darker,
+              borderColor: theme.colors.gray.main,
             },
           ]}
           onClick={() => {
@@ -173,14 +176,18 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               paddingLeft: 0,
               paddingRight: 0,
               cursor: 'inherit',
+              color: 'inherit',
               '&:disabled': {
-                backgroundColor: theme.colors.transparent,
+                backgroundColor: theme.colors.white.light,
+              },
+              '&::placeholder': {
+                color: theme.colors.gray.light,
               },
             }}
             {...rest}
           />
 
-          <FillCalendarIcon width={16} height={16} />
+          <OutlineDaterangeIcon width={16} height={16} color="currentColor" />
         </Box>
 
         {helperText && <InputHelper error={error}>{helperText}</InputHelper>}

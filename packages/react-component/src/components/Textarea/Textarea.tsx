@@ -65,66 +65,46 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          minWidth: theme.inputSize.minWidth,
+          position: 'relative',
         }}
         className={className}
       >
         {/* 라벨 */}
         {label && (
-          <InputLabel size={size} required={required}>
+          <InputLabel size={size} required={required} htmlFor={id}>
             {label}
           </InputLabel>
         )}
 
-        {/* Input Container */}
-        <Box
-          css={[
-            // Base CSS
-            {
-              display: 'flex',
-              alignItems: 'center',
-              position: 'relative',
-              backgroundColor: theme.colors.white.main,
-              borderWidth: 1,
-              borderStyle: 'solid',
-              borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
-              borderRadius: theme.rounded.md,
-              overflow: 'hidden',
-              fontSize: theme.inputSize.fontSize[size],
-              minHeight: theme.inputSize.height[size],
-              '&:focus-within': {
-                borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
-                boxShadow: theme.shadow.md,
-              },
+        {/* Input */}
+        <TextareaBase
+          id={id}
+          ref={ref}
+          css={{
+            minHeight: theme.inputSize.height[size],
+            backgroundColor: theme.colors.white.main,
+            borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
+            borderRadius: theme.rounded.md,
+            borderWidth: 1,
+            borderStyle: 'solid',
+            fontSize: theme.inputSize.fontSize[size],
+            padding: theme.spacing.sm,
+            '&:focus': {
+              borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
+              boxShadow: theme.shadow.md,
             },
-            // Disabled CSS
-            disabled && {
+            '&:disabled': {
+              backgroundColor: theme.colors.white.light,
+              borderColor: theme.colors.gray.main,
               cursor: 'not-allowed',
-              borderColor: theme.colors.white.darker,
             },
-          ]}
-        >
-          {/* Input */}
-          <TextareaBase
-            id={id}
-            ref={ref}
-            css={{
-              flex: 1,
-              height: '100%',
-              padding: theme.spacing.sm,
-              fontSize: 'inherit',
-              '&:disabled': {
-                backgroundColor: theme.colors.transparent,
-                cursor: 'inherit',
-              },
-              '&::placeholder': {
-                color: theme.colors.gray.light,
-              },
-            }}
-            disabled={disabled}
-            {...rest}
-          />
-        </Box>
+            '&::placeholder': {
+              color: theme.colors.gray.light,
+            },
+          }}
+          disabled={disabled}
+          {...rest}
+        />
 
         {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
       </Box>
