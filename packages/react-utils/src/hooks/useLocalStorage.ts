@@ -4,16 +4,22 @@ import { isBrowser } from 'src/utils'
 
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
+    // SSR 환경이면 initialValue 값 리턴
     if (!isBrowser) {
       return initialValue
     }
+
     try {
-      // Get from local storage by key
+      /**
+       * 로컬스토리지에서 key 값으로 값을 받아와 객체로 만들어 리턴
+       */
       const item = window.localStorage.getItem(key)
       // Parse stored json or if none return initialValue
       return item ? JSON.parse(item) : initialValue
     } catch (error) {
-      // If error also return initialValue
+      /**
+       * 에러발생 시 initalValue 리턴
+       */
       console.error(error)
       return initialValue
     }
@@ -27,8 +33,8 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
       const valueToStore = value instanceof Function ? value(storedValue) : value
       // Save state
       setStoredValue(valueToStore)
-      // Save to local storage
-      if (typeof window !== 'undefined') {
+      // Window 객체가 있을 때
+      if (isBrowser) {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }
     } catch (error) {
