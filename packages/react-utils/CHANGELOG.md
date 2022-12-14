@@ -1,5 +1,15 @@
 # @musma/react-utils
 
+## 0.1.19
+
+### Patch Changes
+
+- [`8cfbfb8`](https://github.com/Musma/react-libraries/commit/8cfbfb8dc77316527f88dafb9c7ba510632630cb) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useDetectCapsLock 추가
+
+- [`2405c97`](https://github.com/Musma/react-libraries/commit/2405c9736246f15ea338306231a7f3fd38e5b640) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useFullScreen 추
+
+- [`c09a93c`](https://github.com/Musma/react-libraries/commit/c09a93cf0add2aa3f7a693c6c4ee045c0491a98d) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useDetectCapsLock 추가
+
 ## 0.1.18
 
 ### Patch Changes
