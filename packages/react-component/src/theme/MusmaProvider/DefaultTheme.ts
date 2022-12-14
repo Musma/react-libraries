@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { isUndefined } from '@musma/react-utils'
+
 import { MusmaTheme } from 'src/theme'
 import { Size } from 'src/types'
 
@@ -118,15 +120,15 @@ const DefaultTheme: MusmaTheme = {
       return `${spacing[size]}px`
     }
 
-    if (arg3) {
+    if (!isUndefined(arg3)) {
       return `${convert(arg0)} ${convert(arg1!)} ${convert(arg2!)} ${convert(arg3)}`
     }
 
-    if (arg2) {
+    if (!isUndefined(arg2)) {
       return `${convert(arg0)} ${convert(arg1!)} ${convert(arg2)}`
     }
 
-    if (arg1) {
+    if (!isUndefined(arg1)) {
       return `${convert(arg0)} ${convert(arg1)}`
     }
 
