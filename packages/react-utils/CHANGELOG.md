@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.20
+
+### Patch Changes
+
+- [`5d7980d`](https://github.com/Musma/react-libraries/commit/5d7980d703a664932ab6ca154abe9cfe38546874) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: useFullScreen 버그 수정
+
 ## 0.1.19
 
 ### Patch Changes

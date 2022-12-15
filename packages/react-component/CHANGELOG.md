@@ -1,5 +1,16 @@
 # @musma/react-component
 
+## 0.1.50
+
+### Patch Changes
+
+- [`bd01a2c`](https://github.com/Musma/react-libraries/commit/bd01a2ca9a3d785e2d023313ace23af516dc8095) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Theme inputSize -> iconSize 추가
+
+- [`3d5c747`](https://github.com/Musma/react-libraries/commit/3d5c7472d42d33e74b150191427ecfb26e0ca309) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: Button 크기 관련 버그 수정
+
+- Updated dependencies [[`5d7980d`](https://github.com/Musma/react-libraries/commit/5d7980d703a664932ab6ca154abe9cfe38546874)]:
+  - @musma/react-utils@0.1.20
+
 ## 0.1.49
 
 ### Patch Changes
