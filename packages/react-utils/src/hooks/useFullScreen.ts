@@ -15,7 +15,7 @@ export const useFullScreen = () => {
     }
 
     setFullScreen((value) => !value)
-  }, [])
+  }, [isFullScreen])
 
   return [isFullScreen, toggleFullScreen] as const
 }
