@@ -93,6 +93,20 @@ const DefaultTheme: MusmaTheme = {
       md: '0.75rem',
       lg: '0.855rem',
     },
+    iconSize: {
+      sm: {
+        width: 14,
+        height: 14,
+      },
+      md: {
+        width: 16,
+        height: 16,
+      },
+      lg: {
+        width: 16,
+        height: 16,
+      },
+    },
   },
   shadow: {
     sm: '0px 4px 4px 4px rgba(0, 0, 0, 0.02)',
@@ -134,7 +148,6 @@ const DefaultTheme: MusmaTheme = {
 
     return `${convert(arg0)}`
   },
-
   buttonBackgroundColor: 'rgba(0, 0, 0, 0.04)',
   dimmed: {
     sm: 'rgba(0, 0, 0, 0.4)',

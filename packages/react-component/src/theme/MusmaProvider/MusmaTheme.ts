@@ -154,6 +154,18 @@ export interface MusmaTheme {
     lg: 14,
    */
     fontSize: Record<Size, string>
+    /**
+     * sm: {
+     *  width: 14, height: 14
+     * }
+     * md: {
+     *  width: 166, height: 16
+     * }
+     * lg: {
+     *  width: 16, height: 16
+     * }
+     */
+    iconSize: Record<Size, { width: number; height: number }>
   }
   /**
    * @default

@@ -133,8 +133,15 @@ const _Select = <T extends unknown>(
       <Box
         tabIndex={-1}
         css={[
-          { position: 'relative', display: 'flex', alignItems: 'center', cursor: 'pointer' },
+          {
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            color: theme.colors.black.dark,
+            cursor: 'pointer',
+          },
           disabled && {
+            color: theme.colors.gray.main,
             cursor: 'not-allowed',
           },
         ]}
@@ -148,7 +155,7 @@ const _Select = <T extends unknown>(
           disabled={disabled}
           css={[
             {
-              width: '100%',
+              flex: 1,
               height: theme.inputSize.height[size],
               fontSize: theme.inputSize.fontSize[size],
               borderRadius: theme.rounded.md,
@@ -156,7 +163,7 @@ const _Select = <T extends unknown>(
               borderWidth: 1,
               borderStyle: 'solid',
               borderColor: theme.colors.gray.darker,
-              color: theme.colors.black.dark,
+              color: 'inherit',
               cursor: 'inherit',
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
@@ -165,7 +172,6 @@ const _Select = <T extends unknown>(
                 color: theme.colors.black.main,
               },
               '&:disabled': {
-                color: theme.colors.gray.main,
                 backgroundColor: theme.colors.white.light,
                 borderColor: theme.colors.gray.main,
               },
@@ -175,7 +181,7 @@ const _Select = <T extends unknown>(
         />
 
         <OutlineArrowBottomSmallIcon
-          color={disabled ? theme.colors.gray.main : theme.colors.black.main}
+          color="currentColor"
           css={[{ position: 'absolute', right: 4 }, open && { rotate: '180deg' }]}
         />
 

@@ -5,7 +5,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { DatePicker, Select, Table, Textarea, TextInput } from './components'
+import { DatePicker, Select, Table, Textarea, TextInput, Typography } from './components'
 
 const DATA = [
   {
@@ -53,8 +53,10 @@ export const Component = () => {
       <Textarea rows={10} disabled={false} css={{ marginBottom: 16 }} />
 
       <TextInput
+        type="text"
+        autoComplete="email"
         css={{ marginBottom: 16 }}
-        startAdornment={FillAddBoxIcon}
+        startAdornment={<Typography>K12312312g</Typography>}
         endAdornment={FillAddBoxIcon}
         placeholder="1230812309218309128309 입력하세요"
       />
@@ -89,7 +91,7 @@ export const Component = () => {
       />
 
       <DatePicker
-        disabled={true}
+        // disabled={true}
         value={DateTime.now()}
         anchorOrigin={{ vertical: 'bottom' }}
         onChange={() => {

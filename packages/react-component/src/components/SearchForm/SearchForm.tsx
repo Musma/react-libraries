@@ -54,12 +54,12 @@ export const SearchForm = ({
         >
           {/* Reset 버튼 */}
 
-          <Button type="reset" variant="outlined">
+          <Button type="reset" variant="outlined" fullWidth={true}>
             {resetLabel}
           </Button>
 
           {/* Submit 버튼 */}
-          <Button type="submit" disabled={disabled}>
+          <Button type="submit" disabled={disabled} fullWidth={true}>
             {searchLabel}
           </Button>
         </Grid>

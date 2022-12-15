@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   forwardRef,
   InputHTMLAttributes,
+  ReactNode,
   SVGProps,
   useCallback,
   useState,
@@ -14,10 +15,7 @@ import { IconAdornment, InputHelper, InputLabel } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
-const iconSize = {
-  width: 16,
-  height: 16,
-}
+import { Adornment } from './components'
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
@@ -34,15 +32,17 @@ export interface TextInputProps
    */
   label?: string
   /**
-   * @optional
-   * @description
-   * TextInput 앞에 나타날 장식품
+   *
+   * @param props
+   * @returns
    */
-  startAdornment?: (props: SVGProps<SVGSVGElement>) => JSX.Element
+  startAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   /**
-   * @optional
+   *
+   * @param props
+   * @returns
    */
-  endAdornment?: (props: SVGProps<SVGSVGElement>) => JSX.Element
+  endAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   /**
    * @optional
    */
@@ -77,8 +77,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       id,
       disabled = false,
       error = false,
-      startAdornment: StartAdornment,
-      endAdornment: EndAdornment,
+      startAdornment,
+      endAdornment,
       required,
       className,
       regExp,
@@ -90,7 +90,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const theme = useTheme()
     const [inputType, setInputType] = useState(type)
 
-    if (type === 'password' && EndAdornment) {
+    if (type === 'password' && endAdornment) {
       throw new Error('type에 password을 전달했을 시 endAdornment를 넣을 수 없습니다.')
     }
 
@@ -140,25 +140,35 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             // Base CSS
             {
               display: 'flex',
+              alignItems: 'center',
               position: 'relative',
-              color: disabled ? theme.colors.gray.main : theme.colors.black.dark,
+              backgroundColor: theme.colors.white.main,
+              borderWidth: 1,
+              borderStyle: 'solid',
+              borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
+              borderRadius: theme.rounded.md,
+              paddingLeft: theme.spacing.sm,
+              paddingRight: theme.spacing.sm,
+              overflow: 'hidden',
+              fontSize: theme.inputSize.fontSize[size],
+              height: theme.inputSize.height[size],
+              color: theme.colors.black.dark,
+              '&:focus-within': {
+                borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
+                boxShadow: theme.shadow.md,
+              },
+            },
+            // Disabled CSS
+            disabled && {
+              cursor: 'not-allowed',
+              backgroundColor: theme.colors.white.light,
+              borderColor: theme.colors.white.darker,
+              color: theme.colors.gray.main,
             },
           ]}
         >
           {/* Start Adornment */}
-          {StartAdornment && (
-            <StartAdornment
-              {...iconSize}
-              color="currentColor"
-              css={{
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                margin: 'auto 0',
-                left: theme.spacing.sm,
-              }}
-            />
-          )}
+          <Adornment adornment={startAdornment} direction="start" size={size} />
 
           {/* Input */}
           <InputBase
@@ -167,24 +177,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             ref={ref}
             css={{
               flex: 1,
-              backgroundColor: theme.colors.white.main,
-              fontSize: theme.inputSize.fontSize[size],
-              height: theme.inputSize.height[size],
-              borderWidth: 1,
-              borderStyle: 'solid',
-              borderRadius: theme.rounded.md,
-              borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
-              paddingLeft: StartAdornment ? 32 : theme.spacing.sm,
-              paddingRight: EndAdornment || inputType === 'password' ? 32 : theme.spacing.sm,
-              '&:focus': {
-                borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
-                boxShadow: theme.shadow.md,
-              },
-              '&:disabled': {
-                borderColor: theme.colors.gray.main,
-                backgroundColor: theme.colors.white.light,
-                cursor: 'not-allowed',
-              },
+              height: '100%',
+              cursor: 'inherit',
               '&::placeholder': {
                 color: theme.colors.gray.light,
               },
@@ -209,27 +203,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               }}
             >
               {inputType === 'text' ? (
-                <OutlineEyeCloseIcon {...iconSize} color="currentColor" />
+                <OutlineEyeCloseIcon {...theme.inputSize.iconSize[size]} color="currentColor" />
               ) : (
-                <OutlineEyeIcon {...iconSize} color="currentColor" />
+                <OutlineEyeIcon {...theme.inputSize.iconSize[size]} color="currentColor" />
               )}
             </IconAdornment>
           )}
 
           {/* End Adornment */}
-          {inputType !== 'password' && EndAdornment && (
-            <EndAdornment
-              {...iconSize}
-              color="currentColor"
-              css={{
-                position: 'absolute',
-                right: theme.spacing.sm,
-                top: 0,
-                bottom: 0,
-                margin: 'auto 0px',
-                cursor: 'inherit',
-              }}
-            />
+          {inputType !== 'password' && (
+            <Adornment adornment={endAdornment} direction="end" size={size} />
           )}
         </Box>
 

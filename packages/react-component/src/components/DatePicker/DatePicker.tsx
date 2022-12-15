@@ -1,7 +1,7 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { OutlineDaterangeIcon } from '@musma/react-icons'
+import { FillDateRangeIcon } from '@musma/react-icons'
 import { uniqueId, useSetRef, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
@@ -187,7 +187,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             {...rest}
           />
 
-          <OutlineDaterangeIcon width={16} height={16} color="currentColor" />
+          <FillDateRangeIcon {...theme.inputSize.iconSize[size]} color="currentColor" />
         </Box>
 
         {helperText && <InputHelper error={error}>{helperText}</InputHelper>}

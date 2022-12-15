@@ -147,7 +147,7 @@ export const Calendar = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             borderBottom: `1px solid ${theme.colors.white.dark}`,
-            padding: '8px 16px',
+            padding: theme.spacing.sm,
           },
         ]}
       >
@@ -175,9 +175,8 @@ export const Calendar = ({
           </IconAdornment>
         </Box>
 
-        <Box css={{ marginLeft: 40, marginRight: 40 }}>
-          <Typography type="subTitle2">{`${MONTHS[month - 1]} ${year}`}</Typography>
-        </Box>
+        {/* 월, 년 표시 */}
+        <Typography type="subTitle2">{`${MONTHS[month - 1]} ${year}`}</Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
