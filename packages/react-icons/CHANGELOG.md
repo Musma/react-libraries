@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.10
+
+### Patch Changes
+
+- [`dd0ffe1`](https://github.com/Musma/react-libraries/commit/dd0ffe1f9866f0878af538c7e7cbe75c150b2da9) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 일부 아이콘 Outline 이름 제거
+
 ## 0.1.9
 
 ### Patch Changes
