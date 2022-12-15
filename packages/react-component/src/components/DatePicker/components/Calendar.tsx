@@ -2,10 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
-  OutlineArrowFirstLargeIcon,
-  OutlineArrowLastLargeIcon,
-  OutlineArrowLeftLargeIcon,
-  OutlineArrowRightLargeIcon,
+  ArrowFirstLargeIcon,
+  ArrowLastLargeIcon,
+  ArrowLeftLargeIcon,
+  ArrowRightLargeIcon,
 } from '@musma/react-icons'
 import { useOutsideListener, useSetRef } from '@musma/react-utils'
 import { DateTime } from 'luxon'
@@ -160,7 +160,7 @@ export const Calendar = ({
               setCalendarDateTime(dateTime)
             }}
           >
-            <OutlineArrowFirstLargeIcon />
+            <ArrowFirstLargeIcon />
           </IconAdornment>
 
           {/* Prev Month */}
@@ -171,7 +171,7 @@ export const Calendar = ({
               setCalendarDateTime(dateTime)
             }}
           >
-            <OutlineArrowLeftLargeIcon />
+            <ArrowLeftLargeIcon />
           </IconAdornment>
         </Box>
 
@@ -187,7 +187,7 @@ export const Calendar = ({
               setCalendarDateTime(dateTime)
             }}
           >
-            <OutlineArrowRightLargeIcon />
+            <ArrowRightLargeIcon />
           </IconAdornment>
 
           {/* Next Year */}
@@ -198,7 +198,7 @@ export const Calendar = ({
               setCalendarDateTime(dateTime)
             }}
           >
-            <OutlineArrowLastLargeIcon />
+            <ArrowLastLargeIcon />
           </IconAdornment>
         </Box>
       </Box>

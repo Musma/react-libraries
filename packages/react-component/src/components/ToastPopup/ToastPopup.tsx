@@ -7,7 +7,7 @@ import {
   FillCautionIcon,
   FillErrorIcon,
   FillCheckCircleIcon,
-  OutlineCloseIcon,
+  CloseIcon,
 } from '@musma/react-icons'
 
 import { toastPopupManager } from './ToastPopupManager'
@@ -146,7 +146,8 @@ export const ToastPopup = forwardRef<HTMLDivElement, IToastPopupProps>(
                 </Fragment>
               )}
             </div>
-            <OutlineCloseIcon
+
+            <CloseIcon
               cursor="pointer"
               color={stylesByMode[mode].fontColor}
               onClick={onCloseClick}

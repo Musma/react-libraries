@@ -179,8 +179,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               flex: 1,
               height: '100%',
               cursor: 'inherit',
+              backgroundColor: 'transparent',
               '&::placeholder': {
                 color: theme.colors.gray.light,
+              },
+              '&:disabled': {
+                color: theme.colors.gray.main,
+                backgroundColor: theme.colors.white.light,
               },
             }}
             disabled={disabled}
@@ -199,7 +204,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 top: 0,
                 bottom: 0,
                 margin: 'auto 0px',
-                cursor: 'inherit',
               }}
             >
               {inputType === 'text' ? (

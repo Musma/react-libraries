@@ -1,7 +1,7 @@
 import { Fragment, HTMLAttributes, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { OutlineCloseIcon } from '@musma/react-icons'
+import { CloseIcon } from '@musma/react-icons'
 
 import { Divider, IconAdornment, Typography } from 'src/components'
 import { Box } from 'src/elements'
@@ -50,7 +50,7 @@ export const ModalTitle = ({ size, children, onClose, ...rest }: ModalTitleProps
         <Typography type="subTitle2">{children}</Typography>
 
         <IconAdornment onClick={onClose} css={{ marginRight: -theme.spacing.sm }}>
-          <OutlineCloseIcon width={16} height={16} color={theme.colors.black.lighter} />
+          <CloseIcon width={16} height={16} color={theme.colors.black.lighter} />
         </IconAdornment>
       </Box>
 

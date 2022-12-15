@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
-  OutlineArrowFirstMediumIcon,
-  OutlineArrowLeftMediumIcon,
-  OutlineArrowLastMediumIcon,
-  OutlineArrowRightMediumIcon,
+  ArrowFirstMediumIcon,
+  ArrowLeftMediumIcon,
+  ArrowLastMediumIcon,
+  ArrowRightMediumIcon,
 } from '@musma/react-icons'
 
 import { Typography, Select, IconAdornment } from 'src/components'
@@ -176,7 +176,7 @@ export const Pagination = ({
         noPadding={true}
         disabled={isForefrontDisabled}
       >
-        <OutlineArrowFirstMediumIcon
+        <ArrowFirstMediumIcon
           color={isForefrontDisabled ? theme.colors.gray.main : theme.colors.black.dark}
         />
       </IconAdornment>
@@ -189,7 +189,7 @@ export const Pagination = ({
         noPadding={true}
         disabled={isPrevDisabled}
       >
-        <OutlineArrowLeftMediumIcon
+        <ArrowLeftMediumIcon
           color={isPrevDisabled ? theme.colors.gray.main : theme.colors.black.dark}
         />
       </IconAdornment>
@@ -230,7 +230,7 @@ export const Pagination = ({
         noPadding={true}
         disabled={isNextDisabled}
       >
-        <OutlineArrowRightMediumIcon
+        <ArrowRightMediumIcon
           color={isNextDisabled ? theme.colors.gray.main : theme.colors.black.dark}
         />
       </IconAdornment>
@@ -243,7 +243,7 @@ export const Pagination = ({
         noPadding={true}
         disabled={isRearMostDisabled}
       >
-        <OutlineArrowLastMediumIcon
+        <ArrowLastMediumIcon
           color={isRearMostDisabled ? theme.colors.gray.main : theme.colors.black.dark}
         />
       </IconAdornment>

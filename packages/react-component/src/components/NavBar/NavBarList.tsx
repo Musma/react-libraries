@@ -1,7 +1,7 @@
 import { HTMLAttributes, SVGProps } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { OutlineArrowTopMediumIcon } from '@musma/react-icons'
+import { ArrowTopMediumIcon } from '@musma/react-icons'
 
 import { Typography } from 'src/components'
 import { Box } from 'src/elements'
@@ -44,7 +44,7 @@ export const NavBarList = ({ label, icon: Icon, active = false, ...rest }: NavBa
           {label}
         </Typography>
 
-        <OutlineArrowTopMediumIcon
+        <ArrowTopMediumIcon
           color="currentColor"
           css={{
             marginLeft: 'auto',
