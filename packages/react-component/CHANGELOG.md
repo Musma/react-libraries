@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.51
+
+### Patch Changes
+
+- [`ff0d000`](https://github.com/Musma/react-libraries/commit/ff0d0004df28f9524688668335424cb766418be0) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] react-icons의 일부 파일 변경으로 인한 수정
+
+- Updated dependencies [[`dd0ffe1`](https://github.com/Musma/react-libraries/commit/dd0ffe1f9866f0878af538c7e7cbe75c150b2da9)]:
+  - @musma/react-icons@0.1.10
+
 ## 0.1.50
 
 ### Patch Changes
