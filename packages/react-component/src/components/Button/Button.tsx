@@ -60,7 +60,7 @@ export const Button = ({
     <ButtonBase
       css={[
         {
-          width: theme.inputSize.minWidth,
+          minWidth: theme.inputSize.minWidth,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
