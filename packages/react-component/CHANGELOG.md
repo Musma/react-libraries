@@ -1,5 +1,12 @@
 # @musma/react-component
 
+## 0.1.51
+
+### Patch Changes
+
+- Updated dependencies [[`dd0ffe1`](https://github.com/Musma/react-libraries/commit/dd0ffe1f9866f0878af538c7e7cbe75c150b2da9)]:
+  - @musma/react-icons@0.1.10
+
 ## 0.1.50
 
 ### Patch Changes
