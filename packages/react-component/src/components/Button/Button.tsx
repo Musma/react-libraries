@@ -84,7 +84,6 @@ export const Button = ({
           borderRadius: theme.rounded.md,
           padding: theme.spacing.sm,
           whiteSpace: 'nowrap',
-          width: 'fit-content',
         },
         {
           color:
