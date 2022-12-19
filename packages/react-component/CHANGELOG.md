@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.53
+
+### Patch Changes
+
+- [`ff1ce1c`](https://github.com/Musma/react-libraries/commit/ff1ce1c7e501802ab6260c3c85f179aaaa66c6d9) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: Button에 불필요 CSS 제거
+
 ## 0.1.52
 
 ### Patch Changes
