@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.52
+
+### Patch Changes
+
+- [`b316280`](https://github.com/Musma/react-libraries/commit/b3162803e775eed054ef6f60d1e67c5b5c2bd40d) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: Select InputBase 크기 수정
+
 ## 0.1.51
 
 ### Patch Changes
