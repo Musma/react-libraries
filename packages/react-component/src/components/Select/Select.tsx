@@ -155,7 +155,7 @@ const _Select = <T extends unknown>(
           disabled={disabled}
           css={[
             {
-              flex: 1,
+              width: '100%',
               height: theme.inputSize.height[size],
               fontSize: theme.inputSize.fontSize[size],
               borderRadius: theme.rounded.md,

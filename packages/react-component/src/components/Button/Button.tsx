@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, SVGProps } from 'react'
+import { ButtonHTMLAttributes, SVGProps, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
@@ -56,6 +56,22 @@ export const Button = ({
 }: ButtonProps) => {
   const theme = useTheme()
 
+  const startIconColor = useMemo(() => {
+    if (disabled) {
+      return theme.colors.gray.main
+    }
+
+    if (color) {
+      return color
+    }
+
+    if (variant === 'outlined') {
+      return theme.colors.primary.main
+    }
+
+    return theme.colors.white.main
+  }, [color, disabled])
+
   return (
     <ButtonBase
       css={[
@@ -67,7 +83,14 @@ export const Button = ({
           height: theme.inputSize.height[size],
           borderRadius: theme.rounded.md,
           padding: theme.spacing.sm,
+          whiteSpace: 'nowrap',
+          width: 'fit-content',
         },
+        {
+          color:
+            variant === 'outlined' ? color || theme.colors.primary.main : theme.colors.white.main,
+        },
+        disabled && { color: theme.colors.gray.main },
         variant === 'contained' && {
           backgroundColor: color || theme.colors.primary.main,
           '&:hover': {
@@ -98,30 +121,10 @@ export const Button = ({
       {...rest}
     >
       {startIcon && (
-        <InputIcon
-          icon={startIcon}
-          size={size}
-          color={
-            disabled
-              ? theme.colors.gray.main
-              : variant === 'outlined'
-              ? theme.colors.primary.main
-              : theme.colors.white.main
-          }
-          css={{ marginRight: 4 }}
-        />
+        <InputIcon icon={startIcon} size={size} color="currentColor" css={{ marginRight: 4 }} />
       )}
 
-      <Typography
-        css={[
-          {
-            color:
-              variant === 'outlined' ? color || theme.colors.primary.main : theme.colors.white.main,
-          },
-          disabled && { color: theme.colors.gray.main },
-        ]}
-        type={size === 'lg' ? 'body3' : 'caption1'}
-      >
+      <Typography css={{ color: 'currentColor' }} type={size === 'lg' ? 'body3' : 'caption1'}>
         {children}
       </Typography>
     </ButtonBase>

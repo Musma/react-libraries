@@ -36,6 +36,7 @@ export const Adornment = ({ adornment, size = 'md', direction = 'start' }: Adorn
         css={{
           width: 'fit-content',
           height: 'fit-content',
+          display: 'flex',
           marginRight: direction === 'start' ? theme.spacing.sm : 0,
           marginLeft: direction === 'end' ? theme.spacing.sm : 0,
         }}
