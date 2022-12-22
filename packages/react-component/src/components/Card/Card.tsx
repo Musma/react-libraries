@@ -7,10 +7,7 @@ import { Size } from 'src/types'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
-
-   *
    * @default md
-   *
    * @value
    * sm: 8
    * md: 16

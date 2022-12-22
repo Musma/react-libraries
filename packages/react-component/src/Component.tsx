@@ -61,6 +61,7 @@ export const Component = () => {
         endAdornment={FillAddBoxIcon}
         placeholder="1230812309218309128309 입력하세요"
       />
+
       <TextInput
         value="12309128309128"
         size="sm"
@@ -68,6 +69,7 @@ export const Component = () => {
         disabled={true}
         css={{ marginBottom: 16 }}
       />
+
       {activeCapsLock ? '활성' : '비활성'}
       <Select
         options={options}

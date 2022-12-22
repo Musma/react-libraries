@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, SVGProps, useMemo } from 'react'
+import { ButtonHTMLAttributes, SVGProps } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
@@ -55,22 +55,6 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   const theme = useTheme()
-
-  const startIconColor = useMemo(() => {
-    if (disabled) {
-      return theme.colors.gray.main
-    }
-
-    if (color) {
-      return color
-    }
-
-    if (variant === 'outlined') {
-      return theme.colors.primary.main
-    }
-
-    return theme.colors.white.main
-  }, [color, disabled])
 
   return (
     <ButtonBase
