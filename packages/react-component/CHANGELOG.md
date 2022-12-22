@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.54
+
+### Patch Changes
+
+- [`c13d4d9`](https://github.com/Musma/react-libraries/commit/c13d4d9a8f1b3d64d0f000b6aa2bb70d639b50f4) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 사용법 만드는 중입니다.
+
 ## 0.1.53
 
 ### Patch Changes
