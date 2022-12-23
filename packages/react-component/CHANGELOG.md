@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.54
+
+### Patch Changes
+
+- [`614a6cc`](https://github.com/Musma/react-libraries/commit/614a6cc30040b953de2e21276bedeb42d970612c) Thanks [@Leona3](https://github.com/Leona3)! - chore: TextInput - InputBase width: 100% 적용
+
 ## 0.1.53
 
 ### Patch Changes
