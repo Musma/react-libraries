@@ -177,6 +177,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             ref={ref}
             css={{
               flex: 1,
+              width: '100%',
               height: '100%',
               cursor: 'inherit',
               backgroundColor: 'transparent',
