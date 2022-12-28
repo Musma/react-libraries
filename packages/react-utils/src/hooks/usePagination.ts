@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export interface Pageable {
   page: number
@@ -37,13 +37,15 @@ export const usePagination = ({
     totalPage: totalPage,
     onPageChange: (page: number) => {
       setPageable((pageable) => ({ ...pageable, page }))
-      fetch()
     },
     onRowPerPageChange: (rowPerPage: number) => {
       setPageable({ page: 1, limit: rowPerPage })
-      fetch()
     },
   }
+
+  useEffect(() => {
+    fetch()
+  }, [pageable])
 
   return { pageable, pagination, resetPage, setPageable, setTotalPage }
 }
