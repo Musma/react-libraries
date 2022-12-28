@@ -73,7 +73,6 @@ const tableData = Array.from({ length: 20 }).map((_, index) => ({
 
 const Component = () => {
   const theme = useTheme()
-
   const [value, setValue] = useState('1')
 
   return (
