@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 import { IToastContainerProps, IToastPopupData } from '.'
 import { ToastPopup } from './ToastPopup'
@@ -18,7 +18,7 @@ export const ToastContainer = ({ height = '0px', newToastPopup }: IToastContaine
     }
   }, [newToastPopup])
 
-  return (
+  return newToastPopup ? (
     <div
       css={{
         position: 'fixed',
@@ -42,5 +42,7 @@ export const ToastContainer = ({ height = '0px', newToastPopup }: IToastContaine
         )
       })}
     </div>
+  ) : (
+    <Fragment />
   )
 }

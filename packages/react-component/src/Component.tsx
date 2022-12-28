@@ -1,4 +1,4 @@
-import { createRef, useState } from 'react'
+import { createRef } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId, useFormSearch, useToggle } from '@musma/react-utils'
@@ -16,6 +16,7 @@ import {
   Table,
   TextInput,
   ToastContainer,
+  useToastPopup,
 } from './components'
 import { Chip } from './components/Chip'
 import { Modal1 } from './Modal1'
@@ -55,7 +56,7 @@ export const Component = () => {
   })
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
-  const [toastPopup, setToastPopup] = useState<IToastPopupData>()
+  const { newToastPopup, toast } = useToastPopup()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -104,12 +105,12 @@ export const Component = () => {
         >
           첫번째 모달 열기
         </Chip>
-
+        <ToastContainer height="50px" newToastPopup={newToastPopup} />
         <Chip
           color={theme.colors.red.main}
           shape="rounded"
           onClick={() => {
-            setToastPopup(popupSample1)
+            toast(popupSample1)
           }}
         >
           토스트 팝업 1
@@ -118,7 +119,7 @@ export const Component = () => {
           color={theme.colors.green.main}
           shape="rounded"
           onClick={() => {
-            setToastPopup(popupSample2)
+            toast(popupSample2)
           }}
         >
           토스트 팝업 2
@@ -182,8 +183,6 @@ export const Component = () => {
           Modal1
         </Modal1>
       )}
-      <ToastContainer height="30px" newToastPopup={toastPopup} />
-
       <Table
         data={DATA}
         columns={COLUMNS}
