@@ -30,15 +30,16 @@ export const useFormSearch = <T extends object>({
   const { pagination, pageable, setPageable } = usePagination({
     initPageable: queryPageable,
     fetch: () => {
-      fetchAPI()
       setPageableQueryParams(pageable)
+      fetchAPI()
     },
   })
 
   const onSubmit = () => {
+    clearQueryParams()
     setPageable((_pageable) => ({ ..._pageable, page: 1 }))
-    fetchAPI()
     setFormDataQueryParams(form.getValues() as Record<string, string>)
+    fetchAPI()
   }
 
   const onReset = () => {
