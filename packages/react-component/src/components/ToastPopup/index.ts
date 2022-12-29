@@ -1,4 +1,5 @@
 export * from './ToastPopup'
 export * from './ToastContainer'
-export * from './ToastPopupTypes'
+export * from './types'
 export * from './useToastPopup'
+export * from './useToastContainer'
