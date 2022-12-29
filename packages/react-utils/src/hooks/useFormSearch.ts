@@ -27,7 +27,7 @@ export const useFormSearch = <T extends object>({
     } as DeepPartial<T>,
   })
 
-  const { pagination, pageable } = usePagination({
+  const { pagination, pageable, setPageable } = usePagination({
     initPageable: queryPageable,
     fetch: () => {
       fetchAPI()
@@ -36,6 +36,7 @@ export const useFormSearch = <T extends object>({
   })
 
   const onSubmit = () => {
+    setPageable((_pageable) => ({ ..._pageable, page: 1 }))
     fetchAPI()
     setFormDataQueryParams(form.getValues() as Record<string, string>)
   }
