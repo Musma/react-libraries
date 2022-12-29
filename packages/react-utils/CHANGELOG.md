@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.22
+
+### Patch Changes
+
+- [`2702e99`](https://github.com/Musma/react-libraries/commit/2702e99dfb20bba85c00a742ed9e2446bc8552de) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useFormSearech onSubmit 함수에 page 1로 만드는 로직 추가
+
 ## 0.1.21
 
 ### Patch Changes
