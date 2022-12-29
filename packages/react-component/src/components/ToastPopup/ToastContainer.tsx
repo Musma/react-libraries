@@ -48,3 +48,9 @@ export const ToastContainer = ({
     <Fragment />
   )
 }
+
+ToastContainer.displayName = 'ToastContainer'
+
+ToastContainer.defaultProps = {
+  height: '50px',
+}
