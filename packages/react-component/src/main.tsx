@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { DefaultTheme, MusmaProvider } from 'src/theme'
 
 import { Component } from './Component'
+import { ToastContextProvider } from './components/ToastPopup/ToastPopupContext'
 
 const theme = {
   ...DefaultTheme,
@@ -24,9 +25,11 @@ const rootElement = document.getElementById('root')
 if (rootElement) {
   render(
     <MusmaProvider theme={theme}>
-      <BrowserRouter>
-        <Component />
-      </BrowserRouter>
+      <ToastContextProvider>
+        <BrowserRouter>
+          <Component />
+        </BrowserRouter>
+      </ToastContextProvider>
     </MusmaProvider>,
     rootElement,
   )

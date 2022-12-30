@@ -1,32 +1,15 @@
-import { forwardRef, Fragment, useEffect } from 'react'
+import { createContext, Fragment } from 'react'
 
-import { IToastPopupData, Toast, ToastContainerProps, useToastContainer } from '.'
 import { ToastPopup } from './ToastPopup'
+import { useToastContext } from './ToastPopupContext'
+import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
 
-export const ToastContainer = forwardRef<HTMLDivElement, ToastContainerProps>((props, ref) => {
-  // const [list, setList] = useState<IToastPopupData[]>(toastPopupManager.list)
+export const ToastPopupContext = createContext(null)
 
-  // const handleClose = (toastPopup: IToastPopupData) => {
-  //   setList(toastPopupManager.remove(toastPopup))
-  // }
+export const ToastContainer = ({ height = '0px' }: IToastContainerProps) => {
+  const { list, handleClose } = useToastContext()
 
-  // // 들어오는 ToastPopup이 다를 때마다 ToastPopupManager에 추가하고 list 동기화
-  // useEffect(() => {
-  //   if (newToastPopup) {
-  //     setList(toastPopupManager.add(newToastPopup))
-  //   }
-  // }, [newToastPopup])
-
-  const { getToastToRender, containerRef, isToastActive } = useToastContainer(props)
-  const { height, newToastPopup, containerId } = props
-
-  useEffect(() => {
-    if (ref) {
-      ;(ref as React.MutableRefObject<HTMLDivElement>).current = containerRef.current!
-    }
-  }, [])
-
-  return newToastPopup ? (
+  return list.length ? (
     <div
       css={{
         position: 'fixed',
@@ -34,36 +17,23 @@ export const ToastContainer = forwardRef<HTMLDivElement, ToastContainerProps>((p
         right: 10,
         zIndex: 9999,
       }}
-      ref={containerRef}
     >
-      {getToastToRender((toastList: Toast[]) => {
+      {list.map((item: IToastPopupData) => {
         return (
-          <Fragment>
-            {toastList.map((item: Toast) => {
-              return (
-                <ToastPopup
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  onCloseClick={() => handleClose(item)}
-                  state={item.state}
-                  mode={item.mode}
-                  description={item?.description}
-                  ref={item.ref}
-                />
-              )
-            })}
-          </Fragment>
+          <ToastPopup
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            onCloseClick={() => handleClose(item)}
+            state={item.state}
+            mode={item.mode}
+            description={item?.description}
+            ref={item.ref}
+          />
         )
       })}
     </div>
   ) : (
     <Fragment />
   )
-})
-
-ToastContainer.displayName = 'ToastContainer'
-
-ToastContainer.defaultProps = {
-  height: '50px',
 }

@@ -16,9 +16,9 @@ import {
   Table,
   TextInput,
   ToastContainer,
-  useToastPopup,
 } from './components'
 import { Chip } from './components/Chip'
+import { useToastContext } from './components/ToastPopup/ToastPopupContext'
 import { Modal1 } from './Modal1'
 
 const DATA = [
@@ -56,7 +56,7 @@ export const Component = () => {
   })
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
-  const { newToastPopup, toast } = useToastPopup()
+  const { handleOpen } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -105,12 +105,12 @@ export const Component = () => {
         >
           첫번째 모달 열기
         </Chip>
-        <ToastContainer height="50px" newToastPopup={newToastPopup} />
+        <ToastContainer height="50px" />
         <Chip
           color={theme.colors.red.main}
           shape="rounded"
           onClick={() => {
-            toast(popupSample1)
+            handleOpen(popupSample1)
           }}
         >
           토스트 팝업 1
@@ -119,7 +119,7 @@ export const Component = () => {
           color={theme.colors.green.main}
           shape="rounded"
           onClick={() => {
-            toast(popupSample2)
+            handleOpen(popupSample2)
           }}
         >
           토스트 팝업 2
