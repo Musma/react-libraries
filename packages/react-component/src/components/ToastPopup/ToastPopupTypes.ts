@@ -1,12 +1,11 @@
-import { RefObject } from 'react'
-
+export type ToastPopupStateType = 'info' | 'warning' | 'error' | 'success'
+export type ToastPopupModeType = 'light' | 'dark'
 export interface IToastPopupData {
   id: string
-  state?: 'info' | 'warning' | 'error' | 'success'
+  state?: ToastPopupStateType
   title: string
   description?: string
-  mode?: 'light' | 'dark'
-  ref?: RefObject<HTMLDivElement>
+  mode?: ToastPopupModeType
 }
 
 export interface IToastPopupProps extends IToastPopupData {
