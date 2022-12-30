@@ -17,7 +17,6 @@ export const useToastContext = (): IToastPopupContext => {
 
 export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
   const [list, setList] = useState<IToastPopupData[]>(toastPopupManager.list)
-  console.log('list', list)
 
   const handleOpen = useCallback(
     (toastPopup: IToastPopupData) => {
