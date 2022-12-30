@@ -1,5 +1,3 @@
-import { createRef } from 'react'
-
 import { useTheme } from '@emotion/react'
 import { uniqueId, useFormSearch, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
@@ -63,7 +61,6 @@ export const Component = () => {
     description: '어쩔어쩔어쩔어쩔어쩔',
     mode: 'dark',
     state: 'error',
-    ref: createRef<HTMLDivElement>(),
   }
   const popupSample2: IToastPopupData = {
     id: uniqueId(),
@@ -71,7 +68,6 @@ export const Component = () => {
     description: '굿 잘 됨',
     mode: 'light',
     state: 'success',
-    ref: createRef<HTMLDivElement>(),
   }
 
   return (
