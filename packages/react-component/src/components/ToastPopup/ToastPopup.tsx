@@ -3,11 +3,10 @@ import { CSSTransition } from 'react-transition-group'
 
 import { useTheme } from '@emotion/react'
 import {
-  FillInformationIcon,
   FillCautionIcon,
-  FillErrorIcon,
   FillCheckCircleIcon,
-  CloseIcon,
+  FillErrorIcon,
+  FillInformationIcon,
 } from '@musma/react-icons'
 
 import { toastPopupManager } from './ToastPopupManager'
@@ -17,7 +16,6 @@ export const ToastPopup = forwardRef<HTMLDivElement, IToastPopupProps>(
   ({ id, onCloseClick, state = 'info', title, description, mode = 'light' }, ref) => {
     const theme = useTheme()
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    console.log('isOpen', isOpen)
 
     const stylesByState = useMemo(
       () => ({
