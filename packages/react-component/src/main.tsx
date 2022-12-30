@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { DefaultTheme, MusmaProvider } from 'src/theme'
 
 import Component from './Component'
-import { ToastContextProvider } from './components/ToastPopup'
+import { ToastContextProvider } from './components'
 
 const theme = {
   ...DefaultTheme,
