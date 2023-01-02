@@ -1,13 +1,11 @@
-import { createContext, Fragment } from 'react'
+import { Fragment } from 'react'
 
 import { ToastPopup } from './ToastPopup'
 import { useToastContext } from './ToastPopupContext'
 import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
 
-export const ToastPopupContext = createContext(null)
-
 export const ToastContainer = ({ height = '0px' }: IToastContainerProps) => {
-  const { list, handleClose } = useToastContext()
+  const { list, removeToast } = useToastContext()
 
   return list.length ? (
     <div
@@ -24,11 +22,10 @@ export const ToastContainer = ({ height = '0px' }: IToastContainerProps) => {
             key={item.id}
             id={item.id}
             title={item.title}
-            onCloseClick={() => handleClose(item)}
+            onCloseClick={() => removeToast(item)}
             state={item.state}
             mode={item.mode}
             description={item?.description}
-            ref={item.ref}
           />
         )
       })}
