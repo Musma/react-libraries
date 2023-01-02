@@ -15,7 +15,13 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
 
   const addToast = useCallback(
     (toastPopup: IToastPopupData) => {
-      setList(toastPopupManager.add(toastPopup))
+      // 제한 갯수에 걸리면
+      if (checkLimit()) {
+        enqueue(toastPopup)
+        // 걸리지 않으면 리스트에 추가
+      } else {
+        setList(toastPopupManager.add(toastPopup))
+      }
     },
     [list],
   )
