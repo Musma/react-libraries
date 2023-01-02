@@ -21,8 +21,8 @@ export const ToastPopup = ({
   description,
   mode = 'light',
 }: IToastPopupProps) => {
+  // 스타일 관련
   const theme = useTheme()
-  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const stylesByState = useMemo(
     () => ({
@@ -72,6 +72,9 @@ export const ToastPopup = ({
     }),
     [state, stylesByState],
   )
+
+  // 팝업 상태
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {

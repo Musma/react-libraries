@@ -54,7 +54,7 @@ export const Component = () => {
   })
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
-  const { handleOpen } = useToastContext()
+  const { addToast } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -106,7 +106,7 @@ export const Component = () => {
           color={theme.colors.red.main}
           shape="rounded"
           onClick={() => {
-            handleOpen(popupSample1)
+            addToast(popupSample1)
           }}
         >
           토스트 팝업 1
@@ -115,7 +115,7 @@ export const Component = () => {
           color={theme.colors.green.main}
           shape="rounded"
           onClick={() => {
-            handleOpen(popupSample2)
+            addToast(popupSample2)
           }}
         >
           토스트 팝업 2
