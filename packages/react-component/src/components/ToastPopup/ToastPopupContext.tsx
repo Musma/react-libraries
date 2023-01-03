@@ -17,7 +17,7 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
     (toastPopup: IToastPopupData) => {
       // 제한 갯수에 걸리면 대기열에 팝업 추가
       if (checkLimit()) {
-        enqueue(toastPopup)
+        enQueue(toastPopup)
         // 걸리지 않으면 리스트에 팝업 추가
       } else {
         setList(toastPopupManager.add(toastPopup))
@@ -31,7 +31,7 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
       setList(toastPopupManager.remove(toastPopup))
       // 대기열에 팝업이 있으면 가져오기
       if (checkQueue()) {
-        dequeue()
+        deQueue()
       }
     },
     [list],
