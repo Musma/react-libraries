@@ -35,10 +35,6 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
   const removeToast = useCallback(
     (toastPopup: IToastPopupInstance) => {
       setList(toastPopupManager.remove(toastPopup))
-      // 대기열에 팝업이 있으면 가져오기
-      if (checkQueue()) {
-        dequeue()
-      }
     },
     [list],
   )
