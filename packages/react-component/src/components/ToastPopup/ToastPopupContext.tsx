@@ -22,10 +22,10 @@ export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
 
   const addToast = useCallback(
     (toastPopup: IToastPopupData) => {
-      // 제한 갯수에 걸리면
+      // 제한 갯수에 걸리면 대기열에 팝업 추가
       if (checkLimit()) {
         enqueue(toastPopup)
-        // 걸리지 않으면 리스트에 추가
+        // 걸리지 않으면 리스트에 팝업 추가
       } else {
         setList(toastPopupManager.add(toastPopup))
       }
@@ -36,6 +36,10 @@ export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
   const removeToast = useCallback(
     (toastPopup: IToastPopupData) => {
       setList(toastPopupManager.remove(toastPopup))
+      // 대기열에 팝업이 있으면 가져오기
+      if (checkQueue()) {
+        dequeue()
+      }
     },
     [list],
   )
@@ -51,6 +55,10 @@ export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
     return false
   }, [list.length])
 
+  /**
+   * 대기열에 팝업이 있는지 확인
+   * @returns 있다(true) / 없다(false)
+   */
   const checkQueue = () => {
     if (queue[0]) {
       return true
@@ -69,14 +77,8 @@ export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
    * 토스트 팝업이 삭제될 때 queue(대기열)에 팝업이 있다면 가져오기
    */
   const dequeue = useCallback(() => {
-    if (queue[0]) {
-      const target = queue.shift() as IToastPopupData
-      setList((current) => {
-        const newCurrent = [...current]
-        newCurrent.unshift(target)
-        return newCurrent
-      })
-    }
+    const target = queue.shift() as IToastPopupData
+    addToast(target)
   }, [])
 
   return (
