@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.58
+
+### Patch Changes
+
+- [`50f13b9`](https://github.com/Musma/react-libraries/commit/50f13b984318bebc8d0a75dbfd5ffc869750e7df) Thanks [@Leona3](https://github.com/Leona3)! - chore: Tooltip children 타입 추가, 스타일 추가
+
 ## 0.1.57
 
 ### Patch Changes
