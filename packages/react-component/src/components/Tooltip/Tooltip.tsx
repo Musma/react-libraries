@@ -12,7 +12,7 @@ interface TooltipProps {
   /**
    * @description
    */
-  message: ReactNode
+  message: string | ReactNode
   /**
    * @description
    */
@@ -27,6 +27,10 @@ const tooltipCss = {
   container: css({ display: 'flex', alignItems: 'center', justifyContent: 'center' }),
   parent: css({
     position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
     '&: hover .child': {
       visibility: 'visible',
     },
@@ -144,9 +148,13 @@ export const Tooltip = ({ children, message, width, position = 'left' }: Tooltip
           className="child"
           style={{ width }}
         >
-          <Typography css={{ color: theme.colors.white.main }} type="body3">
-            {message}
-          </Typography>
+          {typeof message === 'string' ? (
+            <Typography css={{ color: theme.colors.white.main }} type="body3">
+              {message}
+            </Typography>
+          ) : (
+            <div>{message}</div>
+          )}
         </div>
       </div>
     </div>
