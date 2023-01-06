@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from 'react'
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react'
 
 import { toastPopupManager } from './ToastPopupManager'
 import { IToastPopupData } from './ToastPopupTypes'
@@ -15,23 +15,20 @@ export const useToastContext = (): IToastPopupContext => {
   return useContext(ToastPopupContext)
 }
 
+let ToastId = 1
+
+const getToastId = () => {
+  return ToastId++
+}
+
 export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
   const limit = 5 // list의 제한 길이
-  const AUTO_CLOSE_TIME = 1000 * 3.5 // 자동 close 될 시간
 
-  const queue: IToastPopupData[] = useMemo(() => [], []) // 제한에 걸려서 대기중인 토스트 팝업들
-
-  const [list, setList] = useState<IToastPopupData[]>(toastPopupManager.list) // 현재 화면에 떠있는 토스트 팝업들
+  const [list, setList] = useState<IToastPopupData[]>([]) // 현재 화면에 떠있는 토스트 팝업들
 
   const addToast = useCallback(
     (toastPopup: IToastPopupData) => {
-      // 제한 갯수에 걸리면 대기열에 팝업 추가
-      if (checkLimit()) {
-        enqueue(toastPopup)
-        // 걸리지 않으면 리스트에 팝업 추가
-      } else {
-        setList(toastPopupManager.add(toastPopup))
-      }
+      setList(toastPopupManager.add(toastPopup))
     },
     [list],
   )
@@ -39,50 +36,9 @@ export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
   const removeToast = useCallback(
     (toastPopup: IToastPopupData) => {
       setList(toastPopupManager.remove(toastPopup))
-      // 대기열에 팝업이 있으면 가져오기
-      if (checkQueue()) {
-        dequeue()
-      }
     },
     [list],
   )
-
-  /**
-   * 제한 갯수에 걸리는지 확인
-   * @returns 걸린다(true) / 안걸린다(false)
-   */
-  const checkLimit = useCallback(() => {
-    if (list.length >= limit) {
-      return true
-    }
-    return false
-  }, [list.length])
-
-  /**
-   * 대기열에 팝업이 있는지 확인
-   * @returns 있다(true) / 없다(false)
-   */
-  const checkQueue = useCallback(() => {
-    if (queue?.[0]) {
-      return true
-    }
-    return false
-  }, [list])
-
-  /**
-   * 토스트 팝업 갯수가 제한에 도달했을 때 queue(대기열)로 이동
-   */
-  const enqueue = useCallback((toastPopup: IToastPopupData) => {
-    queue.push(toastPopup)
-  }, [])
-
-  /**
-   * 토스트 팝업이 삭제될 때 queue(대기열)에 팝업이 있다면 가져오기
-   */
-  const dequeue = useCallback(() => {
-    const target = queue.shift() as IToastPopupData
-    addToast(target)
-  }, [list])
 
   return (
     <ToastPopupContext.Provider
