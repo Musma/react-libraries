@@ -1,26 +1,32 @@
-import { IToastPopupData } from '.'
+import { IToastPopupData, IToastPopupInstance } from '.'
 
 // 지금은 IToastPopupData로 받지만, id만 받는 형태로 바꿔도 될 듯
 class ToastPopupManager {
-  private popupList: Map<string, IToastPopupData> = new Map()
-  private queue: IToastPopupData[] = []
-  private limit = 5
+  private popupList: Map<string, IToastPopupInstance> = new Map()
 
   get list() {
-    const list: IToastPopupData[] = []
+    const list: IToastPopupInstance[] = []
     this.popupList.forEach((item) => list.unshift(item))
     return list
   }
 
-  public add(toastPopup: IToastPopupData): IToastPopupData[] {
+  public get(id: string) {
+    return this.popupList.get(id)
+  }
+
+  public add(toastPopup: IToastPopupInstance): IToastPopupInstance[] {
     if (!this.popupList.has(toastPopup.id)) {
-      // 제한 갯수에 걸리면 대기열로 추가
       this.popupList.set(toastPopup.id, toastPopup)
     }
     return this.list
   }
 
-  public remove(toastPopup: IToastPopupData): IToastPopupData[] {
+  public edit(toastPopup: IToastPopupInstance) {
+    this.popupList.set(toastPopup.id, toastPopup)
+    return this.list
+  }
+
+  public remove(toastPopup: IToastPopupData): IToastPopupInstance[] {
     if (this.popupList.has(toastPopup.id)) {
       this.popupList.delete(toastPopup.id)
     }

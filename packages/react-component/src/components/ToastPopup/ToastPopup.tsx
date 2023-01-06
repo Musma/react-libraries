@@ -16,12 +16,12 @@ export const ToastPopup = ({
 
   // 팝업 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  console.log('isOpen', isOpen)
 
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
     setIsOpen(true)
     const timer = setTimeout(() => {
-      // unmount 효과를 기대했지만 안된다... 타이밍을 어떻게 넣어야 할지 ㅜㅜ
       setIsOpen(false)
     }, AUTO_CLOSE_TIME)
     return () => {
