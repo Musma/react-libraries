@@ -82,9 +82,9 @@ export const ToastPopup = ({
       // unmount 효과를 기대했지만 안된다... 타이밍을 어떻게 넣어야 할지 ㅜㅜ
       setIsOpen(false)
       onCloseClick()
+      setIsOpen(false)
     }, AUTO_CLOSE_TIME) // 임의로 1초를 해놨지만, 디자인 가이드 상 3.5초
     return () => {
-      setIsOpen(false)
       clearTimeout(timer)
     }
   }, [])
