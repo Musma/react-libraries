@@ -14,7 +14,7 @@ import { IToastPopupProps } from './ToastPopupTypes'
 export const ToastPopup = ({
   id,
   onCloseClick,
-  state = 'info',
+  type = 'info',
   title,
   description,
   mode = 'light',
@@ -61,18 +61,19 @@ export const ToastPopup = ({
     () => ({
       light: {
         fontColor: 'black',
-        bgColor: stylesByState[state].bgColor,
+        bgColor: stylesByState[type].bgColor,
       },
       dark: {
         fontColor: 'white',
-        bgColor: stylesByState[state].bgDarkColor,
+        bgColor: stylesByState[type].bgDarkColor,
       },
     }),
-    [state, stylesByState],
+    [type, stylesByState],
   )
 
   // 팝업 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  console.log('isOpen', isOpen)
 
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
@@ -121,7 +122,8 @@ export const ToastPopup = ({
           transition: 'all 1s',
         },
         '&.popup-exit-done': {
-          display: 'none',
+          opacity: 0,
+          transform: 'translateY(0px)',
         },
       }}
     >
