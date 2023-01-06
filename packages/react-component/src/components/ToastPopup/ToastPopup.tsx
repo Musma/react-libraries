@@ -12,17 +12,15 @@ export const ToastPopup = ({
   description,
   mode = 'light',
 }: IToastPopupProps) => {
-  const toastPopupStyle = useToastPopupStyle().returnStyle(type, mode)
+  const { bgColor, fontColor, img } = useToastPopupStyle().returnStyle(type, mode)
 
   // 팝업 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  console.log('isOpen', isOpen)
 
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
     setIsOpen(true)
     const timer = setTimeout(() => {
-      // unmount 효과를 기대했지만 안된다... 타이밍을 어떻게 넣어야 할지 ㅜㅜ
       setIsOpen(false)
     }, AUTO_CLOSE_TIME)
     return () => {
@@ -74,7 +72,7 @@ export const ToastPopup = ({
           css={{
             padding: '12px 16px',
             marginBottom: '8px',
-            background: toastPopupStyle.bgColor,
+            background: bgColor,
             boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
             borderRadius: '3px',
           }}
@@ -85,11 +83,11 @@ export const ToastPopup = ({
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: description ? 'normal' : 'center',
-              color: toastPopupStyle.fontColor,
+              color: fontColor,
               minWidth: description ? '570px' : '400px',
             }}
           >
-            {toastPopupStyle.img}
+            {img}
             <div
               css={{
                 width: '100%',
@@ -102,11 +100,7 @@ export const ToastPopup = ({
               <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
               {description && <div>{description}</div>}
             </div>
-            <CloseIcon
-              cursor="pointer"
-              color={toastPopupStyle.fontColor}
-              onClick={() => setIsOpen(false)}
-            />
+            <CloseIcon cursor="pointer" color={fontColor} onClick={() => setIsOpen(false)} />
           </div>
         </div>
       ) : (
