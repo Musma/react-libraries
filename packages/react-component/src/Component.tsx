@@ -1,10 +1,21 @@
 import { useState } from 'react'
 
 import { useTheme } from '@emotion/react'
+import { uniqueId } from '@musma/react-utils'
+import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, DateRangePicker, Select } from './components'
+import {
+  Button,
+  Chip,
+  DatePicker,
+  DateRangePicker,
+  IToastPopupData,
+  Select,
+  TextInput,
+} from './components'
+import { useToastContext } from './components/ToastPopup/ToastPopupContext'
 
 const options = [
   {
@@ -75,6 +86,31 @@ const Component = () => {
   const theme = useTheme()
   const [value, setValue] = useState('1')
 
+  const { addToast } = useToastContext()
+  const popupSample1: IToastPopupData = {
+    id: uniqueId(),
+    title: '에러났다 어쩔래',
+    description: '어쩔어쩔어쩔어쩔어쩔',
+    mode: 'dark',
+    type: 'error',
+  }
+  const popupSample2: IToastPopupData = {
+    id: uniqueId(),
+    title: '잘했다임마',
+    description: '굿 잘 됨',
+    type: 'success',
+  }
+  const popupSample3: IToastPopupData = {
+    id: uniqueId(),
+    title: '정보 팝업인데 정보 음슴 ㅋ',
+    mode: 'dark',
+  }
+  const popupSample4: IToastPopupData = {
+    id: uniqueId(),
+    title: '위험위허멍위험위험위험위험',
+    type: 'warning',
+  }
+
   return (
     <Box
       css={{
@@ -95,6 +131,54 @@ const Component = () => {
       >
         dkdkd
       </Button>
+
+      <Chip
+        color={theme.colors.red.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample1)
+        }}
+      >
+        토스트 팝업 1
+      </Chip>
+      <Chip
+        color={theme.colors.green.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample2)
+        }}
+      >
+        토스트 팝업 2
+      </Chip>
+      <Chip
+        color={theme.colors.blue.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample3)
+        }}
+      >
+        토스트 팝업 3
+      </Chip>
+
+      <Chip
+        color={theme.colors.orange.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample4)
+        }}
+      >
+        토스트 팝업 4
+      </Chip>
+
+      <TextInput value="123" css={{ marginBottom: 24 }} />
+
+      <DatePicker
+        value={DateTime.now()}
+        onChange={() => {
+          return null
+        }}
+        anchorOrigin={{ vertical: 'top' }}
+      />
 
       <DateRangePicker
         disabled={true}
