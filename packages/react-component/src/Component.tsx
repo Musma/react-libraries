@@ -66,8 +66,17 @@ export const Component = () => {
     id: uniqueId(),
     title: '잘했다임마',
     description: '굿 잘 됨',
-    mode: 'light',
     type: 'success',
+  }
+  const popupSample3: IToastPopupData = {
+    id: uniqueId(),
+    title: '정보 팝업인데 정보 음슴 ㅋ',
+    mode: 'dark',
+  }
+  const popupSample4: IToastPopupData = {
+    id: uniqueId(),
+    title: '위험위허멍위험위험위험위험',
+    type: 'warning',
   }
 
   return (
@@ -119,6 +128,25 @@ export const Component = () => {
           }}
         >
           토스트 팝업 2
+        </Chip>
+        <Chip
+          color={theme.colors.blue.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample3)
+          }}
+        >
+          토스트 팝업 3
+        </Chip>
+
+        <Chip
+          color={theme.colors.orange.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample4)
+          }}
+        >
+          토스트 팝업 4
         </Chip>
 
         <TextInput value="123" css={{ marginBottom: 24 }} />
