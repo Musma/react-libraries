@@ -16,6 +16,7 @@ export const ToastPopup = ({
 
   // 팝업 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  console.log('isOpen', isOpen)
 
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
