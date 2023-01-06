@@ -23,7 +23,7 @@ export const ToastContainer = ({ height = '0px' }: IToastContainerProps) => {
             id={item.id}
             title={item.title}
             onCloseClick={() => removeToast(item)}
-            state={item.state}
+            type={item.type}
             mode={item.mode}
             description={item?.description}
           />

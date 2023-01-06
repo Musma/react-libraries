@@ -15,7 +15,7 @@ import { IToastPopupProps } from './ToastPopupTypes'
 export const ToastPopup = ({
   id,
   onCloseClick,
-  state = 'info',
+  type = 'info',
   title,
   description,
   mode = 'light',
@@ -62,18 +62,19 @@ export const ToastPopup = ({
     () => ({
       light: {
         fontColor: 'black',
-        bgColor: stylesByState[state].bgColor,
+        bgColor: stylesByState[type].bgColor,
       },
       dark: {
         fontColor: 'white',
-        bgColor: stylesByState[state].bgDarkColor,
+        bgColor: stylesByState[type].bgDarkColor,
       },
     }),
-    [state, stylesByState],
+    [type, stylesByState],
   )
 
   // 팝업 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  console.log('isOpen', isOpen)
 
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
@@ -122,7 +123,8 @@ export const ToastPopup = ({
           transition: 'all 1s',
         },
         '&.popup-exit-done': {
-          display: 'none',
+          opacity: 0,
+          transform: 'translateY(0px)',
         },
       }}
     >
@@ -144,7 +146,7 @@ export const ToastPopup = ({
             color: stylesByMode[mode].fontColor,
           }}
         >
-          {stylesByState[state].img}
+          {stylesByState[type].img}
           <div css={{ margin: '0 54px 0 10px' }}>
             <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
             {description && (
