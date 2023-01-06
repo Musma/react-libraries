@@ -60,14 +60,14 @@ export const Component = () => {
     title: '에러났다 어쩔래',
     description: '어쩔어쩔어쩔어쩔어쩔',
     mode: 'dark',
-    state: 'error',
+    type: 'error',
   }
   const popupSample2: IToastPopupData = {
     id: uniqueId(),
     title: '잘했다임마',
     description: '굿 잘 됨',
     mode: 'light',
-    state: 'success',
+    type: 'success',
   }
 
   return (

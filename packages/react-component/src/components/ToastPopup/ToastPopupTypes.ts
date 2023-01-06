@@ -8,11 +8,6 @@ export interface IToastPopupData {
   mode?: ToastPopupModeType
 }
 
-export interface IToastPopupInstance extends IToastPopupData {
-  timer?: ReturnType<typeof setTimeout>
-  isActive: boolean
-}
-
 export interface IToastPopupProps extends IToastPopupData {
   onCloseClick(): void
 }
