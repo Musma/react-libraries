@@ -15,12 +15,6 @@ export const useToastContext = (): IToastPopupContext => {
   return useContext(ToastPopupContext)
 }
 
-let ToastId = 1
-
-const getToastId = () => {
-  return ToastId++
-}
-
 export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
   const limit = 5 // list의 제한 길이
 
