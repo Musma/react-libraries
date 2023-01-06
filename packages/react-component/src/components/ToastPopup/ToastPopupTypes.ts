@@ -2,10 +2,15 @@ export type ToastPopupStateType = 'info' | 'warning' | 'error' | 'success'
 export type ToastPopupModeType = 'light' | 'dark'
 export interface IToastPopupData {
   id: string
-  state?: ToastPopupStateType
+  type?: ToastPopupStateType
   title: string
   description?: string
   mode?: ToastPopupModeType
+}
+
+export interface IToastPopupInstance extends IToastPopupData {
+  timer?: ReturnType<typeof setTimeout>
+  isActive: boolean
 }
 
 export interface IToastPopupProps extends IToastPopupData {
