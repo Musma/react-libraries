@@ -1,32 +1,23 @@
-import { IToastPopupData, IToastPopupInstance } from '.'
+import { IToastPopupData } from '.'
 
 // 지금은 IToastPopupData로 받지만, id만 받는 형태로 바꿔도 될 듯
 class ToastPopupManager {
-  private popupList: Map<string, IToastPopupInstance> = new Map()
+  private popupList: Map<string, IToastPopupData> = new Map()
 
   get list() {
-    const list: IToastPopupInstance[] = []
+    const list: IToastPopupData[] = []
     this.popupList.forEach((item) => list.unshift(item))
     return list
   }
 
-  public get(id: string) {
-    return this.popupList.get(id)
-  }
-
-  public add(toastPopup: IToastPopupInstance): IToastPopupInstance[] {
+  public add(toastPopup: IToastPopupData): IToastPopupData[] {
     if (!this.popupList.has(toastPopup.id)) {
       this.popupList.set(toastPopup.id, toastPopup)
     }
     return this.list
   }
 
-  public edit(toastPopup: IToastPopupInstance) {
-    this.popupList.set(toastPopup.id, toastPopup)
-    return this.list
-  }
-
-  public remove(toastPopup: IToastPopupData): IToastPopupInstance[] {
+  public remove(toastPopup: IToastPopupData): IToastPopupData[] {
     if (this.popupList.has(toastPopup.id)) {
       this.popupList.delete(toastPopup.id)
     }
