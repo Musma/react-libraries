@@ -5,7 +5,15 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, DatePicker, Select, Textarea, TextInput, Typography } from './components'
+import {
+  Button,
+  DatePicker,
+  DateRangePicker,
+  Select,
+  Textarea,
+  TextInput,
+  Typography,
+} from './components'
 
 const options = [
   {
@@ -82,6 +90,12 @@ export const Component = () => {
         // disabled={true}
         value={DateTime.now()}
         anchorOrigin={{ vertical: 'bottom' }}
+        onChange={() => {
+          return null
+        }}
+      />
+
+      <DateRangePicker
         onChange={() => {
           return null
         }}

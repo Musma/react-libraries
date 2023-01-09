@@ -1,8 +1,7 @@
-import 'react-datepicker/dist/react-datepicker.css'
-
+import { Fragment } from 'react'
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker'
 
-import { useTheme } from '@emotion/react'
+import { css, Global, useTheme } from '@emotion/react'
 import { ko } from 'date-fns/locale'
 
 import { InputHelper, InputLabel } from 'src/components'
@@ -59,61 +58,69 @@ export const DateRangePicker = ({
 }: DateRangePickerProps) => {
   const theme = useTheme()
   return (
-    <Box
-      css={{
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        width: '100%',
-        minWidth: theme.inputSize.minWidth,
-      }}
-    >
-      {/* 라벨 */}
-      {label && (
-        <InputLabel size={size} required={required}>
-          {label}
-        </InputLabel>
-      )}
-
-      <DatePicker
-        selectsRange={true}
-        withPortal={true}
-        disabled={disabled}
-        dateFormat={DATE_FORMAT}
-        locale={ko}
-        css={[
-          {
-            boxSizing: 'border-box',
-            width: '100%',
-            height: theme.inputSize.height[size],
-            borderWidth: 1,
-            borderStyle: 'solid',
-            borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
-            borderRadius: theme.rounded.md,
-            cursor: 'pointer',
-            color: theme.colors.black.dark,
-            fontSize: theme.inputSize.fontSize[size],
-            padding: theme.spacingUtil(0, 'sm'),
-            '&:focus-within': {
-              borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
-              boxShadow: theme.shadow.md,
-            },
-            '&::placeholder': {
-              color: theme.colors.gray.light,
-            },
-          },
-          disabled && {
-            backgroundColor: theme.colors.white.light,
-            color: theme.colors.gray.main,
-            cursor: 'not-allowed',
-            borderColor: theme.colors.gray.main,
-          },
-        ]}
-        onChange={onChange}
-        {...rest}
+    <Fragment>
+      <Global
+        styles={css`
+          @import 'node_modules/react-datepicker/dist/react-datepicker.css';
+        `}
       />
 
-      {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
-    </Box>
+      <Box
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          width: '100%',
+          minWidth: theme.inputSize.minWidth,
+        }}
+      >
+        {/* 라벨 */}
+        {label && (
+          <InputLabel size={size} required={required}>
+            {label}
+          </InputLabel>
+        )}
+
+        <DatePicker
+          selectsRange={true}
+          withPortal={true}
+          disabled={disabled}
+          dateFormat={DATE_FORMAT}
+          locale={ko}
+          css={[
+            {
+              boxSizing: 'border-box',
+              width: '100%',
+              height: theme.inputSize.height[size],
+              borderWidth: 1,
+              borderStyle: 'solid',
+              borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
+              borderRadius: theme.rounded.md,
+              cursor: 'pointer',
+              color: theme.colors.black.dark,
+              fontSize: theme.inputSize.fontSize[size],
+              padding: theme.spacingUtil(0, 'sm'),
+              '&:focus-within': {
+                borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
+                boxShadow: theme.shadow.md,
+              },
+              '&::placeholder': {
+                color: theme.colors.gray.light,
+              },
+            },
+            disabled && {
+              backgroundColor: theme.colors.white.light,
+              color: theme.colors.gray.main,
+              cursor: 'not-allowed',
+              borderColor: theme.colors.gray.main,
+            },
+          ]}
+          onChange={onChange}
+          {...rest}
+        />
+
+        {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
+      </Box>
+    </Fragment>
   )
 }
