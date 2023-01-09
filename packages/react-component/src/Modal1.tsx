@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
 import { uniqueId, useToggle } from '@musma/react-utils'
 
-import { Button, Chip, IToastPopupData, Modal, ModalProps, ToastContainer } from 'src/components'
+import { Button, Chip, IToastPopupData, Modal, ModalProps } from 'src/components'
 
 import { useToastContext } from './components/ToastPopup/ToastPopupContext'
 import { Modal2 } from './Modal2'
@@ -55,7 +55,6 @@ export const Modal1 = (props: Modal1Props) => {
       >
         토스트 팝업 2
       </Chip>
-      <ToastContainer height="50px" />
       {isOpen2 && <Modal2 show={isOpen2} onClose={() => setIsOpen2(false)} />}
     </Modal>
   )
