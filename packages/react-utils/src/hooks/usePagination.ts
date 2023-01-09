@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { useIsMounted } from './useIsMounted'
+
 export interface Pageable {
   page: number
   limit: number
@@ -25,7 +27,7 @@ export const usePagination = ({
   },
   fetchAPI,
 }: UsePaginationProps) => {
-  const [mounted, setMounted] = useState(false)
+  const isMounted = useIsMounted()
 
   const [pageable, setPageable] = useState<Pageable>(initPageable)
   const [totalPage, setTotalPage] = useState(0)
@@ -46,11 +48,7 @@ export const usePagination = ({
   }
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (mounted) {
+    if (isMounted) {
       fetchAPI()
     }
   }, [pageable])

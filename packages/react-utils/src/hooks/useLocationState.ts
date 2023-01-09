@@ -1,6 +1,10 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+/**
+ * 참고
+ * https://dohoons.com/blog/2173/
+ */
 interface UseLocationStateProps<T> {
   key: string
   initialState: T
@@ -15,18 +19,17 @@ export const useLocationState = <T>({ key, initialState }: UseLocationStateProps
     stateValue === undefined ? initialState : stateValue,
   )
 
-  const setState = useCallback(
-    (value: T) => {
-      setHistoryState(() => value)
+  const setState = (state: T | ((val: T) => T)) => {
+    const value = state instanceof Function ? state(historyState) : state
 
-      navigate('', {
-        state: {
-          [key]: value,
-        },
-      })
-    },
-    [history, historyState, key],
-  )
+    setHistoryState(() => value)
+
+    navigate('', {
+      state: {
+        [key]: value,
+      },
+    })
+  }
 
   return [historyState, setState] as const
 }
