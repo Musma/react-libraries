@@ -1,7 +1,5 @@
 import { PropsWithChildren } from 'react'
 
-import { useTheme } from '@emotion/react'
-
 import {
   Body,
   BodyType,
@@ -25,11 +23,9 @@ export type TypographyProps = {
 }
 
 export const Typography = ({ type, className, children }: PropsWithChildren<TypographyProps>) => {
-  const theme = useTheme()
-
   if (type === 'body1' || type === 'body2' || type === 'body3') {
     return (
-      <Body variant={type} css={{ color: theme.colors.black.dark }} className={className}>
+      <Body variant={type} className={className}>
         {children}
       </Body>
     )
@@ -37,7 +33,7 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
 
   if (type === 'caption1' || type === 'caption2') {
     return (
-      <Caption variant={type} css={{ color: theme.colors.black.dark }} className={className}>
+      <Caption variant={type} className={className}>
         {children}
       </Caption>
     )
@@ -52,7 +48,7 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
     type === 'h6'
   ) {
     return (
-      <Heading variant={type} css={{ color: theme.colors.black.dark }} className={className}>
+      <Heading variant={type} className={className}>
         {children}
       </Heading>
     )
@@ -60,14 +56,14 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
 
   if (type === 'subTitle1' || type === 'subTitle2' || type === 'subTitle3') {
     return (
-      <SubTitle variant={type} css={{ color: theme.colors.black.dark }} className={className}>
+      <SubTitle variant={type} className={className}>
         {children}
       </SubTitle>
     )
   }
 
   return (
-    <Body variant={'body1'} css={{ color: theme.colors.black.dark }} className={className}>
+    <Body variant={'body1'} className={className}>
       {children}
     </Body>
   )
