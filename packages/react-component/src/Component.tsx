@@ -110,7 +110,7 @@ export const Component = () => {
         >
           첫번째 모달 열기
         </Chip>
-        <ToastContainer height="50px" />
+        <ToastContainer height="50px" position="top-right" />
         <Chip
           color={theme.colors.red.main}
           shape="rounded"

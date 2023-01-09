@@ -1,5 +1,7 @@
 import { Fragment } from 'react'
 
+import { useMusmaTheme } from 'src/theme'
+
 import { ToastPopup } from './ToastPopup'
 import { useToastContext } from './ToastPopupContext'
 import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
@@ -9,6 +11,7 @@ export const ToastContainer = ({
   position = 'top-center',
 }: IToastContainerProps) => {
   const { list, removeToast } = useToastContext()
+  const { zIndex } = useMusmaTheme()
 
   return list.length ? (
     <div
@@ -17,7 +20,7 @@ export const ToastContainer = ({
         top: height,
         right: position === 'top-right' ? 10 : '50%',
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
-        zIndex: 9999,
+        zIndex: zIndex.toastPopup,
       }}
     >
       {list.map((item: IToastPopupData) => {

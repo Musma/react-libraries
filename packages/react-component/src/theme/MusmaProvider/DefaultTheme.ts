@@ -149,6 +149,7 @@ const DefaultTheme: MusmaTheme = {
     navBar: 1100,
     modal: 1200,
     tooltip: 1300,
+    toastPopup: 1400,
   },
 }
 

@@ -223,11 +223,13 @@ export interface MusmaTheme {
     navBar: 1100,
     modal: 1200,
     tooltip: 1300,
+    toastPopup: 1400,
    */
   zIndex: {
     header: number
     navBar: number
     modal: number
     tooltip: number
+    toastPopup: number
   }
 }
