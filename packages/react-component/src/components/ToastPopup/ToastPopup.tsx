@@ -21,7 +21,7 @@ export const ToastPopup = ({
   // 스타일 관련
   const theme = useTheme()
 
-  const stylesByState = useMemo(
+  const stylesByType = useMemo(
     () => ({
       info: {
         img: <FillInformationIcon color={theme.colors.blue.main} />,
@@ -60,14 +60,14 @@ export const ToastPopup = ({
     () => ({
       light: {
         fontColor: 'black',
-        bgColor: stylesByState[type].bgColor,
+        bgColor: stylesByType[type].bgColor,
       },
       dark: {
         fontColor: 'white',
-        bgColor: stylesByState[type].bgDarkColor,
+        bgColor: stylesByType[type].bgDarkColor,
       },
     }),
-    [type, stylesByState],
+    [type, stylesByType],
   )
 
   // 팝업 상태
