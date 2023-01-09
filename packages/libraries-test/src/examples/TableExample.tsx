@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useState } from 'react'
 
 import { Button, Table } from '@musma/react-component'
-import { OutlineAddIcon } from '@musma/react-icons'
+import { OutlineAddBoxIcon } from '@musma/react-icons'
 import { usePagination } from '@musma/react-utils'
 
 const originData = Array.from({ length: 10 }).map((_, index) => ({
@@ -19,7 +19,7 @@ const columns = [
 
 export const TableExample = () => {
   const pagination = usePagination({
-    fetch: () => {
+    fetchAPI: () => {
       console.log('123123')
     },
   })
@@ -45,7 +45,7 @@ export const TableExample = () => {
         toolbar={{
           title: '123',
           totalCount: 3,
-          children: <Button startIcon={OutlineAddIcon}>asd</Button>,
+          children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
         }}
       />
     </Fragment>
