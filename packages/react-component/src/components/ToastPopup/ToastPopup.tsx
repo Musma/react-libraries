@@ -13,10 +13,9 @@ import {
 import { AUTO_CLOSE_TIME, IToastPopupProps } from './ToastPopupTypes'
 
 export const ToastPopup = ({
-  id,
-  onCloseClick,
+  onCloseClick = () => console.log('close 이벤트를 전달해주세요.'),
   type = 'info',
-  title,
+  title = '',
   description,
   mode = 'light',
 }: IToastPopupProps) => {
@@ -83,7 +82,7 @@ export const ToastPopup = ({
       setIsOpen(false)
       onCloseClick()
       setIsOpen(false)
-    }, AUTO_CLOSE_TIME) // 임의로 1초를 해놨지만, 디자인 가이드 상 3.5초
+    }, AUTO_CLOSE_TIME)
     return () => {
       clearTimeout(timer)
     }
@@ -91,8 +90,8 @@ export const ToastPopup = ({
 
   return (
     <CSSTransition
-      unmountOnExit
-      timeout={1000 * 3.5}
+      unmountOnExit // 이거 안하면 UnMount 되어도 DOM에 남아있음
+      timeout={1000 * 3.5} // 이거 안하면 안없어짐
       in={isOpen}
       classNames="popup"
       css={{
