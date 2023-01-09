@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.25
+
+### Patch Changes
+
+- [`7472b31`](https://github.com/Musma/react-libraries/commit/7472b311298b49d1f4fbb255d094112beb6c11ef) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useLocationState 로직 수정 및 누락된 import 추가
+
 ## 0.1.24
 
 ### Patch Changes

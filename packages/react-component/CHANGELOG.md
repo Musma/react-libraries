@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.60
+
+### Patch Changes
+
+- [`2e3657e`](https://github.com/Musma/react-libraries/commit/2e3657e4f94ae6abf7815df0f8147d3022d5dfaa) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] DateRangerPicker 누락되어 다시 추가
+
+- Updated dependencies [[`7472b31`](https://github.com/Musma/react-libraries/commit/7472b311298b49d1f4fbb255d094112beb6c11ef)]:
+  - @musma/react-utils@0.1.25
+
 ## 0.1.59
 
 ### Patch Changes
