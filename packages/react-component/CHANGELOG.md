@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.62
+
+### Patch Changes
+
+- [`f827650`](https://github.com/Musma/react-libraries/commit/f8276502407316fb24d627dffc9a8fa2a78cdb64) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] DateRangePicker Global 스타일 제거
+
 ## 0.1.61
 
 ### Patch Changes
