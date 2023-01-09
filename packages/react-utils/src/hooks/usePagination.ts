@@ -7,28 +7,30 @@ export interface Pageable {
 
 interface UsePaginationProps {
   initPageable?: Pageable
-  fetch: () => void
+  fetchAPI: () => void
 }
+
+const rowPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
+  const num: number = (index + 1) * 10
+  return {
+    label: num.toString(),
+    value: num,
+  }
+})
 
 export const usePagination = ({
   initPageable = {
     page: 1,
     limit: 10,
   },
-  fetch,
+  fetchAPI,
 }: UsePaginationProps) => {
+  const [mounted, setMounted] = useState(false)
+
   const [pageable, setPageable] = useState<Pageable>(initPageable)
   const [totalPage, setTotalPage] = useState(0)
 
   const resetPage = () => setPageable((pageable) => ({ ...pageable, page: 1 }))
-
-  const rowPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
-    const num: number = (index + 1) * 10
-    return {
-      label: num.toString(),
-      value: num,
-    }
-  })
 
   const pagination = {
     rowPerPageOptions,
@@ -44,7 +46,13 @@ export const usePagination = ({
   }
 
   useEffect(() => {
-    fetch()
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (mounted) {
+      fetchAPI()
+    }
   }, [pageable])
 
   return { pageable, pagination, resetPage, setPageable, setTotalPage }

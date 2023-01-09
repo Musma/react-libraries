@@ -1,6 +1,12 @@
 import { DeepPartial, useForm, UseFormProps } from 'react-hook-form'
 
-import { usePagination, useQueryParams } from 'src/hooks'
+import { useLocationState } from './useLocationState'
+import { Pageable, usePagination } from './usePagination'
+
+type FormState<T> = {
+  formValues?: T
+  pageable?: Pageable
+}
 
 interface UseFormSearchProps<T extends object> {
   useFormProps: UseFormProps<T>
@@ -11,47 +17,38 @@ export const useFormSearch = <T extends object>({
   useFormProps,
   fetchAPI,
 }: UseFormSearchProps<T>) => {
-  const {
-    queryFormValues,
-    queryPageable,
-    setFormDataQueryParams,
-    clearQueryParams,
-    setPageableQueryParams,
-  } = useQueryParams()
+  const [formState, setFormState] = useLocationState<FormState<T>>({
+    key: 'formState',
+    initialState: {},
+  })
 
   const form = useForm<T>({
     ...useFormProps,
     defaultValues: {
       ...useFormProps.defaultValues,
-      ...queryFormValues,
+      ...formState.formValues,
     } as DeepPartial<T>,
   })
 
-  const { pagination, pageable, setPageable } = usePagination({
-    initPageable: queryPageable,
-    fetch: () => {
-      setPageableQueryParams(pageable)
-      fetchAPI()
-    },
+  const { setPageable, pagination, pageable } = usePagination({
+    fetchAPI,
   })
 
   const onSubmit = () => {
-    clearQueryParams()
+    setFormState({ ...formState, formValues: form.getValues() })
     setPageable((_pageable) => ({ ..._pageable, page: 1 }))
-    setFormDataQueryParams(form.getValues() as Record<string, string>)
-    fetchAPI()
   }
 
   const onReset = () => {
+    setFormState({})
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
-    clearQueryParams()
   }
 
   return {
-    onSubmit,
-    onReset,
     pagination,
     pageable,
+    onSubmit,
+    onReset,
     ...form,
   }
 }
