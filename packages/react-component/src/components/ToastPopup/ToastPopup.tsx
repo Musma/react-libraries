@@ -8,7 +8,7 @@ import { useToastPopupStyle, FLOAT_TO_TOP, IToastPopupProps, AUTO_CLOSE_TIME } f
 export const ToastPopup = ({
   onCloseClick = () => console.log('close 이벤트를 전달해주세요.'),
   type = 'info',
-  title,
+  title = '',
   description,
   mode = 'light',
 }: IToastPopupProps) => {
