@@ -50,7 +50,7 @@ export const ToastPopup = ({
         },
         '&.popup-enter-done': {
           opacity: 1,
-          transform: `translateY(${FLOAT_TO_TOP})`, // 디자인 시스템 가이드 상 header로부터 16px 띄우기
+          transform: 'translateY(16px)', // 디자인 시스템 가이드 상 header로부터 16px 띄우기
         },
         '&.popup-exit': {
           opacity: 1,
