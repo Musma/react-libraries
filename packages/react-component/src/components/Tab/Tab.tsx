@@ -5,6 +5,7 @@ import { useTheme } from '@emotion/react'
 import { Typography } from 'src/components'
 import { ButtonBase } from 'src/elements'
 
+import { Indicator } from './components'
 import { useTabContext } from './TabContext'
 
 export interface TabProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
@@ -26,8 +27,7 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
       tabIndex={-1}
       css={[
         {
-          minWidth: theme.inputSize.minWidth,
-          flex: 1,
+          minWidth: 120,
           height: 40,
           display: 'flex',
           alignItems: 'center',
@@ -36,6 +36,7 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
           paddingRight: theme.spacing.lg,
           backgroundColor: theme.colors.transparent,
           whiteSpace: 'nowrap',
+          position: 'relative',
         },
         variant === 'hat' && {
           color: active ? theme.colors.black.main : theme.colors.gray.darker,
@@ -72,6 +73,8 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
       <Typography type="subTitle2" css={{ color: 'currentcolor' }}>
         {label}
       </Typography>
+
+      {active && <Indicator />}
     </ButtonBase>
   )
 }

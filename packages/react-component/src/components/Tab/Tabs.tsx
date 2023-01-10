@@ -14,7 +14,6 @@ import { useTheme } from '@emotion/react'
 
 import { Box } from 'src/elements'
 
-import { Indicator } from './components'
 import { TabProps } from './Tab'
 import { useTabContext } from './TabContext'
 
@@ -87,10 +86,8 @@ export const Tabs = ({ children, ...rest }: TabsProps) => {
       }}
       {...rest}
     >
-      <Box css={{ display: 'flex', position: 'relative' }} ref={ref}>
+      <Box css={{ display: 'flex' }} ref={ref}>
         {children}
-
-        {variant === 'rect' && <Indicator width={indicatorWidth} left={indicatorLeft} />}
       </Box>
     </Box>
   )
