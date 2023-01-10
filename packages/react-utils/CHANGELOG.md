@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.26
+
+### Patch Changes
+
+- [`e1a3aba`](https://github.com/Musma/react-libraries/commit/e1a3aba710e32717d3d96d82a6bbe55f0b757709) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] usePagination state명 변경
+
 ## 0.1.25
 
 ### Patch Changes
