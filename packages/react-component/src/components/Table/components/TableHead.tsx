@@ -36,9 +36,9 @@ export const TableHead = ({
       <tr css={{ backgroundColor: theme.colors.white.lighter }}>
         {withCheckbox && (
           <th
+            align="center"
             css={{
               height: 40,
-              textAlign: 'center',
               borderRight: `1px solid ${theme.colors.gray.main}`,
               borderBottom: `1px solid ${theme.colors.gray.main}`,
             }}
@@ -58,12 +58,12 @@ export const TableHead = ({
 
         {columns.map((column, index) => (
           <th
+            align="center"
             css={{
               height: 40,
               color: theme.colors.black.dark,
               fontWeight: 600,
               fontSize: 14,
-              textAlign: 'center',
               borderRight: `1px solid ${theme.colors.gray.main}`,
               borderBottom: `1px solid ${theme.colors.gray.main}`,
               '&:last-of-type': {

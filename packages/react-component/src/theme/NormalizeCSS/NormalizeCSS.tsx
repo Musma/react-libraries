@@ -158,6 +158,12 @@ const normalize = css`
   input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
   }
+
+  // Custom
+  td,
+  th {
+    padding: 0;
+  }
 `
 
 export const NormalizeCSS = () => {

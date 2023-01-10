@@ -79,9 +79,9 @@ export const TableBody = ({
         >
           {withCheckbox && (
             <td
+              align="center"
               css={{
                 height: 40,
-                textAlign: 'center',
               }}
             >
               <Checkbox
@@ -99,10 +99,10 @@ export const TableBody = ({
           {columns.map((column) => (
             <td
               key={column.columnName}
+              align="center"
               css={{
                 fontSize: 14,
                 height: 40,
-                textAlign: 'center',
               }}
             >
               {item[column.columnName] as ReactNode}
