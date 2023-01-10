@@ -32,7 +32,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
       // Allow value to be a function so we have same API as useState
       const valueToStore = value instanceof Function ? value(storedValue) : value
       // Save state
-      setStoredValue(valueToStore)
+      setStoredValue(() => valueToStore)
       // Window 객체가 있을 때
       if (isBrowser) {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))

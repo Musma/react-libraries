@@ -35,12 +35,12 @@ export const useFormSearch = <T extends object>({
   })
 
   const onSubmit = () => {
-    setFormState({ ...formState, formValues: form.getValues() })
+    setFormState(() => ({ ...formState, formValues: form.getValues() }))
     setPageable((_pageable) => ({ ..._pageable, page: 1 }))
   }
 
   const onReset = () => {
-    setFormState({})
+    setFormState(() => ({}))
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
   }
 

@@ -12,7 +12,7 @@ interface UsePaginationProps {
   fetchAPI: () => void
 }
 
-const rowPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
+const itemsPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
   const num: number = (index + 1) * 10
   return {
     label: num.toString(),
@@ -20,30 +20,28 @@ const rowPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
   }
 })
 
-export const usePagination = ({
-  initPageable = {
-    page: 1,
-    limit: 10,
-  },
-  fetchAPI,
-}: UsePaginationProps) => {
-  const isMounted = useIsMounted()
+const INIT_PAGEABLE = {
+  page: 1,
+  limit: 10,
+}
 
+export const usePagination = ({ initPageable = INIT_PAGEABLE, fetchAPI }: UsePaginationProps) => {
+  const isMounted = useIsMounted()
   const [pageable, setPageable] = useState<Pageable>(initPageable)
-  const [totalPage, setTotalPage] = useState(0)
+  const [totalPages, setTotalPages] = useState(0)
 
   const resetPage = () => setPageable((pageable) => ({ ...pageable, page: 1 }))
 
   const pagination = {
-    rowPerPageOptions,
+    itemsPerPageOptions,
     currentPage: pageable.page,
-    rowPerPage: pageable.limit,
-    totalPage: totalPage,
+    itemsPerPage: pageable.limit,
+    totalPages: totalPages,
     onPageChange: (page: number) => {
       setPageable((pageable) => ({ ...pageable, page }))
     },
-    onRowPerPageChange: (rowPerPage: number) => {
-      setPageable({ page: 1, limit: rowPerPage })
+    onItemsPerPageChange: (itemsPerPage: number) => {
+      setPageable(() => ({ page: 1, limit: itemsPerPage }))
     },
   }
 
@@ -53,5 +51,5 @@ export const usePagination = ({
     }
   }, [pageable])
 
-  return { pageable, pagination, resetPage, setPageable, setTotalPage }
+  return { pageable, pagination, resetPage, setPageable, setTotalPages }
 }
