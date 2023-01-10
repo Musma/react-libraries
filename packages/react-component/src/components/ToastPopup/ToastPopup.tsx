@@ -77,9 +77,6 @@ export const ToastPopup = ({
   useEffect(() => {
     setIsOpen(true)
     const timer = setTimeout(() => {
-      // unmount 효과를 기대했지만 안된다... 타이밍을 어떻게 넣어야 할지 ㅜㅜ
-      setIsOpen(false)
-      onCloseClick()
       setIsOpen(false)
     }, AUTO_CLOSE_TIME)
     return () => {
@@ -90,8 +87,9 @@ export const ToastPopup = ({
   return (
     <CSSTransition
       unmountOnExit // 이거 안하면 UnMount 되어도 DOM에 남아있음
-      timeout={1000 * 3.5} // 이거 안하면 안없어짐
+      timeout={1000} // 이거 안하면 안없어짐 (이벤트 상태별로 전환되는 시간 => enter > enter-active > enter-done ...)
       in={isOpen}
+      onExited={() => onCloseClick()}
       classNames="popup"
       css={{
         '&.popup-enter': {
@@ -103,6 +101,10 @@ export const ToastPopup = ({
           transform: 'translateY(16px)', // 디자인 시스템 가이드 상 header로부터 16px 띄우기
           transition: 'all 1s',
         },
+        '&.popup-enter-done': {
+          opacity: 1,
+          transform: 'translateY(16px)', // 디자인 시스템 가이드 상 header로부터 16px 띄우기
+        },
         '&.popup-exit': {
           opacity: 1,
           transform: 'translateY(16px)',
@@ -110,7 +112,7 @@ export const ToastPopup = ({
         '&.popup-exit-active': {
           opacity: 0,
           transform: 'translateY(0px)',
-          transition: 'all 1s',
+          transition: 'all 0.5s',
         },
         '&.popup-exit-done': {
           opacity: 0,
@@ -165,7 +167,7 @@ export const ToastPopup = ({
           <OutlineCloseIcon
             cursor="pointer"
             color={stylesByMode[mode].fontColor}
-            onClick={onCloseClick}
+            onClick={() => setIsOpen(false)}
           />
         </div>
       </div>
