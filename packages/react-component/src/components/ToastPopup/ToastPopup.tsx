@@ -87,9 +87,12 @@ export const ToastPopup = ({
   return (
     <CSSTransition
       unmountOnExit // 이거 안하면 UnMount 되어도 DOM에 남아있음
-      timeout={1000} // 이거 안하면 안없어짐 (이벤트 상태별로 전환되는 시간 => enter > enter-active > enter-done ...)
-      in={isOpen}
-      onExited={() => onCloseClick()}
+      timeout={{
+        enter: 1000,
+        exit: 500,
+      }} // 이벤트 상태별로 전환되는 시간 => enter > enter-active > enter-done ... (없으면 동작 안함)
+      in={isOpen} // 상태 전환 플래그
+      onExited={() => onCloseClick()} // exited 된 후 이벤트
       classNames="popup"
       css={{
         '&.popup-enter': {
@@ -98,7 +101,7 @@ export const ToastPopup = ({
         },
         '&.popup-enter-active': {
           opacity: 1,
-          transform: 'translateY(16px)', // 디자인 시스템 가이드 상 header로부터 16px 띄우기
+          transform: 'translateY(16px)',
           transition: 'all 1s',
         },
         '&.popup-enter-done': {
