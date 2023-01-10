@@ -1,5 +1,16 @@
 # @musma/react-component
 
+## 0.1.63
+
+### Patch Changes
+
+- [`aa5b5b0`](https://github.com/Musma/react-libraries/commit/aa5b5b0e3ce80dfcc0b3f0c993ec58e57039f790) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Table 재구성
+
+- [`cfe5321`](https://github.com/Musma/react-libraries/commit/cfe53210e7f5db3fdd1fda9c1e9d9d9c1ac91e86) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Tab Indicator 수정
+
+- Updated dependencies [[`e1a3aba`](https://github.com/Musma/react-libraries/commit/e1a3aba710e32717d3d96d82a6bbe55f0b757709)]:
+  - @musma/react-utils@0.1.26
+
 ## 0.1.62
 
 ### Patch Changes

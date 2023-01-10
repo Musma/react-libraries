@@ -41,5 +41,6 @@
     "@emotion/babel-plugin": "^11.10.5",
     "@types/lodash-es": "^4.17.6",
     "@types/luxon": "^3.2.0"
-  }
+  },
+  "version": null
 }
