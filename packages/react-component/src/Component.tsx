@@ -54,7 +54,7 @@ export const Component = () => {
   })
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
-  const { addToast } = useToastContext()
+  const { addToast, setLimit } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -147,6 +147,17 @@ export const Component = () => {
           }}
         >
           토스트 팝업 4
+        </Chip>
+        <Chip
+          color={theme.colors.black.main}
+          shape="rounded"
+          onClick={() => {
+            const random = Math.floor(Math.random() * 10) + 1
+            console.log('random', random)
+            setLimit(random)
+          }}
+        >
+          토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
         </Chip>
 
         <TextInput value="123" css={{ marginBottom: 24 }} />
