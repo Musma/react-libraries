@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.64
+
+### Patch Changes
+
+- [`f5154b5`](https://github.com/Musma/react-libraries/commit/f5154b5e78ce5d833257396a09c9f2bd8a399cee) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] Tab 컴포넌트에 Indicator 관련 버그 수정
+
 ## 0.1.63
 
 ### Patch Changes
