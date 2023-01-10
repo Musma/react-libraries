@@ -113,7 +113,7 @@ export const Dropdown = ({
             minWidth: theme.inputSize.minWidth,
             boxShadow: theme.shadow.sm,
             borderRadius: theme.rounded.lg,
-            border: `1px solid ${theme.colors.gray.dark}}`,
+            border: `1px solid ${theme.colors.gray.dark}`,
             overflow: 'hidden',
           }}
           {...rest}

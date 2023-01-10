@@ -1,9 +1,8 @@
-import { Fragment, ReactNode, useCallback, useMemo } from 'react'
+import { ReactNode, useCallback } from 'react'
 
 import { useTheme } from '@emotion/react'
 
 import { Checkbox } from 'src/components'
-import { Box } from 'src/elements'
 
 import { TableColumn } from '../Table'
 
@@ -51,23 +50,13 @@ export const TableBody = ({
     [checkedItems],
   )
 
-  const gridTemplateColumns = useMemo(() => {
-    if (withCheckbox) {
-      return `50px repeat(${columns.length}, 1fr)`
-    }
-
-    return `repeat(${columns.length}, 1fr)`
-  }, [columns, withCheckbox])
-
   return (
-    <Fragment>
+    <tbody>
       {data.map((item, index) => (
-        <Box
+        <tr
           key={index}
           css={[
             {
-              display: 'grid',
-              gridTemplateColumns,
               backgroundColor: theme.colors.white.main,
               borderBottom: `1px solid ${theme.colors.white.lighter}`,
               color: theme.colors.black.dark,
@@ -83,17 +72,16 @@ export const TableBody = ({
             },
           ]}
           onClick={(e) => {
-            if (e.target instanceof HTMLDivElement) {
+            if (e.target instanceof HTMLTableCellElement) {
               onRowClick?.(item)
             }
           }}
         >
           {withCheckbox && (
-            <Box
+            <td
               css={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                height: 40,
+                textAlign: 'center',
               }}
             >
               <Checkbox
@@ -105,26 +93,23 @@ export const TableBody = ({
                   }
                 }}
               />
-            </Box>
+            </td>
           )}
 
           {columns.map((column) => (
-            <Box
+            <td
               key={column.columnName}
               css={{
                 fontSize: 14,
                 height: 40,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 textAlign: 'center',
               }}
             >
               {item[column.columnName] as ReactNode}
-            </Box>
+            </td>
           ))}
-        </Box>
+        </tr>
       ))}
-    </Fragment>
+    </tbody>
   )
 }

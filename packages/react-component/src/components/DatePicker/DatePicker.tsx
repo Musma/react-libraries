@@ -199,7 +199,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             minDate={minDate}
             maxDate={maxDate}
             anchorOrigin={anchorOrigin}
-            onChange={onChange}
+            onChange={(dateTime) => {
+              onChange(dateTime)
+              toggleCalendar(false)
+            }}
             onClose={() => {
               toggleCalendar(false)
             }}

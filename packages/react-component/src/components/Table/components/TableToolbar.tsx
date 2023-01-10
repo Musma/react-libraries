@@ -13,14 +13,14 @@ interface TableToolbarProps {
   /**
    * @description
    */
-  totalCount?: number
+  totalItems?: number
   /**
    * @description
    */
   children?: ReactNode
 }
 
-export const TableToolbar = ({ title, totalCount, children }: TableToolbarProps) => {
+export const TableToolbar = ({ title, totalItems, children }: TableToolbarProps) => {
   const theme = useTheme()
   return (
     <Box
@@ -38,11 +38,10 @@ export const TableToolbar = ({ title, totalCount, children }: TableToolbarProps)
         </Typography>
 
         {/* 전체 데이터 개수 */}
-        {totalCount && (
-          <Typography
-            type="body2"
-            css={{ color: theme.colors.blue.main }}
-          >{`(${totalCount})`}</Typography>
+        {totalItems && (
+          <Typography type="body2" css={{ color: theme.colors.blue.main }}>
+            {totalItems}
+          </Typography>
         )}
       </Box>
 

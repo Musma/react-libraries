@@ -130,34 +130,44 @@ export const Table = ({
       {toolbar && <TableToolbar {...toolbar} />}
 
       {/* Table Wrapper */}
+
       <Box
         css={{
+          border: `1px solid ${theme.colors.gray.main}`,
           borderRadius: theme.rounded[rounded],
-          border: `1px solid ${theme.colors.gray.lighter}`,
           overflow: 'hidden',
         }}
       >
-        {/* Table Header */}
-        <TableHead
-          columns={columns}
-          withCheckbox={withCheckbox}
-          allChecked={allChecked}
-          onAllCheckClick={handleAllCheckClick}
-        />
+        <table
+          css={{
+            width: '100%',
+            borderRadius: theme.rounded[rounded],
+            borderSpacing: 0,
+            borderCollapse: 'collapse',
+          }}
+        >
+          {/* Table Header */}
+          <TableHead
+            columns={columns}
+            withCheckbox={withCheckbox}
+            allChecked={allChecked}
+            onAllCheckClick={handleAllCheckClick}
+          />
 
-        {/* Table Body */}
-        <TableBody
-          columns={columns}
-          data={data}
-          withCheckbox={withCheckbox}
-          checkedItems={checkedItems}
-          onCheckboxClick={handleCheckboxClick}
-          onRowClick={onRowClick}
-        />
+          {/* Table Body */}
+          <TableBody
+            columns={columns}
+            data={data}
+            withCheckbox={withCheckbox}
+            checkedItems={checkedItems}
+            onCheckboxClick={handleCheckboxClick}
+            onRowClick={onRowClick}
+          />
+        </table>
       </Box>
 
       {/* Pagination 있어야하며, totalPage의 값이 0 이상이어야 함 */}
-      {pagination && pagination.totalPage > 0 && (
+      {pagination && pagination.totalPages > 0 && (
         <Box css={{ marginTop: theme.spacing.md }}>
           <Pagination {...pagination} />
         </Box>

@@ -22,7 +22,6 @@ export const ThreeDots = ({ width = 80, height = 80, fill: fillProp }: ThreeDots
       viewBox="0 0 120 30"
       xmlns="http://www.w3.org/2000/svg"
       fill={fill}
-      data-testid="three-dots-svg"
     >
       <circle cx="15" cy="15" r={Number(9) + 6}>
         <animate
