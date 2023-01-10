@@ -21,6 +21,10 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
     return tabValue === value
   }, [value, tabValue])
 
+  const showIndicator = useMemo(() => {
+    return variant === 'rect' && active
+  }, [variant, active])
+
   return (
     <ButtonBase
       role="tab"
@@ -74,7 +78,7 @@ export const Tab = ({ value, label, ...rest }: TabProps) => {
         {label}
       </Typography>
 
-      {active && <Indicator />}
+      {showIndicator && active && <Indicator />}
     </ButtonBase>
   )
 }
