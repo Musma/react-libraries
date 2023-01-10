@@ -4,12 +4,34 @@ import { IToastPopupData } from '.'
 class ToastPopupManager {
   private popupList: Map<string, IToastPopupData> = new Map()
   private queue: IToastPopupData[] = []
-  private limit = 5
+  private listLimit = 5
 
   get list() {
     const list: IToastPopupData[] = []
     this.popupList.forEach((item) => list.unshift(item))
     return list
+  }
+
+  get limit() {
+    return this.listLimit
+  }
+
+  public setLimit(newLimit: number): IToastPopupData[] {
+    const oldLimit = this.listLimit
+    const distance = newLimit - oldLimit
+    this.listLimit = newLimit
+
+    if (distance > 0) {
+      // 늘어난 limit만큼 queue에서 뽑아서 popupList에 추가
+      const addList = this.queue.splice(0, distance)
+      addList.forEach((item) => this.add(item))
+    } else if (distance < 0) {
+      // 줄어든 limit만큼 popupList에서 제거하고 queue에 추가
+      const removeList = Array.from(this.popupList.values()).slice(distance)
+      removeList.forEach((item) => this.popupList.delete(item.id))
+      this.queue = removeList.concat(this.queue)
+    }
+    return this.list
   }
 
   public add(toastPopup: IToastPopupData): IToastPopupData[] {
@@ -38,7 +60,7 @@ class ToastPopupManager {
    * @returns 걸린다(true) / 안걸린다(false)
    */
   private checkLimit(): boolean {
-    if (this.popupList.size >= this.limit) {
+    if (this.popupList.size >= this.listLimit) {
       return true
     }
     return false
