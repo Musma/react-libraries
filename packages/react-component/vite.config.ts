@@ -27,18 +27,20 @@ export default defineConfig({
         '@emotion/react',
         '@musma/react-icons',
         '@musma/react-utils',
+        'react-datepicker',
+        'date-fns',
       ],
     },
   },
   plugins: [
+    dts(),
+    svgr(),
     react({
       jsxImportSource: '@emotion/react',
       babel: {
         plugins: ['@emotion/babel-plugin'],
       },
     }),
-    dts(),
-    svgr(),
     visualizer({ open: false }),
   ],
   resolve: {

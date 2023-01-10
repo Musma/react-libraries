@@ -30,16 +30,16 @@
     "@musma/react-icons": "workspace:*",
     "@musma/react-utils": "workspace:*",
     "lodash-es": "^4.17.21",
-    "luxon": "^3.1.0",
+    "luxon": "^3.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.39.4",
-    "react-router-dom": "^6.4.3"
+    "react-hook-form": "^7.41.5",
+    "react-router-dom": "^6.6.2"
   },
   "devDependencies": {
+    "@babel/core": "7.20.12",
     "@emotion/babel-plugin": "^11.10.5",
     "@types/lodash-es": "^4.17.6",
-    "@types/luxon": "^3.1.0"
-  },
-  "version": null
+    "@types/luxon": "^3.2.0"
+  }
 }
