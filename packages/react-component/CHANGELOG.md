@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.65
+
+### Patch Changes
+
+- [`0322b46`](https://github.com/Musma/react-libraries/commit/0322b4681052c7cdba4f7724189e1df97fdf72fc) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Table th, td 스타일 수정
+
 ## 0.1.64
 
 ### Patch Changes
