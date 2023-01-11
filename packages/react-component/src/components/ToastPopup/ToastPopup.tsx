@@ -170,11 +170,7 @@ export const ToastPopup = ({
           <OutlineCloseIcon
             cursor="pointer"
             color={stylesByMode[mode].fontColor}
-            onClick={(e): void => {
-              console.log('팝업 닫는다', e)
-              e.stopPropagation()
-              setIsOpen(false)
-            }}
+            onClick={() => setIsOpen(false)}
           />
         </div>
       </div>
