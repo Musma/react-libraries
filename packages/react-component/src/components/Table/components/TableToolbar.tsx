@@ -1,24 +1,11 @@
-import { ReactNode } from 'react'
-
 import { useTheme } from '@emotion/react'
 
 import { Typography } from 'src/components'
 import { Box } from 'src/elements'
 
-interface TableToolbarProps {
-  /**
-   * @description
-   */
-  title: string
-  /**
-   * @description
-   */
-  totalItems?: number
-  /**
-   * @description
-   */
-  children?: ReactNode
-}
+import { ToolbarOption } from '../types'
+
+type TableToolbarProps = ToolbarOption
 
 export const TableToolbar = ({ title, totalItems, children }: TableToolbarProps) => {
   const theme = useTheme()

@@ -33,13 +33,11 @@ export interface TextInputProps
   label?: string
   /**
    *
-   * @param props
    * @returns
    */
   startAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   /**
    *
-   * @param props
    * @returns
    */
   endAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)

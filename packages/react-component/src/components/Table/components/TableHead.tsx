@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react'
 
 import { Checkbox } from 'src/components'
 
-import { TableColumn } from '../Table'
+import { TableColumn } from '../types'
 
 interface TableHeadProps {
   /**

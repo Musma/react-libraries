@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -7,17 +7,7 @@ import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
 import { TableBody, TableHead, TableToolbar } from './components'
-
-export interface TableColumn {
-  columnName: string
-  columnLabel: ReactNode
-}
-
-interface ToolbarOptions {
-  title: string
-  totalCount: number
-  children?: ReactNode
-}
+import { TableColumn, ToolbarOption } from './types'
 
 export interface TableProps {
   /**
@@ -47,7 +37,7 @@ export interface TableProps {
    * totalCount: 데이터 전체 갯수
    * 오른쪽에 렌더링 될 ReactNode
    */
-  toolbar?: ToolbarOptions
+  toolbar?: ToolbarOption
   /**
    * @default false
    * 체크박스 표시 여부
