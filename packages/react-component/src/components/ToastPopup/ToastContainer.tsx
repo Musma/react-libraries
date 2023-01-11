@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 
 import { useMusmaTheme } from 'src/theme'
 
-import { ReactPortal } from '../ReactPortal'
 import { ToastPopup } from './ToastPopup'
 import { useToastContext } from './ToastPopupContext'
 import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
@@ -15,31 +14,30 @@ export const ToastContainer = ({
   const { zIndex } = useMusmaTheme()
 
   return list.length ? (
-    <ReactPortal wrapperId="react-portal-toastPopup">
-      <div
-        css={{
-          position: 'fixed',
-          top: height,
-          right: position === 'top-right' ? 10 : '50%',
-          transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
-          zIndex: zIndex.toastPopup,
-        }}
-      >
-        {list.map((item: IToastPopupData) => {
-          return (
-            <ToastPopup
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              onCloseClick={() => removeToast(item)}
-              type={item.type}
-              mode={item.mode}
-              description={item?.description}
-            />
-          )
-        })}
-      </div>
-    </ReactPortal>
+    <div
+      css={{
+        position: 'fixed',
+        top: height,
+        right: position === 'top-right' ? 10 : '50%',
+        transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
+        zIndex: zIndex.toastPopup,
+      }}
+      id="react-portal-toastPopup"
+    >
+      {list.map((item: IToastPopupData) => {
+        return (
+          <ToastPopup
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            onCloseClick={() => removeToast(item)}
+            type={item.type}
+            mode={item.mode}
+            description={item?.description}
+          />
+        )
+      })}
+    </div>
   ) : (
     <Fragment />
   )
