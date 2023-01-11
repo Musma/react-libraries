@@ -25,7 +25,7 @@ const rootElement = document.getElementById('root')
 if (rootElement) {
   render(
     <MusmaProvider theme={theme}>
-      <ToastContextProvider>
+      <ToastContextProvider initLimit={3}>
         <BrowserRouter>
           <Component />
         </BrowserRouter>

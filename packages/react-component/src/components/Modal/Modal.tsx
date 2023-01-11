@@ -157,7 +157,7 @@ export const Modal = ({
         onClose()
       }
     },
-    document.querySelector('#react-portal-toastPopup'),
+    document.querySelector('#toastPopup-container'),
   )
 
   if (show) {

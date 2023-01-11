@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export const AUTO_CLOSE_TIME = 1000 * 3.5 // 자동 close 될 시간
 
 export type ToastPopupStateType = 'info' | 'warning' | 'error' | 'success'
@@ -18,4 +20,16 @@ export interface IToastPopupProps extends IToastPopupData {
 export interface IToastContainerProps {
   height: string
   position?: ToastPopupPositionType
+}
+
+export interface IToastPopupContext {
+  list: IToastPopupData[]
+  addToast: (toastPopup: IToastPopupData) => void
+  removeToast: (toastPopup: IToastPopupData) => void
+  setLimit: (newLimit: number) => void
+}
+
+export interface IToastContextProviderProps {
+  children: ReactNode
+  initLimit?: number
 }
