@@ -1,5 +1,13 @@
 # @musma/react-component
 
+## 0.1.66
+
+### Patch Changes
+
+- [`944316c`](https://github.com/Musma/react-libraries/commit/944316c8bd69e57bc78b94f3827a893d7b5df213) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] RadioGroup 컴포넌트 추가
+
+- [`50b40b9`](https://github.com/Musma/react-libraries/commit/50b40b99be3535e25ea84f2a1ea95dc0a6f7ac8c) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Table interface 정리
+
 ## 0.1.65
 
 ### Patch Changes
