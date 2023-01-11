@@ -22,7 +22,7 @@ export const ToastContainer = ({
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
         zIndex: zIndex.toastPopup,
       }}
-      id="react-portal-toastPopup"
+      id="toastPopup-container"
     >
       {list.map((item: IToastPopupData) => {
         return (

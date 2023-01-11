@@ -1,14 +1,7 @@
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 import { toastPopupManager } from './ToastPopupManager'
-import { IToastPopupData } from './ToastPopupTypes'
-
-export interface IToastPopupContext {
-  list: IToastPopupData[]
-  addToast: (toastPopup: IToastPopupData) => void
-  removeToast: (toastPopup: IToastPopupData) => void
-  setLimit: (newLimit: number) => void
-}
+import { IToastContextProviderProps, IToastPopupContext, IToastPopupData } from './ToastPopupTypes'
 
 export const ToastPopupContext = createContext<IToastPopupContext>(undefined!)
 
@@ -16,7 +9,7 @@ export const useToastContext = (): IToastPopupContext => {
   return useContext(ToastPopupContext)
 }
 
-export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
+export const ToastContextProvider = ({ children, initLimit }: IToastContextProviderProps) => {
   const [list, setList] = useState<IToastPopupData[]>([]) // 현재 화면에 떠있는 토스트 팝업들
 
   const addToast = useCallback(
@@ -37,6 +30,10 @@ export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
     if (toastPopupManager.limit !== newLimit) {
       setList(toastPopupManager.setLimit(newLimit))
     }
+  }, [])
+
+  useEffect(() => {
+    initLimit && setLimit(initLimit)
   }, [])
 
   return (
