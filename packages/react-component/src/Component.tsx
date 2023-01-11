@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { useTheme } from '@emotion/react'
 import { AddIcon, FillAddBoxIcon } from '@musma/react-icons'
 import { useDetectCapsLock, usePagination, useTab } from '@musma/react-utils'
@@ -18,6 +20,7 @@ import {
   Textarea,
   TextInput,
   Typography,
+  RadioGroup,
 } from './components'
 
 const options = [
@@ -89,6 +92,8 @@ export const Component = () => {
   const theme = useTheme()
   const { activeCapsLock } = useDetectCapsLock()
   const [tab, setTab] = useTab<string>({ initTabValue: '1' })
+
+  const [radio, setRadio] = useState('1')
 
   const { pagination } = usePagination({
     fetchAPI() {
@@ -178,6 +183,34 @@ export const Component = () => {
           alert('123123')
         }}
       />
+
+      <Box css={{ display: 'flex', gap: 24 }}>
+        <DatePicker
+          // disabled={true}
+          value={DateTime.now()}
+          anchorOrigin={{ vertical: 'bottom' }}
+          onChange={() => {
+            return null
+          }}
+        />
+
+        <RadioGroup
+          value={radio}
+          items={[
+            {
+              label: 'test1',
+              value: '1',
+            },
+            {
+              label: 'test2',
+              value: '2',
+            },
+          ]}
+          onChange={(value) => {
+            setRadio(value)
+          }}
+        />
+      </Box>
     </Box>
   )
 }
