@@ -1,11 +1,13 @@
 import { Fragment, HTMLAttributes, useEffect, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { uniqueId, useEscKeyPress, useOutsideListener, useSetRef } from '@musma/react-utils'
+import { uniqueId, useEscKeyPress, useSetRef } from '@musma/react-utils'
 
 import { Backdrop, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
+
+import { useOutsideListener } from './useOutsideListener'
 
 class ModalManager {
   private modalIds: string[] = []
@@ -139,20 +141,24 @@ export const Modal = ({
   /**
    * Modal 영역 이외의 HTMLElement를 클릭했을 경우 콜백 Hooks
    */
-  useOutsideListener(ref, () => {
-    if (show) {
-      if (disableOutsideClick || !ref) {
-        return
-      }
+  useOutsideListener(
+    ref,
+    () => {
+      if (show) {
+        if (disableOutsideClick || !ref) {
+          return
+        }
 
-      // 여러개 모달이 열려있을 때의 처리
-      if (!modalManager.isTopModal(modalId)) {
-        return
-      }
+        // 여러개 모달이 열려있을 때의 처리
+        if (!modalManager.isTopModal(modalId)) {
+          return
+        }
 
-      onClose()
-    }
-  })
+        onClose()
+      }
+    },
+    document.querySelector('#react-portal-toastPopup'),
+  )
 
   if (show) {
     return (
