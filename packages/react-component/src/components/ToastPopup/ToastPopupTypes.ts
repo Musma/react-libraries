@@ -48,13 +48,13 @@ export interface IToastContextProviderProps extends IToastContainerProps {
 }
 
 export interface IToastPopupContext {
-  list: IToastPopupData[]
+  list: IToastPopupInstance[]
   addToast: (toastPopup: IToastPopupData) => void
-  removeToast: (toastPopup: IToastPopupData) => void
+  removeToast: (toastPopup: IToastPopupInstance) => void
   setLimit: (newLimit: number) => void
 }
 
 export interface IToastContextProviderProps {
   children: ReactNode
-  initLimit?: number
+  props?: IToastContainerProps
 }
