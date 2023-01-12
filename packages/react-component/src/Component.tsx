@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import { useTheme } from '@emotion/react'
 import { uniqueId, useFormSearch, useToggle } from '@musma/react-utils'
 import { DateTime } from 'luxon'
@@ -13,7 +15,6 @@ import {
   Select,
   Table,
   TextInput,
-  ToastContainer,
 } from './components'
 import { Chip } from './components/Chip'
 import { useToastContext } from './components/ToastPopup/ToastPopupContext'
@@ -42,6 +43,7 @@ type DDD = {
 }
 
 export const Component = () => {
+  const navigate = useNavigate()
   const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
     useFormProps: {
       defaultValues: {
@@ -110,7 +112,7 @@ export const Component = () => {
         >
           첫번째 모달 열기
         </Chip>
-        <ToastContainer height="50px" position="top-right" />
+
         <Chip
           color={theme.colors.red.main}
           shape="rounded"
@@ -150,7 +152,6 @@ export const Component = () => {
         </Chip>
         <Chip
           color={theme.colors.black.main}
-          shape="rounded"
           onClick={() => {
             const random = Math.floor(Math.random() * 10) + 1
             console.log('random', random)
@@ -158,6 +159,9 @@ export const Component = () => {
           }}
         >
           토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
+        </Chip>
+        <Chip color={theme.colors.black.darker} onClick={() => navigate('toast')}>
+          토스트 팝업 페이지로 이동
         </Chip>
 
         <TextInput value="123" css={{ marginBottom: 24 }} />
