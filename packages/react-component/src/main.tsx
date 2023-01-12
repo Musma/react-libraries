@@ -1,11 +1,11 @@
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { createRoot } from 'react-dom/client'
 
 import { DefaultTheme, MusmaProvider } from 'src/theme'
 
 import { Component } from './Component'
-import { ToastContextProvider } from './components/ToastPopup/ToastPopupContext'
+import { ToastContextProvider } from './components/ToastPopup'
 
 const theme = {
   ...DefaultTheme,
@@ -26,9 +26,12 @@ const rootElement = document.getElementById('root')
 if (rootElement) {
   createRoot(rootElement).render(
     <MusmaProvider theme={theme}>
-      <ToastContextProvider initLimit={3}>
+      <ToastContextProvider>
         <BrowserRouter>
-          <Component />
+          <Routes>
+            <Route element={<Component />} path="" />
+            <Route element={<div>여기서도 토스트 팝업이 잘 뜨는지 봐주십쇼</div>} path="toast" />
+          </Routes>
         </BrowserRouter>
       </ToastContextProvider>
     </MusmaProvider>,

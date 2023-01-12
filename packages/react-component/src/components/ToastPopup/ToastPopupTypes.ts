@@ -18,8 +18,9 @@ export interface IToastPopupProps extends IToastPopupData {
 }
 
 export interface IToastContainerProps {
-  height: string
+  height?: string
   position?: ToastPopupPositionType
+  limit?: number
 }
 
 export interface IToastPopupContext {
@@ -31,5 +32,5 @@ export interface IToastPopupContext {
 
 export interface IToastContextProviderProps {
   children: ReactNode
-  initLimit?: number
+  props?: IToastContainerProps
 }
