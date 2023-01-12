@@ -27,7 +27,7 @@ export const TableToolbar = ({ title, totalItems, children }: TableToolbarProps)
         {/* 전체 데이터 개수 */}
         {totalItems && (
           <Typography type="body2" css={{ color: theme.colors.blue.main }}>
-            {totalItems}
+            ({totalItems})
           </Typography>
         )}
       </Box>

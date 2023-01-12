@@ -1,3 +1,5 @@
+import { forwardRef } from 'react'
+
 import { useTheme } from '@emotion/react'
 
 import { RadioButton, InputLabel } from 'src/components'
@@ -44,43 +46,40 @@ interface RadioGroupProps {
  * @example
  * <RadioGroup value="test" onChange={onChange} data={[...]} />
  */
-export const RadioGroup = ({
-  size = 'md',
-  required,
-  label,
-  value,
-  gap = 'lg',
-  items,
-  onChange,
-}: RadioGroupProps) => {
-  const theme = useTheme()
-  return (
-    <Box>
-      {/* 라벨 */}
-      {label && (
-        <InputLabel required={required} size={size}>
-          {label}
-        </InputLabel>
-      )}
+export const RadioGroup = forwardRef<HTMLInputElement, RadioGroupProps>(
+  ({ size = 'md', required, label, value, gap = 'lg', items, onChange }, ref) => {
+    const theme = useTheme()
+    return (
+      <Box>
+        {/* 라벨 */}
+        {label && (
+          <InputLabel required={required} size={size}>
+            {label}
+          </InputLabel>
+        )}
 
-      <Box
-        css={{
-          display: 'flex',
-          alignItems: 'center',
-          height: theme.inputSize.height[size],
-          gap: theme.spacingUtil(gap),
-        }}
-      >
-        {items.map(({ label, value: _value }) => (
-          <RadioButton
-            key={label}
-            value={_value}
-            label={label}
-            checked={_value === value}
-            onChange={onChange}
-          />
-        ))}
+        <Box
+          css={{
+            display: 'flex',
+            alignItems: 'center',
+            height: theme.inputSize.height[size],
+            gap: theme.spacingUtil(gap),
+          }}
+        >
+          {items.map(({ label, value: _value }) => (
+            <RadioButton
+              key={label}
+              ref={ref}
+              value={_value}
+              label={label}
+              checked={_value === value}
+              onChange={onChange}
+            />
+          ))}
+        </Box>
       </Box>
-    </Box>
-  )
-}
+    )
+  },
+)
+
+RadioGroup.displayName = 'RadioGroup'

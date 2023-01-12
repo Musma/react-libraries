@@ -47,7 +47,10 @@ const DATE_FORMAT = 'yyyy/MM/dd'
  *
  */
 export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>(
-  ({ size = 'md', label, required, error, disabled, helperText, onChange, ...rest }, ref) => {
+  (
+    { size = 'md', label, required, error, disabled, helperText, className, onChange, ...rest },
+    ref,
+  ) => {
     const theme = useTheme()
 
     return (
@@ -59,6 +62,7 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
           width: '100%',
           minWidth: theme.inputSize.minWidth,
         }}
+        className={className}
       >
         {/* 라벨 */}
         {label && (
