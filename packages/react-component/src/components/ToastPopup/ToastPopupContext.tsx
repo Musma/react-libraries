@@ -15,10 +15,7 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
 
   const addToast = useCallback(
     (toastPopup: IToastPopupData) => {
-      const newToastPopup: IToastPopupInstance = {
-        ...toastPopup,
-        isActive: true,
-      }
+      setList(toastPopupManager.add(toastPopup))
     },
     [list],
   )
