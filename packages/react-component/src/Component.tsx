@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId } from '@musma/react-utils'
@@ -83,111 +84,118 @@ const tableData = Array.from({ length: 20 }).map((_, index) => ({
 }))
 
 const Component = () => {
-  const theme = useTheme()
-  const [value, setValue] = useState('1')
-
-  const { addToast } = useToastContext()
-  const popupSample1: IToastPopupData = {
-    id: uniqueId(),
-    title: '에러났다 어쩔래',
-    description: '어쩔어쩔어쩔어쩔어쩔',
-    mode: 'dark',
-    type: 'error',
-  }
-  const popupSample2: IToastPopupData = {
-    id: uniqueId(),
-    title: '잘했다임마',
-    description: '굿 잘 됨',
-    type: 'success',
-  }
-  const popupSample3: IToastPopupData = {
-    id: uniqueId(),
-    title: '정보 팝업인데 정보 음슴 ㅋ',
-    mode: 'dark',
-  }
-  const popupSample4: IToastPopupData = {
-    id: uniqueId(),
-    title: '위험위허멍위험위험위험위험',
-    type: 'warning',
+  type DDD = {
+    date: string
   }
 
-  return (
-    <Box
-      css={{
-        padding: theme.spacingUtil(100),
-        display: 'flex',
-        flexDirection: 'column',
-        gap: theme.spacing.md,
-      }}
-    >
-      <Select options={options} value={value} onChange={setValue} />
+  export const Component = () => {
+    const navigate = useNavigate()
+    const theme = useTheme()
+    const [value, setValue] = useState('1')
 
-      <Select options={options} value={value} disabled={true} onChange={setValue} />
+    const { addToast } = useToastContext()
+    const popupSample1: IToastPopupData = {
+      id: uniqueId(),
+      title: '에러났다 어쩔래',
+      description: '어쩔어쩔어쩔어쩔어쩔',
+      mode: 'dark',
+      type: 'error',
+    }
+    const popupSample2: IToastPopupData = {
+      id: uniqueId(),
+      title: '잘했다임마',
+      description: '굿 잘 됨',
+      type: 'success',
+    }
+    const popupSample3: IToastPopupData = {
+      id: uniqueId(),
+      title: '정보 팝업인데 정보 음슴 ㅋ',
+      mode: 'dark',
+    }
+    const popupSample4: IToastPopupData = {
+      id: uniqueId(),
+      title: '위험위허멍위험위험위험위험',
+      type: 'warning',
+    }
 
-      <Button
-        onClick={() => {
-          setValue('3')
+    return (
+      <Box
+        css={{
+          padding: theme.spacingUtil(100),
+          display: 'flex',
+          flexDirection: 'column',
+          gap: theme.spacing.md,
         }}
       >
-        dkdkd
-      </Button>
+        <Select options={options} value={value} onChange={setValue} />
 
-      <Chip
-        color={theme.colors.red.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample1)
-        }}
-      >
-        토스트 팝업 1
-      </Chip>
-      <Chip
-        color={theme.colors.green.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample2)
-        }}
-      >
-        토스트 팝업 2
-      </Chip>
-      <Chip
-        color={theme.colors.blue.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample3)
-        }}
-      >
-        토스트 팝업 3
-      </Chip>
+        <Select options={options} value={value} disabled={true} onChange={setValue} />
 
-      <Chip
-        color={theme.colors.orange.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample4)
-        }}
-      >
-        토스트 팝업 4
-      </Chip>
+        <Button
+          onClick={() => {
+            setValue('3')
+          }}
+        >
+          dkdkd
+        </Button>
 
-      <TextInput value="123" css={{ marginBottom: 24 }} />
+        <Chip
+          color={theme.colors.red.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample1)
+          }}
+        >
+          토스트 팝업 1
+        </Chip>
+        <Chip
+          color={theme.colors.green.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample2)
+          }}
+        >
+          토스트 팝업 2
+        </Chip>
+        <Chip
+          color={theme.colors.blue.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample3)
+          }}
+        >
+          토스트 팝업 3
+        </Chip>
 
-      <DatePicker
-        value={DateTime.now()}
-        onChange={() => {
-          return null
-        }}
-        anchorOrigin={{ vertical: 'top' }}
-      />
+        <Chip
+          color={theme.colors.orange.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample4)
+          }}
+        >
+          토스트 팝업 4
+        </Chip>
 
-      <DateRangePicker
-        disabled={true}
-        onChange={() => {
-          console.log('123')
-        }}
-      />
-    </Box>
-  )
+        <TextInput value="123" css={{ marginBottom: 24 }} />
+
+        <DatePicker
+          value={DateTime.now()}
+          onChange={() => {
+            return null
+          }}
+          anchorOrigin={{ vertical: 'top' }}
+        />
+
+        <DateRangePicker
+          disabled={true}
+          onChange={() => {
+            console.log('123')
+          }}
+        />
+      </Box>
+    )
+  }
 }
 
 export default Component
