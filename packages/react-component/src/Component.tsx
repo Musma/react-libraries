@@ -178,7 +178,6 @@ const Component = () => {
         </Chip>
         <Chip
           color={theme.colors.black.main}
-          shape="rounded"
           onClick={() => {
             const random = Math.floor(Math.random() * 10) + 1
             console.log('random', random)
@@ -186,6 +185,9 @@ const Component = () => {
           }}
         >
           토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
+        </Chip>
+        <Chip color={theme.colors.black.darker} onClick={() => navigate('toast')}>
+          토스트 팝업 페이지로 이동
         </Chip>
 
         <Chip

@@ -1,4 +1,4 @@
-import { IToastPopupData } from '.'
+import { IToastPopupData, IToastPopupInstance } from '.'
 
 // 지금은 IToastPopupData로 받지만, id만 받는 형태로 바꿔도 될 듯
 class ToastPopupManager {
@@ -7,7 +7,7 @@ class ToastPopupManager {
   private listLimit = 5
 
   get list() {
-    const list: IToastPopupData[] = []
+    const list: IToastPopupInstance[] = []
     this.popupList.forEach((item) => list.unshift(item))
     return list
   }
@@ -34,7 +34,7 @@ class ToastPopupManager {
     return this.list
   }
 
-  public add(toastPopup: IToastPopupData): IToastPopupData[] {
+  public add(toastPopup: IToastPopupInstance): IToastPopupInstance[] {
     if (!this.popupList.has(toastPopup.id)) {
       // 제한 갯수에 걸리면 대기열로 추가
       if (this.checkLimit()) {
@@ -47,7 +47,7 @@ class ToastPopupManager {
     return this.list
   }
 
-  public remove(toastPopup: IToastPopupData): IToastPopupData[] {
+  public remove(toastPopup: IToastPopupInstance): IToastPopupInstance[] {
     if (this.popupList.has(toastPopup.id)) {
       this.popupList.delete(toastPopup.id)
       this.dequeue()
@@ -89,7 +89,7 @@ class ToastPopupManager {
    */
   private dequeue(): void {
     if (this.checkQueue()) {
-      const target = this.queue.shift() as IToastPopupData
+      const target = this.queue.shift() as IToastPopupInstance
       this.add(target)
     }
   }
