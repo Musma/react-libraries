@@ -39,18 +39,7 @@ export interface IToastPopupContext {
   setLimit: (newLimit: number) => void
 }
 
-export interface IToastContextProviderProps extends IToastContainerProps {
-  children: ReactNode
-}
-
-export interface IToastPopupContext {
-  list: IToastPopupData[]
-  addToast: (toastPopup: IToastPopupData) => void
-  removeToast: (toastPopup: IToastPopupData) => void
-  setLimit: (newLimit: number) => void
-}
-
 export interface IToastContextProviderProps {
   children: ReactNode
-  initLimit?: number
+  props?: IToastContainerProps
 }
