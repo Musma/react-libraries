@@ -1,8 +1,11 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+// import { ToastContainer } from 'react-toastify'
 
 import { ToastContainer } from '.'
 import { toastPopupManager } from './ToastPopupManager'
 import { IToastContextProviderProps, IToastPopupContext, IToastPopupData } from './ToastPopupTypes'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 export const ToastPopupContext = createContext<IToastPopupContext>(undefined!)
 
@@ -10,7 +13,7 @@ export const useToastContext = (): IToastPopupContext => {
   return useContext(ToastPopupContext)
 }
 
-export const ToastContextProvider = ({ children, props }: IToastContextProviderProps) => {
+export const ToastContextProvider = ({ children, ...props }: IToastContextProviderProps) => {
   const [list, setList] = useState<IToastPopupData[]>([]) // 현재 화면에 떠있는 토스트 팝업들
 
   const addToast = useCallback(
@@ -34,7 +37,7 @@ export const ToastContextProvider = ({ children, props }: IToastContextProviderP
   }, [])
 
   useEffect(() => {
-    props?.limit && setLimit(props.limit)
+    props.limit && setLimit(props.limit)
   }, [])
 
   return (
@@ -46,6 +49,7 @@ export const ToastContextProvider = ({ children, props }: IToastContextProviderP
         setLimit,
       }}
     >
+      {/* <ToastContainer position="top-center" containerId={'global'} enableMultiContainer /> */}
       <ToastContainer {...props} />
       {children}
     </ToastPopupContext.Provider>
