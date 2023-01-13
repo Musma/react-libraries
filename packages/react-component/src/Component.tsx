@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// import { toast, ToastContainer } from 'react-toastify'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId } from '@musma/react-utils'
@@ -16,7 +17,13 @@ import {
   Select,
   TextInput,
 } from './components'
+<<<<<<< HEAD
 import { useToastContext } from './components/ToastPopup/ToastPopupContext'
+=======
+import { Chip } from './components/Chip'
+import { useToastContext } from './components/ToastPopup'
+import { Modal1 } from './Modal1'
+>>>>>>> 7281aae (refactor: 코드리뷰 준비하면서 props 및 일부 코드 수정;)
 
 const options = [
   {
@@ -72,6 +79,7 @@ const columns = [
   },
 ]
 
+<<<<<<< HEAD
 const tableData = Array.from({ length: 20 }).map((_, index) => ({
   id: `${index + 1}`,
   deviceID: '1a4e-6135-1abe-fc10-41c7',
@@ -86,6 +94,50 @@ const tableData = Array.from({ length: 20 }).map((_, index) => ({
 const Component = () => {
   type DDD = {
     date: string
+=======
+type DDD = {
+  date: string
+}
+
+export const Component = () => {
+  const navigate = useNavigate()
+  const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
+    useFormProps: {
+      defaultValues: {
+        date: DateTime.local().toISO(),
+      },
+    },
+    fetchAPI() {
+      console.log(';fetchposdkdspokpo')
+    },
+  })
+  const theme = useTheme()
+  const [isOpen1, setIsOpen1] = useToggle(false)
+  const { addToast, setLimit } = useToastContext()
+  // const notify = () => toast('Wow so easy!', { containerId: 'main' })
+  const popupSample1: IToastPopupData = {
+    id: uniqueId(),
+    title: '에러났다 어쩔래',
+    description: '어쩔어쩔어쩔어쩔어쩔',
+    mode: 'dark',
+    type: 'error',
+  }
+  const popupSample2: IToastPopupData = {
+    id: uniqueId(),
+    title: '잘했다임마',
+    description: '굿 잘 됨',
+    type: 'success',
+  }
+  const popupSample3: IToastPopupData = {
+    id: uniqueId(),
+    title: '정보 팝업인데 정보 음슴 ㅋ',
+    mode: 'dark',
+  }
+  const popupSample4: IToastPopupData = {
+    id: uniqueId(),
+    title: '위험위허멍위험위험위험위험',
+    type: 'warning',
+>>>>>>> 7281aae (refactor: 코드리뷰 준비하면서 props 및 일부 코드 수정;)
   }
 
   export const Component = () => {
@@ -144,6 +196,7 @@ const Component = () => {
           shape="rounded"
           onClick={() => {
             addToast(popupSample1)
+            // notify()
           }}
         >
           토스트 팝업 1
