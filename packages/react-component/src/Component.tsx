@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+// import { toast, ToastContainer } from 'react-toastify'
 
 import { useTheme } from '@emotion/react'
 
@@ -89,6 +90,7 @@ const Component = () => {
   const [value, setValue] = useState('1')
 
   const { addToast, setLimit } = useToastContext()
+  // const notify = () => toast('Wow so easy!', { containerId: 'main' })
   const popupSample1: IToastPopupData = {
     title: 'Error',
     description: 'This is a warning notice about copywriting.',
@@ -144,6 +146,7 @@ const Component = () => {
           shape="rounded"
           onClick={() => {
             addToast(popupSample1)
+            // notify()
           }}
         >
           토스트 팝업 1
