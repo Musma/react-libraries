@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.69
+
+### Patch Changes
+
+- [`b15e41d`](https://github.com/Musma/react-libraries/commit/b15e41dc2c90e122875d0f18821dca48fb6d45a9) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] Select value 잘못 넣는 버그 수정
+
 ## 0.1.68
 
 ### Patch Changes
