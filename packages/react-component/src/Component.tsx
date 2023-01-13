@@ -90,7 +90,6 @@ const Component = () => {
   const [value, setValue] = useState('1')
 
   const { addToast, setLimit } = useToastContext()
-  // const notify = () => toast('Wow so easy!', { containerId: 'main' })
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -150,7 +149,6 @@ const Component = () => {
           shape="rounded"
           onClick={() => {
             addToast(popupSample1)
-            // notify()
           }}
         >
           토스트 팝업 1
