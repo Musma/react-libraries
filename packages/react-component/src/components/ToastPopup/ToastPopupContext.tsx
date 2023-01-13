@@ -63,6 +63,7 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
     >
       {/* <ToastContainer position="top-center" containerId={'global'} enableMultiContainer /> */}
       <ToastContainer {...props} />
+      <ToastContainer {...props} position="top-center" />
       {children}
     </ToastPopupContext.Provider>
   )

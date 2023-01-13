@@ -17,8 +17,11 @@ export const useOutsideListener = (
   const handleClickOutside = useCallback(
     (event: globalThis.MouseEvent) => {
       const target = event.target as HTMLElement
-      if (except && except.contains(target)) {
-        return
+      const excepts = document.querySelectorAll('.outside-click-except')
+      if (excepts) {
+        for (const value of excepts.values()) {
+          if (value.contains(target)) return
+        }
       }
 
       if (ref && !ref.contains(target)) {
