@@ -139,24 +139,20 @@ export const Modal = ({
   /**
    * Modal 영역 이외의 HTMLElement를 클릭했을 경우 콜백 Hooks
    */
-  useOutsideListener(
-    ref,
-    () => {
-      if (show) {
-        if (disableOutsideClick || !ref) {
-          return
-        }
-
-        // 여러개 모달이 열려있을 때의 처리
-        if (!modalManager.isTopModal(modalId)) {
-          return
-        }
-
-        onClose()
+  useOutsideListener(ref, () => {
+    if (show) {
+      if (disableOutsideClick || !ref) {
+        return
       }
-    },
-    document.querySelector('#toastPopup-container'),
-  )
+
+      // 여러개 모달이 열려있을 때의 처리
+      if (!modalManager.isTopModal(modalId)) {
+        return
+      }
+
+      onClose()
+    }
+  })
 
   if (show) {
     return (
