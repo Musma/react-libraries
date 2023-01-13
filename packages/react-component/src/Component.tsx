@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { toast, ToastContainer } from 'react-toastify'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId } from '@musma/react-utils'
@@ -114,7 +113,6 @@ export const Component = () => {
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
   const { addToast, setLimit } = useToastContext()
-  // const notify = () => toast('Wow so easy!', { containerId: 'main' })
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -196,7 +194,6 @@ export const Component = () => {
           shape="rounded"
           onClick={() => {
             addToast(popupSample1)
-            // notify()
           }}
         >
           토스트 팝업 1

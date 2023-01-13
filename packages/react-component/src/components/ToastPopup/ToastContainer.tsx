@@ -22,7 +22,7 @@ export const ToastContainer = ({
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
         zIndex: zIndex.toastPopup,
       }}
-      className="outside-click-except"
+      id="toastPopup-container"
     >
       {list.map((item: IToastPopupData) => {
         return (
