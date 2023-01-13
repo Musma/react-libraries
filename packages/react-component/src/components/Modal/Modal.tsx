@@ -1,13 +1,11 @@
 import { Fragment, HTMLAttributes, useEffect, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { uniqueId, useEscKeyPress, useSetRef } from '@musma/react-utils'
+import { uniqueId, useEscKeyPress, useSetRef, useOutsideListener } from '@musma/react-utils'
 
 import { Backdrop, ModalTitle } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
-
-import { useOutsideListener } from './useOutsideListener'
 
 class ModalManager {
   private modalIds: string[] = []

@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+// import { ToastContainer } from 'react-toastify'
 
 import { uniqueId } from '@musma/react-utils'
 
@@ -10,6 +11,8 @@ import {
   IToastPopupInstance,
   toastPopupManager,
 } from '.'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 export const ToastPopupContext = createContext<IToastPopupContext>(undefined!)
 
@@ -58,6 +61,7 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
         setLimit,
       }}
     >
+      {/* <ToastContainer position="top-center" containerId={'global'} enableMultiContainer /> */}
       <ToastContainer {...props} />
       {children}
     </ToastPopupContext.Provider>
