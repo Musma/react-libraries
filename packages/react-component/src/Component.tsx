@@ -8,19 +8,19 @@ import { DateRangePicker, Select } from './components'
 
 const options = [
   {
-    label: '1',
+    label: '1111111',
     value: '1',
   },
   {
-    label: '2',
+    label: '222222',
     value: '2',
   },
   {
-    label: '3',
+    label: '333333',
     value: '3',
   },
   {
-    label: '4',
+    label: '444444',
     value: '4',
   },
 ]
@@ -88,6 +88,7 @@ const Component = () => {
       <Select options={options} value={value} onChange={setValue} />
 
       <DateRangePicker
+        disabled={true}
         onChange={() => {
           console.log('123')
         }}

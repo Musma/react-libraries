@@ -74,7 +74,14 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
           </InputLabel>
         )}
 
-        <Box css={{ position: 'relative' }}>
+        <Box
+          css={[
+            { position: 'relative', color: theme.colors.black.dark },
+            disabled && {
+              color: theme.colors.gray.main,
+            },
+          ]}
+        >
           <DatePicker
             ref={ref}
             selectsRange={true}
@@ -92,7 +99,6 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
                 borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
                 borderRadius: theme.rounded.md,
                 cursor: 'pointer',
-                color: theme.colors.black.dark,
                 fontSize: theme.inputSize.fontSize[size],
                 padding: theme.spacingUtil(0, 'sm'),
                 '&:focus-within': {
@@ -105,7 +111,6 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
               },
               disabled && {
                 backgroundColor: theme.colors.white.light,
-                color: theme.colors.gray.main,
                 cursor: 'not-allowed',
                 borderColor: theme.colors.gray.main,
               },
@@ -124,6 +129,7 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
               marginTop: 'auto',
               marginBottom: 'auto',
             }}
+            color="currentColor"
             {...theme.inputSize.iconSize[size]}
           />
         </Box>

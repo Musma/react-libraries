@@ -60,12 +60,9 @@ interface SelectProps<T>
    */
   required?: boolean
   /**
-   * @optional
-   */
-  isSearchable?: boolean
-  /**
    * @required
    */
+  /** */
   onChange: (value: T) => void
 }
 
@@ -88,7 +85,9 @@ const _Select = <T extends string>(
   const theme = useTheme()
   const [ref, setRef] = useSetRef()
   const [open, setOpen] = useState(false)
-  const [inputValue, setInputValue] = useState<string>(value)
+  const [inputValue, setInputValue] = useState<string>(() => {
+    return options.filter((option) => option.value === value)[0].label
+  })
 
   const id = useMemo(() => {
     return _id || uniqueId()
@@ -130,7 +129,7 @@ const _Select = <T extends string>(
       setInputValue('')
       return
     }
-    setInputValue(value)
+    setInputValue(options.filter((option) => option.value === value)[0].label)
   }, [open])
 
   return (
