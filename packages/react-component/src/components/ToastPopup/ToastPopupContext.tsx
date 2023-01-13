@@ -1,11 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
-// import { ToastContainer } from 'react-toastify'
 
 import { ToastContainer } from '.'
 import { toastPopupManager } from './ToastPopupManager'
 import { IToastContextProviderProps, IToastPopupContext, IToastPopupData } from './ToastPopupTypes'
-
-import 'react-toastify/dist/ReactToastify.css'
 
 export const ToastPopupContext = createContext<IToastPopupContext>(undefined!)
 
