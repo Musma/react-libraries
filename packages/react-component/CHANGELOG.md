@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.68
+
+### Patch Changes
+
+- [`6f27f09`](https://github.com/Musma/react-libraries/commit/6f27f0997f82f5dc1625a72536f0ddf4f6d6249e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Chip 컴포넌트 재구성 및 Select 검색 기능 추가
+
 ## 0.1.67
 
 ### Patch Changes
