@@ -10,6 +10,7 @@ export const OptionContainer = ({ children }: { children?: ReactNode }) => {
     <Box
       css={{
         width: '100%',
+        minHeight: 32,
         maxHeight: 300,
         position: 'absolute',
         top: `calc(100% + 4px)`,

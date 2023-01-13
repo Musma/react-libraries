@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { DefaultTheme, MusmaProvider } from 'src/theme'
 
-import { Component } from './Component'
+import Component from './Component'
 
 const theme = {
   ...DefaultTheme,

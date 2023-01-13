@@ -4,6 +4,7 @@ import {
   InputHTMLAttributes,
   MouseEvent,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -59,13 +60,17 @@ interface SelectProps<T>
    */
   required?: boolean
   /**
+   * @optional
+   */
+  isSearchable?: boolean
+  /**
    * @required
    */
   onChange: (value: T) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-const _Select = <T extends unknown>(
+const _Select = <T extends string>(
   {
     id: _id,
     size = 'md',
@@ -83,6 +88,7 @@ const _Select = <T extends unknown>(
   const theme = useTheme()
   const [ref, setRef] = useSetRef()
   const [open, setOpen] = useState(false)
+  const [inputValue, setInputValue] = useState<string>(value)
 
   const id = useMemo(() => {
     return _id || uniqueId()
@@ -107,10 +113,25 @@ const _Select = <T extends unknown>(
     [onChange],
   )
 
+  const searchedOptions = useMemo(() => {
+    if (inputValue) {
+      return options.filter((option) => !option.label.toLocaleLowerCase().indexOf(inputValue))
+    }
+    return options
+  }, [inputValue, options])
+
   useOutsideListener(ref, () => {
     // Select 영역 말고 다른 영역 클릭 시 닫힘
     setOpen(false)
   })
+
+  useEffect(() => {
+    if (open) {
+      setInputValue('')
+      return
+    }
+    setInputValue(value)
+  }, [open])
 
   return (
     <Box
@@ -150,8 +171,8 @@ const _Select = <T extends unknown>(
         <InputBase
           ref={inputRef}
           id={id}
-          value={selectedOption?.label}
-          readOnly={true}
+          value={inputValue}
+          readOnly={!open}
           disabled={disabled}
           css={[
             {
@@ -177,17 +198,19 @@ const _Select = <T extends unknown>(
               },
             },
           ]}
+          onChange={(e) => {
+            setInputValue(e.target.value)
+          }}
           {...rest}
         />
 
         <ArrowBottomSmallIcon
-          color="currentColor"
           css={[{ position: 'absolute', right: 4 }, open && { rotate: '180deg' }]}
         />
 
         {open && (
           <OptionContainer>
-            {options.map((option) => (
+            {searchedOptions.map((option) => (
               <Option
                 key={`key-${option.value}`}
                 option={option}
@@ -198,7 +221,7 @@ const _Select = <T extends unknown>(
               />
             ))}
 
-            {options.length === 0 && (
+            {searchedOptions.length === 0 && (
               <Typography
                 type="caption1"
                 css={{

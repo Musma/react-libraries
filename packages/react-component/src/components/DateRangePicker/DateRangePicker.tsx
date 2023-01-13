@@ -2,7 +2,10 @@ import { forwardRef } from 'react'
 import DatePicker, { ReactDatePicker, ReactDatePickerProps } from 'react-datepicker'
 
 import { useTheme } from '@emotion/react'
+import { FillDateRangeIcon } from '@musma/react-icons'
 import { ko } from 'date-fns/locale'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 import { InputHelper, InputLabel } from 'src/components'
 import { Box } from 'src/elements'
@@ -71,44 +74,59 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
           </InputLabel>
         )}
 
-        <DatePicker
-          ref={ref}
-          selectsRange={true}
-          withPortal={true}
-          disabled={disabled}
-          dateFormat={DATE_FORMAT}
-          locale={ko}
-          css={[
-            {
-              boxSizing: 'border-box',
-              width: '100%',
-              height: theme.inputSize.height[size],
-              borderWidth: 1,
-              borderStyle: 'solid',
-              borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
-              borderRadius: theme.rounded.md,
-              cursor: 'pointer',
-              color: theme.colors.black.dark,
-              fontSize: theme.inputSize.fontSize[size],
-              padding: theme.spacingUtil(0, 'sm'),
-              '&:focus-within': {
-                borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
-                boxShadow: theme.shadow.md,
+        <Box css={{ position: 'relative' }}>
+          <DatePicker
+            ref={ref}
+            selectsRange={true}
+            withPortal={true}
+            disabled={disabled}
+            dateFormat={DATE_FORMAT}
+            locale={ko}
+            css={[
+              {
+                boxSizing: 'border-box',
+                width: '100%',
+                height: theme.inputSize.height[size],
+                borderWidth: 1,
+                borderStyle: 'solid',
+                borderColor: error ? theme.colors.red.main : theme.colors.gray.darker,
+                borderRadius: theme.rounded.md,
+                cursor: 'pointer',
+                color: theme.colors.black.dark,
+                fontSize: theme.inputSize.fontSize[size],
+                padding: theme.spacingUtil(0, 'sm'),
+                '&:focus-within': {
+                  borderColor: error ? theme.colors.red.main : theme.colors.blue.main,
+                  boxShadow: theme.shadow.md,
+                },
+                '&::placeholder': {
+                  color: theme.colors.gray.light,
+                },
               },
-              '&::placeholder': {
-                color: theme.colors.gray.light,
+              disabled && {
+                backgroundColor: theme.colors.white.light,
+                color: theme.colors.gray.main,
+                cursor: 'not-allowed',
+                borderColor: theme.colors.gray.main,
               },
-            },
-            disabled && {
-              backgroundColor: theme.colors.white.light,
-              color: theme.colors.gray.main,
-              cursor: 'not-allowed',
-              borderColor: theme.colors.gray.main,
-            },
-          ]}
-          onChange={onChange}
-          {...rest}
-        />
+            ]}
+            onChange={onChange}
+            {...rest}
+          />
+
+          <FillDateRangeIcon
+            css={{
+              pointerEvents: 'none',
+              position: 'absolute',
+              right: theme.spacing.sm,
+              top: 0,
+              bottom: 0,
+              marginTop: 'auto',
+              marginBottom: 'auto',
+            }}
+            {...theme.inputSize.iconSize[size]}
+          />
+        </Box>
 
         {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
       </Box>

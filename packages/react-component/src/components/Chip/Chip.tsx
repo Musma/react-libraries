@@ -1,9 +1,10 @@
 import { HTMLAttributes, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
+import { FillCloseCircleIcon } from '@musma/react-icons'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { Typography } from 'src/components'
+import { IconAdornment, Typography } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
@@ -28,6 +29,26 @@ interface ChipProps extends HTMLAttributes<HTMLDivElement> {
    *
    */
   color?: string
+  /**
+   * @optional
+   * onDelete Props를 전달하면 Chip 내부에 X 아이콘이 나타납니다.
+   */
+  onDelete?: () => void
+}
+
+const ICON_SIZE = {
+  sm: {
+    width: 10,
+    height: 10,
+  },
+  md: {
+    width: 12,
+    height: 12,
+  },
+  lg: {
+    width: 12,
+    height: 12,
+  },
 }
 
 /**
@@ -38,6 +59,8 @@ export const Chip = ({
   variant = 'contained',
   shape = 'rectangle',
   color: colorProp,
+  onDelete,
+  onClick,
   children,
   ...rest
 }: ChipProps) => {
@@ -60,6 +83,7 @@ export const Chip = ({
           justifyContent: 'center',
           paddingLeft: theme.spacing.sm,
           paddingRight: theme.spacing.sm,
+          cursor: onClick ? 'pointer' : 'default',
           color,
           backgroundColor,
         },
@@ -94,11 +118,22 @@ export const Chip = ({
           },
         }[shape],
       ]}
+      onClick={onClick}
       {...rest}
     >
-      <Typography type={size === 'sm' ? 'caption2' : 'caption1'} css={{ color: 'inherit' }}>
-        {children}
-      </Typography>
+      <Typography type={size === 'sm' ? 'caption2' : 'caption1'}>{children}</Typography>
+
+      {onDelete && (
+        <IconAdornment
+          noPadding={true}
+          css={{ marginLeft: 4 }}
+          onClick={() => {
+            onDelete()
+          }}
+        >
+          <FillCloseCircleIcon {...ICON_SIZE[size]} color={color} />
+        </IconAdornment>
+      )}
     </Box>
   )
 }
