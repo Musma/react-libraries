@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+// import { toast, ToastContainer } from 'react-toastify'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId, useFormSearch, useToggle } from '@musma/react-utils'
@@ -17,7 +18,7 @@ import {
   TextInput,
 } from './components'
 import { Chip } from './components/Chip'
-import { useToastContext } from './components/ToastPopup/ToastPopupContext'
+import { useToastContext } from './components/ToastPopup'
 import { Modal1 } from './Modal1'
 
 const DATA = [
@@ -57,6 +58,7 @@ export const Component = () => {
   const theme = useTheme()
   const [isOpen1, setIsOpen1] = useToggle(false)
   const { addToast, setLimit } = useToastContext()
+  // const notify = () => toast('Wow so easy!', { containerId: 'main' })
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -112,12 +114,14 @@ export const Component = () => {
         >
           첫번째 모달 열기
         </Chip>
+        {/* <ToastContainer position="top-right" containerId={'main'} enableMultiContainer /> */}
 
         <Chip
           color={theme.colors.red.main}
           shape="rounded"
           onClick={() => {
             addToast(popupSample1)
+            // notify()
           }}
         >
           토스트 팝업 1
