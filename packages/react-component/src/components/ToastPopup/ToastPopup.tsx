@@ -100,11 +100,7 @@ export const ToastPopup = ({
               <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
               {description && <div>{description}</div>}
             </div>
-            <CloseIcon
-              cursor="pointer"
-              color={fontColor}
-              onClick={() => setIsOpen(false)}
-            />
+            <CloseIcon cursor="pointer" color={fontColor} onClick={() => setIsOpen(false)} />
           </div>
         </div>
       ) : (
