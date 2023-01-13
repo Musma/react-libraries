@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import { useState } from 'react'
-=======
->>>>>>> 7c840ce (refactor: 토스트 팝업 글로벌 상태관리 테스트용 라우트 추가)
 import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
@@ -15,12 +12,7 @@ import {
   DateRangePicker,
   IToastPopupData,
   Select,
-<<<<<<< HEAD
   useToastContext,
-=======
-  Table,
-  TextInput,
->>>>>>> 7c840ce (refactor: 토스트 팝업 글로벌 상태관리 테스트용 라우트 추가)
 } from './components'
 
 const options = [
@@ -98,6 +90,7 @@ const Component = () => {
   const [value, setValue] = useState('1')
 
   const { addToast, setLimit } = useToastContext()
+  // const notify = () => toast('Wow so easy!', { containerId: 'main' })
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -157,6 +150,7 @@ const Component = () => {
           shape="rounded"
           onClick={() => {
             addToast(popupSample1)
+            // notify()
           }}
         >
           토스트 팝업 1
