@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 0.2.0
+
+### Minor Changes
+
+- [`9deefc2`](https://github.com/Musma/react-libraries/commit/9deefc239cfab327b7402cb99c442deffef9be46) Thanks [@jinchuu1391](https://github.com/jinchuu1391)! - 변경된 아이콘 이름으로 수정
+
+- [`be94c14`](https://github.com/Musma/react-libraries/commit/be94c14eed1c10891ff9dc52f7bfa6a2b7a9983b) Thanks [@jinchuu1391](https://github.com/jinchuu1391)! - 로고 밑줄 제거
+
+- [`d29700f`](https://github.com/Musma/react-libraries/commit/d29700f19fa28275aefa4d596c8734597f28ff66) Thanks [@jinchuu1391](https://github.com/jinchuu1391)! - 변경된 아이콘 이름으로 수정
+
 ## 0.1.69
 
 ### Patch Changes
