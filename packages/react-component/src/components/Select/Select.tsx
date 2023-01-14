@@ -10,7 +10,7 @@ import {
 } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { ArrowBottomSmallIcon } from '@musma/react-icons'
+import { OutlineArrowBottomSmallIcon } from '@musma/react-icons'
 import { useOutsideListener, useSetRef, uniqueId } from '@musma/react-utils'
 
 import { InputLabel, Typography } from 'src/components'
@@ -203,7 +203,7 @@ const _Select = <T extends string>(
           {...rest}
         />
 
-        <ArrowBottomSmallIcon
+        <OutlineArrowBottomSmallIcon
           css={[{ position: 'absolute', right: 4 }, open && { rotate: '180deg' }]}
         />
 
