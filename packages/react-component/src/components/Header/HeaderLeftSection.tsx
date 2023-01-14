@@ -54,7 +54,7 @@ export const HeaderLeftSection = ({
         },
       ]}
     >
-      <Link to={to} css={{ display: 'flex' }}>
+      <Link to={to} css={{ display: 'flex', textDecoration: 'none' }}>
         <Logo />
       </Link>
 
