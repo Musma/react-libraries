@@ -6,6 +6,7 @@ import { Box } from 'src/elements'
 
 export const OptionContainer = ({ children }: { children?: ReactNode }) => {
   const theme = useTheme()
+
   return (
     <Box
       css={{

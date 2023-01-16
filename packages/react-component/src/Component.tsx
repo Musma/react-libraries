@@ -87,6 +87,8 @@ const Component = () => {
     >
       <Select options={options} value={value} onChange={setValue} />
 
+      <Select options={options} value={value} disabled={true} onChange={setValue} />
+
       <DateRangePicker
         disabled={true}
         onChange={() => {

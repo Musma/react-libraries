@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { MouseEvent, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -10,6 +10,9 @@ interface OptionProps<T> {
   size?: Size
   option: SelectOption<T>
   selectedOption?: SelectOption<T>
+  active?: boolean
+  onMouseEnter: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void
+  onMouseLeave: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void
   onClick: () => void
 }
 
@@ -18,6 +21,9 @@ export const Option = <T extends unknown>({
   size = 'md',
   option,
   selectedOption,
+  active,
+  onMouseEnter,
+  onMouseLeave,
   onClick,
 }: OptionProps<T>) => {
   const theme = useTheme()
@@ -40,25 +46,26 @@ export const Option = <T extends unknown>({
           paddingLeft: theme.spacing.sm,
           cursor: 'pointer',
         },
+        active && {
+          backgroundColor: theme.colors.white.lighter,
+          color: theme.colors.blue.main,
+        },
         isSelected && {
           backgroundColor: theme.colors.blue.main,
           color: theme.colors.white.main,
         },
-        !isSelected && {
-          '&:hover': {
-            backgroundColor: theme.colors.white.lighter,
-            color: theme.colors.blue.main,
-          },
-        },
       ]}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       onClick={(e) => {
         e.stopPropagation()
         onClick()
       }}
+      onKeyDown={(e) => {
+        e.currentTarget.blur()
+      }}
     >
-      <Typography type={size === 'lg' ? 'body3' : 'caption1'} css={{ color: 'currentcolor' }}>
-        {option.label}
-      </Typography>
+      <Typography type={size === 'lg' ? 'body3' : 'caption1'}>{option.label}</Typography>
     </Box>
   )
 }

@@ -2,7 +2,6 @@ import {
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
-  MouseEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -18,6 +17,34 @@ import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { Option, OptionContainer } from './components'
+
+const useKeyPress = function (targetKey: string) {
+  const [keyPressed, setKeyPressed] = useState(false)
+
+  function downHandler({ key }: { key: string }) {
+    if (key === targetKey) {
+      setKeyPressed(true)
+    }
+  }
+
+  const upHandler = ({ key }: { key: string }) => {
+    if (key === targetKey) {
+      setKeyPressed(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', downHandler)
+    window.addEventListener('keyup', upHandler)
+
+    return () => {
+      window.removeEventListener('keydown', downHandler)
+      window.removeEventListener('keyup', upHandler)
+    }
+  })
+
+  return keyPressed
+}
 
 /**
  * ForwardRef + Generic Type
@@ -86,8 +113,14 @@ const _Select = <T extends string>(
   const [ref, setRef] = useSetRef()
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState<string>(() => {
-    return options.filter((option) => option.value === value)[0].label
+    return options.find((option) => option.value === value)?.label || ''
   })
+
+  const [activeIndex, setActiveIndex] = useState<number>(0)
+
+  const downPress = useKeyPress('ArrowDown')
+  const upPress = useKeyPress('ArrowUp')
+  const enterPress = useKeyPress('Enter')
 
   const id = useMemo(() => {
     return _id || uniqueId()
@@ -97,23 +130,19 @@ const _Select = <T extends string>(
     return options.find((option) => option.value === value)
   }, [value, options])
 
-  const handleSelectClick = useCallback((event: MouseEvent<HTMLDivElement>) => {
+  const handleSelectClick = useCallback(() => {
     if (!disabled) {
-      event.stopPropagation()
       setOpen((value) => !value)
     }
   }, [])
 
-  const handleOptionClick = useCallback(
-    (value: T) => {
-      onChange(value)
-      setOpen(false)
-    },
-    [onChange],
-  )
+  const handleOptionClick = useCallback((value: T) => {
+    onChange(value)
+    setOpen(false)
+  }, [])
 
   const searchedOptions = useMemo(() => {
-    if (inputValue) {
+    if (options && inputValue) {
       return options.filter((option) => !option.label.toLocaleLowerCase().indexOf(inputValue))
     }
     return options
@@ -125,11 +154,30 @@ const _Select = <T extends string>(
   })
 
   useEffect(() => {
+    if (options.length && downPress) {
+      setActiveIndex((prevState) => (prevState < options.length - 1 ? prevState + 1 : prevState))
+    }
+  }, [downPress])
+
+  useEffect(() => {
+    if (options.length && upPress) {
+      setActiveIndex((prevState) => (prevState > 0 ? prevState - 1 : prevState))
+    }
+  }, [upPress])
+
+  useEffect(() => {
+    if (options.length && enterPress) {
+      onChange(options[activeIndex].value)
+      setOpen(false)
+    }
+  }, [enterPress])
+
+  useEffect(() => {
     if (open) {
       setInputValue('')
       return
     }
-    setInputValue(options.filter((option) => option.value === value)[0].label)
+    setInputValue(options.find((option) => option.value === value)?.label || '')
   }, [open])
 
   return (
@@ -162,6 +210,7 @@ const _Select = <T extends string>(
           },
           disabled && {
             color: theme.colors.gray.main,
+            pointerEvents: 'none',
             cursor: 'not-allowed',
           },
         ]}
@@ -205,15 +254,23 @@ const _Select = <T extends string>(
 
         <ArrowBottomSmallIcon
           css={[{ position: 'absolute', right: 4 }, open && { rotate: '180deg' }]}
+          color="currentColor"
         />
 
         {open && (
           <OptionContainer>
-            {searchedOptions.map((option) => (
+            {searchedOptions.map((option, index) => (
               <Option
                 key={`key-${option.value}`}
                 option={option}
                 selectedOption={selectedOption}
+                onMouseEnter={() => {
+                  setActiveIndex(index)
+                }}
+                onMouseLeave={() => {
+                  setActiveIndex(0)
+                }}
+                active={activeIndex === index}
                 onClick={() => {
                   handleOptionClick(option.value)
                 }}
