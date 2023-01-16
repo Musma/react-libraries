@@ -121,6 +121,7 @@ const _Select = <T extends string>(
   const downPress = useKeyPress('ArrowDown')
   const upPress = useKeyPress('ArrowUp')
   const enterPress = useKeyPress('Enter')
+  const escPress = useKeyPress('Escape')
 
   const id = useMemo(() => {
     return _id || uniqueId()
@@ -179,6 +180,12 @@ const _Select = <T extends string>(
     }
     setInputValue(options.find((option) => option.value === value)?.label || '')
   }, [open])
+
+  useEffect(() => {
+    if (open && escPress) {
+      setOpen(false)
+    }
+  }, [escPress])
 
   return (
     <Box
