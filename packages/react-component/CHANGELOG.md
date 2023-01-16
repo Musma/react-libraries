@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 0.1.70
+
+### Patch Changes
+
+- [`0cd491e`](https://github.com/Musma/react-libraries/commit/0cd491e439126014c0ef27b3e6a6a9f3db8de08a) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Select 검색 기능 추가
+
+- Updated dependencies [[`bc63254`](https://github.com/Musma/react-libraries/commit/bc63254954ea21e72ddd9697bf6cf047024d507a)]:
+  - @musma/react-utils@0.1.27
+
 ## 0.1.69
 
 ### Patch Changes
