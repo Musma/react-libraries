@@ -110,6 +110,7 @@ export const DateRangePicker = forwardRef<ReactDatePicker, DateRangePickerProps>
                 },
               },
               disabled && {
+                color: 'inherit',
                 backgroundColor: theme.colors.white.light,
                 cursor: 'not-allowed',
                 borderColor: theme.colors.gray.main,
