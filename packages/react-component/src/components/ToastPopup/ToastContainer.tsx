@@ -5,11 +5,16 @@ import { useMusmaTheme } from 'src/theme'
 import { ToastPopup, useToastContext, IToastContainerProps, IToastPopupData } from '.'
 
 export const ToastContainer = ({
+<<<<<<< HEAD
   headerHeight,
+=======
+  height,
+>>>>>>> 818c395 (refactor: container의 기본 height 값을 무스마테마의 headerHeight 값으로 변경)
   position = 'top-center',
   newestOnTop,
   ...rest
 }: IToastContainerProps) => {
+<<<<<<< HEAD
   const context = useToastContext()
   const { zIndex, layoutSize } = useMusmaTheme()
 
@@ -24,6 +29,18 @@ export const ToastContainer = ({
         position: 'fixed',
         top: headerHeight || layoutSize.headerHeight,
         right: position === 'top-right' ? '10px' : '50%',
+=======
+  const { list, removeToast } = useToastContext()
+  const { zIndex, layoutSize } = useMusmaTheme()
+
+  // 토스트 팝업이 없으면 DOM에서 사라지기
+  return list.length ? (
+    <div
+      css={{
+        position: 'fixed',
+        top: height || layoutSize.headerHeight,
+        right: position === 'top-right' ? 10 : '50%',
+>>>>>>> 818c395 (refactor: container의 기본 height 값을 무스마테마의 headerHeight 값으로 변경)
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
         zIndex: zIndex.toastPopup,
       }}

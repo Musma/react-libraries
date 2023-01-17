@@ -17,12 +17,18 @@ export interface IToastPopupData {
 export interface IToastPopupProps extends IToastPopupData {
   onCloseClick(): void
 }
+<<<<<<< HEAD
 export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
   /**
    * 브라우저 상단에서 기본으로 떨어져야하는 높이 값
    * @default useMusmaTheme().layoutSize.headerHeight = 48px
    */
   headerHeight?: string
+=======
+
+export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
+  height?: string
+>>>>>>> 818c395 (refactor: container의 기본 height 값을 무스마테마의 headerHeight 값으로 변경)
   position?: ToastPopupPositionType
   limit?: number
   /**
