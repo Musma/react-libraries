@@ -7,7 +7,7 @@ import { useToastContext } from './ToastPopupContext'
 import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
 
 export const ToastContainer = ({
-  height,
+  headerHeight,
   position = 'top-center',
   ...rest
 }: IToastContainerProps) => {
@@ -19,7 +19,7 @@ export const ToastContainer = ({
     <div
       css={{
         position: 'fixed',
-        top: height || layoutSize.headerHeight,
+        top: headerHeight || layoutSize.headerHeight,
         right: position === 'top-right' ? 10 : '50%',
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
         zIndex: zIndex.toastPopup,
