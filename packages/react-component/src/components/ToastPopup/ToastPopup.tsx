@@ -8,7 +8,7 @@ import { useToastPopupStyle, FLOAT_TO_TOP, IToastPopupProps, AUTO_CLOSE_TIME } f
 export const ToastPopup = ({
   onCloseClick = () => console.log('close 이벤트를 전달해주세요.'),
   type = 'info',
-  title = '',
+  title,
   description,
   mode = 'light',
 }: IToastPopupProps) => {
@@ -67,12 +67,21 @@ export const ToastPopup = ({
         },
       }}
     >
+<<<<<<< HEAD
       {title ? ( // title 없으면 아예 띄우지를 말자
         <div
           css={{
             padding: '12px 16px',
             marginBottom: '8px',
             background: bgColor,
+=======
+      {title ? (
+        <div
+          css={{
+            padding: '12px 16px',
+            marginBottom: '10px',
+            background: toastPopupStyle.bgColor,
+>>>>>>> 2f214f9 (refactor: container와 popup의 float to top 값 변경)
             boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
             borderRadius: '3px',
           }}
@@ -83,6 +92,7 @@ export const ToastPopup = ({
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: description ? 'normal' : 'center',
+<<<<<<< HEAD
               color: fontColor,
               minWidth: description ? '570px' : '400px',
             }}
@@ -101,6 +111,26 @@ export const ToastPopup = ({
               {description && <div>{description}</div>}
             </div>
             <CloseIcon cursor="pointer" color={fontColor} onClick={() => setIsOpen(false)} />
+=======
+              color: toastPopupStyle.fontColor,
+            }}
+          >
+            {toastPopupStyle.img}
+            <div css={{ margin: '0 54px 0 10px' }}>
+              <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
+              {description && (
+                <Fragment>
+                  <br />
+                  {description}
+                </Fragment>
+              )}
+            </div>
+            <OutlineCloseIcon
+              cursor="pointer"
+              color={toastPopupStyle.fontColor}
+              onClick={() => setIsOpen(false)}
+            />
+>>>>>>> 2f214f9 (refactor: container와 popup의 float to top 값 변경)
           </div>
         </div>
       ) : (

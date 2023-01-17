@@ -6,10 +6,14 @@ import { ToastPopup, useToastContext, IToastContainerProps, IToastPopupData } fr
 
 export const ToastContainer = ({
 <<<<<<< HEAD
+<<<<<<< HEAD
   headerHeight,
 =======
   height,
 >>>>>>> 818c395 (refactor: container의 기본 height 값을 무스마테마의 headerHeight 값으로 변경)
+=======
+  headerHeight,
+>>>>>>> 2f214f9 (refactor: container와 popup의 float to top 값 변경)
   position = 'top-center',
   newestOnTop,
   ...rest
@@ -38,7 +42,7 @@ export const ToastContainer = ({
     <div
       css={{
         position: 'fixed',
-        top: height || layoutSize.headerHeight,
+        top: headerHeight || layoutSize.headerHeight,
         right: position === 'top-right' ? 10 : '50%',
 >>>>>>> 818c395 (refactor: container의 기본 height 값을 무스마테마의 headerHeight 값으로 변경)
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
