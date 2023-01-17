@@ -19,15 +19,20 @@ export const useLocationState = <T>({ key, initialState }: UseLocationStateProps
     stateValue === undefined ? initialState : stateValue,
   )
 
-  const setState = (state: T | ((val: T) => T)) => {
+  const setState = (state: T | ((val: T) => T), replace = false) => {
     const value = state instanceof Function ? state(historyState) : state
 
     setHistoryState(() => value)
 
     navigate('', {
-      state: {
-        [key]: value,
-      },
+      state: replace
+        ? {
+            ...location.state,
+            [key]: value,
+          }
+        : {
+            [key]: value,
+          },
     })
   }
 
