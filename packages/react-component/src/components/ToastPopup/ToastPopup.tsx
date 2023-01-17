@@ -3,13 +3,12 @@ import { CSSTransition } from 'react-transition-group'
 
 import { OutlineCloseIcon } from '@musma/react-icons'
 
-import { useToastPopupStyle } from '.'
-import { AUTO_CLOSE_TIME, IToastPopupProps } from './ToastPopupTypes'
+import { useToastPopupStyle, AUTO_CLOSE_TIME, FLOAT_TO_TOP, IToastPopupProps } from '.'
 
 export const ToastPopup = ({
   onCloseClick = () => console.log('close 이벤트를 전달해주세요.'),
   type = 'info',
-  title = '',
+  title,
   description,
   mode = 'light',
 }: IToastPopupProps) => {
@@ -46,16 +45,16 @@ export const ToastPopup = ({
         },
         '&.popup-enter-active': {
           opacity: 1,
-          transform: 'translateY(16px)',
+          transform: `translateY(${FLOAT_TO_TOP})`,
           transition: 'all 1s',
         },
         '&.popup-enter-done': {
           opacity: 1,
-          transform: 'translateY(16px)', // 디자인 시스템 가이드 상 header로부터 16px 띄우기
+          transform: `translateY(${FLOAT_TO_TOP})`, // 디자인 시스템 가이드 상 header로부터 16px 띄우기
         },
         '&.popup-exit': {
           opacity: 1,
-          transform: 'translateY(16px)',
+          transform: `translateY(${FLOAT_TO_TOP})`,
         },
         '&.popup-exit-active': {
           opacity: 0,
@@ -68,41 +67,45 @@ export const ToastPopup = ({
         },
       }}
     >
-      <div
-        css={{
-          padding: '12px 16px',
-          marginBottom: '10px',
-          background: toastPopupStyle.bgColor,
-          boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
-          borderRadius: '3px',
-        }}
-      >
+      {title ? (
         <div
           css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: description ? 'normal' : 'center',
-            color: toastPopupStyle.fontColor,
+            padding: '12px 16px',
+            marginBottom: '10px',
+            background: toastPopupStyle.bgColor,
+            boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
+            borderRadius: '3px',
           }}
         >
-          {toastPopupStyle.img}
-          <div css={{ margin: '0 54px 0 10px' }}>
-            <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
-            {description && (
-              <Fragment>
-                <br />
-                {description}
-              </Fragment>
-            )}
+          <div
+            css={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: description ? 'normal' : 'center',
+              color: toastPopupStyle.fontColor,
+            }}
+          >
+            {toastPopupStyle.img}
+            <div css={{ margin: '0 54px 0 10px' }}>
+              <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
+              {description && (
+                <Fragment>
+                  <br />
+                  {description}
+                </Fragment>
+              )}
+            </div>
+            <OutlineCloseIcon
+              cursor="pointer"
+              color={toastPopupStyle.fontColor}
+              onClick={() => setIsOpen(false)}
+            />
           </div>
-          <OutlineCloseIcon
-            cursor="pointer"
-            color={toastPopupStyle.fontColor}
-            onClick={() => setIsOpen(false)}
-          />
         </div>
-      </div>
+      ) : (
+        <Fragment />
+      )}
     </CSSTransition>
   )
 }
