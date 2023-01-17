@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.1.28
+
+### Patch Changes
+
+- [`e5a3eae`](https://github.com/Musma/react-libraries/commit/e5a3eae7ff7b994207dcf38860d86764197f0588) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useLocationState setState 함수에 reaplce Argument 추가
+
 ## 0.1.27
 
 ### Patch Changes

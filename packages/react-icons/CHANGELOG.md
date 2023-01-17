@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.11
+
+### Patch Changes
+
+- [`129ab28`](https://github.com/Musma/react-libraries/commit/129ab28a0c3df5e5f222ea4f7984df11a862bca6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-icons] 모듈 업데이트
+
 ## 0.1.10
 
 ### Patch Changes
