@@ -7,18 +7,19 @@ import { useToastContext } from './ToastPopupContext'
 import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
 
 export const ToastContainer = ({
-  height = '0px',
+  height,
   position = 'top-center',
   ...rest
 }: IToastContainerProps) => {
   const { list, removeToast } = useToastContext()
-  const { zIndex } = useMusmaTheme()
+  const { zIndex, layoutSize } = useMusmaTheme()
 
+  // 토스트 팝업이 없으면 DOM에서 사라지기
   return list.length ? (
     <div
       css={{
         position: 'fixed',
-        top: height,
+        top: height || layoutSize.headerHeight,
         right: position === 'top-right' ? 10 : '50%',
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
         zIndex: zIndex.toastPopup,
