@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 
 export const AUTO_CLOSE_TIME = 1000 * 3.5 // 자동 close 될 시간
 
@@ -17,7 +17,7 @@ export interface IToastPopupProps extends IToastPopupData {
   onCloseClick(): void
 }
 
-export interface IToastContainerProps {
+export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
   height?: string
   position?: ToastPopupPositionType
   limit?: number
