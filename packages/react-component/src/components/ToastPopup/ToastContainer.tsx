@@ -9,6 +9,7 @@ import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
 export const ToastContainer = ({
   height = '0px',
   position = 'top-center',
+  ...rest
 }: IToastContainerProps) => {
   const { list, removeToast } = useToastContext()
   const { zIndex } = useMusmaTheme()
@@ -23,6 +24,7 @@ export const ToastContainer = ({
         zIndex: zIndex.toastPopup,
       }}
       id="toastPopup-container"
+      {...rest}
     >
       {list.map((item: IToastPopupData) => {
         return (
