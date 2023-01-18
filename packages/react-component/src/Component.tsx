@@ -4,23 +4,23 @@ import { useTheme } from '@emotion/react'
 
 import { Box } from 'src/elements'
 
-import { DateRangePicker, Select } from './components'
+import { Button, DateRangePicker, Select } from './components'
 
 const options = [
   {
-    label: '1111111',
+    label: '1114',
     value: '1',
   },
   {
-    label: '222222',
+    label: '2224',
     value: '2',
   },
   {
-    label: '333333',
+    label: '3335',
     value: '3',
   },
   {
-    label: '444444',
+    label: '4445',
     value: '4',
   },
 ]
@@ -88,6 +88,14 @@ const Component = () => {
       <Select options={options} value={value} onChange={setValue} />
 
       <Select options={options} value={value} disabled={true} onChange={setValue} />
+
+      <Button
+        onClick={() => {
+          setValue('3')
+        }}
+      >
+        dkdkd
+      </Button>
 
       <DateRangePicker
         disabled={true}

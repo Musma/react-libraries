@@ -134,6 +134,7 @@ const _Select = <T extends string>(
   const handleSelectClick = useCallback(() => {
     if (!disabled) {
       setOpen((value) => !value)
+      setActiveIndex(0)
     }
   }, [])
 
@@ -167,8 +168,15 @@ const _Select = <T extends string>(
   }, [upPress])
 
   useEffect(() => {
-    if (options.length && enterPress) {
-      onChange(options[activeIndex].value)
+    if (open && escPress) {
+      setOpen(false)
+    }
+  }, [escPress])
+
+  useEffect(() => {
+    if (open && enterPress && searchedOptions[activeIndex]) {
+      console.log(searchedOptions[activeIndex].value)
+      onChange(searchedOptions[activeIndex].value)
       setOpen(false)
     }
   }, [enterPress])
@@ -182,10 +190,8 @@ const _Select = <T extends string>(
   }, [open])
 
   useEffect(() => {
-    if (open && escPress) {
-      setOpen(false)
-    }
-  }, [escPress])
+    setInputValue(options.find((option) => option.value === value)?.label || '')
+  }, [value])
 
   return (
     <Box
@@ -229,6 +235,7 @@ const _Select = <T extends string>(
           value={inputValue}
           readOnly={!open}
           disabled={disabled}
+          autoComplete="off"
           css={[
             {
               width: '100%',
