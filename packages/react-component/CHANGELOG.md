@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.72
+
+### Patch Changes
+
+- [`7105e32`](https://github.com/Musma/react-libraries/commit/7105e3249674fdb8bbeaf2b568bf322cb188e61b) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] Select 버그 수정
+
 ## 0.1.71
 
 ### Patch Changes
