@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.74
+
+### Patch Changes
+
+- [`271f748`](https://github.com/Musma/react-libraries/commit/271f74812e4774b6bf8ed11f61582727b82748b6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Adornment 로직 수정
+
 ## 0.1.73
 
 ### Patch Changes
