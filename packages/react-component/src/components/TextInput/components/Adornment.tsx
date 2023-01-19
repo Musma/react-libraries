@@ -1,7 +1,8 @@
-import { Fragment, ReactNode, SVGProps } from 'react'
+import { ReactNode, SVGProps } from 'react'
 
 import { useTheme } from '@emotion/react'
 
+import { Typography } from 'src/components'
 import { Span } from 'src/elements'
 import { Size } from 'src/types'
 
@@ -46,5 +47,9 @@ export const Adornment = ({ adornment, size = 'md', direction = 'start' }: Adorn
     )
   }
 
-  return <Fragment />
+  return (
+    <Typography type="body3" css={{ color: theme.colors.black.dark }}>
+      {adornment as string}
+    </Typography>
+  )
 }
