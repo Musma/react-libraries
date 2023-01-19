@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 0.1.73
+
+### Patch Changes
+
+- [`db9692c`](https://github.com/Musma/react-libraries/commit/db9692c9249f758b5d7d3b038e66a6e4938e96b2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Select 주석 제거, HeaderLeftSection logo Props 수정
+
 ## 0.1.72
 
 ### Patch Changes
