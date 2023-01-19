@@ -175,7 +175,6 @@ const _Select = <T extends string>(
 
   useEffect(() => {
     if (open && enterPress && searchedOptions[activeIndex]) {
-      console.log(searchedOptions[activeIndex].value)
       onChange(searchedOptions[activeIndex].value)
       setOpen(false)
     }

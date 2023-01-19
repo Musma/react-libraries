@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import { ReactNode } from 'react'
 import { Link, To } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
@@ -22,7 +22,7 @@ interface HeaderLeftSectionProps {
    * @description
    * 로고 아이콘
    */
-  logo: (props: SVGProps<SVGSVGElement>) => JSX.Element
+  logo: ReactNode
   /**
    * @optional
    * @description
@@ -35,7 +35,7 @@ interface HeaderLeftSectionProps {
 export const HeaderLeftSection = ({
   to = '/',
   disablePadding = false,
-  logo: Logo,
+  logo,
   onMenuClick,
 }: HeaderLeftSectionProps) => {
   const theme = useTheme()
@@ -55,7 +55,7 @@ export const HeaderLeftSection = ({
       ]}
     >
       <Link to={to} css={{ display: 'flex' }}>
-        <Logo />
+        {logo}
       </Link>
 
       {onMenuClick && (
