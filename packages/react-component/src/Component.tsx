@@ -3,19 +3,10 @@ import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId } from '@musma/react-utils'
-import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import {
-  Button,
-  Chip,
-  DatePicker,
-  DateRangePicker,
-  IToastPopupData,
-  Select,
-  TextInput,
-} from './components'
+import { Button, Chip, DateRangePicker, IToastPopupData, Select } from './components'
 import { useToastContext } from './components/ToastPopup'
 
 const options = [
@@ -92,7 +83,7 @@ const Component = () => {
   const theme = useTheme()
   const [value, setValue] = useState('1')
 
-  const { addToast } = useToastContext()
+  const { addToast, setLimit } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
     title: '에러났다 어쩔래',
@@ -118,80 +109,87 @@ const Component = () => {
   }
 
   return (
-    <Box
-      css={{
-        padding: theme.spacingUtil(100),
-        display: 'flex',
-        flexDirection: 'column',
-        gap: theme.spacing.md,
-      }}
-    >
-      <Select options={options} value={value} onChange={setValue} />
-
-      <Select options={options} value={value} disabled={true} onChange={setValue} />
-
-      <Button
-        onClick={() => {
-          setValue('3')
+    <Box>
+      <Box
+        css={{
+          padding: theme.spacingUtil(100),
+          display: 'flex',
+          flexDirection: 'column',
+          gap: theme.spacing.md,
         }}
       >
-        dkdkd
-      </Button>
+        <Select options={options} value={value} onChange={setValue} />
 
-      <Chip
-        color={theme.colors.red.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample1)
-        }}
-      >
-        토스트 팝업 1
-      </Chip>
-      <Chip
-        color={theme.colors.green.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample2)
-        }}
-      >
-        토스트 팝업 2
-      </Chip>
-      <Chip
-        color={theme.colors.blue.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample3)
-        }}
-      >
-        토스트 팝업 3
-      </Chip>
+        <Select options={options} value={value} disabled={true} onChange={setValue} />
 
-      <Chip
-        color={theme.colors.orange.main}
-        shape="rounded"
-        onClick={() => {
-          addToast(popupSample4)
-        }}
-      >
-        토스트 팝업 4
-      </Chip>
+        <Button
+          onClick={() => {
+            setValue('3')
+          }}
+        >
+          dkdkd
+        </Button>
 
-      <TextInput value="123" css={{ marginBottom: 24 }} />
+        <DateRangePicker
+          disabled={true}
+          onChange={() => {
+            console.log('123')
+          }}
+        />
+      </Box>
+      <Box css={{ display: 'flex', gap: '10px' }}>
+        <Chip
+          color={theme.colors.red.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample1)
+          }}
+        >
+          토스트 팝업 1
+        </Chip>
+        <Chip
+          color={theme.colors.green.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample2)
+          }}
+        >
+          토스트 팝업 2
+        </Chip>
+        <Chip
+          color={theme.colors.blue.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample3)
+          }}
+        >
+          토스트 팝업 3
+        </Chip>
 
-      <DatePicker
-        value={DateTime.now()}
-        onChange={() => {
-          return null
-        }}
-        anchorOrigin={{ vertical: 'top' }}
-      />
+        <Chip
+          color={theme.colors.orange.main}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample4)
+          }}
+        >
+          토스트 팝업 4
+        </Chip>
 
-      <DateRangePicker
-        disabled={true}
-        onChange={() => {
-          console.log('123')
-        }}
-      />
+        <Chip
+          color={theme.colors.black.main}
+          onClick={() => {
+            const random = Math.floor(Math.random() * 10) + 1
+            console.log('random', random)
+            setLimit(random)
+          }}
+        >
+          토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
+        </Chip>
+        <Chip color={theme.colors.black.darker} onClick={() => navigate('toast')}>
+          토스트 팝업 페이지로 이동
+        </Chip>
+      </Box>
     </Box>
   )
 }

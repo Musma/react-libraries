@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-import { OutlineCloseIcon } from '@musma/react-icons'
+import { CloseIcon } from '@musma/react-icons'
 
 import { useToastPopupStyle, FLOAT_TO_TOP, IToastPopupProps, AUTO_CLOSE_TIME } from '.'
 
@@ -100,7 +100,7 @@ export const ToastPopup = ({
               <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
               {description && <div>{description}</div>}
             </div>
-            <OutlineCloseIcon
+            <CloseIcon
               cursor="pointer"
               color={toastPopupStyle.fontColor}
               onClick={() => setIsOpen(false)}
