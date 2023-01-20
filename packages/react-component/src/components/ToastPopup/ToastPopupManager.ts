@@ -1,9 +1,9 @@
-import { IToastPopupData } from '.'
+import { IToastPopupInstance } from '.'
 
 // 지금은 IToastPopupData로 받지만, id만 받는 형태로 바꿔도 될 듯
 class ToastPopupManager {
-  private popupList: Map<string, IToastPopupData> = new Map()
-  private queue: IToastPopupData[] = []
+  private popupList: Map<string, IToastPopupInstance> = new Map()
+  private queue: IToastPopupInstance[] = []
   private listLimit = 5
 
   get list() {
@@ -14,7 +14,7 @@ class ToastPopupManager {
     return this.listLimit
   }
 
-  public setLimit(newLimit: number): IToastPopupData[] {
+  public setLimit(newLimit: number): IToastPopupInstance[] {
     const oldLimit = this.listLimit
     const distance = newLimit - oldLimit // 몇개 차이나는지?
     this.listLimit = newLimit
@@ -32,7 +32,7 @@ class ToastPopupManager {
     return this.list
   }
 
-  public add(toastPopup: IToastPopupData): IToastPopupData[] {
+  public add(toastPopup: IToastPopupInstance): IToastPopupInstance[] {
     if (!this.popupList.has(toastPopup.id)) {
       // 제한 갯수에 걸리면 대기열로 추가
       if (this.checkLimit()) {
@@ -45,7 +45,7 @@ class ToastPopupManager {
     return this.list
   }
 
-  public remove(toastPopup: IToastPopupData): IToastPopupData[] {
+  public remove(toastPopup: IToastPopupInstance): IToastPopupInstance[] {
     if (this.popupList.has(toastPopup.id)) {
       this.popupList.delete(toastPopup.id)
       this.dequeue()
@@ -78,7 +78,7 @@ class ToastPopupManager {
   /**
    * 토스트 팝업 갯수가 제한에 도달했을 때 queue(대기열)로 이동
    */
-  private enqueue(toastPopup: IToastPopupData): void {
+  private enqueue(toastPopup: IToastPopupInstance): void {
     this.queue.push(toastPopup)
   }
 
@@ -87,7 +87,7 @@ class ToastPopupManager {
    */
   private dequeue(): void {
     if (this.checkQueue()) {
-      const target = this.queue.shift() as IToastPopupData
+      const target = this.queue.shift() as IToastPopupInstance
       this.add(target)
     }
   }

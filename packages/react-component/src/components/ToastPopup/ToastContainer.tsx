@@ -4,7 +4,7 @@ import { useMusmaTheme } from 'src/theme'
 
 import { ToastPopup } from './ToastPopup'
 import { useToastContext } from './ToastPopupContext'
-import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
+import { IToastContainerProps, IToastPopupInstance } from './ToastPopupTypes'
 
 export const ToastContainer = ({
   headerHeight,
@@ -32,7 +32,7 @@ export const ToastContainer = ({
       id="toastPopup-container"
       {...rest}
     >
-      {context.list.map((item: IToastPopupData) => {
+      {context.list.map((item: IToastPopupInstance) => {
         return (
           <ToastPopup
             key={item.id}

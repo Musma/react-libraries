@@ -1,8 +1,19 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
-import { ToastContainer } from '.'
-import { toastPopupManager } from './ToastPopupManager'
-import { IToastContextProviderProps, IToastPopupContext, IToastPopupData } from './ToastPopupTypes'
+import { uniqueId } from '@musma/react-utils'
+
+import {
+  ToastContainer,
+  IToastContextProviderProps,
+  IToastPopupContext,
+  IToastPopupData,
+  IToastPopupInstance,
+  toastPopupManager,
+} from '.'
+
+const getUniqueId = () => {
+  return uniqueId()
+}
 
 export const ToastPopupContext = createContext<IToastPopupContext>(undefined!)
 
@@ -11,17 +22,22 @@ export const useToastContext = (): IToastPopupContext => {
 }
 
 export const ToastContextProvider = ({ children, ...props }: IToastContextProviderProps) => {
-  const [list, setList] = useState<IToastPopupData[]>([]) // 현재 화면에 떠있는 토스트 팝업들
+  const [list, setList] = useState<IToastPopupInstance[]>([]) // 현재 화면에 떠있는 토스트 팝업들
 
   const addToast = useCallback(
     (toastPopup: IToastPopupData) => {
-      setList(toastPopupManager.add(toastPopup))
+      setList(
+        toastPopupManager.add({
+          ...toastPopup,
+          id: toastPopup.id || getUniqueId(),
+        }),
+      )
     },
     [list],
   )
 
   const removeToast = useCallback(
-    (toastPopup: IToastPopupData) => {
+    (toastPopup: IToastPopupInstance) => {
       setList(toastPopupManager.remove(toastPopup))
     },
     [list],

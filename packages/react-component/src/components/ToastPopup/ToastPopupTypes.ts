@@ -7,14 +7,18 @@ export type ToastPopupStateType = 'info' | 'warning' | 'error' | 'success'
 export type ToastPopupModeType = 'light' | 'dark'
 export type ToastPopupPositionType = 'top-center' | 'top-right'
 export interface IToastPopupData {
-  id: string
+  id?: string
   type?: ToastPopupStateType
   title: string
   description?: string
   mode?: ToastPopupModeType
 }
 
-export interface IToastPopupProps extends IToastPopupData {
+export interface IToastPopupInstance extends IToastPopupData {
+  id: string
+}
+
+export interface IToastPopupProps extends IToastPopupInstance {
   onCloseClick(): void
 }
 export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
@@ -33,9 +37,9 @@ export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
 }
 
 export interface IToastPopupContext {
-  list: IToastPopupData[]
+  list: IToastPopupInstance[]
   addToast: (toastPopup: IToastPopupData) => void
-  removeToast: (toastPopup: IToastPopupData) => void
+  removeToast: (toastPopup: IToastPopupInstance) => void
   setLimit: (newLimit: number) => void
 }
 
