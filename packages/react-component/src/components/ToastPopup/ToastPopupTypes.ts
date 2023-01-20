@@ -25,6 +25,11 @@ export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
   headerHeight?: string
   position?: ToastPopupPositionType
   limit?: number
+  /**
+   * 토스트 팝업이 쌓이는 방향
+   * @default false 아래로 쌓임
+   */
+  newestOnTop?: boolean
 }
 
 export interface IToastPopupContext {
