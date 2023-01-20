@@ -16,13 +16,7 @@ import {
   Select,
   TextInput,
 } from './components'
-<<<<<<< HEAD
-import { useToastContext } from './components/ToastPopup/ToastPopupContext'
-=======
-import { Chip } from './components/Chip'
 import { useToastContext } from './components/ToastPopup'
-import { Modal1 } from './Modal1'
->>>>>>> 7281aae (refactor: 코드리뷰 준비하면서 props 및 일부 코드 수정;)
 
 const options = [
   {
@@ -78,7 +72,6 @@ const columns = [
   },
 ]
 
-<<<<<<< HEAD
 const tableData = Array.from({ length: 20 }).map((_, index) => ({
   id: `${index + 1}`,
   deviceID: '1a4e-6135-1abe-fc10-41c7',
@@ -93,159 +86,114 @@ const tableData = Array.from({ length: 20 }).map((_, index) => ({
 const Component = () => {
   type DDD = {
     date: string
-=======
-type DDD = {
-  date: string
-}
+  }
 
-export const Component = () => {
   const navigate = useNavigate()
-  const { handleSubmit, onSubmit, onReset } = useFormSearch<DDD>({
-    useFormProps: {
-      defaultValues: {
-        date: DateTime.local().toISO(),
-      },
-    },
-    fetchAPI() {
-      console.log(';fetchposdkdspokpo')
-    },
-  })
   const theme = useTheme()
-  const [isOpen1, setIsOpen1] = useToggle(false)
-  const { addToast, setLimit } = useToastContext()
+  const [value, setValue] = useState('1')
+
+  const { addToast } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
-    title: 'Error',
-    description: 'This is a warning notice about copywriting.',
+    title: '에러났다 어쩔래',
+    description: '어쩔어쩔어쩔어쩔어쩔',
     mode: 'dark',
     type: 'error',
   }
   const popupSample2: IToastPopupData = {
     id: uniqueId(),
-    title: 'Success Tips',
-    description: 'Detailed desctiption and advice about successful copywriting.',
+    title: '잘했다임마',
+    description: '굿 잘 됨',
     type: 'success',
   }
   const popupSample3: IToastPopupData = {
     id: uniqueId(),
-    title: 'Extra Information',
+    title: '정보 팝업인데 정보 음슴 ㅋ',
     mode: 'dark',
   }
   const popupSample4: IToastPopupData = {
     id: uniqueId(),
-    title: 'This is warning message.',
+    title: '위험위허멍위험위험위험위험',
     type: 'warning',
->>>>>>> 7281aae (refactor: 코드리뷰 준비하면서 props 및 일부 코드 수정;)
   }
 
-  export const Component = () => {
-    const navigate = useNavigate()
-    const theme = useTheme()
-    const [value, setValue] = useState('1')
+  return (
+    <Box
+      css={{
+        padding: theme.spacingUtil(100),
+        display: 'flex',
+        flexDirection: 'column',
+        gap: theme.spacing.md,
+      }}
+    >
+      <Select options={options} value={value} onChange={setValue} />
 
-    const { addToast } = useToastContext()
-    const popupSample1: IToastPopupData = {
-      id: uniqueId(),
-      title: '에러났다 어쩔래',
-      description: '어쩔어쩔어쩔어쩔어쩔',
-      mode: 'dark',
-      type: 'error',
-    }
-    const popupSample2: IToastPopupData = {
-      id: uniqueId(),
-      title: '잘했다임마',
-      description: '굿 잘 됨',
-      type: 'success',
-    }
-    const popupSample3: IToastPopupData = {
-      id: uniqueId(),
-      title: '정보 팝업인데 정보 음슴 ㅋ',
-      mode: 'dark',
-    }
-    const popupSample4: IToastPopupData = {
-      id: uniqueId(),
-      title: '위험위허멍위험위험위험위험',
-      type: 'warning',
-    }
+      <Select options={options} value={value} disabled={true} onChange={setValue} />
 
-    return (
-      <Box
-        css={{
-          padding: theme.spacingUtil(100),
-          display: 'flex',
-          flexDirection: 'column',
-          gap: theme.spacing.md,
+      <Button
+        onClick={() => {
+          setValue('3')
         }}
       >
-        <Select options={options} value={value} onChange={setValue} />
+        dkdkd
+      </Button>
 
-        <Select options={options} value={value} disabled={true} onChange={setValue} />
+      <Chip
+        color={theme.colors.red.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample1)
+        }}
+      >
+        토스트 팝업 1
+      </Chip>
+      <Chip
+        color={theme.colors.green.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample2)
+        }}
+      >
+        토스트 팝업 2
+      </Chip>
+      <Chip
+        color={theme.colors.blue.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample3)
+        }}
+      >
+        토스트 팝업 3
+      </Chip>
 
-        <Button
-          onClick={() => {
-            setValue('3')
-          }}
-        >
-          dkdkd
-        </Button>
+      <Chip
+        color={theme.colors.orange.main}
+        shape="rounded"
+        onClick={() => {
+          addToast(popupSample4)
+        }}
+      >
+        토스트 팝업 4
+      </Chip>
 
-        <Chip
-          color={theme.colors.red.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample1)
-          }}
-        >
-          토스트 팝업 1
-        </Chip>
-        <Chip
-          color={theme.colors.green.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample2)
-          }}
-        >
-          토스트 팝업 2
-        </Chip>
-        <Chip
-          color={theme.colors.blue.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample3)
-          }}
-        >
-          토스트 팝업 3
-        </Chip>
+      <TextInput value="123" css={{ marginBottom: 24 }} />
 
-        <Chip
-          color={theme.colors.orange.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample4)
-          }}
-        >
-          토스트 팝업 4
-        </Chip>
+      <DatePicker
+        value={DateTime.now()}
+        onChange={() => {
+          return null
+        }}
+        anchorOrigin={{ vertical: 'top' }}
+      />
 
-        <TextInput value="123" css={{ marginBottom: 24 }} />
-
-        <DatePicker
-          value={DateTime.now()}
-          onChange={() => {
-            return null
-          }}
-          anchorOrigin={{ vertical: 'top' }}
-        />
-
-        <DateRangePicker
-          disabled={true}
-          onChange={() => {
-            console.log('123')
-          }}
-        />
-      </Box>
-    )
-  }
+      <DateRangePicker
+        disabled={true}
+        onChange={() => {
+          console.log('123')
+        }}
+      />
+    </Box>
+  )
 }
 
 export default Component
