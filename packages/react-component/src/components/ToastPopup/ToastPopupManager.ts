@@ -7,9 +7,7 @@ class ToastPopupManager {
   private listLimit = 5
 
   get list() {
-    const list: IToastPopupData[] = []
-    this.popupList.forEach((item) => list.unshift(item))
-    return list
+    return Array.from(this.popupList.values())
   }
 
   get limit() {
@@ -18,7 +16,7 @@ class ToastPopupManager {
 
   public setLimit(newLimit: number): IToastPopupData[] {
     const oldLimit = this.listLimit
-    const distance = newLimit - oldLimit
+    const distance = newLimit - oldLimit // 몇개 차이나는지?
     this.listLimit = newLimit
 
     if (distance > 0) {
