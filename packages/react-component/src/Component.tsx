@@ -86,8 +86,8 @@ const Component = () => {
   const { addToast, setLimit } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
-    title: '에러났다 어쩔래',
-    description: '어쩔어쩔어쩔어쩔어쩔',
+    title: 'Error',
+    description: 'This is a warning notice about copywriting.',
     mode: 'dark',
     type: 'error',
   }
