@@ -9,31 +9,36 @@ import { IToastContainerProps, IToastPopupData } from './ToastPopupTypes'
 export const ToastContainer = ({
   headerHeight,
   position = 'top-center',
+  newestOnTop,
   ...rest
 }: IToastContainerProps) => {
-  const { list, removeToast } = useToastContext()
+  const context = useToastContext()
   const { zIndex, layoutSize } = useMusmaTheme()
 
+  if (newestOnTop) {
+    context.list = context.list.reverse()
+  }
+
   // 토스트 팝업이 없으면 DOM에서 사라지기
-  return list.length ? (
+  return context.list.length ? (
     <div
       css={{
         position: 'fixed',
         top: headerHeight || layoutSize.headerHeight,
-        right: position === 'top-right' ? 10 : '50%',
+        right: position === 'top-right' ? '10px' : '50%',
         transform: position === 'top-right' ? undefined : 'translate(50%, 0)',
         zIndex: zIndex.toastPopup,
       }}
       id="toastPopup-container"
       {...rest}
     >
-      {list.map((item: IToastPopupData) => {
+      {context.list.map((item: IToastPopupData) => {
         return (
           <ToastPopup
             key={item.id}
             id={item.id}
             title={item.title}
-            onCloseClick={() => removeToast(item)}
+            onCloseClick={() => context.removeToast(item)}
             type={item.type}
             mode={item.mode}
             description={item?.description}
