@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group'
 
 import { OutlineCloseIcon } from '@musma/react-icons'
 
-import { useToastPopupStyle, AUTO_CLOSE_TIME, FLOAT_TO_TOP, IToastPopupProps } from '.'
+import { useToastPopupStyle, FLOAT_TO_TOP, IToastPopupProps, AUTO_CLOSE_TIME } from '.'
 
 export const ToastPopup = ({
   onCloseClick = () => console.log('close 이벤트를 전달해주세요.'),
@@ -67,11 +67,11 @@ export const ToastPopup = ({
         },
       }}
     >
-      {title ? (
+      {title ? ( // title 없으면 아예 띄우지를 말자
         <div
           css={{
             padding: '12px 16px',
-            marginBottom: '10px',
+            marginBottom: '8px',
             background: toastPopupStyle.bgColor,
             boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
             borderRadius: '3px',
@@ -84,17 +84,21 @@ export const ToastPopup = ({
               justifyContent: 'space-between',
               alignItems: description ? 'normal' : 'center',
               color: toastPopupStyle.fontColor,
+              minWidth: description ? '570px' : '400px',
             }}
           >
             {toastPopupStyle.img}
-            <div css={{ margin: '0 54px 0 10px' }}>
-              <span css={{ fontWeight: description ? 'bold' : undefined }}>{title}</span>
-              {description && (
-                <Fragment>
-                  <br />
-                  {description}
-                </Fragment>
-              )}
+            <div
+              css={{
+                width: '100%',
+                margin: '0 54px 0 10px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px',
+              }}
+            >
+              <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
+              {description && <div>{description}</div>}
             </div>
             <OutlineCloseIcon
               cursor="pointer"

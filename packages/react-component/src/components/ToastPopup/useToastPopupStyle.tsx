@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 
 import {
   FillCautionIcon,
@@ -14,40 +14,38 @@ import { ToastPopupModeType, ToastPopupStateType } from '.'
 export const useToastPopupStyle = () => {
   const { colors } = useMusmaTheme()
 
-  const stylesByType = useMemo(
-    () => ({
-      info: {
-        img: <FillInformationIcon color={colors.blue.main} />,
-        bgColor: colors.gray.light,
-        bgDarkColor: '#44505C',
-      },
-      warning: {
-        img: <FillCautionIcon color={colors.orange.main} />,
-        bgColor: colors.orange.lighter,
-        bgDarkColor: '#4A4643',
-      },
-      error: {
-        img: <FillErrorIcon color={colors.red.main} />,
-        bgColor: colors.red.lighter,
-        bgDarkColor: '#4A4347',
-      },
-      success: {
-        img: <FillCheckCircleIcon color={colors.green.main} />,
-        bgColor: colors.green.lighter,
-        bgDarkColor: '#494A43',
-      },
-    }),
-    [
-      colors.blue.main,
-      colors.gray.light,
-      colors.green.lighter,
-      colors.green.main,
-      colors.orange.lighter,
-      colors.orange.main,
-      colors.red.lighter,
-      colors.red.main,
-    ],
-  )
+  const stylesByType = useCallback((type: ToastPopupStateType, mode: ToastPopupModeType) => {
+    switch (type) {
+      case 'error':
+        return {
+          img: <FillErrorIcon color={colors.red.main} />,
+          bgColor: colors.red.lighter,
+          bgDarkColor: '#4A4347',
+        }
+      case 'success':
+        return {
+          img: <FillCheckCircleIcon color={colors.green.main} />,
+          bgColor: colors.green.lighter,
+          bgDarkColor: '#494A43',
+        }
+      case 'warning':
+        return {
+          img: (
+            <FillCautionIcon color={mode === 'light' ? colors.orange.main : colors.orange.dark} />
+          ),
+          bgColor: colors.orange.lighter,
+          bgDarkColor: '#4A4643',
+        }
+      default:
+        return {
+          img: (
+            <FillInformationIcon color={mode === 'light' ? colors.blue.main : colors.blue.light} />
+          ),
+          bgColor: colors.gray.light,
+          bgDarkColor: '#44505C',
+        }
+    }
+  }, [])
 
   const returnStyle = useCallback(
     (type: ToastPopupStateType, mode: ToastPopupModeType) => {
@@ -55,14 +53,14 @@ export const useToastPopupStyle = () => {
         case 'dark':
           return {
             fontColor: 'white',
-            ...stylesByType[type],
-            bgColor: stylesByType[type].bgDarkColor,
+            ...stylesByType(type, mode),
+            bgColor: stylesByType(type, mode).bgDarkColor,
           }
         default:
           return {
             fontColor: 'black',
-            ...stylesByType[type],
-            bgColor: stylesByType[type].bgColor,
+            ...stylesByType(type, mode),
+            bgColor: stylesByType(type, mode).bgColor,
           }
       }
     },
