@@ -115,25 +115,25 @@ export const Component = () => {
   const { addToast, setLimit } = useToastContext()
   const popupSample1: IToastPopupData = {
     id: uniqueId(),
-    title: '에러났다 어쩔래',
-    description: '어쩔어쩔어쩔어쩔어쩔',
+    title: 'Error',
+    description: 'This is a warning notice about copywriting.',
     mode: 'dark',
     type: 'error',
   }
   const popupSample2: IToastPopupData = {
     id: uniqueId(),
-    title: '잘했다임마',
-    description: '굿 잘 됨',
+    title: 'Success Tips',
+    description: 'Detailed desctiption and advice about successful copywriting.',
     type: 'success',
   }
   const popupSample3: IToastPopupData = {
     id: uniqueId(),
-    title: '정보 팝업인데 정보 음슴 ㅋ',
+    title: 'Extra Information',
     mode: 'dark',
   }
   const popupSample4: IToastPopupData = {
     id: uniqueId(),
-    title: '위험위허멍위험위험위험위험',
+    title: 'This is warning message.',
     type: 'warning',
 >>>>>>> 7281aae (refactor: 코드리뷰 준비하면서 props 및 일부 코드 수정;)
   }
