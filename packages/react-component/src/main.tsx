@@ -1,5 +1,6 @@
-import { render } from 'react-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { createRoot } from 'react-dom/client'
 
 import { DefaultTheme, MusmaProvider } from 'src/theme'
 
@@ -23,7 +24,7 @@ const theme = {
 const rootElement = document.getElementById('root')
 
 if (rootElement) {
-  render(
+  createRoot(rootElement).render(
     <MusmaProvider theme={theme}>
       <ToastContextProvider position="top-right" limit={3}>
         <BrowserRouter>
@@ -34,6 +35,5 @@ if (rootElement) {
         </BrowserRouter>
       </ToastContextProvider>
     </MusmaProvider>,
-    rootElement,
   )
 }
