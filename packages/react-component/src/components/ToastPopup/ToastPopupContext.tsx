@@ -11,10 +11,6 @@ import {
   toastPopupManager,
 } from '.'
 
-const getUniqueId = () => {
-  return uniqueId()
-}
-
 export const ToastPopupContext = createContext<IToastPopupContext>(undefined!)
 
 export const useToastContext = (): IToastPopupContext => {
@@ -29,7 +25,7 @@ export const ToastContextProvider = ({ children, ...props }: IToastContextProvid
       setList(
         toastPopupManager.add({
           ...toastPopup,
-          id: toastPopup.id || getUniqueId(),
+          id: toastPopup.id || uniqueId(),
         }),
       )
     },
