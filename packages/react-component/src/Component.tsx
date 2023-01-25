@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
-import { uniqueId } from '@musma/react-utils'
 
 import { Box } from 'src/elements'
 
@@ -85,25 +84,21 @@ const Component = () => {
 
   const { addToast, setLimit } = useToastContext()
   const popupSample1: IToastPopupData = {
-    id: uniqueId(),
     title: 'Error',
     description: 'This is a warning notice about copywriting.',
     mode: 'dark',
     type: 'error',
   }
   const popupSample2: IToastPopupData = {
-    id: uniqueId(),
     title: '잘했다임마',
     description: '굿 잘 됨',
     type: 'success',
   }
   const popupSample3: IToastPopupData = {
-    id: uniqueId(),
     title: '정보 팝업인데 정보 음슴 ㅋ',
     mode: 'dark',
   }
   const popupSample4: IToastPopupData = {
-    id: uniqueId(),
     title: '위험위허멍위험위험위험위험',
     type: 'warning',
   }
