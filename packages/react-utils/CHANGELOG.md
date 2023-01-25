@@ -1,5 +1,13 @@
 # @musma/react-utils
 
+## 0.1.29
+
+### Patch Changes
+
+- [#148](https://github.com/Musma/react-libraries/pull/148) [`07682fa`](https://github.com/Musma/react-libraries/commit/07682fad7d868ddcde0232db236834721c2c7e8e) Thanks [@mcoding777](https://github.com/mcoding777)! - ToastPopup 컴포넌트 추가 및 useOutsideListener 훅에 제외할 노드 로직 추가
+
+- [#148](https://github.com/Musma/react-libraries/pull/148) [`e758aff`](https://github.com/Musma/react-libraries/commit/e758aff889dcafaed2f23670f4cc0d661475cf4e) Thanks [@mcoding777](https://github.com/mcoding777)! - toast popup component 추가 및 useOutsideListener hook 로직에 prop 추가
+
 ## 0.1.28
 
 ### Patch Changes
