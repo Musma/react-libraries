@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 
 import { useMusmaTheme } from 'src/theme'
 
-import { ToastPopup, useToastContext, IToastContainerProps, IToastPopupData } from '.'
+import { ToastPopup, useToastContext, IToastContainerProps, IToastPopupInstance } from '.'
 
 export const ToastContainer = ({
   headerHeight,
@@ -30,7 +30,7 @@ export const ToastContainer = ({
       id="toastPopup-container"
       {...rest}
     >
-      {context.list.map((item: IToastPopupData) => {
+      {context.list.map((item: IToastPopupInstance) => {
         return (
           <ToastPopup
             key={item.id}
@@ -47,10 +47,4 @@ export const ToastContainer = ({
   ) : (
     <Fragment />
   )
-}
-
-ToastContainer.displayName = 'ToastContainer'
-
-ToastContainer.defaultProps = {
-  height: '50px',
 }

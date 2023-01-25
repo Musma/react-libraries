@@ -67,25 +67,12 @@ export const ToastPopup = ({
         },
       }}
     >
-<<<<<<< HEAD
-<<<<<<< HEAD
       {title ? ( // title 없으면 아예 띄우지를 말자
         <div
           css={{
             padding: '12px 16px',
             marginBottom: '8px',
             background: bgColor,
-=======
-      {title ? (
-=======
-      {title ? ( // title 없으면 아예 띄우지를 말자
->>>>>>> 814ed10 (style: 디자인 시스템과 비교해서 일부 수정)
-        <div
-          css={{
-            padding: '12px 16px',
-            marginBottom: '8px',
-            background: toastPopupStyle.bgColor,
->>>>>>> 2f214f9 (refactor: container와 popup의 float to top 값 변경)
             boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
             borderRadius: '3px',
           }}
@@ -96,7 +83,6 @@ export const ToastPopup = ({
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: description ? 'normal' : 'center',
-<<<<<<< HEAD
               color: fontColor,
               minWidth: description ? '570px' : '400px',
             }}
@@ -114,31 +100,11 @@ export const ToastPopup = ({
               <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
               {description && <div>{description}</div>}
             </div>
-            <CloseIcon cursor="pointer" color={fontColor} onClick={() => setIsOpen(false)} />
-=======
-              color: toastPopupStyle.fontColor,
-              minWidth: description ? '570px' : '400px',
-            }}
-          >
-            {toastPopupStyle.img}
-            <div
-              css={{
-                width: '100%',
-                margin: '0 54px 0 10px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-              }}
-            >
-              <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
-              {description && <div>{description}</div>}
-            </div>
-            <OutlineCloseIcon
+            <CloseIcon
               cursor="pointer"
-              color={toastPopupStyle.fontColor}
+              color={fontColor}
               onClick={() => setIsOpen(false)}
             />
->>>>>>> 2f214f9 (refactor: container와 popup의 float to top 값 변경)
           </div>
         </div>
       ) : (
