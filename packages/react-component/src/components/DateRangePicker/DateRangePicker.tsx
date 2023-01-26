@@ -65,10 +65,21 @@ interface DateRangePickerProps
   /**
    * @required
    *
-   * 날짜 변경 이벤트
+   * 시작일
    */
   startDate: DateTime | null
+  /**
+   * @required
+   *
+   * 종료일
+   */
   endDate: DateTime | null
+  /**
+   * @required
+   *
+   * 날짜 변경 이벤트
+   */
+  onChange: (...event: any[]) => void
 }
 
 export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps>(
@@ -86,6 +97,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
       },
       startDate,
       endDate,
+      onChange,
       ...rest
     },
     ref,
@@ -213,6 +225,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
             onClose={() => {
               toggleCalendar(false)
             }}
+            onChange={onChange}
             setCalendarStartDate={setCalendarStartDate}
             setCalendarEndDate={setCalendarEndDate}
           />

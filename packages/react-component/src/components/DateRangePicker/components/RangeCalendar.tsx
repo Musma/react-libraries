@@ -41,6 +41,7 @@ interface RangeCalendarProps {
   calendarStartDate: DateTime | null
   calendarEndDate: DateTime | null
   onClose: () => void
+  onChange: (...event: any[]) => void
   setCalendarStartDate: React.Dispatch<React.SetStateAction<DateTime | null>>
   setCalendarEndDate: React.Dispatch<React.SetStateAction<DateTime | null>>
 }
