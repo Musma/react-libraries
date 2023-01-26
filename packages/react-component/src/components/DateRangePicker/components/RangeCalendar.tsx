@@ -13,9 +13,25 @@ import { DateTime } from 'luxon'
 import { DATE_FORMAT, IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
-const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+// const DAYS_OF_THE_WEEK = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+// const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const DAYS_OF_THE_WEEK = ['월', '화', '수', '목', '금', '토', '일']
+
+const MONTHS = [
+  '1월',
+  '2월',
+  '3월',
+  '4월',
+  '5월',
+  '6월',
+  '7월',
+  '8월',
+  '9월',
+  '10월',
+  '11월',
+  '12월',
+]
 
 interface RangeCalendarProps {
   inputRef: HTMLElement | null
@@ -105,13 +121,12 @@ export const RangeCalendar = ({
     return []
   }, [endDay, startDay])
 
+  // 마우스오버 이벤트
   const handleMouseOverDate = (currentDay: DateTime) => {
     if (!calendarStartDate) {
       return false
     }
 
-    // day가 시작일보다 클 때,
-    // day가
     if (currentDay > calendarStartDate && currentDay < overEndDate) {
       if (calendarEndDate) {
         return false
@@ -297,25 +312,74 @@ export const RangeCalendar = ({
                 },
               ]}
               onClick={() => {
-                if (calendarStartDate && calendarEndDate) {
-                  if (day < calendarStartDate) {
-                    setCalendarStartDate(day)
-                    onClose()
-                  }
-
-                  if (day > calendarStartDate) {
-                    setCalendarEndDate(day)
-                    onClose()
-                  }
+                // 시작일과 종료일이 선택되어 있지 않았을 때, 첫 선택일은 시작일
+                if (!calendarStartDate && !calendarEndDate) {
+                  setCalendarStartDate(day)
                 }
 
+                // 시작일이 선택되어 있을 때,
                 if (calendarStartDate && !calendarEndDate) {
+                  // 시작일이 선택일보다 크면 시작일 재선택
+                  if (calendarStartDate > day) {
+                    setCalendarStartDate(day)
+                    return
+                  }
                   setCalendarEndDate(day)
                   onClose()
                 }
 
-                if (!calendarStartDate && calendarEndDate) {
+                // 종료일이 선택되어있으면, 시작일 선택
+                if (calendarEndDate && !calendarStartDate) {
                   setCalendarStartDate(day)
+                }
+
+                // 시작일과 종료일 모두 선택되어 있으면,
+                if (calendarStartDate && calendarEndDate) {
+                  const calcStartDate =
+                    day > calendarStartDate
+                      ? day.diff(calendarStartDate, 'days').toObject().days
+                      : calendarStartDate.diff(day, 'days').toObject().days
+
+                  const calcEndDate =
+                    day > calendarEndDate
+                      ? day.diff(calendarEndDate, 'days').toObject().days
+                      : calendarEndDate.diff(day, 'days').toObject().days
+
+                  if (!calcStartDate || !calcEndDate) {
+                    return
+                  }
+
+                  // day가 시작일보다 작으면 초기화
+                  if (day < calendarStartDate) {
+                    setCalendarStartDate(day)
+                    setCalendarEndDate(null)
+                    return
+                  }
+
+                  // day가 종료일보다 크면 초기화
+                  if (day > calendarEndDate) {
+                    setCalendarStartDate(day)
+                    setCalendarEndDate(null)
+                    return
+                  }
+
+                  // day가 종료일보다 시작일에 가까우면 시작일 재선택
+                  if (calcStartDate > calcEndDate) {
+                    setCalendarEndDate(day)
+                    onClose()
+                  }
+
+                  // day가 시작일보다 종료일에 가까우면 종료일 재선택
+                  if (calcStartDate < calcEndDate) {
+                    setCalendarStartDate(day)
+                    onClose()
+                  }
+
+                  // day가 시작일과 종료일과 동일한 선상이면 시작일 재선택
+                  if (calcStartDate === calcEndDate) {
+                    setCalendarStartDate(day)
+                    onClose()
+                  }
                 }
               }}
               onMouseOver={() => {
