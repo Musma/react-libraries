@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, useState } from 'react'
+import { forwardRef, InputHTMLAttributes, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { FillDateRangeIcon } from '@musma/react-icons'
@@ -79,7 +79,7 @@ interface DateRangePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: (...event: any[]) => void
+  onChange: (date: [DateTime | null, DateTime | null]) => void
 }
 
 export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps>(
@@ -107,26 +107,23 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
 
-    const [calendarStartDate, setCalendarStartDate] = useState(startDate)
-    const [calendarEndDate, setCalendarEndDate] = useState(endDate)
-
-    const dateTimeValue = () => {
-      if (!calendarStartDate && !calendarEndDate) {
+    const inputValue = useMemo(() => {
+      if (!startDate && !endDate) {
         return ''
       }
 
-      if (!calendarStartDate && calendarEndDate) {
-        return calendarEndDate.toFormat(DATE_FORMAT)
+      if (!startDate && endDate) {
+        return endDate.toFormat(DATE_FORMAT)
       }
 
-      if (calendarStartDate && !calendarEndDate) {
-        return calendarStartDate.toFormat(DATE_FORMAT)
+      if (startDate && !endDate) {
+        return startDate.toFormat(DATE_FORMAT)
       }
 
-      return `${calendarStartDate && calendarStartDate.toFormat(DATE_FORMAT)} ~ ${
-        calendarEndDate && calendarEndDate.toFormat(DATE_FORMAT)
+      return `${startDate && startDate.toFormat(DATE_FORMAT)} ~ ${
+        endDate && endDate.toFormat(DATE_FORMAT)
       }`
-    }
+    }, [startDate, endDate])
 
     return (
       <Box
@@ -191,7 +188,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
             ref={ref}
             disabled={disabled}
             readOnly={true}
-            value={dateTimeValue()}
+            value={inputValue}
             css={{
               flex: 1,
               width: '100%',
@@ -218,16 +215,14 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
 
         {showCalendar && (
           <RangeCalendar
-            calendarStartDate={calendarStartDate}
-            calendarEndDate={calendarEndDate}
+            startDate={startDate}
+            endDate={endDate}
             inputRef={inputRef}
             anchorOrigin={anchorOrigin}
             onClose={() => {
               toggleCalendar(false)
             }}
-            onChange={onChange}
-            setCalendarStartDate={setCalendarStartDate}
-            setCalendarEndDate={setCalendarEndDate}
+            onChange={(date) => onChange(date)}
           />
         )}
       </Box>
