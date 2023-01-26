@@ -100,7 +100,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
 
     const dateTimeValue = () => {
       if (!calendarStartDate && !calendarEndDate) {
-        new Error('error')
+        return ''
       }
 
       if (!calendarStartDate && calendarEndDate) {
