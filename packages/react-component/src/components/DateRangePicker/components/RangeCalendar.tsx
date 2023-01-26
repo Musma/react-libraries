@@ -105,6 +105,21 @@ export const RangeCalendar = ({
     return []
   }, [endDay, startDay])
 
+  const handleMouseOverDate = (currentDay: DateTime) => {
+    if (!calendarStartDate) {
+      return false
+    }
+
+    // day가 시작일보다 클 때,
+    // day가
+    if (currentDay > calendarStartDate && currentDay < overEndDate) {
+      if (calendarEndDate) {
+        return false
+      }
+      return true
+    }
+  }
+
   useOutsideListener(boxRef, () => {
     onClose()
   })
@@ -245,24 +260,28 @@ export const RangeCalendar = ({
                   },
                 },
 
+                // 당월 제외 되는 날짜를 그레이색!ㅋㅋ으로 표시
                 (calendarStartDate
                   ? !calendarStartDate.hasSame(day, 'month')
                   : !DateTime.now().hasSame(day, 'month')) && {
                   color: theme.colors.gray.main,
                 },
 
+                // 시작일 선택하면 primary 진한색으로 표시
                 calendarStartDate &&
                   calendarStartDate.hasSame(day, 'day') && {
                     color: theme.colors.white.main,
                     backgroundColor: theme.colors.primary.main,
                   },
 
+                // 종료일 선택하면 primary 진한색으로 표시
                 calendarEndDate &&
                   calendarEndDate.hasSame(day, 'day') && {
                     color: theme.colors.white.main,
                     backgroundColor: theme.colors.primary.main,
                   },
 
+                // 시작일과 종료일 사이 날짜가 primary 옅은색으로 모두 표시
                 calendarStartDate &&
                   calendarEndDate &&
                   day > calendarStartDate &&
@@ -271,26 +290,23 @@ export const RangeCalendar = ({
                     backgroundColor: theme.colors.primary.lighter,
                   },
 
-                calendarStartDate &&
-                  day > calendarStartDate &&
-                  day < overEndDate && {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.lighter,
-                  },
+                // 시작일이 선택되어 있으면, mouseOver 한 곳 까지 primary 옅은색으로 표시
+                handleMouseOverDate(day) && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.lighter,
+                },
               ]}
               onClick={() => {
-                if (!calendarStartDate && !calendarEndDate) {
-                  setCalendarStartDate(day)
-                }
+                if (calendarStartDate && calendarEndDate) {
+                  if (day < calendarStartDate) {
+                    setCalendarStartDate(day)
+                    onClose()
+                  }
 
-                if (calendarStartDate && calendarEndDate && day < calendarStartDate) {
-                  setCalendarStartDate(day)
-                  onClose()
-                }
-
-                if (calendarStartDate && calendarEndDate && day > calendarStartDate) {
-                  setCalendarEndDate(day)
-                  onClose()
+                  if (day > calendarStartDate) {
+                    setCalendarEndDate(day)
+                    onClose()
+                  }
                 }
 
                 if (calendarStartDate && !calendarEndDate) {
