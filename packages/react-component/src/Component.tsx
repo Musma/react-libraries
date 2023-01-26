@@ -53,10 +53,17 @@ const Component = () => {
         <Controller
           name="date"
           control={control}
-          render={({ field: { value, ...rest } }) => {
+          render={({ field: { value, onChange, ...rest } }) => {
             const [startDate, endDate] = value ?? [null, null]
 
-            return <DateRangePicker startDate={startDate} endDate={endDate} {...rest} />
+            return (
+              <DateRangePicker
+                startDate={startDate}
+                endDate={endDate}
+                onChange={(date) => onChange(date)}
+                {...rest}
+              />
+            )
           }}
         />
       </Grid>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -38,26 +38,26 @@ interface RangeCalendarProps {
   anchorOrigin?: {
     vertical: 'bottom' | 'top'
   }
-  calendarStartDate: DateTime | null
-  calendarEndDate: DateTime | null
+  startDate: DateTime | null
+  endDate: DateTime | null
   onClose: () => void
-  onChange: (...event: any[]) => void
-  setCalendarStartDate: React.Dispatch<React.SetStateAction<DateTime | null>>
-  setCalendarEndDate: React.Dispatch<React.SetStateAction<DateTime | null>>
+  onChange: (date: [DateTime | null, DateTime | null]) => void
 }
 
 export const RangeCalendar = ({
   anchorOrigin = {
     vertical: 'bottom',
   },
-  calendarStartDate,
-  calendarEndDate,
+  startDate,
+  endDate,
   onClose,
-  setCalendarStartDate,
-  setCalendarEndDate,
+  onChange,
 }: RangeCalendarProps) => {
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
+
+  const [calendarDateTime, setCalendarDateTime] = useState(startDate)
+
   const [overEndDate, setOverEndDate] = useState<DateTime | null>(null)
 
   const calendarPosition = useMemo(() => {
@@ -73,42 +73,30 @@ export const RangeCalendar = ({
     }
   }, [anchorOrigin.vertical])
 
-  const month = useMemo(() => {
-    if (!calendarStartDate) {
-      return DateTime.now().month
-    }
+  const presentMonth = useMemo(() => {
+    return calendarDateTime ? calendarDateTime.month : DateTime.now().month
+  }, [calendarDateTime])
 
-    return calendarStartDate.month
-  }, [calendarStartDate])
+  const presentYear = useMemo(() => {
+    return calendarDateTime ? calendarDateTime.year : DateTime.now().year
+  }, [calendarDateTime])
 
-  const year = useMemo(() => {
-    if (!calendarStartDate) {
-      return DateTime.now().year
-    }
+  const startCalendarDate = useMemo(() => {
+    return calendarDateTime
+      ? calendarDateTime.startOf('month').startOf('week')
+      : DateTime.now().startOf('month').startOf('week')
+  }, [calendarDateTime])
 
-    return calendarStartDate.year
-  }, [calendarStartDate])
-
-  const startDay = useMemo(() => {
-    if (!calendarStartDate) {
-      return DateTime.now().startOf('month').startOf('week')
-    }
-
-    return calendarStartDate.startOf('month').startOf('week')
-  }, [calendarStartDate])
-
-  const endDay = useMemo(() => {
-    if (!calendarStartDate) {
-      return DateTime.now().endOf('month').endOf('week')
-    }
-
-    return calendarStartDate.endOf('month').endOf('week')
-  }, [calendarStartDate])
+  const endCalendarDate = useMemo(() => {
+    return calendarDateTime
+      ? calendarDateTime.endOf('month').endOf('week')
+      : DateTime.now().endOf('month').endOf('week')
+  }, [calendarDateTime])
 
   const calendar = useMemo(() => {
-    let day = startDay.minus({ day: 1 })
+    let day = startCalendarDate.minus({ day: 1 })
 
-    const diffDays = endDay.diff(day, 'days').toObject().days
+    const diffDays = endCalendarDate.diff(day, 'days').toObject().days
 
     if (diffDays) {
       const days = Array(Math.floor(diffDays))
@@ -120,21 +108,24 @@ export const RangeCalendar = ({
       return days
     }
     return []
-  }, [endDay, startDay])
+  }, [endCalendarDate, startCalendarDate])
 
-  // 마우스오버 이벤트
-  const handleMouseOverDate = (currentDay: DateTime) => {
-    if (!calendarStartDate) {
-      return false
-    }
-
-    if (currentDay > calendarStartDate && currentDay < overEndDate) {
-      if (calendarEndDate) {
+  // 마우스오버 스타일 이벤트
+  const handleMouseOverDate = useCallback(
+    (currentDay: DateTime) => {
+      if (!startDate) {
         return false
       }
-      return true
-    }
-  }
+
+      if (currentDay > startDate && overEndDate && currentDay < overEndDate) {
+        if (endDate) {
+          return false
+        }
+        return true
+      }
+    },
+    [startDate, overEndDate],
+  )
 
   useOutsideListener(boxRef, () => {
     onClose()
@@ -169,10 +160,10 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarStartDate
-                ? calendarStartDate.minus({ year: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.minus({ year: 1 })
                 : DateTime.now().minus({ year: 1 })
-              setCalendarStartDate(dateTime)
+              setCalendarDateTime(dateTime)
             }}
           >
             <ArrowFirstLargeIcon />
@@ -182,10 +173,10 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarStartDate
-                ? calendarStartDate.minus({ month: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.minus({ month: 1 })
                 : DateTime.now().minus({ month: 1 })
-              setCalendarStartDate(dateTime)
+              setCalendarDateTime(dateTime)
             }}
           >
             <ArrowLeftLargeIcon />
@@ -193,17 +184,17 @@ export const RangeCalendar = ({
         </Box>
 
         {/* 월, 년 표시 */}
-        <Typography type="subTitle2">{`${MONTHS[month - 1]} ${year}`}</Typography>
+        <Typography type="subTitle2">{`${MONTHS[presentMonth - 1]} ${presentYear}`}</Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarStartDate
-                ? calendarStartDate.plus({ month: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.plus({ month: 1 })
                 : DateTime.now().plus({ month: 1 })
-              setCalendarStartDate(dateTime)
+              setCalendarDateTime(dateTime)
             }}
           >
             <ArrowRightLargeIcon />
@@ -213,10 +204,10 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarStartDate
-                ? calendarStartDate.plus({ year: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.plus({ year: 1 })
                 : DateTime.now().plus({ year: 1 })
-              setCalendarStartDate(dateTime)
+              setCalendarDateTime(dateTime)
             }}
           >
             <ArrowLastLargeIcon />
@@ -277,31 +268,31 @@ export const RangeCalendar = ({
                 },
 
                 // 당월 제외 되는 날짜를 그레이색!ㅋㅋ으로 표시
-                (calendarStartDate
-                  ? !calendarStartDate.hasSame(day, 'month')
+                (calendarDateTime
+                  ? !calendarDateTime.hasSame(day, 'month')
                   : !DateTime.now().hasSame(day, 'month')) && {
                   color: theme.colors.gray.main,
                 },
 
                 // 시작일 선택하면 primary 진한색으로 표시
-                calendarStartDate &&
-                  calendarStartDate.hasSame(day, 'day') && {
+                startDate &&
+                  startDate.hasSame(day, 'day') && {
                     color: theme.colors.white.main,
                     backgroundColor: theme.colors.primary.main,
                   },
 
                 // 종료일 선택하면 primary 진한색으로 표시
-                calendarEndDate &&
-                  calendarEndDate.hasSame(day, 'day') && {
+                endDate &&
+                  endDate.hasSame(day, 'day') && {
                     color: theme.colors.white.main,
                     backgroundColor: theme.colors.primary.main,
                   },
 
                 // 시작일과 종료일 사이 날짜가 primary 옅은색으로 모두 표시
-                calendarStartDate &&
-                  calendarEndDate &&
-                  day > calendarStartDate &&
-                  day < calendarEndDate && {
+                startDate &&
+                  endDate &&
+                  day > startDate &&
+                  day < endDate && {
                     color: theme.colors.white.main,
                     backgroundColor: theme.colors.primary.lighter,
                   },
@@ -314,77 +305,71 @@ export const RangeCalendar = ({
               ]}
               onClick={() => {
                 // 시작일과 종료일이 선택되어 있지 않았을 때, 첫 선택일은 시작일
-                if (!calendarStartDate && !calendarEndDate) {
-                  setCalendarStartDate(day)
+                if (!startDate && !endDate) {
+                  onChange([day, null])
                 }
 
                 // 시작일이 선택되어 있을 때,
-                if (calendarStartDate && !calendarEndDate) {
+                if (startDate && !endDate) {
                   // 시작일이 선택일보다 크면 시작일 재선택
-                  if (calendarStartDate > day) {
-                    setCalendarStartDate(day)
+                  if (startDate > day) {
+                    onChange([day, null])
                     return
                   }
-                  setCalendarEndDate(day)
+                  // 아니라면, 종료일 선택
+                  onChange([startDate, day])
                   onClose()
                 }
 
                 // 종료일이 선택되어있으면, 시작일 선택
-                if (calendarEndDate && !calendarStartDate) {
-                  setCalendarStartDate(day)
+                if (endDate && !startDate) {
+                  onChange([day, endDate])
                 }
 
                 // 시작일과 종료일 모두 선택되어 있으면,
-                if (calendarStartDate && calendarEndDate) {
+                if (startDate && endDate) {
                   const calcStartDate =
-                    day > calendarStartDate
-                      ? day.diff(calendarStartDate, 'days').toObject().days
-                      : calendarStartDate.diff(day, 'days').toObject().days
+                    day > startDate
+                      ? day.diff(startDate, 'days').toObject().days
+                      : startDate.diff(day, 'days').toObject().days
 
                   const calcEndDate =
-                    day > calendarEndDate
-                      ? day.diff(calendarEndDate, 'days').toObject().days
-                      : calendarEndDate.diff(day, 'days').toObject().days
+                    day > endDate
+                      ? day.diff(endDate, 'days').toObject().days
+                      : endDate.diff(day, 'days').toObject().days
 
                   if (!calcStartDate || !calcEndDate) {
                     return
                   }
 
                   // day가 시작일보다 작으면 초기화
-                  if (day < calendarStartDate) {
-                    setCalendarStartDate(day)
-                    setCalendarEndDate(null)
-                    return
-                  }
-
                   // day가 종료일보다 크면 초기화
-                  if (day > calendarEndDate) {
-                    setCalendarStartDate(day)
-                    setCalendarEndDate(null)
+                  if (day < startDate || day > endDate) {
+                    onChange([day, null])
                     return
                   }
 
                   // day가 종료일보다 시작일에 가까우면 시작일 재선택
-                  if (calcStartDate > calcEndDate) {
-                    setCalendarEndDate(day)
+                  if (calcStartDate < calcEndDate) {
+                    onChange([day, endDate])
                     onClose()
                   }
 
                   // day가 시작일보다 종료일에 가까우면 종료일 재선택
-                  if (calcStartDate < calcEndDate) {
-                    setCalendarStartDate(day)
+                  if (calcStartDate > calcEndDate) {
+                    onChange([startDate, day])
                     onClose()
                   }
 
                   // day가 시작일과 종료일과 동일한 선상이면 시작일 재선택
                   if (calcStartDate === calcEndDate) {
-                    setCalendarStartDate(day)
+                    onChange([day, endDate])
                     onClose()
                   }
                 }
               }}
               onMouseOver={() => {
-                if (calendarStartDate) {
+                if (startDate) {
                   setOverEndDate(day)
                 }
               }}
