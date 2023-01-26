@@ -54,7 +54,7 @@ const Component = () => {
           name="date"
           control={control}
           render={({ field: { value, onChange, ...rest } }) => {
-            const [startDate, endDate] = value ?? []
+            const [startDate, endDate] = value ?? [null, null]
 
             return <DateRangePicker startDate={startDate} endDate={endDate} {...rest} />
           }}
