@@ -13,28 +13,24 @@ import { DateTime } from 'luxon'
 import { DATE_FORMAT, IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
-// const DAYS_OF_THE_WEEK = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-// const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const Language = {
+  ko: 'ko',
+  en: 'en',
+} as const
 
-const DAYS_OF_THE_WEEK = ['월', '화', '수', '목', '금', '토', '일']
+const DaysOfTheWeek = {
+  ko: ['월', '화', '수', '목', '금', '토', '일'],
+  en: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+} as const
 
-const MONTHS = [
-  '1월',
-  '2월',
-  '3월',
-  '4월',
-  '5월',
-  '6월',
-  '7월',
-  '8월',
-  '9월',
-  '10월',
-  '11월',
-  '12월',
-]
+const Months = {
+  ko: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+} as const
 
 interface RangeCalendarProps {
   inputRef: HTMLElement | null
+  i18n?: string
   anchorOrigin?: {
     vertical: 'bottom' | 'top'
   }
@@ -45,6 +41,7 @@ interface RangeCalendarProps {
 }
 
 export const RangeCalendar = ({
+  i18n = 'ko',
   anchorOrigin = {
     vertical: 'bottom',
   },
@@ -81,22 +78,22 @@ export const RangeCalendar = ({
     return calendarDateTime ? calendarDateTime.year : DateTime.now().year
   }, [calendarDateTime])
 
-  const startCalendarDate = useMemo(() => {
+  const calendarStartDate = useMemo(() => {
     return calendarDateTime
       ? calendarDateTime.startOf('month').startOf('week')
       : DateTime.now().startOf('month').startOf('week')
   }, [calendarDateTime])
 
-  const endCalendarDate = useMemo(() => {
+  const calendarEndDate = useMemo(() => {
     return calendarDateTime
       ? calendarDateTime.endOf('month').endOf('week')
       : DateTime.now().endOf('month').endOf('week')
   }, [calendarDateTime])
 
   const calendar = useMemo(() => {
-    let day = startCalendarDate.minus({ day: 1 })
+    let day = calendarStartDate.minus({ day: 1 })
 
-    const diffDays = endCalendarDate.diff(day, 'days').toObject().days
+    const diffDays = calendarEndDate.diff(day, 'days').toObject().days
 
     if (diffDays) {
       const days = Array(Math.floor(diffDays))
@@ -108,7 +105,7 @@ export const RangeCalendar = ({
       return days
     }
     return []
-  }, [endCalendarDate, startCalendarDate])
+  }, [calendarEndDate, calendarStartDate])
 
   // 마우스오버 스타일 이벤트
   const handleMouseOverDate = useCallback(
@@ -126,6 +123,16 @@ export const RangeCalendar = ({
     },
     [startDate, overEndDate],
   )
+
+  const calendarYearAndMonthI18n = useMemo(() => {
+    return i18n === Language.ko
+      ? `${presentYear}년 ${Months.ko[presentMonth - 1]}`
+      : `${Months.en[presentMonth - 1]} ${presentYear}`
+  }, [i18n])
+
+  const calendarWeekI18n = useMemo(() => {
+    return i18n === Language.ko ? DaysOfTheWeek.ko : DaysOfTheWeek.en
+  }, [i18n])
 
   useOutsideListener(boxRef, () => {
     onClose()
@@ -184,7 +191,7 @@ export const RangeCalendar = ({
         </Box>
 
         {/* 월, 년 표시 */}
-        <Typography type="subTitle2">{`${MONTHS[presentMonth - 1]} ${presentYear}`}</Typography>
+        <Typography type="subTitle2">{calendarYearAndMonthI18n}</Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
@@ -227,7 +234,7 @@ export const RangeCalendar = ({
         }}
       >
         {/* Monday ~ Sunday 날짜 */}
-        {DAYS_OF_THE_WEEK.map((week) => (
+        {calendarWeekI18n.map((week) => (
           <Typography
             key={week}
             type="subTitle3"
@@ -267,7 +274,7 @@ export const RangeCalendar = ({
                   },
                 },
 
-                // 당월 제외 되는 날짜를 그레이색!ㅋㅋ으로 표시
+                // 당월 제외 되는 날짜를 그레이색으로 표시
                 (calendarDateTime
                   ? !calendarDateTime.hasSame(day, 'month')
                   : !DateTime.now().hasSame(day, 'month')) && {

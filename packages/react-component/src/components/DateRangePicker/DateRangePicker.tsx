@@ -75,6 +75,15 @@ interface DateRangePickerProps
    */
   endDate: DateTime | null
   /**
+   * @optional
+   *
+   * @default
+   * ko
+   *
+   * 달력 언어 변경
+   */
+  i18n?: string
+  /**
    * @required
    *
    * 날짜 변경 이벤트
@@ -97,6 +106,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
       },
       startDate,
       endDate,
+      i18n,
       onChange,
       ...rest
     },
@@ -215,9 +225,10 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
 
         {showCalendar && (
           <RangeCalendar
+            inputRef={inputRef}
+            i18n={i18n}
             startDate={startDate}
             endDate={endDate}
-            inputRef={inputRef}
             anchorOrigin={anchorOrigin}
             onClose={() => {
               toggleCalendar(false)
