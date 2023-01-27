@@ -54,8 +54,7 @@ export const RangeCalendar = ({
   const [boxRef, setRef] = useSetRef()
 
   const [calendarDateTime, setCalendarDateTime] = useState(startDate)
-
-  const [overEndDate, setOverEndDate] = useState<DateTime | null>(null)
+  const [mouseOverDateTime, setMouseOverDateTime] = useState<DateTime | null>(null)
 
   const calendarPosition = useMemo(() => {
     if (anchorOrigin.vertical === 'top') {
@@ -70,26 +69,50 @@ export const RangeCalendar = ({
     }
   }, [anchorOrigin.vertical])
 
-  const presentMonth = useMemo(() => {
+  /**
+   * @description
+   * 기준 달
+   */
+  const baseMonth = useMemo(() => {
     return calendarDateTime ? calendarDateTime.month : DateTime.now().month
   }, [calendarDateTime])
 
-  const presentYear = useMemo(() => {
+  /**
+   * @description
+   * 기준 년
+   */
+  const baseYear = useMemo(() => {
     return calendarDateTime ? calendarDateTime.year : DateTime.now().year
   }, [calendarDateTime])
 
+  /**
+   * @description
+   * 42일 기준 캘린더의 시작일
+   * @example
+   * (base) 1/7, (start) 12/26
+   */
   const calendarStartDate = useMemo(() => {
     return calendarDateTime
       ? calendarDateTime.startOf('month').startOf('week')
       : DateTime.now().startOf('month').startOf('week')
   }, [calendarDateTime])
 
+  /**
+   * @description
+   * 42일 기준 캘린더의 종료일
+   * @example
+   * (base) 1/7, (end) 2/5
+   */
   const calendarEndDate = useMemo(() => {
     return calendarDateTime
       ? calendarDateTime.endOf('month').endOf('week')
       : DateTime.now().endOf('month').endOf('week')
   }, [calendarDateTime])
 
+  /**
+   * @description
+   * 렌더링될 42일
+   */
   const calendar = useMemo(() => {
     let day = calendarStartDate.minus({ day: 1 })
 
@@ -107,6 +130,16 @@ export const RangeCalendar = ({
     return []
   }, [calendarEndDate, calendarStartDate])
 
+  const calendarYearAndMonthI18n = useMemo(() => {
+    return i18n === Language.ko
+      ? `${baseYear}년 ${Months.ko[baseMonth - 1]}`
+      : `${Months.en[baseMonth - 1]} ${baseYear}`
+  }, [i18n, calendarDateTime])
+
+  const calendarWeekI18n = useMemo(() => {
+    return i18n === Language.ko ? DaysOfTheWeek.ko : DaysOfTheWeek.en
+  }, [i18n, calendarDateTime])
+
   // 마우스오버 스타일 이벤트
   const handleMouseOverDate = useCallback(
     (currentDay: DateTime) => {
@@ -114,25 +147,15 @@ export const RangeCalendar = ({
         return false
       }
 
-      if (currentDay > startDate && overEndDate && currentDay < overEndDate) {
+      if (currentDay > startDate && mouseOverDateTime && currentDay < mouseOverDateTime) {
         if (endDate) {
           return false
         }
         return true
       }
     },
-    [startDate, overEndDate],
+    [startDate, mouseOverDateTime],
   )
-
-  const calendarYearAndMonthI18n = useMemo(() => {
-    return i18n === Language.ko
-      ? `${presentYear}년 ${Months.ko[presentMonth - 1]}`
-      : `${Months.en[presentMonth - 1]} ${presentYear}`
-  }, [i18n])
-
-  const calendarWeekI18n = useMemo(() => {
-    return i18n === Language.ko ? DaysOfTheWeek.ko : DaysOfTheWeek.en
-  }, [i18n])
 
   useOutsideListener(boxRef, () => {
     onClose()
@@ -377,7 +400,7 @@ export const RangeCalendar = ({
               }}
               onMouseOver={() => {
                 if (startDate) {
-                  setOverEndDate(day)
+                  setMouseOverDateTime(day)
                 }
               }}
             >
