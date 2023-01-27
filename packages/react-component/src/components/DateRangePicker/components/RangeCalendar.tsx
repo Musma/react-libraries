@@ -13,6 +13,9 @@ import { DateTime } from 'luxon'
 import { DATE_FORMAT, IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
+import { InputDateTime } from './types'
+import React from 'react'
+
 const Language = {
   ko: 'ko',
   en: 'en',
@@ -34,10 +37,10 @@ interface RangeCalendarProps {
   anchorOrigin?: {
     vertical: 'bottom' | 'top'
   }
-  startDate: DateTime | null
-  endDate: DateTime | null
+  startDate: InputDateTime
+  endDate: InputDateTime
   onClose: () => void
-  onChange: (date: [DateTime | null, DateTime | null]) => void
+  onChange: (date: [InputDateTime, InputDateTime]) => void
 }
 
 export const RangeCalendar = ({
@@ -54,7 +57,7 @@ export const RangeCalendar = ({
   const [boxRef, setRef] = useSetRef()
 
   const [calendarDateTime, setCalendarDateTime] = useState(startDate)
-  const [mouseOverDateTime, setMouseOverDateTime] = useState<DateTime | null>(null)
+  const [mouseOverDateTime, setMouseOverDateTime] = useState<InputDateTime>(null)
 
   const calendarPosition = useMemo(() => {
     if (anchorOrigin.vertical === 'top') {
@@ -140,21 +143,124 @@ export const RangeCalendar = ({
     return i18n === Language.ko ? DaysOfTheWeek.ko : DaysOfTheWeek.en
   }, [i18n, calendarDateTime])
 
-  // 마우스오버 스타일 이벤트
-  const handleMouseOverDate = useCallback(
-    (currentDay: DateTime) => {
-      if (!startDate) {
-        return false
+  /**
+   * @description
+   * 시작일과 종료일 사이 날짜의 색 변경
+   */
+  const isDifferenceDates = useCallback(
+    (currentDay: DateTime, startDate: InputDateTime, endDate: InputDateTime) => {
+      if (!startDate || !endDate) {
+        return
       }
 
-      if (currentDay > startDate && mouseOverDateTime && currentDay < mouseOverDateTime) {
+      if (currentDay > startDate && currentDay < endDate) {
+        return true
+      }
+      return
+    },
+    [startDate, endDate],
+  )
+
+  /**
+   * @description
+   * 마우스오버를 할 때, 날짜의 색 변경
+   */
+  const isMouseOverEvent = useCallback(
+    (
+      currentDay: DateTime,
+      startDate: InputDateTime,
+      endDate: InputDateTime,
+      mouseOverDateTime: InputDateTime,
+    ) => {
+      if (!startDate) {
+        return
+      }
+
+      if (!mouseOverDateTime) {
+        return
+      }
+
+      if (currentDay > startDate && currentDay < mouseOverDateTime) {
         if (endDate) {
           return false
         }
         return true
       }
     },
-    [startDate, mouseOverDateTime],
+    [startDate, endDate],
+  )
+
+  /**
+   * @description
+   * 시작일, 종료일 선택 실행 함수
+   */
+  const handleRangePicker = useCallback(
+    (currentDay: DateTime, startDate: InputDateTime, endDate: InputDateTime) => {
+      // 시작일과 종료일이 선택되어 있지 않았을 때, 첫 선택일은 시작일
+      if (!startDate && !endDate) {
+        onChange([currentDay, null])
+      }
+
+      // 시작일이 선택되어 있을 때,
+      if (startDate && !endDate) {
+        // 시작일이 선택일보다 크면 시작일 재선택
+        if (startDate > currentDay) {
+          onChange([currentDay, null])
+          return
+        }
+        // 아니라면, 종료일 선택
+        onChange([startDate, currentDay])
+        onClose()
+      }
+
+      // 종료일이 선택되어있으면, 시작일 선택
+      if (endDate && !startDate) {
+        onChange([currentDay, endDate])
+      }
+
+      // 시작일과 종료일 모두 선택되어 있으면,
+      if (startDate && endDate) {
+        const calcStartDate =
+          currentDay > startDate
+            ? currentDay.diff(startDate, 'days').toObject().days
+            : startDate.diff(currentDay, 'days').toObject().days
+
+        const calcEndDate =
+          currentDay > endDate
+            ? currentDay.diff(endDate, 'days').toObject().days
+            : endDate.diff(currentDay, 'days').toObject().days
+
+        if (!calcStartDate || !calcEndDate) {
+          return
+        }
+
+        // day가 시작일보다 작으면 초기화
+        // day가 종료일보다 크면 초기화
+        if (currentDay < startDate || currentDay > endDate) {
+          onChange([currentDay, null])
+          return
+        }
+
+        // currentDay가 종료일보다 시작일에 가까우면 시작일 재선택
+        if (calcStartDate < calcEndDate) {
+          onChange([currentDay, endDate])
+          onClose()
+        }
+
+        // currentDay가 시작일보다 종료일에 가까우면 종료일 재선택
+        if (calcStartDate > calcEndDate) {
+          onChange([startDate, currentDay])
+          onClose()
+        }
+
+        // currentDay가 시작일과 종료일과 동일한 선상이면 시작일 재선택
+        if (calcStartDate === calcEndDate) {
+          onChange([currentDay, endDate])
+          onClose()
+        }
+      }
+    },
+    [startDate, endDate],
   )
 
   useOutsideListener(boxRef, () => {
@@ -306,98 +412,31 @@ export const RangeCalendar = ({
 
                 // 시작일 선택하면 primary 진한색으로 표시
                 startDate &&
-                  startDate.hasSame(day, 'day') && {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.main,
-                  },
+                startDate.hasSame(day, 'day') && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.main,
+                },
 
                 // 종료일 선택하면 primary 진한색으로 표시
                 endDate &&
-                  endDate.hasSame(day, 'day') && {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.main,
-                  },
+                endDate.hasSame(day, 'day') && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.main,
+                },
 
                 // 시작일과 종료일 사이 날짜가 primary 옅은색으로 모두 표시
-                startDate &&
-                  endDate &&
-                  day > startDate &&
-                  day < endDate && {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.lighter,
-                  },
+                isDifferenceDates(day, startDate, endDate) && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.lighter,
+                },
 
                 // 시작일이 선택되어 있으면, mouseOver 한 곳 까지 primary 옅은색으로 표시
-                handleMouseOverDate(day) && {
+                isMouseOverEvent(day, startDate, endDate, mouseOverDateTime) && {
                   color: theme.colors.white.main,
                   backgroundColor: theme.colors.primary.lighter,
                 },
               ]}
-              onClick={() => {
-                // 시작일과 종료일이 선택되어 있지 않았을 때, 첫 선택일은 시작일
-                if (!startDate && !endDate) {
-                  onChange([day, null])
-                }
-
-                // 시작일이 선택되어 있을 때,
-                if (startDate && !endDate) {
-                  // 시작일이 선택일보다 크면 시작일 재선택
-                  if (startDate > day) {
-                    onChange([day, null])
-                    return
-                  }
-                  // 아니라면, 종료일 선택
-                  onChange([startDate, day])
-                  onClose()
-                }
-
-                // 종료일이 선택되어있으면, 시작일 선택
-                if (endDate && !startDate) {
-                  onChange([day, endDate])
-                }
-
-                // 시작일과 종료일 모두 선택되어 있으면,
-                if (startDate && endDate) {
-                  const calcStartDate =
-                    day > startDate
-                      ? day.diff(startDate, 'days').toObject().days
-                      : startDate.diff(day, 'days').toObject().days
-
-                  const calcEndDate =
-                    day > endDate
-                      ? day.diff(endDate, 'days').toObject().days
-                      : endDate.diff(day, 'days').toObject().days
-
-                  if (!calcStartDate || !calcEndDate) {
-                    return
-                  }
-
-                  // day가 시작일보다 작으면 초기화
-                  // day가 종료일보다 크면 초기화
-                  if (day < startDate || day > endDate) {
-                    onChange([day, null])
-                    return
-                  }
-
-                  // day가 종료일보다 시작일에 가까우면 시작일 재선택
-                  if (calcStartDate < calcEndDate) {
-                    onChange([day, endDate])
-                    onClose()
-                  }
-
-                  // day가 시작일보다 종료일에 가까우면 종료일 재선택
-                  if (calcStartDate > calcEndDate) {
-                    onChange([startDate, day])
-                    onClose()
-                  }
-
-                  // day가 시작일과 종료일과 동일한 선상이면 시작일 재선택
-                  if (calcStartDate === calcEndDate) {
-                    onChange([day, endDate])
-                    onClose()
-                  }
-                }
-              }}
+              onClick={() => handleRangePicker(day, startDate, endDate)}
               onMouseOver={() => {
                 if (startDate) {
                   setMouseOverDateTime(day)
