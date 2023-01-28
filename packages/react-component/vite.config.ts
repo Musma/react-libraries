@@ -27,8 +27,6 @@ export default defineConfig({
         '@emotion/react',
         '@musma/react-icons',
         '@musma/react-utils',
-        'react-datepicker',
-        'date-fns',
       ],
     },
   },
