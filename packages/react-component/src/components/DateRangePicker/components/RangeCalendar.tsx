@@ -38,6 +38,8 @@ interface RangeCalendarProps {
   }
   startDate: InputDateTime
   endDate: InputDateTime
+  minDate?: DateTime
+  maxDate?: DateTime
   onClose: () => void
   onChange: (date: [InputDateTime, InputDateTime]) => void
 }
@@ -49,6 +51,8 @@ export const RangeCalendar = ({
   },
   startDate,
   endDate,
+  minDate,
+  maxDate,
   onClose,
   onChange,
 }: RangeCalendarProps) => {
@@ -264,6 +268,25 @@ export const RangeCalendar = ({
     [startDate, endDate],
   )
 
+  const isInvalidDate = useCallback(
+    (date: DateTime) => {
+      if (minDate && maxDate) {
+        return minDate >= date || maxDate <= date
+      }
+
+      if (minDate) {
+        return minDate >= date
+      }
+
+      if (maxDate) {
+        return maxDate <= date
+      }
+
+      return false
+    },
+    [maxDate, minDate],
+  )
+
   useOutsideListener(boxRef, () => {
     onClose()
   })
@@ -423,6 +446,15 @@ export const RangeCalendar = ({
                 isMouseOverEvent(day, startDate, endDate, mouseOverDateTime) && {
                   color: theme.colors.white.main,
                   backgroundColor: theme.colors.primary.lighter,
+                },
+
+                // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
+                isInvalidDate(day) && {
+                  pointerEvents: 'none',
+                  backgroundColor: 'inherit',
+                  '&:hover': {
+                    cursor: 'not-allowed',
+                  },
                 },
               ]}
               onClick={() => handleRangePicker(day, startDate, endDate)}
