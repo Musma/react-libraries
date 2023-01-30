@@ -1,42 +1,22 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Fragment } from 'react'
+import { Controller } from 'react-hook-form'
 
-import { useTheme } from '@emotion/react'
+import { useFormSearch } from '@musma/react-utils'
 
-import { Box } from 'src/elements'
-
-import {
-  Button,
-  Chip,
-  DateRangePicker,
-  IToastPopupData,
-  Select,
-  useToastContext,
-} from './components'
-
-const options = [
-  {
-    label: '1114',
-    value: '1',
-  },
-  {
-    label: '2224',
-    value: '2',
-  },
-  {
-    label: '3335',
-    value: '3',
-  },
-  {
-    label: '4445',
-    value: '4',
-  },
-]
+import { DateRangePicker, Grid } from './components'
 
 const Component = () => {
-  const navigate = useNavigate()
-  const theme = useTheme()
-  const [value, setValue] = useState('1')
+  const { control } = useFormSearch({
+    useFormProps: {
+      defaultValues: {
+        date: [null, null],
+      },
+    },
+
+    fetchAPI() {
+      //api
+    },
+  })
 
   const { addToast, setLimit } = useToastContext()
   const popupSample1: IToastPopupData = {
@@ -60,87 +40,27 @@ const Component = () => {
   }
 
   return (
-    <Box>
-      <Box
+    <Fragment>
+      <Grid
+        itemWidth={200}
+        cols={2}
         css={{
-          padding: theme.spacingUtil(100),
-          display: 'flex',
-          flexDirection: 'column',
-          gap: theme.spacing.md,
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
         }}
       >
-        <Select options={options} value={value} onChange={setValue} />
+        <Controller
+          name="date"
+          control={control}
+          render={({ field: { value, onChange, ...rest } }) => {
+            const [startDate, endDate] = value ?? []
 
-        <Select options={options} value={value} disabled={true} onChange={setValue} />
-
-        <Button
-          onClick={() => {
-            setValue('3')
-          }}
-        >
-          dkdkd
-        </Button>
-
-        <DateRangePicker
-          disabled={true}
-          onChange={() => {
-            console.log('123')
+            return <DateRangePicker startDate={startDate} endDate={endDate} {...rest} />
           }}
         />
-      </Box>
-      <Box css={{ display: 'flex', gap: '10px' }}>
-        <Chip
-          color={theme.colors.red.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample1)
-          }}
-        >
-          토스트 팝업 1
-        </Chip>
-        <Chip
-          color={theme.colors.green.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample2)
-          }}
-        >
-          토스트 팝업 2
-        </Chip>
-        <Chip
-          color={theme.colors.blue.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample3)
-          }}
-        >
-          토스트 팝업 3
-        </Chip>
-
-        <Chip
-          color={theme.colors.orange.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample4)
-          }}
-        >
-          토스트 팝업 4
-        </Chip>
-        <Chip
-          color={theme.colors.black.main}
-          onClick={() => {
-            const random = Math.floor(Math.random() * 10) + 1
-            console.log('random', random)
-            setLimit(random)
-          }}
-        >
-          토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
-        </Chip>
-        <Chip color={theme.colors.black.darker} onClick={() => navigate('toast')}>
-          토스트 팝업 페이지로 이동
-        </Chip>
-      </Box>
-    </Box>
+      </Grid>
+    </Fragment>
   )
 }
 
