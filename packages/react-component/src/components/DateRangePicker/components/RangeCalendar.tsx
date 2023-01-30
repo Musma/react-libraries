@@ -98,7 +98,9 @@ export const RangeCalendar = ({
    * (base) 1/7, (start) 12/26
    */
   const calendarStartDate = useMemo(() => {
-    return calendarDateTime ? calendarDateTime.startOf('month').startOf('week') : DateTime.now().startOf('month').startOf('week')
+    return calendarDateTime
+      ? calendarDateTime.startOf('month').startOf('week')
+      : DateTime.now().startOf('month').startOf('week')
   }, [calendarDateTime])
 
   /**
@@ -108,7 +110,9 @@ export const RangeCalendar = ({
    * (base) 1/7, (end) 2/5
    */
   const calendarEndDate = useMemo(() => {
-    return calendarDateTime ? calendarDateTime.endOf('month').endOf('week') : DateTime.now().endOf('month').endOf('week')
+    return calendarDateTime
+      ? calendarDateTime.endOf('month').endOf('week')
+      : DateTime.now().endOf('month').endOf('week')
   }, [calendarDateTime])
 
   /**
@@ -140,7 +144,7 @@ export const RangeCalendar = ({
   const i18nCalendarDate = useMemo(() => {
     if (i18n === Language.ko) {
       return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
-    }    
+    }
     return `${Months.en[baseMonth - 1]} ${baseYear}`
   }, [i18n, calendarDateTime])
 
@@ -220,20 +224,20 @@ export const RangeCalendar = ({
       // 시작일과 종료일 모두 선택되어 있으면,
       if (startDate && endDate) {
         // 선택일과 시작일 사이의 거리를 계산
-        const calcStartDate = useMemo(() => {
+        const calcStartDate = () => {
           if (currentDay > startDate) {
             return currentDay.diff(startDate, 'days').toObject().days
           }
           return startDate.diff(currentDay, 'days').toObject().days
-        },[startDate, endDate])
+        }
 
         // 선택일과 종료일 사이의 거리를 계산
-        const calcEndDate = useMemo(() => {
+        const calcEndDate = () => {
           if (currentDay > endDate) {
             return currentDay.diff(endDate, 'days').toObject().days
           }
           return endDate.diff(currentDay, 'days').toObject().days
-        },[startDate, endDate])
+        }
 
         if (!calcStartDate || !calcEndDate) {
           return
@@ -320,7 +324,9 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime ? calendarDateTime.minus({ year: 1 }) : DateTime.now().minus({ year: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.minus({ year: 1 })
+                : DateTime.now().minus({ year: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -331,7 +337,9 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime ? calendarDateTime.minus({ month: 1 }) : DateTime.now().minus({ month: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.minus({ month: 1 })
+                : DateTime.now().minus({ month: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -347,7 +355,9 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime ? calendarDateTime.plus({ month: 1 }) : DateTime.now().plus({ month: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.plus({ month: 1 })
+                : DateTime.now().plus({ month: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -358,7 +368,9 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime ? calendarDateTime.plus({ year: 1 }) : DateTime.now().plus({ year: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.plus({ year: 1 })
+                : DateTime.now().plus({ year: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -420,21 +432,25 @@ export const RangeCalendar = ({
                 },
 
                 // 당월 제외 되는 날짜를 그레이색으로 표시
-                (calendarDateTime ? !calendarDateTime.hasSame(day, 'month') : !DateTime.now().hasSame(day, 'month')) && {
+                (calendarDateTime
+                  ? !calendarDateTime.hasSame(day, 'month')
+                  : !DateTime.now().hasSame(day, 'month')) && {
                   color: theme.colors.gray.main,
                 },
 
                 // 시작일 선택하면 primary 진한색으로 표시
-                startDate && startDate.hasSame(day, 'day') && {
-                  color: theme.colors.white.main,
-                  backgroundColor: theme.colors.primary.main,
-                },
+                startDate &&
+                  startDate.hasSame(day, 'day') && {
+                    color: theme.colors.white.main,
+                    backgroundColor: theme.colors.primary.main,
+                  },
 
                 // 종료일 선택하면 primary 진한색으로 표시
-                endDate && endDate.hasSame(day, 'day') && {
-                  color: theme.colors.white.main,
-                  backgroundColor: theme.colors.primary.main,
-                },
+                endDate &&
+                  endDate.hasSame(day, 'day') && {
+                    color: theme.colors.white.main,
+                    backgroundColor: theme.colors.primary.main,
+                  },
 
                 // 시작일과 종료일 사이 날짜가 primary 옅은색으로 모두 표시
                 isDifferenceDates(day, startDate, endDate) && {
