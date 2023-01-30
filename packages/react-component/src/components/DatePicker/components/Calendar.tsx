@@ -13,34 +13,35 @@ import { DateTime } from 'luxon'
 import { DATE_FORMAT, IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
-const DAYS_OF_THE_WEEK = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+import { DaysOfTheWeek, Language, Months } from './constants'
 
 interface CalendarProps {
-  value: DateTime
   inputRef: HTMLElement | null
+  i18n?: string
+  value?: DateTime
   minDate?: DateTime
   maxDate?: DateTime
   anchorOrigin?: {
     vertical: 'bottom' | 'top'
   }
-  onChange: (dateTime: DateTime) => void
   onClose: () => void
+  onChange: (date: DateTime) => void
 }
 
 export const Calendar = ({
-  value,
-  minDate,
-  maxDate,
+  i18n = 'ko',
   anchorOrigin = {
     vertical: 'bottom',
   },
-  onChange,
+  value,
+  minDate,
+  maxDate,
   onClose,
+  onChange,
 }: CalendarProps) => {
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
+
   const [calendarDateTime, setCalendarDateTime] = useState(value)
 
   const calendarPosition = useMemo(() => {
@@ -56,33 +57,56 @@ export const Calendar = ({
     }
   }, [anchorOrigin.vertical])
 
-  const month = useMemo(() => {
-    return calendarDateTime.month
+  /**
+   * @description
+   * 기준 달
+   */
+  const baseMonth = useMemo(() => {
+    return calendarDateTime ? calendarDateTime.month : DateTime.now().month
   }, [calendarDateTime])
 
-  const year = useMemo(() => {
-    return calendarDateTime.year
+  /**
+   * @description
+   * 기준 년
+   */
+  const baseYear = useMemo(() => {
+    return calendarDateTime ? calendarDateTime.year : DateTime.now().year
   }, [calendarDateTime])
 
-  // 달의 첫번쨰 시작 날짜
-  const startDay = useMemo(() => {
-    return calendarDateTime.startOf('month').startOf('week')
+  /**
+   * @description
+   * 42일 기준 캘린더의 시작일
+   * @example
+   * (base) 1/7, (start) 12/26
+   */
+  const calendarStartDate = useMemo(() => {
+    return calendarDateTime
+      ? calendarDateTime.startOf('month').startOf('week')
+      : DateTime.now().startOf('month').startOf('week')
   }, [calendarDateTime])
 
-  // 달의 마지막 주차의 마지막 날짜
-  const endDay = useMemo(() => {
-    return calendarDateTime.endOf('month').endOf('week')
+  /**
+   * @description
+   * 42일 기준 캘린더의 종료일
+   * @example
+   * (base) 1/7, (end) 2/5
+   */
+  const calendarEndDate = useMemo(() => {
+    return calendarDateTime
+      ? calendarDateTime.endOf('month').endOf('week')
+      : DateTime.now().endOf('month').endOf('week')
   }, [calendarDateTime])
 
+  /**
+   * @description
+   * 캘린더 렌더링 주체 (42일)
+   */
   const calendar = useMemo(() => {
-    // map으로 순회하면서 Day를 하루씩 더하면서 배열에 넣기때문에 하루를 뺴고 시작
-    let day = startDay.minus({ day: 1 })
+    let day = calendarStartDate.minus({ day: 1 })
 
-    // 해당 월의 마지막 날짜에서 day
-    const diffDays = endDay.diff(day, 'days').toObject().days
+    const diffDays = calendarEndDate.diff(day, 'days').toObject().days
 
     if (diffDays) {
-      // days 차가 딱 정수로 떨어지지 않아서 소수점 자리를 버림
       const days = Array(Math.floor(diffDays))
         .fill(0)
         .map(() => {
@@ -92,7 +116,31 @@ export const Calendar = ({
       return days
     }
     return []
-  }, [endDay, startDay])
+  }, [calendarEndDate, calendarStartDate])
+
+  /**
+   * @example
+   * (ko) 2023년 1월
+   * (en) Jun, 2023
+   */
+  const i18nCalendarDate = useMemo(() => {
+    if (i18n === Language.ko) {
+      return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
+    }
+    return `${Months.en[baseMonth - 1]} ${baseYear}`
+  }, [i18n, calendarDateTime])
+
+  /**
+   * @example
+   * (ko) 월, 화, 수, 목, 금, 토, 일
+   * (en) Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+   */
+  const i18nCalendarDayOfTheWeek = useMemo(() => {
+    if (i18n === Language.ko) {
+      return DaysOfTheWeek.ko
+    }
+    return DaysOfTheWeek.en
+  }, [i18n, calendarDateTime])
 
   const isInvalidDate = useCallback(
     (date: DateTime) => {
@@ -156,7 +204,9 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.minus({ year: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.minus({ year: 1 })
+                : DateTime.now().minus({ year: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -167,7 +217,9 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.minus({ month: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.minus({ month: 1 })
+                : DateTime.now().minus({ month: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -176,14 +228,16 @@ export const Calendar = ({
         </Box>
 
         {/* 월, 년 표시 */}
-        <Typography type="subTitle2">{`${MONTHS[month - 1]} ${year}`}</Typography>
+        <Typography type="subTitle2">{i18nCalendarDate}</Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.plus({ month: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.plus({ month: 1 })
+                : DateTime.now().plus({ month: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -194,7 +248,9 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.plus({ year: 1 })
+              const dateTime = calendarDateTime
+                ? calendarDateTime.plus({ year: 1 })
+                : DateTime.now().plus({ year: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -215,7 +271,7 @@ export const Calendar = ({
         }}
       >
         {/* Monday ~ Sunday 날짜 */}
-        {DAYS_OF_THE_WEEK.map((week) => (
+        {i18nCalendarDayOfTheWeek.map((week) => (
           <Typography
             key={week}
             type="subTitle3"
@@ -253,15 +309,20 @@ export const Calendar = ({
                   backgroundColor: theme.colors.primary.main,
                 },
               },
-              // 현재 달력에 나타나는 달의 날짜가 아닌 경우
-              !calendarDateTime.hasSame(day, 'month') && {
+              // 당월 제외 되는 날짜를 그레이색으로 표시
+              (calendarDateTime
+                ? !calendarDateTime.hasSame(day, 'month')
+                : !DateTime.now().hasSame(day, 'month')) && {
                 color: theme.colors.gray.main,
               },
-              // value로 받은 DateTime과 같은 날인지
-              value.hasSame(day, 'day') && {
-                color: theme.colors.white.main,
-                backgroundColor: theme.colors.primary.main,
-              },
+
+              // 시작일 선택하면 primary 진한색으로 표시
+              value &&
+                value.hasSame(day, 'day') && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.main,
+                },
+
               // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
               isInvalidDate(day) && {
                 pointerEvents: 'none',
@@ -273,6 +334,7 @@ export const Calendar = ({
             ]}
             onClick={() => {
               onChange(day)
+              onClose()
             }}
           >
             {day.toFormat('dd')}
