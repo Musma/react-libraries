@@ -131,7 +131,7 @@ export const RangeCalendar = ({
       return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
     }
     return `${Months.en[baseMonth - 1]} ${baseYear}`
-  }, [i18n])
+  }, [i18n, baseDateTime])
 
   /**
    * @example
@@ -143,7 +143,7 @@ export const RangeCalendar = ({
       return DaysOfTheWeek.ko
     }
     return DaysOfTheWeek.en
-  }, [i18n])
+  }, [i18n, baseDateTime])
 
   /**
    * @description
