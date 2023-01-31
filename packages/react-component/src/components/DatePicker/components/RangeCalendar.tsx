@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -45,9 +45,12 @@ export const RangeCalendar = ({
   const [boxRef, setRef] = useSetRef()
 
   const [baseDateTime, setBaseDateTime] = useState(startDate ? startDate : DateTime.local())
-  const [endDateTime, setEndDateTime] = useState(endDate ? endDate : DateTime.local())
   const [mouseOverDateTime, setMouseOverDateTime] = useState<DateTime | null>(null)
 
+  /**
+   * @description
+   * 캘린더가 열릴 위치
+   */
   const calendarPosition = useMemo(() => {
     if (anchorOrigin.vertical === 'top') {
       return {
@@ -128,7 +131,7 @@ export const RangeCalendar = ({
       return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
     }
     return `${Months.en[baseMonth - 1]} ${baseYear}`
-  }, [i18n, baseDateTime])
+  }, [i18n])
 
   /**
    * @example
@@ -140,7 +143,7 @@ export const RangeCalendar = ({
       return DaysOfTheWeek.ko
     }
     return DaysOfTheWeek.en
-  }, [i18n, baseDateTime])
+  }, [i18n])
 
   /**
    * @description
@@ -277,18 +280,6 @@ export const RangeCalendar = ({
     onClose()
   })
 
-  /**
-   * (시작일 or 종료일)을 클릭하면 캘린더에 바로 반영
-   */
-  useEffect(() => {
-    if (startDate) {
-      setBaseDateTime(startDate)
-    }
-    if (endDate) {
-      setEndDateTime(endDate)
-    }
-  }, [startDate, endDate])
-
   return (
     <Box
       ref={setRef}
@@ -423,10 +414,11 @@ export const RangeCalendar = ({
                 },
 
                 // 시작일 선택하면 primary 진한색으로 표시
-                baseDateTime.hasSame(day, 'day') && {
-                  color: theme.colors.white.main,
-                  backgroundColor: theme.colors.primary.main,
-                },
+                startDate &&
+                  startDate.hasSame(day, 'day') && {
+                    color: theme.colors.white.main,
+                    backgroundColor: theme.colors.primary.main,
+                  },
 
                 // 종료일 선택하면 primary 진한색으로 표시
                 endDate &&
