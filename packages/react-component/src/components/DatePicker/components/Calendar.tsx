@@ -42,7 +42,7 @@ export const Calendar = ({
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
 
-  const [calendarDateTime, setCalendarDateTime] = useState(value)
+  const [calendarDateTime, setCalendarDateTime] = useState(value ? value : DateTime.local())
 
   const calendarPosition = useMemo(() => {
     if (anchorOrigin.vertical === 'top') {
@@ -62,7 +62,7 @@ export const Calendar = ({
    * 기준 달
    */
   const baseMonth = useMemo(() => {
-    return calendarDateTime ? calendarDateTime.month : DateTime.now().month
+    return calendarDateTime.month
   }, [calendarDateTime])
 
   /**
@@ -70,7 +70,7 @@ export const Calendar = ({
    * 기준 년
    */
   const baseYear = useMemo(() => {
-    return calendarDateTime ? calendarDateTime.year : DateTime.now().year
+    return calendarDateTime.year
   }, [calendarDateTime])
 
   /**
@@ -80,9 +80,7 @@ export const Calendar = ({
    * (base) 1/7, (start) 12/26
    */
   const calendarStartDate = useMemo(() => {
-    return calendarDateTime
-      ? calendarDateTime.startOf('month').startOf('week')
-      : DateTime.now().startOf('month').startOf('week')
+    return calendarDateTime.startOf('month').startOf('week')
   }, [calendarDateTime])
 
   /**
@@ -92,9 +90,7 @@ export const Calendar = ({
    * (base) 1/7, (end) 2/5
    */
   const calendarEndDate = useMemo(() => {
-    return calendarDateTime
-      ? calendarDateTime.endOf('month').endOf('week')
-      : DateTime.now().endOf('month').endOf('week')
+    return calendarDateTime.endOf('month').endOf('week')
   }, [calendarDateTime])
 
   /**
@@ -172,7 +168,9 @@ export const Calendar = ({
    * value가 바뀌면 calendarDateTime의 값도 변경됨
    */
   useEffect(() => {
-    setCalendarDateTime(value)
+    if (value) {
+      setCalendarDateTime(value)
+    }
   }, [value])
 
   return (
@@ -204,9 +202,7 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.minus({ year: 1 })
-                : DateTime.now().minus({ year: 1 })
+              const dateTime = calendarDateTime.minus({ year: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -217,9 +213,7 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.minus({ month: 1 })
-                : DateTime.now().minus({ month: 1 })
+              const dateTime = calendarDateTime.minus({ month: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -235,9 +229,7 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.plus({ month: 1 })
-                : DateTime.now().plus({ month: 1 })
+              const dateTime = calendarDateTime.plus({ month: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -248,9 +240,7 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.plus({ year: 1 })
-                : DateTime.now().plus({ year: 1 })
+              const dateTime = calendarDateTime.plus({ year: 1 })
               setCalendarDateTime(dateTime)
             }}
           >
@@ -310,18 +300,15 @@ export const Calendar = ({
                 },
               },
               // 당월 제외 되는 날짜를 그레이색으로 표시
-              (calendarDateTime
-                ? !calendarDateTime.hasSame(day, 'month')
-                : !DateTime.now().hasSame(day, 'month')) && {
+              !calendarDateTime.hasSame(day, 'month') && {
                 color: theme.colors.gray.main,
               },
 
               // 시작일 선택하면 primary 진한색으로 표시
-              value &&
-                value.hasSame(day, 'day') && {
-                  color: theme.colors.white.main,
-                  backgroundColor: theme.colors.primary.main,
-                },
+              calendarDateTime.hasSame(day, 'day') && {
+                color: theme.colors.white.main,
+                backgroundColor: theme.colors.primary.main,
+              },
 
               // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
               isInvalidDate(day) && {
