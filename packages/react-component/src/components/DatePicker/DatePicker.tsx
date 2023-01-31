@@ -9,7 +9,7 @@ import { InputLabel, InputHelper } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
-import { Calendar, RangeCalendar } from './components'
+import { Calendar, DATE_FORMAT, RangeCalendar } from './components'
 
 interface DatePickerProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'size'> {
@@ -66,19 +66,19 @@ interface DatePickerProps
    * @type DateTime
    * 날짜 정보입니다
    */
-  value?: DateTime
+  value?: string | null
   /**
    * @optional
    *
    * 시작일
    */
-  startDate?: DateTime | null
+  startDate?: string | null
   /**
    * @optional
    *
    * 종료일
    */
-  endDate?: DateTime | null
+  endDate?: string | null
   /**
    * @optional
    *
@@ -103,8 +103,6 @@ interface DatePickerProps
   onChange: ((dateTime: DateTime) => void) &
     ((dateTime: [DateTime | null, DateTime | null]) => void)
 }
-
-export const DATE_FORMAT = 'yyyy-MM-dd'
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
   (
@@ -136,35 +134,55 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
 
+    const baseTypeDateTime = useMemo(() => {
+      if (value) {
+        return DateTime.fromISO(value)
+      }
+      return
+    }, [value])
+
+    const rangeTypeStartDateTime = useMemo(() => {
+      if (startDate) {
+        return DateTime.fromISO(startDate)
+      }
+      return
+    }, [startDate])
+
+    const rangeTypeEndDateTime = useMemo(() => {
+      if (endDate) {
+        return DateTime.fromISO(endDate)
+      }
+      return
+    }, [endDate])
+
     const inputValue = useMemo(() => {
-      if (selectRange && value) {
-        new Error('selectRange와 value 값이 동시에 입력되어서는 안됨')
-      }
-
-      if (selectRange && !value) {
-        if (!startDate && !endDate) {
-          return ''
+      if (selectRange) {
+        if (rangeTypeStartDateTime && !rangeTypeEndDateTime) {
+          return `${rangeTypeStartDateTime.toFormat(DATE_FORMAT)} ~`
         }
 
-        if (!startDate && endDate) {
-          return endDate.toFormat(DATE_FORMAT)
+        if (!rangeTypeStartDateTime && rangeTypeEndDateTime) {
+          return `~ ${rangeTypeEndDateTime.toFormat(DATE_FORMAT)}`
         }
 
-        if (startDate && !endDate) {
-          return startDate.toFormat(DATE_FORMAT)
+        if (rangeTypeStartDateTime && rangeTypeEndDateTime) {
+          return `${rangeTypeStartDateTime.toFormat(DATE_FORMAT)} ~ ${rangeTypeEndDateTime.toFormat(
+            DATE_FORMAT,
+          )}`
         }
-
-        return `${startDate && startDate.toFormat(DATE_FORMAT)} ~ ${
-          endDate && endDate.toFormat(DATE_FORMAT)
-        }`
+        return ''
       }
 
-      if (!value) {
-        return
+      if (baseTypeDateTime) {
+        return baseTypeDateTime.toFormat(DATE_FORMAT)
       }
 
-      return value.toFormat(DATE_FORMAT)
-    }, [value, startDate, endDate])
+      return
+    }, [selectRange, baseTypeDateTime, rangeTypeStartDateTime, rangeTypeEndDateTime])
+
+    if (selectRange && value) {
+      new Error('value의 데이터 타입이 틀렸습니다')
+    }
 
     return (
       <Box
@@ -259,28 +277,25 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               <RangeCalendar
                 inputRef={inputRef}
                 i18n={i18n}
-                startDate={startDate}
-                endDate={endDate}
+                startDate={rangeTypeStartDateTime}
+                endDate={rangeTypeEndDateTime}
                 minDate={minDate}
                 maxDate={maxDate}
                 anchorOrigin={anchorOrigin}
-                onClose={() => {
-                  toggleCalendar(false)
-                }}
                 onChange={onChange}
+                onClose={() => toggleCalendar(false)}
               />
             )
           : showCalendar && (
               <Calendar
-                value={value}
                 inputRef={inputRef}
+                i18n={i18n}
+                value={baseTypeDateTime}
                 minDate={minDate}
                 maxDate={maxDate}
                 anchorOrigin={anchorOrigin}
                 onChange={onChange}
-                onClose={() => {
-                  toggleCalendar(false)
-                }}
+                onClose={() => toggleCalendar(false)}
               />
             )}
       </Box>
