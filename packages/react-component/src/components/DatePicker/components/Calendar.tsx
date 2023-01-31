@@ -42,8 +42,12 @@ export const Calendar = ({
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
 
-  const [calendarDateTime, setCalendarDateTime] = useState(value ? value : DateTime.local())
+  const [baseDateTime, setBaseDateTime] = useState(value ? value : DateTime.local())
 
+  /**
+   * @description
+   * 캘린더가 열릴 위치
+   */
   const calendarPosition = useMemo(() => {
     if (anchorOrigin.vertical === 'top') {
       return {
@@ -62,16 +66,16 @@ export const Calendar = ({
    * 기준 달
    */
   const baseMonth = useMemo(() => {
-    return calendarDateTime.month
-  }, [calendarDateTime])
+    return baseDateTime.month
+  }, [baseDateTime])
 
   /**
    * @description
    * 기준 년
    */
   const baseYear = useMemo(() => {
-    return calendarDateTime.year
-  }, [calendarDateTime])
+    return baseDateTime.year
+  }, [baseDateTime])
 
   /**
    * @description
@@ -79,9 +83,9 @@ export const Calendar = ({
    * @example
    * (base) 1/7, (start) 12/26
    */
-  const calendarStartDate = useMemo(() => {
-    return calendarDateTime.startOf('month').startOf('week')
-  }, [calendarDateTime])
+  const calendarStartDay = useMemo(() => {
+    return baseDateTime.startOf('month').startOf('week')
+  }, [baseDateTime])
 
   /**
    * @description
@@ -89,18 +93,18 @@ export const Calendar = ({
    * @example
    * (base) 1/7, (end) 2/5
    */
-  const calendarEndDate = useMemo(() => {
-    return calendarDateTime.endOf('month').endOf('week')
-  }, [calendarDateTime])
+  const calendarEndDay = useMemo(() => {
+    return baseDateTime.endOf('month').endOf('week')
+  }, [baseDateTime])
 
   /**
    * @description
    * 캘린더 렌더링 주체 (42일)
    */
   const calendar = useMemo(() => {
-    let day = calendarStartDate.minus({ day: 1 })
+    let day = calendarStartDay.minus({ day: 1 })
 
-    const diffDays = calendarEndDate.diff(day, 'days').toObject().days
+    const diffDays = calendarEndDay.diff(day, 'days').toObject().days
 
     if (diffDays) {
       const days = Array(Math.floor(diffDays))
@@ -112,7 +116,7 @@ export const Calendar = ({
       return days
     }
     return []
-  }, [calendarEndDate, calendarStartDate])
+  }, [calendarEndDay, calendarStartDay])
 
   /**
    * @example
@@ -124,7 +128,7 @@ export const Calendar = ({
       return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
     }
     return `${Months.en[baseMonth - 1]} ${baseYear}`
-  }, [i18n, calendarDateTime])
+  }, [i18n, baseDateTime])
 
   /**
    * @example
@@ -136,8 +140,12 @@ export const Calendar = ({
       return DaysOfTheWeek.ko
     }
     return DaysOfTheWeek.en
-  }, [i18n, calendarDateTime])
+  }, [i18n, baseDateTime])
 
+  /**
+   * @description
+   * minDate, maxDate 옵션
+   */
   const isInvalidDate = useCallback(
     (date: DateTime) => {
       if (minDate && maxDate) {
@@ -165,11 +173,11 @@ export const Calendar = ({
   })
 
   /**
-   * value가 바뀌면 calendarDateTime의 값도 변경됨
+   * (날짜)를 클릭하면 캘린더에 바로 반영
    */
   useEffect(() => {
     if (value) {
-      setCalendarDateTime(value)
+      setBaseDateTime(value)
     }
   }, [value])
 
@@ -202,8 +210,8 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.minus({ year: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.minus({ year: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowFirstLargeIcon />
@@ -213,8 +221,8 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.minus({ month: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.minus({ month: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowLeftLargeIcon />
@@ -229,8 +237,8 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.plus({ month: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.plus({ month: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowRightLargeIcon />
@@ -240,8 +248,8 @@ export const Calendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime.plus({ year: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.plus({ year: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowLastLargeIcon />
@@ -299,13 +307,13 @@ export const Calendar = ({
                   backgroundColor: theme.colors.primary.main,
                 },
               },
-              // 당월 제외 되는 날짜를 그레이색으로 표시
-              !calendarDateTime.hasSame(day, 'month') && {
+              // 당월 제외 되는 날짜를 모두 gray main 색상으로 표시
+              !baseDateTime.hasSame(day, 'month') && {
                 color: theme.colors.gray.main,
               },
 
-              // 시작일 선택하면 primary 진한색으로 표시
-              calendarDateTime.hasSame(day, 'day') && {
+              // 시작일 선택하면 primary main 색상으로 표시
+              baseDateTime.hasSame(day, 'day') && {
                 color: theme.colors.white.main,
                 backgroundColor: theme.colors.primary.main,
               },
