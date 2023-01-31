@@ -10,10 +10,10 @@ import {
 import { useOutsideListener, useSetRef } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
-import { DATE_FORMAT, IconAdornment, Typography } from 'src/components'
+import { IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
-import { DaysOfTheWeek, Language, Months } from './constants'
+import { DATE_FORMAT, DaysOfTheWeek, Language, Months } from './constants'
 
 interface CalendarProps {
   inputRef: HTMLElement | null
