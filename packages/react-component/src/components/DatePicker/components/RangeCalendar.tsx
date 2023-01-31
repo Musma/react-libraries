@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -44,7 +44,8 @@ export const RangeCalendar = ({
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
 
-  const [calendarDateTime, setCalendarDateTime] = useState(startDate)
+  const [baseDateTime, setBaseDateTime] = useState(startDate ? startDate : DateTime.local())
+  const [endDateTime, setEndDateTime] = useState(endDate ? endDate : DateTime.local())
   const [mouseOverDateTime, setMouseOverDateTime] = useState<DateTime | null>(null)
 
   const calendarPosition = useMemo(() => {
@@ -65,16 +66,16 @@ export const RangeCalendar = ({
    * 기준 달
    */
   const baseMonth = useMemo(() => {
-    return calendarDateTime ? calendarDateTime.month : DateTime.now().month
-  }, [calendarDateTime])
+    return baseDateTime.month
+  }, [baseDateTime])
 
   /**
    * @description
    * 기준 년
    */
   const baseYear = useMemo(() => {
-    return calendarDateTime ? calendarDateTime.year : DateTime.now().year
-  }, [calendarDateTime])
+    return baseDateTime.year
+  }, [baseDateTime])
 
   /**
    * @description
@@ -82,11 +83,9 @@ export const RangeCalendar = ({
    * @example
    * (base) 1/7, (start) 12/26
    */
-  const calendarStartDate = useMemo(() => {
-    return calendarDateTime
-      ? calendarDateTime.startOf('month').startOf('week')
-      : DateTime.now().startOf('month').startOf('week')
-  }, [calendarDateTime])
+  const calendarStartDay = useMemo(() => {
+    return baseDateTime.startOf('month').startOf('week')
+  }, [baseDateTime])
 
   /**
    * @description
@@ -94,20 +93,18 @@ export const RangeCalendar = ({
    * @example
    * (base) 1/7, (end) 2/5
    */
-  const calendarEndDate = useMemo(() => {
-    return calendarDateTime
-      ? calendarDateTime.endOf('month').endOf('week')
-      : DateTime.now().endOf('month').endOf('week')
-  }, [calendarDateTime])
+  const calendarEndDay = useMemo(() => {
+    return baseDateTime.endOf('month').endOf('week')
+  }, [baseDateTime])
 
   /**
    * @description
    * 캘린더 렌더링 주체 (42일)
    */
   const calendar = useMemo(() => {
-    let day = calendarStartDate.minus({ day: 1 })
+    let day = calendarStartDay.minus({ day: 1 })
 
-    const diffDays = calendarEndDate.diff(day, 'days').toObject().days
+    const diffDays = calendarEndDay.diff(day, 'days').toObject().days
 
     if (diffDays) {
       const days = Array(Math.floor(diffDays))
@@ -119,7 +116,7 @@ export const RangeCalendar = ({
       return days
     }
     return []
-  }, [calendarEndDate, calendarStartDate])
+  }, [calendarEndDay, calendarStartDay])
 
   /**
    * @example
@@ -131,7 +128,7 @@ export const RangeCalendar = ({
       return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
     }
     return `${Months.en[baseMonth - 1]} ${baseYear}`
-  }, [i18n, calendarDateTime])
+  }, [i18n, baseDateTime])
 
   /**
    * @example
@@ -143,7 +140,7 @@ export const RangeCalendar = ({
       return DaysOfTheWeek.ko
     }
     return DaysOfTheWeek.en
-  }, [i18n, calendarDateTime])
+  }, [i18n, baseDateTime])
 
   /**
    * @description
@@ -280,6 +277,18 @@ export const RangeCalendar = ({
     onClose()
   })
 
+  /**
+   * (시작일 or 종료일)을 클릭하면 캘린더에 바로 반영
+   */
+  useEffect(() => {
+    if (startDate) {
+      setBaseDateTime(startDate)
+    }
+    if (endDate) {
+      setEndDateTime(endDate)
+    }
+  }, [startDate, endDate])
+
   return (
     <Box
       ref={setRef}
@@ -309,10 +318,8 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.minus({ year: 1 })
-                : DateTime.now().minus({ year: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.minus({ year: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowFirstLargeIcon />
@@ -322,10 +329,8 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.minus({ month: 1 })
-                : DateTime.now().minus({ month: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.minus({ month: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowLeftLargeIcon />
@@ -340,10 +345,8 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.plus({ month: 1 })
-                : DateTime.now().plus({ month: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.plus({ month: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowRightLargeIcon />
@@ -353,10 +356,8 @@ export const RangeCalendar = ({
           <IconAdornment
             noPadding={true}
             onClick={() => {
-              const dateTime = calendarDateTime
-                ? calendarDateTime.plus({ year: 1 })
-                : DateTime.now().plus({ year: 1 })
-              setCalendarDateTime(dateTime)
+              const dateTime = baseDateTime.plus({ year: 1 })
+              setBaseDateTime(dateTime)
             }}
           >
             <ArrowLastLargeIcon />
@@ -417,18 +418,15 @@ export const RangeCalendar = ({
                 },
 
                 // 당월 제외 되는 날짜를 그레이색으로 표시
-                (calendarDateTime
-                  ? !calendarDateTime.hasSame(day, 'month')
-                  : !DateTime.now().hasSame(day, 'month')) && {
+                !baseDateTime.hasSame(day, 'month') && {
                   color: theme.colors.gray.main,
                 },
 
                 // 시작일 선택하면 primary 진한색으로 표시
-                startDate &&
-                  startDate.hasSame(day, 'day') && {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.main,
-                  },
+                baseDateTime.hasSame(day, 'day') && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.main,
+                },
 
                 // 종료일 선택하면 primary 진한색으로 표시
                 endDate &&
