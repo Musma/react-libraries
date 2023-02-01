@@ -100,8 +100,7 @@ interface DatePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: ((dateTime: DateTime) => void) &
-    ((dateTime: [DateTime | null, DateTime | null]) => void)
+  onChange: ((dateTime: string) => void) & ((dateTime: [string | null, string | null]) => void)
 }
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(

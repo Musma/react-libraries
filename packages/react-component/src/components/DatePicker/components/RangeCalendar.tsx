@@ -26,7 +26,7 @@ interface RangeCalendarProps {
     vertical: 'bottom' | 'top'
   }
   onClose: () => void
-  onChange: (date: [DateTime | null, DateTime | null]) => void
+  onChange: (date: [string | null, string | null]) => void
 }
 
 export const RangeCalendar = ({
@@ -186,23 +186,23 @@ export const RangeCalendar = ({
     (currentDay: DateTime, startDate?: DateTime | null, endDate?: DateTime | null) => {
       // 종료일이 선택되어있으면, 시작일 선택
       if (endDate && !startDate) {
-        onChange([currentDay, endDate])
+        onChange([currentDay.toISO(), endDate.toISO()])
       }
 
       // 시작일과 종료일이 선택되어 있지 않았을 때, 첫 선택일은 시작일
       if (!startDate && !endDate) {
-        onChange([currentDay, null])
+        onChange([currentDay.toISO(), null])
       }
 
       // 시작일이 선택되어 있을 때,
       if (startDate && !endDate) {
         // 시작일이 선택일보다 크면 시작일 재선택
         if (startDate > currentDay) {
-          onChange([currentDay, null])
+          onChange([currentDay.toISO(), null])
           return
         }
         // 아니라면, 종료일 선택
-        onChange([startDate, currentDay])
+        onChange([startDate.toISO(), currentDay.toISO()])
         onClose()
       }
 
@@ -231,25 +231,25 @@ export const RangeCalendar = ({
         // 선택일이 시작일보다 앞에 있으면 선택일 재선택
         // 선택일이 종료일보다 뒤에 있으면 선택일 재선택
         if (currentDay < startDate || currentDay > endDate) {
-          onChange([currentDay, null])
+          onChange([currentDay.toISO(), null])
           return
         }
 
         // 선택일이 종료일보다 시작일에 가까우면 시작일 재선택
         if (calcStartDate < calcEndDate) {
-          onChange([currentDay, endDate])
+          onChange([currentDay.toISO(), endDate.toISO()])
           onClose()
         }
 
         // 선택일이 시작일보다 종료일에 가까우면 종료일 재선택
         if (calcStartDate > calcEndDate) {
-          onChange([startDate, currentDay])
+          onChange([startDate.toISO(), currentDay.toISO()])
           onClose()
         }
 
         // 선택일이 시작일과 종료일과 동일한 선상이면 시작일 재선택
         if (calcStartDate === calcEndDate) {
-          onChange([currentDay, endDate])
+          onChange([currentDay.toISO(), endDate.toISO()])
           onClose()
         }
       }
