@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.0
+
+### Minor Changes
+
+- [#152](https://github.com/Musma/react-libraries/pull/152) [`c5a8ac3`](https://github.com/Musma/react-libraries/commit/c5a8ac3c352ae0a5ec0ed2367a7f6518b3a3a7ac) Thanks [@Dave352](https://github.com/Dave352)! - chore: 의존성모듈 업데이트[react-hook-form]
+
 ## 0.1.29
 
 ### Patch Changes
