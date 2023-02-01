@@ -25,7 +25,7 @@ interface CalendarProps {
     vertical: 'bottom' | 'top'
   }
   onClose: () => void
-  onChange: (date: DateTime) => void
+  onChange: (date: string) => void
 }
 
 export const Calendar = ({
@@ -328,7 +328,7 @@ export const Calendar = ({
               },
             ]}
             onClick={() => {
-              onChange(day)
+              onChange(day.toISO())
               onClose()
             }}
           >
