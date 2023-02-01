@@ -72,13 +72,13 @@ interface DatePickerProps
    *
    * 시작일
    */
-  startDate?: string | null
+  startDate?: DateTime | null
   /**
    * @optional
    *
    * 종료일
    */
-  endDate?: string | null
+  endDate?: DateTime | null
   /**
    * @optional
    *
@@ -100,7 +100,8 @@ interface DatePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: ((dateTime: DateTime) => void) & ((dateTime: [string | null, string | null]) => void)
+  onChange: ((dateTime: DateTime) => void) &
+    ((dateTime: [DateTime | null, DateTime | null]) => void)
 }
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
@@ -135,28 +136,6 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
     /**
      * @description
-     * DatePicker 레인지 타입을 사용할 때, DateTime 객체로 변환
-     */
-    const rangeTypeStartDateTime = useMemo(() => {
-      if (startDate) {
-        return DateTime.fromISO(startDate)
-      }
-      return
-    }, [startDate])
-
-    /**
-     * @description
-     * DatePicker 레인지 타입을 사용할 때, DateTime 객체로 변환
-     */
-    const rangeTypeEndDateTime = useMemo(() => {
-      if (endDate) {
-        return DateTime.fromISO(endDate)
-      }
-      return
-    }, [endDate])
-
-    /**
-     * @description
      * Input에 표시될 value
      */
     const inputValue = useMemo(() => {
@@ -168,18 +147,16 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       }
 
       if (selectRange) {
-        if (rangeTypeStartDateTime && !rangeTypeEndDateTime) {
-          return `${rangeTypeStartDateTime.toFormat(DATE_FORMAT)} ~`
+        if (startDate && !endDate) {
+          return `${startDate.toFormat(DATE_FORMAT)} ~`
         }
 
-        if (!rangeTypeStartDateTime && rangeTypeEndDateTime) {
-          return `~ ${rangeTypeEndDateTime.toFormat(DATE_FORMAT)}`
+        if (!startDate && endDate) {
+          return `~ ${endDate.toFormat(DATE_FORMAT)}`
         }
 
-        if (rangeTypeStartDateTime && rangeTypeEndDateTime) {
-          return `${rangeTypeStartDateTime.toFormat(DATE_FORMAT)} ~ ${rangeTypeEndDateTime.toFormat(
-            DATE_FORMAT,
-          )}`
+        if (startDate && endDate) {
+          return `${startDate.toFormat(DATE_FORMAT)} ~ ${endDate.toFormat(DATE_FORMAT)}`
         }
         return ''
       }
@@ -189,7 +166,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       }
 
       return
-    }, [selectRange, value, rangeTypeStartDateTime, rangeTypeEndDateTime])
+    }, [selectRange, value, startDate, endDate])
 
     return (
       <Box
@@ -284,8 +261,8 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               <RangeCalendar
                 inputRef={inputRef}
                 i18n={i18n}
-                startDate={rangeTypeStartDateTime}
-                endDate={rangeTypeEndDateTime}
+                startDate={startDate}
+                endDate={endDate}
                 minDate={minDate}
                 maxDate={maxDate}
                 anchorOrigin={anchorOrigin}
