@@ -18,14 +18,14 @@ import { DATE_FORMAT, DaysOfTheWeek, Language, Months } from './constants'
 interface CalendarProps {
   inputRef: HTMLElement | null
   i18n?: string
-  value?: DateTime
+  value?: DateTime | null
   minDate?: DateTime
   maxDate?: DateTime
   anchorOrigin?: {
     vertical: 'bottom' | 'top'
   }
   onClose: () => void
-  onChange: (date: string) => void
+  onChange: (date: DateTime) => void
 }
 
 export const Calendar = ({
@@ -328,7 +328,7 @@ export const Calendar = ({
               },
             ]}
             onClick={() => {
-              onChange(day.toISO())
+              onChange(day)
               onClose()
             }}
           >

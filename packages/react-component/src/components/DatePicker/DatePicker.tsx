@@ -66,7 +66,7 @@ interface DatePickerProps
    * @type DateTime
    * 날짜 정보입니다
    */
-  value?: string | null
+  value?: DateTime | null
   /**
    * @optional
    *
@@ -100,7 +100,7 @@ interface DatePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: ((dateTime: string) => void) & ((dateTime: [string | null, string | null]) => void)
+  onChange: ((dateTime: DateTime) => void) & ((dateTime: [string | null, string | null]) => void)
 }
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
@@ -132,17 +132,6 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
-
-    /**
-     * @description
-     * DatePicker 기본 타입을 사용할 때, DateTime 객체로 변환
-     */
-    const baseTypeDateTime = useMemo(() => {
-      if (value) {
-        return DateTime.fromISO(value)
-      }
-      return
-    }, [value])
 
     /**
      * @description
@@ -195,12 +184,12 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         return ''
       }
 
-      if (baseTypeDateTime) {
-        return baseTypeDateTime.toFormat(DATE_FORMAT)
+      if (value) {
+        return value.toFormat(DATE_FORMAT)
       }
 
       return
-    }, [selectRange, baseTypeDateTime, rangeTypeStartDateTime, rangeTypeEndDateTime])
+    }, [selectRange, value, rangeTypeStartDateTime, rangeTypeEndDateTime])
 
     return (
       <Box
@@ -308,7 +297,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               <Calendar
                 inputRef={inputRef}
                 i18n={i18n}
-                value={baseTypeDateTime}
+                value={value}
                 minDate={minDate}
                 maxDate={maxDate}
                 anchorOrigin={anchorOrigin}
