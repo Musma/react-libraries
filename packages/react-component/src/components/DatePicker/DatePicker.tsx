@@ -142,7 +142,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       /**
        * DatePicker 기본타입에 selectRange 값을 전달했을 때, 에러 코드
        */
-      if (selectRange && typeof value === 'string') {
+      if (selectRange && value) {
         throw new Error('value의 데이터 타입이 틀립니다.')
       }
 
