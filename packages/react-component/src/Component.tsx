@@ -12,7 +12,7 @@ const Component = () => {
   const { control, onSubmit, handleSubmit, getValues } = useFormSearch({
     useFormProps: {
       defaultValues: {
-        curDate: DateTime.now().setZone('Asia/Seoul').toISO(),
+        date: DateTime.now().setZone('Asia/Seoul').toISO(),
         defaultRangeDate: [
           DateTime.now().setZone('Asia/Seoul').toISO(),
           DateTime.now().setZone('Asia/Seoul').toISO(),
@@ -22,9 +22,9 @@ const Component = () => {
     },
 
     fetchAPI() {
-      const { curDate, defaultRangeDate, nullRangeDate } = getValues()
-      if (curDate) {
-        console.log('date', curDate)
+      const { date, defaultRangeDate, nullRangeDate } = getValues()
+      if (date) {
+        console.log('date', date)
       }
       if (defaultRangeDate) {
         console.log('defaultRangeDate', defaultRangeDate)
@@ -49,13 +49,16 @@ const Component = () => {
               columnGap: theme.spacing.sm,
             }}
           >
+            {/* DatePicker 기본 타입 */}
             <Controller
-              name="curDate"
+              name="date"
               control={control}
               render={({ field: { ...rest } }) => {
                 return <DatePicker label="기본 타입" {...rest} />
               }}
             />
+
+            {/* DatePicker 레인지 타입 (defaultValue O) */}
             <Controller
               name="defaultRangeDate"
               control={control}
@@ -72,6 +75,8 @@ const Component = () => {
                 )
               }}
             />
+
+            {/* DatePicker 레인지 타입 (defaultValue X) */}
             <Controller
               name="nullRangeDate"
               control={control}
