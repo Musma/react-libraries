@@ -133,6 +133,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
 
+    /**
+     * @description
+     * DatePicker 기본 타입을 사용할 때, DateTime 객체로 변환
+     */
     const baseTypeDateTime = useMemo(() => {
       if (value) {
         return DateTime.fromISO(value)
@@ -140,6 +144,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       return
     }, [value])
 
+    /**
+     * @description
+     * DatePicker 레인지 타입을 사용할 때, DateTime 객체로 변환
+     */
     const rangeTypeStartDateTime = useMemo(() => {
       if (startDate) {
         return DateTime.fromISO(startDate)
@@ -147,6 +155,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       return
     }, [startDate])
 
+    /**
+     * @description
+     * DatePicker 레인지 타입을 사용할 때, DateTime 객체로 변환
+     */
     const rangeTypeEndDateTime = useMemo(() => {
       if (endDate) {
         return DateTime.fromISO(endDate)
@@ -154,7 +166,18 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       return
     }, [endDate])
 
+    /**
+     * @description
+     * Input에 표시될 value
+     */
     const inputValue = useMemo(() => {
+      /**
+       * DatePicker 기본타입에 selectRange 값을 전달했을 때, 에러 코드
+       */
+      if (selectRange && typeof value === 'string') {
+        throw new Error('value의 데이터 타입이 틀립니다.')
+      }
+
       if (selectRange) {
         if (rangeTypeStartDateTime && !rangeTypeEndDateTime) {
           return `${rangeTypeStartDateTime.toFormat(DATE_FORMAT)} ~`
@@ -178,10 +201,6 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
       return
     }, [selectRange, baseTypeDateTime, rangeTypeStartDateTime, rangeTypeEndDateTime])
-
-    if (selectRange && value) {
-      new Error('value의 데이터 타입이 틀렸습니다')
-    }
 
     return (
       <Box
