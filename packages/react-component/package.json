@@ -43,10 +43,8 @@
     "@emotion/react": "^11.10.5",
     "@musma/react-icons": "workspace:*",
     "@musma/react-utils": "workspace:*",
-    "date-fns": "^2.29.3",
     "luxon": "^3.2.1",
     "react": "^18.2.0",
-    "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2",
     "react-transition-group": "^4.4.5"
@@ -54,7 +52,6 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@emotion/babel-plugin": "^11.10.5",
-    "@types/react-datepicker": "^4.8.0",
     "@types/react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
@@ -64,9 +61,7 @@
     "luxon": ">=3.0.0",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0",
-    "react-router-dom": ">=6.4.0",
-    "react-datepicker": ">=4.8.0",
-    "date-fns": ">=2.29.0"
+    "react-router-dom": ">=6.4.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
