@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, useMemo } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { FillDateRangeIcon } from '@musma/react-icons'
@@ -9,7 +9,7 @@ import { InputLabel, InputHelper } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
-import { Calendar, DATE_FORMAT, RangeCalendar } from './components'
+import { Calendar, DATE_FORMAT } from './components'
 
 interface DatePickerProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'size'> {
@@ -66,19 +66,7 @@ interface DatePickerProps
    * @type DateTime
    * 날짜 정보입니다
    */
-  value?: DateTime | null
-  /**
-   * @optional
-   *
-   * 시작일
-   */
-  startDate?: DateTime | null
-  /**
-   * @optional
-   *
-   * 종료일
-   */
-  endDate?: DateTime | null
+  value: DateTime
   /**
    * @optional
    *
@@ -100,8 +88,7 @@ interface DatePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: ((dateTime: DateTime) => void) &
-    ((dateTime: [DateTime | null, DateTime | null]) => void)
+  onChange: (dateTime: DateTime) => void
 }
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
@@ -115,10 +102,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       error,
       helperText,
       i18n,
-      selectRange = false,
       value,
-      startDate,
-      endDate,
       minDate,
       maxDate,
       anchorOrigin = {
@@ -133,40 +117,6 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
-
-    /**
-     * @description
-     * Input에 표시될 value
-     */
-    const inputValue = useMemo(() => {
-      /**
-       * DatePicker 기본타입에 selectRange 값을 전달했을 때, 에러 코드
-       */
-      if (selectRange && value) {
-        throw new Error('value의 데이터 타입이 틀립니다.')
-      }
-
-      if (selectRange) {
-        if (startDate && !endDate) {
-          return `${startDate.toFormat(DATE_FORMAT)} ~`
-        }
-
-        if (!startDate && endDate) {
-          return `~ ${endDate.toFormat(DATE_FORMAT)}`
-        }
-
-        if (startDate && endDate) {
-          return `${startDate.toFormat(DATE_FORMAT)} ~ ${endDate.toFormat(DATE_FORMAT)}`
-        }
-        return ''
-      }
-
-      if (value) {
-        return value.toFormat(DATE_FORMAT)
-      }
-
-      return
-    }, [selectRange, value, startDate, endDate])
 
     return (
       <Box
@@ -231,7 +181,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             ref={ref}
             disabled={disabled}
             readOnly={true}
-            value={inputValue}
+            value={value.toFormat(DATE_FORMAT)}
             css={{
               flex: 1,
               width: '100%',
@@ -256,32 +206,18 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
         {helperText && <InputHelper error={error}>{helperText}</InputHelper>}
 
-        {selectRange
-          ? showCalendar && (
-              <RangeCalendar
-                inputRef={inputRef}
-                i18n={i18n}
-                startDate={startDate}
-                endDate={endDate}
-                minDate={minDate}
-                maxDate={maxDate}
-                anchorOrigin={anchorOrigin}
-                onChange={onChange}
-                onClose={() => toggleCalendar(false)}
-              />
-            )
-          : showCalendar && (
-              <Calendar
-                inputRef={inputRef}
-                i18n={i18n}
-                value={value}
-                minDate={minDate}
-                maxDate={maxDate}
-                anchorOrigin={anchorOrigin}
-                onChange={onChange}
-                onClose={() => toggleCalendar(false)}
-              />
-            )}
+        {showCalendar && (
+          <Calendar
+            inputRef={inputRef}
+            i18n={i18n}
+            value={value}
+            minDate={minDate}
+            maxDate={maxDate}
+            anchorOrigin={anchorOrigin}
+            onChange={onChange}
+            onClose={() => toggleCalendar(false)}
+          />
+        )}
       </Box>
     )
   },
