@@ -18,7 +18,7 @@ import { DATE_FORMAT, DaysOfTheWeek, Language, Months } from './constants'
 interface CalendarProps {
   inputRef: HTMLElement | null
   i18n?: string
-  value: DateTime
+  value?: DateTime | null
   minDate?: DateTime
   maxDate?: DateTime
   anchorOrigin?: {
@@ -42,7 +42,9 @@ export const Calendar = ({
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
 
-  const [baseDateTime, setBaseDateTime] = useState(value)
+  const initialValue = value ? value : DateTime.local()
+
+  const [baseDateTime, setBaseDateTime] = useState(initialValue)
 
   /**
    * @description
@@ -176,7 +178,7 @@ export const Calendar = ({
    * (날짜)를 클릭하면 캘린더에 바로 반영
    */
   useEffect(() => {
-    setBaseDateTime(value)
+    setBaseDateTime(initialValue)
   }, [value])
 
   return (
@@ -311,10 +313,11 @@ export const Calendar = ({
               },
 
               // 시작일 선택하면 primary main 색상으로 표시
-              value.hasSame(day, 'day') && {
-                color: theme.colors.white.main,
-                backgroundColor: theme.colors.primary.main,
-              },
+              value &&
+                value.hasSame(day, 'day') && {
+                  color: theme.colors.white.main,
+                  backgroundColor: theme.colors.primary.main,
+                },
 
               // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
               isInvalidDate(day) && {
