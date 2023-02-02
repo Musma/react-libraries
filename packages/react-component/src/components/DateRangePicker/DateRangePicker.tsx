@@ -54,7 +54,7 @@ interface DateRangePickerProps
    * 달력 언어 변경
    */
   i18n?: string
-  value: (DateTime | null)[]
+  value?: (DateTime | null)[]
   /**
    * @optional
    *
@@ -102,7 +102,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
     ref,
   ) => {
     const theme = useTheme()
-    const [startDate, endDate] = value ?? []
+    const [startDate, endDate] = value ?? [null, null]
 
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
