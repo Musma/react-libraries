@@ -66,7 +66,7 @@ interface DatePickerProps
    * @type DateTime
    * 날짜 정보입니다
    */
-  value: DateTime
+  value?: DateTime | null
   /**
    * @optional
    *
@@ -114,6 +114,8 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     ref,
   ) => {
     const theme = useTheme()
+
+    const inputValue = value ? value.toFormat(DATE_FORMAT) : ''
 
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
@@ -181,7 +183,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             ref={ref}
             disabled={disabled}
             readOnly={true}
-            value={value.toFormat(DATE_FORMAT)}
+            value={inputValue}
             css={{
               flex: 1,
               width: '100%',
