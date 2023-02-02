@@ -53,7 +53,7 @@ interface DateRangePickerProps
    *
    * 달력 언어 변경
    */
-  i18n?: string
+  locale?: string
   value?: (DateTime | null)[]
   /**
    * @optional
@@ -89,7 +89,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
       size = 'md',
       error,
       helperText,
-      i18n,
+      locale,
       value,
       minDate,
       maxDate,
@@ -217,7 +217,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
         {showCalendar && (
           <RangeCalendar
             inputRef={inputRef}
-            i18n={i18n}
+            locale={locale}
             startDate={startDate}
             endDate={endDate}
             minDate={minDate}

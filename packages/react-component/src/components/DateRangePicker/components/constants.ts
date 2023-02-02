@@ -1,4 +1,4 @@
-export const Language = {
+export const Locale = {
   ko: 'ko',
   en: 'en',
 } as const

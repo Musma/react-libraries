@@ -13,11 +13,11 @@ import { DateTime } from 'luxon'
 import { IconAdornment, Typography } from 'src/components'
 import { Box, Span } from 'src/elements'
 
-import { DATE_FORMAT, DaysOfTheWeek, Language, Months } from './constants'
+import { DATE_FORMAT, DaysOfTheWeek, Locale, Months } from './constants'
 
 interface RangeCalendarProps {
   inputRef: HTMLElement | null
-  i18n?: string
+  locale?: string
   startDate: DateTime | null
   endDate: DateTime | null
   minDate?: DateTime
@@ -30,7 +30,7 @@ interface RangeCalendarProps {
 }
 
 export const RangeCalendar = ({
-  i18n = 'ko',
+  locale = 'ko',
   anchorOrigin = {
     vertical: 'bottom',
   },
@@ -126,24 +126,24 @@ export const RangeCalendar = ({
    * (ko) 2023년 1월
    * (en) Jun, 2023
    */
-  const i18nCalendarDate = useMemo(() => {
-    if (i18n === Language.ko) {
+  const yearAndMonth = useMemo(() => {
+    if (locale === Locale.ko) {
       return `${baseYear}년 ${Months.ko[baseMonth - 1]}`
     }
     return `${Months.en[baseMonth - 1]} ${baseYear}`
-  }, [i18n, baseDateTime])
+  }, [locale, baseDateTime])
 
   /**
    * @example
    * (ko) 월, 화, 수, 목, 금, 토, 일
    * (en) Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
    */
-  const i18nCalendarDayOfTheWeek = useMemo(() => {
-    if (i18n === Language.ko) {
+  const dayOfTheWeek = useMemo(() => {
+    if (locale === Locale.ko) {
       return DaysOfTheWeek.ko
     }
     return DaysOfTheWeek.en
-  }, [i18n, baseDateTime])
+  }, [locale, baseDateTime])
 
   /**
    * @description
@@ -329,7 +329,7 @@ export const RangeCalendar = ({
         </Box>
 
         {/* 월, 년 표시 */}
-        <Typography type="subTitle2">{i18nCalendarDate}</Typography>
+        <Typography type="subTitle2">{yearAndMonth}</Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
@@ -368,7 +368,7 @@ export const RangeCalendar = ({
         }}
       >
         {/* Monday ~ Sunday 날짜 */}
-        {i18nCalendarDayOfTheWeek.map((week) => (
+        {dayOfTheWeek.map((week) => (
           <Typography
             key={week}
             type="subTitle3"
