@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.2
+
+### Patch Changes
+
+- [#158](https://github.com/Musma/react-libraries/pull/158) [`ecd4d3b`](https://github.com/Musma/react-libraries/commit/ecd4d3bad8632ff8dc8a6bcb1347fdfc374ec986) Thanks [@Dave352](https://github.com/Dave352)! - chore: DatePicker, RangePicker 분리 작업
+
 ## 1.0.1
 
 ### Patch Changes
