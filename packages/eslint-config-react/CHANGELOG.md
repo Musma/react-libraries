@@ -1,5 +1,11 @@
 # @musma/eslint-config-react
 
+## 0.1.10
+
+### Patch Changes
+
+- [`6055dad`](https://github.com/Musma/react-libraries/commit/6055dad12af99a75915eaa71c396550131a3cdac) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: 모듈 업데이트
+
 ## 0.1.9
 
 ### Patch Changes
