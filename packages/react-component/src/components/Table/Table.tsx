@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { HTMLAttributes, useCallback, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -9,7 +9,7 @@ import { Size } from 'src/types'
 import { TableBody, TableHead, TableToolbar } from './components'
 import { TableColumn, ToolbarOption } from './types'
 
-export interface TableProps {
+export interface TableProps extends HTMLAttributes<HTMLTableElement> {
   /**
    * @description
    * 테이블 데이터
@@ -74,6 +74,7 @@ export const Table = ({
   checkedItems = [],
   onCheckItemChange,
   onRowClick,
+  ...rest
 }: TableProps) => {
   const theme = useTheme()
 
@@ -116,7 +117,7 @@ export const Table = ({
   }, [allChecked, data, onCheckItemChange])
 
   return (
-    <Box>
+    <Box {...rest}>
       {toolbar && <TableToolbar {...toolbar} />}
 
       {/* Table Wrapper */}

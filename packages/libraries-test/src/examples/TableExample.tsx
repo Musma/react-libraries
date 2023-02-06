@@ -47,6 +47,7 @@ export const TableExample = () => {
           totalCount: 3,
           children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
         }}
+        css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
       />
     </Fragment>
   )
