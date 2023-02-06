@@ -179,9 +179,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               height: '100%',
               cursor: 'inherit',
               backgroundColor: 'transparent',
-              '&::placeholder': {
-                color: theme.colors.gray.light,
-              },
               '&:disabled': {
                 color: theme.colors.gray.main,
                 backgroundColor: theme.colors.white.light,
