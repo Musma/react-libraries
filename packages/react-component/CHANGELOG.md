@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.4
+
+### Patch Changes
+
+- [`61f5ecd`](https://github.com/Musma/react-libraries/commit/61f5ecd59cb76c24f43277b90af522428755017b) Thanks [@Leona3](https://github.com/Leona3)! - 테이블에 별도 스타일이 필요한 경우 css로 처리하도록 타입 변경
+
 ## 1.0.3
 
 ### Patch Changes
