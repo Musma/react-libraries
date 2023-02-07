@@ -10,41 +10,19 @@ import {
 
 import { useTheme } from '@emotion/react'
 import { ArrowBottomSmallIcon } from '@musma/react-icons'
-import { useOutsideListener, useSetRef, uniqueId } from '@musma/react-utils'
+import {
+  useOutsideListener,
+  useSetRef,
+  uniqueId,
+  useKeyPress,
+  KeyboardEvents,
+} from '@musma/react-utils'
 
 import { InputLabel, Typography } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { Option, OptionContainer } from './components'
-
-const useKeyPress = function (targetKey: string) {
-  const [keyPressed, setKeyPressed] = useState(false)
-
-  function downHandler({ key }: { key: string }) {
-    if (key === targetKey) {
-      setKeyPressed(true)
-    }
-  }
-
-  const upHandler = ({ key }: { key: string }) => {
-    if (key === targetKey) {
-      setKeyPressed(false)
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('keydown', downHandler)
-    window.addEventListener('keyup', upHandler)
-
-    return () => {
-      window.removeEventListener('keydown', downHandler)
-      window.removeEventListener('keyup', upHandler)
-    }
-  })
-
-  return keyPressed
-}
 
 /**
  * ForwardRef + Generic Type
@@ -118,10 +96,10 @@ const _Select = <T extends string>(
 
   const [activeIndex, setActiveIndex] = useState<number>(0)
 
-  const downPress = useKeyPress('ArrowDown')
-  const upPress = useKeyPress('ArrowUp')
-  const enterPress = useKeyPress('Enter')
-  const escPress = useKeyPress('Escape')
+  const upPress = useKeyPress(KeyboardEvents.ARROW_UP)
+  const downPress = useKeyPress(KeyboardEvents.ARROW_DOWN)
+  const enterPress = useKeyPress(KeyboardEvents.ENTER)
+  const escPress = useKeyPress(KeyboardEvents.ESCAPE)
 
   const id = useMemo(() => {
     return _id || uniqueId()
