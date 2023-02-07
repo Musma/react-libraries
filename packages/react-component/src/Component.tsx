@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
+import { OutlineAddBoxIcon } from '@musma/react-icons'
 
 import { Box } from 'src/elements'
 
-import { Button, Chip, IToastPopupData, Select, useToastContext } from './components'
+import { Button, Chip, IToastPopupData, Select, Table, useToastContext } from './components'
 
 const options = [
   {
@@ -25,6 +26,44 @@ const options = [
     value: '4',
   },
 ]
+
+const columns = [
+  {
+    columnName: 'a',
+    columnLabel: 'A',
+  },
+  {
+    columnName: 'b',
+    columnLabel: 'B',
+    columnChild: [
+      { columnName: 'a-1', columnLabel: 'A-1' },
+      { columnName: 'a-2', columnLabel: 'A-2' },
+    ],
+  },
+  {
+    columnName: 'c',
+    columnLabel: 'C',
+  },
+  {
+    columnName: 'd',
+    columnLabel: 'D',
+    columnChild: [
+      { columnName: 'a-1', columnLabel: 'A-1' },
+      { columnName: 'a-2', columnLabel: 'A-2' },
+    ],
+  },
+  {
+    columnName: 'e',
+    columnLabel: 'E',
+  },
+]
+
+const originData = Array.from({ length: 10 }).map((_, index) => ({
+  id: `${index}`,
+  a: `a${index}`,
+  b: `b${index}`,
+  c: `c${index}`,
+}))
 
 const Component = () => {
   const navigate = useNavigate()
@@ -52,6 +91,8 @@ const Component = () => {
     type: 'warning',
   }
 
+  const [checkedItems, setCheckedItems] = useState<string[]>([])
+
   return (
     <Box>
       <Box
@@ -73,6 +114,21 @@ const Component = () => {
         >
           dkdkd
         </Button>
+
+        <Table
+          columns={columns}
+          data={originData}
+          withCheckbox={true}
+          checkedItems={checkedItems}
+          onCheckItemChange={setCheckedItems}
+          onRowClick={() => alert('Table의 Row를 클릭하셨습니다!')}
+          toolbar={{
+            title: '123',
+            // totalCount: 3,
+            children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
+          }}
+          // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
+        />
       </Box>
       <Box css={{ display: 'flex', gap: '10px' }}>
         <Chip
