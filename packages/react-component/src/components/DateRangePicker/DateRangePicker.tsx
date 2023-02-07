@@ -54,7 +54,7 @@ interface DateRangePickerProps
    * 달력 언어 변경
    */
   locale?: string
-  value?: (DateTime | null)[]
+  value?: (string | null)[]
   /**
    * @optional
    *
@@ -76,7 +76,7 @@ interface DateRangePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: (dateTime: [DateTime | null, DateTime | null]) => void
+  onChange: (dateTime: [string | null, string | null]) => void
 }
 
 export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps>(
@@ -107,21 +107,35 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
 
+    const startDateTime = useMemo(() => {
+      if (startDate) {
+        return DateTime.fromISO(startDate)
+      }
+      return null
+    }, [startDate])
+
+    const endDateTime = useMemo(() => {
+      if (endDate) {
+        return DateTime.fromISO(endDate)
+      }
+      return null
+    }, [endDate])
+
     /**
      * @description
      * Input에 표시될 value
      */
     const inputValue = useMemo(() => {
-      if (startDate && !endDate) {
-        return `${startDate.toFormat(DATE_FORMAT)} ~`
+      if (startDateTime && !endDateTime) {
+        return `${startDateTime.toFormat(DATE_FORMAT)} ~`
       }
 
-      if (!startDate && endDate) {
-        return `~ ${endDate.toFormat(DATE_FORMAT)}`
+      if (!startDateTime && endDateTime) {
+        return `~ ${endDateTime.toFormat(DATE_FORMAT)}`
       }
 
-      if (startDate && endDate) {
-        return `${startDate.toFormat(DATE_FORMAT)} ~ ${endDate.toFormat(DATE_FORMAT)}`
+      if (startDateTime && endDateTime) {
+        return `${startDateTime.toFormat(DATE_FORMAT)} ~ ${endDateTime.toFormat(DATE_FORMAT)}`
       }
       return ''
     }, [value])
@@ -218,8 +232,8 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
           <RangeCalendar
             inputRef={inputRef}
             locale={locale}
-            startDate={startDate}
-            endDate={endDate}
+            startDate={startDateTime}
+            endDate={endDateTime}
             minDate={minDate}
             maxDate={maxDate}
             anchorOrigin={anchorOrigin}
