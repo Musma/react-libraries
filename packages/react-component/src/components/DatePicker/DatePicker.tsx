@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { FillDateRangeIcon } from '@musma/react-icons'
@@ -66,7 +66,7 @@ interface DatePickerProps
    * @type DateTime
    * 날짜 정보입니다
    */
-  value?: DateTime | null
+  value?: string | null
   /**
    * @optional
    *
@@ -88,7 +88,7 @@ interface DatePickerProps
    *
    * 날짜 변경 이벤트
    */
-  onChange: (dateTime: DateTime) => void
+  onChange: (dateTime: string) => void
 }
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
@@ -115,7 +115,13 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
   ) => {
     const theme = useTheme()
 
-    const inputValue = value ? value.toFormat(DATE_FORMAT) : ''
+    const inputValue = useMemo(() => {
+      if (value) {
+        const dateTime = DateTime.fromISO(value).toFormat(DATE_FORMAT)
+        return dateTime
+      }
+      return ''
+    }, [value])
 
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
