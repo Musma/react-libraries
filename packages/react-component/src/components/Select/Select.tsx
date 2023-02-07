@@ -222,7 +222,6 @@ const _Select = <T extends string>(
           },
           disabled && {
             color: theme.colors.gray.main,
-            pointerEvents: 'none',
             cursor: 'not-allowed',
           },
         ]}
@@ -245,8 +244,7 @@ const _Select = <T extends string>(
               borderWidth: 1,
               borderStyle: 'solid',
               borderColor: theme.colors.gray.darker,
-              color: 'inherit',
-              cursor: 'inherit',
+              color: 'currentColor',
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
               },
@@ -254,6 +252,7 @@ const _Select = <T extends string>(
                 color: theme.colors.black.main,
               },
               '&:disabled': {
+                cursor: 'inherit',
                 backgroundColor: theme.colors.white.light,
                 borderColor: theme.colors.gray.main,
               },
