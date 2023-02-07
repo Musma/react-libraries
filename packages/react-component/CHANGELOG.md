@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.0.7
+
+### Patch Changes
+
+- [`5234996`](https://github.com/Musma/react-libraries/commit/52349968a8ab3002a2bacbeb24e45e9e66f460a7) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Select.tsx 하드코딩된 키보드 이벤트 텍스트 수정
+
+- Updated dependencies [[`dcd2739`](https://github.com/Musma/react-libraries/commit/dcd2739774445233797f6153b401a5c7d7431b2e)]:
+  - @musma/react-utils@0.2.2
+
 ## 1.0.6
 
 ### Patch Changes

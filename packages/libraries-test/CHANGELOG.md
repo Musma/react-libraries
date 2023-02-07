@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- Updated dependencies [[`5234996`](https://github.com/Musma/react-libraries/commit/52349968a8ab3002a2bacbeb24e45e9e66f460a7), [`dcd2739`](https://github.com/Musma/react-libraries/commit/dcd2739774445233797f6153b401a5c7d7431b2e)]:
+  - @musma/react-component@1.0.7
+  - @musma/react-utils@0.2.2
+
+## null
+
+### Patch Changes
+
 - Updated dependencies [[`3959ec5`](https://github.com/Musma/react-libraries/commit/3959ec5749db031d358b6d20c7bbb103fe0294f0)]:
   - @musma/react-component@1.0.6
 

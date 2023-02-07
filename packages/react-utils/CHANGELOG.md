@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.2
+
+### Patch Changes
+
+- [`dcd2739`](https://github.com/Musma/react-libraries/commit/dcd2739774445233797f6153b401a5c7d7431b2e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] Keyboard, Mouse Constants 추가
+
 ## 0.2.1
 
 ### Patch Changes
