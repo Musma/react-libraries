@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.5
+
+### Patch Changes
+
+- [#163](https://github.com/Musma/react-libraries/pull/163) [`c9f5579`](https://github.com/Musma/react-libraries/commit/c9f5579a9a23c65cb079d09c1ae06a4fc5a70942) Thanks [@Dave352](https://github.com/Dave352)! - fix: DatePicker 새로고침시 DateTime 객체가 초기화 되는 문제 해결
+
 ## 1.0.4
 
 ### Patch Changes
