@@ -1,7 +1,7 @@
 {
   "name": "@musma/libraries-test",
   "private": true,
-  "version": "null",
+  "version": null,
   "description": "React component library test",
   "homepage": "https://developers.musma.net",
   "repository": {

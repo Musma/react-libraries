@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.6
+
+### Patch Changes
+
+- [`3959ec5`](https://github.com/Musma/react-libraries/commit/3959ec5749db031d358b6d20c7bbb103fe0294f0) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Select cursor style 수정
+
 ## 1.0.5
 
 ### Patch Changes
