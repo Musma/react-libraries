@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 
-interface UseKeyPressProps {
-  targetKey: string
-}
+import { KeyboardEvents } from 'src/constants'
 
-export const useKeyPress = ({ targetKey }: UseKeyPressProps) => {
+export const useKeyPress = (targetKey: string) => {
   const [keyPressed, setKeyPressed] = useState<boolean>(false)
   // If pressed key is our target key then set to true
   const downHandler = ({ key }: { key: string }) => {
@@ -21,12 +19,12 @@ export const useKeyPress = ({ targetKey }: UseKeyPressProps) => {
 
   // 마운트 시 이벤트 추가
   useEffect(() => {
-    window.addEventListener('keydown', downHandler)
-    window.addEventListener('keyup', upHandler)
+    window.addEventListener(KeyboardEvents.KEY_UP, upHandler)
+    window.addEventListener(KeyboardEvents.KEY_DOWN, downHandler)
     // 언트마운트 시 이벤트 제거
     return () => {
-      window.removeEventListener('keydown', downHandler)
-      window.removeEventListener('keyup', upHandler)
+      window.removeEventListener(KeyboardEvents.KEY_UP, upHandler)
+      window.removeEventListener(KeyboardEvents.KEY_DOWN, downHandler)
     }
   }, [])
 

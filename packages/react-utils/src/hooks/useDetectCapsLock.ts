@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { KEY_DOPWN, KEY_UP } from 'src/constants'
+import { KeyboardEvents } from 'src/constants'
 import { isBrowser } from 'src/utils'
 
 /**
@@ -12,7 +12,7 @@ export const useDetectCapsLock = () => {
   const [activeCapsLock, setCapsLock] = useState(false)
 
   const checkCapsLock = (event: KeyboardEvent) => {
-    if (event.getModifierState('CapsLock')) {
+    if (event.getModifierState(KeyboardEvents.CAPS_LOCK)) {
       setCapsLock(true)
       return
     }
@@ -21,12 +21,12 @@ export const useDetectCapsLock = () => {
 
   useEffect(() => {
     if (isBrowser) {
-      window.addEventListener(KEY_UP, checkCapsLock)
-      window.addEventListener(KEY_DOPWN, checkCapsLock)
+      window.addEventListener(KeyboardEvents.KEY_UP, checkCapsLock)
+      window.addEventListener(KeyboardEvents.KEY_DOWN, checkCapsLock)
     }
     return () => {
-      window.removeEventListener(KEY_UP, checkCapsLock)
-      window.removeEventListener(KEY_DOPWN, checkCapsLock)
+      window.removeEventListener(KeyboardEvents.KEY_UP, checkCapsLock)
+      window.removeEventListener(KeyboardEvents.KEY_DOWN, checkCapsLock)
     }
   }, [])
 
