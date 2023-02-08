@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.4
+
+### Patch Changes
+
+- [`3de3a05`](https://github.com/Musma/react-libraries/commit/3de3a058560765c43d33b968eb0a478cd2952fa2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-utils] setPageable 관련 로직 버그 수정
+
 ## 0.2.3
 
 ### Patch Changes
