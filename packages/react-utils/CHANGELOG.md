@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.3
+
+### Patch Changes
+
+- [`c6f132f`](https://github.com/Musma/react-libraries/commit/c6f132f94e216431a20a43da30dc22e86623ffeb) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useFormSearch.ts page 변경될 때 LocationState에 저장하는 로직 추가
+
 ## 0.2.2
 
 ### Patch Changes
