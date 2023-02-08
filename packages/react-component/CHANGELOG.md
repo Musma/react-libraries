@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.8
+
+### Patch Changes
+
+- [`a86f074`](https://github.com/Musma/react-libraries/commit/a86f0745afaac34755ee88f7f68c6e0552993438) Thanks [@Leona3](https://github.com/Leona3)! - 테이블 이중 컬럼 적용
+
 ## 1.0.7
 
 ### Patch Changes
