@@ -13,6 +13,18 @@ interface TableBodyProps {
   columns: TableColumn[]
   /**
    * @description
+   * 이중 컬럼인 경우 key가 columnsChild의 key와 동일해야 함
+   * 컬럼은 부모 key 명시, 데이터는 부모 key 명시 안함
+   * ex) [
+   * {
+   *  a: 'A',
+   *  'b-1': 'B-1',
+   *  'b-2': 'B-2',
+   *  'b-3': 'B-3',
+   *  'c-1': 'C-1',
+   *  'c-2': 'C-2',
+   *  d: 'd',
+   * }
    */
   data: Record<string, unknown>[]
   /**
@@ -96,18 +108,34 @@ export const TableBody = ({
             </td>
           )}
 
-          {columns.map((column) => (
-            <td
-              key={column.columnName}
-              align="center"
-              css={{
-                fontSize: 14,
-                height: 40,
-              }}
-            >
-              {item[column.columnName] as ReactNode}
-            </td>
-          ))}
+          {columns.map((column) => {
+            return column.columnChild ? (
+              // 이중 컬럼인 경우 child를 map으로 출력
+              column.columnChild.map((child) => (
+                <td
+                  key={child.columnName}
+                  align="center"
+                  css={{
+                    fontSize: 14,
+                    height: 40,
+                  }}
+                >
+                  {item[child.columnName] as ReactNode}
+                </td>
+              ))
+            ) : (
+              <td
+                key={column.columnName}
+                align="center"
+                css={{
+                  fontSize: 14,
+                  height: 40,
+                }}
+              >
+                {item[column.columnName] as ReactNode}
+              </td>
+            )
+          })}
         </tr>
       ))}
     </tbody>
