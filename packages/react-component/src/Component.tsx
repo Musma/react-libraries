@@ -36,34 +36,36 @@ const columns = [
     columnName: 'b',
     columnLabel: 'B',
     columnChild: [
-      { columnName: 'a-1', columnLabel: 'A-1' },
-      { columnName: 'a-2', columnLabel: 'A-2' },
+      { columnName: 'b-1', columnLabel: 'B-1' },
+      { columnName: 'b-2', columnLabel: 'B-2' },
+      { columnName: 'b-3', columnLabel: 'B-3' },
     ],
   },
   {
     columnName: 'c',
     columnLabel: 'C',
+    columnChild: [
+      { columnName: 'c-1', columnLabel: 'C-1' },
+      { columnName: 'c-2', columnLabel: 'C-2' },
+    ],
   },
   {
     columnName: 'd',
     columnLabel: 'D',
-    columnChild: [
-      { columnName: 'a-1', columnLabel: 'A-1' },
-      { columnName: 'a-2', columnLabel: 'A-2' },
-    ],
-  },
-  {
-    columnName: 'e',
-    columnLabel: 'E',
   },
 ]
 
-const originData = Array.from({ length: 10 }).map((_, index) => ({
-  id: `${index}`,
-  a: `a${index}`,
-  b: `b${index}`,
-  c: `c${index}`,
-}))
+const sampleData = [
+  {
+    a: 'A',
+    'b-1': 'B-1',
+    'b-2': 'B-2',
+    'b-3': 'B-3',
+    'c-1': 'C-1',
+    'c-2': 'C-2',
+    d: 'd',
+  },
+]
 
 const Component = () => {
   const navigate = useNavigate()
@@ -117,7 +119,7 @@ const Component = () => {
 
         <Table
           columns={columns}
-          data={originData}
+          data={sampleData}
           withCheckbox={true}
           checkedItems={checkedItems}
           onCheckItemChange={setCheckedItems}
