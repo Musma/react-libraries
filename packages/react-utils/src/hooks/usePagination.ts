@@ -20,7 +20,7 @@ const itemsPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
   }
 })
 
-const INIT_PAGEABLE = {
+export const INIT_PAGEABLE = {
   page: 1,
   limit: 10,
 }

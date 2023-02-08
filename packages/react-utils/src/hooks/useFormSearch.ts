@@ -1,7 +1,8 @@
+import { useEffect } from 'react'
 import { DeepPartial, useForm, UseFormProps } from 'react-hook-form'
 
 import { useLocationState } from './useLocationState'
-import { Pageable, usePagination } from './usePagination'
+import { INIT_PAGEABLE, Pageable, usePagination } from './usePagination'
 
 type FormState<T> = {
   formValues?: T
@@ -35,14 +36,23 @@ export const useFormSearch = <T extends object>({
   })
 
   const onSubmit = () => {
-    setFormState(() => ({ ...formState, formValues: form.getValues() }))
     setPageable((_pageable) => ({ ..._pageable, page: 1 }))
+    setFormState((formState) => ({ ...formState, formValues: form.getValues() }))
   }
 
   const onReset = () => {
     setFormState(() => ({}))
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
   }
+
+  useEffect(() => {
+    if (pageable !== INIT_PAGEABLE) {
+      setFormState((formState) => ({
+        ...formState,
+        pageable,
+      }))
+    }
+  }, [pageable])
 
   return {
     pagination,
