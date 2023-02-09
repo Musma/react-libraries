@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.11
+
+### Patch Changes
+
+- [`5cee702`](https://github.com/Musma/react-libraries/commit/5cee702a36ad278f479618ff87e0f7c063585097) Thanks [@Dave352](https://github.com/Dave352)! - chore: Modal title type 수정 string -> ReactNode
+
 ## 1.0.10
 
 ### Patch Changes
