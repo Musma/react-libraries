@@ -1,4 +1,4 @@
-import { Fragment, HTMLAttributes, useEffect, useMemo } from 'react'
+import { Fragment, HTMLAttributes, ReactNode, useEffect, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { uniqueId, useEscKeyPress, useSetRef, useOutsideListener } from '@musma/react-utils'
@@ -42,13 +42,13 @@ class ModalManager {
 
 const modalManager = new ModalManager()
 
-export interface ModalProps extends HTMLAttributes<HTMLElement> {
+export interface ModalProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
   /**
    * @required
    *
    * Modal의 제목입니다.
    */
-  title: string
+  title: ReactNode
   /**
    * @required
    *
