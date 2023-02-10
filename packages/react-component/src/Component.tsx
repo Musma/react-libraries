@@ -89,7 +89,7 @@ const Component = () => {
     mode: 'dark',
   }
   const popupSample4: IToastPopupData = {
-    title: '위험위허멍위험위험위험위험',
+    title: 'This is warning message.',
     type: 'warning',
   }
 
