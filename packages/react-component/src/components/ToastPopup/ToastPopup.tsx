@@ -1,7 +1,11 @@
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
+import { useTheme } from '@emotion/react'
 import { CloseIcon } from '@musma/react-icons'
+
+import { Typography } from 'src/components'
+import { Box } from 'src/elements'
 
 import { useToastPopupStyle, FLOAT_TO_TOP, IToastPopupProps, AUTO_CLOSE_TIME } from '.'
 
@@ -12,6 +16,7 @@ export const ToastPopup = ({
   description,
   mode = 'light',
 }: IToastPopupProps) => {
+  const theme = useTheme()
   const { bgColor, fontColor, img } = useToastPopupStyle().returnStyle(type, mode)
 
   // 팝업 상태
@@ -20,9 +25,11 @@ export const ToastPopup = ({
   // 3초 후에 ToastPopupManager에서 삭제되기
   useEffect(() => {
     setIsOpen(true)
+
     const timer = setTimeout(() => {
       setIsOpen(false)
     }, AUTO_CLOSE_TIME)
+
     return () => {
       clearTimeout(timer)
     }
@@ -67,45 +74,68 @@ export const ToastPopup = ({
         },
       }}
     >
-      {title ? ( // title 없으면 아예 띄우지를 말자
-        <div
+      <Box
+        css={{
+          padding: '12px 16px',
+          marginBottom: theme.spacing.sm,
+          background: bgColor,
+          boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
+          borderRadius: theme.rounded.sm,
+        }}
+      >
+        <Box
           css={{
-            padding: '12px 16px',
-            marginBottom: '8px',
-            background: bgColor,
-            boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.35) ',
-            borderRadius: '3px',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            gap: theme.spacing.sm,
+            color: fontColor,
+            minWidth: 500,
           }}
         >
-          <div
+          {/* Toast 타입별 아이콘 */}
+          {img}
+
+          {/* title + description */}
+          <Box
             css={{
+              width: '100%',
+              padding: '3px 54px 3px 0',
               display: 'flex',
-              flexDirection: 'row',
               justifyContent: 'space-between',
-              alignItems: description ? 'normal' : 'center',
-              color: fontColor,
-              minWidth: description ? '570px' : '400px',
+              flexDirection: 'column',
+              gap: 6,
             }}
           >
-            {img}
-            <div
-              css={{
-                width: '100%',
-                margin: '0 54px 0 10px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-              }}
-            >
-              <div css={{ fontWeight: description ? 'bold' : undefined }}>{title}</div>
-              {description && <div>{description}</div>}
-            </div>
-            <CloseIcon cursor="pointer" color={fontColor} onClick={() => setIsOpen(false)} />
-          </div>
-        </div>
-      ) : (
-        <Fragment />
-      )}
+            {title && (
+              <Typography
+                type="subTitle2"
+                css={{
+                  // 개행문자(\n)가 있는 경우 줄바꿈하기 위해 적용
+                  whiteSpace: 'pre-wrap',
+                  lineHeight: 1.3,
+                }}
+              >
+                {title}
+              </Typography>
+            )}
+
+            {description && (
+              <Typography
+                type="body3"
+                css={{
+                  whiteSpace: 'pre-wrap',
+                  lineHeight: 1.3,
+                }}
+              >
+                {description}
+              </Typography>
+            )}
+          </Box>
+
+          <CloseIcon cursor="pointer" color={fontColor} onClick={() => setIsOpen(false)} />
+        </Box>
+      </Box>
     </CSSTransition>
   )
 }

@@ -9,7 +9,7 @@ export type ToastPopupPositionType = 'top-center' | 'top-right'
 export interface IToastPopupData {
   id?: string
   type?: ToastPopupStateType
-  title: string
+  title?: string
   description?: string
   mode?: ToastPopupModeType
 }

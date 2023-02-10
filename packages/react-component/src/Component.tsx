@@ -73,24 +73,34 @@ const Component = () => {
   const [value, setValue] = useState('1')
 
   const { addToast, setLimit } = useToastContext()
+
   const popupSample1: IToastPopupData = {
     title: 'Error',
     description: 'This is a warning notice about copywriting.',
     mode: 'dark',
     type: 'error',
   }
+
   const popupSample2: IToastPopupData = {
     title: '잘했다임마',
-    description: '굿 잘 됨',
+    description: '굿 잘 됨\niwoe89ehckdnc\n39e8dhbcjkldshacpdkc',
     type: 'success',
   }
+
   const popupSample3: IToastPopupData = {
     title: 'Extra Information',
     mode: 'dark',
   }
+
   const popupSample4: IToastPopupData = {
     title: 'This is warning message.',
     type: 'warning',
+  }
+
+  const popupSample5: IToastPopupData = {
+    description: 'This sentence is false\nLorem ipsum ziahquekc dt.',
+    mode: 'dark',
+    type: 'success',
   }
 
   const [checkedItems, setCheckedItems] = useState<string[]>([])
@@ -132,6 +142,7 @@ const Component = () => {
           // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
         />
       </Box>
+
       <Box css={{ display: 'flex', gap: '10px' }}>
         <Chip
           color={theme.colors.red.main}
@@ -142,6 +153,7 @@ const Component = () => {
         >
           토스트 팝업 1
         </Chip>
+
         <Chip
           color={theme.colors.green.main}
           shape="rounded"
@@ -151,6 +163,7 @@ const Component = () => {
         >
           토스트 팝업 2
         </Chip>
+
         <Chip
           color={theme.colors.blue.main}
           shape="rounded"
@@ -170,6 +183,17 @@ const Component = () => {
         >
           토스트 팝업 4
         </Chip>
+
+        <Chip
+          color={theme.colors.gray.dark}
+          shape="rounded"
+          onClick={() => {
+            addToast(popupSample5)
+          }}
+        >
+          토스트 팝업 5
+        </Chip>
+
         <Chip
           color={theme.colors.black.main}
           onClick={() => {
@@ -180,6 +204,7 @@ const Component = () => {
         >
           토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
         </Chip>
+
         <Chip color={theme.colors.black.darker} onClick={() => navigate('toast')}>
           토스트 팝업 페이지로 이동
         </Chip>
