@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 1.0.12
+
+### Patch Changes
+
+- [`ee72283`](https://github.com/Musma/react-libraries/commit/ee7228384b70d4f82338e5efd801246219e8245d) Thanks [@mcoding777](https://github.com/mcoding777)! - chore: react-component 재배포
+
+- [`3dbbeed`](https://github.com/Musma/react-libraries/commit/3dbbeed6e04b3f83648543a3acc3f5c705d71009) Thanks [@mcoding777](https://github.com/mcoding777)! - refactor: Select 컴포넌트에 auto complete 기능 적용
+
+- [`4455921`](https://github.com/Musma/react-libraries/commit/4455921d0e7d2e093bf86e19945dc3c9fd064dca) Thanks [@Leona3](https://github.com/Leona3)! - Toast 팝업 타입, 레이아웃 수정
+
 ## 1.0.11
 
 ### Patch Changes
