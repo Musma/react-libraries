@@ -85,7 +85,7 @@ const Component = () => {
     type: 'success',
   }
   const popupSample3: IToastPopupData = {
-    title: '정보 팝업인데 정보 음슴 ㅋ',
+    title: 'Extra Information',
     mode: 'dark',
   }
   const popupSample4: IToastPopupData = {
