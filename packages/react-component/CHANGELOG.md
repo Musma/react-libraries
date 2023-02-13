@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.14
+
+### Patch Changes
+
+- [`5d5d329`](https://github.com/Musma/react-libraries/commit/5d5d329e9ae7f6454cddeb3c8e45cc52dbcf98d4) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Select searchedOptions 검색 로직 수정
+
 ## 1.0.13
 
 ### Patch Changes
