@@ -1,6 +1,6 @@
 {
   "name": "@musma/eslint-config-react",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Musma's ESLint config with React",
   "homepage": "https://developers.musma.net",
   "repository": {

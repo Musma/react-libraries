@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.5
+
+### Patch Changes
+
+- [`acccee6`](https://github.com/Musma/react-libraries/commit/acccee6f8c919e9d8e5bb17da17fa4131191b707) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] 라이브러리 업데이트
+
 ## 0.2.4
 
 ### Patch Changes
