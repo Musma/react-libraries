@@ -123,11 +123,9 @@ const _Select = <T extends string>(
 
   const searchedOptions = useMemo(() => {
     if (options && inputValue) {
-      return options.filter((option) => {
-        // auto complete 적용
-        const regex = new RegExp(inputValue.toLocaleLowerCase(), 'g')
-        return option.label.toLocaleLowerCase().search(regex) !== -1
-      })
+      return options.filter((option) =>
+        option.label.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase()),
+      )
     }
     return options
   }, [inputValue, options])
