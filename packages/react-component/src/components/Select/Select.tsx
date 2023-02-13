@@ -123,13 +123,11 @@ const _Select = <T extends string>(
 
   const searchedOptions = useMemo(() => {
     if (options && inputValue) {
-      return options.filter(
-        (option) => {
-          // auto complete 적용
-          const regex = new RegExp(inputValue.toLocaleLowerCase(), 'g')
-          return option.label.toLocaleLowerCase().search(regex) !== -1
-        },
-      )
+      return options.filter((option) => {
+        // auto complete 적용
+        const regex = new RegExp(inputValue.toLocaleLowerCase(), 'g')
+        return option.label.toLocaleLowerCase().search(regex) !== -1
+      })
     }
     return options
   }, [inputValue, options])
@@ -232,10 +230,8 @@ const _Select = <T extends string>(
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
               },
-              '&::placeholder': {
-                color: theme.colors.black.main,
-              },
               '&:disabled': {
+                color: theme.colors.gray.main,
                 cursor: 'inherit',
                 backgroundColor: theme.colors.white.light,
                 borderColor: theme.colors.gray.main,

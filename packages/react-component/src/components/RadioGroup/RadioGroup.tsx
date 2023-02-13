@@ -36,6 +36,7 @@ interface RadioGroupProps {
    * @required
    * onChange 이벤트입니다.
    */
+  className?: string
   onChange: (value: string) => void
 }
 
@@ -47,10 +48,10 @@ interface RadioGroupProps {
  * <RadioGroup value="test" onChange={onChange} data={[...]} />
  */
 export const RadioGroup = forwardRef<HTMLInputElement, RadioGroupProps>(
-  ({ size = 'md', required, label, value, gap = 'lg', items, onChange }, ref) => {
+  ({ size = 'md', required, label, value, gap = 'lg', items, className, onChange }, ref) => {
     const theme = useTheme()
     return (
-      <Box>
+      <Box className={className}>
         {/* 라벨 */}
         {label && (
           <InputLabel required={required} size={size}>

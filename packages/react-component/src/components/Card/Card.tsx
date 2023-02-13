@@ -7,8 +7,6 @@ import { Size } from 'src/types'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
-
-   *
    * @default md
    *
    * @value
@@ -20,7 +18,6 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- *
  * @param param0 rounded = 둥글기
  * @description
  * 카드 컴포넌트입니다.

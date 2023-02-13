@@ -16,7 +16,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputProps>((props, ref) =
         outline: 'none',
         boxSizing: 'border-box',
         '&::placeholder': {
-          color: theme.colors.gray.light,
+          color: theme.colors.gray.main,
         },
       }}
       {...props}
