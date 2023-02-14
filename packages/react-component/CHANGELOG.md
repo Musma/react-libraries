@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.15
+
+### Patch Changes
+
+- [`f8d6c71`](https://github.com/Musma/react-libraries/commit/f8d6c718deb3aadcafbbbe5b390b1cae75c3c3c4) Thanks [@mcoding777](https://github.com/mcoding777)! - chore: Option, OptionContainer 컴포넌트 export 추가
+
 ## 1.0.14
 
 ### Patch Changes
