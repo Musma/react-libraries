@@ -115,9 +115,15 @@ const Component = () => {
           gap: theme.spacing.md,
         }}
       >
-        <Select options={options} value={value} onChange={setValue} placeholder="123123" />
+        <Select
+          options={options}
+          value={value}
+          onChange={setValue}
+          disabled={false}
+          placeholder="123123"
+        />
 
-        <Select options={options} value={value} disabled={true} onChange={setValue} />
+        <Select options={options} value={value} disabled={false} onChange={setValue} />
 
         <Button
           onClick={() => {

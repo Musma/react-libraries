@@ -114,7 +114,7 @@ const _Select = <T extends string>(
       setOpen((value) => !value)
       setActiveIndex(0)
     }
-  }, [])
+  }, [disabled])
 
   const handleOptionClick = useCallback((value: T) => {
     onChange(value)
@@ -224,6 +224,7 @@ const _Select = <T extends string>(
               borderWidth: 1,
               borderStyle: 'solid',
               borderColor: theme.colors.gray.darker,
+              cursor: 'inherit',
               color: 'currentColor',
               '&:focus': {
                 border: `1px solid ${theme.colors.blue.main}`,
