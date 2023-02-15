@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.6
+
+### Patch Changes
+
+- [`8e1a1ff`](https://github.com/Musma/react-libraries/commit/8e1a1ff65a17ce4b772d5f8ea723388200aaa3fb) Thanks [@Dave352](https://github.com/Dave352)! - chore: Lodash util 추가 findIndex
+
 ## 0.2.5
 
 ### Patch Changes
