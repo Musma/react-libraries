@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.16
+
+### Patch Changes
+
+- [`a02277f`](https://github.com/Musma/react-libraries/commit/a02277fbd0cf0481d305daffcd0c0a8316281266) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] Select disabled 버그 수정
+
 ## 1.0.15
 
 ### Patch Changes
