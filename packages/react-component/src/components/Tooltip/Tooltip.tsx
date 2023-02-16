@@ -20,8 +20,8 @@ interface TooltipProps {
   /**
    * @required
    * @type {string | ReactNode}
-   * string이면, ( body3: fontWeight: 400,lineHeight: 1, fontSize: 0.875rem )가 적용됩니다
-   * | ReactNode이면, 상속받는 CSS가 없습니다
+   * string이면, body3이 적용됩니다
+   * || ReactNode이면, 상속받는 CSS가 없습니다
    *
    * @description
    * 마우스오버를 했을 때, 툴팁의 메세지 입니다
@@ -45,6 +45,7 @@ interface TooltipProps {
    */
   width?: number
 }
+
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
 /**
  *

@@ -13,15 +13,35 @@ import {
 
 export type TypographyProps = {
   /**
+   * @optional
+   * @type {string}
+   * @default body1
+   *
+   * h1 | h2 | h3 | h4 | h5 | h6
+   * body1 | body2 | body3
+   * cation1 | cation2
+   * subTitle1 | subTitle2 | subTitle3
+   *
    * @description
+   * 표시될 문자의 타입을 정합니다
    */
   type?: HeadingType | BodyType | CaptionType | SubTitleType
   /**
    * @description
+   * CSS Prop입니다
    */
   className?: string
 }
 
+/**
+ *
+ * @param type h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | cation1 | cation2 | subTitle1 | subTitle2 | subTitle3
+ * @param className CSS Prop입니다
+ * @param children 표시할 문자입니다
+ *
+ * @description
+ * 특정 액션이 포함되지 않은 문장이나 문자를 표시할 때 사용합니다
+ */
 export const Typography = ({ type, className, children }: PropsWithChildren<TypographyProps>) => {
   if (type === 'body1' || type === 'body2' || type === 'body3') {
     return (
