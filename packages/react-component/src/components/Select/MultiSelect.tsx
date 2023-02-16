@@ -208,6 +208,8 @@ const _MultiSelect = <T extends string>(
             },
           },
           disabled && {
+            backgroundColor: theme.colors.white.light,
+            borderColor: theme.colors.gray.main,
             color: theme.colors.gray.main,
             cursor: 'not-allowed',
           },
@@ -231,7 +233,7 @@ const _MultiSelect = <T extends string>(
                 onChange([...value.filter((_) => _ !== item)])
               }}
             >
-              {item}
+              {options.filter((option) => option.value === item)[0].label}
             </Chip>
           ))}
 
@@ -262,8 +264,6 @@ const _MultiSelect = <T extends string>(
                 '&:disabled': {
                   color: theme.colors.gray.main,
                   cursor: 'inherit',
-                  backgroundColor: theme.colors.white.light,
-                  borderColor: theme.colors.gray.main,
                 },
               },
             ]}
@@ -282,16 +282,18 @@ const _MultiSelect = <T extends string>(
           />
         </Box>
 
-        <IconAdornment
-          onClick={(e) => {
-            e.stopPropagation()
-            onChange([])
-          }}
-        >
-          <CloseIcon width={16} height={16} />
-        </IconAdornment>
+        <Box css={{ width: 48, flexBasis: 48, display: 'flex', alignItems: 'center' }}>
+          <IconAdornment
+            onClick={(e) => {
+              e.stopPropagation()
+              onChange([])
+            }}
+          >
+            <CloseIcon width={16} height={16} />
+          </IconAdornment>
 
-        <ArrowBottomSmallIcon color="currentColor" />
+          <ArrowBottomSmallIcon color="currentColor" />
+        </Box>
 
         {open && (
           <OptionContainer>
