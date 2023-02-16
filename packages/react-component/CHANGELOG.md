@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.18
+
+### Patch Changes
+
+- [`68fb04b`](https://github.com/Musma/react-libraries/commit/68fb04b8fe95894824205aee0b5c9936100adafb) Thanks [@Leona3](https://github.com/Leona3)! - Table toolbar totalItems 0일 때 괄호 표시 적용
+
 ## 1.0.17
 
 ### Patch Changes
