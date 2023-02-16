@@ -29,6 +29,13 @@ interface TooltipProps {
   message: string | ReactNode
   /**
    * @optional
+   *
+   * @description
+   * 마우스오버를 했을 때, 툴팁의 너비입니다
+   */
+  width?: number
+  /**
+   * @optional
    * @type {string}
    * @default left
    *
@@ -37,22 +44,15 @@ interface TooltipProps {
    * 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
    */
   position?: PositionType
-  /**
-   * @optional
-   *
-   * @description
-   * 마우스오버를 했을 때, 툴팁의 너비입니다
-   */
-  width?: number
 }
 
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
 /**
  *
- * @param message 마우스오버를 했을 때, 툴팁의 메세지 입니다
- * @param width 마우스오버를 했을 때, 툴팁의 너비입니다
- * @param position 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
- * @param children 마우스오버를 했을 때, 툴팁을 나타낼 개체입니다
+ * @param children(required) 마우스오버를 했을 때, 툴팁을 나타낼 개체입니다
+ * @param message(required) 마우스오버를 했을 때, 툴팁의 메세지 입니다
+ * @param width(optional) 마우스오버를 했을 때, 툴팁의 너비입니다
+ * @param position(optional) 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
  * @example
  * <Tooltip message="Tooltip" width={100} position="top">
  *    <Box>example</Box>
