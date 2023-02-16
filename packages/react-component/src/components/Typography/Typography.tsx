@@ -35,9 +35,13 @@ export type TypographyProps = {
 
 /**
  *
- * @param type h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | cation1 | cation2 | subTitle1 | subTitle2 | subTitle3
- * @param className CSS Prop입니다
- * @param children 표시할 문자입니다
+ * @param type(optional) h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | cation1 | cation2 | subTitle1 | subTitle2 | subTitle3
+ * @param className(optional) CSS Prop입니다
+ * @param children(required) 표시할 문자입니다
+ * @example
+ * <Typography type="h1">
+ *    example
+ * </Typography>
  *
  * @description
  * 특정 액션이 포함되지 않은 문장이나 문자를 표시할 때 사용합니다
