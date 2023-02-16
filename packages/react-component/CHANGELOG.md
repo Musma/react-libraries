@@ -1,5 +1,13 @@
 # @musma/react-component
 
+## 1.0.19
+
+### Patch Changes
+
+- [`db870cf`](https://github.com/Musma/react-libraries/commit/db870cfaf1b211a26fd22fbc94e1af87843fd859) Thanks [@Dave352](https://github.com/Dave352)! - feat: YearPicker 개발
+
+- [`4f60299`](https://github.com/Musma/react-libraries/commit/4f602992735899b9c2a3a5106c7726e92f7a6e72) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] MultiSelect 추가
+
 ## 1.0.18
 
 ### Patch Changes
