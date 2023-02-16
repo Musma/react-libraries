@@ -1,162 +1,170 @@
-import { ReactNode, useMemo } from 'react'
+import { ReactNode } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 
-import { Typography } from 'src/components'
+import { Box } from 'src/elements'
+
+import { Typography } from '../Typography'
+
+type PositionType = 'left' | 'right' | 'top' | 'bottom'
 
 interface TooltipProps {
   /**
+   * @required
+   * @type {ReactNode}
+   *
    * @description
+   * 마우스오버를 했을 때, 툴팁을 나타낼 개체입니다
    */
   children: ReactNode
   /**
+   * @required
+   * @type {string}
+   * body3( fontWeight: 400, lineHeight: 1, fontSize: 0.875rem )이 적용됩니다
+   * @type {ReactNode}
+   * 상속받는 CSS가 없습니다
+   *
    * @description
+   * 마우스오버를 했을 때, 툴팁의 메세지 입니다
    */
   message: string | ReactNode
   /**
+   * @optional
+   * @default left
+   * @options left | top | right | bottom
+   * @type string
+   *
    * @description
+   * 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
    */
-  position?: 'left' | 'right' | 'top' | 'bottom'
+  position?: PositionType
   /**
+   * @optional
+   *
    * @description
+   * 마우스오버를 했을 때, 툴팁의 너비입니다
    */
   width?: number
 }
-
-const tooltipCss = {
-  container: css({ display: 'flex', alignItems: 'center', justifyContent: 'center' }),
-  parent: css({
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    '&: hover .child': {
-      visibility: 'visible',
-    },
-  }),
-  base: css({
-    visibility: 'hidden',
-    backgroundColor: 'black',
-    boxShadow: '0 2px 8px rgba(54, 54, 65, 0.25)',
-    textAlign: 'center',
-    borderRadius: '3px',
-    padding: '9px 4px',
-    position: 'absolute',
-    zIndex: 10,
-    '&::after': {
-      // 툴팁 화살표
-      content: '""',
-      position: 'absolute',
-    },
-  }),
-  position: {
-    left: css({
-      top: '50%',
-      right: '100%',
-      marginRight: '11px',
-      transform: 'translate(0, -50%)',
-      '&::after': {
-        left: '100%',
-        top: '50%',
-        marginTop: '-5px',
-        border: '5px solid',
-        borderColor: 'transparent transparent transparent black',
-      },
-    }),
-    right: css({
-      top: '50%',
-      left: '100%',
-      marginLeft: '11px',
-      transform: 'translate(0, -50%)',
-      '&::after': {
-        right: '100%',
-        top: '50%',
-        marginTop: '-5px',
-        border: '5px solid',
-        borderColor: 'transparent black transparent transparent',
-      },
-    }),
-    top: css({
-      left: '50%',
-      bottom: '100%',
-      marginBottom: '9px',
-      transform: 'translate(-50%)',
-      width: 'fit-content',
-      '&::after': {
-        left: '50%',
-        top: '100%',
-        marginLeft: '-5px',
-        border: '5px solid',
-        borderColor: 'black transparent transparent transparent',
-      },
-    }),
-    bottom: css({
-      left: '50%',
-      top: '100%',
-      marginTop: '9px',
-      transform: 'translate(-50%)',
-      width: 'fit-content',
-      '&::after': {
-        left: '50%',
-        bottom: '100%',
-        marginLeft: '-5px',
-        border: '5px solid',
-        borderColor: 'transparent transparent black transparent',
-      },
-    }),
-  },
-}
-
 // 참고: https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
+/**
+ *
+ * @param message 마우스오버를 했을 때, 툴팁의 메세지 입니다
+ * @param width 마우스오버를 했을 때, 툴팁의 너비입니다
+ * @param position 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
+ * @param children 마우스오버를 했을 때, 툴팁을 나타낼 개체입니다
+ * @description
+ * 툴팁 입니다
+ */
 export const Tooltip = ({ children, message, width, position = 'left' }: TooltipProps) => {
   const theme = useTheme()
-
-  const color = useMemo(() => {
-    const background = css({ backgroundColor: theme.colors.black.main })
-    const arrow = {
-      left: css({
-        '&::after': {
-          borderColor: `transparent transparent transparent ${theme.colors.black.main}`,
-        },
-      }),
-      right: css({
-        '&::after': {
-          borderColor: `transparent ${theme.colors.black.main} transparent transparent`,
-        },
-      }),
-      top: css({
-        '&::after': {
-          borderColor: `${theme.colors.black.main} transparent transparent transparent`,
-        },
-      }),
-      bottom: css({
-        '&::after': {
-          borderColor: `transparent transparent ${theme.colors.black.main} transparent`,
-        },
-      }),
-    }
-    return [background, arrow[position]]
-  }, [position, theme.colors.black.main])
-
   return (
-    <div css={tooltipCss.container}>
-      <div css={tooltipCss.parent}>
+    <Box css={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Box
+        css={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '&:hover .child': {
+            visibility: 'visible',
+          },
+        }}
+      >
         {children}
-        <div
-          css={[tooltipCss.base, tooltipCss.position[position], color]}
-          className="child"
+        <Box
+          css={[
+            // Base CSS
+            {
+              position: 'absolute',
+              zIndex: 10,
+              padding: '9px 4px',
+              borderRadius: '3px',
+              backgroundColor: theme.colors.black.main,
+              boxShadow: '0 2px 8px rgba(54, 54, 65, 0.25)',
+              textAlign: 'center',
+              visibility: 'hidden',
+              '&::after': {
+                // 툴팁 화살표
+                content: '""',
+                position: 'absolute',
+              },
+            },
+            // Position CSS
+            {
+              left: {
+                top: '50%',
+                right: '100%',
+                marginRight: '11px',
+                transform: 'translate(0, -50%)',
+                '&::after': {
+                  // 툴팁 화살표
+                  left: '100%',
+                  top: '50%',
+                  marginTop: '-5px',
+                  border: '5px solid',
+                  borderColor: `transparent transparent transparent ${theme.colors.black.main}`,
+                },
+              },
+              top: {
+                left: '50%',
+                bottom: '100%',
+                width: 'fit-content',
+                marginBottom: '9px',
+                transform: 'translate(-50%)',
+                '&::after': {
+                  // 툴팁 화살표
+                  left: '50%',
+                  top: '100%',
+                  marginLeft: '-5px',
+                  border: '5px solid',
+                  borderColor: `${theme.colors.black.main} transparent transparent transparent`,
+                },
+              },
+              right: {
+                left: '100%',
+                top: '50%',
+                marginLeft: '11px',
+                transform: 'translate(0,-50%)',
+                '&::after': {
+                  // 툴팁 화살표
+                  top: '50%',
+                  right: '100%',
+                  marginTop: '-5px',
+                  border: '5px solid',
+                  borderColor: `transparent ${theme.colors.black.main} transparent transparent`,
+                },
+              },
+              bottom: {
+                left: '50%',
+                top: '100%',
+                width: 'fit-content',
+                marginTop: '9px',
+                transform: 'translate(-50%)',
+                '&::after': {
+                  // 툴팁 화살표
+                  left: '50%',
+                  bottom: '100%',
+                  marginLeft: '-5px',
+                  border: '5px solid',
+                  borderColor: `transparent transparent ${theme.colors.black.main} transparent`,
+                },
+              },
+            }[position],
+          ]}
           style={{ width }}
+          className="child"
         >
           {typeof message === 'string' ? (
-            <Typography css={{ color: theme.colors.white.main }} type="body3">
+            <Typography type="body3" css={{ color: theme.colors.white.main }}>
               {message}
             </Typography>
           ) : (
-            <div>{message}</div>
+            <Box>{message}</Box>
           )}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   )
 }
