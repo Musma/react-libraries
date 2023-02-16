@@ -68,6 +68,9 @@ export const YearCalendar = ({
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
 
+  /**
+   * @return DateTime
+   */
   const initialDateTime = useMemo(() => {
     if (value) {
       return DateTime.fromISO(value)
@@ -76,13 +79,18 @@ export const YearCalendar = ({
   }, [value])
 
   /**
+   * @return number
+   *
    * @description
    * value값이 속한 인덱스를 찾습니다
    */
   const yearGroupFindIndex = useMemo(() => {
+    // initialDateTime이 속해있는 배열 안의 배열에서 인덱스를 찾습니다.
+    // [-1, 7, -1]
     const findGroup = yearGroup.map((group) =>
       lodashFindIndex(group, { year: initialDateTime.year }),
     )
+    // findGroup(Array)에서 '-1'이 아닌 숫자가 속한 인덱스를 찾습니다
     const findIndex = findGroup.findIndex((group) => group !== -1)
 
     return findIndex
@@ -119,8 +127,7 @@ export const YearCalendar = ({
           border: `1px solid ${theme.colors.gray.darker}`,
           borderRadius: theme.rounded.md,
         },
-
-        // 캘린더 위치 CSS
+        // AnchorOrigin CSS
         {
           top: {
             top: -4,
