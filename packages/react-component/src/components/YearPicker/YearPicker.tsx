@@ -18,43 +18,79 @@ interface YearPickerProps
   /**
    * @optional
    *
-   * 라벨
+   * @description
+   * Input 위에 표시될 라벨입니다
    */
   label?: string
   /**
    * @optional
+   * @type {boolean}
+   * false이면, 사용하지 않습니다
+   * || true이면, label 옆에 *가 표시됩니다
    *
-   * 라벨 옵션으로 필수인지
+   * @description
+   * Input의 label에 표시될 *의 사용여부입니다
    */
   required?: boolean
   /**
+   * @optional
+   * @type {string}
+   *
    * @default md
    *
+   * Input 높이
    * sm: 28
    * md: 32
-   * lg; 36
+   * lg: 36
+   *
+   * Input 폰트 사이즈
+   * sm: 12,
+   * md: 12,
+   * lg: 14,
+   *
+   * @description
+   * Input의 높이, Input의 폰트 사이즈입니다
    */
   size?: Size
   /**
    * @optional
+   * @type {boolean}
    *
-   * 에러 발생 여부
+   * false이면, borderColor에 'red'가 적용됩니다
+   * || true이면, borderColor에 'gray'가 적용됩니다
+   *
+   * @description
+   * 에러 발생시 borderColor를 불린 값에 따라 변경합니다
    */
   error?: boolean
   /**
    * @optional
    *
-   * Input 밑에 나타나는 도움 글
+   * @description
+   * Input 밑에 나타나는 도움 글입니다
+   * @description
+   * default color는 'green'이며, error props의 값이 true이면, 'red'가 적용됩니다
    */
   helperText?: string
   /**
    * @optional
+   * @type {string}
    *
-   * @type DateTime
-   * 날짜 정보입니다
+   * @description
+   * ISO 8601로된 날짜 정보입니다
    */
   value?: string | null
   /**
+   * @optional
+   * @type {{vertical: string}}
+   *
+   * @default { vertical: 'bottom' }
+   *
+   * { vertical: 'bottom' } | { vertical: 'top' }
+   *
+   * @description
+   * Input을 클릭했을 때, 캘린더가 열릴 방향입니다
+   *
    * TODO: 방향은 추후에 더 추가하겠습니다.
    */
   anchorOrigin?: {
@@ -63,11 +99,31 @@ interface YearPickerProps
   /**
    * @required
    *
-   * 날짜 변경 이벤트
+   * @description
+   * 날짜 변경 이벤트입니다
    */
   onChange: (dateTime: string) => void
 }
 
+/**
+ * @param HTMLInputElement(optional)
+ * @param label(optional) Input 위에 표시될 라벨입니다
+ * @param required(optional) Input의 label에 표시될 *의 사용여부입니다
+ * @param size(optional) Input의 높이, Input의 폰트 사이즈입니다
+ * @param error(optional) 에러 발생시 borderColor를 불린 값에 따라 변경합니다
+ * @param helperText(optional) default color는 'green'이며, error props의 값이 true이면, 'red'가 적용됩니다
+ * @param anchorOrigin(optional) Input을 클릭했을 때, 캘린더가 열릴 방향입니다
+ * @param onChange(required) 날짜 변경 이벤트입니다
+ * @example
+ * <YearPicker
+ *    anchorOrigin={{ vertical: 'top' }}
+ *    value={value}
+ *    onChange={onChange}
+ * />
+ *
+ * @description
+ * 년도를 선택하는 Picker입니다
+ */
 export const YearPicker = forwardRef<HTMLInputElement, YearPickerProps>(
   (
     {
@@ -91,6 +147,9 @@ export const YearPicker = forwardRef<HTMLInputElement, YearPickerProps>(
     const [inputRef, setInputRef] = useSetRef()
     const [showCalendar, toggleCalendar] = useToggle()
 
+    /**
+     * @return string
+     */
     const inputValue = useMemo(() => {
       if (value) {
         const dateTime = DateTime.fromISO(value).toFormat(DateFormat.Year)
