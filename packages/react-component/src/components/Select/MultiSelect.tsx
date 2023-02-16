@@ -9,7 +9,7 @@ import {
 } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { ArrowBottomSmallIcon } from '@musma/react-icons'
+import { ArrowBottomSmallIcon, CloseIcon } from '@musma/react-icons'
 import {
   useOutsideListener,
   useSetRef,
@@ -18,11 +18,17 @@ import {
   KeyboardEvents,
 } from '@musma/react-utils'
 
-import { InputLabel, Typography } from 'src/components'
+import {
+  InputLabel,
+  Typography,
+  Option,
+  OptionContainer,
+  Chip,
+  IconAdornment,
+} from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
-import { Option, OptionContainer } from './components'
 import { SelectOption } from './types'
 
 /**
@@ -30,7 +36,8 @@ import { SelectOption } from './types'
  * https://fettblog.eu/typescript-react-generic-forward-refs/
  *
  */
-interface SelectProps<T>
+
+interface MultiSelectProps<T>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange'> {
   /**
    * @default md
@@ -44,7 +51,7 @@ interface SelectProps<T>
    * @required
    * Select의 Value 값입니다.
    */
-  value: T
+  value: T[]
   /**
    * @required
    *
@@ -58,11 +65,11 @@ interface SelectProps<T>
    * @required
    */
   /** */
-  onChange: (value: T) => void
+  onChange: (value: T[]) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-const _Select = <T extends string>(
+const _MultiSelect = <T extends string>(
   {
     id: _id,
     size = 'md',
@@ -74,15 +81,15 @@ const _Select = <T extends string>(
     disabled,
     onChange,
     ...rest
-  }: SelectProps<T>,
+  }: MultiSelectProps<T>,
   inputRef: ForwardedRef<HTMLInputElement>,
 ) => {
   const theme = useTheme()
   const [ref, setRef] = useSetRef()
+
+  const [test, setTest] = useSetRef()
   const [open, setOpen] = useState(false)
-  const [inputValue, setInputValue] = useState<string>(() => {
-    return options.find((option) => option.value === value)?.label || ''
-  })
+  const [inputValue, setInputValue] = useState<string>('')
 
   const [activeIndex, setActiveIndex] = useState<number>(0)
 
@@ -95,30 +102,36 @@ const _Select = <T extends string>(
     return _id || uniqueId()
   }, [_id])
 
-  const selectedOption = useMemo(() => {
-    return options.find((option) => option.value === value)
-  }, [value, options])
-
   const handleSelectClick = useCallback(() => {
     if (!disabled) {
+      test?.focus()
       setOpen((value) => !value)
       setActiveIndex(0)
     }
-  }, [disabled])
+  }, [disabled, test])
 
-  const handleOptionClick = useCallback((value: T) => {
-    onChange(value)
-    setOpen(false)
-  }, [])
+  const handleOptionClick = useCallback(
+    (optionValue: T) => {
+      onChange([...value, optionValue])
+      setOpen(false)
+    },
+    [value],
+  )
+
+  const ccc = useMemo(() => {
+    return options.filter((option) => {
+      return !value.includes(option.value)
+    })
+  }, [options, value])
 
   const searchedOptions = useMemo(() => {
-    if (options && inputValue) {
-      return options.filter((option) =>
+    if (ccc && inputValue) {
+      return ccc.filter((option) =>
         option.label.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase()),
       )
     }
-    return options
-  }, [inputValue, options])
+    return ccc
+  }, [inputValue, ccc])
 
   useOutsideListener(ref, () => {
     // Select 영역 말고 다른 영역 클릭 시 닫힘
@@ -145,7 +158,7 @@ const _Select = <T extends string>(
 
   useEffect(() => {
     if (open && enterPress && searchedOptions[activeIndex]) {
-      onChange(searchedOptions[activeIndex].value)
+      onChange([...value, searchedOptions[activeIndex].value])
       setOpen(false)
     }
   }, [enterPress])
@@ -155,12 +168,7 @@ const _Select = <T extends string>(
       setInputValue('')
       return
     }
-    setInputValue(options.find((option) => option.value === value)?.label || '')
   }, [open])
-
-  useEffect(() => {
-    setInputValue(options.find((option) => option.value === value)?.label || '')
-  }, [value])
 
   return (
     <Box
@@ -184,11 +192,20 @@ const _Select = <T extends string>(
         tabIndex={-1}
         css={[
           {
+            minHeight: theme.inputSize.height[size],
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
             color: theme.colors.black.dark,
             cursor: 'pointer',
+            borderRadius: theme.rounded.md,
+            borderWidth: 1,
+            borderStyle: 'solid',
+            borderColor: theme.colors.gray.darker,
+            padding: theme.spacingUtil(4, 0),
+            '&:focus-within': {
+              border: `1px solid ${theme.colors.blue.main}`,
+            },
           },
           disabled && {
             color: theme.colors.gray.main,
@@ -197,46 +214,84 @@ const _Select = <T extends string>(
         ]}
         onClick={handleSelectClick}
       >
-        <InputBase
-          ref={inputRef}
-          id={id}
-          value={inputValue}
-          readOnly={!open}
-          disabled={disabled}
-          autoComplete="off"
-          css={[
-            {
-              width: '100%',
-              height: theme.inputSize.height[size],
-              fontSize: theme.inputSize.fontSize[size],
-              borderRadius: theme.rounded.md,
-              paddingLeft: theme.spacing.sm,
-              borderWidth: 1,
-              borderStyle: 'solid',
-              borderColor: theme.colors.gray.darker,
-              cursor: 'inherit',
-              color: 'currentColor',
-              '&:focus': {
-                border: `1px solid ${theme.colors.blue.main}`,
-              },
-              '&:disabled': {
-                color: theme.colors.gray.main,
-                cursor: 'inherit',
-                backgroundColor: theme.colors.white.light,
-                borderColor: theme.colors.gray.main,
-              },
-            },
-          ]}
-          onChange={(e) => {
-            setInputValue(e.target.value)
+        <Box
+          css={{
+            display: 'flex',
+            flex: 1,
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 4,
+            paddingLeft: theme.spacing.sm,
           }}
-          {...rest}
-        />
+        >
+          {value.map((item) => (
+            <Chip
+              key={item}
+              onDelete={() => {
+                onChange([...value.filter((_) => _ !== item)])
+              }}
+            >
+              {item}
+            </Chip>
+          ))}
 
-        <ArrowBottomSmallIcon
-          css={[{ position: 'absolute', right: 4 }, open && { rotate: '180deg' }]}
-          color="currentColor"
-        />
+          <InputBase
+            ref={setTest}
+            id={id}
+            value={inputValue}
+            readOnly={!open}
+            disabled={disabled}
+            autoComplete="off"
+            css={[
+              {
+                sm: {
+                  height: 18,
+                },
+                md: {
+                  height: 24,
+                },
+                lg: {
+                  height: 32,
+                },
+              }[size],
+              {
+                flex: 1,
+                fontSize: theme.inputSize.fontSize[size],
+                cursor: 'inherit',
+                color: 'currentColor',
+                '&:disabled': {
+                  color: theme.colors.gray.main,
+                  cursor: 'inherit',
+                  backgroundColor: theme.colors.white.light,
+                  borderColor: theme.colors.gray.main,
+                },
+              },
+            ]}
+            onChange={(e) => {
+              setInputValue(e.target.value)
+            }}
+            {...rest}
+          />
+
+          <InputBase
+            ref={inputRef}
+            value={inputValue}
+            hidden={true}
+            disabled={disabled}
+            {...rest}
+          />
+        </Box>
+
+        <IconAdornment
+          onClick={(e) => {
+            e.stopPropagation()
+            onChange([])
+          }}
+        >
+          <CloseIcon width={16} height={16} />
+        </IconAdornment>
+
+        <ArrowBottomSmallIcon color="currentColor" />
 
         {open && (
           <OptionContainer>
@@ -244,7 +299,6 @@ const _Select = <T extends string>(
               <Option
                 key={`key-${option.value}`}
                 option={option}
-                selectedOption={selectedOption}
                 onMouseEnter={() => {
                   setActiveIndex(index)
                 }}
@@ -276,6 +330,6 @@ const _Select = <T extends string>(
   )
 }
 
-export const Select = forwardRef(_Select) as <T>(
-  props: SelectProps<T> & { ref?: ForwardedRef<HTMLInputElement> },
-) => ReturnType<typeof _Select>
+export const MultiSelect = forwardRef(_MultiSelect) as <T>(
+  props: MultiSelectProps<T> & { ref?: ForwardedRef<HTMLInputElement> },
+) => ReturnType<typeof _MultiSelect>

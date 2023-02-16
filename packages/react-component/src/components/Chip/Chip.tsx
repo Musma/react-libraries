@@ -127,7 +127,8 @@ export const Chip = ({
         <IconAdornment
           noPadding={true}
           css={{ marginLeft: 4 }}
-          onClick={() => {
+          onClick={(event) => {
+            event.stopPropagation()
             onDelete()
           }}
         >

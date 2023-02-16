@@ -1,29 +1,44 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 import { OutlineAddBoxIcon } from '@musma/react-icons'
 
 import { Box } from 'src/elements'
 
-import { Button, Chip, IToastPopupData, Select, Table, useToastContext } from './components'
+import { Button, MultiSelect, Table } from './components'
 
 const options = [
   {
-    label: '+1114',
+    label: '1',
     value: '1',
   },
   {
-    label: '-2224',
+    label: '2',
     value: '2',
   },
   {
-    label: '3335',
+    label: '3',
     value: '3',
   },
   {
-    label: '4445',
+    label: '4',
     value: '4',
+  },
+  {
+    label: '5',
+    value: '5',
+  },
+  {
+    label: '6',
+    value: '6',
+  },
+  {
+    label: '7',
+    value: '7',
+  },
+  {
+    label: '8',
+    value: '8',
   },
 ]
 
@@ -68,40 +83,8 @@ const sampleData = [
 ]
 
 const Component = () => {
-  const navigate = useNavigate()
   const theme = useTheme()
-  const [value, setValue] = useState('1')
-
-  const { addToast, setLimit } = useToastContext()
-
-  const popupSample1: IToastPopupData = {
-    title: 'Error',
-    description: 'This is a warning notice about copywriting.',
-    mode: 'dark',
-    type: 'error',
-  }
-
-  const popupSample2: IToastPopupData = {
-    title: '잘했다임마',
-    description: '굿 잘 됨\niwoe89ehckdnc\n39e8dhbcjkldshacpdkc',
-    type: 'success',
-  }
-
-  const popupSample3: IToastPopupData = {
-    title: 'Extra Information',
-    mode: 'dark',
-  }
-
-  const popupSample4: IToastPopupData = {
-    title: 'This is warning message.',
-    type: 'warning',
-  }
-
-  const popupSample5: IToastPopupData = {
-    description: 'This sentence is false\nLorem ipsum ziahquekc dt.',
-    mode: 'dark',
-    type: 'success',
-  }
+  const [value, setValue] = useState(['1', '2'])
 
   const [checkedItems, setCheckedItems] = useState<string[]>([])
 
@@ -115,23 +98,16 @@ const Component = () => {
           gap: theme.spacing.md,
         }}
       >
-        <Select
+        <MultiSelect
           options={options}
           value={value}
           onChange={setValue}
           disabled={false}
           placeholder="123123"
+          css={{ width: 400 }}
         />
 
-        <Select options={options} value={value} disabled={false} onChange={setValue} />
-
-        <Button
-          onClick={() => {
-            setValue('3')
-          }}
-        >
-          dkdkd
-        </Button>
+        {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
 
         <Table
           columns={columns}
@@ -147,73 +123,6 @@ const Component = () => {
           }}
           // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
         />
-      </Box>
-
-      <Box css={{ display: 'flex', gap: '10px' }}>
-        <Chip
-          color={theme.colors.red.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample1)
-          }}
-        >
-          토스트 팝업 1
-        </Chip>
-
-        <Chip
-          color={theme.colors.green.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample2)
-          }}
-        >
-          토스트 팝업 2
-        </Chip>
-
-        <Chip
-          color={theme.colors.blue.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample3)
-          }}
-        >
-          토스트 팝업 3
-        </Chip>
-
-        <Chip
-          color={theme.colors.orange.main}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample4)
-          }}
-        >
-          토스트 팝업 4
-        </Chip>
-
-        <Chip
-          color={theme.colors.gray.dark}
-          shape="rounded"
-          onClick={() => {
-            addToast(popupSample5)
-          }}
-        >
-          토스트 팝업 5
-        </Chip>
-
-        <Chip
-          color={theme.colors.black.main}
-          onClick={() => {
-            const random = Math.floor(Math.random() * 10) + 1
-            console.log('random', random)
-            setLimit(random)
-          }}
-        >
-          토스트 팝업 limit 수를 랜덤으로 변경 (1~10 사이)
-        </Chip>
-
-        <Chip color={theme.colors.black.darker} onClick={() => navigate('toast')}>
-          토스트 팝업 페이지로 이동
-        </Chip>
       </Box>
     </Box>
   )
