@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.20
+
+### Patch Changes
+
+- [`8af55a4`](https://github.com/Musma/react-libraries/commit/8af55a4f5742a6cae3b593603122cedd6dd2bcab) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] MultiSelect 로직 수정
+
 ## 1.0.19
 
 ### Patch Changes
