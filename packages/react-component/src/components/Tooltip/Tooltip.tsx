@@ -24,7 +24,7 @@ interface TooltipProps {
    * || ReactNode이면, 상속받는 CSS가 없습니다
    *
    * @description
-   * 마우스오버를 했을 때, 툴팁의 메세지 입니다
+   * 마우스오버를 했을 때, 툴팁의 메세지입니다
    */
   message: string | ReactNode
   /**
@@ -41,7 +41,7 @@ interface TooltipProps {
    *
    * 'left' | 'top' | 'right' | 'bottom'
    * @description
-   * 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
+   * 마우스오버를 했을 때, 툴팁이 보여지는 위치입니다
    */
   position?: PositionType
 }
@@ -50,9 +50,9 @@ interface TooltipProps {
 /**
  *
  * @param children(required) 마우스오버를 했을 때, 툴팁을 나타낼 개체입니다
- * @param message(required) 마우스오버를 했을 때, 툴팁의 메세지 입니다
+ * @param message(required) 마우스오버를 했을 때, 툴팁의 메세지입니다
  * @param width(optional) 마우스오버를 했을 때, 툴팁의 너비입니다
- * @param position(optional) 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
+ * @param position(optional) 마우스오버를 했을 때, 툴팁이 보여지는 위치입니다
  * @example
  * <Tooltip message="Tooltip" width={100} position="top">
  *    <Box>example</Box>
