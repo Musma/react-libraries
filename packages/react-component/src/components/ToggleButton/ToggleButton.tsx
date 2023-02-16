@@ -1,99 +1,123 @@
-import { useMemo } from 'react'
+import { InputHTMLAttributes } from 'react'
 
-import { css, useTheme } from '@emotion/react'
+import { useTheme } from '@emotion/react'
 
+import { InputBase, Label } from 'src/elements'
 import { Size } from 'src/types'
 
-interface ToggleButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+interface ToggleButtonProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
+   * @optional
+   * @type {string}
+   * @default md
+   *
+   * sm: { width: 24, height: 13.2 }
+   * md: { width: 16, height: 8 }
+   * lg: { width: 14, height: 7.7 }
+   *
    * @description
+   * Toggle의 크기입니다
    */
   size?: Size
 }
 
-export const ToggleButton = ({ size = 'lg', disabled, ...rest }: ToggleButtonProps) => {
+/**
+ *
+ * @param InputHTMLAttributes(optional)
+ * @param size(optional) Toggle의 크기입니다
+ *
+ * @description
+ * 토글 버튼입니다
+ */
+export const ToggleButton = ({ size = 'md', disabled, ...rest }: ToggleButtonProps) => {
   const theme = useTheme()
-
-  const colorCss = useMemo(() => {
-    return {
-      active: css({
-        backgroundColor: theme.colors.gray.main,
-        '&:checked': {
-          backgroundColor: theme.colors.green.main,
-        },
-        '&::before': {
-          backgroundColor: theme.colors.white.main,
-        },
-      }),
-      disabled: css({
-        backgroundColor: theme.colors.white.light,
-        '&::before': {
-          backgroundColor: theme.colors.gray.main,
-        },
-      }),
-    }
-  }, [theme])
-
   return (
-    <label css={containerCss}>
-      <input
+    <Label
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 24,
+        height: 24,
+      }}
+    >
+      <InputBase
         type="checkbox"
         css={[
-          inputCss.base,
-          inputCss.size[size],
-          disabled
-            ? colorCss.disabled
-            : [inputCss.animation.base, inputCss.animation.position[size], colorCss.active],
+          // Input Base CSS
+          {
+            borderRadius: 10,
+            backgroundColor: theme.colors.gray.main,
+            '&::before': {
+              display: 'block',
+              borderRadius: 9999,
+              content: '""',
+              backgroundColor: theme.colors.white.main,
+              // Animation Base CSS
+              transitionProperty: 'transform',
+              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+            },
+            '&:checked': {
+              backgroundColor: theme.colors.green.main,
+            },
+          },
+          // Input Size CSS (size props의 값에 따라 가변)
+          {
+            lg: {
+              width: 24,
+              height: 13.2,
+              '&::before': {
+                marginLeft: 1.8,
+                marginTop: 1.8,
+                width: 9.6,
+                height: 9.6,
+              },
+              // Animation CSS
+              '&:checked::before': {
+                transform: 'translate(10.79px)',
+              },
+            },
+            md: {
+              width: 16,
+              height: 8,
+              '&::before': {
+                marginLeft: 1,
+                marginTop: 1,
+                width: 6,
+                height: 6,
+              },
+              // Animation CSS
+              '&:checked::before': {
+                transform: 'translate(8px)',
+              },
+            },
+            sm: {
+              width: 14,
+              height: 7.7,
+              '&::before': {
+                marginLeft: 1.05,
+                marginTop: 1,
+                width: 5.6,
+                height: 5.6,
+              },
+              // Animation CSS
+              '&:checked::before': {
+                transform: 'translate(6px)',
+              },
+            },
+          }[size],
+          // Disabled CSS
+          disabled && {
+            backgroundColor: theme.colors.white.light,
+            '&::before': {
+              backgroundColor: theme.colors.gray.main,
+            },
+          },
         ]}
         disabled={disabled}
         {...rest}
       />
-    </label>
+    </Label>
   )
-}
-
-const containerCss = css({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '24px',
-  width: '24px',
-})
-const inputCss = {
-  base: css({
-    appearance: 'none',
-    borderRadius: '10px',
-    '&::before': { display: 'block', borderRadius: '9999px', content: '""' },
-  }),
-  size: {
-    lg: css({
-      width: '24px',
-      height: '13.2px',
-      '&::before': { marginLeft: '1.8px', marginTop: '1.8px', height: '9.6px', width: '9.6px' },
-    }),
-    md: css({
-      width: '16px',
-      height: '8px',
-      '&::before': { marginLeft: '1px', marginTop: '1px', height: '6px', width: '6px' },
-    }),
-    sm: css({
-      width: '14px',
-      height: '7.7px',
-      '&::before': { marginLeft: '1.05px', marginTop: '1px', height: '5.6px', width: '5.6px' },
-    }),
-  },
-  animation: {
-    base: css({
-      '&::before': {
-        transitionProperty: 'transform',
-        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-        transitionDuration: '150ms',
-      },
-    }),
-    position: {
-      lg: css({ '&:checked::before': { transform: 'translate(10.79px)' } }),
-      md: css({ '&:checked::before': { transform: 'translate(8px)' } }),
-      sm: css({ '&:checked::before': { transform: 'translate(6px)' } }),
-    },
-  },
 }
