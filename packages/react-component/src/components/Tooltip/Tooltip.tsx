@@ -19,10 +19,9 @@ interface TooltipProps {
   children: ReactNode
   /**
    * @required
-   * @type {string}
-   * body3( fontWeight: 400, lineHeight: 1, fontSize: 0.875rem )이 적용됩니다
-   * @type {ReactNode}
-   * 상속받는 CSS가 없습니다
+   * @type {string | ReactNode}
+   * string이면, ( body3: fontWeight: 400,lineHeight: 1, fontSize: 0.875rem )가 적용됩니다
+   * | ReactNode이면, 상속받는 CSS가 없습니다
    *
    * @description
    * 마우스오버를 했을 때, 툴팁의 메세지 입니다
@@ -30,10 +29,10 @@ interface TooltipProps {
   message: string | ReactNode
   /**
    * @optional
+   * @type {string}
    * @default left
-   * @options left | top | right | bottom
-   * @type string
    *
+   * 'left' | 'top' | 'right' | 'bottom'
    * @description
    * 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
    */
@@ -53,6 +52,10 @@ interface TooltipProps {
  * @param width 마우스오버를 했을 때, 툴팁의 너비입니다
  * @param position 마우스오버를 했을 때, 툴팁이 보여지는 위치 입니다
  * @param children 마우스오버를 했을 때, 툴팁을 나타낼 개체입니다
+ * @example
+ * <Tooltip message="Tooltip" width={100} position="top">
+ *    <Box>example</Box>
+ * </Tooltip>
  * @description
  * 툴팁 입니다
  */
