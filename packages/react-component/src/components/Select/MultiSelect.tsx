@@ -118,20 +118,22 @@ const _MultiSelect = <T extends string>(
     [value],
   )
 
-  const ccc = useMemo(() => {
+  // Options 목록중에서 이미 선택한 Option을 제외한 나머지 옵션들 반환
+  const remainOptions = useMemo(() => {
     return options.filter((option) => {
       return !value.includes(option.value)
     })
   }, [options, value])
 
+  // remainOptions 중 Input에 검색한 텍스트와 일치하는 옵션들 반환
   const searchedOptions = useMemo(() => {
-    if (ccc && inputValue) {
-      return ccc.filter((option) =>
+    if (remainOptions && inputValue) {
+      return remainOptions.filter((option) =>
         option.label.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase()),
       )
     }
-    return ccc
-  }, [inputValue, ccc])
+    return remainOptions
+  }, [inputValue, remainOptions])
 
   useOutsideListener(ref, () => {
     // Select 영역 말고 다른 영역 클릭 시 닫힘
@@ -233,7 +235,7 @@ const _MultiSelect = <T extends string>(
                 onChange([...value.filter((_) => _ !== item)])
               }}
             >
-              {options.filter((option) => option.value === item)[0].label}
+              {options.find((option) => option.value === item)?.label}
             </Chip>
           ))}
 

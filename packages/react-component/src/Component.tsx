@@ -5,7 +5,7 @@ import { OutlineAddBoxIcon } from '@musma/react-icons'
 
 import { Box } from 'src/elements'
 
-import { Button, MultiSelect, Table } from './components'
+import { Button, CheckboxGroup, MultiSelect, Table } from './components'
 
 const options = [
   {
@@ -106,6 +106,8 @@ const Component = () => {
           placeholder="123123"
           css={{ width: 400 }}
         />
+
+        <CheckboxGroup options={options} value={value} onChange={setValue} />
 
         {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
 

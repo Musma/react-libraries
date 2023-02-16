@@ -7,7 +7,7 @@ import { Typography } from 'src/components'
 import { Box, InputBase, Label } from 'src/elements'
 import { Size } from 'src/types'
 
-import { ReactComponent as Check } from './images/check.svg'
+import { Check } from './components'
 
 interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'> {
   label?: ReactNode

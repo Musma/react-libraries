@@ -27,7 +27,7 @@ interface RadioGroupProps {
   /**
    * @required
    */
-  items: {
+  options: {
     label: string
     value: string
   }[]
@@ -48,7 +48,7 @@ interface RadioGroupProps {
  * <RadioGroup value="test" onChange={onChange} data={[...]} />
  */
 export const RadioGroup = forwardRef<HTMLInputElement, RadioGroupProps>(
-  ({ size = 'md', required, label, value, gap = 'lg', items, className, onChange }, ref) => {
+  ({ size = 'md', required, label, value, gap = 'lg', options, className, onChange }, ref) => {
     const theme = useTheme()
     return (
       <Box className={className}>
@@ -67,7 +67,7 @@ export const RadioGroup = forwardRef<HTMLInputElement, RadioGroupProps>(
             gap: theme.spacingUtil(gap),
           }}
         >
-          {items.map(({ label, value: _value }) => (
+          {options.map(({ label, value: _value }) => (
             <RadioButton
               key={label}
               ref={ref}
