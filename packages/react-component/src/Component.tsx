@@ -142,7 +142,7 @@ const Component = () => {
           onRowClick={() => alert('Table의 Row를 클릭하셨습니다!')}
           toolbar={{
             title: '123',
-            // totalCount: 3,
+            totalItems: 0,
             children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
           }}
           // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}

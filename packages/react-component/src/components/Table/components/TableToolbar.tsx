@@ -18,16 +18,16 @@ export const TableToolbar = ({ title, totalItems, children }: TableToolbarProps)
         marginBottom: theme.spacing.sm,
       }}
     >
-      <Box css={{ display: 'flex', gap: 4 }}>
+      <Box css={{ display: 'flex', gap: 4, alignItems: 'center' }}>
         {/* 제목 */}
         <Typography type="h6" css={{ color: theme.colors.black.lighter }}>
           {title}
         </Typography>
 
         {/* 전체 데이터 개수 */}
-        {totalItems && (
+        {typeof totalItems === 'number' && (
           <Typography type="body2" css={{ color: theme.colors.blue.main }}>
-            ({totalItems})
+            {`(${totalItems})`}
           </Typography>
         )}
       </Box>
