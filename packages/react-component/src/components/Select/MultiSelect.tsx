@@ -277,6 +277,7 @@ const _MultiSelect = <T extends string>(
             ref={inputRef}
             value={inputValue}
             hidden={true}
+            readOnly={true}
             disabled={disabled}
             {...rest}
           />
