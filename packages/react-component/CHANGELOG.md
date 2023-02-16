@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.22
+
+### Patch Changes
+
+- [`19058e0`](https://github.com/Musma/react-libraries/commit/19058e0a175a8bca168c22d3513b69ccf771af91) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] CheckboxGroup 추가 및 일부 컴포넌트 로직 수정
+
 ## 1.0.21
 
 ### Patch Changes
