@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.21
+
+### Patch Changes
+
+- [`4b67bf4`](https://github.com/Musma/react-libraries/commit/4b67bf4d57bedaa27988c510f41afa06a14aea96) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] MultiSelect InputBase readonly={true} 추가
+
 ## 1.0.20
 
 ### Patch Changes
