@@ -118,21 +118,43 @@ export interface TextInputProps
   rules?: RulesType
 }
 
+/**
+ * @param InputHTMLAttributes(optional)
+ * @param type(optional) Input의 타입을 정합니다 'password'가 입력되면, endAdornment가 활성화됩니다
+ * @param size(optional) Input 구성요소들의 사이즈입니다
+ * @param label(optional) Input 위에 표시될 라벨입니다
+ * @param startAdornment(optional) Input 시작지점 아이콘 버튼입니다
+ * @param endAdornment(optional) Input 종료지점 아이콘 버튼입니다
+ * @param error(optional) 에러 발생시 borderColor를 불린 값에 따라 변경합니다
+ * @param helperText(optional) default color는 'green'이며, error props의 값이 true이면, 'red'가 적용됩니다
+ * @param required(optional) Input의 label에 표시될 *의 사용여부입니다
+ * @param rules(optional) Input에 입력하는 값을 rules에 따라 제한합니다
+ * @example
+ * <TextInput
+ *    label='ID'
+ *    rules='onlyDigit'
+ *    value={value}
+ *    onChange={onChange}
+ * />
+ *
+ * @description
+ * Text를 입력할 수 있는 Input입니다
+ */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
-      label,
-      size = 'md',
       type = 'text',
-      helperText,
-      id,
-      disabled = false,
-      error = false,
+      size = 'md',
+      label,
       startAdornment,
       endAdornment,
+      error = false,
+      helperText,
       required,
-      className,
       rules,
+      id,
+      disabled = false,
+      className,
       onChange,
       ...rest
     },

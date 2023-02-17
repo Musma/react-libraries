@@ -106,7 +106,7 @@ interface YearPickerProps
 }
 
 /**
- * @param HTMLInputElement(optional)
+ * @param InputHTMLAttributes(optional)
  * @param label(optional) Input 위에 표시될 라벨입니다
  * @param required(optional) Input의 label에 표시될 *의 사용여부입니다
  * @param size(optional) Input의 높이, Input의 폰트 사이즈입니다
