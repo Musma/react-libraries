@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.7
+
+### Patch Changes
+
+- [#187](https://github.com/Musma/react-libraries/pull/187) [`09205fe`](https://github.com/Musma/react-libraries/commit/09205fe0f36430a82dd4edbebdd89f365d8e0da4) Thanks [@Dave352](https://github.com/Dave352)! - chore: TextInput Rules props 추가 및 컴포넌트 설명 주석
+
 ## 0.2.6
 
 ### Patch Changes
