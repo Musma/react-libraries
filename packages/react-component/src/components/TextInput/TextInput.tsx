@@ -62,6 +62,7 @@ export interface TextInputProps
    */
   label?: string
   /**
+   * @optional
    * @returns JSX.Element
    *
    * @description
@@ -69,6 +70,7 @@ export interface TextInputProps
    */
   startAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   /**
+   * @optional
    * @returns JSX.Element
    *
    * @description
