@@ -10,12 +10,24 @@ import {
 
 import { useTheme } from '@emotion/react'
 import { OutlineEyeCloseIcon, OutlineEyeIcon } from '@musma/react-icons'
+import { RegExps } from '@musma/react-utils'
 
 import { IconAdornment, InputHelper, InputLabel } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { Adornment } from './components'
+
+const Rules = {
+  ONLY_DIGIT: 'onlyDigit',
+  ONLY_ENGLISH: 'onlyEnglish',
+  ONLY_ENGLISH_AND_DIGIT: 'onlyEnglishAndDigit',
+  ONLY_DIGIT_AND_DOT: 'onlyDigitAndDot',
+  EMAIL: 'email',
+  QRCODE: 'qrcode',
+} as const
+
+type RulesType = (typeof Rules)[keyof typeof Rules]
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
@@ -59,10 +71,8 @@ export interface TextInputProps
   /**
    * @optional
    * @description
-   * 정규표현식입니다
-   * react-utils 패키지에 있는 RegExps를 넣어서 사용하면 됩니다.
    */
-  regExp?: RegExp
+  rules?: RulesType
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -79,7 +89,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       endAdornment,
       required,
       className,
-      regExp,
+      rules,
       onChange,
       ...rest
     },
@@ -100,17 +110,32 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     // TextInput onChange 이벤트
     const handleTextInputChange = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
-        if (onChange) {
-          if (regExp) {
-            if (regExp.test(event.target.value)) {
-              onChange(event)
-            }
-            return
+        const { value } = event.target
+
+        const regExps = () => {
+          switch (rules) {
+            case Rules.ONLY_DIGIT:
+              return RegExps.ONLY_DIGIT.test(value)
+            case Rules.ONLY_ENGLISH:
+              return RegExps.ONLY_ENGLISH.test(value)
+            case Rules.ONLY_ENGLISH_AND_DIGIT:
+              return RegExps.ONLY_ENGLISH_AND_DIGIT.test(value)
+            case Rules.QRCODE:
+              return RegExps.QRCODE.test(value)
+            case Rules.EMAIL:
+              return RegExps.EMAIL.test(value)
+            case Rules.ONLY_DIGIT_AND_DOT:
+              return RegExps.ONLY_DIGIT_AND_DOT.test(value)
+            default:
+              return
           }
-          onChange(event)
+        }
+
+        if (onChange) {
+          regExps() && onChange(event)
         }
       },
-      [onChange, regExp],
+      [onChange, rules],
     )
 
     return (
