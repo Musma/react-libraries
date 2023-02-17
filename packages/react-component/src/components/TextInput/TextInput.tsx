@@ -132,7 +132,7 @@ export interface TextInputProps
  * @example
  * <TextInput
  *    label='ID'
- *    rules='onlyDigit'
+ *    rules='onlyEmail'
  *    value={value}
  *    onChange={onChange}
  * />
@@ -177,29 +177,26 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target
 
-        // 입력되는 값을 검사
-        const regExps = () => {
-          switch (rules) {
-            case Rules.ONLY_DIGIT:
-              return RegExps.ONLY_DIGIT.test(value)
-            case Rules.ONLY_DIGIT_AND_DASH:
-              return RegExps.ONLY_DIGIT_AND_DASH.test(value)
-            case Rules.ONLY_DIGIT_AND_DOT:
-              return RegExps.ONLY_DIGIT_AND_DOT.test(value)
-            case Rules.ONLY_EMAIL:
-              return RegExps.ONLY_EMAIL.test(value)
-            case Rules.ONLY_ENGLISH:
-              return RegExps.ONLY_ENGLISH.test(value)
-            case Rules.ONLY_ENGLISH_AND_DIGIT:
-              return RegExps.ONLY_ENGLISH_AND_DIGIT.test(value)
-            default:
-              return
-          }
-        }
+        /**
+         * @return {boolean}
+         */
+        const regExps =
+          rules &&
+          {
+            onlyDigit: RegExps.ONLY_DIGIT.test(value),
+            onlyDigitAndDash: RegExps.ONLY_DIGIT_AND_DASH.test(value),
+            onlyDigitAndDot: RegExps.ONLY_DIGIT_AND_DOT.test(value),
+            onlyEmail: RegExps.ONLY_EMAIL.test(value),
+            onlyEnglish: RegExps.ONLY_ENGLISH.test(value),
+            onlyEnglishAndDigit: RegExps.ONLY_ENGLISH_AND_DIGIT.test(value),
+          }[rules]
 
-        // 입력한 값 중 검사를 통과한 값만 onChange
         if (onChange) {
-          regExps() && onChange(event)
+          if (rules) {
+            regExps && onChange(event)
+            return
+          }
+          onChange(event)
         }
       },
       [onChange, rules],
