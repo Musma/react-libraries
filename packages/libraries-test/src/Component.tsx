@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { useTheme } from '@emotion/react'
 import {
   Tooltip,
   Typography,
@@ -44,8 +45,11 @@ const AAA = [
 ]
 
 export const Component = () => {
+  const theme = useTheme()
+
   const [showSpinner, setSpinner] = useState(false)
   const [showDrawer, setDrawer] = useState(false)
+
   const { control } = useForm<CCC>({
     defaultValues: {
       aaa: 1,
@@ -155,11 +159,30 @@ export const Component = () => {
           <IconAdornmentExample />
         </Card>
 
-        <Card title="Skeleton" css={{ padding: 24 }}>
-          <div css={{ height: 300, width: '100%' }}>
-            <Skeleton css={{ height: '100px' }} />
-            <Skeleton variant="circle" css={{ height: 40, width: 40, backgroundColor: 'red' }} />
-          </div>
+        <Card
+          title="Skeleton"
+          css={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 24 }}
+        >
+          <Typography type="subTitle2">Image</Typography>
+          <Skeleton
+            variant="image"
+            css={{ width: 100, height: 100, backgroundColor: theme.colors.blue.main }}
+          />
+
+          <Typography type="subTitle2">Rectangle</Typography>
+          <Skeleton variant="rectangle" css={{ height: '100px' }} />
+
+          <Typography type="subTitle2">Circle</Typography>
+          <Skeleton
+            variant="circle"
+            css={{ height: 60, width: 60, backgroundColor: theme.colors.red.main }}
+          />
+
+          <Typography type="subTitle2">Table</Typography>
+          <Skeleton variant="table" css={{ backgroundColor: theme.colors.green.light }} />
+
+          <Typography type="subTitle2">List</Typography>
+          <Skeleton variant="list" />
         </Card>
 
         <Card title="Drawer" css={{ padding: 24 }}>
