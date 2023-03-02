@@ -179,10 +179,17 @@ export const Component = () => {
           />
 
           <Typography type="subTitle2">Table</Typography>
-          <Skeleton variant="table" css={{ backgroundColor: theme.colors.green.light }} />
+          <Skeleton
+            variant="table"
+            paragraph={2}
+            css={{ backgroundColor: theme.colors.green.light }}
+          />
 
           <Typography type="subTitle2">List</Typography>
           <Skeleton variant="list" />
+
+          <Typography type="subTitle2">Card</Typography>
+          <Skeleton variant="card" css={{ backgroundColor: theme.colors.orange.main }} />
         </Card>
 
         <Card title="Drawer" css={{ padding: 24 }}>

@@ -3,10 +3,10 @@ import { OutlinePhotoIcon } from '@musma/react-icons'
 
 import { Box } from 'src/elements'
 
-import { pulse } from './Keyframes'
+import { pulse } from '../styles'
 import { SkeletonProps } from '../types'
 
-export const ImageSkeleton = ({ ...rest }: SkeletonProps) => {
+export const ImageSkeleton = (props: SkeletonProps) => {
   const theme = useTheme()
 
   return (
@@ -17,10 +17,10 @@ export const ImageSkeleton = ({ ...rest }: SkeletonProps) => {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: theme.rounded.md,
-        backgroundColor: rest.style?.backgroundColor || theme.colors.gray.main,
+        backgroundColor: props.style?.backgroundColor || theme.colors.gray.main,
         animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
       }}
-      {...rest}
+      {...props}
     >
       <OutlinePhotoIcon
         width="50%"

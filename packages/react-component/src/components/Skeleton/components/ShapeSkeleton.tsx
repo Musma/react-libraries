@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react'
 
 import { Box } from 'src/elements'
 
-import { pulse } from './Keyframes'
+import { pulse } from '../styles'
 import { SkeletonProps } from '../types'
 
 export const ShapeSkeleton = ({ variant, ...rest }: SkeletonProps) => {
