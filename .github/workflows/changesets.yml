@@ -4,7 +4,7 @@ name: Changesets
 on:
   push:
     paths:
-      - ".changeset/**"
+      - '.changeset/**'
     branches:
       - main
 
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "lts/*"
+          node-version: 'lts/*'
       # pnpm global install
       - name: install pnpm
         run: npm i pnpm@latest -g
@@ -47,8 +47,8 @@ jobs:
         uses: changesets/action@v1
         with:
           version: pnpm ci:version
-          commit: "chore: update versions"
-          title: "chore: update versions"
+          commit: 'chore: update versions'
+          title: 'chore: update versions'
           publish: pnpm ci:publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -57,7 +57,7 @@ jobs:
       - name: Slack channel notification
         uses: 8398a7/action-slack@v3
         with:
-          channel: "#fe-library"
+          channel: '#fe-library'
           status: ${{ job.status }}
           text: ${{steps.tag.outputs.tag}}
           fields: message, commit, author

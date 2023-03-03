@@ -82,12 +82,12 @@ const _MultiSelect = <T extends string>(
     onChange,
     ...rest
   }: MultiSelectProps<T>,
-  inputRef: ForwardedRef<HTMLInputElement>,
+  propRef: ForwardedRef<HTMLInputElement>,
 ) => {
   const theme = useTheme()
   const [ref, setRef] = useSetRef()
 
-  const [test, setTest] = useSetRef()
+  const [inputRef, setInputRef] = useSetRef()
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState<string>('')
 
@@ -104,11 +104,11 @@ const _MultiSelect = <T extends string>(
 
   const handleSelectClick = useCallback(() => {
     if (!disabled) {
-      test?.focus()
+      inputRef?.focus()
       setOpen((value) => !value)
       setActiveIndex(0)
     }
-  }, [disabled, test])
+  }, [disabled, inputRef])
 
   const handleOptionClick = useCallback(
     (optionValue: T) => {
@@ -240,7 +240,7 @@ const _MultiSelect = <T extends string>(
           ))}
 
           <InputBase
-            ref={setTest}
+            ref={setInputRef}
             id={id}
             value={inputValue}
             readOnly={!open}
@@ -276,7 +276,7 @@ const _MultiSelect = <T extends string>(
           />
 
           <InputBase
-            ref={inputRef}
+            ref={propRef}
             value={inputValue}
             hidden={true}
             readOnly={true}

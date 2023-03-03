@@ -12,7 +12,10 @@ export const useDetectCapsLock = () => {
   const [activeCapsLock, setCapsLock] = useState(false)
 
   const checkCapsLock = (event: KeyboardEvent) => {
-    if (event.getModifierState(KeyboardEvents.CAPS_LOCK)) {
+    if (
+      typeof event.getModifierState === 'function' &&
+      event.getModifierState(KeyboardEvents.CAPS_LOCK)
+    ) {
       setCapsLock(true)
       return
     }
