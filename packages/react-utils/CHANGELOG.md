@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.8
+
+### Patch Changes
+
+- [`2e4c4b6`](https://github.com/Musma/react-libraries/commit/2e4c4b64225fd79950e4b1fad764203757318207) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-utils] useDetectCapsLock.ts 버그 수정
+
 ## 0.2.7
 
 ### Patch Changes

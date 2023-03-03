@@ -1,5 +1,16 @@
 # @musma/react-component
 
+## 1.0.24
+
+### Patch Changes
+
+- [`2e4c4b6`](https://github.com/Musma/react-libraries/commit/2e4c4b64225fd79950e4b1fad764203757318207) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] MultiSelect 변수명 수정
+
+- [#192](https://github.com/Musma/react-libraries/pull/192) [`d47e99d`](https://github.com/Musma/react-libraries/commit/d47e99d2273c3baeeb2d339a4357a68e35a24c8b) Thanks [@Leona3](https://github.com/Leona3)! - Skeleton 컴포넌트 추가
+
+- Updated dependencies [[`2e4c4b6`](https://github.com/Musma/react-libraries/commit/2e4c4b64225fd79950e4b1fad764203757318207)]:
+  - @musma/react-utils@0.2.8
+
 ## 1.0.23
 
 ### Patch Changes
