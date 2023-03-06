@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.26
+
+### Patch Changes
+
+- [`dde6f63`](https://github.com/Musma/react-libraries/commit/dde6f630e12836b1b1571ae791bebba783771b7a) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] LoadingScreen loading Props 추가
+
 ## 1.0.25
 
 ### Patch Changes
