@@ -1,5 +1,13 @@
 # @musma/react-component
 
+## 1.0.25
+
+### Patch Changes
+
+- [`749dd77`](https://github.com/Musma/react-libraries/commit/749dd77aae3f661d1016d996f9584f68073db91b) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] MultiSelect options 타입 수정
+
+- [`cb16400`](https://github.com/Musma/react-libraries/commit/cb16400a5c751b4b702976933be8fed5127b4370) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Select value 타입 수정
+
 ## 1.0.24
 
 ### Patch Changes
