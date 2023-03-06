@@ -169,7 +169,9 @@ export const Pagination = ({
         options={itemsPerPageOptions}
         css={{ width: 80, marginRight: theme.spacing.md }}
         onChange={(value) => {
-          onItemsPerPageChange(value)
+          if (value) {
+            onItemsPerPageChange(value)
+          }
         }}
       />
 

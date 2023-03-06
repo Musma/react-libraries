@@ -25,11 +25,10 @@ import {
   OptionContainer,
   Chip,
   IconAdornment,
+  MultiSelectOption,
 } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
-
-import { SelectOption } from './types'
 
 /**
  * ForwardRef + Generic Type
@@ -56,7 +55,7 @@ interface MultiSelectProps<T>
    * @required
    *
    */
-  options: SelectOption<T>[]
+  options: MultiSelectOption<T>[]
   /**
    * @optional
    */
