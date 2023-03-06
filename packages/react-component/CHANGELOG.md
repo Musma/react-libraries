@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.27
+
+### Patch Changes
+
+- [`69f8aa3`](https://github.com/Musma/react-libraries/commit/69f8aa3a3585471dffb727d010851d83ec4b10b7) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] LoadingScreen 로직 버그 수정
+
 ## 1.0.26
 
 ### Patch Changes
