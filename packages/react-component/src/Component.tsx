@@ -5,9 +5,13 @@ import { OutlineAddBoxIcon } from '@musma/react-icons'
 
 import { Box } from 'src/elements'
 
-import { Button, CheckboxGroup, MultiSelect, Table } from './components'
+import { Button, Select, Table } from './components'
 
 const options = [
+  {
+    label: '전체',
+    value: undefined,
+  },
   {
     label: '1',
     value: '1',
@@ -85,6 +89,7 @@ const sampleData = [
 const Component = () => {
   const theme = useTheme()
   const [value, setValue] = useState(['1', '2'])
+  const [testValue, setTestValue] = useState<string | undefined>(undefined)
 
   const [checkedItems, setCheckedItems] = useState<string[]>([])
 
@@ -98,16 +103,14 @@ const Component = () => {
           gap: theme.spacing.md,
         }}
       >
-        <MultiSelect
+        <Select
           options={options}
-          value={value}
-          onChange={setValue}
+          value={testValue}
+          onChange={setTestValue}
           disabled={false}
-          placeholder="123123"
+          placeholder="입력해주세요"
           css={{ width: 400 }}
         />
-
-        <CheckboxGroup options={options} value={value} onChange={setValue} />
 
         {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
 

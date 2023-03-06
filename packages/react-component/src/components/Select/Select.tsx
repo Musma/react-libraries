@@ -44,7 +44,7 @@ interface SelectProps<T>
    * @required
    * Select의 Value 값입니다.
    */
-  value: T
+  value?: T
   /**
    * @required
    *
@@ -58,7 +58,7 @@ interface SelectProps<T>
    * @required
    */
   /** */
-  onChange: (value: T) => void
+  onChange: (value?: T) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
@@ -106,7 +106,7 @@ const _Select = <T extends string>(
     }
   }, [disabled])
 
-  const handleOptionClick = useCallback((value: T) => {
+  const handleOptionClick = useCallback((value?: T) => {
     onChange(value)
     setOpen(false)
   }, [])

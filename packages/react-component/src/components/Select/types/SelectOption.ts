@@ -6,5 +6,5 @@ export interface SelectOption<T> {
   /**
    * 밸류
    */
-  value: T
+  value?: T
 }
