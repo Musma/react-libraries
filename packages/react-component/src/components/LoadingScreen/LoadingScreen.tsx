@@ -32,13 +32,13 @@ export const LoadingScreen = ({ loading = false, type = 'fetching' }: LoadingScr
     )
   }
 
-  if (!loading) {
-    return <Fragment />
+  if (loading) {
+    return (
+      <Backdrop>
+        <ThreeDots />
+      </Backdrop>
+    )
   }
 
-  return (
-    <Backdrop>
-      <ThreeDots />
-    </Backdrop>
-  )
+  return <Fragment />
 }
