@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.10
+
+### Patch Changes
+
+- [`0c62363`](https://github.com/Musma/react-libraries/commit/0c62363f3bb20adf9ac986914165962e3d8e6e6d) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-utils] usePagination fetchAPI 호출 조건 추가
+
 ## 0.2.9
 
 ### Patch Changes
