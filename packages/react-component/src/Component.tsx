@@ -116,7 +116,7 @@ const Component = () => {
 
         <Table
           columns={columns}
-          data={sampleData}
+          data={[]}
           withCheckbox={true}
           checkedItems={checkedItems}
           onCheckItemChange={setCheckedItems}

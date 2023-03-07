@@ -62,6 +62,26 @@ export const TableBody = ({
     [checkedItems],
   )
 
+  if (data.length === 0) {
+    return (
+      <tbody>
+        <tr css={{ backgroundColor: theme.colors.white.main }}>
+          <td
+            colSpan={100}
+            css={{
+              textAlign: 'center',
+              height: 40 * 4,
+              fontSize: 14,
+              color: theme.colors.black.darker,
+            }}
+          >
+            No items to display
+          </td>
+        </tr>
+      </tbody>
+    )
+  }
+
   return (
     <tbody>
       {data.map((item, index) => (
