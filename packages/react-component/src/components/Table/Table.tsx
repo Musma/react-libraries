@@ -2,7 +2,7 @@ import { HTMLAttributes, useCallback, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Pagination, PaginationProps } from 'src/components'
+import { Pagination, PaginationProps, Skeleton } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
@@ -53,6 +53,10 @@ export interface TableProps extends HTMLAttributes<HTMLTableElement> {
    */
   checkedItems?: string[]
   /**
+   *
+   */
+  loading?: boolean
+  /**
    * @description
    * 체크박스 클릭 이벤트
    */
@@ -72,6 +76,7 @@ export const Table = ({
   withCheckbox = false,
   pagination,
   checkedItems = [],
+  loading = false,
   onCheckItemChange,
   onRowClick,
   ...rest
@@ -115,6 +120,10 @@ export const Table = ({
       onCheckItemChange(checedItemIds)
     }
   }, [allChecked, data, onCheckItemChange])
+
+  if (loading) {
+    return <Skeleton variant="table" />
+  }
 
   return (
     <Box {...rest}>
