@@ -45,11 +45,18 @@ export const usePagination = ({ initPageable = INIT_PAGEABLE, fetchAPI }: UsePag
     },
   }
 
+  // 첫 렌더링 시 fetchAPI 방지
+  // pageable이 바뀔때마다 fetchAPI 호출
   useEffect(() => {
     if (isMounted) {
       fetchAPI()
     }
-  }, [isMounted, pageable])
+  }, [pageable])
+
+  // 첫 렌더링 시 fetchAPI 호출
+  useEffect(() => {
+    fetchAPI()
+  }, [])
 
   return { pageable, pagination, resetPage, setPageable, setTotalPages }
 }

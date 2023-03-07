@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineAddBoxIcon } from '@musma/react-icons'
+import { useFormSearch } from '@musma/react-utils'
 
 import { Box } from 'src/elements'
 
@@ -90,6 +91,13 @@ const Component = () => {
   const theme = useTheme()
   const [value, setValue] = useState(['1', '2'])
   const [testValue, setTestValue] = useState<string | undefined>(undefined)
+
+  const AAA = useFormSearch({
+    useFormProps: {},
+    fetchAPI() {
+      console.log('123123123')
+    },
+  })
 
   const [checkedItems, setCheckedItems] = useState<string[]>([])
 
