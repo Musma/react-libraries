@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.28
+
+### Patch Changes
+
+- [`f7fe9ba`](https://github.com/Musma/react-libraries/commit/f7fe9ba8f128c2c991b57097b9b07c13efca4a0e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Table 컴포넌트 수정, data가 하나도 없을 때 No items to display 나타나도록 수정
+
 ## 1.0.27
 
 ### Patch Changes
