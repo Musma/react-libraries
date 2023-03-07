@@ -49,7 +49,7 @@ export const usePagination = ({ initPageable = INIT_PAGEABLE, fetchAPI }: UsePag
     if (isMounted) {
       fetchAPI()
     }
-  }, [pageable])
+  }, [isMounted, pageable])
 
   return { pageable, pagination, resetPage, setPageable, setTotalPages }
 }
