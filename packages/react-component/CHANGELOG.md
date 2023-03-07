@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.30
+
+### Patch Changes
+
+- [`71b821f`](https://github.com/Musma/react-libraries/commit/71b821f1ebf318b7066efc2d3e005d065a12d073) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Table 컴포넌트에 loading Props 추가
+
 ## 1.0.29
 
 ### Patch Changes
