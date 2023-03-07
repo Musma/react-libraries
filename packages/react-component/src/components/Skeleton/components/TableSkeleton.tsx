@@ -8,7 +8,7 @@ import { Box } from 'src/elements'
 import { pulse } from '../styles'
 import { SkeletonProps } from '../types'
 
-export const TableSkeletons = ({ paragraph = 4, ...rest }: SkeletonProps) => {
+export const TableSkeletons = ({ paragraph = 4, column = 5, ...rest }: SkeletonProps) => {
   const theme = useTheme()
 
   /**
@@ -18,14 +18,23 @@ export const TableSkeletons = ({ paragraph = 4, ...rest }: SkeletonProps) => {
     return (
       <Box
         css={{
-          width: '50%',
-          height: 20,
           borderRadius: theme.rounded.md,
-          backgroundColor: rest.style?.backgroundColor || theme.colors.gray.main,
-          animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
+          padding: theme.spacing.md,
+          backgroundColor: theme.colors.white.main,
+          borderBottom: `1px solid ${theme.colors.white.lighter}`,
         }}
-        {...rest}
-      />
+      >
+        <Box
+          css={{
+            width: '46%',
+            height: 20,
+            borderRadius: theme.rounded.md,
+            backgroundColor: rest.style?.backgroundColor || theme.colors.gray.lighter,
+            animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
+          }}
+          {...rest}
+        />
+      </Box>
     )
   }, [])
 
@@ -34,36 +43,36 @@ export const TableSkeletons = ({ paragraph = 4, ...rest }: SkeletonProps) => {
       <Box
         key={index}
         css={{
-          width: '100%',
-          height: 20,
-          borderRadius: theme.rounded.md,
-          backgroundColor: rest.color || theme.colors.gray.main,
-          animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
+          padding: theme.spacing.md,
+          backgroundColor: theme.colors.white.main,
+          borderBottom: `1px solid ${theme.colors.white.lighter}`,
         }}
-        {...rest}
-      />
+      >
+        <Box
+          css={{
+            height: 15,
+            borderRadius: theme.rounded.md,
+            backgroundColor: rest.style?.backgroundColor || theme.colors.gray.lighter,
+            animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
+          }}
+          {...rest}
+        />
+      </Box>
     ))
   }, [paragraph])
 
   return (
-    <Grid cols={3} spacing="lg">
-      <Box css={{ display: 'flex', flexDirection: 'column', gap: theme.spacing.md }}>
-        {tableHead}
+    <Grid
+      cols={column}
+      css={{ border: `1px solid ${theme.colors.white.lighter}`, borderBottom: 0 }}
+    >
+      {Array.from({ length: column }).map((_, index) => (
+        <Box key={index}>
+          {tableHead}
 
-        {tableBody}
-      </Box>
-
-      <Box css={{ display: 'flex', flexDirection: 'column', gap: theme.spacing.md }}>
-        {tableHead}
-
-        {tableBody}
-      </Box>
-
-      <Box css={{ display: 'flex', flexDirection: 'column', gap: theme.spacing.md }}>
-        {tableHead}
-
-        {tableBody}
-      </Box>
+          {tableBody}
+        </Box>
+      ))}
     </Grid>
   )
 }

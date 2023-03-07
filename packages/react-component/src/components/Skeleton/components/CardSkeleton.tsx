@@ -24,7 +24,7 @@ export const CardSkeleton = (props: SkeletonProps) => {
           marginBottom: index === 0 ? theme.spacing.sm : undefined,
           borderRadius: theme.rounded.md,
           backgroundColor: theme.colors.white.main,
-          opacity: 0.5,
+          opacity: 0.7,
         }}
       />
     ))
@@ -38,7 +38,7 @@ export const CardSkeleton = (props: SkeletonProps) => {
         gap: theme.spacing.lg,
         padding: theme.spacing.lg,
         borderRadius: theme.rounded.md,
-        backgroundColor: props.style?.backgroundColor || theme.colors.gray.main,
+        backgroundColor: props.style?.backgroundColor || theme.colors.gray.lighter,
         animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
       }}
       {...props}
@@ -64,7 +64,7 @@ export const CardSkeleton = (props: SkeletonProps) => {
           height: 100,
           borderRadius: theme.rounded.md,
           backgroundColor: theme.colors.white.main,
-          opacity: 0.5,
+          opacity: 0.7,
         }}
       />
     </Box>

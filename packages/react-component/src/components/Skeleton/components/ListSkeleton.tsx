@@ -18,10 +18,11 @@ export const ListSkeletons = ({ paragraph = 4, ...rest }: SkeletonProps) => {
       <Box
         key={index}
         css={{
-          width: index === 0 ? '50%' : '100%',
+          width: index === 0 ? '50%' : index === paragraph - 1 ? '70%' : '100%',
+          maxWidth: index === 0 ? 340 : undefined,
           height: 20,
           borderRadius: theme.rounded.md,
-          backgroundColor: rest.style?.backgroundColor || theme.colors.gray.main,
+          backgroundColor: rest.style?.backgroundColor || theme.colors.gray.lighter,
           animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
         }}
         {...rest}

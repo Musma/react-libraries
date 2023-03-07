@@ -182,6 +182,7 @@ export const Component = () => {
           <Skeleton
             variant="table"
             paragraph={2}
+            column={3}
             css={{ backgroundColor: theme.colors.green.light }}
           />
 
@@ -209,6 +210,31 @@ export const Component = () => {
               Close
             </Button>
           </Drawer>
+        </Card>
+      </Box>
+
+      <Box css={{ padding: 24, paddingTop: 0 }}>
+        <Card
+          title="Skeleton"
+          css={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 24 }}
+        >
+          <Typography type="subTitle2">Image</Typography>
+          <Skeleton variant="image" css={{ width: 100, height: 100 }} />
+
+          <Typography type="subTitle2">Rectangle</Typography>
+          <Skeleton variant="rectangle" css={{ height: '100px' }} />
+
+          <Typography type="subTitle2">Circle</Typography>
+          <Skeleton variant="circle" css={{ height: 60, width: 60 }} />
+
+          <Typography type="subTitle2">Table</Typography>
+          <Skeleton variant="table" />
+
+          <Typography type="subTitle2">List</Typography>
+          <Skeleton variant="list" />
+
+          <Typography type="subTitle2">Card</Typography>
+          <Skeleton variant="card" />
         </Card>
       </Box>
     </Box>

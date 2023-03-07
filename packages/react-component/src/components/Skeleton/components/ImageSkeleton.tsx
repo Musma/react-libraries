@@ -17,7 +17,7 @@ export const ImageSkeleton = (props: SkeletonProps) => {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: theme.rounded.md,
-        backgroundColor: props.style?.backgroundColor || theme.colors.gray.main,
+        backgroundColor: props.style?.backgroundColor || theme.colors.gray.lighter,
         animation: `${pulse} 1.5s cubic-bezier(0.65,0.05,0.36,1) infinite`,
       }}
       {...props}
