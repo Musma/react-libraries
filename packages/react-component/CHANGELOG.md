@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.29
+
+### Patch Changes
+
+- [`61e16b0`](https://github.com/Musma/react-libraries/commit/61e16b00af6e79b20ea286ee6040f8d3c54f0720) Thanks [@Leona3](https://github.com/Leona3)! - chore: table skeleton 레이아웃 변경, 기타 스타일 수정
+
 ## 1.0.28
 
 ### Patch Changes
