@@ -35,7 +35,7 @@ interface RadioButtonProps<T>
   onChange: (value: T) => void
 }
 
-const _RadioButton = <T extends string>(
+const _RadioButton = <T extends string | boolean>(
   {
     id: _id,
     label,

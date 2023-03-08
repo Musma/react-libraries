@@ -6,6 +6,8 @@ import { RadioButton, InputLabel } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
+import { RadioOption } from './types'
+
 interface RadioGroupProps<T> {
   /**
    * @optional
@@ -23,14 +25,11 @@ interface RadioGroupProps<T> {
    * @required
    *
    */
-  value: string
+  value: T
   /**
    * @required
    */
-  options: {
-    label: string
-    value: T
-  }[]
+  options: RadioOption<T>[]
   gap?: Size | number
   /**
    * @required
@@ -47,7 +46,7 @@ interface RadioGroupProps<T> {
  * @example
  * <RadioGroup value="test" onChange={onChange} data={[...]} />
  */
-export const RadioGroup = <T extends string>(
+export const RadioGroup = <T extends string | boolean>(
   {
     size = 'md',
     required,

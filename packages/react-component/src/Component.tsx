@@ -6,7 +6,7 @@ import { useFormSearch } from '@musma/react-utils'
 
 import { Box } from 'src/elements'
 
-import { Button, RadioButton, Select, Table } from './components'
+import { Button, RadioGroup, Select, Table } from './components'
 
 const options = [
   {
@@ -92,7 +92,7 @@ const Component = () => {
   const [value, setValue] = useState(['1', '2'])
   const [testValue, setTestValue] = useState<string | undefined>(undefined)
 
-  const [a, setA] = useState('1')
+  const [radio, setRadio] = useState<boolean>(false)
 
   const AAA = useFormSearch({
     useFormProps: {},
@@ -140,22 +140,17 @@ const Component = () => {
         />
       </Box>
 
-      <RadioButton
-        label="!23123"
-        value={'1'}
-        checked={a === '1'}
+      <RadioGroup
+        value={radio}
         onChange={(b) => {
-          setA(b)
+          setRadio(b)
         }}
-      />
-
-      <RadioButton
-        label="!23123"
-        value={'2'}
-        checked={a === '2'}
-        onChange={(b) => {
-          setA(b)
-        }}
+        options={[
+          {
+            label: 'true',
+            value: true,
+          },
+        ]}
       />
     </Box>
   )
