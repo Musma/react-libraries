@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.35
+
+### Patch Changes
+
+- [`181bec9`](https://github.com/Musma/react-libraries/commit/181bec92e10dd554ce30e3fa9a3e4bb1b382302e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] RadioGroup ref 관련 버그 수정
+
 ## 1.0.34
 
 ### Patch Changes
