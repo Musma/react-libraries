@@ -2,7 +2,7 @@ import { ReactNode, useCallback } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { Checkbox } from 'src/components'
+import { Checkbox, Typography } from 'src/components'
 
 import { TableColumn } from '../types'
 
@@ -75,7 +75,9 @@ export const TableBody = ({
               color: theme.colors.black.darker,
             }}
           >
-            No items to display
+            <Typography type="body2" css={{ color: theme.colors.gray.light }}>
+              등록된 데이터가 없습니다.
+            </Typography>
           </td>
         </tr>
       </tbody>

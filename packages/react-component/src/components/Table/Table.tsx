@@ -130,7 +130,6 @@ export const Table = ({
       {toolbar && <TableToolbar {...toolbar} />}
 
       {/* Table Wrapper */}
-
       <Box
         css={{
           border: `1px solid ${theme.colors.gray.main}`,

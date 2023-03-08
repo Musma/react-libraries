@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { ForwardedRef } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -6,7 +6,7 @@ import { RadioButton, InputLabel } from 'src/components'
 import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
-interface RadioGroupProps {
+interface RadioGroupProps<T> {
   /**
    * @optional
    */
@@ -29,7 +29,7 @@ interface RadioGroupProps {
    */
   options: {
     label: string
-    value: string
+    value: T
   }[]
   gap?: Size | number
   /**
@@ -37,7 +37,7 @@ interface RadioGroupProps {
    * onChange 이벤트입니다.
    */
   className?: string
-  onChange: (value: string) => void
+  onChange: (value: T) => void
 }
 
 /**
@@ -47,40 +47,48 @@ interface RadioGroupProps {
  * @example
  * <RadioGroup value="test" onChange={onChange} data={[...]} />
  */
-export const RadioGroup = forwardRef<HTMLInputElement, RadioGroupProps>(
-  ({ size = 'md', required, label, value, gap = 'lg', options, className, onChange }, ref) => {
-    const theme = useTheme()
-    return (
-      <Box className={className}>
-        {/* 라벨 */}
-        {label && (
-          <InputLabel required={required} size={size}>
-            {label}
-          </InputLabel>
-        )}
+export const RadioGroup = <T extends string>(
+  {
+    size = 'md',
+    required,
+    label,
+    value,
+    gap = 'lg',
+    options,
+    className,
+    onChange,
+  }: RadioGroupProps<T>,
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
+  const theme = useTheme()
+  return (
+    <Box className={className}>
+      {/* 라벨 */}
+      {label && (
+        <InputLabel required={required} size={size}>
+          {label}
+        </InputLabel>
+      )}
 
-        <Box
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            height: theme.inputSize.height[size],
-            gap: theme.spacingUtil(gap),
-          }}
-        >
-          {options.map(({ label, value: _value }) => (
-            <RadioButton
-              key={label}
-              ref={ref}
-              value={_value}
-              label={label}
-              checked={_value === value}
-              onChange={onChange}
-            />
-          ))}
-        </Box>
+      <Box
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          height: theme.inputSize.height[size],
+          gap: theme.spacingUtil(gap),
+        }}
+      >
+        {options.map(({ label, value: _value }) => (
+          <RadioButton
+            key={label}
+            ref={ref}
+            label={label}
+            value={_value}
+            checked={_value === value}
+            onChange={onChange}
+          />
+        ))}
       </Box>
-    )
-  },
-)
-
-RadioGroup.displayName = 'RadioGroup'
+    </Box>
+  )
+}

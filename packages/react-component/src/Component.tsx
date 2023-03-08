@@ -6,7 +6,7 @@ import { useFormSearch } from '@musma/react-utils'
 
 import { Box } from 'src/elements'
 
-import { Button, Select, Table } from './components'
+import { Button, RadioButton, Select, Table } from './components'
 
 const options = [
   {
@@ -92,6 +92,8 @@ const Component = () => {
   const [value, setValue] = useState(['1', '2'])
   const [testValue, setTestValue] = useState<string | undefined>(undefined)
 
+  const [a, setA] = useState('1')
+
   const AAA = useFormSearch({
     useFormProps: {},
     fetchAPI() {
@@ -137,6 +139,24 @@ const Component = () => {
           // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
         />
       </Box>
+
+      <RadioButton
+        label="!23123"
+        value={'1'}
+        checked={a === '1'}
+        onChange={(b) => {
+          setA(b)
+        }}
+      />
+
+      <RadioButton
+        label="!23123"
+        value={'2'}
+        checked={a === '2'}
+        onChange={(b) => {
+          setA(b)
+        }}
+      />
     </Box>
   )
 }
