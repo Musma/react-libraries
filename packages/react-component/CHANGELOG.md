@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.34
+
+### Patch Changes
+
+- [`c9ff9d4`](https://github.com/Musma/react-libraries/commit/c9ff9d4f1ad9130de0a581748e9af482c0d9bcdf) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] RadioGroup Props 버그 수정
+
 ## 1.0.33
 
 ### Patch Changes
