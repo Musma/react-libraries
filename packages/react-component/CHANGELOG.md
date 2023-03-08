@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.33
+
+### Patch Changes
+
+- [`4905c6c`](https://github.com/Musma/react-libraries/commit/4905c6c529b97bba5f1f175767b14a7ec3cbb1a9) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] RadioButton, RadioGroup value 타입을 제네릭으로 수정
+
 ## 1.0.32
 
 ### Patch Changes
