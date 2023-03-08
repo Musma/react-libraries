@@ -1,4 +1,4 @@
-import { ForwardedRef } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -46,7 +46,7 @@ interface RadioGroupProps<T> {
  * @example
  * <RadioGroup value="test" onChange={onChange} data={[...]} />
  */
-export const RadioGroup = <T extends string | boolean>(
+const _RadioGroup = <T extends string | boolean>(
   {
     size = 'md',
     required,
@@ -91,3 +91,7 @@ export const RadioGroup = <T extends string | boolean>(
     </Box>
   )
 }
+
+export const RadioGroup = forwardRef(_RadioGroup) as <T>(
+  props: RadioGroupProps<T> & { ref?: ForwardedRef<HTMLInputElement> },
+) => ReturnType<typeof _RadioGroup>
