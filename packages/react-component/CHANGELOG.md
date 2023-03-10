@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.0.36
+
+### Patch Changes
+
+- [`72fe6f3`](https://github.com/Musma/react-libraries/commit/72fe6f3c88776567bda76e75b249f0d96e28157f) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] DateRangePicker 시작일과 종료일 관련 로직 수정, Pagination 페이지 처리 수정
+
+- Updated dependencies [[`03bfac9`](https://github.com/Musma/react-libraries/commit/03bfac9fab754aed9271dab90dac8c5962d2a740)]:
+  - @musma/react-utils@0.2.11
+
 ## 1.0.35
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.11
+
+### Patch Changes
+
+- [`03bfac9`](https://github.com/Musma/react-libraries/commit/03bfac9fab754aed9271dab90dac8c5962d2a740) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] DateUtil 함수 추가
+
 ## 0.2.10
 
 ### Patch Changes
