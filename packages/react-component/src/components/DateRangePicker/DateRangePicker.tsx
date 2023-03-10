@@ -109,14 +109,14 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
 
     const startDateTime = useMemo(() => {
       if (startDate) {
-        return DateTime.fromISO(startDate)
+        return DateTime.fromISO(startDate).startOf('day')
       }
       return null
     }, [startDate])
 
     const endDateTime = useMemo(() => {
       if (endDate) {
-        return DateTime.fromISO(endDate)
+        return DateTime.fromISO(endDate).endOf('day')
       }
       return null
     }, [endDate])

@@ -134,6 +134,11 @@ export const Pagination = ({
         return (prev = [...prev, firstPage + index])
       }, []) as number[]
     }
+
+    if (firstPage === lastPage) {
+      return [1]
+    }
+
     return []
   }, [firstPage, lastPage])
 

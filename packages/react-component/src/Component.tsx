@@ -87,6 +87,16 @@ const sampleData = [
   },
 ]
 
+const data = Array.from({ length: 20 }).map((_, index) => ({
+  id: index + 1,
+  customerType: index < 10 ? '법인사업자' : '일반 고객',
+  customerName: '김대동',
+  store: '영등포 대리점',
+  salesDate: '2021-10-01',
+  registNo: 'XA00-000' + (index + 1),
+  fleetSerialNo: 'XA00-0001' + index,
+}))
+
 const Component = () => {
   const theme = useTheme()
   const [value, setValue] = useState(['1', '2'])
