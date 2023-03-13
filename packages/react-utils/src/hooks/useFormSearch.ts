@@ -43,6 +43,7 @@ export const useFormSearch = <T extends object>({
   const onReset = () => {
     setFormState(() => ({}))
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
+    fetchAPI()
   }
 
   useEffect(() => {
