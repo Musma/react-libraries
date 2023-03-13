@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.0.37
+
+### Patch Changes
+
+- [`ecbeb74`](https://github.com/Musma/react-libraries/commit/ecbeb74f2f6f9782d9936c76a07ec132c1dd96c9) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] InputBase autoComplete="off" 추가
+
+- Updated dependencies [[`15720ee`](https://github.com/Musma/react-libraries/commit/15720ee785aade682929175277b323e2c53c7e5c)]:
+  - @musma/react-utils@0.2.12
+
 ## 1.0.36
 
 ### Patch Changes

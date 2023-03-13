@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.12
+
+### Patch Changes
+
+- [`15720ee`](https://github.com/Musma/react-libraries/commit/15720ee785aade682929175277b323e2c53c7e5c) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] reset 클릭 시 fetchAPI 실행하도록 수정
+
 ## 0.2.11
 
 ### Patch Changes
