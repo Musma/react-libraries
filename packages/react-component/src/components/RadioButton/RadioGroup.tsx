@@ -61,7 +61,15 @@ const _RadioGroup = <T extends string | boolean>(
 ) => {
   const theme = useTheme()
   return (
-    <Box className={className}>
+    <Box
+      css={{
+        display: 'inline-flex',
+        flexDirection: 'column',
+        width: '100%',
+        minWidth: theme.inputSize.minWidth,
+      }}
+      className={className}
+    >
       {/* 라벨 */}
       {label && (
         <InputLabel required={required} size={size}>

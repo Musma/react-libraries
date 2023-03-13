@@ -244,7 +244,6 @@ const _MultiSelect = <T extends string>(
             value={inputValue}
             readOnly={!open}
             disabled={disabled}
-            autoComplete="off"
             css={[
               {
                 sm: {

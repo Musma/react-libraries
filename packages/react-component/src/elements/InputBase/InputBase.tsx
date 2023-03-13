@@ -9,6 +9,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputProps>((props, ref) =
   return (
     <input
       ref={ref}
+      autoComplete="off"
       css={{
         padding: 0,
         border: 0,

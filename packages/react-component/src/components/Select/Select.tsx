@@ -203,7 +203,6 @@ const _Select = <T extends string>(
           value={inputValue}
           readOnly={!open}
           disabled={disabled}
-          autoComplete="off"
           css={[
             {
               width: '100%',
