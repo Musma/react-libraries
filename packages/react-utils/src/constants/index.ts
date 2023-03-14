@@ -1,4 +1,5 @@
 export * from './DateFormat'
+export * from './FileAccpets'
 export * from './KeyboardEvents'
 export * from './MouseEvents'
 export * from './RegExps'
