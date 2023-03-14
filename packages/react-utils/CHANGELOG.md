@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.13
+
+### Patch Changes
+
+- [`37ff3df`](https://github.com/Musma/react-libraries/commit/37ff3df755b22dcdd24039b507c1562859623cee) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-util] FileUtil, FileAccepts 추가
+
 ## 0.2.12
 
 ### Patch Changes
