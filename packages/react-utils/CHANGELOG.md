@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.16
+
+### Patch Changes
+
+- [`ec44fb2`](https://github.com/Musma/react-libraries/commit/ec44fb24835c0b42bb982a6688947a8c21148e6b) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] FileAccepts image 추가
+
 ## 0.2.15
 
 ### Patch Changes
