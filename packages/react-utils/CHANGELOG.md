@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.14
+
+### Patch Changes
+
+- [`c1fe427`](https://github.com/Musma/react-libraries/commit/c1fe427d1c8457aef051587dbce9d5abbf8eea9e) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-utils] FileAccepts 타입 변경
+
 ## 0.2.13
 
 ### Patch Changes
