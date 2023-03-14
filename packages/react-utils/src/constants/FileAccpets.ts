@@ -1,3 +1,5 @@
 export const FileAccepts = {
-  'application/pdf': ['.pdf'],
+  pdf: {
+    'application/pdf': ['.pdf'],
+  },
 }
