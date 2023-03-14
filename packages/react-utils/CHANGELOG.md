@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.15
+
+### Patch Changes
+
+- [`92743d8`](https://github.com/Musma/react-libraries/commit/92743d8f7563270b3916decdf999f2ca04b8af36) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-utils] FileAccpets 버그 수정
+
 ## 0.2.14
 
 ### Patch Changes
