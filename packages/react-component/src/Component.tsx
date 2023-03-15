@@ -3,10 +3,11 @@ import { useState } from 'react'
 import { useTheme } from '@emotion/react'
 import { OutlineAddBoxIcon } from '@musma/react-icons'
 import { useFormSearch } from '@musma/react-utils'
+import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, RadioGroup, Select, Table } from './components'
+import { Button, DatePicker, RadioGroup, Select, Table } from './components'
 
 const options = [
   {
@@ -104,6 +105,8 @@ const Component = () => {
 
   const [radio, setRadio] = useState<boolean>(false)
 
+  const [time, setTime] = useState(DateTime.now().toISO())
+
   const AAA = useFormSearch({
     useFormProps: {},
     fetchAPI() {
@@ -115,6 +118,13 @@ const Component = () => {
 
   return (
     <Box>
+      <DatePicker
+        value={time}
+        onChange={setTime}
+        minDate={DateTime.utc()}
+        maxDate={DateTime.utc().plus({ day: 5 })}
+      />
+
       <Box
         css={{
           padding: theme.spacingUtil(100),

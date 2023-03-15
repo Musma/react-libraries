@@ -316,21 +316,20 @@ export const Calendar = ({
               !baseDateTime.hasSame(day, 'month') && {
                 color: theme.colors.gray.main,
               },
-
-              // 시작일 선택하면 primary main 색상으로 표시
-              initialDateTime.hasSame(day, 'day') && {
-                color: theme.colors.white.main,
-                backgroundColor: theme.colors.primary.main,
-              },
-
-              // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
               isInvalidDate(day) && {
+                color: theme.colors.gray.main,
                 pointerEvents: 'none',
                 backgroundColor: 'inherit',
                 '&:hover': {
                   cursor: 'not-allowed',
                 },
               },
+              // 시작일 선택하면 primary main 색상으로 표시
+              initialDateTime.hasSame(day, 'day') && {
+                color: theme.colors.white.main,
+                backgroundColor: theme.colors.primary.main,
+              },
+              // minDate, maxDate를 체크하여 클릭이 가능한 유효한 날짜인지
             ]}
             onClick={() => {
               onChange(day.toISO())
