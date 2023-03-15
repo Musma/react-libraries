@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.42
+
+### Patch Changes
+
+- [`4cab291`](https://github.com/Musma/react-libraries/commit/4cab291bc111ce68128ac554d1fb1821ea6cda84) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] DatePicker minDate, maxDate CSS 수정
+
 ## 1.0.41
 
 ### Patch Changes
