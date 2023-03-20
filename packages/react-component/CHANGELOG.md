@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.43
+
+### Patch Changes
+
+- [`39a40cd`](https://github.com/Musma/react-libraries/commit/39a40cd992073b6107a0c2256fc51aaa40b77915) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] InputLabel fontSize 수정
+
 ## 1.0.42
 
 ### Patch Changes
