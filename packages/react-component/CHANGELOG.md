@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.44
+
+### Patch Changes
+
+- [`10712e5`](https://github.com/Musma/react-libraries/commit/10712e508efacfc2e66d61a6de33558e45f2e4a3) Thanks [@Leona3](https://github.com/Leona3)! - chore: table td 줄바꿈 적용
+
 ## 1.0.43
 
 ### Patch Changes
