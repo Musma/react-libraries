@@ -36,7 +36,7 @@ export const InputLabel = ({
   return (
     <Label {...rest}>
       <Typography
-        type={size === 'lg' ? 'subTitle2' : 'subTitle3'}
+        type={size === 'lg' ? 'subTitle1' : 'subTitle2'}
         css={[
           { marginBottom: theme.spacing.sm },
           required && {

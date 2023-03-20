@@ -11,23 +11,7 @@ import {
 import { Typography, Select, IconAdornment } from 'src/components'
 import { Box } from 'src/elements'
 
-// 디폴트 페이지 당 아이템 개수
-const ITEMS_PER_PAGE_OPTIONS = [
-  {
-    label: '10',
-    value: 10,
-  },
-  {
-    label: '20',
-    value: 20,
-  },
-  {
-    label: '30',
-    value: 30,
-  },
-]
-
-const PAGE_COUNT = 5
+import { ICON_SIZE, ITEMS_PER_PAGE_OPTIONS, PAGE_COUNT } from './helpers'
 
 export interface PaginationProps {
   /**
@@ -60,11 +44,6 @@ export interface PaginationProps {
    * Row Per Page Change Callback
    */
   onItemsPerPageChange: (itemsPerPage: number) => void
-}
-
-const ICON_SIZE = {
-  width: 28,
-  height: 28,
 }
 
 /**
