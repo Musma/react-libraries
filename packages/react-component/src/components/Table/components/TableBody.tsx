@@ -152,6 +152,7 @@ export const TableBody = ({
                 css={{
                   fontSize: 14,
                   height: 40,
+                  whiteSpace: 'pre-wrap',
                 }}
               >
                 {item[column.columnName] as ReactNode}
