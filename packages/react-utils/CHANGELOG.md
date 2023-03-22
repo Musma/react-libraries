@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.17
+
+### Patch Changes
+
+- [`adce466`](https://github.com/Musma/react-libraries/commit/adce46695a1a968f2226c22250a53e920c0940d6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useFormSearch.ts 초기화 버튼 클릭 시 page 1로 설정
+
 ## 0.2.16
 
 ### Patch Changes
