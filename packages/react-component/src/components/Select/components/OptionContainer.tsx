@@ -4,7 +4,15 @@ import { useTheme } from '@emotion/react'
 
 import { Box } from 'src/elements'
 
-export const OptionContainer = ({ children }: { children?: ReactNode }) => {
+interface OptionContainerProps {
+  /**
+   * option dropbox가 위치할 곳(기본 값 bottom)
+   */
+  position?: string
+  children?: ReactNode
+}
+
+export const OptionContainer = ({ position = 'bottom', children }: OptionContainerProps) => {
   const theme = useTheme()
 
   return (
@@ -14,7 +22,10 @@ export const OptionContainer = ({ children }: { children?: ReactNode }) => {
         minHeight: 32,
         maxHeight: 300,
         position: 'absolute',
-        top: `calc(100% + 4px)`,
+        top: position === 'bottom' ? `calc(100% + 4px)` : position === 'top' ? undefined : 0,
+        bottom: position === 'top' ? `calc(100% + 4px)` : undefined,
+        right: position === 'left' ? `calc(100% + 4px)` : undefined,
+        left: position === 'right' ? `calc(100% + 4px)` : undefined,
         overflowY: 'auto',
         backgroundColor: theme.colors.white.main,
         borderRadius: theme.rounded.md,
