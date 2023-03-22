@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.45
+
+### Patch Changes
+
+- [#217](https://github.com/Musma/react-libraries/pull/217) [`ab3668c`](https://github.com/Musma/react-libraries/commit/ab3668ceb3b12f3e561b9e2dc863fa1098cf707b) Thanks [@Leona3](https://github.com/Leona3)! - feat: Selectoption(dropbox) 위치 추가
+
 ## 1.0.44
 
 ### Patch Changes
