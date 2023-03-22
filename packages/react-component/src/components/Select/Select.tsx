@@ -55,6 +55,11 @@ interface SelectProps<T>
    */
   required?: boolean
   /**
+   * @optional
+   * option dropbox 위치
+   */
+  position?: string
+  /**
    * @required
    */
   /** */
@@ -72,6 +77,7 @@ const _Select = <T extends string>(
     className,
     required,
     disabled,
+    position,
     onChange,
     ...rest
   }: SelectProps<T>,
@@ -238,7 +244,7 @@ const _Select = <T extends string>(
         />
 
         {open && (
-          <OptionContainer>
+          <OptionContainer position={position}>
             {searchedOptions.map((option, index) => (
               <Option
                 key={`key-${option.value}`}

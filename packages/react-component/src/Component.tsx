@@ -139,6 +139,7 @@ const Component = () => {
           onChange={setTestValue}
           disabled={false}
           placeholder="입력해주세요"
+          position="right"
           css={{ width: 400 }}
         />
 
