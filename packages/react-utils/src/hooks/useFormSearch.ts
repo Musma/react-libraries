@@ -41,6 +41,7 @@ export const useFormSearch = <T extends object>({
   }
 
   const onReset = () => {
+    setPageable((_pageable) => ({ ..._pageable, page: 1 }))
     setFormState(() => ({}))
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
     fetchAPI()
