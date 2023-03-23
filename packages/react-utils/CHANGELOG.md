@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.18
+
+### Patch Changes
+
+- [`9a46292`](https://github.com/Musma/react-libraries/commit/9a46292bf6eb1915fa4b378018084b1603a06ccd) Thanks [@Leona3](https://github.com/Leona3)! - feat: 정규식 추가
+
 ## 0.2.17
 
 ### Patch Changes
