@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.0.47
+
+### Patch Changes
+
+- [`9a46292`](https://github.com/Musma/react-libraries/commit/9a46292bf6eb1915fa4b378018084b1603a06ccd) Thanks [@Leona3](https://github.com/Leona3)! - feat: 정규식 추가
+
+- Updated dependencies [[`9a46292`](https://github.com/Musma/react-libraries/commit/9a46292bf6eb1915fa4b378018084b1603a06ccd)]:
+  - @musma/react-utils@0.2.18
+
 ## 1.0.46
 
 ### Patch Changes
