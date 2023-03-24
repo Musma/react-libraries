@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.48
+
+### Patch Changes
+
+- [`abd3273`](https://github.com/Musma/react-libraries/commit/abd327359b5a42f2bb9ce5f2b47854a141f92aef) Thanks [@mcoding777](https://github.com/mcoding777)! - refactor: Select 컴포넌트 handleOptionClick 함수에 의존성 배열 추가
+
 ## 1.0.47
 
 ### Patch Changes
