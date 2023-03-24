@@ -112,10 +112,13 @@ const _Select = <T extends string>(
     }
   }, [disabled])
 
-  const handleOptionClick = useCallback((value?: T) => {
-    onChange(value)
-    setOpen(false)
-  }, [])
+  const handleOptionClick = useCallback(
+    (value?: T) => {
+      onChange(value)
+      setOpen(false)
+    },
+    [onChange],
+  )
 
   const searchedOptions = useMemo(() => {
     if (options && inputValue) {
