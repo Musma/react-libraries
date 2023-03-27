@@ -155,7 +155,9 @@ export const RangeCalendar = ({
       if (!startDate || !endDate) {
         return
       }
-      return currentDay > startDate && currentDay < endDate
+
+      // endDate에 minus를 한 이유 => RangeCalendar에 props로 전달받는 endDate에 endOf('day')가 있기 때문입니다.
+      return currentDay > startDate && currentDay < endDate.minus({ day: 1 })
     },
     [startDate, endDate],
   )
@@ -278,6 +280,7 @@ export const RangeCalendar = ({
   )
 
   useOutsideListener(boxRef, () => {
+    // 캘린더가 닫힐 때, 시작일은 선택되어있지만, 종료일이 선택되어있지 않으면, 시작일 ~ 시작일로 onChange 이벤트 실행
     if (startDate && !endDate) {
       onChange([startDate.toISO(), startDate.toISO()])
     }
