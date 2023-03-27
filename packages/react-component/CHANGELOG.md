@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.49
+
+### Patch Changes
+
+- [#223](https://github.com/Musma/react-libraries/pull/223) [`8206bec`](https://github.com/Musma/react-libraries/commit/8206bece519cf03140d67b91f59b57e143239cf9) Thanks [@Dave352](https://github.com/Dave352)! - chore: rangePicker 시작일만 선택하고 종료하는 문제
+
 ## 1.0.48
 
 ### Patch Changes
