@@ -44,7 +44,8 @@ export const RangeCalendar = ({
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
 
-  const [baseDateTime, setBaseDateTime] = useState(startDate ? startDate : DateTime.local())
+  const [baseDateTime, setBaseDateTime] = useState(startDate ? startDate : DateTime.now())
+
   const [mouseOverDateTime, setMouseOverDateTime] = useState<DateTime | null>(null)
 
   /**
@@ -277,6 +278,10 @@ export const RangeCalendar = ({
   )
 
   useOutsideListener(boxRef, () => {
+    if (startDate && !endDate) {
+      onChange([startDate.toISO(), startDate.toISO()])
+    }
+
     onClose()
   })
 
