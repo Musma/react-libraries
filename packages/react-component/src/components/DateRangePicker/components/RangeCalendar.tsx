@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -43,6 +43,8 @@ export const RangeCalendar = ({
 }: RangeCalendarProps) => {
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
+  const previousStartDate = useRef<DateTime>(startDate)
+  const previousEndDate = useRef<DateTime>(endDate)
 
   const [baseDateTime, setBaseDateTime] = useState(startDate ? startDate : DateTime.now())
 
@@ -156,11 +158,13 @@ export const RangeCalendar = ({
         return
       }
 
-      // endDate에 minus를 한 이유 => RangeCalendar에 props로 전달받는 endDate에 endOf('day')가 있기 때문입니다.
-      return currentDay > startDate && currentDay < endDate.minus({ day: 1 })
+      // endDate에 startOf를 한 이유 => RangeCalendar에 props로 전달받는 endDate에 endOf('day')가 있기 때문입니다.
+      return currentDay > startDate && currentDay < endDate.startOf('day')
     },
     [startDate, endDate],
   )
+
+  console.log('2023-03-28T00:00:00.000+09:00' < '2023-03-28T23:59:59.999+09:00')
 
   /**
    * @description
@@ -211,50 +215,8 @@ export const RangeCalendar = ({
 
       // 시작일과 종료일 모두 선택되어 있으면,
       if (startDate && endDate) {
-        // 선택일과 시작일 사이의 거리를 계산
-        const calcStartDate = () => {
-          if (currentDay > startDate) {
-            return currentDay.diff(startDate, 'days').toObject().days
-          }
-          return startDate.diff(currentDay, 'days').toObject().days
-        }
-
-        // 선택일과 종료일 사이의 거리를 계산
-        const calcEndDate = () => {
-          if (currentDay > endDate) {
-            return currentDay.diff(endDate, 'days').toObject().days
-          }
-          return endDate.diff(currentDay, 'days').toObject().days
-        }
-
-        if (!calcStartDate || !calcEndDate) {
-          return
-        }
-
-        // 선택일이 시작일보다 앞에 있으면 선택일 재선택
-        // 선택일이 종료일보다 뒤에 있으면 선택일 재선택
-        if (currentDay < startDate || currentDay > endDate) {
-          onChange([currentDay.toISO(), null])
-          return
-        }
-
-        // 선택일이 종료일보다 시작일에 가까우면 시작일 재선택
-        if (calcStartDate < calcEndDate) {
-          onChange([currentDay.toISO(), endDate.toISO()])
-          onClose()
-        }
-
-        // 선택일이 시작일보다 종료일에 가까우면 종료일 재선택
-        if (calcStartDate > calcEndDate) {
-          onChange([startDate.toISO(), currentDay.toISO()])
-          onClose()
-        }
-
-        // 선택일이 시작일과 종료일과 동일한 선상이면 시작일 재선택
-        if (calcStartDate === calcEndDate) {
-          onChange([currentDay.toISO(), endDate.toISO()])
-          onClose()
-        }
+        // 시작일을 선택하고, 종료일을 초기화
+        onChange([currentDay.toISO(), null])
       }
     },
     [startDate, endDate],
@@ -280,9 +242,16 @@ export const RangeCalendar = ({
   )
 
   useOutsideListener(boxRef, () => {
-    // 캘린더가 닫힐 때, 시작일은 선택되어있지만, 종료일이 선택되어있지 않으면, 시작일 ~ 시작일로 onChange 이벤트 실행
+    // 시작일만 선택하고, 종료일을 선택하지 않고 캘린더를 닫아버리면,
     if (startDate && !endDate) {
-      onChange([startDate.toISO(), startDate.toISO()])
+      const previousStartValue = previousStartDate.current
+      const previousEndValue = previousEndDate.current
+
+      // defaultValue 값을 정상적으로 받아왔을 때,
+      if (previousStartValue && previousEndValue) {
+        // 이전 값을 onChange
+        onChange([previousStartValue.toISO(), previousEndValue.toISO()])
+      }
     }
 
     onClose()
