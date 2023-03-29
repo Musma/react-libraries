@@ -43,8 +43,8 @@ export const RangeCalendar = ({
 }: RangeCalendarProps) => {
   const theme = useTheme()
   const [boxRef, setRef] = useSetRef()
-  const previousStartDate = useRef<DateTime>(startDate)
-  const previousEndDate = useRef<DateTime>(endDate)
+  const { current: prevStartDateTime } = useRef<DateTime>(startDate)
+  const { current: prevEndDateTime } = useRef<DateTime>(endDate)
 
   const [baseDateTime, setBaseDateTime] = useState(startDate ? startDate : DateTime.now())
 
@@ -164,8 +164,6 @@ export const RangeCalendar = ({
     [startDate, endDate],
   )
 
-  console.log('2023-03-28T00:00:00.000+09:00' < '2023-03-28T23:59:59.999+09:00')
-
   /**
    * @description
    * 마우스오버를 할 때, 날짜의 색 변경
@@ -193,30 +191,30 @@ export const RangeCalendar = ({
     (currentDay: DateTime, startDate?: DateTime | null, endDate?: DateTime | null) => {
       // 종료일이 선택되어있으면, 시작일 선택
       if (endDate && !startDate) {
-        onChange([currentDay.toISO(), endDate.toISO()])
+        onChange([currentDay.startOf('day').toISO(), endDate.toISO()])
       }
 
       // 시작일과 종료일이 선택되어 있지 않았을 때, 첫 선택일은 시작일
       if (!startDate && !endDate) {
-        onChange([currentDay.toISO(), null])
+        onChange([currentDay.startOf('day').toISO(), null])
       }
 
       // 시작일이 선택되어 있을 때,
       if (startDate && !endDate) {
         // 시작일이 선택일보다 크면 시작일 재선택
         if (startDate > currentDay) {
-          onChange([currentDay.toISO(), null])
+          onChange([currentDay.startOf('day').toISO(), null])
           return
         }
         // 아니라면, 종료일 선택
-        onChange([startDate.toISO(), currentDay.toISO()])
+        onChange([startDate.toISO(), currentDay.endOf('day').toISO()])
         onClose()
       }
 
       // 시작일과 종료일 모두 선택되어 있으면,
       if (startDate && endDate) {
         // 시작일을 선택하고, 종료일을 초기화
-        onChange([currentDay.toISO(), null])
+        onChange([currentDay.startOf('day').toISO(), null])
       }
     },
     [startDate, endDate],
@@ -244,13 +242,11 @@ export const RangeCalendar = ({
   useOutsideListener(boxRef, () => {
     // 시작일만 선택하고, 종료일을 선택하지 않고 캘린더를 닫아버리면,
     if (startDate && !endDate) {
-      const previousStartValue = previousStartDate.current
-      const previousEndValue = previousEndDate.current
+      if (prevStartDateTime && prevEndDateTime) {
+        const prevStartDate = prevStartDateTime.startOf('day').toISO()
+        const prevEndDate = prevEndDateTime.endOf('day').toISO()
 
-      // defaultValue 값을 정상적으로 받아왔을 때,
-      if (previousStartValue && previousEndValue) {
-        // 이전 값을 onChange
-        onChange([previousStartValue.toISO(), previousEndValue.toISO()])
+        onChange([prevStartDate, prevEndDate])
       }
     }
 
