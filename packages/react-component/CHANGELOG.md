@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.0.50
+
+### Patch Changes
+
+- [#225](https://github.com/Musma/react-libraries/pull/225) [`6cf41c2`](https://github.com/Musma/react-libraries/commit/6cf41c23e3d260e05003cbf481b4ecc7f5e70c9e) Thanks [@Dave352](https://github.com/Dave352)! - fix: rangePicker 선택일 선택 후 닫으면, 이전일로 회귀
+
+- Updated dependencies [[`4975910`](https://github.com/Musma/react-libraries/commit/4975910dcfb99024c24e215d66fad56ae9ef1ff2)]:
+  - @musma/react-utils@0.2.19
+
 ## 1.0.49
 
 ### Patch Changes
