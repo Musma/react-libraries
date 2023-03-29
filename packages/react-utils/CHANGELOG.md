@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.19
+
+### Patch Changes
+
+- [#226](https://github.com/Musma/react-libraries/pull/226) [`4975910`](https://github.com/Musma/react-libraries/commit/4975910dcfb99024c24e215d66fad56ae9ef1ff2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] DateUtil 업데이트
+
 ## 0.2.18
 
 ### Patch Changes
