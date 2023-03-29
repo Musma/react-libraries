@@ -50,9 +50,14 @@ export const convertIsoToUtcToFormat = (isoDate: string, format = DEFAULT_FORMAT
  * @returns
  */
 export const convertUtcToFormat = (utcDate?: string, format = 'yyyy-MM-dd') => {
-  return utcDate
-    ? DateTime.fromISO(new Date(utcDate).toISOString(), { zone: 'utc' }).toFormat(format)
-    : '-'
+  return utcDate ? DateTime.fromISO(new Date(utcDate).toISOString()).toFormat(format) : '-'
+}
+
+/**
+ *
+ */
+export const convertUtcToIso = (utcDate: string) => {
+  return DateTime.fromISO(new Date(utcDate).toISOString()).toISO()
 }
 
 /**
