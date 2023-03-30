@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.0.51
+
+### Patch Changes
+
+- [#228](https://github.com/Musma/react-libraries/pull/228) [`a1ec611`](https://github.com/Musma/react-libraries/commit/a1ec611ec983d59f5fa5c7e8a64300edd72a027d) Thanks [@Dave352](https://github.com/Dave352)! - fix: 날짜를 선택할때, 시작시간 종료시간 적용
+
 ## 1.0.50
 
 ### Patch Changes
