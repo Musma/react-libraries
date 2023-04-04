@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.2
+
+### Patch Changes
+
+- [`e1d8ad0`](https://github.com/Musma/react-libraries/commit/e1d8ad04377127976997ee0ba4058054d23c0cf6) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: Dropdown position top 버그테스트
+
 ## 1.1.1
 
 ### Patch Changes
