@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.1
+
+### Patch Changes
+
+- [`d9cc3e2`](https://github.com/Musma/react-libraries/commit/d9cc3e2a6e0170a4b3acdc54d0a9fe44bb545451) Thanks [@jinchuu1391](https://github.com/jinchuu1391)! - vite.config.ts 원상복구
+
 ## 1.1.0
 
 ### Minor Changes
