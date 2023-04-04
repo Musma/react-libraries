@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.0
+
+### Minor Changes
+
+- [`736cb9c`](https://github.com/Musma/react-libraries/commit/736cb9cbd378ed409e578788502ab2faec029b9a) Thanks [@jinchuu1391](https://github.com/jinchuu1391)! - ssr을 위한 vite설정 수정
+
 ## 1.0.51
 
 ### Patch Changes
