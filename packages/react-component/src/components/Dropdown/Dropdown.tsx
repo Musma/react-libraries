@@ -76,7 +76,7 @@ export const Dropdown = ({
         top: top,
       }[anchorOrigin.vertical]
     }
-  }, [anchorEl, anchorOrigin.vertical])
+  }, [anchorEl, anchorOrigin])
 
   // Dropdown 수평 위치 계산
   const left = useMemo(() => {
