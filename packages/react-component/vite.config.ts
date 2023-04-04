@@ -7,7 +7,9 @@ import dts from 'vite-plugin-dts'
 import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
+  ssr: { noExternal: true },
   build: {
+    ssr: true,
     sourcemap: true,
     lib: {
       // 빌드 시 src/index.ts을 시작점으로
