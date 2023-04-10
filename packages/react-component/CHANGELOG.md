@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.3
+
+### Patch Changes
+
+- [`9eaddb3`](https://github.com/Musma/react-libraries/commit/9eaddb3d537a7e746f1ac73ebbfb5d914bde4038) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: Modal, NoTitleModalProps 추가
+
 ## 1.1.2
 
 ### Patch Changes
