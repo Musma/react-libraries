@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.1.4
+
+### Patch Changes
+
+- [`fa8520f`](https://github.com/Musma/react-libraries/commit/fa8520f200ddedaf20db12eecc54a92ec43703d4) Thanks [@Dave352](https://github.com/Dave352)! - refactor: TextInput 코드정리 및 누락된 주석 정리
+
+- Updated dependencies [[`fa8520f`](https://github.com/Musma/react-libraries/commit/fa8520f200ddedaf20db12eecc54a92ec43703d4)]:
+  - @musma/react-utils@0.2.20
+
 ## 1.1.3
 
 ### Patch Changes

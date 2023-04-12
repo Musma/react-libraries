@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- Updated dependencies [[`fa8520f`](https://github.com/Musma/react-libraries/commit/fa8520f200ddedaf20db12eecc54a92ec43703d4), [`fa8520f`](https://github.com/Musma/react-libraries/commit/fa8520f200ddedaf20db12eecc54a92ec43703d4)]:
+  - @musma/react-utils@0.2.20
+  - @musma/react-component@1.1.4
+
+## null
+
+### Patch Changes
+
 - Updated dependencies [[`9eaddb3`](https://github.com/Musma/react-libraries/commit/9eaddb3d537a7e746f1ac73ebbfb5d914bde4038)]:
   - @musma/react-component@1.1.3
 

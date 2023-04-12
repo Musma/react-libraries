@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.20
+
+### Patch Changes
+
+- [`fa8520f`](https://github.com/Musma/react-libraries/commit/fa8520f200ddedaf20db12eecc54a92ec43703d4) Thanks [@Dave352](https://github.com/Dave352)! - feat: RegExp에 영문과 같이 사용할수있는 특수문자 추가
+
 ## 0.2.19
 
 ### Patch Changes
