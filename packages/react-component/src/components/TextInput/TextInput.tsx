@@ -10,26 +10,13 @@ import {
 
 import { useTheme } from '@emotion/react'
 import { OutlineEyeCloseIcon, OutlineEyeIcon } from '@musma/react-icons'
-import { RegExps } from '@musma/react-utils'
 
 import { IconAdornment, InputHelper, InputLabel } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
 import { Adornment } from './components'
-
-const Rules = {
-  ONLY_DIGIT: 'onlyDigit',
-  ONLY_DIGIT_AND_DASH: 'onlyDigitAndDash',
-  ONLY_DIGIT_AND_DOT: 'onlyDigitAndDot',
-  ONLY_DIGIT_AND_DOT_DASH: 'onlyDigitAndDotDash',
-  ONLY_EMAIL: 'onlyEmail',
-  ONLY_ENGLISH: 'onlyEnglish',
-  ONLY_ENGLISH_AND_DIGIT: 'onlyEnglishAndDigit',
-} as const
-
-type RulesType = (typeof Rules)[keyof typeof Rules]
-type InputType = 'text' | 'password'
+import { handleRegExpText, InputType, RulesType } from './helpers'
 
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
@@ -112,7 +99,9 @@ export interface TextInputProps
    * @optional
    * @type {string}
    *
-   * 'onlyDigit' | 'onlyDigitAndDot' | 'onlyEmail' | 'onlyEnglish'
+   * @value
+   * 'onlyDigit' | 'onlyDigitAndDash' | 'onlyDigitAndDot' | 'onlyDigitAndDotDash'
+   * | 'onlyEnglish' | 'onlyEnglishAndDash' | 'onlyEnglishAndDot' | 'onlyEnglishAndDotDash'
    * | 'onlyEnglishAndDigit'
    *
    * @description
@@ -180,23 +169,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target
 
-        /**
-         * @return {boolean}
-         */
-        const regExps =
-          rules &&
-          {
-            onlyDigit: RegExps.ONLY_DIGIT.test(value),
-            onlyDigitAndDash: RegExps.ONLY_DIGIT_AND_DASH.test(value),
-            onlyDigitAndDot: RegExps.ONLY_DIGIT_AND_DOT.test(value),
-            onlyDigitAndDotDash: RegExps.ONLY_DIGIT_AND_DOT_DASH.test(value),
-            onlyEmail: RegExps.ONLY_EMAIL.test(value),
-            onlyEnglish: RegExps.ONLY_ENGLISH.test(value),
-            onlyEnglishAndDigit: RegExps.ONLY_ENGLISH_AND_DIGIT.test(value),
-          }[rules]
-
         if (onChange) {
           if (rules) {
+            const regExps = handleRegExpText(rules, value)
             regExps && onChange(event)
             return
           }
