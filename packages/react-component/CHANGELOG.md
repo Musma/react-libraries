@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.10
+
+### Patch Changes
+
+- [`fc69148`](https://github.com/Musma/react-libraries/commit/fc691487085ccc4e10dd982f0dd8a8e0a1ae8376) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] TextInput, onChange 타입 원복
+
 ## 1.1.9
 
 ### Patch Changes
