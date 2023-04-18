@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.7
+
+### Patch Changes
+
+- [`512eaaf`](https://github.com/Musma/react-libraries/commit/512eaafe163153b9ba089ccba80181560bdcc3ac) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] TextInput, trimValue Props 추가
+
 ## 1.1.6
 
 ### Patch Changes
