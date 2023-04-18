@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.8
+
+### Patch Changes
+
+- [`e46a35e`](https://github.com/Musma/react-libraries/commit/e46a35e523ca27b1f81f78bcb0294a863ebbc939) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] TextInput, trimValue -> disabledTrim으로 Props명 변경 및 disabledTrim 기본값 false
+
 ## 1.1.7
 
 ### Patch Changes
