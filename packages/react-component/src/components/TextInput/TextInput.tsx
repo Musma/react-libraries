@@ -158,6 +158,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       className,
       disabledTrim = false,
       onChange,
+      onBlur,
       ...rest
     },
     ref,
@@ -194,6 +195,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           const trimedValue = event?.target.value.trim()
           onChange(trimedValue)
         }
+        // Props로 전달받은 onBlur 함수 실행
+        onBlur?.(event)
       },
       [disabledTrim],
     )
