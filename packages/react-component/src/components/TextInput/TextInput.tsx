@@ -112,7 +112,7 @@ export interface TextInputProps
   /**
    * value에 trim() 처리 여부입니다.
    */
-  trimValue?: boolean
+  disabledTrim?: boolean
   /**
    *
    */
@@ -156,7 +156,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       id,
       disabled = false,
       className,
-      trimValue = false,
+      disabledTrim = false,
       onChange,
       ...rest
     },
@@ -190,12 +190,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 
     const handleTextInputBlur = useCallback(
       (event: FocusEvent<HTMLInputElement, Element>) => {
-        if (trimValue) {
+        if (!disabledTrim) {
           const trimedValue = event?.target.value.trim()
           onChange(trimedValue)
         }
       },
-      [trimValue],
+      [disabledTrim],
     )
 
     return (
