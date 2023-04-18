@@ -7,7 +7,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, DatePicker, RadioGroup, Table, TextInput } from './components'
+import { Button, DatePicker, RadioGroup, Table } from './components'
 
 const options = [
   {
@@ -133,8 +133,6 @@ const Component = () => {
           gap: theme.spacing.md,
         }}
       >
-        <TextInput value={testValue} onChange={setTestValue} />
-
         {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
 
         <Table

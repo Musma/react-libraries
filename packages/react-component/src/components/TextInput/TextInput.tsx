@@ -20,7 +20,7 @@ import { Adornment } from './components'
 import { handleRegExpText, InputType, RulesType } from './helpers'
 
 export interface TextInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'onChange'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /**
    * @optional
    * @type {string}
@@ -113,10 +113,6 @@ export interface TextInputProps
    * value에 trim() 처리 여부입니다.
    */
   disabledTrim?: boolean
-  /**
-   *
-   */
-  onChange: (value: string) => void
 }
 
 /**
@@ -184,21 +180,22 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           return
         }
 
-        onChange(value)
+        onChange?.(event)
       },
-      [rules],
+      [rules, onChange],
     )
 
     const handleTextInputBlur = useCallback(
       (event: FocusEvent<HTMLInputElement, Element>) => {
         if (!disabledTrim) {
           const trimedValue = event?.target.value.trim()
-          onChange(trimedValue)
+          event.target.value = trimedValue
+          onChange?.(event)
         }
         // Props로 전달받은 onBlur 함수 실행
         onBlur?.(event)
       },
-      [disabledTrim],
+      [disabledTrim, onChange, onBlur],
     )
 
     return (
