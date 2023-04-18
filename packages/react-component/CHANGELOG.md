@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.5
+
+### Patch Changes
+
+- [#240](https://github.com/Musma/react-libraries/pull/240) [`8b75cb5`](https://github.com/Musma/react-libraries/commit/8b75cb530a6f66a218c37ba7e60b4f75e781ca87) Thanks [@Dave352](https://github.com/Dave352)! - chore: RadioGroup에 disabled props 추가
+
 ## 1.1.4
 
 ### Patch Changes
