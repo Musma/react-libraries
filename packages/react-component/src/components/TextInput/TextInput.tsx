@@ -1,5 +1,6 @@
 import {
   ChangeEvent,
+  FocusEvent,
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
@@ -19,7 +20,7 @@ import { Adornment } from './components'
 import { handleRegExpText, InputType, RulesType } from './helpers'
 
 export interface TextInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size' | 'onChange'> {
   /**
    * @optional
    * @type {string}
@@ -108,6 +109,14 @@ export interface TextInputProps
    * 입력하는 값을 rules에 따라 제한합니다
    */
   rules?: RulesType
+  /**
+   * value에 trim() 처리 여부입니다.
+   */
+  trimValue?: boolean
+  /**
+   *
+   */
+  onChange: (value: string) => void
 }
 
 /**
@@ -147,6 +156,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       id,
       disabled = false,
       className,
+      trimValue = false,
       onChange,
       ...rest
     },
@@ -169,16 +179,23 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target
 
-        if (onChange) {
-          if (rules) {
-            const regExps = handleRegExpText(rules, value)
-            regExps && onChange(event)
-            return
-          }
-          onChange(event)
+        if (rules && !handleRegExpText(rules, value)) {
+          return
+        }
+
+        onChange(value)
+      },
+      [rules],
+    )
+
+    const handleTextInputBlur = useCallback(
+      (event: FocusEvent<HTMLInputElement, Element>) => {
+        if (trimValue) {
+          const trimedValue = event?.target.value.trim()
+          onChange(trimedValue)
         }
       },
-      [onChange, rules],
+      [trimValue],
     )
 
     return (
@@ -258,6 +275,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             ]}
             disabled={disabled}
             onChange={handleTextInputChange}
+            onBlur={handleTextInputBlur}
             {...rest}
           />
 
