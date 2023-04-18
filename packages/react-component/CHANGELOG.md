@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 1.1.6
+
+### Patch Changes
+
+- [`ebd4976`](https://github.com/Musma/react-libraries/commit/ebd4976a59245d11adc08e55e6f5deb1c2d85df0) Thanks [@Dave352](https://github.com/Dave352)! - chore: luxon 3.2.1로 업데이트
+
+- Updated dependencies [[`ebd4976`](https://github.com/Musma/react-libraries/commit/ebd4976a59245d11adc08e55e6f5deb1c2d85df0)]:
+  - @musma/react-icons@0.1.12
+  - @musma/react-utils@0.2.21
+
 ## 1.1.5
 
 ### Patch Changes
