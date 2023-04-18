@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.9
+
+### Patch Changes
+
+- [`9b4fcc7`](https://github.com/Musma/react-libraries/commit/9b4fcc75750cfd1b5cb268d7c985a036c1fe8db3) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] TextInput onBlur 처리수정
+
 ## 1.1.8
 
 ### Patch Changes
