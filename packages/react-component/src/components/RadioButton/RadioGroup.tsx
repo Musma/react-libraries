@@ -30,12 +30,22 @@ interface RadioGroupProps<T> {
    * @required
    */
   options: RadioOption<T>[]
+  /**
+   * @optional
+   */
   gap?: Size | number
+  /**
+   * @optional
+   */
+  disabled?: boolean
   /**
    * @required
    * onChange 이벤트입니다.
    */
   className?: string
+  /**
+   * @required
+   */
   onChange: (value: T) => void
 }
 
@@ -54,6 +64,7 @@ const _RadioGroup = <T extends string | boolean>(
     value,
     gap = 'lg',
     options,
+    disabled,
     className,
     onChange,
   }: RadioGroupProps<T>,
@@ -92,6 +103,7 @@ const _RadioGroup = <T extends string | boolean>(
             label={label}
             value={_value}
             checked={_value === value}
+            disabled={disabled}
             onChange={onChange}
           />
         ))}
