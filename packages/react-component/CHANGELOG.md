@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.11
+
+### Patch Changes
+
+- [`ac0efa5`](https://github.com/Musma/react-libraries/commit/ac0efa58ec7831729b848090c6f9ae657858fdaa) Thanks [@mcoding777](https://github.com/mcoding777)! - style: Button 컴포넌트 border radius 변경
+
 ## 1.1.10
 
 ### Patch Changes
