@@ -65,7 +65,7 @@ export const Button = ({
           justifyContent: 'center',
           alignItems: 'center',
           height: theme.inputSize.height[size],
-          borderRadius: theme.rounded.md,
+          borderRadius: theme.rounded.lg,
           padding: theme.spacing.sm,
           whiteSpace: 'nowrap',
         },
