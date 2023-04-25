@@ -284,6 +284,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             <IconAdornment
               disabled={disabled}
               onClick={toggleType}
+              tabIndex={-1}
               css={{
                 position: 'absolute',
                 right: 4,

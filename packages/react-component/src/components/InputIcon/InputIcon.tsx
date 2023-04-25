@@ -1,4 +1,4 @@
-import { SVGProps, useMemo } from 'react'
+import { SVGProps, memo, useMemo } from 'react'
 
 import { Size } from 'src/types'
 
@@ -22,7 +22,7 @@ interface InputIconProps extends SVGProps<SVGSVGElement> {
  * @description
  * TextInput, DatePicker 같은 Input에 넣을 아이콘 컴포넌트입니다.
  */
-export const InputIcon = ({ size: _size = 'md', icon: Icon, ...rest }: InputIconProps) => {
+export const InputIcon = memo(({ size: _size = 'md', icon: Icon, ...rest }: InputIconProps) => {
   const size = useMemo(() => {
     if (_size === 'lg') {
       return {
@@ -37,4 +37,4 @@ export const InputIcon = ({ size: _size = 'md', icon: Icon, ...rest }: InputIcon
   }, [_size])
 
   return <Icon {...size} {...rest} />
-}
+})

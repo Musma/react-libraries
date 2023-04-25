@@ -1,4 +1,4 @@
-import { LabelHTMLAttributes } from 'react'
+import { LabelHTMLAttributes, memo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -26,31 +26,28 @@ interface InputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
  * @description
  * Input Element 위에 라벨을 표시나타내는 컴포넌트입니다.
  */
-export const InputLabel = ({
-  size = 'md',
-  required = false,
-  children,
-  ...rest
-}: InputLabelProps) => {
-  const theme = useTheme()
-  return (
-    <Label {...rest}>
-      <Typography
-        type={size === 'lg' ? 'subTitle1' : 'subTitle2'}
-        css={[
-          { marginBottom: theme.spacing.sm },
-          required && {
-            '&:after': {
-              color: theme.colors.red.main,
-              content: "'*'",
-              fontSize: '0.75rem',
-              fontWeight: 600,
+export const InputLabel = memo(
+  ({ size = 'md', required = false, children, ...rest }: InputLabelProps) => {
+    const theme = useTheme()
+    return (
+      <Label {...rest}>
+        <Typography
+          type={size === 'lg' ? 'subTitle1' : 'subTitle2'}
+          css={[
+            { marginBottom: theme.spacing.sm },
+            required && {
+              '&:after': {
+                color: theme.colors.red.main,
+                content: "'*'",
+                fontSize: '0.75rem',
+                fontWeight: 600,
+              },
             },
-          },
-        ]}
-      >
-        {children}
-      </Typography>
-    </Label>
-  )
-}
+          ]}
+        >
+          {children}
+        </Typography>
+      </Label>
+    )
+  },
+)

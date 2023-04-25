@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react'
+import { ButtonHTMLAttributes, forwardRef, memo } from 'react'
 
 import { useTheme } from '@emotion/react'
 
@@ -8,7 +8,7 @@ interface IconAdornmentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   noPadding?: boolean
 }
 
-export const IconAdornment = forwardRef<HTMLButtonElement, IconAdornmentProps>(
+const _IconAdornment = forwardRef<HTMLButtonElement, IconAdornmentProps>(
   ({ noPadding = false, ...rest }, ref) => {
     const theme = useTheme()
     return (
@@ -43,4 +43,4 @@ export const IconAdornment = forwardRef<HTMLButtonElement, IconAdornmentProps>(
   },
 )
 
-IconAdornment.displayName = 'IconAdornment'
+export const IconAdornment = memo(_IconAdornment)

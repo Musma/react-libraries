@@ -7,7 +7,7 @@ import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, DatePicker, RadioGroup, Table } from './components'
+import { Button, DatePicker, RadioGroup, Table, TextInput } from './components'
 
 const options = [
   {
@@ -101,7 +101,7 @@ const data = Array.from({ length: 20 }).map((_, index) => ({
 const Component = () => {
   const theme = useTheme()
   const [value, setValue] = useState(['1', '2'])
-  const [testValue, setTestValue] = useState<string | undefined>(undefined)
+  const [testValue, setTestValue] = useState<string>('')
 
   const [radio, setRadio] = useState<boolean>(false)
 
@@ -123,6 +123,14 @@ const Component = () => {
         onChange={setTime}
         minDate={DateTime.utc()}
         maxDate={DateTime.utc().plus({ day: 5 })}
+      />
+
+      <TextInput
+        type="password"
+        value={testValue}
+        onChange={(e) => {
+          setTestValue(e.target.value)
+        }}
       />
 
       <Box

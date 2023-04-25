@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes, memo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineCautionIcon, OutlineCheckCircleIcon } from '@musma/react-icons'
@@ -14,7 +14,7 @@ const iconSize = {
   height: 12,
 }
 
-export const InputHelper = ({ error, children, ...rest }: InputHelperProps) => {
+export const InputHelper = memo(({ error, children, ...rest }: InputHelperProps) => {
   const theme = useTheme()
 
   return (
@@ -40,4 +40,4 @@ export const InputHelper = ({ error, children, ...rest }: InputHelperProps) => {
       {children}
     </Typography>
   )
-}
+})
