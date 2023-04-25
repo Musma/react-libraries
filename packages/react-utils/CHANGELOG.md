@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.22
+
+### Patch Changes
+
+- [`0d126b7`](https://github.com/Musma/react-libraries/commit/0d126b79e702a5073ae05bc6ca70e8c2e6b6508d) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] useToggle 함수 로직 변경, toggle 함수에 boolean 타입의 매개변수 전달하지 않아도됩니다.
+
 ## 0.2.21
 
 ### Patch Changes
