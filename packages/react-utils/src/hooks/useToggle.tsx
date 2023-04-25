@@ -8,12 +8,18 @@ import { useCallback, useState } from 'react'
  * @param initializeState 초기값
  * @returns
  */
-export const useToggle = (initializeState = false): [boolean, (state: boolean) => void] => {
+export const useToggle = (initializeState = false) => {
   const [state, setState] = useState(initializeState)
 
-  const toggle = useCallback((state: boolean) => {
-    setState(state)
+  const toggle = useCallback((state?: boolean) => {
+    setState((defaultState) => {
+      if (typeof state === 'boolean') {
+        return state
+      } else {
+        return !defaultState
+      }
+    })
   }, [])
 
-  return [state, toggle]
+  return [state, toggle] as const
 }
