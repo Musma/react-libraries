@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.13
+
+### Patch Changes
+
+- [`3e0fce6`](https://github.com/Musma/react-libraries/commit/3e0fce6f55ee009d2fe51037a01ad2a41ac172fe) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] TextInput 안에 쓰는 하위 컴포넌트 memo로 래핑
+
 ## 1.1.12
 
 ### Patch Changes
