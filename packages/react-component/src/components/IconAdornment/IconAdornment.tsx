@@ -43,4 +43,6 @@ const _IconAdornment = forwardRef<HTMLButtonElement, IconAdornmentProps>(
   },
 )
 
+_IconAdornment.displayName = 'IconAdornment'
+
 export const IconAdornment = memo(_IconAdornment)

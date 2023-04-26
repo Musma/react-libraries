@@ -110,7 +110,7 @@ const Component = () => {
   const AAA = useFormSearch({
     useFormProps: {},
     fetchAPI() {
-      console.log('123123123')
+      //
     },
   })
 
@@ -129,6 +129,7 @@ const Component = () => {
         type="password"
         value={testValue}
         onChange={(e) => {
+          console.log(e)
           setTestValue(e.target.value)
         }}
       />

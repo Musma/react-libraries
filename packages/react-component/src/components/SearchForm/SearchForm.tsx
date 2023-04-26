@@ -53,7 +53,6 @@ export const SearchForm = ({
           }}
         >
           {/* Reset 버튼 */}
-
           <Button type="reset" variant="outlined" fullWidth={true}>
             {resetLabel}
           </Button>

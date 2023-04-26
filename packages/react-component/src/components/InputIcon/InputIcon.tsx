@@ -38,3 +38,5 @@ export const InputIcon = memo(({ size: _size = 'md', icon: Icon, ...rest }: Inpu
 
   return <Icon {...size} {...rest} />
 })
+
+InputIcon.displayName = 'InputIcon'

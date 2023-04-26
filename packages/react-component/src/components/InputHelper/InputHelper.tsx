@@ -41,3 +41,5 @@ export const InputHelper = memo(({ error, children, ...rest }: InputHelperProps)
     </Typography>
   )
 })
+
+InputHelper.displayName = 'InputHelper'

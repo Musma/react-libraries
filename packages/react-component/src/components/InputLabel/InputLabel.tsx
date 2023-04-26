@@ -51,3 +51,5 @@ export const InputLabel = memo(
     )
   },
 )
+
+InputLabel.displayName = 'InputLabel'
