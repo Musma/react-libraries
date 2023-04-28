@@ -169,7 +169,7 @@ const _Select = <T extends string>(
 
   useEffect(() => {
     setInputValue(options.find((option) => option.value === value)?.label || '')
-  }, [value])
+  }, [value, options])
 
   return (
     <Box
