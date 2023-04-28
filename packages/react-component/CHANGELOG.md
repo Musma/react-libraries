@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.14
+
+### Patch Changes
+
+- [`c46692d`](https://github.com/Musma/react-libraries/commit/c46692dda7c433113408432fea14129cb457f893) Thanks [@jklasd2001](https://github.com/jklasd2001)! - fix: [react-component] Select, options Props에 데이터가 있어도 inputValue가 바뀌지않는 버그 수정
+
 ## 1.1.13
 
 ### Patch Changes
