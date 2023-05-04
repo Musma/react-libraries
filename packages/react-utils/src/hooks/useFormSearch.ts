@@ -16,7 +16,7 @@ interface UseFormSearchProps<T extends object> {
 }
 
 export const useFormSearch = <T extends object>({
-  isResetOnSubmit = false,
+  isResetOnSubmit = true,
   useFormProps,
   fetchAPI,
 }: UseFormSearchProps<T>) => {
@@ -39,12 +39,9 @@ export const useFormSearch = <T extends object>({
   }
 
   const onReset = () => {
-    if (!isResetOnSubmit) {
+    if (isResetOnSubmit) {
       setPageable((_pageable) => ({ ..._pageable, page: 1 }))
-      setFormState(() => ({}))
-      form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
       fetchAPI()
-      return
     }
 
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
