@@ -25,10 +25,6 @@ export const useFormSearch = <T extends object>({
 
   const form = useForm<T>({
     ...useFormProps,
-    defaultValues: {
-      ...useFormProps.defaultValues,
-      ...formState.formValues,
-    } as DeepPartial<T>,
   })
 
   const { setPageable, pagination, pageable } = usePagination({
@@ -46,6 +42,13 @@ export const useFormSearch = <T extends object>({
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
     fetchAPI()
   }
+
+  useEffect(() => {
+    form.reset({
+      ...useFormProps.defaultValues,
+      ...formState.formValues,
+    } as DeepPartial<T>)
+  }, [])
 
   useEffect(() => {
     const pageable = formState.pageable
