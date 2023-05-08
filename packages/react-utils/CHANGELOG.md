@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.23
+
+### Patch Changes
+
+- [`dea4df5`](https://github.com/Musma/react-libraries/commit/dea4df51e471a4495439e6b005f9e8396d9fcf63) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: useFormSearch 로직 변경
+
 ## 0.2.22
 
 ### Patch Changes
