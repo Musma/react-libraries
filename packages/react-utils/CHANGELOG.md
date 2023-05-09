@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.24
+
+### Patch Changes
+
+- [#252](https://github.com/Musma/react-libraries/pull/252) [`0afbe3e`](https://github.com/Musma/react-libraries/commit/0afbe3ef1a8265cf058a4f6c3a1b523b64956b4e) Thanks [@Dave352](https://github.com/Dave352)! - feat: useFormSearch에 isResetOnSubmit props추가
+
 ## 0.2.23
 
 ### Patch Changes
