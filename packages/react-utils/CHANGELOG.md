@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.25
+
+### Patch Changes
+
+- [`4ba9c57`](https://github.com/Musma/react-libraries/commit/4ba9c57c01d67379aa932136913c68ee586bf664) Thanks [@jklasd2001](https://github.com/jklasd2001)! - [react-utils] onReset 시 fetchAPI 호출 제거
+
 ## 0.2.24
 
 ### Patch Changes
