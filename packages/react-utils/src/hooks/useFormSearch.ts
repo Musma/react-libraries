@@ -44,7 +44,6 @@ export const useFormSearch = <T extends object>({
 
     if (shouldRefetchOnReset) {
       setPageable((_pageable) => ({ ..._pageable, page: 1 }))
-      fetchAPI()
     }
   }
 
