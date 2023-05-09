@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.17
+
+### Patch Changes
+
+- [`40ddac7`](https://github.com/Musma/react-libraries/commit/40ddac7d5db8f64d43ea1cae8a5f9a33f7cbbdf3) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] InputLabel에 required Props를 withAsterisk로 변경
+
 ## 1.1.16
 
 ### Patch Changes
