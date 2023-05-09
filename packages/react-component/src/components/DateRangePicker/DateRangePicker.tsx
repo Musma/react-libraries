@@ -9,7 +9,8 @@ import { InputLabel, InputHelper } from 'src/components'
 import { Box, InputBase } from 'src/elements'
 import { Size } from 'src/types'
 
-import { DATE_FORMAT, RangeCalendar } from './components'
+import { RangeCalendar } from './components'
+import { DATE_FORMAT } from './helpers'
 
 interface DateRangePickerProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'size'> {
@@ -24,7 +25,7 @@ interface DateRangePickerProps
    *
    * 라벨 옵션으로 필수인지
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @default md
    *
@@ -85,7 +86,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
       id = uniqueId(),
       disabled,
       label,
-      required,
+      withAsterisk,
       size = 'md',
       error,
       helperText,
@@ -153,7 +154,7 @@ export const DateRangePicker = forwardRef<HTMLInputElement, DateRangePickerProps
       >
         {/* 라벨 */}
         {label && (
-          <InputLabel size={size} required={required}>
+          <InputLabel size={size} withAsterisk={withAsterisk}>
             {label}
           </InputLabel>
         )}
