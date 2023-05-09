@@ -53,7 +53,7 @@ interface SelectProps<T>
   /**
    * @optional
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @optional
    * option dropbox 위치
@@ -75,7 +75,7 @@ const _Select = <T extends string>(
     value,
     options,
     className,
-    required,
+    withAsterisk,
     disabled,
     position,
     onChange,
@@ -184,7 +184,7 @@ const _Select = <T extends string>(
     >
       {/* 라벨 */}
       {label && (
-        <InputLabel size={size} required={required}>
+        <InputLabel size={size} withAsterisk={withAsterisk}>
           {label}
         </InputLabel>
       )}

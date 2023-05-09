@@ -31,7 +31,7 @@ interface YearPickerProps
    * @description
    * Input의 label에 표시될 *의 사용여부입니다
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @optional
    * @type {string}
@@ -129,7 +129,7 @@ export const YearPicker = forwardRef<HTMLInputElement, YearPickerProps>(
     {
       id = uniqueId(),
       label,
-      required,
+      withAsterisk,
       size = 'md',
       error,
       helperText,
@@ -171,7 +171,7 @@ export const YearPicker = forwardRef<HTMLInputElement, YearPickerProps>(
       >
         {/* 라벨 */}
         {label && (
-          <InputLabel size={size} required={required}>
+          <InputLabel size={size} withAsterisk={withAsterisk}>
             {label}
           </InputLabel>
         )}

@@ -14,7 +14,7 @@ interface CheckboxGroupProps {
   /**
    * @optional
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @optional
    */
@@ -52,13 +52,13 @@ interface CheckboxGroupProps {
  * <CheckboxGroup value="test" onChange={onChange} data={[...]} />
  */
 export const CheckboxGroup = forwardRef<HTMLInputElement, CheckboxGroupProps>(
-  ({ size = 'md', required, label, value, gap = 'lg', options, className, onChange }, ref) => {
+  ({ size = 'md', withAsterisk, label, value, gap = 'lg', options, className, onChange }, ref) => {
     const theme = useTheme()
     return (
       <Box className={className}>
         {/* 라벨 */}
         {label && (
-          <InputLabel required={required} size={size}>
+          <InputLabel withAsterisk={withAsterisk} size={size}>
             {label}
           </InputLabel>
         )}

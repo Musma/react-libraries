@@ -59,7 +59,7 @@ interface MultiSelectProps<T>
   /**
    * @optional
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @required
    */
@@ -76,7 +76,7 @@ const _MultiSelect = <T extends string>(
     value,
     options,
     className,
-    required,
+    withAsterisk,
     disabled,
     onChange,
     ...rest
@@ -184,7 +184,7 @@ const _MultiSelect = <T extends string>(
     >
       {/* 라벨 */}
       {label && (
-        <InputLabel size={size} required={required}>
+        <InputLabel size={size} withAsterisk={withAsterisk}>
           {label}
         </InputLabel>
       )}

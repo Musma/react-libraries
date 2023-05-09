@@ -38,7 +38,7 @@ export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaE
    * @description
    * label에 별표를 추가할 수 있습니다.
    */
-  required?: boolean
+  withAsterisk?: boolean
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -50,7 +50,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       id,
       disabled = false,
       error = false,
-      required,
+      withAsterisk,
       className,
       ...rest
     },
@@ -71,7 +71,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       >
         {/* 라벨 */}
         {label && (
-          <InputLabel size={size} required={required} htmlFor={id}>
+          <InputLabel size={size} withAsterisk={withAsterisk} htmlFor={id}>
             {label}
           </InputLabel>
         )}

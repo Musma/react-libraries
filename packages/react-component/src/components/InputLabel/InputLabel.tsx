@@ -18,7 +18,7 @@ interface InputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
    *
    * @description
    */
-  required?: boolean
+  withAsterisk?: boolean
 }
 
 /**
@@ -27,7 +27,7 @@ interface InputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
  * Input Element 위에 라벨을 표시나타내는 컴포넌트입니다.
  */
 export const InputLabel = memo(
-  ({ size = 'md', required = false, children, ...rest }: InputLabelProps) => {
+  ({ size = 'md', withAsterisk = false, children, ...rest }: InputLabelProps) => {
     const theme = useTheme()
     return (
       <Label {...rest}>
@@ -35,7 +35,7 @@ export const InputLabel = memo(
           type={size === 'lg' ? 'subTitle1' : 'subTitle2'}
           css={[
             { marginBottom: theme.spacing.sm },
-            required && {
+            withAsterisk && {
               '&:after': {
                 color: theme.colors.red.main,
                 content: "'*'",

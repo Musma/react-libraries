@@ -16,7 +16,7 @@ interface RadioGroupProps<T> {
   /**
    * @optional
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @optional
    */
@@ -59,7 +59,7 @@ interface RadioGroupProps<T> {
 const _RadioGroup = <T extends string | boolean>(
   {
     size = 'md',
-    required,
+    withAsterisk,
     label,
     value,
     gap = 'lg',
@@ -83,7 +83,7 @@ const _RadioGroup = <T extends string | boolean>(
     >
       {/* 라벨 */}
       {label && (
-        <InputLabel required={required} size={size}>
+        <InputLabel withAsterisk={withAsterisk} size={size}>
           {label}
         </InputLabel>
       )}

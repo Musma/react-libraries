@@ -24,7 +24,7 @@ interface DatePickerProps
    *
    * 라벨 옵션으로 필수인지
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @default md
    *
@@ -97,7 +97,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       id = uniqueId(),
       disabled,
       label,
-      required,
+      withAsterisk,
       size = 'md',
       error,
       helperText,
@@ -139,7 +139,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       >
         {/* 라벨 */}
         {label && (
-          <InputLabel size={size} required={required}>
+          <InputLabel size={size} withAsterisk={withAsterisk}>
             {label}
           </InputLabel>
         )}

@@ -95,7 +95,7 @@ export interface TextInputProps
    * @description
    * Input의 label에 표시될 *의 사용여부입니다
    */
-  required?: boolean
+  withAsterisk?: boolean
   /**
    * @optional
    * @type {string}
@@ -147,7 +147,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       endAdornment,
       error = false,
       helperText,
-      required,
+      withAsterisk,
       rules,
       id,
       disabled = false,
@@ -212,7 +212,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       >
         {/* 라벨 */}
         {label && (
-          <InputLabel size={size} required={required} htmlFor={id}>
+          <InputLabel size={size} withAsterisk={withAsterisk} htmlFor={id}>
             {label}
           </InputLabel>
         )}
