@@ -120,7 +120,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           <Check color={checkColor} {...checkSize} />
         </Box>
 
-        {label && (
+        {typeof label === 'string' ? (
           <Typography
             css={{
               marginLeft: {
@@ -133,6 +133,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           >
             {label}
           </Typography>
+        ) : (
+          label
         )}
       </Label>
     )
