@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.19
+
+### Patch Changes
+
+- [`9077a8f`](https://github.com/Musma/react-libraries/commit/9077a8fef3067bad3f5ed82834ff077f094bc0d8) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Checkbox label의 타입에 따라 다르게 렌더링
+
 ## 1.1.18
 
 ### Patch Changes
