@@ -11,12 +11,14 @@ type FormState<T> = {
 
 interface UseFormSearchProps<T extends object> {
   shouldRefetchOnReset?: boolean
+  replace?: boolean
   useFormProps: UseFormProps<T>
   fetchAPI: () => void
 }
 
 export const useFormSearch = <T extends object>({
   shouldRefetchOnReset = true,
+  replace,
   useFormProps,
   fetchAPI,
 }: UseFormSearchProps<T>) => {
@@ -35,7 +37,7 @@ export const useFormSearch = <T extends object>({
 
   const onSubmit = () => {
     setPageable((_pageable) => ({ ..._pageable, page: 1 }))
-    setFormState((formState) => ({ ...formState, formValues: form.getValues() }))
+    setFormState((formState) => ({ ...formState, formValues: form.getValues() }), replace)
   }
 
   const onReset = () => {
