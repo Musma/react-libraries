@@ -3,7 +3,11 @@
  * @param fileSize 파일 용량
  * @return size.ext 파일 용량 + 용량 단위
  */
-export const getFileSize = (fileSize: number) => {
+export const getFileSize = (fileSize?: number) => {
+  if (!fileSize) {
+    return 0
+  }
+
   const kb = 1024
   const sizes = ['Bytes', 'KB', 'MB']
 
