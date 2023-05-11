@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.27
+
+### Patch Changes
+
+- [#262](https://github.com/Musma/react-libraries/pull/262) [`03affc8`](https://github.com/Musma/react-libraries/commit/03affc881d0ab3d180a91fbe3a3dffde8538f2e2) Thanks [@Dave352](https://github.com/Dave352)! - chore: getFileSize return type 수정
+
 ## 0.2.26
 
 ### Patch Changes
