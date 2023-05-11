@@ -5,7 +5,7 @@
  */
 export const getFileSize = (fileSize?: number) => {
   if (!fileSize) {
-    return 0
+    return '0'
   }
 
   const kb = 1024
