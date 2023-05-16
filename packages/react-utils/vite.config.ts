@@ -19,15 +19,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react-router-dom', 'react-hook-form', 'luxon'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react-router-dom': 'ReactRouterDOM',
-          'react-hook-form': 'ReactHookForm',
-          luxon: 'Luxon',
-        },
-      },
     },
   },
   resolve: {
