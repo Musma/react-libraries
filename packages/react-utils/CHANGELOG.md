@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.28
+
+### Patch Changes
+
+- [`5c73b46`](https://github.com/Musma/react-libraries/commit/5c73b46c71707fabc9e716359d56f87e1e768538) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-utils] lxuon.d.ts 추가 및 라이브러리 업데이트
+
 ## 0.2.27
 
 ### Patch Changes

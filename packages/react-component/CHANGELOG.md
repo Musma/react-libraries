@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 1.1.22
+
+### Patch Changes
+
+- [`19da513`](https://github.com/Musma/react-libraries/commit/19da5131ab7d67b831051395a8971912db29d297) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Luxon.d.ts 추가 및 라이브러리 업데이트
+
+- Updated dependencies [[`5c73b46`](https://github.com/Musma/react-libraries/commit/5c73b46c71707fabc9e716359d56f87e1e768538), [`0b16c48`](https://github.com/Musma/react-libraries/commit/0b16c48c4afaebe5b769d129f95ab95558f73ef5)]:
+  - @musma/react-utils@0.2.28
+  - @musma/react-icons@0.1.13
+
 ## 1.1.21
 
 ### Patch Changes
