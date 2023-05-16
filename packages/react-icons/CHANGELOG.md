@@ -1,5 +1,11 @@
 # @musma/react-icons
 
+## 0.1.13
+
+### Patch Changes
+
+- [`0b16c48`](https://github.com/Musma/react-libraries/commit/0b16c48c4afaebe5b769d129f95ab95558f73ef5) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-icons] 불필요 빌드 관련 코드 제거
+
 ## 0.1.12
 
 ### Patch Changes
