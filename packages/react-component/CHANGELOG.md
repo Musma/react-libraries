@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.23
+
+### Patch Changes
+
+- [`c5ed031`](https://github.com/Musma/react-libraries/commit/c5ed03156ec85d9848dfdaee3165356a7d94e8ef) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] Select position 타입 수정
+
 ## 1.1.22
 
 ### Patch Changes
