@@ -151,6 +151,7 @@ export const Pagination = ({
       <Select
         value={itemsPerPage}
         options={itemsPerPageOptions}
+        position="top"
         css={{ width: 80, marginRight: theme.spacing.md }}
         onChange={(value) => {
           if (value) {

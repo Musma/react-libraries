@@ -8,7 +8,7 @@ interface OptionContainerProps {
   /**
    * option dropbox가 위치할 곳(기본 값 bottom)
    */
-  position?: string
+  position?: 'top' | 'right' | 'bottom' | 'left'
   children?: ReactNode
 }
 

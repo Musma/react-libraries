@@ -156,6 +156,12 @@ const Component = () => {
             totalItems: 0,
             children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
           }}
+          pagination={{
+            currentPage: 1,
+            onItemsPerPageChange: () => {},
+            onPageChange: () => {},
+            totalPages: 10,
+          }}
           // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
         />
       </Box>

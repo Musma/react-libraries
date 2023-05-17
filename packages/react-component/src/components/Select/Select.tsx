@@ -58,7 +58,7 @@ interface SelectProps<T>
    * @optional
    * option dropbox 위치
    */
-  position?: string
+  position?: 'top' | 'right' | 'bottom' | 'left'
   /**
    * @required
    */
