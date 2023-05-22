@@ -36,12 +36,12 @@ export const useFormSearch = <T extends object>({
   })
 
   const onSubmit = () => {
-    setPageable((_pageable) => ({ ..._pageable, page: 1 }))
+    setPageable((pageable) => ({ ...pageable, page: 1 }))
     setFormState((formState) => ({ ...formState, formValues: form.getValues() }), replace)
   }
 
   const onReset = () => {
-    setFormState(() => ({}))
+    setFormState(() => ({}), replace)
     form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
 
     if (shouldRefetchOnReset) {
@@ -65,10 +65,13 @@ export const useFormSearch = <T extends object>({
 
   useEffect(() => {
     if (pageable !== INIT_PAGEABLE) {
-      setFormState((formState) => ({
-        ...formState,
-        pageable,
-      }))
+      setFormState(
+        (formState) => ({
+          ...formState,
+          pageable,
+        }),
+        replace,
+      )
     }
   }, [pageable])
 

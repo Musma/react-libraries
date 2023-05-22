@@ -33,6 +33,7 @@ export const useLocationState = <T>({ key, initialState }: UseLocationStateProps
         : {
             [key]: value,
           },
+      replace: true,
     })
   }
 
