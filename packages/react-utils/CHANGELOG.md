@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.29
+
+### Patch Changes
+
+- [`3a796fd`](https://github.com/Musma/react-libraries/commit/3a796fd5123d87ce7f1729654375cd9e9da4f826) - feat: [react-utils] useFormSearch.ts, setFormState 함수 인자 replace 추가, useLocationState.ts, 라우팅 시 replace: true 추가
+
 ## 0.2.28
 
 ### Patch Changes
