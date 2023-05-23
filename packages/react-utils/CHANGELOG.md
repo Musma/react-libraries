@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.32
+
+### Patch Changes
+
+- [`7a46868`](https://github.com/Musma/react-libraries/commit/7a468681287de1d1c7324a23d148449d40680274) - feat: [react-utils] 일부 함수 선언문 -> 화살표 함수로 변경
+
 ## 0.2.31
 
 ### Patch Changes
