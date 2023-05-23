@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.30
+
+### Patch Changes
+
+- [#268](https://github.com/Musma/react-libraries/pull/268) [`9fb8d05`](https://github.com/Musma/react-libraries/commit/9fb8d05171904a4639d15c4d3d57f322f7577a04) Thanks [@Dave352](https://github.com/Dave352)! - chore: useFormSearch props initPageable 추가
+
 ## 0.2.29
 
 ### Patch Changes
