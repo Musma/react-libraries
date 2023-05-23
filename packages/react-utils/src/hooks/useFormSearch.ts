@@ -67,7 +67,7 @@ export const useFormSearch = <T extends object>({
   }, [])
 
   useEffect(() => {
-    if (pageable !== INIT_PAGEABLE) {
+    if (pageable !== initPageable) {
       setFormState(
         (formState) => ({
           ...formState,
