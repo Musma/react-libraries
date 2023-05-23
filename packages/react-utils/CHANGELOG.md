@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.2.31
+
+### Patch Changes
+
+- [#270](https://github.com/Musma/react-libraries/pull/270) [`72b2aab`](https://github.com/Musma/react-libraries/commit/72b2aabc44554e836299121cfa18f54d446ee2ea) Thanks [@Dave352](https://github.com/Dave352)! - chore: initPageable 누락된 곳 적용
+
 ## 0.2.30
 
 ### Patch Changes
