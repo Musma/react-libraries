@@ -4,6 +4,6 @@
  * @param target 비교할 값들 배열임
  * @description tar
  */
-export function containedValue(value: string, target: string[]) {
+export const containedValue = <T>(value: T, target: T[]) => {
   return target.some((v) => v === value)
 }
