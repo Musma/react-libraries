@@ -5,7 +5,7 @@
   "homepage": "https://developers.musma.net",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Musma/react-libraries.git",
+    "url": "git+https://github.com/Musma/react-libraries.git",
     "directory": "packages/react-component"
   },
   "license": "MIT",
@@ -37,7 +37,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_c3ae2b4fca14b03"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -46,13 +49,23 @@
     "luxon": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.11.1",
+    "react-router-dom": "^6.11.2",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@emotion/babel-plugin": "^11.11.0",
-    "@types/react-transition-group": "^4.4.6"
+    "@storybook/addon-essentials": "^7.0.13",
+    "@storybook/addon-interactions": "^7.0.13",
+    "@storybook/addon-links": "^7.0.13",
+    "@storybook/blocks": "^7.0.13",
+    "@storybook/react": "^7.0.13",
+    "@storybook/react-vite": "^7.0.13",
+    "@storybook/testing-library": "^0.1.0",
+    "@types/react-transition-group": "^4.4.6",
+    "chromatic": "^6.17.4",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.13"
   },
   "peerDependencies": {
     "@emotion/react": ">=11.10.0",
@@ -65,5 +78,10 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Musma/react-libraries/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@musma/react-component@1.1.24"
 }
