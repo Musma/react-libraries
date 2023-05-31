@@ -1,5 +1,11 @@
 # @musma/eslint-config-react
 
+## 0.1.14
+
+### Patch Changes
+
+- [`bc88a37`](https://github.com/Musma/react-libraries/commit/bc88a3771447e82fec2929454dab926dbdfb608b) - feat: [eslint-config-react] 라이브러리 업데이트
+
 ## 0.1.13
 
 ### Patch Changes
