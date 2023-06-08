@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { useIsMounted } from './useIsMounted'
 
@@ -24,13 +24,16 @@ export const usePagination = ({ initPageable = INIT_PAGEABLE, fetchAPI }: UsePag
 
   const resetPage = () => setPageable((pageable) => ({ ...pageable, page: 1 }))
 
-  const itemsPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
-    const num: number = (index + 1) * initPageable.limit
-    return {
-      label: num.toString(),
-      value: num,
-    }
-  })
+  const itemsPerPageOptions = useMemo(() => {
+    return Array.from({ length: 5 }).map((_, index) => {
+      const num: number = (index + 1) * initPageable.limit
+      
+      return {
+        label: num.toString(),
+        value: num,
+      }
+    })
+  },[initPageable])
 
   const pagination = {
     itemsPerPageOptions,
