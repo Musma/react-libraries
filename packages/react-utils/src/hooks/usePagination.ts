@@ -12,14 +12,6 @@ interface UsePaginationProps {
   fetchAPI: () => void
 }
 
-const itemsPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
-  const num: number = (index + 1) * 10
-  return {
-    label: num.toString(),
-    value: num,
-  }
-})
-
 export const INIT_PAGEABLE = {
   page: 1,
   limit: 10,
@@ -31,6 +23,14 @@ export const usePagination = ({ initPageable = INIT_PAGEABLE, fetchAPI }: UsePag
   const [totalPages, setTotalPages] = useState(0)
 
   const resetPage = () => setPageable((pageable) => ({ ...pageable, page: 1 }))
+
+  const itemsPerPageOptions = Array.from({ length: 5 }).map((_, index) => {
+    const num: number = (index + 1) * initPageable.limit
+    return {
+      label: num.toString(),
+      value: num,
+    }
+  })
 
   const pagination = {
     itemsPerPageOptions,
