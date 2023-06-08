@@ -115,7 +115,7 @@ export const Pagination = ({
     }
 
     if (firstPage === lastPage) {
-      return [1]
+      return [firstPage]
     }
 
     return []
