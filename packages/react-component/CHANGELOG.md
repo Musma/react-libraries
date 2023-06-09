@@ -1,5 +1,14 @@
 # @musma/react-component
 
+## 1.1.28
+
+### Patch Changes
+
+- [#275](https://github.com/Musma/react-libraries/pull/275) [`e55e824`](https://github.com/Musma/react-libraries/commit/e55e82465638999eb3c06901deae12f8a69cad5e) Thanks [@Dave352](https://github.com/Dave352)! - fix: pagination 버그 수정(마지막페이지가 1개일 때)
+
+- Updated dependencies [[`e55e824`](https://github.com/Musma/react-libraries/commit/e55e82465638999eb3c06901deae12f8a69cad5e)]:
+  - @musma/react-utils@0.2.33
+
 ## 1.1.27
 
 ### Patch Changes
