@@ -1,12 +1,5 @@
 import { DateTime } from 'luxon'
 
-/**
- *
- * @param iso
- * @param format
- * @returns
- */
-
 const DEFAULT_FORMAT = 'yyyy-MM-dd'
 
 /**

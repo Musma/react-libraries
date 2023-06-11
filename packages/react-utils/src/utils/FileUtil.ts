@@ -15,7 +15,7 @@ export const getFileSize = (fileSize?: number) => {
   const getSize = Math.floor(Math.log(fileSize) / Math.log(kb))
 
   // 파일 용량 계산하기 bytes -> kb -> mb
-  const calSize = Math.round(fileSize / 1024 / 1024)
+  const calSize = Math.round(fileSize / kb / kb)
 
   if (calSize <= 2) {
     return Math.round(fileSize / Math.pow(kb, getSize)) + sizes[getSize]

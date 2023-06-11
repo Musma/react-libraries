@@ -43,6 +43,7 @@ jobs:
           publish: pnpm ci:publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Slack에 빌드 결과 표시
       - name: Slack channel notification
         uses: 8398a7/action-slack@v3
