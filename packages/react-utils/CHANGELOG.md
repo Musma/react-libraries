@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.0.2
+
+### Patch Changes
+
+- [`5332b63`](https://github.com/Musma/react-libraries/commit/5332b630d94bbffc608a521f045a6a13d877a4b2) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-icons] 불필요 주석 제거
+
 ## 0.2.33
 
 ### Patch Changes
