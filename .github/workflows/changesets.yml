@@ -33,6 +33,14 @@ jobs:
       # 의존성 설치한다.
       - name: Install dependencies
         run: pnpm install
+      # 배포를 위해 .npmrc 파일을 생성하고 인증 토큰을 추가한다.
+      - name: Configure npm
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       # Changesets에서 제공하는 Action 사용
       - name: Create release Pull Request or Publish to Github Packages
         uses: changesets/action@v1

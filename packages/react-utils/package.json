@@ -47,8 +47,5 @@
     "react-dom": ">=18.2.0",
     "react-hook-form": ">=7.39.0",
     "react-router-dom": ">=6.4.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
