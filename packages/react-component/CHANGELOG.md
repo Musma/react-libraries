@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 1.1.29
+
+### Patch Changes
+
+- [`79ef477`](https://github.com/Musma/react-libraries/commit/79ef47736562ea0e1904fbdd4c0f646dee7329eb) Thanks [@jklasd2001](https://github.com/jklasd2001)! - feat: [react-component] 라이브러리 업데이트
+
+- Updated dependencies [[`79ef477`](https://github.com/Musma/react-libraries/commit/79ef47736562ea0e1904fbdd4c0f646dee7329eb), [`5332b63`](https://github.com/Musma/react-libraries/commit/5332b630d94bbffc608a521f045a6a13d877a4b2)]:
+  - @musma/react-icons@0.1.14
+  - @musma/react-utils@0.0.2
+
 ## 1.1.28
 
 ### Patch Changes
