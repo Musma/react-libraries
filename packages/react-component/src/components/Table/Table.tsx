@@ -9,14 +9,13 @@ import { Size } from 'src/types'
 import { TableBody, TableHead, TableToolbar } from './components'
 import { TableColumn, ToolbarOption } from './types'
 
-export interface TableProps extends HTMLAttributes<HTMLTableElement> {
+export interface TableProps<T> extends HTMLAttributes<HTMLTableElement> {
   /**
    * @description
    * 테이블 데이터
-   * Record<string, unknown>
    * id 컬럼이 필수
    */
-  data: Record<string, unknown>[]
+  data: T[]
   /**
    * @description
    * 테이블 컬럼
@@ -65,10 +64,10 @@ export interface TableProps extends HTMLAttributes<HTMLTableElement> {
    * @description
    * 로우 클릭 이벤트
    */
-  onRowClick?: (rowData: Record<string, unknown>) => void
+  onRowClick?: (rowData: T) => void
 }
 
-export const Table = ({
+export function Table<T extends { id: string }>({
   data,
   columns,
   rounded = 'md',
@@ -80,13 +79,13 @@ export const Table = ({
   onCheckItemChange,
   onRowClick,
   ...rest
-}: TableProps) => {
+}: TableProps<T>) {
   const theme = useTheme()
 
   const handleCheckboxClick = useCallback(
-    (rowData: Record<string, unknown>) => {
+    (rowData: T) => {
       if (onCheckItemChange) {
-        const id = rowData.id as string
+        const id = rowData.id
 
         if (checkedItems.includes(id)) {
           onCheckItemChange?.(checkedItems.filter((item) => item != id))
@@ -116,8 +115,8 @@ export const Table = ({
         return
       }
 
-      const checedItemIds = data.map((data) => data.id as string)
-      onCheckItemChange(checedItemIds)
+      const checkedItemIds = data.map((data) => data.id)
+      onCheckItemChange(checkedItemIds)
     }
   }, [allChecked, data, onCheckItemChange])
 
@@ -154,7 +153,7 @@ export const Table = ({
           />
 
           {/* Table Body */}
-          <TableBody
+          <TableBody<T>
             columns={columns}
             data={data}
             withCheckbox={withCheckbox}

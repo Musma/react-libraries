@@ -6,7 +6,7 @@ import { Checkbox, Typography } from 'src/components'
 
 import { TableColumn } from '../types'
 
-interface TableBodyProps {
+interface TableBodyProps<T> {
   /**
    * @description
    */
@@ -26,7 +26,7 @@ interface TableBodyProps {
    *  d: 'd',
    * }
    */
-  data: Record<string, unknown>[]
+  data: T[]
   /**
    * @description
    */
@@ -38,21 +38,25 @@ interface TableBodyProps {
   /**
    * @description
    */
-  onRowClick?: (rowData: Record<string, unknown>) => void
+  onRowClick?: (rowData: T) => void
   /**
    * @description
    */
-  onCheckboxClick?: (rowData: Record<string, unknown>) => void
+  onCheckboxClick?: (rowData: T) => void
 }
 
-export const TableBody = ({
+interface TableDataProps extends Record<string, ReactNode> {
+  id: string
+}
+
+export function TableBody<T extends TableDataProps>({
   columns,
   data,
   withCheckbox = false,
   checkedItems,
   onRowClick,
   onCheckboxClick,
-}: TableBodyProps) => {
+}: TableBodyProps<T>) {
   const theme = useTheme()
 
   const isSelected = useCallback(
@@ -120,7 +124,7 @@ export const TableBody = ({
             >
               <Checkbox
                 size="lg"
-                checked={isSelected(item.id as string)}
+                checked={isSelected(item.id)}
                 onChange={() => {
                   if (onCheckboxClick) {
                     onCheckboxClick(item)
@@ -142,7 +146,7 @@ export const TableBody = ({
                     height: 40,
                   }}
                 >
-                  {item[child.columnName] as ReactNode}
+                  {item[child.columnName]}
                 </td>
               ))
             ) : (
@@ -155,7 +159,7 @@ export const TableBody = ({
                   whiteSpace: 'pre-wrap',
                 }}
               >
-                {item[column.columnName] as ReactNode}
+                {item[column.columnName]}
               </td>
             )
           })}

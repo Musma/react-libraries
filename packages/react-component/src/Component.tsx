@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { OutlineAddBoxIcon } from '@musma/react-icons'
@@ -76,8 +76,24 @@ const columns = [
   },
 ]
 
+const columns2 = [
+  {
+    columnName: 'id',
+    columnLabel: 'ID',
+  },
+  {
+    columnName: 'a',
+    columnLabel: 'A',
+  },
+  {
+    columnName: 'b',
+    columnLabel: 'B',
+  },
+]
+
 const sampleData = [
   {
+    id: 'id',
     a: 'A',
     'b-1': 'B-1',
     'b-2': 'B-2',
@@ -85,6 +101,14 @@ const sampleData = [
     'c-1': 'C-1',
     'c-2': 'C-2',
     d: 'd',
+  },
+]
+
+const sampleData2: SampleDataType[] = [
+  {
+    id: 'id',
+    a: 123,
+    b: <Button>메롱</Button>,
   },
 ]
 
@@ -97,6 +121,12 @@ const data = Array.from({ length: 20 }).map((_, index) => ({
   registNo: 'XA00-000' + (index + 1),
   fleetSerialNo: 'XA00-0001' + index,
 }))
+
+interface SampleDataType {
+  id: string
+  a: number
+  b: ReactNode
+}
 
 const Component = () => {
   const theme = useTheme()
@@ -114,6 +144,7 @@ const Component = () => {
     },
   })
 
+  const [currentData, setCurrentData] = useState<SampleDataType>()
   const [checkedItems, setCheckedItems] = useState<string[]>([])
 
   return (
@@ -145,12 +176,12 @@ const Component = () => {
         {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
 
         <Table
-          columns={columns}
-          data={[]}
+          columns={columns2}
+          data={sampleData2}
           withCheckbox={true}
           checkedItems={checkedItems}
           onCheckItemChange={setCheckedItems}
-          onRowClick={() => alert('Table의 Row를 클릭하셨습니다!')}
+          onRowClick={(rowData) => rowData && setCurrentData(rowData)}
           toolbar={{
             title: '123',
             totalItems: 0,
@@ -158,8 +189,8 @@ const Component = () => {
           }}
           pagination={{
             currentPage: 1,
-            onItemsPerPageChange: () => {},
-            onPageChange: () => {},
+            onItemsPerPageChange: () => console.log('페이지네이션 최대 갯수 변경'),
+            onPageChange: () => console.log('페이지네이션 변경'),
             totalPages: 10,
           }}
           // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
