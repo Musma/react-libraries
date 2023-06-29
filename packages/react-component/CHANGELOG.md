@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.30
+
+### Patch Changes
+
+- [`9540aec`](https://github.com/Musma/react-libraries/commit/9540aecd191c0a97d798438af87dbd4b1cee71ed) Thanks [@mcoding777](https://github.com/mcoding777)! - refactor: 테이블 컴포넌트 타입 수정 및 버전 업데이트
+
 ## 1.1.29
 
 ### Patch Changes
