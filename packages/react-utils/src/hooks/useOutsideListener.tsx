@@ -14,7 +14,6 @@ export const useOutsideListener = (
   /**
    * Alert if clicked on outside of element
    */
-
   const handleClickOutside = useCallback(
     (event: globalThis.MouseEvent) => {
       const target = event.target as HTMLElement
