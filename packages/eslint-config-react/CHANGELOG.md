@@ -1,5 +1,11 @@
 # @musma/eslint-config-react
 
+## 0.1.16
+
+### Patch Changes
+
+- [#284](https://github.com/Musma/react-libraries/pull/284) [`de64bf0`](https://github.com/Musma/react-libraries/commit/de64bf0a37841d826ac98959154ecfe5261f1be0) Thanks [@Dave352](https://github.com/Dave352)! - chore: eslint 설정에 대한 설명주석
+
 ## 0.1.15
 
 ### Patch Changes
