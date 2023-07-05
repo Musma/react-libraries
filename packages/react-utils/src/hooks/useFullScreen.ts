@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * @description
@@ -7,26 +7,25 @@ import { useCallback, useEffect, useState } from 'react'
 export const useFullScreen = () => {
   const [isFullScreen, setFullScreen] = useState(Boolean(document.fullscreenElement))
 
-  const toggleFullScreen = useCallback(() => {
-    if (isFullScreen) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen()
-      }
-    } else {
-      document.documentElement.requestFullscreen()
+  // onClick 이벤트에 넣으세요
+  const toggleFullScreen = () => {
+    if (document.fullscreenElement) {
+      // 전체모드 해제
+      document.exitFullscreen()
+      setFullScreen(false)
     }
 
-    setFullScreen((cur) => !cur)
-  }, [isFullScreen])
+    // 전체모드 실행
+    document.documentElement.requestFullscreen()
+    setFullScreen(true)
+  }
 
+  // 전체모드 실행될 때 + 사용자가 전체모드 이벤트를 사용할 때,
   useEffect(() => {
     const fullscreenchangeHandler = () => {
-      if (document.fullscreenElement) {
-        setFullScreen(true)
-      } else {
-        setFullScreen(false)
-      }
+      setFullScreen(Boolean(document.fullscreenElement))
     }
+
     window.addEventListener('fullscreenchange', fullscreenchangeHandler)
     return () => window.removeEventListener('fullscreenchange', fullscreenchangeHandler)
   }, [])
