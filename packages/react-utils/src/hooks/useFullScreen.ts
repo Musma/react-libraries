@@ -13,6 +13,7 @@ export const useFullScreen = () => {
       // 전체모드 해제
       document.exitFullscreen()
       setFullScreen(false)
+      return
     }
 
     // 전체모드 실행
