@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 /**
  * @description
@@ -9,13 +9,27 @@ export const useFullScreen = () => {
 
   const toggleFullScreen = useCallback(() => {
     if (isFullScreen) {
-      document.exitFullscreen()
+      if (document.fullscreenElement) {
+        document.exitFullscreen()
+      }
     } else {
       document.documentElement.requestFullscreen()
     }
 
-    setFullScreen((value) => !value)
+    setFullScreen((cur) => !cur)
   }, [isFullScreen])
+
+  useEffect(() => {
+    const fullscreenchangeHandler = () => {
+      if (document.fullscreenElement) {
+        setFullScreen(true)
+      } else {
+        setFullScreen(false)
+      }
+    }
+    window.addEventListener('fullscreenchange', fullscreenchangeHandler)
+    return () => window.removeEventListener('fullscreenchange', fullscreenchangeHandler)
+  }, [])
 
   return [isFullScreen, toggleFullScreen] as const
 }
