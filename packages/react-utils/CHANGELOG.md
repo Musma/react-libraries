@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.0.4
+
+### Patch Changes
+
+- [`43c874d`](https://github.com/Musma/react-libraries/commit/43c874d0091b80d185bda1e0076eac716a2dd0f5) Thanks [@Dave352](https://github.com/Dave352)! - chore: 누락된 return문 적용
+
 ## 0.0.3
 
 ### Patch Changes
