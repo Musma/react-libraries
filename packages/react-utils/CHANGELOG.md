@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.0.3
+
+### Patch Changes
+
+- [#287](https://github.com/Musma/react-libraries/pull/287) [`1c2bb82`](https://github.com/Musma/react-libraries/commit/1c2bb82858d48c14ddff005e1ec42a66ab83cf82) Thanks [@Dave352](https://github.com/Dave352)! - fix: useFullScreen escKey event일때, 적용안돼는 문제 제거
+
 ## 0.0.2
 
 ### Patch Changes
