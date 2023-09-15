@@ -5,11 +5,13 @@ export type CaptionType = 'caption1' | 'caption2'
 export type CaptionProps = {
   type?: 'caption'
   variant?: CaptionType
+  color?: string
   className?: string
 }
 
 export const Caption = ({
   variant = 'caption1',
+  color,
   children,
   className,
 }: PropsWithChildren<CaptionProps>) => {
@@ -20,6 +22,7 @@ export const Caption = ({
           margin: 0,
           fontWeight: 400,
           lineHeight: 1,
+          color,
         },
         {
           caption1: {

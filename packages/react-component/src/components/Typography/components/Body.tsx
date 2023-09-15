@@ -5,10 +5,16 @@ export type BodyType = 'body1' | 'body2' | 'body3'
 export interface BodyProps {
   type?: 'body'
   variant?: BodyType
+  color?: string
   className?: string
 }
 
-export const Body = ({ variant = 'body1', children, className }: PropsWithChildren<BodyProps>) => {
+export const Body = ({
+  variant = 'body1',
+  color,
+  children,
+  className,
+}: PropsWithChildren<BodyProps>) => {
   return (
     <p
       css={[
@@ -16,6 +22,7 @@ export const Body = ({ variant = 'body1', children, className }: PropsWithChildr
           margin: 0,
           fontWeight: 400,
           lineHeight: 1,
+          color,
         },
         {
           body1: {

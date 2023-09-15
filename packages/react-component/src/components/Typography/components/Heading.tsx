@@ -7,11 +7,13 @@ export type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export interface HeadingProps {
   type?: 'heading'
   variant?: HeadingType
+  color?: string
   className?: string
 }
 
 export const Heading = ({
   variant = 'h1',
+  color,
   children,
   className,
 }: PropsWithChildren<HeadingProps>) => {
@@ -22,6 +24,7 @@ export const Heading = ({
         {
           margin: 0,
           lineHeight: 1,
+          color,
         },
         {
           h1: { fontSize: '2.5rem', fontWeight: 700, letterSpacing: -0.6 },
