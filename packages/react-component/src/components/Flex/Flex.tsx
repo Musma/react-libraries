@@ -58,18 +58,7 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Flex = memo(
   forwardRef<HTMLDivElement, FlexProps>(
-    (
-      {
-        spacing,
-        rowSpacing,
-        colSpacing,
-        direction = 'row',
-        justify = 'start',
-        align = 'start',
-        ...rest
-      },
-      ref,
-    ) => {
+    ({ spacing, rowSpacing, colSpacing, direction = 'row', justify, align, ...rest }, ref) => {
       const theme = useTheme()
 
       const gap = useMemo(() => {
