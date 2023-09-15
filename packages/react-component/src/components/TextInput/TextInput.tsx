@@ -22,119 +22,71 @@ import { handleRegExpText, InputType, RulesType } from './helpers'
 export interface TextInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   /**
-   * @optional
-   * @type {string}
    * @default text
    *
-   * 'text' | 'password'
-   *
-   * @description
-   * Input의 타입을 정합니다 'password'가 입력되면, endAdornment가 활성화됩니다
+   * 입력 필드의 타입을 정합니다 'password'가 입력되면, Password Eye가 활성화됩니다
    */
   type?: InputType
   /**
-   * @optional
-   * @type {string}
    * @default md
    *
-   * 'sm' | 'md' | 'lg'
-   *
-   * @description
-   * Input 구성요소들의 사이즈입니다
+   * 입력 필드 구성요소들의 사이즈입니다
    */
   size?: Size
   /**
-   * @optional
-   *
-   * @description
-   * Input 위에 표시될 라벨입니다
+   * 입력 필드 위에 표시될 라벨입니다
    */
   label?: string
   /**
-   * @optional
-   * @returns JSX.Element
-   *
-   * @description
-   * Input 시작지점 아이콘 버튼입니다
+   * 입력 필드 시작지점 아이콘입니다.
    */
   startAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   /**
-   * @optional
-   * @returns JSX.Element
-   *
-   * @description
-   * Input 종료지점 아이콘 버튼입니다
+   * 입력 필드 종료지점 아이콘입니다.
    */
   endAdornment?: ReactNode | ((props: SVGProps<SVGSVGElement>) => JSX.Element)
   /**
-   * @optional
-   * @type {boolean}
+   * 1. 값이 false이면, borderColor에 'gray'가 적용됩니다
+   * 2. 값이 true이면, borderColor에 'red'가 적용됩니다
    *
-   * false이면, borderColor에 'red'가 적용됩니다
-   * || true이면, borderColor에 'gray'가 적용됩니다
-   *
-   * @description
-   * 에러 발생시 borderColor를 불린 값에 따라 변경합니다
+   * error의 불린 값에 따라 입력 필드의 borderColor와 helperText의 텍스트 컬러를 제어합니다.
    */
   error?: boolean
   /**
-   * @optional
    *
-   * @description
-   * Input 밑에 나타나는 도움 글입니다
-   * @description
-   * default color는 'green'이며, error props의 값이 true이면, 'red'가 적용됩니다
+   * 1. error Props의 값이 false이면, 텍스트와 아이콘의 컬러가 'green'으로 적용됩니다.
+   * 2. error props의 값이 true이면, 텍스트와 아이콘의 컬러가 'red'로 적용됩니다.
+   *
+   * 입력 필드 밑에 나타나는 도움 글입니다 error와 같이 사용 됩니다.
    */
   helperText?: string
   /**
-   * @optional
-   * @type {boolean}
-   * false이면, 사용하지 않습니다
-   * || true이면, label 옆에 *가 표시됩니다
    *
-   * @description
-   * Input의 label에 표시될 *의 사용여부입니다
+   * 1. 값을 입력하지 않으면, *가 표시되지 않습니다.
+   * 2. true이면, label 옆에 *가 표시됩니다
+   *
+   * 입력 필드의 label에 표시될 *의 사용여부입니다
    */
   withAsterisk?: boolean
   /**
-   * @optional
-   * @type {string}
-   *
-   * @value
-   * 'onlyDigit' | 'onlyDigitAndDash' | 'onlyDigitAndDot' | 'onlyDigitAndDotDash'
-   * | 'onlyEnglish' | 'onlyEnglishAndDash' | 'onlyEnglishAndDot' | 'onlyEnglishAndDotDash'
-   * | 'onlyEnglishAndDigit'
-   *
-   * @description
    * 입력하는 값을 rules에 따라 제한합니다
    */
   rules?: RulesType
   /**
+   * @default
+   * false
+   *
+   * 1. 값이 false이면, 텍스트의 양 사이드에 비어있는 텍스트 값이 제거됩니다.
+   * 2. 값이 true이면, 텍스트의 양 사이드에 비어있는 텍스트 값이 제거되지 않습니다.
+   *
    * value에 trim() 처리 여부입니다.
    */
   disabledTrim?: boolean
 }
 
 /**
- * @param InputHTMLAttributes(optional)
- * @param type(optional) Input의 타입을 정합니다 'password'가 입력되면, endAdornment가 활성화됩니다
- * @param size(optional) Input 구성요소들의 사이즈입니다
- * @param label(optional) Input 위에 표시될 라벨입니다
- * @param startAdornment(optional) Input 시작지점 아이콘 버튼입니다
- * @param endAdornment(optional) Input 종료지점 아이콘 버튼입니다
- * @param error(optional) 에러 발생시 borderColor를 불린 값에 따라 변경합니다
- * @param helperText(optional) default color는 'green'이며, error props의 값이 true이면, 'red'가 적용됩니다
- * @param required(optional) Input의 label에 표시될 *의 사용여부입니다
- * @param rules(optional) Input에 입력하는 값을 rules에 따라 제한합니다
- * @example
- * <TextInput
- *    label='ID'
- *    rules='onlyEmail'
- *    value={value}
- *    onChange={onChange}
- * />
+ * https://www.developers.musma.net/docs/react-components/textinput
  *
- * @description
  * Text를 입력할 수 있는 Input입니다
  */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
