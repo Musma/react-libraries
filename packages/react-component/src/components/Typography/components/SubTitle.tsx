@@ -5,11 +5,13 @@ export type SubTitleType = 'subTitle1' | 'subTitle2' | 'subTitle3'
 export type SubTitleProps = {
   type?: 'subTitle'
   variant?: SubTitleType
+  color?: string
   className?: string
 }
 
 export const SubTitle = ({
   variant = 'subTitle1',
+  color,
   children,
   className,
 }: PropsWithChildren<SubTitleProps>) => {
@@ -19,6 +21,7 @@ export const SubTitle = ({
         {
           margin: 0,
           lineHeight: 1,
+          color,
         },
         {
           subTitle1: {

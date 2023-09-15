@@ -13,43 +13,35 @@ import {
 
 export type TypographyProps = {
   /**
-   * @optional
-   * @type {string}
    * @default body1
    *
-   * h1 | h2 | h3 | h4 | h5 | h6
-   * body1 | body2 | body3
-   * cation1 | cation2
-   * subTitle1 | subTitle2 | subTitle3
-   *
-   * @description
    * 표시될 문자의 타입을 정합니다
    */
   type?: HeadingType | BodyType | CaptionType | SubTitleType
   /**
-   * @description
+   *
+   */
+  color?: string
+  /**
    * CSS Prop입니다
    */
   className?: string
 }
 
 /**
+ * https://www.developers.musma.net/docs/react-components/typography
  *
- * @param type(optional) h1 | h2 | h3 | h4 | h5 | h6 | body1 | body2 | body3 | cation1 | cation2 | subTitle1 | subTitle2 | subTitle3
- * @param className(optional) CSS Prop입니다
- * @param children(required) 표시할 문자입니다
- * @example
- * <Typography type="h1">
- *    example
- * </Typography>
- *
- * @description
  * 특정 액션이 포함되지 않은 문장이나 문자를 표시할 때 사용합니다
  */
-export const Typography = ({ type, className, children }: PropsWithChildren<TypographyProps>) => {
+export const Typography = ({
+  type,
+  color,
+  className,
+  children,
+}: PropsWithChildren<TypographyProps>) => {
   if (type === 'body1' || type === 'body2' || type === 'body3') {
     return (
-      <Body variant={type} className={className}>
+      <Body variant={type} color={color} className={className}>
         {children}
       </Body>
     )
@@ -57,7 +49,7 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
 
   if (type === 'caption1' || type === 'caption2') {
     return (
-      <Caption variant={type} className={className}>
+      <Caption variant={type} color={color} className={className}>
         {children}
       </Caption>
     )
@@ -72,7 +64,7 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
     type === 'h6'
   ) {
     return (
-      <Heading variant={type} className={className}>
+      <Heading variant={type} color={color} className={className}>
         {children}
       </Heading>
     )
@@ -80,14 +72,14 @@ export const Typography = ({ type, className, children }: PropsWithChildren<Typo
 
   if (type === 'subTitle1' || type === 'subTitle2' || type === 'subTitle3') {
     return (
-      <SubTitle variant={type} className={className}>
+      <SubTitle variant={type} color={color} className={className}>
         {children}
       </SubTitle>
     )
   }
 
   return (
-    <Body variant={'body1'} className={className}>
+    <Body variant={'body1'} color={color} className={className}>
       {children}
     </Body>
   )
