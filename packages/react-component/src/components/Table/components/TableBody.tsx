@@ -96,7 +96,7 @@ export function TableBody<T extends TableDataProps>({
           css={[
             {
               backgroundColor: theme.colors.white.main,
-              borderBottom: `1px solid ${theme.colors.white.lighter}`,
+              borderBottom: `1px solid ${theme.colors.gray.lighter}`,
               color: theme.colors.black.dark,
               '&:last-of-type': {
                 borderBottom: 'none',
@@ -105,7 +105,7 @@ export function TableBody<T extends TableDataProps>({
             onRowClick && {
               '&:hover': {
                 cursor: 'pointer',
-                backgroundColor: theme.colors.white.darker,
+                backgroundColor: theme.colors.blue.lighter,
               },
             },
           ]}
