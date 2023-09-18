@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.1.33
+
+### Patch Changes
+
+- [#294](https://github.com/Musma/react-libraries/pull/294) [`613d917`](https://github.com/Musma/react-libraries/commit/613d91724762d0c81ee0b15b55e191cbc52f75ef) Thanks [@Dave352](https://github.com/Dave352)! - feat: Flex Box
+
 ## 1.1.32
 
 ### Patch Changes
