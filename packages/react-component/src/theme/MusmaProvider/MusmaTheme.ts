@@ -1,9 +1,9 @@
 import { Size } from 'src/types'
 
-import { Pallet } from './ColorType'
+import { Palette } from './ColorType'
 
 export interface MusmaTheme {
-  colors: Pallet
+  colors: Palette
   /**
    * @default
     sm: 2,

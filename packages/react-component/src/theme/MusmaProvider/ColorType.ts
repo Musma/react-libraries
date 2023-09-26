@@ -126,7 +126,7 @@ interface DefaultColorSet {
   transparent: string
 }
 
-export interface Pallet extends DefaultColorSet {
+export interface Palette extends DefaultColorSet {
   [key: string]:
     | {
         lighter: string
