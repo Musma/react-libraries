@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.2.0
+
+### Minor Changes
+
+- [`c1c4ec4`](https://github.com/Musma/react-libraries/commit/c1c4ec45e02e77d29a54a8f50d9d86130de5167a) Thanks [@yoojinsuah](https://github.com/yoojinsuah)! - 다중 테마 기능 추가
+
 ## 1.1.33
 
 ### Patch Changes
