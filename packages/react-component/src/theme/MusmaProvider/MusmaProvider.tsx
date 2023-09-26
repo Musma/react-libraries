@@ -5,18 +5,30 @@ import { EmotionCache, ThemeProvider } from '@emotion/react'
 import { NormalizeCSS, PretendardFont, MusmaTheme } from 'src/theme'
 
 import { DefaultTheme } from './DefaultTheme'
+import { ThemeObject, useMultiTheme } from './useMultiTheme'
 
 interface MusmaProviderContextType {
   theme?: MusmaTheme
   emotionCache?: EmotionCache
+  currentTheme?: string
+  themeOptions: { label: string; value: string }[]
+  handleThemeChange?: (themeName?: string) => void
 }
 
 const MusmaProviderContext = createContext<MusmaProviderContextType>({
   theme: DefaultTheme,
+  themeOptions: [],
 })
 
+/**
+ * @deprecated
+ */
 export function useMusmaTheme() {
   return useContext(MusmaProviderContext)?.theme || DefaultTheme
+}
+
+export function useThemeContext() {
+  return useContext(MusmaProviderContext)
 }
 
 export interface MusmaProviderProps {
@@ -36,6 +48,10 @@ export interface MusmaProviderProps {
    */
   theme?: MusmaTheme
   /**
+   * 여러 테마가 필요할 때 사용합니다. 일단 전달하면 첫 번째 항목이 기본 테마가 됩니다
+   */
+  themeList?: ThemeObject[]
+  /**
    * SSR 환경에서 사용할 시 EmotionCache 객체를 생성하여 넣습니다.
    * @default undefined
    */
@@ -50,11 +66,14 @@ export const MusmaProvider = ({
   withNormalizeCSS = true,
   withPretendardFont = true,
   theme = DefaultTheme,
+  themeList = [],
   children,
 }: MusmaProviderProps) => {
+  const { value, currentThemeObject } = useMultiTheme({ theme, themeList })
+
   return (
-    <ThemeProvider theme={theme}>
-      <MusmaProviderContext.Provider value={{ theme }}>
+    <ThemeProvider theme={currentThemeObject}>
+      <MusmaProviderContext.Provider value={value}>
         {withNormalizeCSS && <NormalizeCSS />}
         {withPretendardFont && <PretendardFont />}
         {children}
