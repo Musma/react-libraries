@@ -13,6 +13,7 @@ interface UseFormSearchProps<T extends object> {
   shouldRefetchOnReset?: boolean
   replace?: boolean
   initPageable?: Pageable
+  formStateKey?: string
   useFormProps: UseFormProps<T>
   fetchAPI: () => void
 }
@@ -21,11 +22,12 @@ export const useFormSearch = <T extends object>({
   shouldRefetchOnReset = true,
   replace,
   initPageable = INIT_PAGEABLE,
+  formStateKey = 'formState',
   useFormProps,
   fetchAPI,
 }: UseFormSearchProps<T>) => {
   const [formState, setFormState] = useLocationState<FormState<T>>({
-    key: 'formState',
+    key: formStateKey,
     initialState: {},
   })
 
