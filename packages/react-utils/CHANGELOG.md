@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.0.5
+
+### Patch Changes
+
+- [#300](https://github.com/Musma/react-libraries/pull/300) [`bfb261d`](https://github.com/Musma/react-libraries/commit/bfb261dae8188059463462412be464237a72ffe8) Thanks [@Dave352](https://github.com/Dave352)! - fix: formState key가 겹치는 문제
+
 ## 0.0.4
 
 ### Patch Changes
