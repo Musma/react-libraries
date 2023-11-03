@@ -18,9 +18,5 @@ export function convertEmptyNumber(num?: number | null) {
 export const formatNumberWithCommas = (_number?: number | null) => {
   const number = isNumber(_number) ? _number : '0'
 
-  if (+number > 4200000000) {
-    return '-'
-  }
-
   return number.toLocaleString()
 }
