@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.0.6
+
+### Patch Changes
+
+- [#303](https://github.com/Musma/react-libraries/pull/303) [`255a564`](https://github.com/Musma/react-libraries/commit/255a564d59a49e4f6eb0bcbb8d4599e22d864c37) Thanks [@Dave352](https://github.com/Dave352)! - feat: 숫자 유틸 함수작성
+
 ## 0.0.5
 
 ### Patch Changes
