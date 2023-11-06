@@ -1,13 +1,25 @@
 import { ReactNode, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { OutlineAddBoxIcon } from '@musma/react-icons'
+import { FillAlarmIcon, FillHomeIcon, OutlineAddBoxIcon } from '@musma/react-icons'
 import { useFormSearch } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
 
-import { Button, DatePicker, RadioGroup, Table, TextInput } from './components'
+import {
+  AppShell,
+  Button,
+  DatePicker,
+  Header,
+  HeaderLeftSection,
+  HeaderRightSection,
+  NavBar,
+  RadioGroup,
+  Table,
+  TextInput,
+  Typography,
+} from './components'
 
 const options = [
   {
@@ -147,69 +159,103 @@ const Component = () => {
   const [currentData, setCurrentData] = useState<SampleDataType>()
   const [checkedItems, setCheckedItems] = useState<string[]>([])
 
+  const menus = [
+    {
+      label: 'Sample1',
+      icon: () => <FillHomeIcon />,
+      to: '/',
+    },
+    {
+      label: 'Sample2',
+      icon: () => <FillAlarmIcon />,
+      children: [
+        {
+          label: 'Sample2-1',
+          icon: () => <FillHomeIcon />,
+          to: '/1',
+        },
+        {
+          label: 'Sample2-2',
+          icon: () => <FillHomeIcon />,
+          to: '/2',
+        },
+      ],
+    },
+  ]
+
   return (
-    <Box>
-      <DatePicker
-        value={time}
-        onChange={setTime}
-        minDate={DateTime.utc()}
-        maxDate={DateTime.utc().plus({ day: 5 })}
-      />
+    <AppShell
+      header={
+        <Header>
+          <HeaderLeftSection logo={<Typography>Musma</Typography>}></HeaderLeftSection>
+          <HeaderRightSection isFolder>메뉴지롱 메롱메롱</HeaderRightSection>
+        </Header>
+      }
+      navBar={<NavBar items={menus} />}
+    >
+      <Box>
+        <DatePicker
+          value={time}
+          onChange={setTime}
+          minDate={DateTime.utc()}
+          maxDate={DateTime.utc().plus({ day: 5 })}
+        />
 
-      <TextInput
-        type="password"
-        value={testValue}
-        onChange={(e) => {
-          console.log(e)
-          setTestValue(e.target.value)
-        }}
-      />
-
-      <Box
-        css={{
-          padding: theme.spacingUtil(100),
-          display: 'flex',
-          flexDirection: 'column',
-          gap: theme.spacing.md,
-        }}
-      >
-        {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
-
-        <Table
-          columns={columns2}
-          data={sampleData2}
-          withCheckbox={true}
-          checkedItems={checkedItems}
-          onCheckItemChange={setCheckedItems}
-          onRowClick={(rowData) => rowData && setCurrentData(rowData)}
-          toolbar={{
-            title: '123',
-            totalItems: 0,
-            children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
+        <TextInput
+          type="password"
+          value={testValue}
+          onChange={(e) => {
+            console.log(e)
+            setTestValue(e.target.value)
           }}
-          pagination={{
-            currentPage: 1,
-            onItemsPerPageChange: () => console.log('페이지네이션 최대 갯수 변경'),
-            onPageChange: () => console.log('페이지네이션 변경'),
-            totalPages: 10,
+        />
+
+        <Box
+          css={{
+            padding: theme.spacingUtil(100),
+            display: 'flex',
+            flexDirection: 'column',
+            gap: theme.spacing.md,
           }}
-          // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
+        >
+          {/* <MultiSelect options={options} value={value} disabled={false} onChange={setValue} /> */}
+
+          <Table
+            columns={columns2}
+            data={sampleData2}
+            withCheckbox={true}
+            checkedItems={checkedItems}
+            onCheckItemChange={setCheckedItems}
+            onRowClick={(rowData) => rowData && setCurrentData(rowData)}
+            toolbar={{
+              title: '123',
+              totalItems: 0,
+              children: <Button startIcon={OutlineAddBoxIcon}>asd</Button>,
+            }}
+            pagination={{
+              currentPage: 1,
+              onItemsPerPageChange: () => console.log('페이지네이션 최대 갯수 변경'),
+              onPageChange: () => console.log('페이지네이션 변경'),
+              totalPages: 10,
+            }}
+            // css={{ '& div:last-child': { overflow: 'auto' }, '& table': { width: '110%' } }}
+          />
+        </Box>
+
+        <RadioGroup
+          value={radio}
+          onChange={(b) => {
+            setRadio(b)
+          }}
+          options={[
+            {
+              label: 'true',
+              value: true,
+            },
+          ]}
         />
       </Box>
-
-      <RadioGroup
-        value={radio}
-        onChange={(b) => {
-          setRadio(b)
-        }}
-        options={[
-          {
-            label: 'true',
-            value: true,
-          },
-        ]}
-      />
-    </Box>
+    </AppShell>
   )
 }
 
