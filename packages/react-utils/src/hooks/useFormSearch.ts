@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { DeepPartial, useForm, UseFormProps } from 'react-hook-form'
+import { DefaultValues, useForm, UseFormProps } from 'react-hook-form'
 
 import { useLocationState } from './useLocationState'
 import { INIT_PAGEABLE, Pageable, usePagination } from './usePagination'
@@ -47,7 +47,7 @@ export const useFormSearch = <T extends object>({
 
   const onReset = () => {
     setFormState(() => ({}), replace)
-    form.reset({ ...useFormProps.defaultValues } as DeepPartial<T>)
+    form.reset({ ...useFormProps.defaultValues } as DefaultValues<T>)
 
     if (shouldRefetchOnReset) {
       setPageable((_pageable) => ({ ..._pageable, page: 1 }))
@@ -58,7 +58,7 @@ export const useFormSearch = <T extends object>({
     form.reset({
       ...useFormProps.defaultValues,
       ...formState.formValues,
-    } as DeepPartial<T>)
+    } as DefaultValues<T>)
   }, [])
 
   useEffect(() => {
