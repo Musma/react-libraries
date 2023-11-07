@@ -1,13 +1,12 @@
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 import { Link, To } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
-import { OutlineMenuIcon } from '@musma/react-icons'
 
-import { IconAdornment, useFoldingNavBarContext } from 'src/components'
+import { FOLDING_NAVBAR_TRANSITION, useFoldingNavBarContext } from 'src/components'
 import { Box } from 'src/elements'
 
-interface HeaderLeftSectionProps {
+interface HeaderLeftSectionProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * @default "/"
    * 로고 클릭 시 이동할 라우팅 주소
@@ -23,20 +22,13 @@ interface HeaderLeftSectionProps {
    * 로고 아이콘
    */
   logo: ReactNode
-  /**
-   * @optional
-   * @description
-   * 메뉴 클릭시 이벤트
-   * Props를 전달하지 않으면 Menu Icon이 나타나지 않음
-   */
-  onMenuClick?: () => void
 }
 
 export const HeaderLeftSection = ({
   to = '/',
   disablePadding = false,
   logo,
-  onMenuClick,
+  ...rest
 }: HeaderLeftSectionProps) => {
   const theme = useTheme()
 
@@ -50,27 +42,22 @@ export const HeaderLeftSection = ({
           alignItems: 'center',
           justifyContent: 'space-between',
           width: theme.layoutSize.navBarWidth,
-          transition: 'width 0.5s ease-in-out',
+          transition: FOLDING_NAVBAR_TRANSITION,
         },
         !disablePadding && {
           paddingLeft: theme.spacing.md,
           paddingRight: theme.spacing.md,
         },
         isNavBarFolded && {
-          width: 100,
+          width: theme.layoutSize.foldedNavBarWidth,
           justifyContent: 'center',
         },
       ]}
+      {...rest}
     >
       <Link to={to} css={{ display: 'flex' }}>
         {logo}
       </Link>
-
-      {onMenuClick && (
-        <IconAdornment onClick={onMenuClick}>
-          <OutlineMenuIcon />
-        </IconAdornment>
-      )}
     </Box>
   )
 }

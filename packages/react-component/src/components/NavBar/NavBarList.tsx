@@ -1,4 +1,4 @@
-import { Fragment, HTMLAttributes, SVGProps } from 'react'
+import { Fragment, HTMLAttributes, SVGProps, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { ArrowTopMediumIcon } from '@musma/react-icons'
@@ -40,9 +40,13 @@ export const NavBarList = ({
   const theme = useTheme()
 
   const { isNavBarFolded } = useFoldingNavBarContext()
+  const isActiveStyle = useMemo(
+    () => isNavBarFolded && isChildrenActive,
+    [isNavBarFolded, isChildrenActive],
+  )
 
   return (
-    <Box css={{ margin: '8px 0px' }} {...rest}>
+    <Box css={{ margin: '8px 0px' }} className={isActiveStyle ? 'active' : undefined} {...rest}>
       <Box
         css={[
           {
@@ -60,11 +64,10 @@ export const NavBarList = ({
           isNavBarFolded && {
             justifyContent: 'center',
           },
-          isNavBarFolded &&
-            isChildrenActive && {
-              backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
-              color: theme.colors.primary.main,
-            },
+          isActiveStyle && {
+            backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
+            color: theme.colors.primary.main,
+          },
         ]}
       >
         <Icon color="currentColor" width={16} height={16} css={{ marginRight: theme.spacing.md }} />

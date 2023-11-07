@@ -4,6 +4,8 @@ import { useTheme } from '@emotion/react'
 
 import { Box } from 'src/elements'
 
+import { FOLDING_NAVBAR_TRANSITION, useFoldingNavBarContext } from '..'
+
 interface AppShellProps {
   /**
    * Header
@@ -35,6 +37,8 @@ interface AppShellProps {
  */
 export const AppShell = ({ header, navBar, disablePadding = false, children }: AppShellProps) => {
   const theme = useTheme()
+  const { isNavBarFolded } = useFoldingNavBarContext()
+
   return (
     // AppShell Wrapper
     <Box
@@ -53,13 +57,19 @@ export const AppShell = ({ header, navBar, disablePadding = false, children }: A
 
       {/* Contents Area */}
       <main
-        css={{
-          flexGrow: 1,
-          minWidth: 0,
-          backgroundColor: theme.colors.white.light,
-          paddingTop: theme.layoutSize.headerHeight,
-          paddingLeft: theme.layoutSize.navBarWidth,
-        }}
+        css={[
+          {
+            flexGrow: 1,
+            minWidth: 0,
+            backgroundColor: theme.colors.white.light,
+            paddingTop: theme.layoutSize.headerHeight,
+            paddingLeft: theme.layoutSize.navBarWidth,
+            transition: FOLDING_NAVBAR_TRANSITION,
+          },
+          isNavBarFolded && {
+            paddingLeft: theme.layoutSize.foldedNavBarWidth,
+          },
+        ]}
       >
         <Box css={[!disablePadding && { padding: theme.spacing.lg }]}>{children}</Box>
       </main>
