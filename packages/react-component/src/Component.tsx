@@ -15,6 +15,7 @@ import {
   HeaderLeftSection,
   HeaderRightSection,
   NavBar,
+  NavBarLink,
   RadioGroup,
   Table,
   TextInput,
@@ -183,7 +184,7 @@ const Component = () => {
       children: [
         {
           label: 'Sample2-1',
-          to: '/1',
+          to: '/',
         },
         {
           label: 'Sample2-2',
@@ -229,10 +230,15 @@ const Component = () => {
       header={
         <Header>
           <HeaderLeftSection logo={<Typography>Musma</Typography>}></HeaderLeftSection>
-          <HeaderRightSection isFolder>메뉴지롱 메롱메롱</HeaderRightSection>
+          <HeaderRightSection isFoldingMode>메뉴지롱 메롱메롱</HeaderRightSection>
         </Header>
       }
-      navBar={<NavBar items={menus} isFolder />}
+      navBar={
+        <NavBar items={menus} isFoldingMode>
+          <NavBarLink to="/" label="meme" />
+          <NavBarLink to="/" label="meme" />
+        </NavBar>
+      }
     >
       <Box>
         <DatePicker

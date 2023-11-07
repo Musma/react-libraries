@@ -4,22 +4,18 @@ import { NavLink, NavLinkProps } from 'react-router-dom'
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { Typography } from 'src/components'
+import { Typography, useFolderNavBarContext } from 'src/components'
 import { Box } from 'src/elements'
 
 interface NavBarListItemProps extends NavLinkProps {
   label: string
   icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
-  isFolding?: boolean
 }
 
-export const NavBarLink = ({
-  label,
-  icon: Icon,
-  isFolding = false,
-  ...rest
-}: NavBarListItemProps) => {
+export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) => {
   const theme = useTheme()
+
+  const { isNavFold } = useFolderNavBarContext()
 
   return (
     <NavLink css={{ textDecoration: 'none', margin: '8px 0px', display: 'block' }} {...rest}>
@@ -43,7 +39,7 @@ export const NavBarLink = ({
                 color: theme.colors.primary.main,
               },
             },
-            isFolding && {
+            isNavFold && {
               justifyContent: 'center',
             },
           ]}
@@ -62,7 +58,7 @@ export const NavBarLink = ({
                 type={'body2'}
                 css={[
                   { color: 'currentcolor' },
-                  isFolding && {
+                  isNavFold && {
                     display: 'none',
                   },
                 ]}
@@ -76,7 +72,7 @@ export const NavBarLink = ({
               type={isActive ? 'subTitle2' : 'body3'}
               css={[
                 { color: 'currentcolor' },
-                isFolding && {
+                isNavFold && {
                   display: 'none',
                 },
               ]}

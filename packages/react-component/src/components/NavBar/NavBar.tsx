@@ -1,32 +1,36 @@
-import { Fragment, HTMLAttributes, SVGProps, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { HTMLAttributes, useEffect } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { NavBarLink, NavBarList } from '.'
+import { NavBarItemsData } from '.'
+import { NavBarItems } from './NavBarItems'
 import { useFolderNavBarContext } from '../FolderNavBar'
-
-interface NavBarLinkProps {
-  label: string
-  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
-  to?: string
-}
-
-interface NavBarItemsProps extends NavBarLinkProps {
-  children?: Omit<NavBarLinkProps, 'icon'>[]
-}
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
   zIndex?: number
-  items?: NavBarItemsProps[]
-  isFolder?: boolean
+  /**
+   * @optional
+   * 메뉴 스키마에 맞춰서 데이터를 전달하면 NavList와 NavLink를 자동으로 생성합니다.
+   * isFoldingMode = true 이면 필수 값
+   */
+  items?: NavBarItemsData[]
+  /**
+   * @optional
+   * @default false
+   * 폴딩 기능을 사용할건지에 대한 여부
+   */
+  isFoldingMode?: boolean
 }
 
-export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps) => {
+export const NavBar = ({
+  zIndex,
+  items,
+  isFoldingMode = false,
+  children,
+  ...rest
+}: NavBarProps) => {
   const theme = useTheme()
-  const { pathname } = useLocation()
-
-  const { isNavFold, isMenuState, setNavMenuItem, toggleNavMenuItem } = useFolderNavBarContext()
+  const { isNavFold, setNavMenuItem } = useFolderNavBarContext()
 
   useEffect(() => {
     if (!items || !isNavFold) return
@@ -63,49 +67,7 @@ export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps
       ]}
       {...rest}
     >
-      {items?.map((item) => {
-        if (item?.children) {
-          const isChildrenVisible = isMenuState[item.label] && !(isFolder && isNavFold)
-          const isChildrenActive = item.children.some((child) => {
-            if (!child.to) return false
-            return pathname.includes(child.to)
-          })
-
-          return (
-            <Fragment key={item.label}>
-              <NavBarList
-                isFolding={isFolder && isNavFold}
-                isChildrenActive={isChildrenActive}
-                icon={item.icon}
-                label={item.label}
-                active={isMenuState[item.label]}
-                onClick={() => toggleNavMenuItem(item.label)}
-              />
-              {isChildrenVisible &&
-                item.children.map((child) => {
-                  return (
-                    <NavBarLink
-                      key={child.label}
-                      label={child.label}
-                      to={child.to ?? ''}
-                      isFolding={isFolder && isNavFold}
-                    />
-                  )
-                })}
-            </Fragment>
-          )
-        }
-
-        return (
-          <NavBarLink
-            key={item.label}
-            icon={item.icon}
-            label={item.label}
-            to={item.to ?? ''}
-            isFolding={isFolder && isNavFold}
-          />
-        )
-      })}
+      {items ? <NavBarItems items={items} isFoldingMode={isFoldingMode} /> : children}
     </nav>
   )
 }
