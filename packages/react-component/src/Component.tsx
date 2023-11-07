@@ -162,22 +162,63 @@ const Component = () => {
   const menus = [
     {
       label: 'Sample1',
-      icon: () => <FillHomeIcon />,
+      icon: () => (
+        <FillHomeIcon
+          css={{
+            marginRight: 8,
+          }}
+        />
+      ),
       to: '/',
     },
     {
       label: 'Sample2',
-      icon: () => <FillAlarmIcon />,
+      icon: () => (
+        <FillAlarmIcon
+          css={{
+            marginRight: 8,
+          }}
+        />
+      ),
       children: [
         {
           label: 'Sample2-1',
-          icon: () => <FillHomeIcon />,
           to: '/1',
         },
         {
           label: 'Sample2-2',
-          icon: () => <FillHomeIcon />,
           to: '/2',
+        },
+      ],
+    },
+    {
+      label: 'Sample3',
+      icon: () => (
+        <FillHomeIcon
+          css={{
+            marginRight: 8,
+          }}
+        />
+      ),
+      to: '/3',
+    },
+    {
+      label: 'Sample4',
+      icon: () => (
+        <FillAlarmIcon
+          css={{
+            marginRight: 8,
+          }}
+        />
+      ),
+      children: [
+        {
+          label: 'Sample4-1',
+          to: '/4',
+        },
+        {
+          label: 'Sample4-2',
+          to: '/5',
         },
       ],
     },
@@ -191,7 +232,7 @@ const Component = () => {
           <HeaderRightSection isFolder>메뉴지롱 메롱메롱</HeaderRightSection>
         </Header>
       }
-      navBar={<NavBar items={menus} />}
+      navBar={<NavBar items={menus} isFolder />}
     >
       <Box>
         <DatePicker

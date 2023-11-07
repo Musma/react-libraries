@@ -6,13 +6,15 @@ interface FolderNavBarProviderContextType {
   isNavFold: boolean
   toggleNavFoldState(state?: boolean): void
   isMenuState: Record<string, boolean>
-  toggleNavMenuItem(items: Record<string, boolean>): void
+  setNavMenuItem(items: Record<string, boolean>): void
+  toggleNavMenuItem(item: string): void
 }
 
 const FolderNavBarContext = createContext<FolderNavBarProviderContextType>({
   isNavFold: false,
   toggleNavFoldState: () => null,
   isMenuState: {},
+  setNavMenuItem: () => null,
   toggleNavMenuItem: () => null,
 })
 
@@ -24,13 +26,29 @@ export const FolderNavBarProvider = ({ children }: PropsWithChildren) => {
   const [isNavFold, setIsNavFold] = useLocalStorage('isNavFold', false)
   const [isMenuState, setIsMenuState] = useLocalStorage<Record<string, boolean>>('isMenuState', {})
 
-  const toggleNavFoldState = useCallback((state?: boolean) => {
-    setIsNavFold((current) => state ?? !current)
-  }, [])
+  const toggleNavFoldState = useCallback(
+    (state?: boolean) => {
+      setIsNavFold((current) => state ?? !current)
+    },
+    [setIsNavFold],
+  )
 
-  const toggleNavMenuItem = useCallback((items: Record<string, boolean>) => {
-    setIsMenuState(items)
-  }, [])
+  const setNavMenuItem = useCallback(
+    (items: Record<string, boolean>) => {
+      setIsMenuState(items)
+    },
+    [setIsMenuState],
+  )
+
+  const toggleNavMenuItem = useCallback(
+    (item: string) => {
+      setIsMenuState((current) => ({
+        ...current,
+        [item]: !current[item],
+      }))
+    },
+    [setIsMenuState],
+  )
 
   return (
     <FolderNavBarContext.Provider
@@ -38,6 +56,7 @@ export const FolderNavBarProvider = ({ children }: PropsWithChildren) => {
         isNavFold,
         toggleNavFoldState,
         isMenuState,
+        setNavMenuItem,
         toggleNavMenuItem,
       }}
     >
