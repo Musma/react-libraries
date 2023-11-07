@@ -6,7 +6,7 @@ import { ReactComponent as FoldIcon } from 'src/assets/foldIcon.svg'
 import { ReactComponent as UnFoldIcon } from 'src/assets/unFoldIcon.svg'
 import { Box } from 'src/elements'
 
-import { useFolderNavBarContext } from '..'
+import { useFoldingNavBarContext } from '..'
 
 interface HeaderRightSectionProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -16,9 +16,9 @@ interface HeaderRightSectionProps extends HTMLAttributes<HTMLDivElement> {
    */
   disablePadding?: boolean
   /**
+   * 폴딩 기능을 사용할건지에 대한 여부
+   * @optional
    * @default false
-   * @description
-   * 접었다 펼칠 수 있는 네비게이션 바를 사용하는지 여부
    */
   isFoldingMode?: boolean
 }
@@ -31,19 +31,19 @@ export const HeaderRightSection = ({
 }: HeaderRightSectionProps) => {
   const theme = useTheme()
 
-  const { isNavFold, toggleNavFoldState } = useFolderNavBarContext()
+  const { isNavBarFolded, toggleFoldingNavBar } = useFoldingNavBarContext()
 
   const foldIcon = useMemo(() => {
     if (!isFoldingMode) {
       return <Fragment />
     }
 
-    if (isNavFold) {
-      return <UnFoldIcon cursor="pointer" onClick={() => toggleNavFoldState(false)} />
+    if (isNavBarFolded) {
+      return <UnFoldIcon cursor="pointer" onClick={() => toggleFoldingNavBar(false)} />
     }
 
-    return <FoldIcon cursor="pointer" onClick={() => toggleNavFoldState(true)} />
-  }, [isFoldingMode, isNavFold])
+    return <FoldIcon cursor="pointer" onClick={() => toggleFoldingNavBar(true)} />
+  }, [isFoldingMode, isNavBarFolded])
 
   return (
     <Box
