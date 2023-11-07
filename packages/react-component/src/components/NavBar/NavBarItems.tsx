@@ -1,31 +1,24 @@
 import { Fragment } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { NavBarItemsData, NavBarLink, NavBarList, useFolderNavBarContext } from '..'
+import { NavBarItemsData, NavBarLink, NavBarList, useFoldingNavBarContext } from '..'
 
 interface NavBarItemsProps {
   /**
+   * 메뉴 스키마에 맞춰서 데이터를 전달하면 NavList와 NavLink를 자동으로 생성합니다. (폴딩 기능을 사용하면 필수 값)
    * @optional
-   * 메뉴 스키마에 맞춰서 데이터를 전달하면 NavList와 NavLink를 자동으로 생성합니다.
-   * isFoldingMode = true 이면 필수 값
    */
   items?: NavBarItemsData[]
-  /**
-   * @optional
-   * @default false
-   * 폴딩 기능을 사용할건지에 대한 여부
-   */
-  isFoldingMode?: boolean
 }
 
-export const NavBarItems = ({ items, isFoldingMode = false }: NavBarItemsProps) => {
+export const NavBarItems = ({ items }: NavBarItemsProps) => {
   const { pathname } = useLocation()
 
-  const { isNavFold, isMenuState, toggleNavMenuItem } = useFolderNavBarContext()
+  const { isNavBarFolded, isMenuState, toggleMenuState } = useFoldingNavBarContext()
 
   return items?.map((item) => {
     if (item?.children) {
-      const isChildrenVisible = isMenuState[item.label] && !(isFoldingMode && isNavFold)
+      const isChildrenVisible = isMenuState[item.label] && !isNavBarFolded
       const isChildrenActive = item.children.some((child) => {
         if (!child.to) return false
         return pathname.includes(child.to)
@@ -38,7 +31,7 @@ export const NavBarItems = ({ items, isFoldingMode = false }: NavBarItemsProps) 
             icon={item.icon}
             label={item.label}
             active={isMenuState[item.label]}
-            onClick={() => toggleNavMenuItem(item.label)}
+            onClick={() => toggleMenuState(item.label)}
           />
           {isChildrenVisible &&
             item.children.map((child) => {

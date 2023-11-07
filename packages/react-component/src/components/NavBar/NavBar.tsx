@@ -4,40 +4,27 @@ import { useTheme } from '@emotion/react'
 
 import { NavBarItemsData } from '.'
 import { NavBarItems } from './NavBarItems'
-import { useFolderNavBarContext } from '../FolderNavBar'
+import { useFoldingNavBarContext } from '../FoldingNavBarProvider'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
   zIndex?: number
   /**
+   * 메뉴 스키마에 맞춰서 데이터를 전달하면 NavList와 NavLink를 자동으로 생성합니다. (폴딩 기능을 사용하면 필수 값)
    * @optional
-   * 메뉴 스키마에 맞춰서 데이터를 전달하면 NavList와 NavLink를 자동으로 생성합니다.
-   * isFoldingMode = true 이면 필수 값
    */
   items?: NavBarItemsData[]
-  /**
-   * @optional
-   * @default false
-   * 폴딩 기능을 사용할건지에 대한 여부
-   */
-  isFoldingMode?: boolean
 }
 
-export const NavBar = ({
-  zIndex,
-  items,
-  isFoldingMode = false,
-  children,
-  ...rest
-}: NavBarProps) => {
+export const NavBar = ({ zIndex, items, children, ...rest }: NavBarProps) => {
   const theme = useTheme()
-  const { isNavFold, setNavMenuItem } = useFolderNavBarContext()
+  const { isNavBarFolded, setMenuState } = useFoldingNavBarContext()
 
   useEffect(() => {
-    if (!items || !isNavFold) return
+    if (!items || !isNavBarFolded) return
 
     const navItems: Record<string, boolean> = {}
     items.forEach((item) => item?.children && (navItems[item.label] = false))
-    setNavMenuItem(navItems)
+    setMenuState(navItems)
   }, [items])
 
   return (
@@ -61,13 +48,13 @@ export const NavBar = ({
           zIndex: zIndex || theme.zIndex.navBar,
           transition: 'width 0.5s ease-in-out',
         },
-        isNavFold && {
+        isNavBarFolded && {
           width: 100,
         },
       ]}
       {...rest}
     >
-      {items ? <NavBarItems items={items} isFoldingMode={isFoldingMode} /> : children}
+      {items ? <NavBarItems items={items} /> : children}
     </nav>
   )
 }

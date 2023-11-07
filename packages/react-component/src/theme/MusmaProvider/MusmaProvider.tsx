@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext } from 'react'
 
 import { EmotionCache, ThemeProvider } from '@emotion/react'
 
-import { FolderNavBarProvider } from 'src/components'
+import { FoldingNavBarProvider } from 'src/components'
 import { NormalizeCSS, PretendardFont, MusmaTheme } from 'src/theme'
 
 import { DefaultTheme } from './DefaultTheme'
@@ -75,11 +75,11 @@ export const MusmaProvider = ({
   return (
     <ThemeProvider theme={currentThemeObject}>
       <MusmaProviderContext.Provider value={value}>
-        <FolderNavBarProvider>
+        <FoldingNavBarProvider>
           {withNormalizeCSS && <NormalizeCSS />}
           {withPretendardFont && <PretendardFont />}
           {children}
-        </FolderNavBarProvider>
+        </FoldingNavBarProvider>
       </MusmaProviderContext.Provider>
     </ThemeProvider>
   )

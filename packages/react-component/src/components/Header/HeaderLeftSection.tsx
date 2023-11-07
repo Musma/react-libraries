@@ -4,7 +4,7 @@ import { Link, To } from 'react-router-dom'
 import { useTheme } from '@emotion/react'
 import { OutlineMenuIcon } from '@musma/react-icons'
 
-import { IconAdornment, useFolderNavBarContext } from 'src/components'
+import { IconAdornment, useFoldingNavBarContext } from 'src/components'
 import { Box } from 'src/elements'
 
 interface HeaderLeftSectionProps {
@@ -40,7 +40,7 @@ export const HeaderLeftSection = ({
 }: HeaderLeftSectionProps) => {
   const theme = useTheme()
 
-  const { isNavFold } = useFolderNavBarContext()
+  const { isNavBarFolded } = useFoldingNavBarContext()
 
   return (
     <Box
@@ -56,8 +56,9 @@ export const HeaderLeftSection = ({
           paddingLeft: theme.spacing.md,
           paddingRight: theme.spacing.md,
         },
-        isNavFold && {
+        isNavBarFolded && {
           width: 100,
+          justifyContent: 'center',
         },
       ]}
     >

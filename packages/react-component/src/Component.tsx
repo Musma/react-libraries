@@ -234,7 +234,7 @@ const Component = () => {
         </Header>
       }
       navBar={
-        <NavBar items={menus} isFoldingMode>
+        <NavBar items={menus}>
           <NavBarLink to="/" label="meme" />
           <NavBarLink to="/" label="meme" />
         </NavBar>

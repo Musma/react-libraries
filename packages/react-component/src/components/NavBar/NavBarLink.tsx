@@ -4,7 +4,7 @@ import { NavLink, NavLinkProps } from 'react-router-dom'
 import { useTheme } from '@emotion/react'
 import { convertHexToRGB } from '@musma/react-utils'
 
-import { Typography, useFolderNavBarContext } from 'src/components'
+import { Typography, useFoldingNavBarContext } from 'src/components'
 import { Box } from 'src/elements'
 
 interface NavBarListItemProps extends NavLinkProps {
@@ -15,7 +15,7 @@ interface NavBarListItemProps extends NavLinkProps {
 export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) => {
   const theme = useTheme()
 
-  const { isNavFold } = useFolderNavBarContext()
+  const { isNavBarFolded } = useFoldingNavBarContext()
 
   return (
     <NavLink css={{ textDecoration: 'none', margin: '8px 0px', display: 'block' }} {...rest}>
@@ -39,8 +39,9 @@ export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) 
                 color: theme.colors.primary.main,
               },
             },
-            isNavFold && {
+            isNavBarFolded && {
               justifyContent: 'center',
+              textWrap: 'nowrap',
             },
           ]}
         >
@@ -58,7 +59,7 @@ export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) 
                 type={'body2'}
                 css={[
                   { color: 'currentcolor' },
-                  isNavFold && {
+                  isNavBarFolded && {
                     display: 'none',
                   },
                 ]}
@@ -71,8 +72,11 @@ export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) 
             <Typography
               type={isActive ? 'subTitle2' : 'body3'}
               css={[
-                { color: 'currentcolor' },
-                isNavFold && {
+                {
+                  color: 'currentcolor',
+                  whiteSpace: 'nowrap',
+                },
+                isNavBarFolded && {
                   display: 'none',
                 },
               ]}
