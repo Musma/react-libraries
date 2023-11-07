@@ -157,6 +157,7 @@ const DefaultTheme: MusmaTheme = {
   layoutSize: {
     headerHeight: 48,
     navBarWidth: 226,
+    foldedNavBarWidth: 100,
     minBodyWidth: 1440,
   },
   zIndex: {

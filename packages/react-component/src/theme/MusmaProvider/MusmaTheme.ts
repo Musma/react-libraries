@@ -98,11 +98,13 @@ export interface MusmaTheme {
    * @default
     headerHeight: 48,
     navBarWidth: 226,
+    foldedNavBarWidth: 100,
     minBodyWidth: 1440,
    */
   layoutSize: {
     headerHeight: number
     navBarWidth: number
+    foldedNavBarWidth: number
     minBodyWidth: number
   }
   /**

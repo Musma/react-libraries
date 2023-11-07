@@ -1,7 +1,13 @@
 import { ReactNode, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { FillAlarmIcon, FillHomeIcon, OutlineAddBoxIcon } from '@musma/react-icons'
+import {
+  FillAlarmIcon,
+  FillBookmarkIcon,
+  FillWifiOffIcon,
+  FillWritingIcon,
+  OutlineAddBoxIcon,
+} from '@musma/react-icons'
 import { useFormSearch } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
@@ -163,24 +169,12 @@ const Component = () => {
   const menus = [
     {
       label: 'Sample1',
-      icon: () => (
-        <FillHomeIcon
-          css={{
-            marginRight: 8,
-          }}
-        />
-      ),
+      icon: () => <FillBookmarkIcon color="white" />,
       to: '/',
     },
     {
       label: 'Sample2',
-      icon: () => (
-        <FillAlarmIcon
-          css={{
-            marginRight: 8,
-          }}
-        />
-      ),
+      icon: () => <FillAlarmIcon color="white" />,
       children: [
         {
           label: 'Sample2-1',
@@ -194,24 +188,12 @@ const Component = () => {
     },
     {
       label: 'Sample3',
-      icon: () => (
-        <FillHomeIcon
-          css={{
-            marginRight: 8,
-          }}
-        />
-      ),
+      icon: () => <FillWifiOffIcon color="white" />,
       to: '/3',
     },
     {
       label: 'Sample4',
-      icon: () => (
-        <FillAlarmIcon
-          css={{
-            marginRight: 8,
-          }}
-        />
-      ),
+      icon: () => <FillWritingIcon color="white" />,
       children: [
         {
           label: 'Sample4-1',
@@ -229,12 +211,34 @@ const Component = () => {
     <AppShell
       header={
         <Header>
-          <HeaderLeftSection logo={<Typography>Musma</Typography>}></HeaderLeftSection>
+          <HeaderLeftSection
+            css={{
+              backgroundColor: theme.colors.blue.main,
+            }}
+            logo={<Typography color="white">Musma</Typography>}
+          ></HeaderLeftSection>
           <HeaderRightSection isFoldingMode>메뉴지롱 메롱메롱</HeaderRightSection>
         </Header>
       }
       navBar={
-        <NavBar items={menus}>
+        <NavBar
+          items={menus}
+          css={{
+            backgroundColor: theme.colors.blue.main,
+            '& p, svg': {
+              color: 'white',
+            },
+            '& p': {
+              paddingLeft: 8,
+            },
+            '& .active > div': {
+              backgroundColor: 'hsla(0, 100%, 100%, 0.1)',
+            },
+            '& a div:hover': {
+              backgroundColor: 'hsla(0, 100%, 100%, 0.1)',
+            },
+          }}
+        >
           <NavBarLink to="/" label="meme" />
           <NavBarLink to="/" label="meme" />
         </NavBar>

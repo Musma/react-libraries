@@ -2,9 +2,12 @@ import { HTMLAttributes, useEffect } from 'react'
 
 import { useTheme } from '@emotion/react'
 
-import { NavBarItemsData } from '.'
-import { NavBarItems } from './NavBarItems'
-import { useFoldingNavBarContext } from '../FoldingNavBarProvider'
+import {
+  FOLDING_NAVBAR_TRANSITION,
+  NavBarItems,
+  NavBarItemsData,
+  useFoldingNavBarContext,
+} from '..'
 
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
   zIndex?: number
@@ -46,10 +49,10 @@ export const NavBar = ({ zIndex, items, children, ...rest }: NavBarProps) => {
           borderTopColor: theme.colors.gray.lighter,
           boxShadow: theme.shadow.md,
           zIndex: zIndex || theme.zIndex.navBar,
-          transition: 'width 0.5s ease-in-out',
+          transition: FOLDING_NAVBAR_TRANSITION,
         },
         isNavBarFolded && {
-          width: 100,
+          width: theme.layoutSize.foldedNavBarWidth,
         },
       ]}
       {...rest}

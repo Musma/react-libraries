@@ -2,6 +2,8 @@ import { createContext, PropsWithChildren, useCallback, useContext } from 'react
 
 import { useLocalStorage } from '@musma/react-utils'
 
+export const FOLDING_NAVBAR_TRANSITION = 'all 0.5s ease-in-out'
+
 interface FoldingNavBarProviderValue {
   /**
    * 메뉴바의 폴딩 상태
