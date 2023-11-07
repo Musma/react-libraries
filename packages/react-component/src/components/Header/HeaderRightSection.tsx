@@ -20,12 +20,12 @@ interface HeaderRightSectionProps extends HTMLAttributes<HTMLDivElement> {
    * @description
    * 접었다 펼칠 수 있는 네비게이션 바를 사용하는지 여부
    */
-  isFolder?: boolean
+  isFoldingMode?: boolean
 }
 
 export const HeaderRightSection = ({
   disablePadding = false,
-  isFolder = false,
+  isFoldingMode = false,
   children,
   ...rest
 }: HeaderRightSectionProps) => {
@@ -34,7 +34,7 @@ export const HeaderRightSection = ({
   const { isNavFold, toggleNavFoldState } = useFolderNavBarContext()
 
   const foldIcon = useMemo(() => {
-    if (!isFolder) {
+    if (!isFoldingMode) {
       return <Fragment />
     }
 
@@ -43,7 +43,7 @@ export const HeaderRightSection = ({
     }
 
     return <FoldIcon cursor="pointer" onClick={() => toggleNavFoldState(true)} />
-  }, [isFolder, isNavFold])
+  }, [isFoldingMode, isNavFold])
 
   return (
     <Box
