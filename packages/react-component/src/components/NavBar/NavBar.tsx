@@ -1,8 +1,12 @@
 import { Fragment, HTMLAttributes, SVGProps, useEffect } from 'react'
 
 import { useTheme } from '@emotion/react'
+import { FillBatteryIcon } from '@musma/react-icons'
+
+import { Box } from 'src/elements'
 
 import { NavBarLink, NavBarList } from '.'
+import { Button } from '../Button'
 import { useFolderNavBarContext } from '../FolderNavBar'
 
 interface NavBarLinkProps {
@@ -18,19 +22,20 @@ interface NavBarItemsProps extends NavBarLinkProps {
 interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
   zIndex?: number
   items?: NavBarItemsProps[]
+  isFolder?: boolean
 }
 
-export const NavBar = ({ zIndex, items, ...rest }: NavBarProps) => {
+export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps) => {
   const theme = useTheme()
 
-  const { isNavFold, isMenuState, toggleNavMenuItem } = useFolderNavBarContext()
+  const { isNavFold, isMenuState, setNavMenuItem, toggleNavMenuItem } = useFolderNavBarContext()
 
   useEffect(() => {
     if (!items || !isNavFold) return
 
     const navItems: Record<string, boolean> = {}
     items.forEach((item) => item?.children && (navItems[item.label] = false))
-    toggleNavMenuItem(navItems)
+    setNavMenuItem(navItems)
   }, [items])
 
   return (
@@ -53,6 +58,9 @@ export const NavBar = ({ zIndex, items, ...rest }: NavBarProps) => {
           boxShadow: theme.shadow.md,
           zIndex: zIndex || theme.zIndex.navBar,
           transition: 'width 0.5s ease-in-out',
+          '& svg:nth-of-type(1)': {
+            minWidth: 'fit-content',
+          },
         },
         isNavFold && {
           width: 100,
@@ -61,16 +69,40 @@ export const NavBar = ({ zIndex, items, ...rest }: NavBarProps) => {
       {...rest}
     >
       {items?.map((item) => {
+        if (isFolder && isNavFold) {
+          return (
+            <Box
+              key={item.label}
+              css={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                margin: '8px 0px',
+              }}
+            >
+              <Button
+                startIcon={() => <FillBatteryIcon />}
+                onClick={() => toggleNavMenuItem(item.label)}
+                css={{
+                  height: 40,
+                  backgroundColor: 'white',
+                  ':hover': {
+                    backgroundColor: 'lightgray',
+                  },
+                }}
+              />
+            </Box>
+          )
+        }
+
         if (item?.children) {
           return (
             <Fragment key={item.label}>
               <NavBarList
                 icon={item.icon}
-                label={item.label}
+                label={isFolder && isNavFold ? '' : item.label}
                 active={isMenuState[item.label]}
-                onClick={() =>
-                  toggleNavMenuItem({ ...isMenuState, [item.label]: !isMenuState[item.label] })
-                }
+                onClick={() => toggleNavMenuItem(item.label)}
               />
               {item?.children &&
                 isMenuState[item.label] &&
@@ -82,7 +114,12 @@ export const NavBar = ({ zIndex, items, ...rest }: NavBarProps) => {
         }
 
         return (
-          <NavBarLink key={item.label} icon={item.icon} label={item.label} to={item.to ?? ''} />
+          <NavBarLink
+            key={item.label}
+            icon={item.icon}
+            label={isFolder && isNavFold ? '' : item.label}
+            to={item.to ?? ''}
+          />
         )
       })}
     </nav>
