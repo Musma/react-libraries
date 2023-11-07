@@ -37,17 +37,18 @@ export const FolderNavBarProvider = ({ children }: PropsWithChildren) => {
     (items: Record<string, boolean>) => {
       setIsMenuState(items)
     },
-    [setIsMenuState],
+    [setIsMenuState, setIsNavFold],
   )
 
   const toggleNavMenuItem = useCallback(
     (item: string) => {
+      setIsNavFold(false)
       setIsMenuState((current) => ({
         ...current,
         [item]: !current[item],
       }))
     },
-    [setIsMenuState],
+    [setIsNavFold, setIsMenuState],
   )
 
   return (

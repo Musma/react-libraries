@@ -1,12 +1,8 @@
 import { Fragment, HTMLAttributes, SVGProps, useEffect } from 'react'
 
 import { useTheme } from '@emotion/react'
-import { FillBatteryIcon } from '@musma/react-icons'
-
-import { Box } from 'src/elements'
 
 import { NavBarLink, NavBarList } from '.'
-import { Button } from '../Button'
 import { useFolderNavBarContext } from '../FolderNavBar'
 
 interface NavBarLinkProps {
@@ -58,9 +54,6 @@ export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps
           boxShadow: theme.shadow.md,
           zIndex: zIndex || theme.zIndex.navBar,
           transition: 'width 0.5s ease-in-out',
-          '& svg:nth-of-type(1)': {
-            minWidth: 'fit-content',
-          },
         },
         isNavFold && {
           width: 100,
@@ -69,45 +62,28 @@ export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps
       {...rest}
     >
       {items?.map((item) => {
-        if (isFolder && isNavFold) {
-          return (
-            <Box
-              key={item.label}
-              css={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                margin: '8px 0px',
-              }}
-            >
-              <Button
-                startIcon={() => <FillBatteryIcon />}
-                onClick={() => toggleNavMenuItem(item.label)}
-                css={{
-                  height: 40,
-                  backgroundColor: 'white',
-                  ':hover': {
-                    backgroundColor: 'lightgray',
-                  },
-                }}
-              />
-            </Box>
-          )
-        }
-
         if (item?.children) {
+          const isChildrenVisible = isMenuState[item.label] && !(isFolder && isNavFold)
+
           return (
             <Fragment key={item.label}>
               <NavBarList
+                isFolding={isFolder && isNavFold}
                 icon={item.icon}
-                label={isFolder && isNavFold ? '' : item.label}
+                label={item.label}
                 active={isMenuState[item.label]}
                 onClick={() => toggleNavMenuItem(item.label)}
               />
-              {item?.children &&
-                isMenuState[item.label] &&
+              {isChildrenVisible &&
                 item.children.map((child) => {
-                  return <NavBarLink key={child.label} label={child.label} to={child.to ?? ''} />
+                  return (
+                    <NavBarLink
+                      key={child.label}
+                      label={child.label}
+                      to={child.to ?? ''}
+                      isFolding={isFolder && isNavFold}
+                    />
+                  )
                 })}
             </Fragment>
           )
@@ -117,8 +93,9 @@ export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps
           <NavBarLink
             key={item.label}
             icon={item.icon}
-            label={isFolder && isNavFold ? '' : item.label}
+            label={item.label}
             to={item.to ?? ''}
+            isFolding={isFolder && isNavFold}
           />
         )
       })}

@@ -10,31 +10,43 @@ import { Box } from 'src/elements'
 interface NavBarListItemProps extends NavLinkProps {
   label: string
   icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element
+  isFolding?: boolean
 }
 
-export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) => {
+export const NavBarLink = ({
+  label,
+  icon: Icon,
+  isFolding = false,
+  ...rest
+}: NavBarListItemProps) => {
   const theme = useTheme()
 
   return (
     <NavLink css={{ textDecoration: 'none', margin: '8px 0px', display: 'block' }} {...rest}>
       {({ isActive }) => (
         <Box
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            height: 40,
-            borderRadius: theme.rounded.lg,
-            backgroundColor: isActive
-              ? convertHexToRGB(theme.colors.primary.main, 0.1)
-              : theme.colors.transparent,
-            paddingLeft: Icon ? theme.spacing.sm : 40,
-            paddingRight: theme.spacing.sm,
-            color: isActive ? theme.colors.primary.main : theme.colors.black.dark,
-            '&:hover': {
-              backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
-              color: theme.colors.primary.main,
+          css={[
+            {
+              display: 'flex',
+              alignItems: 'center',
+              height: 40,
+              minWidth: 'fit-content',
+              borderRadius: theme.rounded.lg,
+              backgroundColor: isActive
+                ? convertHexToRGB(theme.colors.primary.main, 0.1)
+                : theme.colors.transparent,
+              paddingLeft: Icon ? theme.spacing.sm : 40,
+              paddingRight: theme.spacing.sm,
+              color: isActive ? theme.colors.primary.main : theme.colors.black.dark,
+              '&:hover': {
+                backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
+                color: theme.colors.primary.main,
+              },
             },
-          }}
+            isFolding && {
+              justifyContent: 'center',
+            },
+          ]}
         >
           {/* 아이콘이 있을 경우 */}
           {Icon ? (
@@ -46,13 +58,29 @@ export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) 
                 css={{ marginRight: theme.spacing.md }}
               />
 
-              <Typography type={'body2'} css={{ color: 'currentcolor' }}>
+              <Typography
+                type={'body2'}
+                css={[
+                  { color: 'currentcolor' },
+                  isFolding && {
+                    display: 'none',
+                  },
+                ]}
+              >
                 {label}
               </Typography>
             </Fragment>
           ) : (
             // 아이콘이 없을 경우
-            <Typography type={isActive ? 'subTitle2' : 'body3'} css={{ color: 'currentcolor' }}>
+            <Typography
+              type={isActive ? 'subTitle2' : 'body3'}
+              css={[
+                { color: 'currentcolor' },
+                isFolding && {
+                  display: 'none',
+                },
+              ]}
+            >
               {label}
             </Typography>
           )}
