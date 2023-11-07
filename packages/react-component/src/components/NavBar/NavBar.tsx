@@ -1,4 +1,5 @@
 import { Fragment, HTMLAttributes, SVGProps, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
 
@@ -23,6 +24,7 @@ interface NavBarProps extends HTMLAttributes<HTMLDivElement> {
 
 export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps) => {
   const theme = useTheme()
+  const { pathname } = useLocation()
 
   const { isNavFold, isMenuState, setNavMenuItem, toggleNavMenuItem } = useFolderNavBarContext()
 
@@ -64,11 +66,16 @@ export const NavBar = ({ zIndex, items, isFolder = false, ...rest }: NavBarProps
       {items?.map((item) => {
         if (item?.children) {
           const isChildrenVisible = isMenuState[item.label] && !(isFolder && isNavFold)
+          const isChildrenActive = item.children.some((child) => {
+            if (!child.to) return false
+            return pathname.includes(child.to)
+          })
 
           return (
             <Fragment key={item.label}>
               <NavBarList
                 isFolding={isFolder && isNavFold}
+                isChildrenActive={isChildrenActive}
                 icon={item.icon}
                 label={item.label}
                 active={isMenuState[item.label]}

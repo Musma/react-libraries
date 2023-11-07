@@ -2,6 +2,7 @@ import { Fragment, HTMLAttributes, SVGProps } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { ArrowTopMediumIcon } from '@musma/react-icons'
+import { convertHexToRGB } from '@musma/react-utils'
 
 import { Typography } from 'src/components'
 import { Box } from 'src/elements'
@@ -20,6 +21,7 @@ interface NavBarListProps extends HTMLAttributes<HTMLDivElement> {
    */
   active?: boolean
   isFolding?: boolean
+  isChildrenActive?: boolean
 }
 
 export const NavBarList = ({
@@ -27,9 +29,11 @@ export const NavBarList = ({
   icon: Icon,
   active = false,
   isFolding = false,
+  isChildrenActive = false,
   ...rest
 }: NavBarListProps) => {
   const theme = useTheme()
+
   return (
     <Box css={{ margin: '8px 0px' }} {...rest}>
       <Box
@@ -49,6 +53,11 @@ export const NavBarList = ({
           isFolding && {
             justifyContent: 'center',
           },
+          isFolding &&
+            isChildrenActive && {
+              backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
+              color: theme.colors.primary.main,
+            },
         ]}
       >
         <Icon color="currentColor" width={16} height={16} css={{ marginRight: theme.spacing.md }} />
