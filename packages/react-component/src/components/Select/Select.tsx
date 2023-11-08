@@ -250,7 +250,7 @@ const _Select = <T extends string>(
           <OptionContainer position={position}>
             {searchedOptions.map((option, index) => (
               <Option
-                key={`key-${option.value}`}
+                key={uniqueId()}
                 option={option}
                 selectedOption={selectedOption}
                 onMouseEnter={() => {
