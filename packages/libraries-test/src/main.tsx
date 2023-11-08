@@ -1,15 +1,15 @@
 import { StrictMode } from 'react'
-import { render } from 'react-dom'
+
+import { createRoot } from 'react-dom/client'
 
 import { App } from './App'
 
-const rootElement = document.getElementById('root')
+const container = document.getElementById('root')
 
-if (rootElement) {
-  render(
+if (container) {
+  createRoot(container).render(
     <StrictMode>
       <App />
     </StrictMode>,
-    rootElement,
   )
 }
