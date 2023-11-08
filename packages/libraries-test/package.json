@@ -38,6 +38,7 @@
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
+    "@musma/eslint-config-react": "^0.1.16",
     "@babel/core": "7.20.12",
     "@emotion/babel-plugin": "^11.10.5",
     "@types/lodash-es": "^4.17.6",

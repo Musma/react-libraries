@@ -239,6 +239,7 @@ const Component = () => {
             },
           }}
         >
+          {/* NavBar에 items를 넘겼기때문에 아래 children 들은 무시됩니다 */}
           <NavBarLink to="/" label="meme" />
           <NavBarLink to="/" label="meme" />
         </NavBar>

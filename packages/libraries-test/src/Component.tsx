@@ -62,3 +62,5 @@ export const Component = () => {
     </Box>
   )
 }
+
+export default Component

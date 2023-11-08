@@ -1,6 +1,9 @@
-import { MusmaProvider, DefaultTheme } from '@musma/react-component'
+import { Suspense } from 'react'
+import { RouterProvider } from 'react-router-dom'
 
-import { Component } from './Component'
+import { MusmaProvider, DefaultTheme, LoadingScreen } from '@musma/react-component'
+
+import { router } from './routes'
 
 const theme = {
   ...DefaultTheme,
@@ -19,7 +22,9 @@ const theme = {
 export const App = () => {
   return (
     <MusmaProvider theme={theme}>
-      <Component />
+      <Suspense fallback={<LoadingScreen />}>
+        <RouterProvider router={router} />
+      </Suspense>
     </MusmaProvider>
   )
 }
