@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.3.0
+
+### Minor Changes
+
+- [`5d41a77`](https://github.com/Musma/react-libraries/commit/5d41a7731fc746cdfe0b11f2c081df27d21278e2) Thanks [@musma-sujan7](https://github.com/musma-sujan7)! - chore: update versions
+
 ## 1.2.2
 
 ### Patch Changes
