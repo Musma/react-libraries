@@ -1,35 +1,25 @@
-import { createContext, ReactNode, useContext } from 'react'
+import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from 'react'
 
-import { EmotionCache, ThemeProvider } from '@emotion/react'
+import { EmotionCache, Theme, ThemeProvider } from '@emotion/react'
 
 import { FoldingNavBarProvider } from 'src/components'
-import { NormalizeCSS, PretendardFont, MusmaTheme } from 'src/theme'
-
-import { DefaultTheme } from './DefaultTheme'
-import { ThemeObject, useMultiTheme } from './useMultiTheme'
+import { NormalizeCSS, PretendardFont } from 'src/theme'
 
 interface MusmaProviderContextType {
-  theme?: MusmaTheme
+  currentTheme: Theme
   emotionCache?: EmotionCache
-  currentTheme?: string
-  themeOptions: { label: string; value: string }[]
-  handleThemeChange?: (themeName?: string) => void
+  themeOptions: { label: string; value: Theme }[]
+  onThemeChange: (theme?: Theme) => void
 }
 
-const MusmaProviderContext = createContext<MusmaProviderContextType>({
-  theme: DefaultTheme,
-  themeOptions: [],
-})
+const MusmaProviderContext = createContext<MusmaProviderContextType | null>(null)
 
-/**
- * @deprecated
- */
 export function useMusmaTheme() {
-  return useContext(MusmaProviderContext)?.theme || DefaultTheme
-}
-
-export function useThemeContext() {
-  return useContext(MusmaProviderContext)
+  const context = useContext(MusmaProviderContext)
+  if (!context) {
+    throw new Error('MusmaProvider 하위에서 사용해주세요')
+  }
+  return context
 }
 
 export interface MusmaProviderProps {
@@ -43,15 +33,11 @@ export interface MusmaProviderProps {
    * @default true
    */
   withPretendardFont?: boolean
+  defaultTheme: Theme
   /**
-   * NormalizeCSS 사용 여부
-   * @default true
+   * 여러 색상 테마가 필요할 때 사용합니다. 일단 전달하면 첫 번째 항목이 기본 테마가 됩니다
    */
-  theme?: MusmaTheme
-  /**
-   * 여러 테마가 필요할 때 사용합니다. 일단 전달하면 첫 번째 항목이 기본 테마가 됩니다
-   */
-  themeList?: ThemeObject[]
+  themeOptions?: { label: string; value: Theme }[]
   /**
    * SSR 환경에서 사용할 시 EmotionCache 객체를 생성하여 넣습니다.
    * @default undefined
@@ -66,14 +52,29 @@ export interface MusmaProviderProps {
 export const MusmaProvider = ({
   withNormalizeCSS = true,
   withPretendardFont = true,
-  theme = DefaultTheme,
-  themeList = [],
+  defaultTheme,
+  themeOptions = [],
   children,
 }: MusmaProviderProps) => {
-  const { value, currentThemeObject } = useMultiTheme({ theme, themeList })
+  const [currentTheme, setCurrentTheme] = useState<Theme>(defaultTheme)
+
+  const onThemeChange = useCallback(
+    (value?: Theme) => {
+      setCurrentTheme(value ?? defaultTheme)
+    },
+    [defaultTheme],
+  )
+
+  const value = useMemo(() => {
+    return {
+      currentTheme,
+      themeOptions,
+      onThemeChange,
+    }
+  }, [currentTheme, themeOptions, onThemeChange])
 
   return (
-    <ThemeProvider theme={currentThemeObject}>
+    <ThemeProvider theme={currentTheme}>
       <MusmaProviderContext.Provider value={value}>
         <FoldingNavBarProvider>
           {withNormalizeCSS && <NormalizeCSS />}
