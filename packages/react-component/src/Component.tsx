@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -129,6 +129,12 @@ interface SampleDataType {
 const Component = () => {
   const theme = useTheme()
   const { themeOptions, currentTheme, onThemeChange } = useMusmaTheme()
+  const [value, setValue] = useState(['1', '2'])
+  const [testValue, setTestValue] = useState<string>('')
+  const [radio, setRadio] = useState<boolean>(false)
+  const [time, setTime] = useState(DateTime.now().toISO())
+  const [currentData, setCurrentData] = useState<SampleDataType>()
+  const [checkedItems, setCheckedItems] = useState<string[]>([])
 
   const menus = [
     {
