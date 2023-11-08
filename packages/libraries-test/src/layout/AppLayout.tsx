@@ -9,6 +9,9 @@ import {
   NavBar,
   NavBarLink,
   Image,
+  NavBarItemsData,
+  useFoldingNavBarContext,
+  Typography,
 } from '@musma/react-component'
 import { FillBookmarkIcon, FillAlarmIcon } from '@musma/react-icons'
 
@@ -16,8 +19,9 @@ import musma_logo from './images/logo.svg'
 
 export const AppLayout = () => {
   const theme = useTheme()
+  const { isNavBarFolded } = useFoldingNavBarContext()
 
-  const menus = [
+  const menus: NavBarItemsData[] = [
     {
       label: '홈',
       icon: () => <FillBookmarkIcon color="white" />,
@@ -51,7 +55,13 @@ export const AppLayout = () => {
             css={{
               backgroundColor: theme.colors.blue.main,
             }}
-            logo={<Image src={musma_logo} alt="무스마 로고...가 아니넹 ㅋ" width="100%" />}
+            logo={
+              isNavBarFolded ? (
+                <Typography>심볼</Typography>
+              ) : (
+                <Image src={musma_logo} alt="무스마 로고...가 아니넹 ㅋ" width="100%" />
+              )
+            }
           ></HeaderLeftSection>
           <HeaderRightSection isFoldingMode>메뉴지롱 메롱메롱</HeaderRightSection>
         </Header>
