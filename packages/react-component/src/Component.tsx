@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -8,7 +8,6 @@ import {
   FillWritingIcon,
   OutlineAddBoxIcon,
 } from '@musma/react-icons'
-import { useFormSearch } from '@musma/react-utils'
 import { DateTime } from 'luxon'
 
 import { Box } from 'src/elements'
@@ -17,16 +16,19 @@ import {
   AppShell,
   Button,
   DatePicker,
+  Flex,
   Header,
   HeaderLeftSection,
   HeaderRightSection,
   NavBar,
   NavBarLink,
   RadioGroup,
+  Select,
   Table,
   TextInput,
   Typography,
 } from './components'
+import { useMusmaTheme } from './theme'
 
 const options = [
   {
@@ -110,19 +112,6 @@ const columns2 = [
   },
 ]
 
-const sampleData = [
-  {
-    id: 'id',
-    a: 'A',
-    'b-1': 'B-1',
-    'b-2': 'B-2',
-    'b-3': 'B-3',
-    'c-1': 'C-1',
-    'c-2': 'C-2',
-    d: 'd',
-  },
-]
-
 const sampleData2: SampleDataType[] = [
   {
     id: 'id',
@@ -130,16 +119,6 @@ const sampleData2: SampleDataType[] = [
     b: <Button>메롱</Button>,
   },
 ]
-
-const data = Array.from({ length: 20 }).map((_, index) => ({
-  id: index + 1,
-  customerType: index < 10 ? '법인사업자' : '일반 고객',
-  customerName: '김대동',
-  store: '영등포 대리점',
-  salesDate: '2021-10-01',
-  registNo: 'XA00-000' + (index + 1),
-  fleetSerialNo: 'XA00-0001' + index,
-}))
 
 interface SampleDataType {
   id: string
@@ -149,22 +128,7 @@ interface SampleDataType {
 
 const Component = () => {
   const theme = useTheme()
-  const [value, setValue] = useState(['1', '2'])
-  const [testValue, setTestValue] = useState<string>('')
-
-  const [radio, setRadio] = useState<boolean>(false)
-
-  const [time, setTime] = useState(DateTime.now().toISO())
-
-  const AAA = useFormSearch({
-    useFormProps: {},
-    fetchAPI() {
-      //
-    },
-  })
-
-  const [currentData, setCurrentData] = useState<SampleDataType>()
-  const [checkedItems, setCheckedItems] = useState<string[]>([])
+  const { themeOptions, currentTheme, onThemeChange } = useMusmaTheme()
 
   const menus = [
     {
@@ -306,6 +270,21 @@ const Component = () => {
             },
           ]}
         />
+      </Box>
+      <Box css={{ padding: 48 }}>
+        <Flex colSpacing={24}>
+          <Box css={{ width: 200 }}>
+            <Select
+              label={'팔레트 선택'}
+              value={currentTheme}
+              options={themeOptions}
+              onChange={onThemeChange}
+            />
+          </Box>
+          <Box css={{ backgroundColor: theme.palette.primary.main, width: 100, height: 100 }} />
+          <Box css={{ backgroundColor: theme.palette.secondary.main, width: 100, height: 100 }} />
+          <Box css={{ backgroundColor: theme.palette.warning.main, width: 100, height: 100 }} />
+        </Flex>
       </Box>
     </AppShell>
   )

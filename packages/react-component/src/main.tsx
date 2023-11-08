@@ -2,30 +2,81 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { createRoot } from 'react-dom/client'
 
-import { DefaultTheme, MusmaProvider } from 'src/theme'
+import { MusmaProvider, createTheme } from 'src/theme'
 
 import Component from './Component'
 import { ToastContextProvider } from './components'
 
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
+const theme1 = createTheme({
+  palette: {
     primary: {
-      lighter: '#F9F6EB',
-      light: '#DEB531',
-      main: '#C7A635',
-      dark: '#FD9009',
-      darker: '#DA610F',
+      lighter: '#DFE7EB',
+      light: '#D9E1E5',
+      main: '#D0D5DD',
+      dark: '#C4D2E0',
+      darker: '#BAC7D5',
+    },
+    secondary: {
+      lighter: '#F2F8FB',
+      light: '#118EE5',
+      main: '#036DB7',
+      dark: '#025996',
+      darker: '#003E6A',
+    },
+    warning: {
+      lighter: '#FD9009',
+      light: '#FFAB43',
+      main: '#FD9009',
+      dark: '#E76F00',
+      darker: '#D86900',
     },
   },
-}
+})
+
+const theme2 = createTheme({
+  palette: {
+    primary: {
+      lighter: '#FD9009',
+      light: '#FFAB43',
+      main: '#FD9009',
+      dark: '#E76F00',
+      darker: '#D86900',
+    },
+    secondary: {
+      lighter: '#DFE7EB',
+      light: '#D9E1E5',
+      main: '#D0D5DD',
+      dark: '#C4D2E0',
+      darker: '#BAC7D5',
+    },
+    warning: {
+      lighter: '#F2F8FB',
+      light: '#118EE5',
+      main: '#036DB7',
+      dark: '#025996',
+      darker: '#003E6A',
+    },
+  },
+})
+
+const themeOptions = [
+  { label: 'first', value: theme1 },
+  { label: 'second', value: theme2 },
+]
+
+// 멀티 테마를 사용하지 않을 때는 아래와 같이 합니다.
+// const theme = createTheme({
+//   colors: {
+//     ...DefaultTheme.colors,
+//     primary: { main: 'black', light: 'yellow', dark: 'green', darker: 'blue', lighter: 'white' },
+//   },
+// })
 
 const rootElement = document.getElementById('root')
 
 if (rootElement) {
   createRoot(rootElement).render(
-    <MusmaProvider theme={theme}>
+    <MusmaProvider defaultTheme={theme1} themeOptions={themeOptions}>
       <ToastContextProvider position="top-right" limit={3} newestOnTop>
         <BrowserRouter>
           <Routes>

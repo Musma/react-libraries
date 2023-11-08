@@ -43,6 +43,7 @@
     "@emotion/react": "^11.11.0",
     "@musma/react-icons": "workspace:*",
     "@musma/react-utils": "workspace:*",
+    "lodash-es": "^4.17.21",
     "luxon": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@emotion/babel-plugin": "^11.11.0",
+    "@types/lodash-es": "^4.17.11",
     "@types/react-transition-group": "^4.4.6"
   },
   "peerDependencies": {

@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 
+import { useTheme } from '@emotion/react'
 import {
   FillCautionIcon,
   FillCheckCircleIcon,
@@ -7,12 +8,10 @@ import {
   FillInformationIcon,
 } from '@musma/react-icons'
 
-import { useMusmaTheme } from 'src/theme'
-
 import { ToastPopupModeType, ToastPopupStateType } from '.'
 
 export const useToastPopupStyle = () => {
-  const { colors } = useMusmaTheme()
+  const { colors } = useTheme()
 
   const stylesByType = useCallback(
     (type: ToastPopupStateType, mode: ToastPopupModeType) => {

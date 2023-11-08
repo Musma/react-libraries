@@ -1,4 +1,4 @@
-interface DefaultColorSet {
+export interface Colors {
   /**
    * @default
    * lighter: '#F2F8FB',
@@ -124,16 +124,4 @@ interface DefaultColorSet {
    * transparent: 'transparent'
    */
   transparent: string
-}
-
-export interface Palette extends DefaultColorSet {
-  [key: string]:
-    | {
-        lighter: string
-        light: string
-        main: string
-        dark: string
-        darker: string
-      }
-    | string
 }
