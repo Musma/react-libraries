@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react'
 
+import { useTheme } from '@emotion/react'
+
 import {
   Body,
   BodyType,
@@ -35,10 +37,13 @@ export type TypographyProps = {
  */
 export const Typography = ({
   type,
-  color,
+  color: _color,
   className,
   children,
 }: PropsWithChildren<TypographyProps>) => {
+  const theme = useTheme()
+  const color = _color || theme.colors.black.dark
+
   if (type === 'body1' || type === 'body2' || type === 'body3') {
     return (
       <Body variant={type} color={color} className={className}>
