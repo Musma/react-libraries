@@ -121,7 +121,9 @@ export const Chip = ({
       onClick={onClick}
       {...rest}
     >
-      <Typography type={size === 'sm' ? 'caption2' : 'caption1'}>{children}</Typography>
+      <Typography color="currentColor" type={size === 'sm' ? 'caption2' : 'caption1'}>
+        {children}
+      </Typography>
 
       {onDelete && (
         <IconAdornment
