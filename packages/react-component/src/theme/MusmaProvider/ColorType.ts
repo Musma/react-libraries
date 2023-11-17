@@ -46,7 +46,7 @@ interface DefaultColorSet {
   }
   /**
      * @default
-      lighter: '#EFE7EB',
+      lighter: '#DFE7EB',
       light: '#D9E1E5',
       main: '#D0D5DD',
       dark: '#C4D2E0',
@@ -78,7 +78,7 @@ interface DefaultColorSet {
      * @default
       lighter: '#EDDDDD',
       light: '#FF4D4F',
-      main: '#CA3C3D',
+      main: '#E82717',
       dark: '#A63132',
       darker: '#940E0F',
      */
