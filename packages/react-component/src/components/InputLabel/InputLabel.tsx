@@ -33,6 +33,7 @@ export const InputLabel = memo(
       <Label {...rest}>
         <Typography
           type={size === 'lg' ? 'subTitle1' : 'subTitle2'}
+          color={theme.colors.black.dark}
           css={[
             { marginBottom: theme.spacing.sm },
             withAsterisk && {
