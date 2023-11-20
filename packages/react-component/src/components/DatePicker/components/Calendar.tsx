@@ -235,7 +235,9 @@ export const Calendar = ({
         </Box>
 
         {/* 월, 년 표시 */}
-        <Typography type="subTitle2">{yearAndMonth}</Typography>
+        <Typography type="subTitle2" color={theme.colors.black.dark}>
+          {yearAndMonth}
+        </Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
@@ -278,6 +280,7 @@ export const Calendar = ({
           <Typography
             key={week}
             type="subTitle3"
+            color={theme.colors.black.dark}
             css={{
               width: 20,
               height: 24,
@@ -306,10 +309,10 @@ export const Calendar = ({
                 fontSize: 12,
                 userSelect: 'none',
                 borderRadius: 2,
-                color: theme.colors.black.main,
+                color: theme.colors.black.dark,
                 '&:hover': {
-                  color: theme.colors.white.main,
-                  backgroundColor: theme.colors.primary.main,
+                  color: theme.colors.primary.main,
+                  backgroundColor: '#F2F8FB',
                 },
               },
               // 당월 제외 되는 날짜를 모두 gray main 색상으로 표시
