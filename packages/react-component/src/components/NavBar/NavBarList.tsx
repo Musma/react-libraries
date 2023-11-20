@@ -2,7 +2,6 @@ import { Fragment, HTMLAttributes, SVGProps, useMemo } from 'react'
 
 import { useTheme } from '@emotion/react'
 import { ArrowTopMediumIcon } from '@musma/react-icons'
-import { convertHexToRGB } from '@musma/react-utils'
 
 import { Typography, useFoldingNavBarContext } from 'src/components'
 import { Box } from 'src/elements'
@@ -55,18 +54,18 @@ export const NavBarList = ({
             height: 40,
             minWidth: 'fit-content',
             cursor: 'pointer',
-            backgroundColor: theme.colors.transparent,
+            backgroundColor: isActiveStyle ? theme.colors.gray.lighter : theme.colors.transparent,
+            color: theme.colors.black.main,
             borderRadius: theme.rounded.lg,
             paddingLeft: theme.spacing.sm,
             paddingRight: theme.spacing.sm,
-            color: theme.colors.black.dark,
           },
           isNavBarFolded && {
             justifyContent: 'center',
           },
           isActiveStyle && {
-            backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
-            color: theme.colors.primary.main,
+            backgroundColor: theme.colors.gray.lighter,
+            color: theme.colors.black.main,
           },
         ]}
       >

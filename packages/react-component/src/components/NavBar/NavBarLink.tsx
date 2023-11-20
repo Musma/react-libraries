@@ -2,7 +2,6 @@ import { Fragment, SVGProps } from 'react'
 import { NavLink, NavLinkProps } from 'react-router-dom'
 
 import { useTheme } from '@emotion/react'
-import { convertHexToRGB } from '@musma/react-utils'
 
 import { Typography, useFoldingNavBarContext } from 'src/components'
 import { Box } from 'src/elements'
@@ -28,15 +27,13 @@ export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) 
               height: 40,
               minWidth: 'fit-content',
               borderRadius: theme.rounded.lg,
-              backgroundColor: isActive
-                ? convertHexToRGB(theme.colors.primary.main, 0.1)
-                : theme.colors.transparent,
+              backgroundColor: isActive ? theme.colors.gray.lighter : theme.colors.transparent,
+              color: theme.colors.black.main,
               paddingLeft: Icon ? theme.spacing.sm : 40,
               paddingRight: theme.spacing.sm,
-              color: isActive ? theme.colors.primary.main : theme.colors.black.dark,
               '&:hover': {
-                backgroundColor: convertHexToRGB(theme.colors.primary.main, 0.1),
-                color: theme.colors.primary.main,
+                backgroundColor: theme.colors.gray.lighter,
+                color: theme.colors.black.main,
               },
             },
             isNavBarFolded && {
@@ -56,7 +53,7 @@ export const NavBarLink = ({ label, icon: Icon, ...rest }: NavBarListItemProps) 
               />
 
               <Typography
-                type={'body2'}
+                type={isActive ? 'h6' : 'body2'}
                 css={[
                   { color: 'currentcolor' },
                   isNavBarFolded && {
