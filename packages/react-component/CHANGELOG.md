@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.3.1
+
+### Patch Changes
+
+- [#310](https://github.com/Musma/react-libraries/pull/310) [`44fdc4a`](https://github.com/Musma/react-libraries/commit/44fdc4a85b1589840da4c13b749ac280c679116b) Thanks [@Dave352](https://github.com/Dave352)! - fix: musma theme color픽스
+
 ## 1.3.0
 
 ### Minor Changes
