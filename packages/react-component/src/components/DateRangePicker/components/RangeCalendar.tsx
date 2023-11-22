@@ -302,7 +302,9 @@ export const RangeCalendar = ({
         </Box>
 
         {/* 월, 년 표시 */}
-        <Typography type="subTitle2">{yearAndMonth}</Typography>
+        <Typography type="subTitle2" color={theme.colors.black.dark}>
+          {yearAndMonth}
+        </Typography>
 
         <Box css={{ display: 'flex', alignItems: 'center' }}>
           {/* Next Month */}
@@ -345,6 +347,7 @@ export const RangeCalendar = ({
           <Typography
             key={week}
             type="subTitle3"
+            color={theme.colors.black.dark}
             css={{
               width: 20,
               height: 24,
@@ -374,10 +377,10 @@ export const RangeCalendar = ({
                   fontSize: 12,
                   userSelect: 'none',
                   borderRadius: 2,
-                  color: theme.colors.black.main,
+                  color: theme.colors.black.dark,
                   '&:hover': {
-                    color: theme.colors.white.main,
-                    backgroundColor: theme.colors.primary.main,
+                    color: theme.colors.primary.main,
+                    backgroundColor: '#F2F8FB',
                   },
                 },
 
@@ -402,13 +405,13 @@ export const RangeCalendar = ({
 
                 // 시작일과 종료일 사이 날짜가 primary 옅은색으로 모두 표시
                 isDifferenceDates(day, startDate, endDate) && {
-                  color: theme.colors.white.main,
+                  color: theme.colors.primary.main,
                   backgroundColor: theme.colors.primary.lighter,
                 },
 
                 // 시작일이 선택되어 있으면, mouseOver 한 곳 까지 primary 옅은색으로 표시
                 isMouseOverEvent(mouseOverDateTime, day, startDate, endDate) && {
-                  color: theme.colors.white.main,
+                  color: theme.colors.primary.main,
                   backgroundColor: theme.colors.primary.lighter,
                 },
 

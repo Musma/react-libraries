@@ -56,14 +56,14 @@ const DefaultTheme: MusmaTheme = {
     red: {
       lighter: '#EDDDDD',
       light: '#FF4D4F',
-      main: '#CA3C3D',
+      main: '#E82717',
       dark: '#A63132',
       darker: '#940E0F',
     },
     green: {
       lighter: '#E6E8D8',
       light: '#00AA52',
-      main: '#A63132',
+      main: '#107C41',
       dark: '#066B36',
       darker: '#054522',
     },
