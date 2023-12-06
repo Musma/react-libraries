@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 
-import { useMusmaTheme } from 'src/theme'
+import { useTheme } from '@emotion/react'
 
 import { ToastPopup, useToastContext, IToastContainerProps, IToastPopupInstance } from '.'
 
@@ -11,7 +11,7 @@ export const ToastContainer = ({
   ...rest
 }: IToastContainerProps) => {
   const context = useToastContext()
-  const { zIndex, layoutSize } = useMusmaTheme()
+  const { zIndex, layoutSize } = useTheme()
 
   if (newestOnTop) {
     context.list = context.list.reverse()
