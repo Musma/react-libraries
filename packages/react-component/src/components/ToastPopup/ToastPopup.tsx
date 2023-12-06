@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import { useTheme } from '@emotion/react'
@@ -17,7 +17,8 @@ export const ToastPopup = ({
   mode = 'light',
 }: IToastPopupProps) => {
   const theme = useTheme()
-  const { bgColor, fontColor, img } = useToastPopupStyle().returnStyle(type, mode)
+  const { returnStyle } = useToastPopupStyle()
+  const { bgColor, fontColor, img } = useMemo(() => returnStyle(type, mode), [type, mode])
 
   // 팝업 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -89,7 +90,6 @@ export const ToastPopup = ({
             flexDirection: 'row',
             justifyContent: 'space-between',
             gap: theme.spacing.sm,
-            color: fontColor,
             minWidth: 500,
           }}
         >
@@ -110,6 +110,7 @@ export const ToastPopup = ({
             {title && (
               <Typography
                 type="subTitle2"
+                color={fontColor}
                 css={{
                   // 개행문자(\n)가 있는 경우 줄바꿈하기 위해 적용
                   whiteSpace: 'pre-wrap',
@@ -123,6 +124,7 @@ export const ToastPopup = ({
             {description && (
               <Typography
                 type="body3"
+                color={fontColor}
                 css={{
                   whiteSpace: 'pre-wrap',
                   lineHeight: 1.3,
