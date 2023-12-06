@@ -11,6 +11,7 @@ import { useTab } from '@musma/react-utils'
 
 import {
   AppShell,
+  Button,
   DatePicker,
   Header,
   HeaderLeftSection,
@@ -20,7 +21,9 @@ import {
   TabContainer,
   TabPanel,
   Tabs,
+  TextInput,
   Typography,
+  useToastContext,
 } from './components'
 
 const options = [
@@ -73,9 +76,18 @@ const menus = [
 
 const Component = () => {
   const theme = useTheme()
+  const { addToast } = useToastContext()
 
   const [tab, setTab] = useTab<'셀렉트맛' | '무지개' | '공격'>({ initTabValue: '셀렉트맛' })
   const [date, setDate] = useState<string | null>(null)
+
+  const showToastPopup = () => {
+    addToast({
+      title: '테스트중입니다.',
+      mode: 'dark',
+      type: 'success',
+    })
+  }
 
   return (
     <AppShell
@@ -100,6 +112,8 @@ const Component = () => {
         <TabPanel value={'무지개'}>1</TabPanel>
         <TabPanel value={'총공격'}>1</TabPanel>
       </TabContainer>
+      <TextInput type="password" />
+      <Button onClick={showToastPopup}>토스트 팝업 불러왓</Button>
     </AppShell>
   )
 }

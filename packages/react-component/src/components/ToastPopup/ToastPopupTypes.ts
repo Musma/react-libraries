@@ -24,7 +24,7 @@ export interface IToastPopupProps extends IToastPopupInstance {
 export interface IToastContainerProps extends HTMLAttributes<HTMLElement> {
   /**
    * 브라우저 상단에서 기본으로 떨어져야하는 높이 값
-   * @default useMusmaTheme().layoutSize.headerHeight = 48px
+   * @default useTheme().layoutSize.headerHeight = 48px
    */
   headerHeight?: string
   position?: ToastPopupPositionType
