@@ -41,7 +41,7 @@ export const Tab = ({ value, label, className, ...rest }: TabProps) => {
           tabIndex={-1}
           css={{
             minWidth: 120,
-            height: 40,
+            height: 30,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
