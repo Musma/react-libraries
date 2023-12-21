@@ -33,7 +33,7 @@ export const useToastPopupStyle = () => {
           img: (
             <FillCautionIcon color={mode === 'light' ? colors.orange.main : colors.orange.dark} />
           ),
-          bgColor: colors.orange.lighter,
+          bgColor: '#F3EAE1',
           bgDarkColor: '#4A4643',
         }
       default:
