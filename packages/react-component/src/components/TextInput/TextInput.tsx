@@ -246,9 +246,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               }}
             >
               {inputType === 'text' ? (
-                <OutlineEyeCloseIcon {...theme.inputSize.iconSize[size]} color="currentColor" />
-              ) : (
                 <OutlineEyeIcon {...theme.inputSize.iconSize[size]} color="currentColor" />
+              ) : (
+                <OutlineEyeCloseIcon {...theme.inputSize.iconSize[size]} color="currentColor" />
               )}
             </IconAdornment>
           )}
