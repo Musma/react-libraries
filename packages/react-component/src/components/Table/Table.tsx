@@ -7,7 +7,7 @@ import { Box } from 'src/elements'
 import { Size } from 'src/types'
 
 import { TableBody, TableHead, TableToolbar } from './components'
-import { TableColumn, ToolbarOption } from './types'
+import { TableColumn, TableData, ToolbarOption } from './types'
 
 export interface TableProps<T> extends HTMLAttributes<HTMLTableElement> {
   /**
@@ -67,7 +67,7 @@ export interface TableProps<T> extends HTMLAttributes<HTMLTableElement> {
   onRowClick?: (rowData: T) => void
 }
 
-export function Table<T extends { id: string }>({
+export function Table<T extends TableData>({
   data,
   columns,
   rounded = 'md',
