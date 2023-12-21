@@ -1,10 +1,10 @@
-import { ReactNode, useCallback } from 'react'
+import { useCallback } from 'react'
 
 import { useTheme } from '@emotion/react'
 
 import { Checkbox, Typography } from 'src/components'
 
-import { TableColumn } from '../types'
+import { TableColumn, TableData } from '../types'
 
 interface TableBodyProps<T> {
   /**
@@ -45,11 +45,7 @@ interface TableBodyProps<T> {
   onCheckboxClick?: (rowData: T) => void
 }
 
-interface TableDataProps extends Record<string, ReactNode> {
-  id: string
-}
-
-export function TableBody<T extends TableDataProps>({
+export function TableBody<T extends TableData>({
   columns,
   data,
   withCheckbox = false,
