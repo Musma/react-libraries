@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.3.2
+
+### Patch Changes
+
+- [#314](https://github.com/Musma/react-libraries/pull/314) [`076324c`](https://github.com/Musma/react-libraries/commit/076324cbcb2dd125d230257f48ad9061e264dc4b) Thanks [@musma-sujan7](https://github.com/musma-sujan7)! - refactor: #312 일부 기능 수정
+
 ## 1.3.1
 
 ### Patch Changes
