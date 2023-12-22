@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 import { useTheme } from '@emotion/react'
-import { Box, Form, TextInput } from '@musma/react-component'
+import { Box, Form, Table, TableColumn, TableData, TextInput } from '@musma/react-component'
 
 type CCC = {
   aaa: string
@@ -19,6 +19,22 @@ const AAA = [
   },
 ]
 
+const TABLE_COLUMNS: TableColumn[] = [
+  {
+    columnLabel: 'No',
+    columnName: 'no',
+  },
+  {
+    columnLabel: '이름',
+    columnName: 'name',
+  },
+]
+
+interface TableRowData extends TableData {
+  no: number
+  name: string
+}
+
 export const Component = () => {
   const theme = useTheme()
 
@@ -31,6 +47,10 @@ export const Component = () => {
       aaa: '111',
     },
   })
+
+  const handleRowClick = (rowData: TableRowData) => {
+    console.log('테이블 row 클릭!')
+  }
 
   return (
     <Box>
@@ -59,6 +79,23 @@ export const Component = () => {
           }}
         />
       </Box>
+
+      <Table
+        data={[
+          {
+            id: '1',
+            no: 1,
+            name: '아무개',
+          },
+          {
+            id: '2',
+            no: 2,
+            name: '길동',
+          },
+        ]}
+        onRowClick={handleRowClick}
+        columns={TABLE_COLUMNS}
+      />
     </Box>
   )
 }
