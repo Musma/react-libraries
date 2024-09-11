@@ -209,10 +209,10 @@ const _MultiSelect = <T extends string>(
             },
           },
           disabled && {
-            backgroundColor: theme.colors.white.light,
-            borderColor: theme.colors.gray.main,
-            color: theme.colors.gray.main,
             cursor: 'not-allowed',
+            backgroundColor: theme.colors.white.light,
+            borderColor: theme.colors.gray.darker,
+            color: theme.colors.gray.main,
           },
         ]}
         onClick={handleSelectClick}
@@ -244,29 +244,6 @@ const _MultiSelect = <T extends string>(
             value={inputValue}
             readOnly={!open}
             disabled={disabled}
-            css={[
-              {
-                sm: {
-                  height: 18,
-                },
-                md: {
-                  height: 24,
-                },
-                lg: {
-                  height: 32,
-                },
-              }[size],
-              {
-                flex: 1,
-                fontSize: theme.inputSize.fontSize[size],
-                cursor: 'inherit',
-                color: 'currentColor',
-                '&:disabled': {
-                  color: theme.colors.gray.main,
-                  cursor: 'inherit',
-                },
-              },
-            ]}
             onChange={(e) => {
               setInputValue(e.target.value)
             }}

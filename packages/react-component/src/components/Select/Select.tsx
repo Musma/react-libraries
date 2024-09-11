@@ -200,8 +200,10 @@ const _Select = <T extends string>(
             cursor: 'pointer',
           },
           disabled && {
-            color: theme.colors.gray.main,
             cursor: 'not-allowed',
+            backgroundColor: theme.colors.white.light,
+            borderColor: theme.colors.gray.darker,
+            color: theme.colors.gray.main,
           },
         ]}
         onClick={handleSelectClick}
