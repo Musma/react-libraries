@@ -193,11 +193,10 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 boxShadow: theme.shadow.md,
               },
             },
-            // Disabled CSS
             disabled && {
               cursor: 'not-allowed',
               backgroundColor: theme.colors.white.light,
-              borderColor: theme.colors.white.darker,
+              borderColor: theme.colors.gray.darker,
               color: theme.colors.gray.main,
             },
           ]}
@@ -210,21 +209,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             id={id}
             type={inputType}
             ref={ref}
-            css={[
-              // Base CSS
-              {
-                flex: 1,
-                width: '100%',
-                height: '100%',
-                cursor: 'inherit',
-                backgroundColor: 'transparent',
-              },
-              // Disabled CSS
-              disabled && {
-                color: theme.colors.gray.main,
-                backgroundColor: theme.colors.white.light,
-              },
-            ]}
             disabled={disabled}
             onChange={handleTextInputChange}
             onBlur={handleTextInputBlur}

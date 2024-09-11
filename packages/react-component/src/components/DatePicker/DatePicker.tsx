@@ -171,10 +171,10 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             },
             // Disabled CSS
             disabled && {
-              backgroundColor: theme.colors.white.light,
-              color: theme.colors.gray.main,
               cursor: 'not-allowed',
-              borderColor: theme.colors.gray.main,
+              backgroundColor: theme.colors.white.light,
+              borderColor: theme.colors.gray.darker,
+              color: theme.colors.gray.main,
             },
           ]}
           onClick={() => {
@@ -191,20 +191,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             readOnly={true}
             value={inputValue}
             css={{
-              flex: 1,
-              width: '100%',
-              height: '100%',
               userSelect: 'none',
-              paddingLeft: 0,
-              paddingRight: 0,
-              cursor: 'inherit',
-              color: 'inherit',
-              '&:disabled': {
-                backgroundColor: theme.colors.white.light,
-              },
-              '&::placeholder': {
-                color: theme.colors.gray.light,
-              },
             }}
             {...rest}
           />

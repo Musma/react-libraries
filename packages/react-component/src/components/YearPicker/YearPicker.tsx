@@ -202,10 +202,10 @@ export const YearPicker = forwardRef<HTMLInputElement, YearPickerProps>(
             },
             // Disabled CSS
             disabled && {
-              borderColor: theme.colors.gray.main,
-              backgroundColor: theme.colors.white.light,
-              color: theme.colors.gray.main,
               cursor: 'not-allowed',
+              backgroundColor: theme.colors.white.light,
+              borderColor: theme.colors.gray.darker,
+              color: theme.colors.gray.main,
             },
           ]}
           onClick={() => {
