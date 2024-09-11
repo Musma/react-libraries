@@ -33,7 +33,6 @@ export const Backdrop = forwardRef<HTMLDivElement, BackdropProps>(
       <ReactPortal disableOverflowHidden={disableOverflowHidden}>
         <Box
           ref={ref}
-          aria-hidden={true}
           tabIndex={-1}
           css={{
             position: 'fixed',
