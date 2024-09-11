@@ -48,11 +48,9 @@ export const Option = <T extends unknown>({
         },
         active && {
           backgroundColor: theme.colors.white.lighter,
-          color: theme.colors.blue.main,
         },
         isSelected && {
           backgroundColor: theme.colors.blue.main,
-          color: theme.colors.white.main,
         },
       ]}
       onMouseEnter={onMouseEnter}
@@ -65,7 +63,19 @@ export const Option = <T extends unknown>({
         e.currentTarget.blur()
       }}
     >
-      <Typography type={size === 'lg' ? 'body3' : 'caption1'}>{option.label}</Typography>
+      <Typography
+        type={size === 'lg' ? 'body3' : 'caption1'}
+        css={[
+          active && {
+            color: theme.colors.blue.main,
+          },
+          isSelected && {
+            color: theme.colors.white.main,
+          },
+        ]}
+      >
+        {option.label}
+      </Typography>
     </Box>
   )
 }
