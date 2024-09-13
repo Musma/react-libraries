@@ -16,12 +16,22 @@ export interface ModalActionsProps extends HTMLAttributes<HTMLDivElement> {
    * If true, 내부의 패딩이 사라집니다.
    */
   disablePadding?: boolean
+  /**
+   * @optional
+   * true이면 top padding을 제거합니다.
+   */
+  disablePaddingTop?: boolean
 }
 
 /**
  * Modal 하단의 버튼을 만들 때 사용하는 Wrapper Component 입니다.
  */
-export const ModalActions = ({ size = 'md', disablePadding, ...rest }: ModalActionsProps) => {
+export const ModalActions = ({
+  size = 'md',
+  disablePadding,
+  disablePaddingTop,
+  ...rest
+}: ModalActionsProps) => {
   const theme = useTheme()
   const padding = useMemo(() => {
     if (disablePadding) {
@@ -44,6 +54,9 @@ export const ModalActions = ({ size = 'md', disablePadding, ...rest }: ModalActi
           alignItems: 'center',
           justifyContent: 'center',
           gap: 8,
+        },
+        disablePaddingTop && {
+          paddingTop: 0,
         },
       ]}
       {...rest}
