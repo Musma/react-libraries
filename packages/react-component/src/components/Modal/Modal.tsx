@@ -92,6 +92,8 @@ export const Modal = ({
               borderRadius: theme.rounded.lg,
               backgroundColor: theme.colors.white.main,
               boxShadow: theme.shadow.lg,
+              overflow: 'hidden',
+              maxHeight: '80vh',
             },
             {
               sm: {
@@ -116,9 +118,10 @@ export const Modal = ({
 
           <Box
             css={{
+              flex: 1,
+              overflowY: 'auto',
               display: 'flex',
               flexDirection: 'column',
-              flex: 1,
             }}
           >
             {children}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { useTheme } from '@emotion/react'
 import {
@@ -7,7 +7,7 @@ import {
   FillWifiOffIcon,
   FillWritingIcon,
 } from '@musma/react-icons'
-import { useTab } from '@musma/react-utils'
+import { useTab, useToggle } from '@musma/react-utils'
 
 import {
   AppShell,
@@ -16,7 +16,12 @@ import {
   Header,
   HeaderLeftSection,
   HeaderRightSection,
+  Modal,
+  ModalActions,
+  ModalButton,
+  ModalContent,
   NavBar,
+  Select,
   Tab,
   TabContainer,
   TabPanel,
@@ -25,6 +30,7 @@ import {
   Typography,
   useToastContext,
 } from './components'
+import { Form } from './elements'
 
 const options = [
   {
@@ -80,6 +86,8 @@ const Component = () => {
 
   const [tab, setTab] = useTab<'셀렉트맛' | '무지개' | '공격'>({ initTabValue: '셀렉트맛' })
   const [date, setDate] = useState<string | null>(null)
+  const [showModal, toggleModal] = useToggle()
+  const [selected, setSelected] = useState<string>()
 
   const showToastPopup = () => {
     addToast({
@@ -90,31 +98,80 @@ const Component = () => {
   }
 
   return (
-    <AppShell
-      header={
-        <Header>
-          <HeaderLeftSection logo={<Typography>Musma</Typography>} />
-          <HeaderRightSection isFoldingMode>메뉴지롱 메롱메롱</HeaderRightSection>
-        </Header>
-      }
-      navBar={<NavBar items={menus} />}
-    >
-      <TabContainer value={tab} onTabValueChange={setTab} variant={'hat'}>
-        <Tabs css={{ marginBottom: 17 }}>
-          <Tab value={'셀렉트맛'} label={'셀렉트'} />
-          <Tab value={'무지개'} label={'무지개'} />
-          <Tab value={'총공격'} label={'총공격'} />
-        </Tabs>
+    <Fragment>
+      <AppShell
+        header={
+          <Header>
+            <HeaderLeftSection logo={<Typography>Musma</Typography>} />
+            <HeaderRightSection isFoldingMode>메뉴지롱 메롱메롱</HeaderRightSection>
+          </Header>
+        }
+        navBar={<NavBar items={menus} />}
+      >
+        <TabContainer value={tab} onTabValueChange={setTab} variant={'hat'}>
+          <Tabs css={{ marginBottom: 17 }}>
+            <Tab value={'셀렉트맛'} label={'셀렉트'} />
+            <Tab value={'무지개'} label={'무지개'} />
+            <Tab value={'총공격'} label={'총공격'} />
+          </Tabs>
 
-        <TabPanel value={'셀렉트맛'}>
-          <DatePicker value={date} onChange={(value) => setDate(value)} />
-        </TabPanel>
-        <TabPanel value={'무지개'}>1</TabPanel>
-        <TabPanel value={'총공격'}>1</TabPanel>
-      </TabContainer>
-      <TextInput type="password" />
-      <Button onClick={showToastPopup}>토스트 팝업 불러왓</Button>
-    </AppShell>
+          <TabPanel value={'셀렉트맛'}>
+            <DatePicker disabled value={date} onChange={(value) => setDate(value)} />
+          </TabPanel>
+          <TabPanel value={'무지개'}>1</TabPanel>
+          <TabPanel value={'총공격'}>1</TabPanel>
+        </TabContainer>
+        <TextInput disabled type="password" />
+        <Button disabled onClick={showToastPopup}>
+          토스트 팝업 불러왓
+        </Button>
+        <Button onClick={() => toggleModal()}>모달 띄웟</Button>
+
+        <Select
+          disabled
+          options={[
+            { label: '선택없음', value: undefined },
+            { label: 'example1', value: 'example1' },
+            { label: 'example2', value: 'example2' },
+          ]}
+          value={selected}
+          onChange={setSelected}
+        />
+        <TextInput disabled />
+      </AppShell>
+
+      {showModal && (
+        <Modal show title="example" onClose={toggleModal}>
+          <Form>
+            <ModalContent
+              css={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: theme.spacing.lg,
+                width: 456,
+                maxHeight: '50vh',
+                overflowY: 'auto',
+                paddingBottom: 0,
+              }}
+            >
+              <TextInput label="example1" disabled />
+              <TextInput label="example2" disabled />
+              <TextInput label="example3" disabled />
+              <TextInput label="example4" disabled />
+              <TextInput label="example5" disabled />
+              <TextInput label="example6" disabled />
+              <TextInput label="example7" disabled />
+              <TextInput label="example8" disabled />
+              <TextInput label="example9" disabled />
+            </ModalContent>
+            <ModalActions>
+              <ModalButton>취소</ModalButton>
+              <ModalButton>확인</ModalButton>
+            </ModalActions>
+          </Form>
+        </Modal>
+      )}
+    </Fragment>
   )
 }
 
