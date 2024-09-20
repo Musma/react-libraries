@@ -28,3 +28,12 @@
 //npm.pkg.github.com/:_authToken=토큰을넣어주세요
 //registry.npmjs.org/:_authToken=토큰을넣어주세요
 ```
+
+## Release Notes
+
+### [24.09.20](https://github.com/Musma/react-libraries/tree/%40musma/react-component%401.3.3)
+
+- aria-hidden 관련 크롬 에러 픽스 [#316](https://github.com/Musma/react-libraries/issues/316)
+- Select 컴포넌트에서 상황에 따른 font 컬러 수정 [#319](https://github.com/Musma/react-libraries/issues/319)
+- input 컴포넌트들의 border color가 미세하게 다른 부분 수정 [#318](https://github.com/Musma/react-libraries/issues/318)
+- Modal 관련 컴포넌트의 css 수정 [#317](https://github.com/Musma/react-libraries/issues/317)
