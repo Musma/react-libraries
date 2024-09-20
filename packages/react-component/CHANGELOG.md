@@ -1,5 +1,11 @@
 # @musma/react-component
 
+## 1.3.3
+
+### Patch Changes
+
+- [`6cdb287`](https://github.com/Musma/react-libraries/commit/6cdb2871b3661dced4d21b29b1cbd661bf7d77ce) Thanks [@musma-sujan7](https://github.com/musma-sujan7)! - aria-hidden 관련 에러 및 일부 컴포넌트 버그 수정
+
 ## 1.3.2
 
 ### Patch Changes
