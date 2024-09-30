@@ -1,5 +1,11 @@
 # @musma/react-utils
 
+## 0.0.7
+
+### Patch Changes
+
+- [`3029025`](https://github.com/Musma/react-libraries/commit/3029025d26c933e022687b16930c81e7cc40f8b4) Thanks [@musma-sujan7](https://github.com/musma-sujan7)! - chore: package.json의 exports에 type 설정 추가
+
 ## 0.0.6
 
 ### Patch Changes

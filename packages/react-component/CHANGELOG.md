@@ -1,5 +1,15 @@
 # @musma/react-component
 
+## 1.3.4
+
+### Patch Changes
+
+- [`3029025`](https://github.com/Musma/react-libraries/commit/3029025d26c933e022687b16930c81e7cc40f8b4) Thanks [@musma-sujan7](https://github.com/musma-sujan7)! - chore: package.json의 exports에 type 설정 추가
+
+- Updated dependencies [[`3029025`](https://github.com/Musma/react-libraries/commit/3029025d26c933e022687b16930c81e7cc40f8b4)]:
+  - @musma/react-icons@0.1.15
+  - @musma/react-utils@0.0.7
+
 ## 1.3.3
 
 ### Patch Changes
